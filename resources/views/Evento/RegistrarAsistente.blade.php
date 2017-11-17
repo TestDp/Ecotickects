@@ -141,7 +141,7 @@
         <div class="row">
 
             <div class="col-md-4">
-                Departamento
+                Departamento persona
                 <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
                     <option value="">Seleccionar</option>
                     @foreach($ElementosArray["departamentos"] as $Departamento)
