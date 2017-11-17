@@ -150,7 +150,7 @@
                 </select>
             </div>
             <div class="col-md-4">
-                Ciudad
+                Ciudad Persona
                 <select id="Ciudad_id" name="Ciudad_id" class="form-control">
 
                 </select>
