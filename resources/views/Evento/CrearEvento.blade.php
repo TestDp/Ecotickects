@@ -101,7 +101,7 @@
         <hr style="border-top-color:lightslategray; width:100%" />
         <div class="row">
             <div class="col-md-8 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" onclick="EditarNombrePreguntasYRespuetas()">
                     Crear Evento
                 </button>
             </div>
@@ -115,7 +115,9 @@
             <div class="panel-heading">
                 <div class="form-group">
                     <div class="input-group">
-                        <a id="tituloPregunta" name="tituloPregunta" data-toggle="collapse" href="#collapse">preuba</a>
+                        <a id="tituloPregunta" name="tituloPregunta" data-toggle="collapse" href="#collapse"></a>
+                        <input id="TextoPregunta" name="TextoPregunta" type="hidden" />
+                        <input id="TextoTipoPregunta" name="TextoTipoPregunta" type="hidden"  value="1"/>
                         <div class="input-group-addon alert-warning">
                             <a id="agregarRespuesta" name="agregarRespuesta" title="Agregar Respuesta" data-toggle="modal" data-target="#EnunciadoRespuesta"><span class="glyphicon glyphicon-plus"  ></span></a>
                             <a  title="Eliminar Pregunta"><span class="glyphicon glyphicon-erase"></span></a>
@@ -148,7 +150,6 @@
             </div>
             <div id="collapse" name="collapse" class="panel-collapse collapse">
                 <ul class="list-group" id="ListaRespuestas" name="ListaRespuestas">
-                    <li class="list-group-item">respuesta<input type="hidden" value="respuesta"></li>
                 </ul>
             </div>
         </div>

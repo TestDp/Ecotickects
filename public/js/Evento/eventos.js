@@ -26,6 +26,7 @@ function CargarMunicipiosDepartamento()
 var numeroPregunta = 0;
 function AgregarPregunta()
 {
+    //funcionalidad de agregar y mostrar pregunta
     var divPregunta = $("#divPregunta").clone();
     divPregunta.attr("id","pregunta");
     divPregunta.attr("name","pregunta");
@@ -34,16 +35,29 @@ function AgregarPregunta()
     divPregunta.find("div[name=collapse]").attr("id","pregunta"+numeroPregunta);
     divPregunta.find("a[name=agregarRespuesta]").attr("data-target","#EnunciadoRespuesta"+numeroPregunta);
     divPregunta.find("div[name=EnunciadoRespuesta]").attr("id","EnunciadoRespuesta"+numeroPregunta);
+    //funcioalidad de agregar los valores para ser guardados
+    divPregunta.find("input[name = TextoPregunta]").val($("#enunciadoPregunta").val());
     numeroPregunta++;
     $("#ListaPreguntas").append(divPregunta);
 }
 
 
-function  AgregarRespuesta(element) {
+function  AgregarRespuesta(element)
+{
   var divPregunta = $(element).closest("div[name=pregunta]");
   var enunciadoRepuesta = divPregunta.find("input[name=Respuesta]").val();
-  var htmlRespuesta = '<li class="list-group-item">'+enunciadoRepuesta+'<input type="hidden" value="'+enunciadoRepuesta+'" /></li>';
+  var htmlRespuesta = '<li class="list-group-item">'+enunciadoRepuesta+'<input id="TextoRespuesta" name="TextoRespuesta" type="hidden" value="'+enunciadoRepuesta+'" /></li>';
   divPregunta.find("ul[name=ListaRespuestas]").append(htmlRespuesta);
-
 }
 
+function EditarNombrePreguntasYRespuetas()
+{
+    $("#ListaPreguntas").find("div[name=pregunta]").each(function (i,pregunta) {
+        $(pregunta).find("input[name=TextoPregunta]").attr("name","Enunciado[" + i+ "]");
+        $(pregunta).find("input[name=TextoTipoPregunta]").attr("name","TipoPregunta_id[" + i + "]");
+        $(pregunta).find("input[name=TextoRespuesta]").each(function (j,respuesta) {
+            $(respuesta).attr("name","TextoRespuesta[" + i + "][" + j +"]");
+        })
+   });
+
+}

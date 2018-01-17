@@ -19,6 +19,6 @@ class Evento extends Model
     }
 
     public function preguntas(){
-        return $this->hasMany('Pregunta');
+        return $this->hasMany('Pregunta','Evento_id','id');
     }
 }
