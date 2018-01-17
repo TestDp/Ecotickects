@@ -86,8 +86,9 @@
             @endforeach
         </div>
     </div>
-    <form action="registrarAsistente" method="POST">
+    <form action="{{url('registrarAsistente')}}" method="POST">
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
         <div class="row">
             <div class="col-md-6">
                 Nombre

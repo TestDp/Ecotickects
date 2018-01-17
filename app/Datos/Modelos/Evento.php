@@ -21,4 +21,8 @@ class Evento extends Model
     public function preguntas(){
         return $this->hasMany('Pregunta','Evento_id','id');
     }
+
+    public function asistentesXEventos(){
+        return $this->hasMany('AsistenteXEvento','Evento_id','id');
+    }
 }

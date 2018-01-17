@@ -15,4 +15,8 @@ class Ciudad extends Model
     public function departamento(){
         return $this->belongsTo('Departamento');
     }
+
+    public function asistentes(){
+        return $this->hasMany('Asistente');
+    }
 }
