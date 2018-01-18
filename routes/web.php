@@ -42,6 +42,6 @@ Route::post('crearEvento',[
 ]);
 
 /*Guarda el registro del asistente*/
-Route::post('/registrarAsistente',[
+Route::post('registrarAsistente',[
     'uses' =>'Evento\AsistentesController@registrarAsistente'
 ]);

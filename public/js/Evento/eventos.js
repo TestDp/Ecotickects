@@ -1,10 +1,13 @@
+var urlBase = "/Ecotickects/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+
+
 //funcion que me retorna las ciudades dependiendo del departamento seleccionado
 function CargarMunicipiosDepartamento()
 {
     var idDepartamento =$("#Departamento_id").val();
     var $idCiudad =$("#Ciudad_id");
     $.ajax({
-        url: 'Ciudades/'+idDepartamento,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'Ciudades/'+idDepartamento,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idDepartamento: idDepartamento,
             _token :$("#_token").val()

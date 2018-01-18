@@ -16,4 +16,8 @@ class AsistenteXEvento extends Model
     public function asistente(){
         return $this->belongsTo('Asistente');
     }
+
+    public function respuestasAsistentesXEventos(){
+        return $this->hasMany('AsistenteXEvento','AsistenteXEvento_id','id');
+    }
 }

@@ -92,7 +92,7 @@
         <div class="row">
             <div class="col-md-6">
                 Nombre
-                <input id="Nombre" name="Nombre" type="text" class="form-control" />
+                <input id="Nombres" name="Nombres" type="text" class="form-control" />
             </div>
             <div class="col-md-6">
                 Apellidos
@@ -102,7 +102,7 @@
         <div class="row">
             <div class="col-md-6">
                 Identificación
-                <input id="identificacion" name="identificacion" type="text" class="form-control" />
+                <input id="Identificacion" name="Identificacion" type="text" class="form-control" />
             </div>
             <div class="col-md-6">
                 Celular/teléfono
@@ -119,24 +119,15 @@
                 <input id="confEmail" name="confEmail" type="text" class="form-control" />
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-6">
-                Empresa/Institución
-                <input id="Empresa" name="Empresa" type="text" class="form-control" />
-            </div>
-            <div class="col-md-6">
-                Sector Económico
-                <input id="secEconomico" name="secEconomico" type="text" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                Cargo/Rol
-                <input id="Cargo" name="Cargo" type="text" class="form-control" />
-            </div>
             <div class="col-md-6">
                 Edad
-                <input id="edad" name="edad" type="number" class="form-control" />
+                <input id="Edad" name="Edad" type="number" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                Dirección
+                <input id="Dirección" name="Dirección" type="text" class="form-control" />
             </div>
         </div>
         <div class="row">
@@ -157,7 +148,10 @@
                 </select>
             </div>
         </div>
-
+        <div class="col-md-6">
+            Comentario
+            <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+        </div>
         <br/>
         <div class="column one">
 
@@ -169,13 +163,13 @@
                         @foreach($PreguntasFormulario->Respuestas as $respuestas)
                             <div class="col-md-6" >
                                 <div class="radio">
-                                    <div style="font-family: sans-serif; line-height: 30px;"><input type="radio" value="{{$respuestas->id}}" id="Respuesta" name="fk_id_respuesta[{{$loop->parent->index}}]" >
+                                    <div style="font-family: sans-serif; line-height: 30px;"><input type="radio" value="{{$respuestas->id}}" id="Respuesta_id" name="Respuesta_id[{{$loop->parent->index}}]" >
                                         <b>{{$respuestas->EnunciadoRespuesta}}</b>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                        <label for="fk_id_respuesta[{{$loop->index}}]" class="error" style="display:none;">Please choose one.</label>
+                        <label for="Respuesta_id[{{$loop->index}}]" class="error" style="display:none;">Please choose one.</label>
                     </fieldset>
                 @endforeach
             </div>

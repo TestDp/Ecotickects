@@ -13,4 +13,8 @@ class Respuesta extends Model
     public function pregunta(){
         return $this->belongsTo('Pregunta');
     }
+
+    public function respuestasAsistentesXEventos(){
+        return $this->hasMany('AsistenteXEvento','Respuesta_id','id');
+    }
 }
