@@ -45,6 +45,12 @@
                                 <th >
                                     Fecha Final de resgistro
                                 </th>
+                                <th >
+                                    Asistentes
+                                </th>
+                                <th >
+                                    Estadisticas
+                                </th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -76,6 +82,12 @@
                                 <th >
                                     Fecha Final de resgistro
                                 </th>
+                                <th >
+                                    Asistentes
+                                </th>
+                                <th >
+                                    Estadisticas
+                                </th>
                             </tr>
                             </tfoot>
                             <tbody >
@@ -106,6 +118,12 @@
                                     </td>
                                     <td>
                                         {{ $evento->Fecha_Final_Registro }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ url('/ListaAsistentes') }}">ver</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ url('/FormularioEvento') }}">ver</a>
                                     </td>
                                 </tr>
                             @endforeach

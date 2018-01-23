@@ -55,10 +55,14 @@ class EventosController extends Controller
     }
 
 
-    public function obtenerCiudades($idDepartamento)
+    public function obtenerCiudades($idDepartamento)//este metodo se tiene que mover  de esta clase
     {
         $ciudades = Ciudad::where('Departamento_id','=',$idDepartamento)->get();
         return response()->json($ciudades);
     }
 
+    public function obtenerListaAsistentes()
+    {
+        return view('Evento\ListaAsistente');
+    }
 }
