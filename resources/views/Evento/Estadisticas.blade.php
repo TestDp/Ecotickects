@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-   estadisticas
+    <div class="panel panel-default">
+        <div class="panel-heading">Estadísticas </div>
+
+    </div>
+
 
 
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
