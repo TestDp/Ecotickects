@@ -65,4 +65,9 @@ class EventosController extends Controller
     {
         return view('Evento\ListaAsistente');
     }
+
+    public function obtenerEstadisticas()
+    {
+        return view('Evento\Estadisticas');
+    }
 }

@@ -49,3 +49,7 @@ Route::post('registrarAsistente',[
 Route::get('ListaAsistentes',[
     'uses' =>'Evento\EventosController@obtenerListaAsistentes'
 ]);
+
+Route::get('Estadisticas',[
+    'uses' =>'Evento\EventosController@obtenerEstadisticas'
+]);

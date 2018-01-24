@@ -123,7 +123,7 @@
                                         <a class="btn btn-primary" href="{{ url('/ListaAsistentes') }}">ver</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ url('/FormularioEvento') }}">ver</a>
+                                        <a class="btn btn-primary" href="{{ url('/Estadisticas') }}">ver</a>
                                     </td>
                                 </tr>
                             @endforeach
