@@ -22,7 +22,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "Ecotickets\\": "app/"
+            "Ecotickets\\": "app/",
+            "Eco\\":"app/Ecotickets"
         }
     },
     "autoload-dev": {

@@ -2,7 +2,7 @@
 
 namespace Ecotickets\Http\Controllers;
 
-use Ecotickets\Datos\Modelos\Evento;
+use Eco\Datos\Modelos\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

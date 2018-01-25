@@ -2,9 +2,9 @@
 
 namespace Ecotickets\Http\Controllers\Evento;
 
-use Ecotickets\Datos\Modelos\Asistente;
-use Ecotickets\Datos\Modelos\AsistenteXEvento;
-use Ecotickets\Datos\Modelos\RespuestaAsistenteXEvento;
+use Eco\Datos\Modelos\Asistente;
+use Eco\Datos\Modelos\AsistenteXEvento;
+use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
 

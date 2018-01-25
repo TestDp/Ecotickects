@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecotickets\Datos\Modelos;
+namespace Eco\Datos\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
 
