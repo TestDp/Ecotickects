@@ -32,6 +32,11 @@ class EcoticketsController extends Controller
         $ElementosArray= array('evento' => $evento,'preguntas'=>$preguntas,'departamentos' => $departamentos,'EventoId'=>$idEvento);
         return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
+    public function obtenerListaAsistentes($idEvento)
+    {
+        $evento = Evento::where('Evento_id','=',$idEvento)->get();
+
+    }
 
 
 }
