@@ -45,3 +45,11 @@ Route::post('crearEvento',[
 Route::post('registrarAsistente',[
     'uses' =>'Evento\AsistentesController@registrarAsistente'
 ]);
+
+Route::get('ListaAsistentes',[
+    'uses' =>'Evento\EventosController@obtenerListaAsistentes'
+]);
+
+Route::get('Estadisticas',[
+    'uses' =>'Evento\EventosController@obtenerEstadisticas'
+]);
