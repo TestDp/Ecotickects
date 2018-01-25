@@ -21,6 +21,7 @@ Route::get('/', [
 Auth::routes();
 
 /** Obtiene el formulario del evento*/
+Route::get('FormularioAsistente/{idEvento}', [
     'uses' =>'Ecotickets\EcoticketsController@obtenerFormularioAsistente'
 ]);
 

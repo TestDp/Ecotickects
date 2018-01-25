@@ -30,6 +30,7 @@ class EcoticketsController extends Controller
         $departamentos = Departamento::all();// se obtiene la lista de departamentos para mostrar en el formulario
         //dd($preguntas);
         $ElementosArray= array('evento' => $evento,'preguntas'=>$preguntas,'departamentos' => $departamentos,'EventoId'=>$idEvento);
+        return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
 
 
