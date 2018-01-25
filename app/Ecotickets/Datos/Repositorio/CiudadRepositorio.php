@@ -10,7 +10,7 @@ namespace Eco\Datos\Repositorio;
 
 
 use Eco\Datos\Modelos\Ciudad;
-use Eco\Datos\Modelos\Departamento;
+
 
 class CiudadRepositorio
 {
@@ -21,8 +21,4 @@ class CiudadRepositorio
         return $ciudades;
     }
 
-    public function obtenerDepartamentos()//este metodo se tiene que mover  de esta clase
-    {
-        return Departamento::all();
-    }
 }

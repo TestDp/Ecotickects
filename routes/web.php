@@ -33,7 +33,7 @@ Route::get('FormularioEvento', 'Evento\EventosController@obtenerFormularioEvento
 
 /*Obtiene las ciudades por departamento*/
 Route::post('Ciudades/{idDepartamento}',[
-    'uses' =>'Evento\EventosController@obtenerCiudades'
+    'uses' =>'Evento\CiudadController@obtenerCiudades'
 ]);
 
 /*Guarda el evento del organizador*/
