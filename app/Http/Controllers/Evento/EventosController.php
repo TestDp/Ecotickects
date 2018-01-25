@@ -23,7 +23,6 @@ class EventosController extends Controller
     {
         $departamentos = Departamento::all();
         $formulario = array('departamentos' => $departamentos);
-        return view('Evento\CrearEvento',['formulario' =>$formulario]);
     }
 
     public function crearEvento(Request $EdEvento)

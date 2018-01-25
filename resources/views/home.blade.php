@@ -13,7 +13,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a class="btn btn-primary" href="{{ url('/FormularioEvento') }}">Crear Evento</a>
 
                         <table id="TablaListaEventos"  class="table table-bordered">
                             <thead>

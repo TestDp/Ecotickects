@@ -175,7 +175,6 @@
                                 <td>
                                     {{ $evento->Fecha_Final_Registro }}
                                 </td>
-                                <td><a class="btn btn-primary" href="{{url('/FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a></td>
                             </tr>
                         @endforeach
                         </tbody>
