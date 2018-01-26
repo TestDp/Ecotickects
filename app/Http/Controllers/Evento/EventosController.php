@@ -50,6 +50,6 @@ class EventosController extends Controller
     /*public function obtenerCiudades($idDepartamento)
     {
         $ciudades = $this->ciudadServicio->obtenerCiudades($idDepartamento);
-        return response()->json($ciudades);
+        return response()->json($ciudades);ddeddddd
     }*/
 }
