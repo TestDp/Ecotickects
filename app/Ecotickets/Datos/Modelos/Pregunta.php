@@ -19,6 +19,6 @@ class Pregunta extends Model
     }
 
     public function respuestas(){
-        return $this->hasMany('Ecotickets\Datos\Modelos\Respuesta','Pregunta_id','id');
+        return $this->hasMany('Eco\Datos\Modelos\Respuesta','Pregunta_id','id');
     }
 }

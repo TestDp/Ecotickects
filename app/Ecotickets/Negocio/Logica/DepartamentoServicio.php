@@ -22,6 +22,6 @@ class DepartamentoServicio
     public function obtenerDepartamento()
     {
 
-        return $this->departamentoRepo-> obtenerDepartamento();
+        return $this->departamentoRepo->obtenerDepartamentos();
     }
 }

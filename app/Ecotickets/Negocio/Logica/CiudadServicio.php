@@ -7,8 +7,6 @@
  */
 
 namespace Eco\Negocio\Logica;
-
-
 use Eco\Datos\Repositorio\CiudadRepositorio;
 
 class CiudadServicio
@@ -19,10 +17,10 @@ class CiudadServicio
         $this->ciudadRepor = $ciudadRepor;
     }
 
-    public function obtenerCiudades($idDepartamento)//este metodo se tiene que mover  de esta clase
+    public function obtenerCiudades($idDepartamento)
     {
 
-        return $this->ciudadRepor-> obtenerCiudades($idDepartamento);
+        return $this->ciudadRepor->obtenerCiudades($idDepartamento);
     }
 
 }
