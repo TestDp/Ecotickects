@@ -7,6 +7,7 @@ use Ecotickets\Http\Controllers\Controller;
 use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Departamento;
+use Eco\Negocio\Logica\CiudadServicio;
 
 class EcoticketsController extends Controller
 {
@@ -32,6 +33,7 @@ class EcoticketsController extends Controller
         $ElementosArray= array('evento' => $evento,'preguntas'=>$preguntas,'departamentos' => $departamentos,'EventoId'=>$idEvento);
         return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
+
 
 
 }

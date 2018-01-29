@@ -15,7 +15,7 @@ use Eco\Datos\Modelos\Ciudad;
 class CiudadRepositorio
 {
 
-    public function obtenerCiudades($idDepartamento)//este metodo se tiene que mover  de esta clase
+    public function obtenerCiudades($idDepartamento)
     {
         $ciudades = Ciudad::where('Departamento_id','=',$idDepartamento)->get();
         return $ciudades;
