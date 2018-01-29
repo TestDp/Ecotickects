@@ -2,6 +2,7 @@
 
 namespace Ecotickets\Http\Controllers\Evento;
 
+use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
@@ -11,13 +12,15 @@ class EventosController extends Controller
 {
     protected $eventoServicio;
     protected $departamentoServicio;
+    protected $asistenteServicio;
 
 
-    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio)
+    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio,AsistenteServicio $asistenteServicio)
     {
         $this->middleware('auth');
         $this->departamentoServicio=$departamentoServicio;
         $this->eventoServicio = $eventoServicio;
+        $this->asistenteServicio = $asistenteServicio;
     }
 
 
@@ -39,10 +42,11 @@ class EventosController extends Controller
 
     }
 
-
-    public function obtenerListaAsistentes()
+    /*Metodo que me retorna la lista de asistentes*/
+    public function ObtenerListaAsistentes($idEvento)
     {
-        return view('Evento\ListaAsistente');
+        $ListaAsistentes= array('Asistentes' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento));
+        return view('Evento\ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
     }
 
 

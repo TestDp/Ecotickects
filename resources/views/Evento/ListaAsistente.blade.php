@@ -30,7 +30,51 @@
                                 </th>
                             </tr>
                             </thead>
+                            <tbody >
+                            @foreach($ListaAsistentes["Asistentes"] as $asistente)
+                            <tr >
+                                <th>
+                                  {{  $asistente->Identificacion}}
+                                </th>
+                                <th>
+                                    {{$asistente->Nombres}}
+                                </th>
+                                <th>
+                                    {{$asistente->Apellidos}}
+                                </th>
+                                <th>
+                                    {{$asistente->telefono}}
+                                </th>
+                                <th>
+                                    {{$asistente->Email}}
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                            @endforeach
+                            </tbody>
                             <tfoot>
+                            <tr >
+                                <th>
+                                    Identificación
+                                </th>
+                                <th>
+                                    Nombre
+                                </th>
+                                <th>
+                                    Apellidos
+                                </th>
+                                <th>
+                                    Celular
+                                </th>
+                                <th>
+                                    Correo
+                                </th>
+                                <th>
+                                    Ciudad
+                                </th>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>

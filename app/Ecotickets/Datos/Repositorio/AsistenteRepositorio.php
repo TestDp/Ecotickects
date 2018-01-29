@@ -12,6 +12,7 @@ use Eco\Datos\Modelos\Asistente;
 use Eco\Datos\Modelos\AsistenteXEvento;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Array_;
 
 class AsistenteRepositorio
 {
@@ -40,5 +41,15 @@ class AsistenteRepositorio
             return  false;
         }
         return true;
+    }
+
+    public function obtenerAsistentesXEvento($idEvento)
+    {
+        $arrayAsistentes = array();
+        $listaAsistentesEventos = AsistenteXEvento::where('Evento_id','=',$idEvento)->get();
+        foreach ($listaAsistentesEventos as $asistente){
+          $arrayAsistentes[]=Asistente::where('id','=',$asistente->Asistente_id)->first() ;
+        }
+        return $arrayAsistentes;
     }
 }

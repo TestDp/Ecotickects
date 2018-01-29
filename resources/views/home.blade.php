@@ -120,7 +120,7 @@
                                         {{ $evento->Fecha_Final_Registro }}
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ url('/ListaAsistentes') }}">ver</a>
+                                        <a class="btn btn-primary" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
                                     </td>
                                     <td>
                                         <a class="btn btn-primary" href="{{ url('/Estadisticas') }}">ver</a>

@@ -22,4 +22,9 @@ class AsistenteServicio
     {
         return $this->asistenteRepositorio->registrarAsistente($asistente);
     }
+
+    public function obtenerAsistentesXEvento($idEvento)
+    {
+        return $this->asistenteRepositorio->obtenerAsistentesXEvento($idEvento);
+    }
 }

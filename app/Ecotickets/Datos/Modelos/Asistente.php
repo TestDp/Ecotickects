@@ -3,6 +3,7 @@
 namespace Eco\Datos\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
+use Eco\Datos\Modelos\AsistenteXEvento;
 
 class Asistente extends Model
 {

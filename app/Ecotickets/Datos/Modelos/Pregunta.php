@@ -3,7 +3,7 @@
 namespace Eco\Datos\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
-use Ecotickets\Datos\Modelos\Evento;
+
 
 class Pregunta extends Model
 {

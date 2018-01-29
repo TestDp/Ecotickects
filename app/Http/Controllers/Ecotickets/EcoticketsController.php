@@ -7,7 +7,7 @@ use Ecotickets\Http\Controllers\Controller;
 use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Departamento;
-use Eco\Negocio\Logica\CiudadServicio;
+
 
 class EcoticketsController extends Controller
 {
