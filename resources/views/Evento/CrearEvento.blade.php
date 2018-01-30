@@ -13,7 +13,7 @@
                 Tipo de Evento
                 <select id="Tipo_Evento" name="Tipo_Evento" class="form-control">
                     <option value="Evento">Evento</option>
-                    <option value="Cupón">Cupón</option>
+                    <option value="Cupon">Cupón</option>
                 </select>
             </div>
         </div>

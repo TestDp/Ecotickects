@@ -12,13 +12,24 @@ use Eco\Datos\Modelos\Departamento;
 class EcoticketsController extends Controller
 {
 
+
+    public  function  welcome()
+    {
+        return view('welcome');
+    }
     public  function  ObtenerEventos()
     {
-        $eventos = Evento::all();
+        $eventos = Evento::where('Tipo_Evento','=','Evento')->get();
         $ListaEventos = array('eventos' => $eventos);
-        return view('welcome',['ListaEventos' => $ListaEventos]);
+        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
     }
 
+    public  function  ObtenerCupones()
+    {
+        $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
+        $ListaEventos = array('eventos' => $eventos);
+        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
+    }
     //metodo que me muestra el formulario del registro para el evento
     ///parametros:$idEvento -> id del evento en el cual se va a realizar el registro
     public function obtenerFormularioAsistente($idEvento)
