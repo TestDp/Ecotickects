@@ -2,11 +2,12 @@
 
 namespace Ecotickets\Http\Controllers\Ecotickets;
 
-use Ecotickets\Datos\Modelos\Pregunta;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
-use Ecotickets\Datos\Modelos\Evento;
-use Ecotickets\Datos\Modelos\Departamento;
+use Eco\Datos\Modelos\Pregunta;
+use Eco\Datos\Modelos\Evento;
+use Eco\Datos\Modelos\Departamento;
+
 
 class EcoticketsController extends Controller
 {
@@ -30,8 +31,9 @@ class EcoticketsController extends Controller
         $departamentos = Departamento::all();// se obtiene la lista de departamentos para mostrar en el formulario
         //dd($preguntas);
         $ElementosArray= array('evento' => $evento,'preguntas'=>$preguntas,'departamentos' => $departamentos,'EventoId'=>$idEvento);
-        return view('Evento\RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
+        return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
+
 
 
 }

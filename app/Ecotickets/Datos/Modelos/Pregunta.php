@@ -1,9 +1,9 @@
 <?php
 
-namespace Ecotickets\Datos\Modelos;
+namespace Eco\Datos\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
-use Ecotickets\Datos\Modelos\Evento;
+
 
 class Pregunta extends Model
 {
@@ -19,6 +19,6 @@ class Pregunta extends Model
     }
 
     public function respuestas(){
-        return $this->hasMany('Ecotickets\Datos\Modelos\Respuesta','Pregunta_id','id');
+        return $this->hasMany('Eco\Datos\Modelos\Respuesta','Pregunta_id','id');
     }
 }

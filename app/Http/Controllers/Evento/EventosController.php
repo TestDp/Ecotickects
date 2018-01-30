@@ -2,63 +2,53 @@
 
 namespace Ecotickets\Http\Controllers\Evento;
 
-use Ecotickets\Datos\Modelos\Pregunta;
-use Ecotickets\Datos\Modelos\Respuesta;
+use Eco\Negocio\Logica\AsistenteServicio;
+use Eco\Negocio\Logica\DepartamentoServicio;
+use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
-use Ecotickets\Datos\Modelos\Departamento;
-use Ecotickets\Datos\Modelos\Ciudad;
-use Ecotickets\Datos\Modelos\Evento;
 
 class EventosController extends Controller
 {
+    protected $eventoServicio;
+    protected $departamentoServicio;
+    protected $asistenteServicio;
 
-    public function __construct()
+
+    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio,AsistenteServicio $asistenteServicio)
     {
         $this->middleware('auth');
+        $this->departamentoServicio=$departamentoServicio;
+        $this->eventoServicio = $eventoServicio;
+        $this->asistenteServicio = $asistenteServicio;
     }
 
 
     public function obtenerFormularioEvento()
     {
-        $departamentos = Departamento::all();
+        $departamentos = $this->departamentoServicio->obtenerDepartamento();
         $formulario = array('departamentos' => $departamentos);
-        return view('Evento\CrearEvento',['formulario' =>$formulario]);
+        return view('Evento/CrearEvento',['formulario' =>$formulario]);
     }
 
     public function crearEvento(Request $EdEvento)
     {
-        //inicio del bloque donde se guarda el evento para obtener el id del evento
-       $evento = new Evento($EdEvento->all());
-       $evento ->save();
-       //fin del bloque
-        $ind =0;
-        // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
-        foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
+        if($this->eventoServicio->crearEvento($EdEvento) )
         {
-            $Pregunta = new Pregunta();
-            $Pregunta ->Enunciado = $EnunciadoPregunta;
-            $Pregunta ->Evento_id = $evento -> id;
-            $Pregunta ->TipoPregunta_id = 1;//NOTA:SE DEBE GUARDAR DINAMICAMENTE
-            $Pregunta ->save();// se guarda la pregunta para obtner el id y poder relacionarlo con la respuesta
-            //se recorre el array en la posicion ind para sacar las respuestas relacionadas a las preguntas
-            foreach ($EdEvento->TextoRespuesta[$ind] as $EnunciadoRespuesta)
-            {
-                $Respuesta = new Respuesta();
-                $Respuesta ->EnunciadoRespuesta = $EnunciadoRespuesta;
-                $Respuesta ->Pregunta_id = $Pregunta->id;
-                $Respuesta ->save();// se guarda la respuesta
-            }
-            $ind++;
+            return redirect('/home');
+        }else{
+            return redirect('/');
         }
-        return redirect('/home');
+
     }
 
-
-    public function obtenerCiudades($idDepartamento)
+    /*Metodo que me retorna la lista de asistentes*/
+    public function ObtenerListaAsistentes($idEvento)
     {
-        $ciudades = Ciudad::where('Departamento_id','=',$idDepartamento)->get();
-        return response()->json($ciudades);
+        $ListaAsistentes= array('Asistentes' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento));
+        return view('Evento\ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
     }
+
+
 
 }

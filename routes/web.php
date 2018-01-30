@@ -21,7 +21,7 @@ Route::get('/', [
 Auth::routes();
 
 /** Obtiene el formulario del evento*/
-Route::get('/FormularioAsistente/{idEvento}', [
+Route::get('FormularioAsistente/{idEvento}', [
     'uses' =>'Ecotickets\EcoticketsController@obtenerFormularioAsistente'
 ]);
 
@@ -33,7 +33,7 @@ Route::get('FormularioEvento', 'Evento\EventosController@obtenerFormularioEvento
 
 /*Obtiene las ciudades por departamento*/
 Route::post('Ciudades/{idDepartamento}',[
-    'uses' =>'Evento\EventosController@obtenerCiudades'
+    'uses' =>'Evento\CiudadController@obtenerCiudades'
 ]);
 
 /*Guarda el evento del organizador*/
@@ -44,4 +44,12 @@ Route::post('crearEvento',[
 /*Guarda el registro del asistente*/
 Route::post('registrarAsistente',[
     'uses' =>'Evento\AsistentesController@registrarAsistente'
+]);
+
+Route::get('ListaAsistentes/{idEvento}',[
+    'uses' =>'Evento\EventosController@ObtenerListaAsistentes'
+]);
+
+Route::get('Estadisticas',[
+    'uses' =>'Evento\EventosController@obtenerEstadisticas'
 ]);

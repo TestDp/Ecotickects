@@ -1,8 +1,9 @@
 <?php
 
-namespace Ecotickets\Datos\Modelos;
+namespace Eco\Datos\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
+use Eco\Datos\Modelos\Asistente;
 
 class AsistenteXEvento extends Model
 {
@@ -14,7 +15,7 @@ class AsistenteXEvento extends Model
     }
 
     public function asistente(){
-        return $this->belongsTo('Asistente');
+        return $this->belongsTo('Eco\Datos\Modelos\Asistente');
     }
 
     public function respuestasAsistentesXEventos(){
