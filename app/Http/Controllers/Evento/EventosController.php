@@ -33,7 +33,8 @@ class EventosController extends Controller
 
     public function crearEvento(Request $EdEvento)
     {
-        if($this->eventoServicio->crearEvento($EdEvento) )
+
+       if($this->eventoServicio->crearEvento($EdEvento) )
         {
             return redirect('/home');
         }else{
