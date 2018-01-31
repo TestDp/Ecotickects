@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Bievenido a Ecotickets</div>
+					
     <form action="crearEvento" method="POST">
         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
@@ -56,7 +62,7 @@
         <br/>
          <div class="row">
             <div class="col-md-8 col-md-offset-4">
-                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#EnunciadoPregunta" value="Agregar Pregunta"/>
+                <input type="button" class="btn btn-blue ripple trial-button" data-toggle="modal" data-target="#EnunciadoPregunta" value="Agregar Pregunta"/>
             </div>
              <div id="EnunciadoPregunta" class="modal fade" role="dialog">
              <div class="modal-dialog">
@@ -107,6 +113,10 @@
             </div>
         </div>
     </form>
+	</div>
+        </div>
+    </div>
+</div>
 
 <div hidden="hidden">
 
@@ -155,6 +165,8 @@
         </div>
     </div>
 </div>
+            
+
 
 
 

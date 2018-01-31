@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Eco</div>
+                    <div class="panel-heading">Bievenido a Ecotickets</div>
 
                     <div class="panel-body">
                         @if (session('status'))
@@ -13,7 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a class="btn btn-primary" href="{{ url('FormularioEvento') }}">Crear Evento</a>
+                        <a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
 
                         <table id="TablaListaEventos"  class="table table-bordered">
                             <thead>
@@ -120,10 +120,10 @@
                                         {{ $evento->Fecha_Final_Registro }}
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
+                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ url('/Estadisticas') }}">ver</a>
+                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas') }}">ver</a>
                                     </td>
                                 </tr>
                             @endforeach
