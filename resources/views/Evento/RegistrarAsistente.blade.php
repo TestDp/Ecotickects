@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel panel-default">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
         <div class="panel-heading">Información del Evento </div>
         <div class="panel-body">
             <div class="row">
@@ -85,6 +88,14 @@
 
         </div>
     </div>
+	</div>
+
+        </div>
+    </div>
+	
+	<div class="container">
+        <div class="row">
+            <div class="col-md-12">
     <form action="{{url('registrarAsistente')}}" method="POST">
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
@@ -131,7 +142,7 @@
         </div>
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 Departamento persona
                 <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
                     <option value="">Seleccionar</option>
@@ -140,14 +151,14 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 Ciudad Persona
                 <select id="Ciudad_id" name="Ciudad_id" class="form-control">
 
                 </select>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             Comentario
             <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
         </div>
@@ -176,12 +187,16 @@
         </div>
         <br/>
         <div class="row">
-            <div class="col-md-8 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
+            <div class="col-md-10 col-md-offset-4">
+                <button type="submit" class="btn btn-blue ripple trial-button">
                     Registrarse
                 </button>
             </div>
         </div>
     </form>
+	</div>
+
+        </div>
+    </div>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
 @endsection

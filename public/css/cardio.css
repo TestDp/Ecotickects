@@ -161,7 +161,7 @@ a {
 /* Navigation Bar ( Navbar ) */
 
 nav.navbar {
-	position: absolute;
+	/*position: absolute;*/
 	z-index: 9500;
 	width: 100%;
 	width: 100vw;
@@ -1119,6 +1119,7 @@ footer .social-footer li:hover a {
 
 .fondo-tabla{background:#8abd51;}
 
+#TablaListaEventos{margin-top:2%;}
 
 
 

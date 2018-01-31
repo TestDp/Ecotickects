@@ -39,7 +39,7 @@
 	<div class="preloader">
 		<img src="img/loader.gif" alt="Preloader image">
 	</div>
-	<nav class="navbar">
+	<nav style="position:absolute !important;" class="navbar">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">

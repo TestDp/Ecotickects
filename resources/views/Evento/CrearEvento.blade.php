@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Bievenido a Ecotickets</div>
 					
@@ -61,7 +61,7 @@
         </div>
         <br/>
          <div class="row">
-            <div class="col-md-8 col-md-offset-4">
+            <div class="col-md-12">
                 <input type="button" class="btn btn-blue ripple trial-button" data-toggle="modal" data-target="#EnunciadoPregunta" value="Agregar Pregunta"/>
             </div>
              <div id="EnunciadoPregunta" class="modal fade" role="dialog">
@@ -98,7 +98,7 @@
 
         </div>
 
-        <h3 class="col-md-8 col-md-offset-4" >Preguntas</h3>
+        <h3 class="col-md-12" >Preguntas</h3>
         <hr style="border-top-color:lightslategray; width:100%" />
         <div id="ListaPreguntas"></div>
 
@@ -106,8 +106,8 @@
 
         <hr style="border-top-color:lightslategray; width:100%" />
         <div class="row">
-            <div class="col-md-8 col-md-offset-4">
-                <button type="submit" class="btn btn-primary" onclick="EditarNombrePreguntasYRespuetas()">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-blue ripple trial-button" onclick="EditarNombrePreguntasYRespuetas()">
                     Crear Evento
                 </button>
             </div>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Bievenido a Ecotickets</div>
 
@@ -40,16 +40,16 @@
                                     Fecha del Evento
                                 </th>
                                 <th >
-                                    Fecha Incial de resgistro
+                                    Fecha Incial de registro
                                 </th>
                                 <th >
-                                    Fecha Final de resgistro
+                                    Fecha Final de registro
                                 </th>
                                 <th >
                                     Asistentes
                                 </th>
                                 <th >
-                                    Estadisticas
+                                    Estadísticas
                                 </th>
                             </tr>
                             </thead>
@@ -77,16 +77,16 @@
                                     Fecha del Evento
                                 </th>
                                 <th >
-                                    Fecha Incial de resgistro
+                                    Fecha Incial de registro
                                 </th>
                                 <th >
-                                    Fecha Final de resgistro
+                                    Fecha Final de registro
                                 </th>
                                 <th >
                                     Asistentes
                                 </th>
                                 <th >
-                                    Estadisticas
+                                    Estadísticas
                                 </th>
                             </tr>
                             </tfoot>
