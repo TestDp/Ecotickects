@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<body>
 <header id="intro">
 		<div class="container">
             <div class="col-md-8 col-md-offset-2">
@@ -174,5 +175,5 @@
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 
 
-
+</body>
 @endsection
