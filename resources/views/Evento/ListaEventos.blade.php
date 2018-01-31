@@ -95,7 +95,7 @@
             <td>
                 {{ $evento->Fecha_Final_Registro }}
             </td>
-            <td><a class="btn btn-primary" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a></td>
+            <td><a class="btn btn-blue ripple trial-button" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a></td>
         </tr>
     @endforeach
     </tbody>
