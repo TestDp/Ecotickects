@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<body>
-<header id="intro">
-		<div class="container">
+<div class="container">
+        <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Bievenido a Ecotickets</div>
@@ -114,10 +113,11 @@
             </div>
         </div>
     </form>
-	</div>
+	 </div>
         </div>
     </div>
-</header>
+</div>
+
 
 <div hidden="hidden">
 
@@ -166,8 +166,7 @@
         </div>
     </div>
 </div>
-            
-
+           
 
 
 
@@ -175,5 +174,5 @@
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 
 
-</body>
+
 @endsection
