@@ -2,6 +2,8 @@
 
 namespace Ecotickets\Http\Controllers\Ecotickets;
 
+use Eco\Negocio\Logica\DepartamentoServicio;
+use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
 use Eco\Datos\Modelos\Pregunta;
@@ -12,6 +14,14 @@ use Eco\Datos\Modelos\Departamento;
 class EcoticketsController extends Controller
 {
 
+    protected $eventoServicio;
+    protected $departamentoServicio;
+
+    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio)
+    {
+        $this->departamentoServicio=$departamentoServicio;
+        $this->eventoServicio = $eventoServicio;
+    }
 
     public  function  welcome()
     {
@@ -34,14 +44,9 @@ class EcoticketsController extends Controller
     ///parametros:$idEvento -> id del evento en el cual se va a realizar el registro
     public function obtenerFormularioAsistente($idEvento)
     {
-        $evento = Evento::where('id','=',$idEvento)->get();//se realiza la busqueda del evento en el cual se va a realizar el registro
-        $preguntas = Pregunta::where('Evento_id','=',$idEvento)->get();// se realiza la busqueda de las preguntas relacionadas al evento
-        $preguntas->each(function($preguntas){
-            $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
-        });
-        $departamentos = Departamento::all();// se obtiene la lista de departamentos para mostrar en el formulario
-        //dd($preguntas);
-        $ElementosArray= array('evento' => $evento,'preguntas'=>$preguntas,'departamentos' => $departamentos,'EventoId'=>$idEvento);
+        $evento =$this->eventoServicio->obtenerEvento($idEvento);
+        $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
+        $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
         return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
 

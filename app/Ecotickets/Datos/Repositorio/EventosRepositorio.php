@@ -26,23 +26,27 @@ class EventosRepositorio
             $evento ->save();
             //fin del bloque
             $ind =0;
-            // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
-            foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
+            //Validar si el array es vacio
+            if(!emptyArray($EdEvento->Enunciado))
             {
-                $Pregunta = new Pregunta();
-                $Pregunta ->Enunciado = $EnunciadoPregunta;
-                $Pregunta ->Evento_id = $evento -> id;
-                $Pregunta ->TipoPregunta_id = 1;//NOTA:SE DEBE GUARDAR DINAMICAMENTE
-                $Pregunta ->save();// se guarda la pregunta para obtner el id y poder relacionarlo con la respuesta
-                //se recorre el array en la posicion ind para sacar las respuestas relacionadas a las preguntas
-                foreach ($EdEvento->TextoRespuesta[$ind] as $EnunciadoRespuesta)
+                // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
+                foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
                 {
-                    $Respuesta = new Respuesta();
-                    $Respuesta ->EnunciadoRespuesta = $EnunciadoRespuesta;
-                    $Respuesta ->Pregunta_id = $Pregunta->id;
-                    $Respuesta ->save();// se guarda la respuesta
+                    $Pregunta = new Pregunta();
+                    $Pregunta ->Enunciado = $EnunciadoPregunta;
+                    $Pregunta ->Evento_id = $evento -> id;
+                    $Pregunta ->TipoPregunta_id = 1;//NOTA:SE DEBE GUARDAR DINAMICAMENTE
+                    $Pregunta ->save();// se guarda la pregunta para obtner el id y poder relacionarlo con la respuesta
+                    //se recorre el array en la posicion ind para sacar las respuestas relacionadas a las preguntas
+                    foreach ($EdEvento->TextoRespuesta[$ind] as $EnunciadoRespuesta)
+                    {
+                        $Respuesta = new Respuesta();
+                        $Respuesta ->EnunciadoRespuesta = $EnunciadoRespuesta;
+                        $Respuesta ->Pregunta_id = $Pregunta->id;
+                        $Respuesta ->save();// se guarda la respuesta
+                    }
+                    $ind++;
                 }
-                $ind++;
             }
             DB::commit();
         }catch (\Exception $e) {
@@ -54,5 +58,13 @@ class EventosRepositorio
         return true;
     }
 
-
+    public function obtenerEvento($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+        $evento->preguntas;
+        $evento->preguntas->each(function($preguntas){
+            $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
+        });
+        return $evento ;
+    }
 }
