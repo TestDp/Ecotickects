@@ -29,9 +29,9 @@
 	<!-- Animate.css -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}">
 	<!-- Elegant Icons -->
-	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/eleganticons/et-icons.css') }}">
 	<!-- Main style -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/cardio.css') }}">
 	<!-- Styles -->
