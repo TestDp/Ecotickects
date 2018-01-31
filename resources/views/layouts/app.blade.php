@@ -34,6 +34,8 @@
 	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
 	<!-- Main style -->
 	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+	<!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     	<div class="preloader">
