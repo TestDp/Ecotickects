@@ -4,13 +4,12 @@
     <div class="panel panel-default">
         <div class="panel-heading">Información del Evento </div>
         <div class="panel-body">
-            @foreach($ElementosArray["evento"] as $InformacionEvento)
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label class="col-md-7">Id:</label>
                         <div class="col-md-10">
-                            {{$InformacionEvento->id }}
+                            {{$ElementosArray["evento"] ->id }}
                         </div>
                     </div>
                 </div>
@@ -18,7 +17,7 @@
                     <div class="form-group">
                         <label class="col-md-8">Nombre:</label>
                         <div class="col-md-10">
-                            {{$InformacionEvento->Tipo_Evento }}
+                            {{$ElementosArray["evento"] ->Tipo_Evento }}
                         </div>
                     </div>
                 </div>
@@ -26,7 +25,7 @@
                     <div class="form-group">
                         <label class="col-md-7">Tipo:</label>
                         <div class="col-md-10">
-                            {{ $InformacionEvento->Nombre_Evento }}
+                            {{ $ElementosArray["evento"] ->Nombre_Evento }}
                         </div>
                     </div>
                 </div>
@@ -36,7 +35,7 @@
                     <div class="form-group">
                         <label class="col-md-7">Lugar:</label>
                         <div class="col-md-10">
-                            {{ $InformacionEvento->Lugar_Evento }}
+                            {{ $ElementosArray["evento"] ->Lugar_Evento }}
                         </div>
                     </div>
                 </div>
@@ -62,7 +61,7 @@
                     <div class="form-group">
                         <label class="col-md-7">Fecha:</label>
                         <div class="col-md-10">
-                            {{ $InformacionEvento->Fecha_Evento }}
+                            {{ $ElementosArray["evento"] ->Fecha_Evento }}
                         </div>
                     </div>
                 </div>
@@ -70,7 +69,7 @@
                     <div class="form-group">
                         <label class="col-md-8">Fecha Incial de resgistro:</label>
                         <div class="col-md-10">
-                            {{ $InformacionEvento->Fecha_Inicial_Registro }}
+                            {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
                         </div>
                     </div>
                 </div>
@@ -78,12 +77,12 @@
                     <div class="form-group">
                         <label class="col-md-7">Fecha Final de resgistro:</label>
                         <div class="col-md-10">
-                            {{ $InformacionEvento->Fecha_Final_Registro }}
+                            {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
+
         </div>
     </div>
     <form action="{{url('registrarAsistente')}}" method="POST">
@@ -157,7 +156,7 @@
 
             <div class="hover_color_wrapper">
                 <h2 style="font-size: 20px; font-family: sans-serif; color:#2297e1;">Responde por favor la siguiente encuesta</h2>
-                @foreach($ElementosArray["preguntas"] as $PreguntasFormulario)
+                @foreach($ElementosArray["evento"] ->preguntas as $PreguntasFormulario)
                     <fieldset>
                         <div style="font-weight:700; font-family: sans-serif; padding-top: 2%;" name ="id_pregunta" value = "{{ $PreguntasFormulario->id }}">{{ $PreguntasFormulario->Enunciado }} </div>
                         @foreach($PreguntasFormulario->Respuestas as $respuestas)

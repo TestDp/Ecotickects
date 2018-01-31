@@ -58,5 +58,13 @@ class EventosRepositorio
         return true;
     }
 
-
+    public function obtenerEvento($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+        $evento->preguntas;
+        $evento->preguntas->each(function($preguntas){
+            $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
+        });
+        return $evento ;
+    }
 }

@@ -29,4 +29,9 @@ class EventosServicio
         }
 
     }
+
+    public function obtenerEvento($idEvento)
+    {
+      return  $this->eventoRepor->obtenerEvento($idEvento);
+    }
 }
