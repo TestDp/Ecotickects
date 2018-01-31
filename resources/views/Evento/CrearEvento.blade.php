@@ -95,7 +95,7 @@
 
                      </div>
                      <div class="modal-footer">
-                         <button type="button" class="btn btn-success" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
+                         <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
                          <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
                      </div>
                  </div>
@@ -154,7 +154,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="AgregarRespuesta(this)">Agregar</button>
+                                            <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarRespuesta(this)">Agregar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
                                         </div>
                                     </div>
