@@ -26,10 +26,10 @@
                 Fecha del Evento
             </th>
             <th >
-                Fecha Incial de resgistro
+                Fecha Inicial de registro
             </th>
             <th >
-                Fecha Final de resgistro
+                Fecha Final de registro
             </th>
             <th></th>
         </tr>
@@ -58,10 +58,10 @@
                 Fecha del Evento
             </th>
             <th >
-                Fecha Incial de resgistro
+                Fecha Inicial de registro
             </th>
             <th >
-                Fecha Final de resgistro
+                Fecha Final de registro
             </th>
             <th></th>
         </tr>
@@ -95,7 +95,7 @@
                 <td>
                     {{ $evento->Fecha_Final_Registro }}
                 </td>
-                <td><a class="btn btn-primary" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a></td>
+                <td><a class="btn btn-blue ripple trial-button" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a></td>
             </tr>
         @endforeach
         </tbody>

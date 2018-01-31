@@ -11,35 +11,35 @@
 	<meta name="keywords" content="html template, css, free, one page, gym, fitness, web design" />
 	<meta name="author" content="Luka Cvetinovic for Codrops" />
 	<!-- Favicons (created with http://realfavicongenerator.net/)-->
-	<link rel="apple-touch-icon" sizes="57x57" href="img/favicons/favicon.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="img/favicons/favicon.png">
-	<link rel="icon" type="image/png" href="img/favicons/favicon.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="img/favicons/favicon.png" sizes="16x16">
-	<link rel="manifest" href="img/favicons/manifest.json">
-	<link rel="shortcut icon" href="img/favicons/favicon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="{{ asset('img/favicons/favicon.png') }}">
+	<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('img/favicons/favicon.png') }}">
+	<link rel="icon" type="image/png" href="{{ asset('img/favicons/favicon.png') }}" sizes="32x32">
+	<link rel="icon" type="image/png" href="{{ asset('img/favicons/favicon.png') }}" sizes="16x16">
+	<link rel="manifest" href="{{ asset('img/favicons/manifest.json') }}">
+	<link rel="shortcut icon" href="{{ asset('img/favicons/favicon.png') }}">
 	<meta name="msapplication-TileColor" content="#00a8ff">
-	<meta name="msapplication-config" content="img/favicons/browserconfig.xml">
+	<meta name="msapplication-config" content="{{ asset('img/favicons/browserconfig.xml') }}">
 	<meta name="theme-color" content="#ffffff">
 	<!-- Normalize -->
-	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
 	<!-- Bootstrap -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
 	<!-- Owl -->
-	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/owl.css') }}">
 	<!-- Animate.css -->
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
 	<!-- Elegant Icons -->
 	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
 	<!-- Main style -->
-	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/cardio.css') }}">
 	<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     	<div class="preloader">
-		<img src="img/loader.gif" alt="Preloader image">
+		<img src="{{ asset('img/loader.gif') }}" alt="Preloader image">
 	</div>
 	<nav style="top: 0px !important; margin-bottom: 0px !important;" class="navbar navbar-default navbar-static-top">
 		<div class="container">
@@ -51,7 +51,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{ url('/') }}"><img src="img/logo.png" data-active-url="img/logo-active.png" alt=""></a>
+				<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" data-active-url="img/logo-active.png" alt=""></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -137,12 +137,12 @@
 		<a href="#" class="close-link"><i class="arrow_up"></i></a>
 	</div>
 	<!-- Scripts -->
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/typewriter.js"></script>
-	<script src="js/jquery.onepagenav.js"></script>
-	<script src="js/main.js"></script>
+	<script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+	<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/wow.min.js') }}"></script>
+	<script src="{{ asset('js/typewriter.js') }}"></script>
+	<script src="{{ asset('js/jquery.onepagenav.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

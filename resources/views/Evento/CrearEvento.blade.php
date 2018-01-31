@@ -51,7 +51,7 @@
                 <input id="Fecha_Evento" name="Fecha_Evento" type="date" class="form-control" />
             </div>
             <div class="col-md-4">
-                Fecha incial de registro del Evento
+                Fecha inicial de registro del Evento
                 <input id="Fecha_Inicial_Registro" name="Fecha_Inicial_Registro" type="date" class="form-control" />
             </div>
             <div class="col-md-4">
