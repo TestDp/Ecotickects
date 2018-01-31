@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Bievenido a Ecotickets</div>
 					
-    <form action="crearEvento" method="POST">
+    <form action="crearEvento" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
         <div class="row">
@@ -58,6 +58,12 @@
                 Fecha final de registro del Evento
                 <input id="Fecha_Final_Registro" name="Fecha_Final_Registro" type="date" class="form-control" />
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            Flyer del evento
+             <input type="file" class="form-control" name="FlyerEvento" >
+        </div>
         </div>
         <br/>
          <div class="row">
