@@ -99,6 +99,13 @@
     <form action="{{url('registrarAsistente')}}" method="POST">
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
+
+        <div class="col-md-12">
+            PIN
+            <input id="pinIngresar" name="pinIngresar" type="text" class="form-control" onkeyup="validarPIN()"/>
+				
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 Nombre

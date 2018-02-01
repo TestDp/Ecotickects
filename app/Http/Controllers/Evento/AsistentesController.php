@@ -25,6 +25,16 @@ class AsistentesController extends Controller
         }
     }
 
+    public function validarPIN($idPin)
+    {
+        if($this->asistenteServicio->validarPIN($idPin) )
+        {
+            return redirect('/');
+        }else{
+            return redirect('/');
+        }
+    }
+
 
 
 }

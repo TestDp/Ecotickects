@@ -27,4 +27,9 @@ class AsistenteServicio
     {
         return $this->asistenteRepositorio->obtenerAsistentesXEvento($idEvento);
     }
+
+    public function validarPIN($idPin)
+    {
+        return $this->asistenteRepositorio->validarPIN($idPin);
+    }
 }
