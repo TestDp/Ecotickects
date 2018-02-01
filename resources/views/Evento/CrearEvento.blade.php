@@ -60,10 +60,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
+                Número máximo de Asistentes
+                <input id="numeroAsistentes" name="numeroAsistentes" type="text" class="form-control" />
+            </div>
+            <div class="col-md-8">
             Flyer del evento
-             <input type="file" class="form-control" name="FlyerEvento" >
-        </div>
+             <input type="file" class="form-control" name="ImagenFlyerEvento" >
+            </div>
         </div>
         <br/>
          <div class="row">
