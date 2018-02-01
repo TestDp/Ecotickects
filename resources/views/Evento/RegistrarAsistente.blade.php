@@ -4,58 +4,62 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-default">
-        <div class="panel-heading">Información del Evento </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-7">Id:</label>
-                        <div class="col-md-10">
-                            {{$ElementosArray["evento"] ->id }}
+                <div class="panel panel-default">
+                    <div class="panel-heading">Información del Evento </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-7">Id:</label>
+                                    <div class="col-md-10">
+                                        {{$ElementosArray["evento"] ->id }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-8">Nombre:</label>
+                                    <div class="col-md-10">
+                                        {{$ElementosArray["evento"] ->Tipo_Evento }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-7">Tipo:</label>
+                                    <div class="col-md-10">
+                                        {{ $ElementosArray["evento"] ->Nombre_Evento }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-8">Nombre:</label>
-                        <div class="col-md-10">
-                            {{$ElementosArray["evento"] ->Tipo_Evento }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-7">Tipo:</label>
-                        <div class="col-md-10">
-                            {{ $ElementosArray["evento"] ->Nombre_Evento }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-7">Lugar:</label>
-                        <div class="col-md-10">
-                            {{ $ElementosArray["evento"] ->Lugar_Evento }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-8">Ciudad:</label>
-                        <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-7">Lugar:</label>
+                                    <div class="col-md-10">
+                                        {{ $ElementosArray["evento"] ->Lugar_Evento }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-8">Ciudad:</label>
+                                    <div class="col-md-10">
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-7">Departamento:</label>
-                        <div class="col-md-10">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-7">Departamento:</label>
+                                    <div class="col-md-10">
 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+<<<<<<< HEAD
                     </div>
                 </div>
             </div>
@@ -81,15 +85,43 @@
                         <label class="col-md-7">Fecha Final de registro:</label>
                         <div class="col-md-10">
                             {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
+=======
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-7">Fecha:</label>
+                                    <div class="col-md-10">
+                                        {{ $ElementosArray["evento"] ->Fecha_Evento }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-8">Fecha Incial de resgistro:</label>
+                                    <div class="col-md-10">
+                                        {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-7">Fecha Final de resgistro:</label>
+                                    <div class="col-md-10">
+                                        {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
+                                    </div>
+                                </div>
+                            </div>
+>>>>>>> a8ebea555a6046228077440487b783a36a7be1ef
                         </div>
+
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-	</div>
 
+<<<<<<< HEAD
         </div>
     </div>
 	<section id="team" class="section gray-bg">
@@ -129,32 +161,55 @@
                 <input id="confEmail" name="confEmail" type="text" class="form-control" />
             </div>
         </div>
-
+=======
+    <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                Edad
-                <input id="Edad" name="Edad" type="number" class="form-control" />
-            </div>
-            <div class="col-md-6">
-                Dirección
-                <input id="Dirección" name="Dirección" type="text" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
+            <div class="col-md-12">
+                <form action="{{url('registrarAsistente')}}" method="POST">
+                    <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
+>>>>>>> a8ebea555a6046228077440487b783a36a7be1ef
 
-            <div class="col-md-6">
-                Departamento persona
-                <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
-                    <option value="">Seleccionar</option>
-                    @foreach($ElementosArray["departamentos"] as $Departamento)
-                        <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-6">
-                Ciudad Persona
-                <select id="Ciudad_id" name="Ciudad_id" class="form-control">
+                    <div class="row">
+                        <div class="col-md-12">
+                            PIN
+                            <input id="pinIngresar" name="pinIngresar" type="text" class="form-control" onkeyup="ValidarPin()"/>
 
+                        </div>
+                    </div>
+                    <div id="formAsistente" hidden>
+                        <div class="row">
+                            <div class="col-md-6">
+                                Nombre
+                                <input id="Nombres" name="Nombres" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                Apellidos
+                                <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                Identificación
+                                <input id="Identificacion" name="Identificacion" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                Celular/teléfono
+                                <input id="telefono" name="telefono" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                Email
+                                <input id="Email" name="Email" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                Confirmar Email
+                                <input id="confEmail" name="confEmail" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+<<<<<<< HEAD
                 </select>
             </div>
         </div>
@@ -177,24 +232,74 @@
                                         <b>{{$respuestas->EnunciadoRespuesta}}</b>
                                     </div>
                                 </div>
+=======
+                        <div class="row">
+                            <div class="col-md-6">
+                                Edad
+                                <input id="Edad" name="Edad" type="number" class="form-control" />
                             </div>
-                        @endforeach
-                        <label for="Respuesta_id[{{$loop->index}}]" class="error" style="display:none;">Please choose one.</label>
-                    </fieldset>
-                @endforeach
-            </div>
+                            <div class="col-md-6">
+                                Dirección
+                                <input id="Dirección" name="Dirección" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
 
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-blue ripple trial-button">
-                    Registrarse
-                </button>
+                            <div class="col-md-6">
+                                Departamento persona
+                                <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    @foreach($ElementosArray["departamentos"] as $Departamento)
+                                        <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
+                                    @endforeach
+                                </select>
+>>>>>>> a8ebea555a6046228077440487b783a36a7be1ef
+                            </div>
+                            <div class="col-md-6">
+                                Ciudad Persona
+                                <select id="Ciudad_id" name="Ciudad_id" class="form-control">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            Comentario
+                            <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                        </div>
+                        <br/>
+                        <div class="column one">
+
+                            <div class="hover_color_wrapper">
+                                <h2 style="font-size: 20px; font-family: sans-serif; color:#2297e1;">Responde por favor la siguiente encuesta</h2>
+                                @foreach($ElementosArray["evento"] ->preguntas as $PreguntasFormulario)
+                                    <fieldset>
+                                        <div style="font-weight:700; font-family: sans-serif; padding-top: 2%;" name ="id_pregunta" value = "{{ $PreguntasFormulario->id }}">{{ $PreguntasFormulario->Enunciado }} </div>
+                                        @foreach($PreguntasFormulario->Respuestas as $respuestas)
+                                            <div class="col-md-6" >
+                                                <div class="radio">
+                                                    <div style="font-family: sans-serif; line-height: 30px;"><input type="radio" value="{{$respuestas->id}}" id="Respuesta_id" name="Respuesta_id[{{$loop->parent->index}}]" >
+                                                        <b>{{$respuestas->EnunciadoRespuesta}}</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        <label for="Respuesta_id[{{$loop->index}}]" class="error" style="display:none;">Please choose one.</label>
+                                    </fieldset>
+                                @endforeach
+                            </div>
+
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-blue ripple trial-button">
+                                    Registrarse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </div>
-    </form>
-	</div>
 
         </div>
     </section>

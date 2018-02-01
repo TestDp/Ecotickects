@@ -34,14 +34,11 @@ class EventosController extends Controller
 
     public function crearEvento(Request $EdEvento)
     {
-      // dd($EdEvento);
-       if($this->eventoServicio->crearEvento($EdEvento) )
-        {
+        if($this->eventoServicio->crearEvento($EdEvento) )        {
             //obtenemos el campo file definido en el formulario
-            $FlyerEvento = $EdEvento->FlyerEvento;
-            //obtenemos el nombre del archivo
-            $nombre = 'FlyerEvento.jpg';
-
+            $FlyerEvento = $EdEvento->ImagenFlyerEvento;
+            //Asignamos el nombre del archivo
+            $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
             //indicamos que queremos guardar un nuevo archivo en el disco local
             \Storage::disk('local')->put('/FlyerDeEventos/'.$nombre,file_get_contents($FlyerEvento));
             return redirect('/home');
@@ -57,6 +54,8 @@ class EventosController extends Controller
         $ListaAsistentes= array('Asistentes' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento));
         return view('Evento\ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
     }
+
+
 
 
 

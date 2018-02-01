@@ -11,6 +11,7 @@ namespace Eco\Datos\Repositorio;
 use Eco\Datos\Modelos\Asistente;
 use Eco\Datos\Modelos\AsistenteXEvento;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
+use Eco\Datos\Modelos\CodigoAsistente;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Array_;
 
@@ -51,5 +52,15 @@ class AsistenteRepositorio
           $arrayAsistentes[]=Asistente::where('id','=',$asistente->Asistente_id)->first() ;
         }
         return $arrayAsistentes;
+    }
+
+    public function validarPIN($idPin)
+    {
+        $verificarPin = count(CodigoAsistente::where('Codigo','=',$idPin)->where('TipoCodigo', '=', 0)->get());
+        if ($verificarPin == 0)
+        {
+            return false;
+        }  
+        return true;
     }
 }

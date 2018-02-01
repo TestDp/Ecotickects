@@ -23,6 +23,8 @@ class EventosRepositorio
         try{
             //inicio del bloque donde se guarda el evento para obtener el id del evento
             $evento = new Evento($EdEvento->all());
+            //Asignamos el nombre del archivo
+            $evento->FlyerEvento  = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
             $evento ->save();
             //fin del bloque
             $ind =0;
@@ -66,5 +68,19 @@ class EventosRepositorio
             $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
         });
         return $evento ;
+    }
+
+    public  function  ObtenerEventos()
+    {
+        $eventos = Evento::where('Tipo_Evento','=','Evento')->get();
+        $ListaEventos = array('eventos' => $eventos);
+        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
+    }
+
+    public  function  ObtenerCupones()
+    {
+        $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
+        $ListaEventos = array('eventos' => $eventos);
+        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
     }
 }

@@ -29,17 +29,23 @@ class EcoticketsController extends Controller
     }
     public  function  ObtenerEventos()
     {
-        $eventos = Evento::where('Tipo_Evento','=','Evento')->get();
+
+        return $this->eventoServicio->obtenerEventos();
+
+        /*$eventos = Evento::where('Tipo_Evento','=','Evento')->get();
         $ListaEventos = array('eventos' => $eventos);
-        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
+        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);*/
     }
 
-    public  function  ObtenerCupones()
+    public  function  ObtenerCupones(EventosServicio $eventosServicio)
     {
-        $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
+        return $this->eventoServicio->obtenerCupones();
+
+       /* $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
         $ListaEventos = array('eventos' => $eventos);
-        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
+        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);*/
     }
+
     //metodo que me muestra el formulario del registro para el evento
     ///parametros:$idEvento -> id del evento en el cual se va a realizar el registro
     public function obtenerFormularioAsistente($idEvento)
@@ -49,7 +55,5 @@ class EcoticketsController extends Controller
         $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
         return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
-
-
 
 }
