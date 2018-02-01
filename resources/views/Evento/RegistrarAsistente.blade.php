@@ -1,4 +1,4 @@
-@extends('layouts.eventos')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -59,33 +59,6 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-7">Fecha:</label>
-                        <div class="col-md-10">
-                            {{ $ElementosArray["evento"] ->Fecha_Evento }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-8">Fecha Inicial de registro:</label>
-                        <div class="col-md-10">
-                            {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="col-md-7">Fecha Final de registro:</label>
-                        <div class="col-md-10">
-                            {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
-=======
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -111,7 +84,6 @@
                                     </div>
                                 </div>
                             </div>
->>>>>>> a8ebea555a6046228077440487b783a36a7be1ef
                         </div>
 
                     </div>
@@ -121,54 +93,12 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-        </div>
-    </div>
-	<section id="team" class="section gray-bg">
-	<div class="container">
-        <div class="row">
-            <div style="width: 98% !important;" class="col-md-12">
-    <form action="{{url('registrarAsistente')}}" method="POST">
-        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
-        <div class="row">
-            <div class="col-md-6">
-                Nombre
-                <input id="Nombres" name="Nombres" type="text" class="form-control" />
-            </div>
-            <div class="col-md-6">
-                Apellidos
-                <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                Identificación
-                <input id="Identificacion" name="Identificacion" type="text" class="form-control" />
-            </div>
-            <div class="col-md-6">
-                Celular/teléfono
-                <input id="telefono" name="telefono" type="text" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                Email
-                <input id="Email" name="Email" type="text" class="form-control" />
-            </div>
-            <div class="col-md-6">
-                Confirmar Email
-                <input id="confEmail" name="confEmail" type="text" class="form-control" />
-            </div>
-        </div>
-=======
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <form action="{{url('registrarAsistente')}}" method="POST">
                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
->>>>>>> a8ebea555a6046228077440487b783a36a7be1ef
 
                     <div class="row">
                         <div class="col-md-12">
@@ -209,30 +139,6 @@
                             </div>
                         </div>
 
-<<<<<<< HEAD
-                </select>
-            </div>
-        </div>
-        <div class="col-md-11">
-            Comentario
-            <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
-        </div>
-        <br/><br/><br/>
-        <div class="column one">
-
-            <div class="hover_color_wrapper">
-                <h2 style="font-size: 20px; font-family: sans-serif; color:#8abd51;">Responde por favor la siguiente encuesta</h2>
-                @foreach($ElementosArray["evento"] ->preguntas as $PreguntasFormulario)
-                    <fieldset>
-                        <div style="font-weight:700; font-family: sans-serif; padding-top: 2%;" name ="id_pregunta" value = "{{ $PreguntasFormulario->id }}">{{ $PreguntasFormulario->Enunciado }} </div>
-                        @foreach($PreguntasFormulario->Respuestas as $respuestas)
-                            <div class="col-md-6" >
-                                <div class="radio">
-                                    <div style="font-family: sans-serif; line-height: 30px;"><input type="radio" value="{{$respuestas->id}}" id="Respuesta_id" name="Respuesta_id[{{$loop->parent->index}}]" >
-                                        <b>{{$respuestas->EnunciadoRespuesta}}</b>
-                                    </div>
-                                </div>
-=======
                         <div class="row">
                             <div class="col-md-6">
                                 Edad
@@ -253,7 +159,6 @@
                                         <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
                                     @endforeach
                                 </select>
->>>>>>> a8ebea555a6046228077440487b783a36a7be1ef
                             </div>
                             <div class="col-md-6">
                                 Ciudad Persona
@@ -302,7 +207,7 @@
             </div>
 
         </div>
-    </section>
+    </div>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 @endsection

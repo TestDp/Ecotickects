@@ -10,7 +10,7 @@
     <form action="crearEvento" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-        <div style="margin-left: 0px !important; margin-right: 0px !important;" class="row">
+        <div class="row">
             <div class="col-md-6">
                 Nombre del Evento
                 <input id="Nombre_Evento" name="Nombre_Evento" type="text" class="form-control" />
@@ -23,7 +23,7 @@
                 </select>
             </div>
         </div>
-        <div style="margin-left: 0px !important; margin-right: 0px !important;" class="row">
+        <div class="row">
 
             <div class="col-md-4">
                 Departamento del Evento
@@ -45,7 +45,7 @@
                 <input id="Lugar_Evento" name="Lugar_Evento" type="text" class="form-control" />
             </div>
         </div>
-        <div style="margin-left: 0px !important; margin-right: 0px !important;" class="row">
+        <div class="row">
             <div class="col-md-4">
                 Fecha del Evento
                 <input id="Fecha_Evento" name="Fecha_Evento" type="date" class="form-control" />
@@ -59,14 +59,18 @@
                 <input id="Fecha_Final_Registro" name="Fecha_Final_Registro" type="date" class="form-control" />
             </div>
         </div>
-        <div style="margin-left: 0px !important; margin-right: 0px !important;" class="row">
-            <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                Número máximo de Asistentes
+                <input id="numeroAsistentes" name="numeroAsistentes" type="text" class="form-control" />
+            </div>
+            <div class="col-md-8">
             Flyer del evento
-             <input type="file" class="form-control" name="FlyerEvento" >
-        </div>
+             <input type="file" class="form-control" name="ImagenFlyerEvento" >
+            </div>
         </div>
         <br/>
-         <div style="margin-left: 0px !important; margin-right: 0px !important;" class="row">
+         <div class="row">
             <div class="col-md-12">
                 <input type="button" class="btn btn-blue ripple trial-button" data-toggle="modal" data-target="#EnunciadoPregunta" value="Agregar Pregunta"/>
             </div>
