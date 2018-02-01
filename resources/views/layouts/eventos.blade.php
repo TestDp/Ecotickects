@@ -82,7 +82,8 @@
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
-                                        </form>                                    
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                         @endguest
@@ -92,21 +93,13 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-		<header id="intro">
-		<div class="container">
-			<div class="table">
-				<div style="padding-top:5%; vertical-align:top;" class="header-text">
-					<div class="row">
-						<div class="col-md-12">
-							 @yield('content')
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+		
 	
-	<section></section>
+	<section id="pricing" class="section">
+		<div class="container">
+		@yield('content')
+	</div>	
+	</section>
 	
 	<footer>
 		<div class="container">

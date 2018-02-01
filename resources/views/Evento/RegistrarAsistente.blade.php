@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.eventos')
 
 @section('content')
     <div class="container">
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-md-8">Fecha Incial de resgistro:</label>
+                        <label class="col-md-8">Fecha Inicial de registro:</label>
                         <div class="col-md-10">
                             {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
                         </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="col-md-7">Fecha Final de resgistro:</label>
+                        <label class="col-md-7">Fecha Final de registro:</label>
                         <div class="col-md-10">
                             {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
                         </div>
@@ -92,10 +92,10 @@
 
         </div>
     </div>
-	
+	<section id="team" class="section gray-bg">
 	<div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div style="width: 98% !important;" class="col-md-12">
     <form action="{{url('registrarAsistente')}}" method="POST">
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
@@ -158,15 +158,15 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-11">
             Comentario
             <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
         </div>
-        <br/>
+        <br/><br/><br/>
         <div class="column one">
 
             <div class="hover_color_wrapper">
-                <h2 style="font-size: 20px; font-family: sans-serif; color:#2297e1;">Responde por favor la siguiente encuesta</h2>
+                <h2 style="font-size: 20px; font-family: sans-serif; color:#8abd51;">Responde por favor la siguiente encuesta</h2>
                 @foreach($ElementosArray["evento"] ->preguntas as $PreguntasFormulario)
                     <fieldset>
                         <div style="font-weight:700; font-family: sans-serif; padding-top: 2%;" name ="id_pregunta" value = "{{ $PreguntasFormulario->id }}">{{ $PreguntasFormulario->Enunciado }} </div>
@@ -197,7 +197,7 @@
 	</div>
 
         </div>
-    </div>
+    </section>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 @endsection
