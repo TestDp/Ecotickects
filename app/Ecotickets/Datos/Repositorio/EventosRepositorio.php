@@ -67,4 +67,18 @@ class EventosRepositorio
         });
         return $evento ;
     }
+
+    public  function  ObtenerEventos()
+    {
+        $eventos = Evento::where('Tipo_Evento','=','Evento')->get();
+        $ListaEventos = array('eventos' => $eventos);
+        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
+    }
+
+    public  function  ObtenerCupones()
+    {
+        $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
+        $ListaEventos = array('eventos' => $eventos);
+        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
+    }
 }

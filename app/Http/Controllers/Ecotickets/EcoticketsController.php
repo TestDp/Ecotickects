@@ -50,6 +50,4 @@ class EcoticketsController extends Controller
         return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
 
-
-
 }

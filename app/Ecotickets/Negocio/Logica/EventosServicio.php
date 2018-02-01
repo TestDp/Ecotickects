@@ -34,4 +34,14 @@ class EventosServicio
     {
       return  $this->eventoRepor->obtenerEvento($idEvento);
     }
+
+    public function obtenerEventos()
+    {
+        return $this->eventoRepor->ObtenerEventos();
+    }
+
+    public function obtenerCupones()
+    {
+        return $this->eventoRepor->ObtenerCupones();
+    }
 }
