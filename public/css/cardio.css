@@ -175,6 +175,7 @@ nav.navbar .navbar-nav li.active a:not(.btn) {
 
 nav.navbar-fixed-top {
 	z-index: 9499;
+	display:none;
 	top: 0;
 	padding: 25px 0;
 	opacity: 0;
