@@ -76,10 +76,9 @@ function ValidarPin () {
         type: 'POST',
         success: function (result) {
             if (result) {
-                if(result){
                     $('#formAsistente').removeAttr("hidden");
-                }
-
+            }else{
+                $('#formAsistente').attr("hidden","hidden");
             }
         }
     });
