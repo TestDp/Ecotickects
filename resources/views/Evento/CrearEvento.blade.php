@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Bievenido a Ecotickets</div>
 					
-    <form action="crearEvento" method="POST">
+    <form action="crearEvento" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
         <div class="row">
@@ -51,12 +51,22 @@
                 <input id="Fecha_Evento" name="Fecha_Evento" type="date" class="form-control" />
             </div>
             <div class="col-md-4">
-                Fecha incial de registro del Evento
+                Fecha inicial de registro del Evento
                 <input id="Fecha_Inicial_Registro" name="Fecha_Inicial_Registro" type="date" class="form-control" />
             </div>
             <div class="col-md-4">
                 Fecha final de registro del Evento
                 <input id="Fecha_Final_Registro" name="Fecha_Final_Registro" type="date" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                Número máximo de Asistentes
+                <input id="numeroAsistentes" name="numeroAsistentes" type="text" class="form-control" />
+            </div>
+            <div class="col-md-8">
+            Flyer del evento
+             <input type="file" class="form-control" name="ImagenFlyerEvento" >
             </div>
         </div>
         <br/>
@@ -89,7 +99,7 @@
 
                      </div>
                      <div class="modal-footer">
-                         <button type="button" class="btn btn-success" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
+                         <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
                          <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
                      </div>
                  </div>
@@ -148,7 +158,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="AgregarRespuesta(this)">Agregar</button>
+                                            <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarRespuesta(this)">Agregar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
                                         </div>
                                     </div>

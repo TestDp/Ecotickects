@@ -6,6 +6,7 @@ use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Ecotickets\Http\Controllers\Controller;
 
 class EventosController extends Controller
@@ -33,9 +34,13 @@ class EventosController extends Controller
 
     public function crearEvento(Request $EdEvento)
     {
-
-       if($this->eventoServicio->crearEvento($EdEvento) )
-        {
+        if($this->eventoServicio->crearEvento($EdEvento) )        {
+            //obtenemos el campo file definido en el formulario
+            $FlyerEvento = $EdEvento->ImagenFlyerEvento;
+            //Asignamos el nombre del archivo
+            $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put('/FlyerDeEventos/'.$nombre,file_get_contents($FlyerEvento));
             return redirect('/home');
         }else{
             return redirect('/');

@@ -26,10 +26,10 @@
             Fecha del Evento
         </th>
         <th >
-            Fecha Incial de resgistro
+            Fecha Inicial de registro
         </th>
         <th >
-            Fecha Final de resgistro
+            Fecha Final de registro
         </th>
         <th></th>
     </tr>
@@ -58,10 +58,10 @@
             Fecha del Evento
         </th>
         <th >
-            Fecha Incial de resgistro
+            Fecha Inicial de registro
         </th>
         <th >
-            Fecha Final de resgistro
+            Fecha Final de registro
         </th>
         <th></th>
     </tr>
