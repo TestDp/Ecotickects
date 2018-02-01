@@ -64,6 +64,26 @@ function EditarNombrePreguntasYRespuetas()
    });
 
 }
+
+function ValidarPin () {
+    var idPin = $("#pinIngresar").val();
+    $.ajax({
+        url: urlBase+'pin/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            idPin: idPin,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+                if(result){
+                    $('#formAsistente').removeAttr("hidden");
+                }
+
+            }
+        }
+    });
+}
 // function validarPIN()
 // {
 

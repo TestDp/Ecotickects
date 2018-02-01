@@ -61,3 +61,8 @@ Route::get('ListaAsistentes/{idEvento}',[
 Route::get('Estadisticas',[
     'uses' =>'Evento\EventosController@obtenerEstadisticas'
 ]);
+
+/*Valida el pin*/
+Route::post('pin/{idPin}',[
+    'uses' =>'Evento\AsistentesController@validarPIN'
+]);

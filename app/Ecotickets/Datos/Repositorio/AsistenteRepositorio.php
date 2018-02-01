@@ -56,10 +56,8 @@ class AsistenteRepositorio
 
     public function validarPIN($idPin)
     {
-        
-         $verificarPin = count(CodigoAsistente::where('Codigo','=',$idPin)->where('TipoCodigo', '=', 0)->get());
-
-        if (verificarPin == 0)
+        $verificarPin = count(CodigoAsistente::where('Codigo','=',$idPin)->where('TipoCodigo', '=', 0)->get());
+        if ($verificarPin == 0)
         {
             return false;
         }  
