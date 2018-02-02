@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.eventos')
 
 @section('content')
+	<div class="row title text-center">
+								<h2 class="black">EVENTOS ECOTICKETS</h2>
+	</div>
 <table id="TablaListaEventos" class="table table-bordered">
     <thead>
     <tr >

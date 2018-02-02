@@ -40,7 +40,7 @@
                                     Fecha del Evento
                                 </th>
                                 <th >
-                                    Fecha Incial de registro
+                                    Fecha Inicial de registro
                                 </th>
                                 <th >
                                     Fecha Final de registro
@@ -77,7 +77,7 @@
                                     Fecha del Evento
                                 </th>
                                 <th >
-                                    Fecha Incial de registro
+                                    Fecha Inicial de registro
                                 </th>
                                 <th >
                                     Fecha Final de registro

@@ -19,6 +19,14 @@ Route::get('/', [
     'uses' =>'Ecotickets\EcoticketsController@welcome'
 ]);
 
+Route::get('/respuesta', function () {
+    return view('respuesta');
+});
+
+Route::get('vistaCorreo', function () {
+    return view('Email.correo');
+});
+
 Route::get('Eventos', [
     'uses' =>'Ecotickets\EcoticketsController@ObtenerEventos'
 ]);
