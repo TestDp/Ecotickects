@@ -73,7 +73,7 @@
                     {{ $evento->ciudad->Nombre_Ciudad }}
                 </td>
                 <td>
-                    
+
                 </td>
                 <td >
                     {{ $evento->Fecha_Evento }}

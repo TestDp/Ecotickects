@@ -41,6 +41,7 @@ class EventosController extends Controller
             $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
             //indicamos que queremos guardar un nuevo archivo en el disco local
             \Storage::disk('local')->put('/FlyerDeEventos/'.$nombre,file_get_contents($FlyerEvento));
+
             return redirect('/home');
         }else{
             return redirect('/');
