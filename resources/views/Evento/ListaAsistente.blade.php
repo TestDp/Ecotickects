@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.eventos')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Lista de Asistentes </div>
+                    <div class="panel-heading text-center"><h3>Lista de Asistentes</h3></div>
                     <div class="panel-body">
                         <table id="TablaListaAsistentes"  class="table table-bordered">
                             <thead>
