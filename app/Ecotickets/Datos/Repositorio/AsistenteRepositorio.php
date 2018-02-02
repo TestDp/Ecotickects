@@ -14,6 +14,7 @@ use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Eco\Datos\Modelos\CodigoAsistente;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Array_;
+use Mail;
 
 class AsistenteRepositorio
 {
@@ -34,7 +35,38 @@ class AsistenteRepositorio
                 $respuestasAsistenteXevento ->AsistenteXEvento_id = $asistenteXeventoo->id;
                 $respuestasAsistenteXevento ->save();
             }
+
+            $correoElectronico = $asistente->email;
+            Mail::send('Email/correo',[$asistente->all()],function($msj) use($correoElectronico){
+                          $msj->from('info@dpsoluciones.co','Invitación LOVERS FESTIVAL 2018');
+                          $msj->subject('Importante - Aquí esta tu pase de acceso');
+                          $msj->to($correoElectronico);
+                          $msj->bcc('juancamilo.blandon@gmail.com');
+                          //$msj->attach($qrImagen);
+                });
+
+                Log::info("mensaje: " . $correoElectronico);
+                Log::info("mensaje: " . $msj);
+                
+
+
             DB::commit();
+
+            //$file = $usuario->imagen; 
+
+            //obtenemos el nombre del archivo
+            //$nombre = $asistente ->identificacion . 'imagenQR.png';
+      
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+           // \Storage::disk('local')->put($nombre,file_get_contents($file));
+     
+            //$qrImagen = storage_path('app').'/Archivos/'.$nombre;
+           
+     
+             //return redirect('/');
+
+
+
         }catch (\Exception $e) {
 
             $error = $e->getMessage();
