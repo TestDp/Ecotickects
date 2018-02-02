@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Bievenido a Ecotickets</div>
+                    <div class="panel-heading text-center"><h3>Bievenido a Ecotickets</h3></div>
 					
     <form action="crearEvento" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-        <div class="row">
+        <div style="margin:0px !important;" class="row">
             <div class="col-md-6">
                 Nombre del Evento
                 <input id="Nombre_Evento" name="Nombre_Evento" type="text" class="form-control" />
@@ -30,7 +30,7 @@
                 </select>
             </div>
         </div>
-        <div class="row">
+        <div style="margin:0px !important;" class="row">
 
             <div class="col-md-4">
                 Departamento del Evento
@@ -52,7 +52,7 @@
                 <input id="Lugar_Evento" name="Lugar_Evento" type="text" class="form-control" />
             </div>
         </div>
-        <div class="row">
+        <div style="margin:0px !important;" class="row">
             <div class="col-md-4">
                 Fecha del Evento
                 <input id="Fecha_Evento" name="Fecha_Evento" type="date" class="form-control" />
@@ -66,7 +66,7 @@
                 <input id="Fecha_Final_Registro" name="Fecha_Final_Registro" type="date" class="form-control" />
             </div>
         </div>
-        <div class="row">
+        <div style="margin:0px !important;" class="row">
             <div class="col-md-4">
                 Número máximo de Asistentes
                 <input id="numeroAsistentes" name="numeroAsistentes" type="text" class="form-control" />
@@ -77,7 +77,7 @@
             </div>
         </div>
         <br/>
-         <div class="row">
+         <div style="margin:0px !important;" class="row">
             <div class="col-md-12">
                 <input type="button" class="btn btn-blue ripple trial-button" data-toggle="modal" data-target="#EnunciadoPregunta" value="Agregar Pregunta"/>
             </div>
@@ -114,7 +114,8 @@
          </div>
 
         </div>
-
+<div style="margin:0px !important;" class="row">
+<div class="col-md-12">
         <h3 class="col-md-12" >Preguntas</h3>
         <hr style="border-top-color:lightslategray; width:100%" />
         <div id="ListaPreguntas"></div>
@@ -123,12 +124,14 @@
 
         <hr style="border-top-color:lightslategray; width:100%" />
         <div class="row">
-            <div class="col-md-12">
+            <div style="margin-bottom:2%;" class="col-md-12">
                 <button type="submit" class="btn btn-blue ripple trial-button" onclick="EditarNombrePreguntasYRespuetas()">
                     Crear Evento
                 </button>
             </div>
         </div>
+	</div>
+	</div>	
     </form>
 	 </div>
         </div>
