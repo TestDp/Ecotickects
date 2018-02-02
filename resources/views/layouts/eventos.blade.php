@@ -68,9 +68,19 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     </li>
-									                                    <li>
+									<li>
                                         <a href="{{ route('home') }}">
                                             Mis Eventos
+                                        </a>
+                                    </li>
+									<li>
+                                        <a href="{{ url('Eventos') }}">
+                                            Todos los eventos
+                                        </a>
+                                    </li>
+									<li>
+                                        <a href="{{ url('Cupones') }}">
+                                            Todos los cupones
                                         </a>
                                     </li>
 									<li>
