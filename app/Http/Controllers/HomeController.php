@@ -3,6 +3,7 @@
 namespace Ecotickets\Http\Controllers;
 
 use Eco\Datos\Modelos\Ciudad;
+use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +30,10 @@ class HomeController extends Controller
         $user = Auth::user();
         $eventos = Evento::where("user_id","=",$user->id)->get();
         $eventos->each(function($eventos){
-            $eventos->ciudad= Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
+            $eventos->ciudad = Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
+            $eventos->ciudad->departamento=Departamento::where('id','=',$eventos->ciudad->Departamento_id)->get()->first();
         });
-       // dd($eventos);
+     //   dd($eventos);
         $ListaEventos= array('eventos' => $eventos);
         return view('home',['ListaEventos' => $ListaEventos]);
     }

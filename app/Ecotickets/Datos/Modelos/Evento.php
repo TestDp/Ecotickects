@@ -15,7 +15,7 @@ class Evento extends Model
     }
 
     public function ciudad(){
-        return $this->belongsTo('Ciudad');
+        return $this->belongsTo('Eco\Datos\Modelos\Ciudad');
     }
 
     public function preguntas(){

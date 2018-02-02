@@ -84,9 +84,7 @@ class EventosRepositorio
         foreach ($eventos as $evento)
         {
            $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
-
            $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
-
         }
 
         $ListaEventos = array('eventos' => $eventos);
@@ -99,7 +97,7 @@ class EventosRepositorio
         foreach ($eventos as $evento)
         {
             $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
-
+            $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
         }
         $ListaEventos = array('eventos' => $eventos);
         return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
