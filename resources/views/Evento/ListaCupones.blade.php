@@ -62,7 +62,7 @@
         <tbody >
         @foreach($ListaEventos["eventos"] as $evento)
             <tr>
-                
+
                 <td >
                     {{ $evento->Nombre_Evento }}
                 </td>
@@ -70,10 +70,10 @@
                     {{ $evento->Lugar_Evento }}
                 </td>
                 <td >
-                    {{ $evento->Ciudad_Evento }}
+                    {{ $evento->ciudad->Nombre_Ciudad }}
                 </td>
                 <td>
-                    {{ $evento->Departamento_Evento }}
+                    
                 </td>
                 <td >
                     {{ $evento->Fecha_Evento }}

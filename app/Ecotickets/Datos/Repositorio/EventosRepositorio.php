@@ -96,9 +96,11 @@ class EventosRepositorio
     public  function  ObtenerCupones()
     {
         $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
-        $eventos->each(function($eventos){
-            $eventos->ciudad= Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
-        });
+        foreach ($eventos as $evento)
+        {
+            $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
+
+        }
         $ListaEventos = array('eventos' => $eventos);
         return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
     }
