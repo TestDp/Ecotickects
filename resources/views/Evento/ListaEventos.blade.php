@@ -7,12 +7,7 @@
 <table id="TablaListaEventos" class="table table-bordered">
     <thead>
     <tr >
-        <th >
-            Id
-        </th>
-        <th >
-            Tipo
-        </th>
+
         <th >
             Nombre
         </th>
@@ -39,12 +34,7 @@
     </thead>
     <tfoot>
     <tr >
-        <th >
-            Id
-        </th>
-        <th >
-            Tipo
-        </th>
+
         <th >
             Nombre
         </th>
@@ -72,11 +62,7 @@
     <tbody >
     @foreach($ListaEventos["eventos"] as $evento)
         <tr>
-            <td >
-                {{ $evento->id }}
-            </td>
-            <td >
-            {{ $evento->Tipo_Evento }}
+
             <td >
                 {{ $evento->Nombre_Evento }}
             </td>
