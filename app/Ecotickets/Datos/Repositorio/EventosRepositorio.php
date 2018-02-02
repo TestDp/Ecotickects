@@ -9,6 +9,8 @@
 namespace Eco\Datos\Repositorio;
 
 
+use Eco\Datos\Modelos\Ciudad;
+use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Respuesta;
@@ -67,12 +69,26 @@ class EventosRepositorio
         $evento->preguntas->each(function($preguntas){
             $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
         });
+        $evento->each(function($evento){
+            $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
+        });
+
         return $evento ;
     }
 
     public  function  ObtenerEventos()
     {
         $eventos = Evento::where('Tipo_Evento','=','Evento')->get();
+
+
+        foreach ($eventos as $evento)
+        {
+           $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
+
+           $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
+
+        }
+
         $ListaEventos = array('eventos' => $eventos);
         return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
     }
@@ -80,6 +96,9 @@ class EventosRepositorio
     public  function  ObtenerCupones()
     {
         $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
+        $eventos->each(function($eventos){
+            $eventos->ciudad= Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
+        });
         $ListaEventos = array('eventos' => $eventos);
         return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
     }

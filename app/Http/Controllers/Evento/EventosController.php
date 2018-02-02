@@ -55,8 +55,4 @@ class EventosController extends Controller
         return view('Evento\ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
     }
 
-
-
-
-
 }
