@@ -30,15 +30,16 @@ class EcoticketsController extends Controller
     public  function  ObtenerEventos()
     {
 
+        //dd($this->eventoServicio->obtenerEventos());
+
         return $this->eventoServicio->obtenerEventos();
 
-        /*$eventos = Evento::where('Tipo_Evento','=','Evento')->get();
-        $ListaEventos = array('eventos' => $eventos);
-        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);*/
+
     }
 
     public  function  ObtenerCupones(EventosServicio $eventosServicio)
     {
+
         return $this->eventoServicio->obtenerCupones();
 
        /* $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();

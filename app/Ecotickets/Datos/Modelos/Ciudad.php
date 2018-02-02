@@ -13,7 +13,7 @@ class Ciudad extends Model
     }
 
     public function departamento(){
-        return $this->belongsTo('Departamento');
+        return $this->belongsTo('Eco\Datos\Modelos\Departamento');
     }
 
     public function asistentes(){

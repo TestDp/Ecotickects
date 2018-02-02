@@ -84,10 +84,10 @@
                 {{ $evento->Lugar_Evento }}
             </td>
             <td >
-                {{ $evento->Ciudad_Evento }}
+                {{ $evento->ciudad->Nombre_Ciudad }}
             </td>
             <td>
-                {{ $evento->Departamento_Evento }}
+
             </td>
             <td >
                 {{ $evento->Fecha_Evento }}
