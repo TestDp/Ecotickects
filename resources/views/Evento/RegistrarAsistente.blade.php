@@ -3,10 +3,18 @@
 @section('content')
     <div class="container">
         <div class="row">
+
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Información del Evento </div>
                     <div class="panel-body">
+                        @if ($ElementosArray["evento"] ->FlyerEvento)
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <img class="img-responsive" src="{{ asset('../storage/app/FlyerDeEventos/'.$ElementosArray["evento"]->FlyerEvento) }}">
+                            </div>
+                        </div>
+                        @endif
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
