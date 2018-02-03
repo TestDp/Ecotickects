@@ -78,7 +78,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-8">Fecha Incial de resgistro:</label>
+                                    <label class="col-md-8">Fecha Incial de registro:</label>
                                     <div class="col-md-10">
                                         {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
                                     </div>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-7">Fecha Final de resgistro:</label>
+                                    <label class="col-md-7">Fecha Final de registro:</label>
                                     <div class="col-md-10">
                                         {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
                                     </div>
