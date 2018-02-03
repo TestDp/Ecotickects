@@ -83,60 +83,10 @@ function ValidarPin () {
         }
     });
 }
-// function validarPIN()
-// {
 
-//     //var stringQR =$("#lectorQR").val();
-//     //var string1 = stringQR.split("CC");
-//     var idPin = $("#pinIngresar").val();
-   
-//     $.ajax({
-//         url: 'validarPIN/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
-//         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
-//             pinIngresar: idPin,
-//             _token :$("#_token").val()           
-//         },
-//         type: 'POST',
-//         success: function (result) {
-//             if (result) {
-//                 if(result.length > 0){
-					
-// 				 $("#nombre").html(result[0].nombre);
-// 				 $("#apellido").html(result[0].apellido);
-// 				 $("#identificacion").html(result[0].identificacion);
-// 				 $("#email").html(result[0].email);
-// 				 $("#comentario").html(result[0].comentario);
-// 				 $("#pk_usuario").val(result[0].id_Usuario);
-// 				 if (result[0].qrActivo == 0){
-// 					 if(result[0].tipoUsuario == "A"){
-//                        $("#qrActivo").attr("style", "font-size:30px; color:blue;"); 
-//                        $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR !!LLAVERO!!");
-//                     }else{
-//                         $("#qrActivo").attr("style", "font-size:30px; color:green;");
-//                         $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR");
-//                     }  
-// 				 }
-// 				 else{
-// 					 $("#qrActivo").attr("style", "font-size:30px; color:red;");
-// 					 $("#qrActivo").html("¡NO!,USUARIO YA INGRESÓ");
-// 				 }
-				 
-// 				}
-// 				else{
-					
-// 				 $("#nombre").html("");
-// 				 $("#apellido").html("");
-// 				 $("#identificacion").html("");
-// 				 $("#email").html("");
-// 				 $("#qrActivo").attr("style", "font-size:30px; color:orange;");
-// 				 $("#qrActivo").html("USUARIO NO REGISTRADO");
-// 				 $("#pk_usuario").val("");
-// 				}
-				 
-// 				  $("#lectorQR").val("");
-//             }
-//         }
-//     });
-
-
-// }
+function generarQRCode()
+{
+    var qr = create_qrcode("La Gran Encuesta PYME - CC" + $("#identificacion").val() + "DPSoluciones" );
+    var src = $(qr).attr('src');
+    $("#imagen").val(src);
+}
