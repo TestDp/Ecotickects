@@ -23,6 +23,10 @@ Route::get('/respuesta', function () {
     return view('respuesta');
 });
 
+Route::get('/existente', function () {
+    return view('existente');
+});
+
 Route::get('vistaCorreo', function () {
     return view('Email.correo');
 });
