@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     <label class="col-md-8">Ciudad:</label>
                                     <div class="col-md-10">
-
+                                        {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label class="col-md-7">Departamento:</label>
                                     <div class="col-md-10">
-
+                                        {{ $ElementosArray["evento"]->ciudad->departamento->Nombre_Departamento }}
                                     </div>
                                 </div>
                             </div>
@@ -106,6 +106,7 @@
             <div class="col-md-12">
                 <form action="{{url('registrarAsistente')}}" method="POST">
                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
                     @if ($ElementosArray["evento"] ->SolicitarPIN)
                         <div class="row">
@@ -302,7 +303,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-blue ripple trial-button">
+                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
                                         Registrarse
                                     </button>
                                 </div>
@@ -316,4 +317,5 @@
     </div>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
+    <script src="{{ asset('js/Plugins/Qrcode/jqrcode.js') }}"></script>
 @endsection

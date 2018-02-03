@@ -29,22 +29,12 @@ class EcoticketsController extends Controller
     }
     public  function  ObtenerEventos()
     {
-
-        //dd($this->eventoServicio->obtenerEventos());
-
         return $this->eventoServicio->obtenerEventos();
-
-
     }
 
     public  function  ObtenerCupones(EventosServicio $eventosServicio)
     {
-
         return $this->eventoServicio->obtenerCupones();
-
-       /* $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
-        $ListaEventos = array('eventos' => $eventos);
-        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);*/
     }
 
     //metodo que me muestra el formulario del registro para el evento
@@ -54,6 +44,7 @@ class EcoticketsController extends Controller
         $evento =$this->eventoServicio->obtenerEvento($idEvento);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
+      //  dd($ElementosArray);
         return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
     }
 

@@ -42,11 +42,10 @@
 		<div class="container">
 			<div class="row title text-center">
 			<img src="{{ asset('img/logo.png') }}">
-				<h2 class="black">BIEVENIDO A </h2>
-					<b style="font-size:16px;">Lugar: </b></br>
-					<b style="font-size:16px;">Fecha: </b></br>
-					<b style="font-size:16px;">Hora: </b></br>
-					<b style="font-size:16px;">Ciudad: </b>
+				<h2 class="black">BIEVENIDO A  {{ $ElementosArray["evento"] ->Nombre_Evento }}</h2>
+					<b style="font-size:16px;">Lugar:{{ $ElementosArray["evento"] ->Lugar_Evento }} </b></br>
+					<b style="font-size:16px;">Fecha: {{ $ElementosArray["evento"] ->Fecha_Evento }}</b></br>
+					<b style="font-size:16px;">Ciudad: {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</b>
 				</br></br>
 				<h4 class="light blck">Presenta tu SmartPhone con el <b>CÓDIGO QR</b> adjunto</br>	
 		en la entrada del evento y disfruta de uno de los mejores</br>

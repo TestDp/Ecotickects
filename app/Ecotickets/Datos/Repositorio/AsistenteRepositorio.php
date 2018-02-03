@@ -36,7 +36,7 @@ class AsistenteRepositorio
                 $respuestasAsistenteXevento ->save();
             }
 
-            $correoElectronico = $asistente->email;
+      /*      $correoElectronico = $asistente->email;
             Mail::send('Email/correo',[$asistente->all()],function($msj) use($correoElectronico){
                           $msj->from('info@dpsoluciones.co','Invitación LOVERS FESTIVAL 2018');
                           $msj->subject('Importante - Aquí esta tu pase de acceso');
@@ -46,7 +46,7 @@ class AsistenteRepositorio
                 });
 
                 Log::info("mensaje: " . $correoElectronico);
-                Log::info("mensaje: " . $msj);
+                Log::info("mensaje: " . "hola invitado");**/
                 
 
 

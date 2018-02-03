@@ -8,7 +8,7 @@
 					<div class="owl-twitter owl-carousel">
 						<div class="item text-center">
 							<img src="{{ asset('img/icono.png') }}">
-							<h3 class="white light">GRACIAS POR INSCRIBIRTE A</h3>
+							<h3 class="white light">GRACIAS POR INSCRIBIRTE A {{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
 							<h4 class="light-white light">En unos segundos recibirás un correo con toda la información para tu ingreso al evento.</br>
 Recuerda revisar tu bandeja de Spam.</h4>
 						</div>						
