@@ -313,12 +313,12 @@
                                     <h2 style="font-size: 20px; font-family: sans-serif; color:#2297e1;">Responde por favor la siguiente encuesta</h2>
                                     @foreach($ElementosArray["evento"] ->preguntas as $PreguntasFormulario)
                                         <fieldset>
-                                            <div style="font-weight:700; font-family: sans-serif; padding-top: 2%;" name ="id_pregunta" value = "{{ $PreguntasFormulario->id }}">{{ $PreguntasFormulario->Enunciado }} </div>
+                                            <div style="font-size: 20px; font-weight:700; font-family: sans-serif; padding-top: 2%;" name ="id_pregunta" value = "{{ $PreguntasFormulario->id }}">{{ $PreguntasFormulario->Enunciado }} </div>
                                             @foreach($PreguntasFormulario->Respuestas as $respuestas)
-                                                <div class="col-md-6" >
+                                                <div class="col-md-12" >
                                                     <div class="radio">
                                                         <div style="font-family: sans-serif; line-height: 30px;"><input type="radio" value="{{$respuestas->id}}" id="Respuesta_id" name="Respuesta_id[{{$loop->parent->index}}]" >
-                                                            <b>{{$respuestas->EnunciadoRespuesta}}</b>
+                                                            <p>{{$respuestas->EnunciadoRespuesta}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
