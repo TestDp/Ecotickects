@@ -22,10 +22,10 @@ class AsistenteRepositorio
     public function registrarAsistente($registroAsistente)
     {
     
-    //$identificacionAsistente = count(Asistente::where( 'Identificacion','=',$registroAsistente ->Identificacion )->get());
-    $listaIdAsistentes = array();  
-    $listaIdAsistentes[] = Asistente::where( 'Identificacion','=',$registroAsistente ->Identificacion )->get();
-    $identificacionAsistente = count(AsistenteXEvento::where( 'Evento_id','=',$registroAsistente ->Evento_id )->whereIn('Asistente_id',$listaIdAsistentes ->id )->get());
+    $identificacionAsistente = count(Asistente::where( 'Identificacion','=',$registroAsistente ->Identificacion )->get());
+    //$listaIdAsistentes = array();  
+    //$listaIdAsistentes[] = Asistente::where( 'Identificacion','=',$registroAsistente ->Identificacion )->get();
+    //$identificacionAsistente = count(AsistenteXEvento::where( 'Evento_id','=',$registroAsistente ->Evento_id )->whereIn('Asistente_id',$listaIdAsistentes ->id )->get());
         
      if($identificacionAsistente == 0)
       {
