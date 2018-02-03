@@ -28,9 +28,6 @@ class AsistenteRepositorio
       {
           DB::beginTransaction();
         try{
-
-        
-
             $asistente = new Asistente($registroAsistente->all());
             $asistente->save();
             $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
@@ -43,40 +40,7 @@ class AsistenteRepositorio
                 $respuestasAsistenteXevento ->AsistenteXEvento_id = $asistenteXeventoo->id;
                 $respuestasAsistenteXevento ->save();
             }
-
-      /*      $correoElectronico = $asistente->email;
-            Mail::send('Email/correo',[$asistente->all()],function($msj) use($correoElectronico){
-                          $msj->from('info@dpsoluciones.co','Invitación LOVERS FESTIVAL 2018');
-                          $msj->subject('Importante - Aquí esta tu pase de acceso');
-                          $msj->to($correoElectronico);
-                          $msj->bcc('juancamilo.blandon@gmail.com');
-                          //$msj->attach($qrImagen);
-                });
-
-                Log::info("mensaje: " . $correoElectronico);
-                Log::info("mensaje: " . "hola invitado");**/
-                
-           
-
             DB::commit();
-
-
-        
-
-            //$file = $usuario->imagen; 
-
-            //obtenemos el nombre del archivo
-            //$nombre = $asistente ->identificacion . 'imagenQR.png';
-      
-            //indicamos que queremos guardar un nuevo archivo en el disco local
-           // \Storage::disk('local')->put($nombre,file_get_contents($file));
-     
-            //$qrImagen = storage_path('app').'/Archivos/'.$nombre;
-           
-     
-             //return redirect('/');
-
-
 
         }catch (\Exception $e) {
 
@@ -87,9 +51,10 @@ class AsistenteRepositorio
         
         return true;
 
-    }
-    $ccUser=$registroAsistente ->Identificacion;		
-    return view('existente',['identificacion' => $ccUser]);	
+    }else{
+         return  '2';// se devuelve 1 cuando el usuario ya se encuentra registrado
+     }
+
     }
 
     public function obtenerAsistentesXEvento($idEvento)
@@ -114,26 +79,11 @@ class AsistenteRepositorio
 
     public function ActualizarPin($ced, $idPin)
     {
-    
-        // DB::beginTransaction();
-        // try{
-            $pinActualizar = CodigoAsistente::where('Codigo','=',$idPin)->get();
-        
+            $pinActualizar = CodigoAsistente::where('Codigo','=',$idPin)->get()->first();
             $pinActualizar->Identificacion = $ced;
             $pinActualizar->TipoCodigo = '1';
-        
-         $pinActualizar->save();
-
-        //  DB::commit();
-
-        // }catch (\Exception $e) {
-        
-        //             $error = $e->getMessage();
-        //             DB::rollback();
-        //             return  false;
-        //         }
-                return true;
-        
+            $pinActualizar->save();
+            return true;
     }
 
     

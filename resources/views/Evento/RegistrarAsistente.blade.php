@@ -220,7 +220,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-blue ripple trial-button">
+                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
                                         Registrarse
                                     </button>
                                 </div>
