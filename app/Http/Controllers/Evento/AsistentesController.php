@@ -21,12 +21,13 @@ class AsistentesController extends Controller
 
     public function registrarAsistente(Request $formRegistro)
     {
-        if($this->asistenteServicio->registrarAsistente($formRegistro) )
+        $respuesta=$this->asistenteServicio->registrarAsistente($formRegistro);
+        if($respuesta =='true')
         {
             $file = $formRegistro->imagen;
             //obtenemos el nombre del archivo
             $ced = $formRegistro ->Identificacion;
-            $pin = $formRegistro ->idPin;
+            $pin = $formRegistro ->pinIngresar;
             $this->asistenteServicio->ActualizarPin($ced,$pin);
 
             $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
@@ -48,7 +49,14 @@ class AsistentesController extends Controller
             });
             return view("respuesta",['ElementosArray' =>$ElementosArray]);
         }else{
-            return redirect('/');
+            if($respuesta == '2'){
+                $ccUser=$formRegistro ->Identificacion;
+                return view('existente',['identificacion' => $ccUser]);
+            }
+            else{
+                return redirect('/');
+            }
+
         }
     }
 

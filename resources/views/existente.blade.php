@@ -8,7 +8,7 @@
 					<div class="owl-twitter owl-carousel">
 						<div class="item text-center">
 							<img src="{{ asset('img/icono.png') }}">
-							<h3 style="color:#db0000;" class="white light">El número de identificación ya se encuentra registrado.</h3>
+							<h3 style="color:#db0000;" class="white light">El número de identificación {{$identificacion}} ya se encuentra registrado.</h3>
 							<h4 style="color:#db0000;" class="light-white light">Por favor verifica la información ingresada e intenta de nuevo.</h4>
 						</div>						
 					</div>
