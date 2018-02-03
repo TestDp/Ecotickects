@@ -54,16 +54,13 @@ class EventosRepositorio
                             $Respuesta ->save();// se guarda la respuesta
                         }
                         $ind++;
-                }
-                /*if(sizeof($EdEvento->Enunciado) != 0)
-                {
-                    DB::commit();
 
-                }else
-                {
-                    DB::commit();
-                }*/
+                }
+            }else
+            {
+                return false;
             }
+
             DB::commit();
         }catch (\Exception $e) {
 

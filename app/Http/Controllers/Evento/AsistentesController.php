@@ -57,6 +57,4 @@ class AsistentesController extends Controller
         return response()->json($this->asistenteServicio->validarPIN($idPin));
     }
 
-
-
 }
