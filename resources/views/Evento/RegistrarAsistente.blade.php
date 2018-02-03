@@ -104,7 +104,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{url('registrarAsistente')}}" method="POST">
+                <form id="formularioEvento" action="{{url('registrarAsistente')}}" method="POST">
                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
@@ -318,4 +318,6 @@
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script src="{{ asset('js/Plugins/Qrcode/qrcode.js') }}"></script>
+    <script src="{{ asset('js/Plugins/jqueryValidate/jquery.validate.js') }}"></script>
+
 @endsection

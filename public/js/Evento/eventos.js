@@ -89,4 +89,207 @@ function generarQRCode()
     var qr = create_qrcode("La Gran Encuesta PYME - CC" + $("#identificacion").val() + "DPSoluciones" );
     var src = $(qr).attr('src');
     $("#imagen").val(src);
+    validarFormulario();
+}
+
+function validarFormulario(){
+    $("#formularioEvento").validate({
+        rules: {
+            Nombres: {
+                required: true
+                // minlength: 2
+            },
+            Apellidos: {
+                required: true
+            },
+            identificacion: {
+                required: true
+            },
+            celular: {
+                required: true
+            },
+            email: {
+                required: true
+            },
+            confirmarEmail: {
+                equalTo: "#email"
+            },
+            idDepartamento: {
+                required: true
+            },
+            fk_ciudadResidencia: {
+                required: true
+            },
+            genero: {
+                required: true
+            },
+            edad: {
+                required: true,
+                //min: 18
+            },
+            terminos: {
+                required: true
+            },
+            HabeasData: {
+                required: true
+            },
+            'fk_id_respuesta[0]': {
+                required: true
+            },
+            'fk_id_respuesta[1]': {
+                required: true
+            },
+            'fk_id_respuesta[2]': {
+                required: true
+            },
+            'fk_id_respuesta[3]': {
+                required: true
+            },
+            'fk_id_respuesta[4]': {
+                required: true
+            },
+            'fk_id_respuesta[5]': {
+                required: true
+            },
+            'fk_id_respuesta[6]': {
+                required: true
+            },
+            'fk_id_respuesta[7]': {
+                required: true
+            },
+            'fk_id_respuesta[8]': {
+                required: true
+            },
+            'fk_id_respuesta[9]': {
+                required: true
+            },
+            'fk_id_respuesta[10]': {
+                required: true
+            },
+            'fk_id_respuesta[11]': {
+                required: true
+            },
+            'fk_id_respuesta[12]': {
+                required: true
+            },
+            'fk_id_respuesta[13]': {
+                required: true
+            },
+            'fk_id_respuesta[14]': {
+                required: true
+            },
+            'fk_id_respuesta[15]': {
+                required: true
+            },
+            'fk_id_respuesta[16]': {
+                required: true
+            },
+            'fk_id_respuesta[17]': {
+                required: true
+            },
+            'fk_id_respuesta[18]': {
+                required: true
+            },
+
+        },
+        messages: {
+            nombre: {
+                required: "*El nombre es obligatorio"
+            },
+            apellido: {
+                required: "*Empres/Institución es obligatorio"
+            },
+            identificacion: {
+                required: "*La identificación es obligatorio"
+            },
+            celular: {
+                required: "*El celular es obligatorio"
+            },
+            email: {
+                required: "*El email es obligatorio"
+            },
+            confirmarEmail: {
+                equalTo: "*Los correos debe ser iguales"
+            },
+            idDepartamento: {
+                required: "*El cargo es obligatorio"
+            },
+            fk_ciudadResidencia: {
+                required: "*La ciudad es obligatoria"
+            },
+            genero: {
+                required: "*El rol es obligatorio"
+            },
+            edad: {
+                required: "*La edad es obligatoria"  ,
+                //min: "*Debes ser mayor de edad para asistir al evento"
+            },
+            terminos: {
+                required: "*Los términos son obligatorios"
+            },
+            HabeasData: {
+                required: "*El  HabeasData es obligatorio"
+            },
+            'fk_id_respuesta[0]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[1]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[2]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[3]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[4]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[5]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[6]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[7]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[8]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[9]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[10]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[11]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[12]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[13]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[14]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[15]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[16]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[17]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'fk_id_respuesta[18]': {
+                required: "*Seleccione una opción por favor"
+            }
+
+        }
+
+    });
+
 }
