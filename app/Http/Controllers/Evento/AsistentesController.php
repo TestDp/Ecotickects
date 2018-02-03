@@ -33,8 +33,8 @@ class AsistentesController extends Controller
             }
             $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
             //indicamos que queremos guardar un nuevo archivo en el disco local
-            \Storage::disk('local')->put('/QrDeEventos/'.$nombre,file_get_contents($file));
-            $qrImagen = storage_path('app').'/QrDeEventos/'.$nombre;
+            \Storage::disk('local')->put('/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre,file_get_contents($file));
+            $qrImagen = storage_path('app').'/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre;
             $correoElectronico = $formRegistro->Email;
             $evento =$this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
             $ElementosArray= array('evento' => $evento);
