@@ -152,5 +152,6 @@
 	<script src="{{ asset('js/typewriter.js') }}"></script>
 	<script src="{{ asset('js/jquery.onepagenav.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="{{ asset('js/Plugins/jqueryValidate/jquery.validate.js') }}"></script>
 </body>
 </html>

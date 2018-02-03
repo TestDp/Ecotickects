@@ -102,28 +102,28 @@ function validarFormulario(){
             Apellidos: {
                 required: true
             },
-            identificacion: {
+            Identificacion: {
                 required: true
             },
-            celular: {
+            telefono: {
                 required: true
             },
-            email: {
+            Email: {
                 required: true
             },
-            confirmarEmail: {
+            confEmail: {
                 equalTo: "#email"
             },
-            idDepartamento: {
+            Departamento_id: {
                 required: true
             },
-            fk_ciudadResidencia: {
+            Ciudad_id: {
                 required: true
             },
             genero: {
                 required: true
             },
-            edad: {
+            Edad: {
                 required: true,
                 //min: 18
             },
@@ -193,34 +193,34 @@ function validarFormulario(){
 
         },
         messages: {
-            nombre: {
+            Nombres: {
                 required: "*El nombre es obligatorio"
             },
-            apellido: {
-                required: "*Empres/Institución es obligatorio"
+            Apellidos: {
+                required: "*El apellido es obligatorio"
             },
-            identificacion: {
+            Identificacion: {
                 required: "*La identificación es obligatorio"
             },
-            celular: {
-                required: "*El celular es obligatorio"
+            telefono: {
+                required: "*El telefono es obligatorio"
             },
-            email: {
+            Email: {
                 required: "*El email es obligatorio"
             },
-            confirmarEmail: {
+            confEmail: {
                 equalTo: "*Los correos debe ser iguales"
             },
-            idDepartamento: {
-                required: "*El cargo es obligatorio"
+            Departamento_id: {
+                required: "*El departamento es obligatorio"
             },
-            fk_ciudadResidencia: {
+            Ciudad_id: {
                 required: "*La ciudad es obligatoria"
             },
             genero: {
                 required: "*El rol es obligatorio"
             },
-            edad: {
+            Edad: {
                 required: "*La edad es obligatoria"  ,
                 //min: "*Debes ser mayor de edad para asistir al evento"
             },
@@ -286,10 +286,11 @@ function validarFormulario(){
             },
             'fk_id_respuesta[18]': {
                 required: "*Seleccione una opción por favor"
-            }
+            },
 
         }
 
     });
 
 }
+
