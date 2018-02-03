@@ -133,61 +133,61 @@ function validarFormulario(){
             HabeasData: {
                 required: true
             },
-            'fk_id_respuesta[0]': {
+            'Respuesta_id[0]': {
                 required: true
             },
-            'fk_id_respuesta[1]': {
+            'Respuesta_id[1]': {
                 required: true
             },
-            'fk_id_respuesta[2]': {
+            'Respuesta_id[2]': {
                 required: true
             },
-            'fk_id_respuesta[3]': {
+            'Respuesta_id[3]': {
                 required: true
             },
-            'fk_id_respuesta[4]': {
+            'Respuesta_id[4]': {
                 required: true
             },
-            'fk_id_respuesta[5]': {
+            'Respuesta_id[5]': {
                 required: true
             },
-            'fk_id_respuesta[6]': {
+            'Respuesta_id[6]': {
                 required: true
             },
-            'fk_id_respuesta[7]': {
+            'Respuesta_id[7]': {
                 required: true
             },
-            'fk_id_respuesta[8]': {
+            'Respuesta_id[8]': {
                 required: true
             },
-            'fk_id_respuesta[9]': {
+            'Respuesta_id[9]': {
                 required: true
             },
-            'fk_id_respuesta[10]': {
+            'Respuesta_id[10]': {
                 required: true
             },
-            'fk_id_respuesta[11]': {
+            'Respuesta_id[11]': {
                 required: true
             },
-            'fk_id_respuesta[12]': {
+            'Respuesta_id[12]': {
                 required: true
             },
-            'fk_id_respuesta[13]': {
+            'Respuesta_id[13]': {
                 required: true
             },
-            'fk_id_respuesta[14]': {
+            'Respuesta_id[14]': {
                 required: true
             },
-            'fk_id_respuesta[15]': {
+            'Respuesta_id[15]': {
                 required: true
             },
-            'fk_id_respuesta[16]': {
+            'Respuesta_id[16]': {
                 required: true
             },
-            'fk_id_respuesta[17]': {
+            'Respuesta_id[17]': {
                 required: true
             },
-            'fk_id_respuesta[18]': {
+            'Respuesta_id[18]': {
                 required: true
             },
 
@@ -230,61 +230,61 @@ function validarFormulario(){
             HabeasData: {
                 required: "*El  HabeasData es obligatorio"
             },
-            'fk_id_respuesta[0]': {
+            'Respuesta_id[0]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[1]': {
+            'Respuesta_id[1]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[2]': {
+            'Respuesta_id[2]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[3]': {
+            'Respuesta_id[3]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[4]': {
+            'Respuesta_id[4]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[5]': {
+            'Respuesta_id[5]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[6]': {
+            'Respuesta_id[6]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[7]': {
+            'Respuesta_id[7]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[8]': {
+            'Respuesta_id[8]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[9]': {
+            'Respuesta_id[9]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[10]': {
+            'Respuesta_id[10]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[11]': {
+            'Respuesta_id[11]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[12]': {
+            'Respuesta_id[12]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[13]': {
+            'Respuesta_id[13]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[14]': {
+            'Respuesta_id[14]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[15]': {
+            'Respuesta_id[15]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[16]': {
+            'Respuesta_id[16]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[17]': {
+            'Respuesta_id[17]': {
                 required: "*Seleccione una opción por favor"
             },
-            'fk_id_respuesta[18]': {
+            'Respuesta_id[18]': {
                 required: "*Seleccione una opción por favor"
             },
 
