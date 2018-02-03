@@ -21,8 +21,16 @@ class AsistenteRepositorio
 
     public function registrarAsistente($registroAsistente)
     {
-        DB::beginTransaction();
+        
+    $identificacionAsistente = count(Asistente::where( 'Identificacion','=',$registroAsistente ->Identificacion )->get());
+        
+     if($identificacionAsistente == 0)
+      {
+          DB::beginTransaction();
         try{
+
+        
+
             $asistente = new Asistente($registroAsistente->all());
             $asistente->save();
             $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
@@ -48,9 +56,12 @@ class AsistenteRepositorio
                 Log::info("mensaje: " . $correoElectronico);
                 Log::info("mensaje: " . "hola invitado");**/
                 
-
+           
 
             DB::commit();
+
+
+        
 
             //$file = $usuario->imagen; 
 
@@ -73,7 +84,12 @@ class AsistenteRepositorio
             DB::rollback();
             return  false;
         }
+        
         return true;
+
+    }
+    $ccUser=$registroAsistente ->Identificacion;		
+    return view('existente',['identificacion' => $ccUser]);	
     }
 
     public function obtenerAsistentesXEvento($idEvento)
@@ -95,4 +111,31 @@ class AsistenteRepositorio
         }  
         return true;
     }
+
+    public function ActualizarPin($ced, $idPin)
+    {
+    
+        // DB::beginTransaction();
+        // try{
+            $pinActualizar = CodigoAsistente::where('Codigo','=',$idPin)->get();
+        
+            $pinActualizar->Identificacion = $ced;
+            $pinActualizar->TipoCodigo = '1';
+        
+         $pinActualizar->save();
+
+        //  DB::commit();
+
+        // }catch (\Exception $e) {
+        
+        //             $error = $e->getMessage();
+        //             DB::rollback();
+        //             return  false;
+        //         }
+                return true;
+        
+    }
+
+    
+
 }

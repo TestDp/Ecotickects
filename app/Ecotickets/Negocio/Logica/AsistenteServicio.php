@@ -32,4 +32,9 @@ class AsistenteServicio
     {
         return $this->asistenteRepositorio->validarPIN($idPin);
     }
+    public function ActualizarPin($ced,$idPin)
+    {
+        return $this->asistenteRepositorio->ActualizarPin($ced,$idPin);
+    }
+    
 }

@@ -25,6 +25,10 @@ class AsistentesController extends Controller
         {
             $file = $formRegistro->imagen;
             //obtenemos el nombre del archivo
+            $ced = $formRegistro ->Identificacion;
+            $pin = $formRegistro ->idPin;
+            $this->asistenteServicio->ActualizarPin($ced,$pin);
+
             $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
 
             //indicamos que queremos guardar un nuevo archivo en el disco local
