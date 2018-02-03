@@ -67,13 +67,26 @@
             </div>
         </div>
         <div style="margin:0px !important;" class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 Número máximo de Asistentes
                 <input id="numeroAsistentes" name="numeroAsistentes" type="text" class="form-control" />
             </div>
-            <div class="col-md-8">
-            Flyer del evento
-             <input type="file" class="form-control" name="ImagenFlyerEvento" >
+            <div class="col-md-3">
+                Evento Publico
+                <select id="EsPublico" name="EsPublico" class="form-control">
+                    <option value="1">SI</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                Correo para enviar invitación
+                <input id="CorreoEnviarInvitacion" name="CorreoEnviarInvitacion" type="text" class="form-control" />
+            </div>
+        </div>
+        <div style="margin:0px !important;" class="row">
+            <div class="col-md-12">
+                Flyer del evento
+                <input type="file" class="form-control" name="ImagenFlyerEvento" >
             </div>
         </div>
         <br/>

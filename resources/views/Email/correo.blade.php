@@ -1,60 +1,40 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ECOTICKETS | DPSOLUCIONES</title>
-	<!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
-	<!-- Favicons (created with http://realfavicongenerator.net/)-->
-	<link rel="apple-touch-icon" sizes="57x57" href="{{ asset('img/favicons/favicon.png') }}">
-	<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('img/favicons/favicon.png') }}">
-	<link rel="icon" type="image/png" href="{{ asset('img/favicons/favicon.png') }}" sizes="32x32">
-	<link rel="icon" type="image/png" href="{{ asset('img/favicons/favicon.png') }}" sizes="16x16">
-	<link rel="manifest" href="{{ asset('img/favicons/manifest.json') }}">
-	<link rel="shortcut icon" href="{{ asset('img/favicons/favicon.png') }}">
-	<meta name="msapplication-TileColor" content="#00a8ff">
-	<meta name="msapplication-config" content="{{ asset('img/favicons/browserconfig.xml') }}">
-	<meta name="theme-color" content="#ffffff">
-	<!-- Normalize -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
-	<!-- Bootstrap -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
-	<!-- Owl -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/owl.css') }}">
-	<!-- Animate.css -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}">
-	<!-- Elegant Icons -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/eleganticons/et-icons.css') }}">
-	<!-- Main style -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/cardio.css') }}">
-	<!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-<section style="background:#ffffff !important; padding-top:40px !important;" id="pricing" class="section">
-		<div class="container">
-			<div class="row title text-center">
-			<img src="{{ asset('img/logo.png') }}">
-				<h2 class="black">BIEVENIDO A  {{ $ElementosArray["evento"] ->Nombre_Evento }}</h2>
-					<b style="font-size:16px;">Lugar:{{ $ElementosArray["evento"] ->Lugar_Evento }} </b></br>
-					<b style="font-size:16px;">Fecha: {{ $ElementosArray["evento"] ->Fecha_Evento }}</b></br>
-					<b style="font-size:16px;">Ciudad: {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</b>
-				</br></br>
-				<h4 class="light blck">Presenta tu SmartPhone con el <b>CÓDIGO QR</b> adjunto</br>	
-		en la entrada del evento y disfruta de uno de los mejores</br>
-		festivales de música electrónica del oriente Antioqueño.</br></p>
-		<b style="font-size:16px;">*No es necesario imprimirlo presenta tu SmartPhone</br>
-		cuidemos el medio ambiente.</b></h4>
-			</div>
+<div class="row">
+<div class="col-md-12">
+<div style="padding-top:1%;border: 8px solid #8abd51; font-family: sans-serif; width: 100%;height: 100%;" id="qrcode">
+<div style="text-align:center;">
+<img src="http://dpsoluciones.co/wp-content/uploads/2018/02/logo.png"></img>
+<h2 style="font-size: 20px; font-weight: 700; color:#8abd51;">BIENVENIDO A {{ $ElementosArray["evento"] ->Nombre_Evento }}</h2>
+			<p><b style="font-size:16px;">Lugar: </b>{{ $ElementosArray["evento"] ->Lugar_Evento }}</p> </br></br>
+			<p><b style="font-size:16px;">Fecha: </b>{{ $ElementosArray["evento"] ->Fecha_Evento }}</p></br></br>
+			<p><b style="font-size:16px;">Ciudad: </b>{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</p>
+			</br></br>
+		<p>Presenta tu SmartPhone con el <b>CÓDIGO QR</b> adjunto</br>	
+		en la entrada del evento y disfruta del mejor festival</br>
+		de música electrónica del Oriente Antioqueño.</br></p>
+		<p style="font-size:13px;">*No es necesario imprimirlo presenta tu SmartPhone</br>
+		cuidemos el medio ambiente.</p></div>
+		
+		<div style="padding-left: 7%;">
+		<h2 style="font-size: 15px; font-weight: 700; color:000000;">PARA TENER EN CUENTA</h2>
+		<ul style="font-size: 13px;">
+		<li>1. Presentar la cédula a la entrada del evento.</li>
+		<li>2. Esta invitación es válida para ingresar al evento antes de las 3:00p.m del día 03/06/2018.</li>
+		<li>3. Evento para mayores de edad.</li>
+		<li>4. Se prohíbe la venta y/o reproducción de la presente invitación.</li>
+		<li>5. Se prohíbe el ingreso de licor, alimentos y cualquier tipo de bebidas.</li>
+		<li>4. Se prohíbe el ingreso con camisetas alusivas a equipos de fútbol.</li>
+		<li>6. Se prohíbe el ingreso de mascotas.</li>
+		</ul>
+		</br></br>
+		<p style="font-size: 13px; text-align:center;">Desarrollado por</br>
+		<img style="width:32px;"src="http://dpsoluciones.co/wp-content/uploads/2016/06/Loader.png"></img></br>
+		Síguenos en Facebook <a href="https://www.facebook.com/dpsolucionesrionegro/?fref=ts" target="blank">DPSoluciones</a></br></p>
+		<p>CODIGO PULEP: DOZ319</p>
 		</div>
-	</section>
+		
+</div>
+</div>
+</div>
     
 
 <label> </label>
