@@ -317,5 +317,5 @@
     </div>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
-    <script src="{{ asset('js/Plugins/Qrcode/jqrcode.js') }}"></script>
+    <script src="{{ asset('js/Plugins/Qrcode/qrcode.js') }}"></script>
 @endsection
