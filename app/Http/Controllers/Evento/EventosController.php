@@ -34,7 +34,7 @@ class EventosController extends Controller
 
     public function crearEvento(Request $EdEvento)
     {
-
+        dd($EdEvento);
         if($this->eventoServicio->crearEvento($EdEvento) )        {
             //obtenemos el campo file definido en el formulario
             $FlyerEvento = $EdEvento->ImagenFlyerEvento;

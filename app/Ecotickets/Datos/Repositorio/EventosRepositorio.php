@@ -15,6 +15,7 @@ use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Respuesta;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Null_;
 use PhpParser\Node\Stmt\Echo_;
 
 class EventosRepositorio
@@ -32,8 +33,8 @@ class EventosRepositorio
             //fin del bloque
             $ind =0;
             //Validar si el array es vacio
-            //if(!emptyArray($EdEvento->Enunciado))
-            //{
+            if(sizeof($EdEvento->Enunciado) != null)
+            {
 
             // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
                 foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
@@ -54,14 +55,15 @@ class EventosRepositorio
                         }
                         $ind++;
                 }
-            if(count($EdEvento->Enunciado)==0)
-            {
-                echo ('Está vacío');
-            }else
-            {
-                echo ('No está vacío');
+                /*if(sizeof($EdEvento->Enunciado) != 0)
+                {
+                    DB::commit();
+
+                }else
+                {
+                    DB::commit();
+                }*/
             }
-            //}
             DB::commit();
         }catch (\Exception $e) {
 
