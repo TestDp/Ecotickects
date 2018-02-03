@@ -28,23 +28,23 @@ class AsistentesController extends Controller
             //obtenemos el nombre del archivo
             $ced = $formRegistro ->Identificacion;
             $pin = $formRegistro ->pinIngresar;
-            $this->asistenteServicio->ActualizarPin($ced,$pin);
-
+            if($pin){
+                $this->asistenteServicio->ActualizarPin($ced,$pin);
+            }
             $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
-
             //indicamos que queremos guardar un nuevo archivo en el disco local
             \Storage::disk('local')->put('/QrDeEventos/'.$nombre,file_get_contents($file));
-
             $qrImagen = storage_path('app').'/QrDeEventos/'.$nombre;
-
             $correoElectronico = $formRegistro->Email;
             $evento =$this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
             $ElementosArray= array('evento' => $evento);
-            Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico){
-                $msj->from('info@dpsoluciones.co','Invitación LOVERS FESTIVAL 2018');
+            $correoSaliente=$evento->CorreoEnviarInvitacion;
+            $nombreEvento = $evento->Nombre_Evento;
+            Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico,$correoSaliente,$nombreEvento){
+                $msj->from($correoSaliente,'Invitación '.$nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
                 $msj->to($correoElectronico);
-               // $msj->bcc('juancamilo.blandon@gmail.com');
+                $msj->bcc('soporteecotickets@gmail.com');
                 $msj->attach($qrImagen);
             });
             return view("respuesta",['ElementosArray' =>$ElementosArray]);
