@@ -8,7 +8,7 @@ use Eco\Datos\Modelos\Asistente;
 class AsistenteXEvento extends Model
 {
     protected $table = 'tbl_asistentesXeventos';
-    protected $fillable =['ComentarioEvento','Asistente_id','Evento_id'];
+    protected $fillable =['ComentarioEvento','Asistente_id','Evento_id','terminos','HabeasData'];
 
     public function evento(){
         return $this->belongsTo('Evento');

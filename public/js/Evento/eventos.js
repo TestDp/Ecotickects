@@ -112,7 +112,7 @@ function validarFormulario(){
                 required: true
             },
             confEmail: {
-                equalTo: "#email"
+                equalTo: "#Email"
             },
             Departamento_id: {
                 required: true

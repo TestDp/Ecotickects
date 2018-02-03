@@ -9,11 +9,11 @@
                     <div class="panel-heading">Información del Evento </div>
                     <div class="panel-body">
                         @if ($ElementosArray["evento"] ->FlyerEvento)
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <img class="img-responsive" src="{{ asset('../storage/app/FlyerDeEventos/'.$ElementosArray["evento"]->FlyerEvento) }}">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <img class="img-responsive" src="{{ asset('../storage/app/FlyerDeEventos/'.$ElementosArray["evento"]->FlyerEvento) }}">
+                                </div>
                             </div>
-                        </div>
                         @endif
                         <div class="row">
                             <div class="col-sm-4">
@@ -176,9 +176,23 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                Comentario
-                                <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Comentario
+                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.
+								</span>
+                                </div>
+                                <div class="col-md-6">
+								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+									<input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA.
+								</span>
+                                </div>
                             </div>
                             <br/>
                             <div class="column one">
@@ -273,9 +287,24 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                Comentario
-                                <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Comentario
+                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-6">
+								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.
+								</span>
+                                </div>
+                                <div class="col-md-6">
+								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+									<input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA.
+								</span>
+                                </div>
                             </div>
                             <br/>
                             <div class="column one">
