@@ -15,6 +15,7 @@ use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Respuesta;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Echo_;
 
 class EventosRepositorio
 {
@@ -31,27 +32,36 @@ class EventosRepositorio
             //fin del bloque
             $ind =0;
             //Validar si el array es vacio
-            if(!emptyArray($EdEvento->Enunciado))
-            {
-                // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
+            //if(!emptyArray($EdEvento->Enunciado))
+            //{
+
+            // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
                 foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
                 {
-                    $Pregunta = new Pregunta();
-                    $Pregunta ->Enunciado = $EnunciadoPregunta;
-                    $Pregunta ->Evento_id = $evento -> id;
-                    $Pregunta ->TipoPregunta_id = 1;//NOTA:SE DEBE GUARDAR DINAMICAMENTE
-                    $Pregunta ->save();// se guarda la pregunta para obtner el id y poder relacionarlo con la respuesta
-                    //se recorre el array en la posicion ind para sacar las respuestas relacionadas a las preguntas
-                    foreach ($EdEvento->TextoRespuesta[$ind] as $EnunciadoRespuesta)
-                    {
-                        $Respuesta = new Respuesta();
-                        $Respuesta ->EnunciadoRespuesta = $EnunciadoRespuesta;
-                        $Respuesta ->Pregunta_id = $Pregunta->id;
-                        $Respuesta ->save();// se guarda la respuesta
-                    }
-                    $ind++;
+
+                        $Pregunta = new Pregunta();
+                        $Pregunta ->Enunciado = $EnunciadoPregunta;
+                        $Pregunta ->Evento_id = $evento -> id;
+                        $Pregunta ->TipoPregunta_id = 1;//NOTA:SE DEBE GUARDAR DINAMICAMENTE
+                        $Pregunta ->save();// se guarda la pregunta para obtner el id y poder relacionarlo con la respuesta
+                        //se recorre el array en la posicion ind para sacar las respuestas relacionadas a las preguntas
+                        foreach ($EdEvento->TextoRespuesta[$ind] as $EnunciadoRespuesta)
+                        {
+                            $Respuesta = new Respuesta();
+                            $Respuesta ->EnunciadoRespuesta = $EnunciadoRespuesta;
+                            $Respuesta ->Pregunta_id = $Pregunta->id;
+                            $Respuesta ->save();// se guarda la respuesta
+                        }
+                        $ind++;
                 }
+            if(count($EdEvento->Enunciado)==0)
+            {
+                echo ('Está vacío');
+            }else
+            {
+                echo ('No está vacío');
             }
+            //}
             DB::commit();
         }catch (\Exception $e) {
 
