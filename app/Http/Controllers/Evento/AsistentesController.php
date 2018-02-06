@@ -65,4 +65,11 @@ class AsistentesController extends Controller
         return response()->json($this->asistenteServicio->validarPIN($idPin));
     }
 
+    public function ObtnerCantidadAsistentes($idEvento)
+    {
+        $CantidadRegistrados = $this -> asistenteServicio ->ObtnerCantidadAsistentes($idEvento);
+        $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados];
+        return response()->json($cantidadAsistentes);
+    }
 }

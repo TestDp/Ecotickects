@@ -294,3 +294,47 @@ function validarFormulario(){
 
 }
 
+
+function construirGrafico() {
+    var idPin = $("#idevento").val();
+    $.ajax({
+        url: urlBase+'CantidadAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            idPin: idPin,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+                var ctx = document.getElementById("canvas");
+                var data = {
+                    labels: [
+                        "Asistentes Esperados",
+                        "Asistentes Registrados"
+                    ],
+                    datasets: [
+                        {
+                            data: [result.CantidadEsperada, result.CantidadRegistrados],
+                            backgroundColor: [
+                                "#E5E8E8",
+                                "#82E0AA"
+                            ],
+                            hoverBackgroundColor: [
+                                "#E5E8E8",
+                                "#82E0AA"
+                            ]
+                        }]
+                }
+                var myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: data
+                });
+            }
+        }
+    });
+
+
+
+}
+
+

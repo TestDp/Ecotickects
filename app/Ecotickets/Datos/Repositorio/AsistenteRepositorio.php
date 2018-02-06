@@ -89,6 +89,9 @@ class AsistenteRepositorio
             return true;
     }
 
-    
+    public function ObtnerCantidadAsistentes($idEvento)
+    {
+        return count(AsistenteXEvento::where('Evento_id','=',$idEvento)->get());
+    }
 
 }

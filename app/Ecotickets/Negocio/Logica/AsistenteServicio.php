@@ -36,5 +36,10 @@ class AsistenteServicio
     {
         return $this->asistenteRepositorio->ActualizarPin($ced,$idPin);
     }
+
+    public function ObtnerCantidadAsistentes($idEvento)
+    {
+        return $this->asistenteRepositorio->ObtnerCantidadAsistentes($idEvento);
+    }
     
 }

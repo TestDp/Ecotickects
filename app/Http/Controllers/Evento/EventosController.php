@@ -54,7 +54,16 @@ class EventosController extends Controller
     public function ObtenerListaAsistentes($idEvento)
     {
         $ListaAsistentes= array('Asistentes' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento));
-        return view('Evento\ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
+        return view('Evento/ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
     }
+
+    public function obtenerEstadisticas($idEvento)
+    {
+      //  $evento =$this->eventoServicio->obtenerEvento($idEvento);
+        $idEvento=$this->eventoServicio->obtenerEvento($idEvento)->id;
+        return view('Evento/Estadisticas',['idEvento' => $idEvento]);
+    }
+
+
 
 }
