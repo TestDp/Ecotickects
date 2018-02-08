@@ -86,7 +86,7 @@ function ValidarPin () {
 
 function generarQRCode()
 {
-    var qr = create_qrcode("La Gran Encuesta PYME - CC" + $("#identificacion").val() + "DPSoluciones" );
+    var qr = create_qrcode($("#nomEvenQR").val() +" - CC - " + $("#Identificacion").val() + "ECOTICKETS" );
     var src = $(qr).attr('src');
     $("#imagen").val(src);
     validarFormulario();

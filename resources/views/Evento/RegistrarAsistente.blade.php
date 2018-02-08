@@ -37,6 +37,7 @@
                                     <label class="col-md-7">Tipo:</label>
                                     <div class="col-md-10">
                                         {{ $ElementosArray["evento"] ->Nombre_Evento }}
+                                        <input type="hidden" id="nomEvenQR" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">
                                     </div>
                                 </div>
                             </div>
