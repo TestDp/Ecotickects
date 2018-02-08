@@ -34,7 +34,7 @@
                             @foreach($ListaAsistentes["Asistentes"] as $asistente)
                             <tr >
                                 <th>
-                                  {{  $asistente->Identificacion}}
+                                  {{$asistente->Identificacion}}
                                 </th>
                                 <th>
                                     {{$asistente->Nombres}}

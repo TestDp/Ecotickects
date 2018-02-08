@@ -21,17 +21,20 @@ class AsistenteRepositorio
 
     public function registrarAsistente($registroAsistente)
     {
-    
-    $identificacionAsistente = count(Asistente::where( 'Identificacion','=',$registroAsistente ->Identificacion )->get());
-    //$listaIdAsistentes = array();  
-    //$listaIdAsistentes[] = Asistente::where( 'Identificacion','=',$registroAsistente ->Identificacion )->get();
-    //$identificacionAsistente = count(AsistenteXEvento::where( 'Evento_id','=',$registroAsistente ->Evento_id )->whereIn('Asistente_id',$listaIdAsistentes ->id )->get());
-        
-     if($identificacionAsistente == 0)
+        $asistente = $this->ObtenerAsistente($registroAsistente ->Identificacion);
+        if($asistente)
+        {
+            $asistente = $this->actualizarAsistente($asistente,new Asistente($registroAsistente->all()));
+        }else{
+            $asistente = new Asistente($registroAsistente->all());
+        }
+
+      $identificacionAsistente = $this->ObtenerAsistenteXEvento($registroAsistente ->Evento_id,$asistente->id);
+
+     if($identificacionAsistente == null)
       {
           DB::beginTransaction();
         try{
-            $asistente = new Asistente($registroAsistente->all());
             $asistente->save();
             $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
             $asistenteXeventoo ->Asistente_id = $asistente->id;
@@ -94,4 +97,22 @@ class AsistenteRepositorio
         return count(AsistenteXEvento::where('Evento_id','=',$idEvento)->get());
     }
 
+    public function ObtenerAsistente($cc)
+    {
+        return Asistente::where('Identificacion','=',$cc)->get()->first();
+    }
+    public  function  actualizarAsistente($asistente,$asistenteRequest)
+    {
+        $asistente->telefono =  $asistenteRequest->telefono;
+        $asistente->Email = $asistenteRequest->Email;
+        $asistente->Edad = $asistenteRequest->Edad;
+        $asistente->Dirección = $asistenteRequest->Dirección;
+        $asistente->Ciudad_id = $asistenteRequest->Ciudad_id;
+        return $asistente;
+    }
+
+    public  function ObtenerAsistenteXEvento($idEvento,$idAsistente)
+    {
+       return AsistenteXEvento::where('Evento_id','=',$idEvento)->where('Asistente_id','=',$idAsistente)->get()->first();
+    }
 }

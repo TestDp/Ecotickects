@@ -2,6 +2,7 @@
 
 namespace Ecotickets\Http\Controllers\Evento;
 
+
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
