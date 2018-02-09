@@ -82,3 +82,7 @@ Route::post('pin/{idPin}',[
 Route::post('CantidadAsistentes/{idEvento}',[
     'uses' =>'Evento\AsistentesController@ObtnerCantidadAsistentes'
 ]);
+
+Route::post('asistenteResgistrado/{cc}',[
+    'uses' =>'Evento\AsistentesController@ObtenerAsistente'
+]);

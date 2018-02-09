@@ -73,4 +73,9 @@ class AsistentesController extends Controller
         $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados];
         return response()->json($cantidadAsistentes);
     }
+
+    public function ObtenerAsistente($cc)
+    {
+        return response()->json($this -> asistenteServicio ->ObtenerAsistente($cc));
+    }
 }

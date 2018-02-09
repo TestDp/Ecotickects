@@ -131,7 +131,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     Identificación
-                                    <input id="Identificacion" name="Identificacion" type="text" class="form-control" />
+                                    <input id="Identificacion" name="Identificacion" type="text" class="form-control" onchange="BuscarAsistente()"/>
                                 </div>
                                 <div class="col-md-6">
                                     Celular/teléfono
@@ -231,18 +231,18 @@
                         <div id="formAsistente">
                             <div class="row">
                                 <div class="col-md-6">
-                                    Nombre
-                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
+                                    Identificación
+                                    <input id="Identificacion" name="Identificacion" type="text" class="form-control" onchange="BuscarAsistente()"/>
                                 </div>
                                 <div class="col-md-6">
-                                    Apellidos
-                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+                                    Nombre
+                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    Identificación
-                                    <input id="Identificacion" name="Identificacion" type="text" class="form-control" />
+                                    Apellidos
+                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
                                     Celular/teléfono
@@ -267,7 +267,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     Dirección
-                                    <input id="Dirección" name="Dirección" type="text" class="form-control" />
+                                    <input id="Dirección" name="Dirección" type="text" class="form-control"  />
                                 </div>
                             </div>
                             <div class="row">

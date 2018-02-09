@@ -41,5 +41,9 @@ class AsistenteServicio
     {
         return $this->asistenteRepositorio->ObtnerCantidadAsistentes($idEvento);
     }
-    
+
+    public function ObtenerAsistente($cc)
+    {
+        return $this->asistenteRepositorio->ObtenerAsistente($cc);
+    }
 }

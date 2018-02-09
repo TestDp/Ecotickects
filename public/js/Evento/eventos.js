@@ -2,7 +2,7 @@ var urlBase = "/Ecotickects/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE
 
 
 //funcion que me retorna las ciudades dependiendo del departamento seleccionado
-function CargarMunicipiosDepartamento()
+function CargarMunicipiosDepartamento(idCiudad)
 {
     var idDepartamento =$("#Departamento_id").val();
     var $idCiudad =$("#Ciudad_id");
@@ -20,6 +20,10 @@ function CargarMunicipiosDepartamento()
                 $.each(result, function (ind, element) {
                     $idCiudad.append(new Option(element.Nombre_Ciudad, element.id));//agregamos las opciónes consultadas
                 })
+                if(idCiudad)
+                {
+                    $("#Ciudad_id").val(idCiudad);
+                }
             }
         }
     });
@@ -338,3 +342,41 @@ function construirGrafico() {
 }
 
 
+function BuscarAsistente() {
+    var cc = $("#Identificacion").val();
+    $.ajax({
+        url: urlBase+'asistenteResgistrado/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            cc: cc,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (!jQuery.isEmptyObject(result)) {
+                $("#Nombres").val(result.Nombres);
+                $("#Nombres").attr("readonly","readonly");
+                $("#Apellidos").val(result.Apellidos);
+                $("#Apellidos").attr("readonly","readonly");
+                $("#telefono").val(result.telefono);
+                $("#Email").val(result.Email);
+                $("#confEmail").val(result.Email);
+                $("#Edad").val(result.Edad);
+                $("#Dirección").val(result.Dirección);
+                $("#Departamento_id").val(result.ciudad.Departamento_id);
+                CargarMunicipiosDepartamento(result.ciudad.id);
+            }else{
+                $("#Nombres").val("");
+                $("#Nombres").removeAttrs("readonly");
+                $("#Apellidos").val(result.Apellidos);
+                $("#Apellidos").removeAttrs("readonly");
+                $("#telefono").val("");
+                $("#Email").val("");
+                $("#confEmail").val("");
+                $("#Edad").val("");
+                $("#Dirección").val("");
+                $("#Departamento_id").val("");
+                $("#Ciudad_id").find("option").remove();//Removemos las opciónes anteriores
+            }
+        }
+    });
+}

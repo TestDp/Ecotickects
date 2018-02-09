@@ -10,11 +10,11 @@ namespace Eco\Datos\Repositorio;
 
 use Eco\Datos\Modelos\Asistente;
 use Eco\Datos\Modelos\AsistenteXEvento;
+use Eco\Datos\Modelos\Ciudad;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Eco\Datos\Modelos\CodigoAsistente;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Expr\Array_;
-use Mail;
+
 
 class AsistenteRepositorio
 {
@@ -99,8 +99,14 @@ class AsistenteRepositorio
 
     public function ObtenerAsistente($cc)
     {
-        return Asistente::where('Identificacion','=',$cc)->get()->first();
+        $asistente =  Asistente::where('Identificacion','=',$cc)->get()->first();
+        if($asistente)
+        {
+            $asistente->ciudad = Ciudad::where('id','=',$asistente ->Ciudad_id)->get()->first();
+        }
+        return $asistente;
     }
+
     public  function  actualizarAsistente($asistente,$asistenteRequest)
     {
         $asistente->telefono =  $asistenteRequest->telefono;
@@ -115,4 +121,5 @@ class AsistenteRepositorio
     {
        return AsistenteXEvento::where('Evento_id','=',$idEvento)->where('Asistente_id','=',$idAsistente)->get()->first();
     }
+
 }
