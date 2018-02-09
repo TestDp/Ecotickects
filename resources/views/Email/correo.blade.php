@@ -16,15 +16,7 @@
 		
 		<div style="padding-left: 7%;">
 		<h2 style="font-size: 15px; font-weight: 700; color:000000;">PARA TENER EN CUENTA</h2>
-		<ul style="font-size: 13px;">
-		<li>1. Presentar la cédula a la entrada del evento.</li>
-		<li>2. Esta invitación es válida para ingresar al evento antes de las 3:00p.m del día 03/06/2018.</li>
-		<li>3. Evento para mayores de edad.</li>
-		<li>4. Se prohíbe la venta y/o reproducción de la presente invitación.</li>
-		<li>5. Se prohíbe el ingreso de licor, alimentos y cualquier tipo de bebidas.</li>
-		<li>4. Se prohíbe el ingreso con camisetas alusivas a equipos de fútbol.</li>
-		<li>6. Se prohíbe el ingreso de mascotas.</li>
-		</ul>
+			{!!$ElementosArray["evento"] ->informacionEvento!!}
 		</br></br>
 		<p style="font-size: 13px; text-align:center;">Desarrollado por</br>
 		<img style="width:32px;"src="http://dpsoluciones.co/wp-content/uploads/2016/06/Loader.png"></img></br>
