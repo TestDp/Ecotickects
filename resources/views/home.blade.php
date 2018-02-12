@@ -14,7 +14,6 @@
                             </div>
                         @endif
                         <a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
-
                         <table id="TablaListaEventos"  class="table table-bordered">
                             <thead>
                             <tr >
@@ -53,43 +52,6 @@
                                 </th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr >
-                                <th >
-                                    Id
-                                </th>
-                                <th >
-                                    Tipo
-                                </th>
-                                <th >
-                                    Nombre
-                                </th>
-                                <th >
-                                    Lugar
-                                </th>
-                                <th >
-                                    Ciudad
-                                </th>
-                                <th >
-                                    Departamento
-                                </th>
-                                <th >
-                                    Fecha del Evento
-                                </th>
-                                <th >
-                                    Fecha Inicial de registro
-                                </th>
-                                <th >
-                                    Fecha Final de registro
-                                </th>
-                                <th >
-                                    Asistentes
-                                </th>
-                                <th >
-                                    Estadísticas
-                                </th>
-                            </tr>
-                            </tfoot>
                             <tbody >
                             @foreach($ListaEventos["eventos"] as $evento)
                                 <tr>
@@ -134,4 +96,36 @@
             </div>
         </div>
     </div>
+
+
+    <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#TablaListaEventos').DataTable({
+                dom: 'B<"clear">lfrtip',
+                buttons: {
+                    name: 'primary',
+                    text: 'Save current page',
+                    buttons: [
+                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
+                    ]
+                },
+                language: {
+                    "lengthMenu": "Registros por página _MENU_",
+                    "info":"Mostrando del _START_ a _END_ de _TOTAL_ registros",
+                    "infoEmpty":"Mostrando del 0 a 0 de 0 registros",
+                    "infoFiltered": "(Registros filtrados _MAX_ )",
+                    "zeroRecords": "No hay registros",
+                    "search": "Buscador:",
+                    "paginate": {
+                        "first":      "First",
+                        "last":       "Last",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
 @endsection

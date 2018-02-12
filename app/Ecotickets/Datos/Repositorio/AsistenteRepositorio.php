@@ -29,37 +29,37 @@ class AsistenteRepositorio
             $asistente = new Asistente($registroAsistente->all());
         }
 
-      $identificacionAsistente = $this->ObtenerAsistenteXEvento($registroAsistente ->Evento_id,$asistente->id);
+        $identificacionAsistente = $this->ObtenerAsistenteXEvento($registroAsistente ->Evento_id,$asistente->id);
 
-     if($identificacionAsistente == null)
-      {
-          DB::beginTransaction();
-        try{
-            $asistente->save();
-            $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
-            $asistenteXeventoo ->Asistente_id = $asistente->id;
-            $asistenteXeventoo->save();
-            foreach ($registroAsistente->Respuesta_id  as $respuestasAsistente)
-            {
-                $respuestasAsistenteXevento = new RespuestaAsistenteXEvento();
-                $respuestasAsistenteXevento ->Respuesta_id =$respuestasAsistente;
-                $respuestasAsistenteXevento ->AsistenteXEvento_id = $asistenteXeventoo->id;
-                $respuestasAsistenteXevento ->save();
+        if($identificacionAsistente == null)
+        {
+            DB::beginTransaction();
+            try{
+                $asistente->save();
+                $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
+                $asistenteXeventoo ->Asistente_id = $asistente->id;
+                $asistenteXeventoo->save();
+                foreach ($registroAsistente->Respuesta_id  as $respuestasAsistente)
+                {
+                    $respuestasAsistenteXevento = new RespuestaAsistenteXEvento();
+                    $respuestasAsistenteXevento ->Respuesta_id =$respuestasAsistente;
+                    $respuestasAsistenteXevento ->AsistenteXEvento_id = $asistenteXeventoo->id;
+                    $respuestasAsistenteXevento ->save();
+                }
+                DB::commit();
+
+            }catch (\Exception $e) {
+
+                $error = $e->getMessage();
+                DB::rollback();
+                return  false;
             }
-            DB::commit();
 
-        }catch (\Exception $e) {
+            return true;
 
-            $error = $e->getMessage();
-            DB::rollback();
-            return  false;
+        }else{
+            return  '2';// se devuelve 1 cuando el usuario ya se encuentra registrado
         }
-        
-        return true;
-
-    }else{
-         return  '2';// se devuelve 1 cuando el usuario ya se encuentra registrado
-     }
 
     }
 
@@ -67,8 +67,10 @@ class AsistenteRepositorio
     {
         $arrayAsistentes = array();
         $listaAsistentesEventos = AsistenteXEvento::where('Evento_id','=',$idEvento)->get();
-        foreach ($listaAsistentesEventos as $asistente){
-          $arrayAsistentes[]=Asistente::where('id','=',$asistente->Asistente_id)->first() ;
+        foreach ($listaAsistentesEventos as $asistenteXEvento){
+            $asistente=Asistente::where('id','=',$asistenteXEvento->Asistente_id)->first();
+            $asistente->ciudad=Ciudad::where('id','=',$asistente ->Ciudad_id)->get()->first();
+            $arrayAsistentes[]=$asistente;
         }
         return $arrayAsistentes;
     }
@@ -79,17 +81,17 @@ class AsistenteRepositorio
         if ($verificarPin == 0)
         {
             return false;
-        }  
+        }
         return true;
     }
 
     public function ActualizarPin($ced, $idPin)
     {
-            $pinActualizar = CodigoAsistente::where('Codigo','=',$idPin)->get()->first();
-            $pinActualizar->Identificacion = $ced;
-            $pinActualizar->TipoCodigo = '1';
-            $pinActualizar->save();
-            return true;
+        $pinActualizar = CodigoAsistente::where('Codigo','=',$idPin)->get()->first();
+        $pinActualizar->Identificacion = $ced;
+        $pinActualizar->TipoCodigo = '1';
+        $pinActualizar->save();
+        return true;
     }
 
     public function ObtnerCantidadAsistentes($idEvento)
@@ -119,7 +121,7 @@ class AsistenteRepositorio
 
     public  function ObtenerAsistenteXEvento($idEvento,$idAsistente)
     {
-       return AsistenteXEvento::where('Evento_id','=',$idEvento)->where('Asistente_id','=',$idAsistente)->get()->first();
+        return AsistenteXEvento::where('Evento_id','=',$idEvento)->where('Asistente_id','=',$idAsistente)->get()->first();
     }
 
 }

@@ -36,6 +36,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/cardio.css') }}">
 	<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{asset('js/Plugins/data-table/datatables.css')}}" rel="stylesheet">
 </head>
 <body>
     	<div class="preloader">
@@ -145,13 +146,15 @@
 		<a href="#" class="close-link"><i class="arrow_up"></i></a>
 	</div>
 	<!-- Scripts -->
-	<script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
-	<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/wow.min.js') }}"></script>
-	<script src="{{ asset('js/typewriter.js') }}"></script>
-	<script src="{{ asset('js/jquery.onepagenav.js') }}"></script>
-	<script src="{{ asset('js/main.js') }}"></script>
-	<script src="{{ asset('js/Plugins/jqueryValidate/jquery.validate.js') }}"></script>
+	<script src="{{asset('js/jquery-1.11.1.min.js')}}"></script>
+	<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('js/wow.min.js')}}"></script>
+	<script src="{{asset('js/typewriter.js')}}"></script>
+	<script src="{{asset('js/jquery.onepagenav.js') }}"></script>
+	<script src="{{asset('js/main.js') }}"></script>
+	<script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
+	<script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
+
 </body>
 </html>
