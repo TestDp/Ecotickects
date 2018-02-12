@@ -339,6 +339,48 @@ function construirGrafico() {
 
 
 
+
+}
+
+function construirBarras() {
+    var idEvento = $("#idevento").val();
+    $.ajax({
+        url: urlBase+'AsistentesXCiudad/'+idEvento,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            idEvento: idEvento,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+                var ctx = document.getElementById("canvasBarra");
+                var data = {
+                    labels: [
+                        "Ciudad",
+                        "Numero Asistentes"
+                    ],
+                    datasets: [
+                        {
+                            data: [result.CiudadId, result.cantidad],
+                            backgroundColor: [
+                                "#E5E8E8",
+                                "#82E0AA"
+                            ],
+                            hoverBackgroundColor: [
+                                "#E5E8E8",
+                                "#82E0AA"
+                            ]
+                        }]
+                }
+                var myBarChart = new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: data,
+                    options: options
+                });
+            }
+        }
+    });
+
 }
 
 

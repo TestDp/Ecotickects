@@ -83,6 +83,11 @@ Route::post('CantidadAsistentes/{idEvento}',[
     'uses' =>'Evento\AsistentesController@ObtnerCantidadAsistentes'
 ]);
 
+
 Route::post('asistenteResgistrado/{cc}',[
     'uses' =>'Evento\AsistentesController@ObtenerAsistente'
+]);
+
+Route::post('AsistentesXCiudad/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@ObtenerAsistentesXCiudad'
 ]);

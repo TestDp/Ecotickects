@@ -10,6 +10,9 @@
                 <div class="col-sm-6">
                     <canvas id="canvas" class="img-responsive"></canvas>
                 </div>
+                <div class="col-sm-6">
+                    <canvas id="canvasBarra" class="img-responsive"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -22,7 +25,9 @@
     <script>
         $(document).ready(function () {
             construirGrafico();
+            construirBarras();
         });
     </script>
+    
 
 @endsection
