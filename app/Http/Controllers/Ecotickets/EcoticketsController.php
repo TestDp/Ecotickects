@@ -40,6 +40,8 @@ class EcoticketsController extends Controller
     public function obtenerFormularioAsistente($idEvento)
     {
         $evento =$this->eventoServicio->obtenerEvento($idEvento);
+        //$evento ->FlyerEvento = storage_path('app').'/public/FlyerDeEventos/'.$evento ->FlyerEvento;
+        //dd($evento);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
         return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
