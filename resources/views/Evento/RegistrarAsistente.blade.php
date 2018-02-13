@@ -11,7 +11,7 @@
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <img class="img-responsive" src="{{ asset('storage/FlyerDeEventos/'.$ElementosArray["evento"]->FlyerEvento) }}">
+                                    <img class="img-responsive" src="{{ asset('storage/FlyerDeEventos/'.$ElementosArray["evento"]->FlyerEvento) }}"></img>
                                 </div>
                             </div>
                         @endif
@@ -197,7 +197,7 @@
                             </div>
                             <br/>
                             <div class="column one">
-
+                                @if(count($ElementosArray["evento"]->preguntas) >0)
                                 <div class="hover_color_wrapper">
                                     <h2 style="font-size: 20px; font-family: sans-serif; color:#2297e1;">Responde por favor la siguiente encuesta</h2>
                                     @foreach($ElementosArray["evento"] ->preguntas as $PreguntasFormulario)
@@ -216,7 +216,7 @@
                                         </fieldset>
                                     @endforeach
                                 </div>
-
+                                @endif
                             </div>
                             <br/>
                             <div class="row">
@@ -309,7 +309,7 @@
                             </div>
                             <br/>
                             <div class="column one">
-
+                                @if(count($ElementosArray["evento"]->preguntas) >0)
                                 <div class="hover_color_wrapper">
                                     <h2 style="font-size: 20px; font-family: sans-serif; color:#2297e1;">Responde por favor la siguiente encuesta</h2>
                                     @foreach($ElementosArray["evento"] ->preguntas as $PreguntasFormulario)
@@ -328,7 +328,7 @@
                                         </fieldset>
                                     @endforeach
                                 </div>
-
+                                @endif
                             </div>
                             <br/>
                             <div class="row">

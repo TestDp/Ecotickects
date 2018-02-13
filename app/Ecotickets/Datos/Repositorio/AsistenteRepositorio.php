@@ -39,12 +39,14 @@ class AsistenteRepositorio
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
                 $asistenteXeventoo ->Asistente_id = $asistente->id;
                 $asistenteXeventoo->save();
-                foreach ($registroAsistente->Respuesta_id  as $respuestasAsistente)
-                {
-                    $respuestasAsistenteXevento = new RespuestaAsistenteXEvento();
-                    $respuestasAsistenteXevento ->Respuesta_id =$respuestasAsistente;
-                    $respuestasAsistenteXevento ->AsistenteXEvento_id = $asistenteXeventoo->id;
-                    $respuestasAsistenteXevento ->save();
+                if($registroAsistente->Respuesta_id){
+                    foreach ($registroAsistente->Respuesta_id  as $respuestasAsistente)
+                    {
+                        $respuestasAsistenteXevento = new RespuestaAsistenteXEvento();
+                        $respuestasAsistenteXevento ->Respuesta_id =$respuestasAsistente;
+                        $respuestasAsistenteXevento ->AsistenteXEvento_id = $asistenteXeventoo->id;
+                        $respuestasAsistenteXevento ->save();
+                    }
                 }
                 DB::commit();
 

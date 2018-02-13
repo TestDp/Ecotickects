@@ -33,9 +33,8 @@ class EventosRepositorio
             //fin del bloque
             $ind =0;
             //Validar si el array es vacio
-            if(sizeof($EdEvento->Enunciado) != null)
+            if($EdEvento->Enunciado)
             {
-
             // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
                 foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
                 {
@@ -56,9 +55,6 @@ class EventosRepositorio
                         $ind++;
 
                 }
-            }else
-            {
-                return false;
             }
 
             DB::commit();
