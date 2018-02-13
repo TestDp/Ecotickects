@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3>Bievenido a Ecotickets</h3></div>
 
-                    <form action="crearEvento" method="POST" enctype="multipart/form-data">
+                    <form id="crearEvento" action="crearEvento" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <div style="margin:0px !important;" class="row">
@@ -18,6 +18,7 @@
                             <div class="col-md-3">
                                 Tipo de Evento
                                 <select id="Tipo_Evento" name="Tipo_Evento" class="form-control">
+                                    <option value="">Seleccionar</option>
                                     <option value="Evento">Evento</option>
                                     <option value="Cupon">Cupón</option>
                                 </select>
@@ -25,6 +26,7 @@
                             <div class="col-md-3">
                                 Solicitar PIN
                                 <select id="SolicitarPIN" name="SolicitarPIN" class="form-control">
+                                    <option value="">Seleccionar</option>
                                     <option value="0">No</option>
                                     <option value="1">SI</option>
                                 </select>
@@ -74,6 +76,7 @@
                             <div class="col-md-3">
                                 Evento Publico
                                 <select id="EsPublico" name="EsPublico" class="form-control">
+                                    <option value="">Seleccionar</option>
                                     <option value="1">SI</option>
                                     <option value="0">No</option>
                                 </select>
@@ -91,7 +94,7 @@
                         </div>
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-12">
-                                Informacion para envio del la invitación
+                                Información para envio del la invitación
                                 <textarea id="informacionEvento" name="informacionEvento"></textarea>
                             </div>
                         </div>
@@ -144,7 +147,7 @@
                                 <hr style="border-top-color:lightslategray; width:100%" />
                                 <div class="row">
                                     <div style="margin-bottom:2%;" class="col-md-12">
-                                        <button type="submit" class="btn btn-blue ripple trial-button" onclick="EditarNombrePreguntasYRespuetas()">
+                                        <button type="button" class="btn btn-blue ripple trial-button" onclick="validarCamposCrearEvento()">
                                             Crear Evento
                                         </button>
                                     </div>

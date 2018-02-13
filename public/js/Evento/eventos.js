@@ -298,6 +298,108 @@ function validarFormulario(){
 
 }
 
+function validarCamposCrearEvento() {
+
+    validarFormularioCrearEvento();
+    if ($("#crearEvento").valid()) {
+        EditarNombrePreguntasYRespuetas();
+        $("#crearEvento").submit();
+    }
+
+}
+
+
+function validarFormularioCrearEvento(){
+    $("#crearEvento").validate({
+        rules: {
+            Nombre_Evento: {
+                required: true
+                // minlength: 2
+            },
+            Tipo_Evento: {
+                required: true
+            },
+            SolicitarPIN: {
+                required: true
+            },
+            Departamento_id: {
+                required: true
+            },
+            Ciudad_id: {
+                required: true
+            },
+            Lugar_Evento: {
+                required: true
+            },
+            Fecha_Evento: {
+                required: true
+            },
+            Fecha_Inicial_Registro: {
+                required: true
+            },
+            Fecha_Final_Registro: {
+                required: true
+            },
+            numeroAsistentes: {
+                required: true
+            },
+            EsPublico: {
+                required: true
+            },
+            CorreoEnviarInvitacion: {
+                required: true
+            },
+            informacionEvento: {
+                required: true
+            }
+
+        },
+        messages: {
+            Nombre_Evento: {
+                required: "*El nombre del evento es obligatorio"
+            },
+            Tipo_Evento: {
+                required: "*El tipo de evento es obligatorio"
+            },
+            SolicitarPIN: {
+                required: "*Se debe seleccionar una opción"
+            },
+            Departamento_id: {
+                required: "*El departamento es obligatorio"
+            },
+            Ciudad_id: {
+                required: "*la ciudad es obligatoria"
+            },
+            Lugar_Evento: {
+                equalTo: "*El lugar del evento  es obligatorio"
+            },
+            Fecha_Evento: {
+                required: "*La fecha del evento es obligatoria"
+            },
+            Fecha_Inicial_Registro: {
+                required: "*La fecha inicial es obligatoria"
+            },
+            Fecha_Final_Registro: {
+                required: "*la fecha final es obligatoria"
+            },
+            numeroAsistentes: {
+                required: "*El numero maximo de asistentes es obligatorio"
+            },
+            EsPublico: {
+                required: "*Se debe  seleccionar una  opción"
+            },
+            CorreoEnviarInvitacion: {
+                required: "*El correo de donde se debe enviar es obligatorio"
+            },
+            informacionEvento: {
+                required: "*la información del evento es obligatorio"
+            }
+
+        }
+
+    });
+
+}
 
 function construirGrafico() {
     var idPin = $("#idevento").val();
@@ -403,7 +505,6 @@ function construirBarras() {
     });
 
 }
-
 
 function BuscarAsistente() {
     var cc = $("#Identificacion").val();
