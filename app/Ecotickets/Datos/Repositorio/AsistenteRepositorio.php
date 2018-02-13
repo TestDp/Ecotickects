@@ -72,6 +72,8 @@ class AsistenteRepositorio
             $asistente->ciudad=Ciudad::where('id','=',$asistente ->Ciudad_id)->get()->first();
             $arrayAsistentes[]=$asistente;
         }
+
+        
         return $arrayAsistentes;
     }
 

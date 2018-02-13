@@ -43,6 +43,7 @@ class EstadisticasRepositorio
     public function ObtenerAsistentesXCiudad($idEvento)
     {
         $arrayNombresCiudades = array();
+        $cantidadmaxima = 0;
         $arrayCantidadCiudades = array();
         $AsistentesCiudad = DB::table('tbl_asistentesXeventos')
             ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
@@ -54,8 +55,12 @@ class EstadisticasRepositorio
         foreach ($AsistentesCiudad as $asistente){
             $arrayNombresCiudades[]=$asistente->Nombre_Ciudad;
             $arrayCantidadCiudades[]=$asistente->cantidad;
+            if($cantidadmaxima < $asistente->cantidad)
+            {
+                $cantidadmaxima = $asistente->cantidad;
+            }
         }
-        $arrayAsistentesCiudad =array("nombreCiudades"=>$arrayNombresCiudades,'Cantidad'=>$arrayCantidadCiudades);
+        $arrayAsistentesCiudad =array("nombreCiudades"=>$arrayNombresCiudades,'Cantidad'=>$arrayCantidadCiudades, 'Maximo'=>$cantidadmaxima);
         return $arrayAsistentesCiudad;
     }
 

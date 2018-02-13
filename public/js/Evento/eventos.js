@@ -358,12 +358,45 @@ function construirBarras() {
                     labels: result.nombreCiudades,
                     datasets: [
                         {
-                            data:result.Cantidad
+                            data:result.Cantidad,
+                            label: "Cantidad Asistentes",
+                            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                         }]
+                        
+                        
                 }
+                
+              
                 var myBarChart = new Chart(ctx, {
                     type: 'horizontalBar',
-                    data: data
+                    data: data,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Inscritos por ciudad',
+                            top: 'bottom',
+                            fontSize: 12
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    min: 0,
+                                    max: result.Maximo
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Cantidad"
+                                }
+                            }],
+                                yAxes: [{
+                        ticks: {
+                        autoSkip: false
+                    }
+                }]
+                        }
+                    }
+
                 });
             }
         }
