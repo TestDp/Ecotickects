@@ -355,27 +355,15 @@ function construirBarras() {
             if (result) {
                 var ctx = document.getElementById("canvasBarra");
                 var data = {
-                    labels: [
-                        "Ciudad",
-                        "Numero Asistentes"
-                    ],
+                    labels: result.nombreCiudades,
                     datasets: [
                         {
-                            data: [result.CiudadId, result.cantidad],
-                            backgroundColor: [
-                                "#E5E8E8",
-                                "#82E0AA"
-                            ],
-                            hoverBackgroundColor: [
-                                "#E5E8E8",
-                                "#82E0AA"
-                            ]
+                            data:result.Cantidad
                         }]
                 }
                 var myBarChart = new Chart(ctx, {
                     type: 'horizontalBar',
-                    data: data,
-                    options: options
+                    data: data
                 });
             }
         }

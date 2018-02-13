@@ -42,17 +42,20 @@ class EstadisticasRepositorio
     
     public function ObtenerAsistentesXCiudad($idEvento)
     {
-
-        
-        $arrayAsistentesCiudad = array();
-        $listaAsistentesEventos = AsistenteXEvento::where('Evento_id','=',$idEvento)->get();
-        // foreach ($listaAsistentesEventos as $asistente){
-        //   $arrayAsistentesCiudad[]=Asistente::select(DB::raw('count(*) as cantidad, CiudadId'))
-        //         ->where('id','=',$asistente->Asistente_id)
-        //         ->groupBy('Ciudad_id')
-        //         ->get();
-        
-        // }
+        $arrayNombresCiudades = array();
+        $arrayCantidadCiudades = array();
+        $AsistentesCiudad = DB::table('tbl_asistentesXeventos')
+            ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
+            ->join('Tbl_Ciudades', 'tbl_asistentes.Ciudad_id', '=', 'Tbl_Ciudades.id')
+            ->groupBy('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id')
+            ->select('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id',DB::raw('count(Tbl_Ciudades.id) as cantidad'))
+            ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
+            ->get();
+        foreach ($AsistentesCiudad as $asistente){
+            $arrayNombresCiudades[]=$asistente->Nombre_Ciudad;
+            $arrayCantidadCiudades[]=$asistente->cantidad;
+        }
+        $arrayAsistentesCiudad =array("nombreCiudades"=>$arrayNombresCiudades,'Cantidad'=>$arrayCantidadCiudades);
         return $arrayAsistentesCiudad;
     }
 
