@@ -429,7 +429,7 @@ function BuscarAsistente() {
                 $("#Apellidos").attr("readonly","readonly");
                 $("#telefono").val(result.telefono);
                 $("#Email").val(result.Email);
-                $("#confEmail").val(result.Email);
+               // $("#confEmail").val(result.Email);
                 $("#Edad").val(result.Edad);
                 $("#Dirección").val(result.Dirección);
                 $("#Departamento_id").val(result.ciudad.Departamento_id);
@@ -441,7 +441,7 @@ function BuscarAsistente() {
                 $("#Apellidos").removeAttrs("readonly");
                 $("#telefono").val("");
                 $("#Email").val("");
-                $("#confEmail").val("");
+                //$("#confEmail").val("");
                 $("#Edad").val("");
                 $("#Dirección").val("");
                 $("#Departamento_id").val("");
