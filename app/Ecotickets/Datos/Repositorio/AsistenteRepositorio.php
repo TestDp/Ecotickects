@@ -24,7 +24,7 @@ class AsistenteRepositorio
         $asistente = $this->ObtenerAsistente($registroAsistente ->Identificacion);
         if($asistente)
         {
-            $asistente = $this->actualizarAsistente($asistente,new Asistente($registroAsistente->all()));
+            $asistente = $this->actualizarAsistente($registroAsistente ->Identificacion,new Asistente($registroAsistente->all()));
         }else{
             $asistente = new Asistente($registroAsistente->all());
         }
@@ -54,7 +54,8 @@ class AsistenteRepositorio
 
                 $error = $e->getMessage();
                 DB::rollback();
-                return  false;
+                return $error;
+           //     return  false;
             }
 
             return true;
@@ -113,8 +114,9 @@ class AsistenteRepositorio
         return $asistente;
     }
 
-    public  function  actualizarAsistente($asistente,$asistenteRequest)
+    public  function  actualizarAsistente($cc,$asistenteRequest)
     {
+        $asistente =  Asistente::where('Identificacion','=',$cc)->get()->first();
         $asistente->telefono =  $asistenteRequest->telefono;
         $asistente->Email = $asistenteRequest->Email;
         $asistente->Edad = $asistenteRequest->Edad;

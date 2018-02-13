@@ -17,6 +17,6 @@ class Ciudad extends Model
     }
 
     public function asistentes(){
-        return $this->hasMany('Asistente');
+        return $this->hasMany('Asistente','Ciudad_id','id');
     }
 }
