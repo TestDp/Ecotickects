@@ -9,8 +9,7 @@
 			<p><b style="font-size:16px;">Ciudad: </b>{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</p>
 			</br></br>
 		<p>Presenta tu SmartPhone con el <b>CÓDIGO QR</b> adjunto</br>	
-		en la entrada del evento y disfruta del mejor festival</br>
-		de música electrónica del Oriente Antioqueño.</br></p>
+		en la entrada del evento para habilitar tu acceso.</br></p>
 		<p style="font-size:13px;">*No es necesario imprimirlo presenta tu SmartPhone</br>
 		cuidemos el medio ambiente.</p></div>
 		
@@ -20,8 +19,7 @@
 		</br></br>
 		<p style="font-size: 13px; text-align:center;">Desarrollado por</br>
 		<img style="width:32px;"src="http://dpsoluciones.co/wp-content/uploads/2016/06/Loader.png"></img></br>
-		Síguenos en Facebook <a href="https://www.facebook.com/dpsolucionesrionegro/?fref=ts" target="blank">DPSoluciones</a></br></p>
-		<p>CODIGO PULEP: DOZ319</p>
+		Visítanos <a href="http://www.dpsoluciones.co" target="blank">DPSoluciones.co</a></br></p>
 		</div>
 		
 </div>
