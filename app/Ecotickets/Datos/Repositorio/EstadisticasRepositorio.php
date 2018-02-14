@@ -89,26 +89,26 @@ class EstadisticasRepositorio
 
     public function NumeroAsistentesXFecha($idEvento)
     {
-        $arrayEdadesAsistentes = array();
+        $arrayFechasAsistentes = array();
         $cantidadmaxima = 0;
-        $arrayCantidadEdadesAsistentes = array();
+        $arrayCantidadFechasAsistentes = array();
         $AsistentesEdades = DB::table('tbl_asistentesXeventos')
             ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
            // ->groupBy('tbl_asistentes.Edad')
-            ->groupBy('tbl_asistentes.created_at')
-            ->select('tbl_asistentes.created_at',DB::raw('count(tbl_asistentes.created_at) as cantidad'))
+           ->select(DB::raw("DATE_FORMAT(tbl_asistentes.created_at, '%Y-%m-%d') as created_at"),DB::raw('count(tbl_asistentes.created_at) as cantidad'))
+            ->groupBy('created_at')
             ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
             ->get();
         foreach ($AsistentesEdades as $asistenteEdad){
-            $arrayEdadesAsistentes[]="Fecha ".$asistenteEdad->created_at;
-            $arrayCantidadEdadesAsistentes[]=$asistenteEdad->cantidad;
+            $arrayFechasAsistentes[]=$asistenteEdad->created_at;
+            $arrayCantidadFechasAsistentes[]=$asistenteEdad->cantidad;
             if($cantidadmaxima < $asistenteEdad->cantidad)
             {
                 $cantidadmaxima = $asistenteEdad->cantidad;
             }
         }
-        $arrayEdadesAsistentes =array("LabelEdades"=>$arrayEdadesAsistentes,'Cantidad'=>$arrayCantidadEdadesAsistentes, 'Maximo'=>$cantidadmaxima);
-        return $arrayEdadesAsistentes;
+        $arrayFechasAsistentes =array("LabelFechas"=>$arrayFechasAsistentes,'Cantidad'=>$arrayCantidadFechasAsistentes, 'Maximo'=>$cantidadmaxima);
+        return $arrayFechasAsistentes;
     }
 
 

@@ -19,7 +19,7 @@
                     <canvas id="canvasEdadesAsistentes" class="img-responsive"></canvas>
                 </div>
                 <div class="col-sm-6">
-
+                    <canvas id="canvasAsistentesXFecha" class="img-responsive"></canvas>
                 </div>
             </div>
         </div>

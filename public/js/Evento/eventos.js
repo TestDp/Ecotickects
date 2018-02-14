@@ -588,11 +588,11 @@ function construirBarrasAsistentesXFecha() {
             if (result) {
                 var ctx = document.getElementById("canvasAsistentesXFecha");
                 var data = {
-                    labels: result.LabelEdades,
+                    labels: result.LabelFechas,
                     datasets: [
                         {
                             data:result.Cantidad,
-                            label: "Edades Asistentes",
+                            label: "fecha de Registro",
                             backgroundColor: arrayColores
                         }]
 
@@ -601,17 +601,17 @@ function construirBarrasAsistentesXFecha() {
 
 
                 var myBarChart = new Chart(ctx, {
-                    type: 'horizontalBar',
+                    type: 'bar',
                     data: data,
                     options: {
                         title: {
                             display: true,
-                            text: 'Edades de los asistentes registrados',
+                            text: 'fechas de registros asistentes',
                             top: 'bottom',
                             fontSize: 12
                         },
                         scales: {
-                            xAxes: [{
+                            yAxes: [{
                                 ticks: {
                                     beginAtZero: true,
                                     min: 0,
@@ -622,7 +622,7 @@ function construirBarrasAsistentesXFecha() {
                                     labelString: "Cantidad"
                                 }
                             }],
-                            yAxes: [{
+                            xAxes: [{
                                 ticks: {
                                     autoSkip: false
                                 }
