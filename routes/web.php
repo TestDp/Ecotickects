@@ -91,3 +91,10 @@ Route::post('asistenteResgistrado/{cc}',[
 Route::post('AsistentesXCiudad/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@ObtenerAsistentesXCiudad'
 ]);
+
+Route::post('EdadesAsistentes/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@RangoDeEdadesEvento'
+]);
+Route::post('AsistentesXFecha/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@NumeroAsistentesXFecha'
+]);

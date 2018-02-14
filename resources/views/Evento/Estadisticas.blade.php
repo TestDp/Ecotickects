@@ -8,10 +8,18 @@
             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="col-sm-6">
-                    <canvas id="canvas" class="img-responsive"></canvas>
+                    <canvas id="canvasCantidadAsistentes" class="img-responsive"></canvas>
                 </div>
                 <div class="col-sm-6">
-                    <canvas id="canvasBarra" class="img-responsive"></canvas>
+                    <canvas id="canvasCiudadesAsistens" class="img-responsive"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <canvas id="canvasEdadesAsistentes" class="img-responsive"></canvas>
+                </div>
+                <div class="col-sm-6">
+
                 </div>
             </div>
         </div>
@@ -24,8 +32,10 @@
     <script src="{{ asset('js/Plugins/Chart/Chart.js') }}"></script>
     <script>
         $(document).ready(function () {
-            construirGrafico();
-            construirBarras();
+            construirGraficoCantidadAsistentes();
+            construirBarrasAsistentesCiudades();
+            construirBarrasAsistentesEdades();
+            construirBarrasAsistentesXFecha();
         });
     </script>
     

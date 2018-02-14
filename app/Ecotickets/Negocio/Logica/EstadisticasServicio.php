@@ -31,6 +31,17 @@ class EstadisticasServicio
         return $this->estadisticasRepositorio->ObtenerAsistentesXCiudad($idEvento);
     }
 
+    public function RangoDeEdadesEvento($idEvento)
+    {
+        return $this->estadisticasRepositorio->RangoDeEdadesEvento($idEvento);
+    }
+
+    public function NumeroAsistentesXFecha($idEvento)
+    {
+        return $this->estadisticasRepositorio->NumeroAsistentesXFecha($idEvento);
+    }
+
+
     // public function ObtenerAsistente($cc)
     // {
     //     return $this->asistenteRepositorio->ObtenerAsistente($cc);

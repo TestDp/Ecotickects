@@ -40,4 +40,15 @@ class EstadisticasController extends Controller
         return response()->json($cantidadAsistentesXciudad);
         
     }
+    public function RangoDeEdadesEvento($idEvento)
+    {
+        $cantidadEdadAsistentes = $this -> estadisticasServicio ->RangoDeEdadesEvento($idEvento);
+        return response()->json($cantidadEdadAsistentes);
+    }
+
+    public function NumeroAsistentesXFecha($idEvento)
+    {
+        $cantidadEdadAsistentes = $this -> estadisticasServicio ->NumeroAsistentesXFecha($idEvento);
+        return response()->json($cantidadEdadAsistentes);
+    }
 }

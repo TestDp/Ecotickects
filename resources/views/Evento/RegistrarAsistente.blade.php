@@ -120,18 +120,18 @@
                         <div id="formAsistente" hidden>
                             <div class="row">
                                 <div class="col-md-6">
-                                    Nombre
-                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
+                                    Identificación
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
                                 </div>
                                 <div class="col-md-6">
-                                    Apellidos
-                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+                                    Nombre
+                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    Identificación
-                                    <input id="Identificacion" name="Identificacion" type="text" class="form-control" onchange="BuscarAsistente()"/>
+                                    Apellidos
+                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
                                     Celular/teléfono
@@ -232,7 +232,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     Identificación
-                                    <input id="Identificacion" name="Identificacion" type="text" class="form-control" onchange="BuscarAsistente()"/>
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
                                 </div>
                                 <div class="col-md-6">
                                     Nombre
