@@ -7,20 +7,20 @@
             <input type="hidden" id="idevento" value="{{$idEvento}}">
             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <canvas id="canvasCantidadAsistentes" class="img-responsive"></canvas>
-                </div>
-                <div class="col-sm-6">
-                    <canvas id="canvasCiudadesAsistens" class="img-responsive"></canvas>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <canvas id="canvasEdadesAsistentes" class="img-responsive"></canvas>
-                </div>
-                <div class="col-sm-6">
+                </div>  
+				<div class="col-md-6">
                     <canvas id="canvasAsistentesXFecha" class="img-responsive"></canvas>
+                </div>				
+            </div>
+			<div class="row">                
+                <div class="col-md-6">
+                    <canvas style="height:600px !important;" id="canvasCiudadesAsistens" class="img-responsive"></canvas>
                 </div>
+				<div class="col-sm-6">
+                    <canvas style="height:600px !important;" id="canvasEdadesAsistentes" class="img-responsive"></canvas>
+                </div>   
             </div>
         </div>
     </div>
