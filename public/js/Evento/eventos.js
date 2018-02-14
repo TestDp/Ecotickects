@@ -491,7 +491,7 @@ function construirBarrasAsistentesCiudades() {
                                 ticks: {
                                     beginAtZero: true,
                                     min: 0,
-                                    max: result.Maximo
+                                    max: parseInt(result.Maximo)
                                 },
                                 scaleLabel: {
                                     display: true,
@@ -553,7 +553,7 @@ function construirBarrasAsistentesEdades() {
                                 ticks: {
                                     beginAtZero: true,
                                     min: 0,
-                                    max: result.Maximo
+                                    max:parseInt(result.Maximo)
                                 },
                                 scaleLabel: {
                                     display: true,
@@ -615,7 +615,7 @@ function construirBarrasAsistentesXFecha() {
                                 ticks: {
                                     beginAtZero: true,
                                     min: 0,
-                                    max: result.Maximo
+                                    max: parseInt(result.Maximo)
                                 },
                                 scaleLabel: {
                                     display: true,
