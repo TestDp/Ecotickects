@@ -14,7 +14,8 @@
                             </div>
                         @endif
                         <a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
-                        <table id="TablaListaEventos"  class="table table-bordered">
+						<div style="overflow-x:auto;">
+						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                             <thead>
                             <tr >
                                 <th >
@@ -91,6 +92,7 @@
                             @endforeach
                             </tbody>
                         </table>
+						</div>
                     </div>
                 </div>
             </div>

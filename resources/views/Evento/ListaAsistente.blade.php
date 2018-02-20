@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3>Lista de Asistentes</h3></div>
-                    <div class="panel-body">
-                        <table id="TablaListaAsistentes"  class="table table-bordered">
+                    <div style="overflow-x:auto;" class="panel-body">
+						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                             <thead>
                             <tr >
                                 <th>

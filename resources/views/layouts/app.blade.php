@@ -20,6 +20,16 @@
 	<meta name="msapplication-TileColor" content="#00a8ff">
 	<meta name="msapplication-config" content="{{ asset('img/favicons/browserconfig.xml') }}">
 	<meta name="theme-color" content="#ffffff">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113476867-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113476867-1');
+</script>
+
 	<!-- Normalize -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
 	<!-- Bootstrap -->

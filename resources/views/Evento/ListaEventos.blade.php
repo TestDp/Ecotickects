@@ -4,7 +4,8 @@
 	<div class="row title text-center">
 								<h2 class="black">EVENTOS ECOTICKETS</h2>
 	</div>
-<table id="TablaListaEventos" class="table table-bordered">
+	<div style="overflow-x:auto;">
+<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
     <thead>
     <tr >
 
@@ -89,6 +90,7 @@
     @endforeach
     </tbody>
 </table>
+</div>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
