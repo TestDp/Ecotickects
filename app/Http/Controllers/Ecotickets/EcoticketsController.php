@@ -6,6 +6,7 @@ use Eco\Datos\Modelos\Asistente;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EventosServicio;
 use Ecotickets\Http\Controllers\Controller;
+use Eco\Negocio\Logica\AsistenteServicio;
 
 
 
@@ -14,11 +15,13 @@ class EcoticketsController extends Controller
 
     protected $eventoServicio;
     protected $departamentoServicio;
+    protected $asistenteServicio;
 
-    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio)
+    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio,AsistenteServicio $asistenteServicio)
     {
         $this->departamentoServicio=$departamentoServicio;
         $this->eventoServicio = $eventoServicio;
+        $this->asistenteServicio = $asistenteServicio;
     }
 
     public  function  welcome()
@@ -39,12 +42,16 @@ class EcoticketsController extends Controller
     ///parametros:$idEvento -> id del evento en el cual se va a realizar el registro
     public function obtenerFormularioAsistente($idEvento)
     {
-        $evento =$this->eventoServicio->obtenerEvento($idEvento);
-        //$evento ->FlyerEvento = storage_path('app').'/public/FlyerDeEventos/'.$evento ->FlyerEvento;
-        //dd($evento);
-        $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
-        $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
-        return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
+        $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
+        $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        if($CantidadRegistrados<$CantidadEsperada && $this->eventoServicio->obtenerEvento($idEvento)->EsPublico ==true){
+            $evento =$this->eventoServicio->obtenerEvento($idEvento);
+            $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
+            $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
+            return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
+        }else{
+            return view('cantidadSuperada');
+        }
     }
 
 }

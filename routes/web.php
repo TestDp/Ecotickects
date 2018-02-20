@@ -98,3 +98,14 @@ Route::post('EdadesAsistentes/{idEvento}',[
 Route::post('AsistentesXFecha/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@NumeroAsistentesXFecha'
 ]);
+
+
+//rutas de prueba
+
+Route::get('CiudadesWS/{idDepartamento}',[
+    'uses' =>'Evento\CiudadController@obtenerCiudades'
+]);
+
+Route::get('loginApp',[
+    'uses' =>'Auth\LoginController@loginApp'
+]);

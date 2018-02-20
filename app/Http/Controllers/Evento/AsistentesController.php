@@ -22,43 +22,44 @@ class AsistentesController extends Controller
 
     public function registrarAsistente(Request $formRegistro)
     {
-        $respuesta=$this->asistenteServicio->registrarAsistente($formRegistro);
-        if($respuesta =='true')
-        {
-            $file = $formRegistro->imagen;
-            //obtenemos el nombre del archivo
-            $ced = $formRegistro ->Identificacion;
-            $pin = $formRegistro ->pinIngresar;
-            if($pin){
-                $this->asistenteServicio->ActualizarPin($ced,$pin);
-            }
-            $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
-            //indicamos que queremos guardar un nuevo archivo en el disco local
-            \Storage::disk('local')->put('/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre,file_get_contents($file));
-            $qrImagen = storage_path('app').'/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre;
-            $correoElectronico = $formRegistro->Email;
-            $evento =$this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
-            $ElementosArray= array('evento' => $evento);
-            $correoSaliente=$evento->CorreoEnviarInvitacion;
-            $nombreEvento = $evento->Nombre_Evento;
-            Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico,$correoSaliente,$nombreEvento){
-                $msj->from($correoSaliente,'Invitación '.$nombreEvento);
-                $msj->subject('Importante - Aquí esta tu pase de acceso');
-                $msj->to($correoElectronico);
-                $msj->bcc('soporteecotickets@gmail.com');
-                $msj->attach($qrImagen);
-            });
-            return view("respuesta",['ElementosArray' =>$ElementosArray]);
-        }else{
-            if($respuesta == '2'){
-                $ccUser=$formRegistro ->Identificacion;
-                return view('existente',['identificacion' => $ccUser]);
-            }
-            else{
-                return redirect('/');
-            }
 
-        }
+            $respuesta=$this->asistenteServicio->registrarAsistente($formRegistro);
+            if($respuesta =='true')
+            {
+                $file = $formRegistro->imagen;
+                //obtenemos el nombre del archivo
+                $ced = $formRegistro ->Identificacion;
+                $pin = $formRegistro ->pinIngresar;
+                if($pin){
+                    $this->asistenteServicio->ActualizarPin($ced,$pin);
+                }
+                $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
+                //indicamos que queremos guardar un nuevo archivo en el disco local
+                \Storage::disk('local')->put('/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre,file_get_contents($file));
+                $qrImagen = storage_path('app').'/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre;
+                $correoElectronico = $formRegistro->Email;
+                $evento =$this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
+                $ElementosArray= array('evento' => $evento);
+                $correoSaliente=$evento->CorreoEnviarInvitacion;
+                $nombreEvento = $evento->Nombre_Evento;
+                Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico,$correoSaliente,$nombreEvento){
+                    $msj->from($correoSaliente,'Invitación '.$nombreEvento);
+                    $msj->subject('Importante - Aquí esta tu pase de acceso');
+                    $msj->to($correoElectronico);
+                    $msj->bcc('soporteecotickets@gmail.com');
+                    $msj->attach($qrImagen);
+                });
+                return view("respuesta",['ElementosArray' =>$ElementosArray]);
+            }else{
+                if($respuesta == '2'){
+                    $ccUser=$formRegistro ->Identificacion;
+                    return view('existente',['identificacion' => $ccUser]);
+                }
+                else{
+                    return redirect('/');
+                }
+
+            }
     }
 
     public function validarPIN($idPin)
