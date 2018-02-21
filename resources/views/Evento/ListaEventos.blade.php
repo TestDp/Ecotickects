@@ -4,6 +4,11 @@
 	<div class="row title text-center">
 								<h2 class="black">EVENTOS ECOTICKETS</h2>
 	</div>
+						<div style="padding-bottom:2%;" class="row">
+							<div style="text-align: center;" class="col-md-12">
+							<a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a>
+							</div>
+						</div>
 	<div style="overflow-x:auto;">
 <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
     <thead>
