@@ -74,6 +74,10 @@ Route::get('Estadisticas/{idEvento}',[
     'uses' =>'Evento\EventosController@obtenerEstadisticas'
 ]);
 
+Route::get('LecturaQR/{idEvento}',[
+    'uses' =>'Evento\AsistentesController@FormularioQR'
+]);
+
 /*Valida el pin*/
 Route::post('pin/{idPin}',[
     'uses' =>'Evento\AsistentesController@validarPIN'
@@ -106,6 +110,6 @@ Route::get('CiudadesWS/{idDepartamento}',[
     'uses' =>'Evento\CiudadController@obtenerCiudades'
 ]);
 
-Route::get('loginApp',[
+Route::get('loginApp/{correo}/{password}',[
     'uses' =>'Auth\LoginController@loginApp'
 ]);

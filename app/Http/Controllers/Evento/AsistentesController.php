@@ -10,6 +10,7 @@ use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 
+
 class AsistentesController extends Controller
 {
     protected $asistenteServicio;
@@ -23,43 +24,55 @@ class AsistentesController extends Controller
     public function registrarAsistente(Request $formRegistro)
     {
 
-            $respuesta=$this->asistenteServicio->registrarAsistente($formRegistro);
-            if($respuesta =='true')
-            {
-                $file = $formRegistro->imagen;
-                //obtenemos el nombre del archivo
-                $ced = $formRegistro ->Identificacion;
-                $pin = $formRegistro ->pinIngresar;
-                if($pin){
-                    $this->asistenteServicio->ActualizarPin($ced,$pin);
-                }
-                $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
-                //indicamos que queremos guardar un nuevo archivo en el disco local
-                \Storage::disk('local')->put('/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre,file_get_contents($file));
-                $qrImagen = storage_path('app').'/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre;
-                $correoElectronico = $formRegistro->Email;
-                $evento =$this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
-                $ElementosArray= array('evento' => $evento);
-                $correoSaliente=$evento->CorreoEnviarInvitacion;
-                $nombreEvento = $evento->Nombre_Evento;
-                Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico,$correoSaliente,$nombreEvento){
-                    $msj->from($correoSaliente,'Invitación '.$nombreEvento);
-                    $msj->subject('Importante - Aquí esta tu pase de acceso');
-                    $msj->to($correoElectronico);
-                    $msj->bcc('soporteecotickets@gmail.com');
-                    $msj->attach($qrImagen);
-                });
-                return view("respuesta",['ElementosArray' =>$ElementosArray]);
-            }else{
-                if($respuesta == '2'){
-                    $ccUser=$formRegistro ->Identificacion;
-                    return view('existente',['identificacion' => $ccUser]);
-                }
-                else{
-                    return redirect('/');
-                }
-
+        $respuesta=$this->asistenteServicio->registrarAsistente($formRegistro);
+        if($respuesta =='true')
+        {
+            $file = $formRegistro->imagen;
+            //obtenemos el nombre del archivo
+            $ced = $formRegistro ->Identificacion;
+            $pin = $formRegistro ->pinIngresar;
+            if($pin){
+                $this->asistenteServicio->ActualizarPin($ced,$pin);
             }
+            $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put('/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre,file_get_contents($file));
+            $qrImagen = storage_path('app').'/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre;
+            $correoElectronico = $formRegistro->Email;
+            $evento =$this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
+            $ElementosArray= array('evento' => $evento);
+            $correoSaliente=$evento->CorreoEnviarInvitacion;
+            $nombreEvento = $evento->Nombre_Evento;
+
+            $value = env('MAIL_USERNAME');
+            if($value =='no-reply@ecotickets.co')
+            {
+                env('MAIL_USERNAME','pruebas@ecotickets.co');
+                env('MAIL_PASSWORD','%eO!iQ^S%,oY');
+
+                dd(env('MAIL_USERNAME'));
+            }
+
+            //dd($value);
+
+            Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico,$correoSaliente,$nombreEvento){
+                $msj->from($correoSaliente,'Invitación '.$nombreEvento);
+                $msj->subject('Importante - Aquí esta tu pase de acceso');
+                $msj->to($correoElectronico);
+                $msj->bcc('soporteecotickets@gmail.com');
+                $msj->attach($qrImagen);
+            });
+            return view("respuesta",['ElementosArray' =>$ElementosArray]);
+        }else{
+            if($respuesta == '2'){
+                $ccUser=$formRegistro ->Identificacion;
+                return view('existente',['identificacion' => $ccUser]);
+            }
+            else{
+                return redirect('/');
+            }
+
+        }
     }
 
     public function validarPIN($idPin)
@@ -78,5 +91,10 @@ class AsistentesController extends Controller
     public function ObtenerAsistente($cc)
     {
         return response()->json($this -> asistenteServicio ->ObtenerAsistente($cc));
+    }
+
+    public function FormularioQR($idEvento)
+    {
+        return view('Evento/LecturaQR',['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
     }
 }

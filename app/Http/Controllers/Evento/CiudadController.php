@@ -20,5 +20,11 @@ class CiudadController extends Controller
        $ciudades = $this->ciudadServicio->obtenerCiudades($idDepartamento);
         return response()->json($ciudades);
     }
+    public function obtenerCiudadesWS($idDepartamento)
+    {
+        $ciudades = $this->ciudadServicio->obtenerCiudades($idDepartamento);
+        $ciudadesArray=['ciudades'=>$ciudades];
+        return response()->json($ciudadesArray);
+    }
 
 }
