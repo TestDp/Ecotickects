@@ -46,4 +46,19 @@ class AsistenteServicio
     {
         return $this->asistenteRepositorio->ObtenerAsistente($cc);
     }
+
+    public  function ObtenerInformacionDelAsistenteXEvento($idEvento,$cc)
+    {
+        $asistente = $this->asistenteRepositorio->ObtenerAsistente($cc);
+        if($asistente != null) {
+            $AsistenteEvento = $this->asistenteRepositorio->ObtenerAsistenteXEvento($idEvento,$asistente->id);
+            if ($AsistenteEvento != null) {
+                $asistente->esActivo = $AsistenteEvento->esActivo;
+                $asistente->esPerfilado = $AsistenteEvento->esPerfilado;
+                return $asistente;
+            }
+        }
+        return null;
+    }
+
 }

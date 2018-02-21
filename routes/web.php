@@ -74,9 +74,7 @@ Route::get('Estadisticas/{idEvento}',[
     'uses' =>'Evento\EventosController@obtenerEstadisticas'
 ]);
 
-Route::get('LecturaQR/{idEvento}',[
-    'uses' =>'Evento\AsistentesController@FormularioQR'
-]);
+
 
 /*Valida el pin*/
 Route::post('pin/{idPin}',[
@@ -92,6 +90,7 @@ Route::post('asistenteResgistrado/{cc}',[
     'uses' =>'Evento\AsistentesController@ObtenerAsistente'
 ]);
 
+// inicio rutas relacionadas a estadisticas
 Route::post('AsistentesXCiudad/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@ObtenerAsistentesXCiudad'
 ]);
@@ -102,10 +101,22 @@ Route::post('EdadesAsistentes/{idEvento}',[
 Route::post('AsistentesXFecha/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@NumeroAsistentesXFecha'
 ]);
+// fin rutas relacionadas a estadisticas
 
+
+//inicio de rutas para leer el codigo qr
+
+Route::get('LecturaQR/{idEvento}',[
+    'uses' =>'Evento\AsistentesController@FormularioQR'
+]);
+
+Route::post('InformacionQR/{idEvento}/{cc}',[
+    'uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEvento'
+]);
+
+//fin de rutas para leer el codigo qr
 
 //rutas de prueba
-
 Route::get('CiudadesWS/{idDepartamento}',[
     'uses' =>'Evento\CiudadController@obtenerCiudades'
 ]);

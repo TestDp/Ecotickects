@@ -54,6 +54,7 @@ class AsistenteRepositorio
 
                 $error = $e->getMessage();
                 DB::rollback();
+                dd($error);
                 return $error;
            //     return  false;
             }

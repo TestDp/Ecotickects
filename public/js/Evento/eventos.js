@@ -676,3 +676,70 @@ function BuscarAsistente() {
         }
     });
 }
+
+function leerIdentificacion()
+{
+    validarQR($("#idEvento").val(),$("#cc").val());
+}
+
+function leerQR()
+{
+    var stringQR = $("#lectorQR").val();
+    var string1 = stringQR.split("CC - ");
+    var identificacion = string1[1].split("ECO")[0];
+    validarQR($("#idEvento").val(),identificacion);
+}
+
+function validarQR(idEvento,cc)
+{
+    $.ajax({
+        url: urlBase+'InformacionQR/'+idEvento+'/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            cc: cc,
+            idEvento:idEvento,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+
+                if(!jQuery.isEmptyObject(result)){
+
+                    $("#nombre").text(result.Nombres);
+                    $("#apellido").text(result.Apellidos);
+                    $("#identificacion").text(result.Identificacion);
+                   // $("#email").html(result[0].email);
+                   // $("#comentario").html(result[0].comentario);
+                    $("#pk_usuario").val(result.id);
+                    if (result.esActivo == 0){
+                        if(result.esPerfilado == "A"){
+                            $("#qrActivo").attr("style", "font-size:30px; color:blue;");
+                            $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR !!LLAVERO!!");
+                        }else{
+                            $("#qrActivo").attr("style", "font-size:30px; color:green;");
+                            $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR");
+                        }
+                    }
+                    else{
+                        $("#qrActivo").attr("style", "font-size:30px; color:red;");
+                        $("#qrActivo").html("¡NO!,USUARIO YA INGRESÓ");
+                    }
+
+                }
+                else{
+
+                    $("#nombre").html("");
+                    $("#apellido").html("");
+                    $("#identificacion").html("");
+                    $("#email").html("");
+                    $("#qrActivo").attr("style", "font-size:30px; color:orange;");
+                    $("#qrActivo").html("USUARIO NO REGISTRADO");
+                    $("#pk_usuario").val("");
+                }
+
+                $("#lectorQR").val("");
+
+        }
+    });
+
+
+}

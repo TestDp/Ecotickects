@@ -23,7 +23,6 @@ class AsistentesController extends Controller
 
     public function registrarAsistente(Request $formRegistro)
     {
-
         $respuesta=$this->asistenteServicio->registrarAsistente($formRegistro);
         if($respuesta =='true')
         {
@@ -43,18 +42,6 @@ class AsistentesController extends Controller
             $ElementosArray= array('evento' => $evento);
             $correoSaliente=$evento->CorreoEnviarInvitacion;
             $nombreEvento = $evento->Nombre_Evento;
-
-            $value = env('MAIL_USERNAME');
-            if($value =='no-reply@ecotickets.co')
-            {
-                env('MAIL_USERNAME','pruebas@ecotickets.co');
-                env('MAIL_PASSWORD','%eO!iQ^S%,oY');
-
-                dd(env('MAIL_USERNAME'));
-            }
-
-            //dd($value);
-
             Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico,$correoSaliente,$nombreEvento){
                 $msj->from($correoSaliente,'Invitación '.$nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
@@ -96,5 +83,10 @@ class AsistentesController extends Controller
     public function FormularioQR($idEvento)
     {
         return view('Evento/LecturaQR',['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
+    }
+
+    public  function ObtenerInformacionDelAsistenteXEvento($idEvento,$cc)
+    {
+        return response()->json($this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc));
     }
 }

@@ -109,6 +109,8 @@
                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
+                    <input type="hidden" id="esActivo" name="esActivo" value="0">
+                    <input type="hidden" id="esPerfilado" name="esPerfilado" value="0">
                     @if ($ElementosArray["evento"] ->SolicitarPIN)
                         <div class="row">
                             <div class="col-md-12">
