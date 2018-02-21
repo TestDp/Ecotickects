@@ -13,16 +13,20 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
+						<div style="padding-bottom:2%;" class="row">
+							<div style="text-align: left;" class="col-md-6">
+							<a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
+							</div>
+							<div style="text-align: right;" class="col-md-6">
+							<a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a>
+							</div>
+						</div>
 						<div style="overflow-x:auto;">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                             <thead>
                             <tr >
                                 <th >
                                     Id
-                                </th>
-                                <th >
-                                    Tipo
                                 </th>
                                 <th >
                                     Nombre
@@ -62,8 +66,6 @@
                                     <td >
                                         {{ $evento->id }}
                                     </td>
-                                    <td >
-                                    {{ $evento->Tipo_Evento }}
                                     <td >
                                         {{ $evento->Nombre_Evento }}
                                     </td>
