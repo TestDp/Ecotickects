@@ -48,8 +48,11 @@
                                 <th >
                                     Asistentes
                                 </th>
-                                <th >
+                                <th>
                                     Estadísticas
+                                </th>
+								<th>
+                                    Leer QR
                                 </th>
                             </tr>
                             </thead>
@@ -87,6 +90,9 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
+                                    </td>
+									<td>
+                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">Leer QR</a>
                                     </td>
                                 </tr>
                             @endforeach
