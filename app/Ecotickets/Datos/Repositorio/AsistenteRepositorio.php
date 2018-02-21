@@ -131,4 +131,17 @@ class AsistenteRepositorio
         return AsistenteXEvento::where('Evento_id','=',$idEvento)->where('Asistente_id','=',$idAsistente)->get()->first();
     }
 
+    public function ActivarQRAsistenteXEvento($idEvento,$idAsistente)
+    {
+        $asistenteEvento = AsistenteXEvento::where('Evento_id','=',$idEvento)->where('Asistente_id','=',$idAsistente)->get()->first();
+        if ($asistenteEvento->esActivo == false)
+        {
+            $asistenteEvento ->esActivo = true;
+            $asistenteEvento ->save();
+            return 'Usuario ingresado con exito';
+        }else{
+            return 'El Usuario YA INGRESO';
+        }
+        return 'Error ingresando el usuario';
+    }
 }

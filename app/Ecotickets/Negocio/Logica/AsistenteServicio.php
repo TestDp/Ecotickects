@@ -61,4 +61,9 @@ class AsistenteServicio
         return null;
     }
 
+    public function ActivarQRAsistenteXEvento($idEvento,$idAsistente)
+    {
+        return $this->asistenteRepositorio->ActivarQRAsistenteXEvento($idEvento,$idAsistente);
+    }
+
 }

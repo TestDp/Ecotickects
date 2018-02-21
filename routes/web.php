@@ -114,6 +114,10 @@ Route::post('InformacionQR/{idEvento}/{cc}',[
     'uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEvento'
 ]);
 
+Route::post('ActivarQR/{idEvento}/{cc}',[
+    'uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento'
+]);
+
 //fin de rutas para leer el codigo qr
 
 //rutas de prueba

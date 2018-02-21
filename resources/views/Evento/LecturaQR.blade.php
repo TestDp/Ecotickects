@@ -52,7 +52,7 @@
 
 	<label style="text-align:center; font-family: sans-serif; ">Lector QR</label>
 	<input  id="lectorQR" name="lectorQR"  style="background-color: lightskyblue; width:100%;" type="text" class="form-control" onkeyup="leerQR()"/>
-	<input style="margin-left: 45%;" type="button" onclick="activarUsuario()" value="Ingresar" class="btn btn-blue ripple trial-button">
+	<input style="margin-left: 45%;" type="button" onclick="activarQRUsuario()" value="Ingresar" class="btn btn-blue ripple trial-button">
 
 
 

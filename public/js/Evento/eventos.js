@@ -712,15 +712,15 @@ function validarQR(idEvento,cc)
                     $("#pk_usuario").val(result.id);
                     if (result.esActivo == 0){
                         if(result.esPerfilado == "A"){
-                            $("#qrActivo").attr("style", "font-size:30px; color:blue;");
+                            $("#qrActivo").attr("style", "font-size:20px; color:blue;");
                             $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR !!LLAVERO!!");
                         }else{
-                            $("#qrActivo").attr("style", "font-size:30px; color:green;");
+                            $("#qrActivo").attr("style", "font-size:20px; color:green;");
                             $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR");
                         }
                     }
                     else{
-                        $("#qrActivo").attr("style", "font-size:30px; color:red;");
+                        $("#qrActivo").attr("style", "font-size:20px; color:red;");
                         $("#qrActivo").html("¡NO!,USUARIO YA INGRESÓ");
                     }
 
@@ -741,5 +741,27 @@ function validarQR(idEvento,cc)
         }
     });
 
+
+}
+
+
+function activarQRUsuario(){
+
+    var cedulaUsuario = $("#pk_usuario").val();
+    var idEvento = $("#idEvento").val();
+    $.ajax({
+        url: urlBase+'ActivarQR/'+idEvento+'/'+cedulaUsuario,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            cc: cedulaUsuario,
+            idEvento:idEvento,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+                $("#qrActivo").html(result);
+            }
+        }
+    });
 
 }

@@ -89,4 +89,9 @@ class AsistentesController extends Controller
     {
         return response()->json($this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc));
     }
+
+    public function ActivarQRAsistenteXEvento($idEvento,$idAsistente)
+    {
+        return $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$idAsistente);
+    }
 }
