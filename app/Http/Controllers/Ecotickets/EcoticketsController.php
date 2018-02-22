@@ -3,6 +3,9 @@
 namespace Ecotickets\Http\Controllers\Ecotickets;
 
 use Eco\Datos\Modelos\Asistente;
+use Eco\Datos\Modelos\Ciudad;
+use Eco\Datos\Modelos\Departamento;
+use Eco\Datos\Modelos\Evento;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EventosServicio;
 use Ecotickets\Http\Controllers\Controller;
@@ -52,6 +55,17 @@ class EcoticketsController extends Controller
         }else{
             return view('cantidadSuperada');
         }
+    }
+
+    public function EventosApp($idUser)
+    {
+        $eventos = Evento::where("user_id","=",$idUser)->get();
+        $eventos->each(function($eventos){
+            $eventos->ciudad = Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
+            $eventos->ciudad->departamento=Departamento::where('id','=',$eventos->ciudad->Departamento_id)->get()->first();
+        });
+        $ListaEventos= array('eventos' => $eventos);
+        return response()->json(['ListaEventos' => $ListaEventos]);
     }
 
 }

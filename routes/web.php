@@ -120,7 +120,7 @@ Route::post('ActivarQR/{idEvento}/{cc}',[
 
 //fin de rutas para leer el codigo qr
 
-//rutas de prueba
+// inicio rutas de prueba app
 Route::get('CiudadesWS/{idDepartamento}',[
     'uses' =>'Evento\CiudadController@obtenerCiudades'
 ]);
@@ -128,3 +128,8 @@ Route::get('CiudadesWS/{idDepartamento}',[
 Route::get('loginApp/{correo}/{password}',[
     'uses' =>'Auth\LoginController@loginApp'
 ]);
+
+Route::get('EventosApp/{idUser}', [
+    'uses' =>'Ecotickets\EcoticketsController@EventosApp'
+]);
+// fin rutas de prueba app
