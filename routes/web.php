@@ -128,3 +128,10 @@ Route::get('CiudadesWS/{idDepartamento}',[
 Route::get('loginApp/{correo}/{password}',[
     'uses' =>'Auth\LoginController@loginApp'
 ]);
+
+Route::get('/habeasData', function () {
+    return view('habeasData');
+});
+Route::get('/terminosCondiciones', function () {
+    return view('terminosCondiciones');
+});

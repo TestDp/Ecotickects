@@ -192,12 +192,12 @@
                             <div class="row">
                                 <div class="col-md-6">
 								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
-									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.
+									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones. <a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
 								</span>
                                 </div>
                                 <div class="col-md-6">
 								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
-									<input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA.
+                                    <input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA. <a href="{{ url('habeasData') }}" target="_blank">Ver más</a>
 								</span>
                                 </div>
                             </div>
@@ -308,12 +308,12 @@
                             <div class="row">
                                 <div class="col-md-6">
 								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
-									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.
+									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.<a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
 								</span>
                                 </div>
                                 <div class="col-md-6">
 								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
-									<input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA.
+									<input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA. <a href="{{ url('habeasData') }}" target="_blank">Ver más</a>
 								</span>
                                 </div>
                             </div>
