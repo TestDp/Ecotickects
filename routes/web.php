@@ -141,6 +141,7 @@ Route::get('EventosApp/{idUser}', [
 Route::get('/habeasData', function () {
     return view('habeasData');
 });
+
 Route::get('/terminosCondiciones', function () {
     return view('terminosCondiciones');
 });
