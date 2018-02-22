@@ -101,6 +101,9 @@ Route::post('EdadesAsistentes/{idEvento}',[
 Route::post('AsistentesXFecha/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@NumeroAsistentesXFecha'
 ]);
+Route::post('JuntasAsistentes/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@NumeroJuntasAsistentes'
+]);
 // fin rutas relacionadas a estadisticas
 
 

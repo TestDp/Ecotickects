@@ -41,6 +41,16 @@ class EstadisticasServicio
         return $this->estadisticasRepositorio->NumeroAsistentesXFecha($idEvento);
     }
 
+    public function NumeroJuntas($idEvento)
+    {
+        return $this->estadisticasRepositorio->NumeroJuntas($idEvento);
+    }
+
+    public function NumeroJuntasAsistentes($idEvento)
+    {
+        return $this->estadisticasRepositorio->NumeroJuntasAsistentes($idEvento);
+    }
+
 
     // public function ObtenerAsistente($cc)
     // {
