@@ -51,4 +51,16 @@ class EstadisticasController extends Controller
         $cantidadEdadAsistentes = $this -> estadisticasServicio ->NumeroAsistentesXFecha($idEvento);
         return response()->json($cantidadEdadAsistentes);
     }
+
+    
+    public function NumeroJuntasAsistentes($idEvento)
+    {
+        $cantidadJuntas = $this -> estadisticasServicio ->NumeroJuntas($idEvento);
+        $cantidadJuntasAsistentes = $this -> estadisticasServicio ->NumeroJuntasAsistentes($idEvento);
+        $cantidadJuntascomparar = ['Cantidadtotal'=>$cantidadJuntas,'CantidadAsistentes'=>$cantidadJuntasAsistentes];
+        
+        return response()->json($cantidadJuntascomparar);
+    }
+
+
 }

@@ -112,6 +112,21 @@ class EstadisticasRepositorio
     }
 
 
+    public function NumeroJuntas($idEvento)
+    {
+        return count(AsistenteXEvento::where('Evento_id','=',$idEvento)->distinct('ComentarioEvento')->get());
+    }
+    public function NumeroJuntasAsistentes($idEvento)
+    {
+        return count(AsistenteXEvento::where([
+            ['Evento_id', '=', $idEvento],
+            ['esActivo', '=', '1'],
+        ])->distinct('ComentarioEvento')->get());
+        
+        
+    }
+
+
     // public function ObtnerCantidadAsistentes($idEvento)
     // {
     //     return count(AsistenteXEvento::where('Evento_id','=',$idEvento)->get());

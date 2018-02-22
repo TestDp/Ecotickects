@@ -22,6 +22,11 @@
                     <canvas style="height:600px !important;" id="canvasEdadesAsistentes" class="img-responsive"></canvas>
                 </div>   
             </div>
+            <div class="row">                
+                <div class="col-md-6">
+                    <canvas style="height:600px !important;" id="canvasJuntAsistens" class="img-responsive"></canvas>
+                </div>  
+            </div>
         </div>
     </div>
 
@@ -36,6 +41,7 @@
             construirBarrasAsistentesCiudades();
             construirBarrasAsistentesEdades();
             construirBarrasAsistentesXFecha();
+            construirGraficoJuntas();
         });
     </script>
     

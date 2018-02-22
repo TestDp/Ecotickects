@@ -101,6 +101,9 @@ Route::post('EdadesAsistentes/{idEvento}',[
 Route::post('AsistentesXFecha/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@NumeroAsistentesXFecha'
 ]);
+Route::post('JuntasAsistentes/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@NumeroJuntasAsistentes'
+]);
 // fin rutas relacionadas a estadisticas
 
 
@@ -129,7 +132,16 @@ Route::get('loginApp/{correo}/{password}',[
     'uses' =>'Auth\LoginController@loginApp'
 ]);
 
+<<<<<<< HEAD
 Route::get('EventosApp/{idUser}', [
     'uses' =>'Ecotickets\EcoticketsController@EventosApp'
 ]);
 // fin rutas de prueba app
+=======
+Route::get('/habeasData', function () {
+    return view('habeasData');
+});
+Route::get('/terminosCondiciones', function () {
+    return view('terminosCondiciones');
+});
+>>>>>>> 8b2e41d5da84300ef2bac548a1c9ba114e772acd
