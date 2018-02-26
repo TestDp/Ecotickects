@@ -451,6 +451,92 @@ function construirGraficoCantidadAsistentes() {
 
 }
 
+// function construirGraficoCantidadAsistentes() {
+//     var idPin = $("#idevento").val();
+//     $.ajax({
+//         url: urlBase+'CantidadAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+//         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+//             idPin: idPin,
+//             _token :$("#_token").val()
+//         },
+//         type: 'POST',
+//         success: function (result) {
+//             if (result) {
+                
+//                 var opts = {
+
+//                     title: {
+//                         display: true,
+//                         text: 'Inscritos vs Esperados',
+//                         top: 'bottom',
+//                         fontSize: 12
+//                     },
+//                     label: result.CantidadRegistrados,
+//                     angle: -0.2, // The span of the gauge arc
+//                     lineWidth: 0.2, // The line thickness
+//                     radiusScale: 1, // Relative radius
+//                     pointer: {
+//                       length: 0.6, // // Relative to gauge radius
+//                       strokeWidth: 0.035, // The thickness
+//                       color: '#000000' // Fill color
+                      
+//                     },
+//                     limitMax: false,     // If false, max value increases automatically if value > maxValue
+//                     limitMin: false,     // If true, the min value of the gauge will be fixed
+//                     colorStart: '#6FADCF',   // Colors
+//                     colorStop: '#8FC0DA',    // just experiment with them
+//                     strokeColor: '#E0E0E0',  // to see which ones work best for you
+//                     generateGradient: true,
+//                     highDpiSupport: true, 
+
+//                     staticLabels: {
+//                         font: "10px sans-serif",  // Specifies font
+//                         labels: [parseInt(result.CantidadRegistrados/6), parseInt(result.CantidadRegistrados/5), parseInt(result.CantidadRegistrados/4), parseInt(result.CantidadRegistrados/3), parseInt(result.CantidadRegistrados/2),parseInt(result.CantidadRegistrados)],  // Print labels at these values
+//                         color: "#000000",  // Optional: Label text color
+//                         fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+//                       },
+//                       staticZones: [
+//                         {strokeStyle: "#F03E3E", min: 100, max: 130}, // Red from 100 to 130
+//                         {strokeStyle: "#FFDD00", min: 130, max: 150}, // Yellow
+//                         {strokeStyle: "#30B32D", min: 150, max: 220}, // Green
+//                         {strokeStyle: "#FFDD00", min: 220, max: 260}, // Yellow
+//                         {strokeStyle: "#F03E3E", min: 260, max: 300}  // Red
+//                      ],
+
+//                     renderTicks: {
+//                         divisions: 5,
+//                         divWidth: 1.1,
+//                         divLength: 0.7,
+//                         divColor: '#333333',
+//                         subDivisions: 3,
+//                         subLength: 0.5,
+//                         subWidth: 0.6,
+//                         subColor: '#666666'
+//                       }
+                     
+                    
+//                   };
+//                   var target = document.getElementById('foo'); // your canvas element
+//                   var ctx = document.getElementById("canvasCantidadAsistentes");
+//                   var gauge = new Gauge(ctx).setOptions(opts); // create sexy gauge!
+//                   gauge.maxValue = parseInt(result.CantidadEsperada); // set max gauge value
+//                   gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+//                   gauge.animationSpeed = 32; // set animation speed (32 is default value)
+//                   gauge.set(parseInt(result.CantidadRegistrados)); // set actual value
+                  
+            
+               
+//             }
+//         }
+//     });
+
+
+
+
+// }
+
+
+
 function construirBarrasAsistentesCiudades() {
     var idEvento = $("#idevento").val();
     $.ajax({
@@ -679,6 +765,10 @@ function construirGraficoJuntas() {
 
 
 }
+
+
+
+
 
 
 function BuscarAsistente() {

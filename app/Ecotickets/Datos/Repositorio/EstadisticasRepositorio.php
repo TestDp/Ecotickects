@@ -114,14 +114,29 @@ class EstadisticasRepositorio
 
     public function NumeroJuntas($idEvento)
     {
-        return count(AsistenteXEvento::where('Evento_id','=',$idEvento)->distinct('ComentarioEvento')->get());
+        return count( DB::table('tbl_asistentesXeventos')
+       ->select(DB::raw('tbl_asistentesXeventos.ComentarioEvento'),DB::raw('count(tbl_asistentesXeventos.ComentarioEvento) as cantidad'))
+        ->groupBy('tbl_asistentesXeventos.ComentarioEvento')
+        ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)->distinct('tbl_asistentesXeventos.ComentarioEvento')
+        ->get());
     }
     public function NumeroJuntasAsistentes($idEvento)
     {
-        return count(AsistenteXEvento::where([
-            ['Evento_id', '=', $idEvento],
-            ['esActivo', '=', '1'],
-        ])->distinct('ComentarioEvento')->get());
+        // return count(AsistenteXEvento::where([
+        //     ['Evento_id', '=', $idEvento],
+        //     ['esActivo', '=', '1'],
+        // ])->distinct('ComentarioEvento')->get());
+
+
+
+        return count( DB::table('tbl_asistentesXeventos')
+        ->select(DB::raw('tbl_asistentesXeventos.ComentarioEvento'),DB::raw('count(tbl_asistentesXeventos.ComentarioEvento) as cantidad'))
+         ->groupBy('tbl_asistentesXeventos.ComentarioEvento')
+         ->where([
+            ['tbl_asistentesXeventos.Evento_id','=',$idEvento],
+            ['tbl_asistentesXeventos.esActivo', '=', '1',]])
+         ->distinct('tbl_asistentesXeventos.ComentarioEvento')
+         ->get());
         
         
     }
