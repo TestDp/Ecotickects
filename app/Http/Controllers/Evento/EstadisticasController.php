@@ -21,6 +21,7 @@ class EstadisticasController extends Controller
 
     public function __construct( EstadisticasServicio $estadisticasServicio,AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio)
     {
+        $this->middleware('auth');
         $this->estadisticasServicio = $estadisticasServicio;
         $this->asistenteServicio = $asistenteServicio;
         $this->eventoServicio = $eventoServicio;

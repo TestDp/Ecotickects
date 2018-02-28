@@ -4,6 +4,7 @@ namespace Ecotickets\Http\Controllers\Evento;
 
 
 use Eco\Negocio\Logica\AsistenteServicio;
+use Eco\Negocio\Logica\EstadisticasServicio;
 use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
@@ -15,10 +16,13 @@ class AsistentesController extends Controller
 {
     protected $asistenteServicio;
     protected $eventoServicio;
-    public function __construct(AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio)
+    protected $EstadisticasServicios;
+    public function __construct(AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio,EstadisticasServicio $EstadisticasServicios)
     {
+        $this->middleware('auth');
         $this->asistenteServicio = $asistenteServicio;
         $this->eventoServicio = $eventoServicio;
+        $this->EstadisticasServicios = $EstadisticasServicios;
     }
 
     public function registrarAsistente(Request $formRegistro)
@@ -71,7 +75,8 @@ class AsistentesController extends Controller
     {
         $CantidadRegistrados = $this -> asistenteServicio ->ObtnerCantidadAsistentes($idEvento);
         $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
-        $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados];
+        $CantidadAsistentes = $this->EstadisticasServicios-> NumeroAsistentes($idEvento);
+        $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados,'CantidadAsistentes'=>$CantidadAsistentes];
         return response()->json($cantidadAsistentes);
     }
 

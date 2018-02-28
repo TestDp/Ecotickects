@@ -132,10 +132,22 @@ Route::get('loginApp/{correo}/{password}',[
     'uses' =>'Auth\LoginController@loginApp'
 ]);
 
+Route::get('logoutApp',[
+    'uses' =>'Auth\LoginController@logoutApp'
+]);
 
 Route::get('EventosApp/{idUser}', [
     'uses' =>'Ecotickets\EcoticketsController@EventosApp'
 ]);
+
+Route::get('InformacionQRApp/{idEvento}/{cc}',[
+    'uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEvento'
+]);
+
+Route::get('ActivarQRApp/{idEvento}/{cc}',[
+    'uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento'
+]);
+
 // fin rutas de prueba app
 
 Route::get('/habeasData', function () {

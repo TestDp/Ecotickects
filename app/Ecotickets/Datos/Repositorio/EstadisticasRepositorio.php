@@ -123,9 +123,15 @@ class EstadisticasRepositorio
             ['esActivo', '=', '1'],
         ])->distinct('ComentarioEvento')->get());
         
-        
     }
 
+    public function NumeroAsistentes($idEvento)
+    {
+        return count(AsistenteXEvento::where([
+            ['Evento_id', '=', $idEvento],
+            ['esActivo', '=', '1'],
+        ])->get());
+    }
 
     // public function ObtnerCantidadAsistentes($idEvento)
     // {
