@@ -29,12 +29,15 @@
             </div>
         </div>
     </div>
-
-
+ 
 
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script src="{{ asset('js/Plugins/Chart/Chart.js') }}"></script>
+    <script src="{{ asset('http://bernii.github.com/gauge.js/dist/gauge.js') }}"></script>
+
+
+   
     <script>
         $(document).ready(function () {
             construirGraficoCantidadAsistentes();
