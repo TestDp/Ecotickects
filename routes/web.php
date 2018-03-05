@@ -78,7 +78,7 @@ Route::get('Estadisticas/{idEvento}',[
 
 /*Valida el pin*/
 Route::post('pin/{idPin}',[
-    'uses' =>'Evento\AsistentesController@validarPIN'
+    'uses' =>'Ecotickets\EcoticketsController@validarPIN'
 ]);
 
 Route::post('CantidadAsistentes/{idEvento}',[

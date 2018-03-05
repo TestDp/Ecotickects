@@ -6,9 +6,8 @@ namespace Ecotickets\Http\Controllers\Evento;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\EstadisticasServicio;
 use Eco\Negocio\Logica\EventosServicio;
-use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
+
 
 
 class EstadisticasController extends Controller
@@ -21,7 +20,6 @@ class EstadisticasController extends Controller
 
     public function __construct( EstadisticasServicio $estadisticasServicio,AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio)
     {
-        $this->middleware('auth');
         $this->estadisticasServicio = $estadisticasServicio;
         $this->asistenteServicio = $asistenteServicio;
         $this->eventoServicio = $eventoServicio;

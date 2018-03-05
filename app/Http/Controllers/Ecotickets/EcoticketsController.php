@@ -67,5 +67,8 @@ class EcoticketsController extends Controller
         $ListaEventos= array('eventos' => $eventos);
         return response()->json(['ListaEventos' => $ListaEventos]);
     }
-
+    public function validarPIN($idPin)
+    {
+        return response()->json($this->asistenteServicio->validarPIN($idPin));
+    }
 }

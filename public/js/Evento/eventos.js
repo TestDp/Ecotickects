@@ -89,7 +89,7 @@ function ValidarPin () {
             if (result) {
                     $('#formAsistente').removeAttr("hidden");
             }else{
-                $('#formAsistente').attr("hidden","hidden");
+                    $('#formAsistente').attr("hidden","hidden");
             }
         }
     });
@@ -120,10 +120,12 @@ function validarFormulario(){
                 required: true
             },
             Email: {
-                required: true
+                required: true,
+                email: true
             },
             confEmail: {
-                equalTo: "#Email"
+                equalTo: "#Email",
+                email: true
             },
             Departamento_id: {
                 required: true
@@ -217,10 +219,12 @@ function validarFormulario(){
                 required: "*El telefono es obligatorio"
             },
             Email: {
-                required: "*El email es obligatorio"
+                required: "*El email es obligatorio",
+                email: "Se debe  ingresar un correo valido"
             },
             confEmail: {
-                equalTo: "*Los correos debe ser iguales"
+                equalTo: "*Los correos debe ser iguales",
+                email: "Se debe  ingresar un correo valido"
             },
             Departamento_id: {
                 required: "*El departamento es obligatorio"
@@ -354,7 +358,8 @@ function validarFormularioCrearEvento(){
                 required: true
             },
             CorreoEnviarInvitacion: {
-                required: true
+                required: true,
+                email: true
             },
             informacionEvento: {
                 required: true
@@ -396,7 +401,8 @@ function validarFormularioCrearEvento(){
                 required: "*Se debe  seleccionar una  opción"
             },
             CorreoEnviarInvitacion: {
-                required: "*El correo de donde se debe enviar es obligatorio"
+                required: "*El correo de donde se debe enviar es obligatorio",
+                email: "Se debe  ingresar un correo valido"
             },
             informacionEvento: {
                 required: "*la información del evento es obligatorio"

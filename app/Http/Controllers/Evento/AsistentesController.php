@@ -4,8 +4,10 @@ namespace Ecotickets\Http\Controllers\Evento;
 
 
 use Eco\Negocio\Logica\AsistenteServicio;
+use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EstadisticasServicio;
 use Eco\Negocio\Logica\EventosServicio;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -17,12 +19,14 @@ class AsistentesController extends Controller
     protected $asistenteServicio;
     protected $eventoServicio;
     protected $EstadisticasServicios;
-    public function __construct(AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio,EstadisticasServicio $EstadisticasServicios)
+    protected $departamentoServicio;
+    public function __construct(AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio,EstadisticasServicio $EstadisticasServicios,DepartamentoServicio $departamentoServicio)
     {
         $this->middleware('auth');
         $this->asistenteServicio = $asistenteServicio;
         $this->eventoServicio = $eventoServicio;
         $this->EstadisticasServicios = $EstadisticasServicios;
+        $this->departamentoServicio=$departamentoServicio;
     }
 
     public function registrarAsistente(Request $formRegistro)
