@@ -50,7 +50,10 @@ class EstadisticasServicio
     {
         return $this->estadisticasRepositorio->NumeroJuntasAsistentes($idEvento);
     }
-
+    public function NumeroAsistentes($idEvento)
+    {
+        return $this->estadisticasRepositorio->NumeroAsistentes($idEvento);
+    }
 
     // public function ObtenerAsistente($cc)
     // {

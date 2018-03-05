@@ -422,19 +422,22 @@ function construirGraficoCantidadAsistentes() {
                 var ctx = document.getElementById("canvasCantidadAsistentes");
                 var data = {
                     labels: [
-                        "Asistentes Esperados",
-                        "Asistentes Registrados"
+                        "Personas Esperadas",
+                        "Personas Registradas",
+                        "Asistentes"
                     ],
                     datasets: [
                         {
-                            data: [result.CantidadEsperada, result.CantidadRegistrados],
+                            data: [result.CantidadEsperada, result.CantidadRegistrados,result.CantidadAsistentes],
                             backgroundColor: [
                                 "#E5E8E8",
-                                "#82E0AA"
+                                "#82E0AA",
+                                "#CC3300"
                             ],
                             hoverBackgroundColor: [
                                 "#E5E8E8",
-                                "#82E0AA"
+                                "#82E0AA",
+                                "#CC3300"
                             ]
                         }]
                 }
