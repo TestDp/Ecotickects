@@ -6,7 +6,7 @@
 
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Información del Evento </div>
+                    <div class="panel-heading">Información del Evento Pago</div>
                     <div class="panel-body">
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
@@ -105,7 +105,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form id="formularioEvento" action="{{url('registrarAsistente')}}" method="POST">
+                <form id="formularioEvento"  method="POST">
                     <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
@@ -227,7 +227,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
+                                    <button onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button">
                                         Registrarse
                                     </button>
                                 </div>
@@ -343,7 +343,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
+                                    <button onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button">
                                         Registrarse
                                     </button>
                                 </div>
@@ -356,6 +356,7 @@
         </div>
     </div>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
+    <script src="{{ asset('js/Evento/eventoPago.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script src="{{ asset('js/Plugins/Qrcode/qrcode.js') }}"></script>
 

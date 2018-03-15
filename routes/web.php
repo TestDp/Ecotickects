@@ -45,6 +45,11 @@ Route::get('FormularioAsistente/{idEvento}', [
     'uses' =>'Ecotickets\EcoticketsController@obtenerFormularioAsistente'
 ]);
 
+/** Obtiene el formulario del evento pago*/
+Route::get('FormularioAsistentePago/{idEvento}', [
+    'uses' =>'Ecotickets\EcoticketsController@obtenerFormularioAsistentePago'
+]);
+
 /**Retorna  el home de los usuario mostrando los eventos creados por él*/
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -65,6 +70,11 @@ Route::post('crearEvento',[
 Route::post('registrarAsistente',[
     'uses' =>'Evento\AsistentesController@registrarAsistente'
 ]);
+
+Route::post('registrarAsistentePago',[
+    'uses' =>'Evento\AsistentesController@registrarAsistentePago'
+]);
+
 
 Route::get('ListaAsistentes/{idEvento}',[
     'uses' =>'Evento\EventosController@ObtenerListaAsistentes'
@@ -148,6 +158,30 @@ Route::get('ActivarQRApp/{idEvento}/{cc}',[
     'uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento'
 ]);
 
+Route::get('CantidadAsistentesApp/{idEvento}',[
+    'uses' =>'Evento\AsistentesController@ObtnerCantidadAsistentes'
+]);
+
+Route::get('AsistentesXCiudadApp/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@ObtenerAsistentesXCiudad'
+]);
+
+Route::get('EdadesAsistentesApp/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@RangoDeEdadesEvento'
+]);
+Route::get('AsistentesXFechaApp/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@NumeroAsistentesXFecha'
+]);
+Route::get('JuntasAsistentesApp/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@NumeroJuntasAsistentes'
+]);
+Route::get('EstadisticasApp/{idEvento}',[
+    'uses' =>'Evento\EstadisticasController@EstadisticasApp'
+]);
+
+Route::get('AsistentesActivosApp/{idEvento}',[
+    'uses' =>'Evento\AsistentesController@AsistentesActivos'
+]);
 // fin rutas de prueba app
 
 Route::get('/habeasData', function () {

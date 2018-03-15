@@ -21,4 +21,8 @@ class AsistenteXEvento extends Model
     public function respuestasAsistentesXEventos(){
         return $this->hasMany('AsistenteXEvento','AsistenteXEvento_id','id');
     }
+
+    public function InformacionDePagos(){
+        return $this->hasMany('InfoPago','InfoPago_id','id');
+    }
 }

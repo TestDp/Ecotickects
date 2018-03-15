@@ -61,5 +61,24 @@ class EstadisticasController extends Controller
         return response()->json($cantidadJuntascomparar);
     }
 
+    public function EstadisticasApp($idEvento)
+    {
+        $CantidadRegistrados = $this -> asistenteServicio ->ObtnerCantidadAsistentes($idEvento);
+        $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        $CantidadAsistentes = $this->estadisticasServicio-> NumeroAsistentes($idEvento);
+        $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados,'CantidadAsistentes'=>$CantidadAsistentes];
+        $cantidadJuntas = $this -> estadisticasServicio ->NumeroJuntas($idEvento);
+        $cantidadJuntasAsistentes = $this -> estadisticasServicio ->NumeroJuntasAsistentes($idEvento);
+        $cantidadJuntascomparar = ['Cantidadtotal'=>$cantidadJuntas,'CantidadAsistentes'=>$cantidadJuntasAsistentes];
+        $numeroDeAsistentesXFecha = $this -> estadisticasServicio ->NumeroAsistentesXFecha($idEvento);
+        $RangoEdadAsistentes = $this -> estadisticasServicio ->RangoDeEdadesEvento($idEvento);
+        $cantidadAsistentesXciudad = $this -> estadisticasServicio ->ObtenerAsistentesXCiudad($idEvento);
+        $estadisticas = ['cantidadAsistentes' =>$cantidadAsistentes,
+            'cantidadJuntascomparar'=>$cantidadJuntascomparar,
+            'numeroDeAsistentesXFecha'=>$numeroDeAsistentesXFecha,
+            'rangoEdadAsistentes'=>$RangoEdadAsistentes,
+            'cantidadAsistentesXciudad'=>$cantidadAsistentesXciudad];
+        return response()->json($estadisticas);
+    }
 
 }

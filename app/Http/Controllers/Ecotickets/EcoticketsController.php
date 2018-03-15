@@ -57,6 +57,21 @@ class EcoticketsController extends Controller
         }
     }
 
+    ///metodo que me muestra el formulario del registro para el evento
+    ///parametros:$idEvento -> id del evento en el cual se va a realizar el registro
+    public function obtenerFormularioAsistentePago($idEvento)
+    {
+        $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
+        $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        if($CantidadRegistrados<$CantidadEsperada && $this->eventoServicio->obtenerEvento($idEvento)->EsPublico ==true){
+            $evento =$this->eventoServicio->obtenerEvento($idEvento);
+            $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
+            $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
+            return view('Evento/RegistrarAsistentePago',['ElementosArray' =>$ElementosArray]);
+        }else{
+            return view('cantidadSuperada');
+        }
+    }
     public function EventosApp($idUser)
     {
         $eventos = Evento::where("user_id","=",$idUser)->get();
@@ -70,5 +85,10 @@ class EcoticketsController extends Controller
     public function validarPIN($idPin)
     {
         return response()->json($this->asistenteServicio->validarPIN($idPin));
+    }
+
+    public function registrarAsistentePago(Request $formRegistro)
+    {
+        return response()->json("HOLA");
     }
 }

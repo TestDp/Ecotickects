@@ -36,35 +36,10 @@
             Fecha Final de registro
         </th>
         <th></th>
-    </tr>
-    </thead>
-   <!-- <tfoot>
-    <tr >
-
-        <th >
-            Nombre
-        </th>
-        <th >
-            Lugar
-        </th>
-        <th >
-            Ciudad
-        </th>
-        <th >
-            Departamento
-        </th>
-        <th >
-            Fecha del Evento
-        </th>
-        <th >
-            Fecha Inicial de registro
-        </th>
-        <th >
-            Fecha Final de registro
-        </th>
         <th></th>
     </tr>
-    </tfoot>-->
+    </thead>
+
     <tbody >
     @foreach($ListaEventos["eventos"] as $evento)
         <tr>
@@ -90,7 +65,31 @@
             <td>
                 {{ $evento->Fecha_Final_Registro }}
             </td>
-            <td><a class="btn btn-blue ripple trial-button" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a></td>
+            <td>
+                @if($evento->esPago)
+                <a class="btn btn-blue ripple trial-button" href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}">Registrarse</a>
+                @else
+                    <a class="btn btn-blue ripple trial-button" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a>
+                @endif
+            </td>
+            <th>
+                <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+                    <input name="merchantId"    type="hidden"  value="508029">
+                    <input name="accountId"     type="hidden"  value="512321">
+                    <input name="description"   type="hidden"  value="Test PAYU">
+                    <input name="referenceCode" type="hidden"  value="EcoPagos002">
+                    <input name="amount"        type="hidden"  value="20000">
+                    <input name="tax"           type="hidden"  value="3193">
+                    <input name="taxReturnBase" type="hidden"  value="16806">
+                    <input name="currency"      type="hidden"  value="COP">
+                    <input name="signature"     type="hidden"  value="d211f38f6393e9776db24e5d9f66d12b">
+                    <input name="test"          type="hidden"  value="1">
+                    <input name="buyerEmail"    type="hidden"  value="cristianmg13@hotmail.com">
+                    <input name="responseUrl"    type="hidden"  value="http://ecotickets.co">
+                    <input name="confirmationUrl"    type="hidden"  value="http://ecotickets.co/Eventos">
+                    <input name="Submit"        type="submit"  value="Enviar">
+                </form>
+            </th>
         </tr>
     @endforeach
     </tbody>

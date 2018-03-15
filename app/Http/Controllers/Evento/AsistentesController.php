@@ -22,7 +22,7 @@ class AsistentesController extends Controller
     protected $departamentoServicio;
     public function __construct(AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio,EstadisticasServicio $EstadisticasServicios,DepartamentoServicio $departamentoServicio)
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
         $this->asistenteServicio = $asistenteServicio;
         $this->eventoServicio = $eventoServicio;
         $this->EstadisticasServicios = $EstadisticasServicios;
@@ -70,6 +70,12 @@ class AsistentesController extends Controller
         }
     }
 
+    //Metodo cuando se esta registrando un asistente que esta comprando una boleta
+    public function registrarAsistentePago($formRegistro)
+    {
+        return response()->json($this->asistenteServicio->registrarAsistente($formRegistro));
+    }
+
     public function validarPIN($idPin)
     {
         return response()->json($this->asistenteServicio->validarPIN($idPin));
@@ -102,5 +108,18 @@ class AsistentesController extends Controller
     public function ActivarQRAsistenteXEvento($idEvento,$idAsistente)
     {
         return $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$idAsistente);
+    }
+
+    public function AsistentesActivos($idEvento)
+    {
+        return response()->json($this->asistenteServicio->AsistentesActivos($idEvento));
+    }
+    //buscar qr y activarlo
+    public function ActivarQRAsistenteXEventoApp($idEvento,$cc)
+    {
+        $usuario=$this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
+        $respuestaActivacion= $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$usuario->id);
+        $informacionUsuario =['usuario'=>$usuario,'respuestaActivación'=>$respuestaActivacion];
+        return response()->json($informacionUsuario);
     }
 }

@@ -824,8 +824,19 @@ function leerQR()
 {
     var stringQR = $("#lectorQR").val();
     var string1 = stringQR.split("CC - ");
-    var identificacion = string1[1].split("ECO")[0];
-    validarQR($("#idEvento").val(),identificacion);
+    if(string1.length>1){
+        var identificacion = string1[1].split("ECO")[0];
+        validarQR($("#idEvento").val(),identificacion);
+    }else{
+        $("#nombre").html("");
+        $("#apellido").html("");
+        $("#identificacion").html("");
+        $("#email").html("");
+        $("#qrActivo").attr("style", "font-size:30px; color:orange;");
+        $("#qrActivo").html("QR NO VALIDO");
+        $("#pk_usuario").val("");
+    }
+
 }
 
 function validarQR(idEvento,cc)

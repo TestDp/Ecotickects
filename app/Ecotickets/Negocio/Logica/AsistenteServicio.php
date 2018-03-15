@@ -66,4 +66,8 @@ class AsistenteServicio
         return $this->asistenteRepositorio->ActivarQRAsistenteXEvento($idEvento,$idAsistente);
     }
 
+    public function AsistentesActivos($idEvento)
+    {
+        return $this->asistenteRepositorio->AsistentesActivos($idEvento);
+    }
 }

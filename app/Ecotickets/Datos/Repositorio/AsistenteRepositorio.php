@@ -144,4 +144,16 @@ class AsistenteRepositorio
         }
         return 'Error ingresando el usuario';
     }
+
+    public function AsistentesActivos($idEvento)
+    {
+        $arrayAsistentes = array();
+        $listaAsistentesEventos = AsistenteXEvento::where([['Evento_id', '=', $idEvento],['esActivo', '=', '1']])->get();
+        foreach ($listaAsistentesEventos as $asistenteXEvento){
+            $asistente=Asistente::where('id','=',$asistenteXEvento->Asistente_id)->first();
+            $asistente->ciudad=Ciudad::where('id','=',$asistente ->Ciudad_id)->get()->first();
+            $arrayAsistentes[]=$asistente;
+        }
+        return $arrayAsistentes;
+    }
 }
