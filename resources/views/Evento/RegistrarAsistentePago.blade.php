@@ -111,6 +111,7 @@
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
                     <input type="hidden" id="esActivo" name="esActivo" value="0">
                     <input type="hidden" id="esPerfilado" name="esPerfilado" value="0">
+                    <input type="hidden" id="esPago" name="esPago" value="{{$ElementosArray["evento"]->esPago}}">
                     @if ($ElementosArray["evento"] ->SolicitarPIN)
                         <div class="row">
                             <div class="col-md-12">
@@ -228,7 +229,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button">
-                                        Registrarse
+                                        Comprar
                                     </button>
                                 </div>
                             </div>
@@ -299,6 +300,29 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-3">
+                                    Localidad
+                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
+                                            <option value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}">{{ $Localidad->localidad }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    Precio Ecotickets
+                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
+                                </div>
+                                <div class="col-md-3">
+                                    Cantidad De Ecotickets
+                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-control" onkeyup="calcularPrecioTotal()"  />
+                                </div>
+                                <div class="col-md-3">
+                                    Precio Total
+                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
                                     Comentario
                                     <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
@@ -344,7 +368,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button">
-                                        Registrarse
+                                        Comprar
                                     </button>
                                 </div>
                             </div>
@@ -355,10 +379,25 @@
 
         </div>
     </div>
+    <div>
+        <form method="post" id="formPago" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+            <input id="merchantId"  name="merchantId"    type="hidden"  value="">
+            <input id="accountId"   name="accountId"     type="hidden"  value="">
+            <input id="description" name="description"   type="hidden"  value="">
+            <input id="referenceCode" name="referenceCode" type="hidden"  value="">
+            <input id="amount"  name="amount"        type="hidden"  value="">
+            <input id="tax"  name="tax"           type="hidden"  value="">
+            <input id="taxReturnBase" name="taxReturnBase" type="hidden"  value="">
+            <input id="currency" name="currency"      type="hidden"  value="">
+            <input id="signature" name="signature"     type="hidden"  value="">
+            <input id="test" name="test"          type="hidden"  value="">
+            <input id="buyerEmail" name="buyerEmail"    type="hidden"  value="">
+            <input id="responseUrl"  name="responseUrl"    type="hidden"  value="">
+            <input id="confirmationUrl" name="confirmationUrl"    type="hidden"  value="">
+        </form>
+    </div>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Evento/eventoPago.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script src="{{ asset('js/Plugins/Qrcode/qrcode.js') }}"></script>
-
-
 @endsection

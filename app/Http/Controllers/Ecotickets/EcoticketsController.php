@@ -87,8 +87,5 @@ class EcoticketsController extends Controller
         return response()->json($this->asistenteServicio->validarPIN($idPin));
     }
 
-    public function registrarAsistentePago(Request $formRegistro)
-    {
-        return response()->json("HOLA");
-    }
+
 }

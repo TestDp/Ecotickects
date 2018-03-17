@@ -72,9 +72,12 @@ Route::post('registrarAsistente',[
 ]);
 
 Route::post('registrarAsistentePago',[
-    'uses' =>'Evento\AsistentesController@registrarAsistentePago'
+    'uses' =>'Evento\AsistentesController@postRegistrarAsistentePago'
 ]);
 
+Route::get('RespuestaPagos',[
+    'uses' =>'Evento\AsistentesController@getRespuestaPagos'
+]);
 
 Route::get('ListaAsistentes/{idEvento}',[
     'uses' =>'Evento\EventosController@ObtenerListaAsistentes'

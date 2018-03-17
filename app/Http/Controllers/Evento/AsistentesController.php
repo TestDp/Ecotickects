@@ -3,6 +3,7 @@
 namespace Ecotickets\Http\Controllers\Evento;
 
 
+use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EstadisticasServicio;
@@ -71,9 +72,29 @@ class AsistentesController extends Controller
     }
 
     //Metodo cuando se esta registrando un asistente que esta comprando una boleta
-    public function registrarAsistentePago($formRegistro)
+    public function postRegistrarAsistentePago(Request $formRegistro)
     {
-        return response()->json($this->asistenteServicio->registrarAsistente($formRegistro));
+        return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
+    }
+
+    public function getRespuestaPagos()
+    {
+        $estadoTransaccion = $_REQUEST['transactionState'];
+        $transaccionId = $_REQUEST['transactionId'];
+        $transaccionReference = $_REQUEST['referenceCode'];
+        $medioPago = $_REQUEST['polPaymentMethodType'];
+        if ($estadoTransaccion == 4 ) {
+            $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($transaccionReference,$estadoTransaccion,$medioPago);
+            $evento =$this->eventoServicio->obtenerEvento(46);
+            $ElementosArray= array('evento' => $evento,'pinEvento'=>$listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->PinBoleta);
+
+            $pdf = PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
+
+            return $pdf->download('listado.pdf');
+           // return view("boleta",['ElementosArray' =>$ElementosArray]);
+        }
+        $ccUser=$transaccionReference;
+        return view('existente',['identificacion' => $ccUser]);// se debe cambiar
     }
 
     public function validarPIN($idPin)

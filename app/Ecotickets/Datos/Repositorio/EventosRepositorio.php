@@ -73,14 +73,12 @@ class EventosRepositorio
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
         $evento->preguntas;
+        $evento->preciosBoletas;
         $evento->preguntas->each(function($preguntas){
             $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
         });
-        //  $evento->each(function($evento){
         $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
         $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
-        //  });
-
         return $evento ;
     }
 
