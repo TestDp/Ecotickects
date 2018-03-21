@@ -4,7 +4,7 @@ function RegistrarUsuario () {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase + 'registrarAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + 'FormularioAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
@@ -24,8 +24,6 @@ function RegistrarUsuario () {
                 $('#responseUrl').val(result.info.responseUrl);
                 $('#confirmationUrl').val(result.info.confirmationUrl);
                 $("#formPago").submit();
-            }else{
-                $('#formAsistente').attr("hidden","hidden");
             }
         }
     });

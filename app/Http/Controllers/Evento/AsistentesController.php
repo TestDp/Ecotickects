@@ -3,6 +3,7 @@
 namespace Ecotickets\Http\Controllers\Evento;
 
 
+use Illuminate\Cache\Repository;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
@@ -72,11 +73,11 @@ class AsistentesController extends Controller
     }
 
     //Metodo cuando se esta registrando un asistente que esta comprando una boleta
-    public function postRegistrarAsistentePago(Request $formRegistro)
+    public function registrarAsistentePagoPost(Request $formRegistro)
     {
         return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
     }
-
+    //Metodo de respuesta de la plataforma de pagos payu
     public function getRespuestaPagos()
     {
         $estadoTransaccion = $_REQUEST['transactionState'];
@@ -88,10 +89,10 @@ class AsistentesController extends Controller
             $evento =$this->eventoServicio->obtenerEvento(46);
             $ElementosArray= array('evento' => $evento,'pinEvento'=>$listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->PinBoleta);
 
-            $pdf = PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
+           // $pdf = PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
 
-            return $pdf->download('listado.pdf');
-           // return view("boleta",['ElementosArray' =>$ElementosArray]);
+            //return $pdf->download('listado.pdf');
+           return view("boleta",['ElementosArray' =>$ElementosArray]);
         }
         $ccUser=$transaccionReference;
         return view('existente',['identificacion' => $ccUser]);// se debe cambiar
