@@ -51,7 +51,7 @@ class AsistenteServicio
 
     public function crearBoletas($referenceCode, $estadotransaccion, $medioPago)
     {
-        $idinfopago = explode('ECOPAGO', $referenceCode)[1];
+        $idinfopago = explode(env('REFERENCECODE'), $referenceCode)[1];
         $respuesta= $this->asistenteRepositorio->actualizarInfoPagos($idinfopago, $estadotransaccion, $medioPago);
         if ($respuesta['respuesta'])
         {
