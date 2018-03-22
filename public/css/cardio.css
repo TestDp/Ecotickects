@@ -1030,6 +1030,19 @@ footer .social-footer li:hover a {
 	background: #8abd51;
 }
 
+.boleta-bg {
+	background: #8abd51 url(../img/Boleta-back.png) no-repeat center center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	-webkit-transition: background-image 0.6s linear 0.3s;
+	transition: background-image 0.6s linear 0.3s;
+}
+
+.titulo-boleta {
+	color: white;
+	font-weight: 700;
+}
+
 .muted {
 	color: #989da0;
 }

@@ -86,15 +86,29 @@ class AsistentesController extends Controller
         $medioPago = $_REQUEST['polPaymentMethodType'];
         if ($estadoTransaccion == 4 ) {
             $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($transaccionReference,$estadoTransaccion,$medioPago);
-            $evento =$this->eventoServicio->obtenerEvento(46);
+            $evento =$this->eventoServicio->obtenerEvento(5);
             $ElementosArray= array('evento' => $evento,'pinEvento'=>$listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->PinBoleta);
 
+<<<<<<< HEAD
            // $pdf = \PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
             //PDF::setOptions(['isJavascriptEnabled ',true]);
             //$pdf = \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray]);
             //$pdf->setOptions(['enable-javascript',true]);
             //return $pdf->download('ticket.pdf');
             return view("boletatest",['ElementosArray' =>$ElementosArray]);
+=======
+
+            //$pdf = PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
+
+            //return $pdf->download('listado.pdf');
+           // return view("boleta",['ElementosArray' =>$ElementosArray]);
+
+           // $pdf = PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
+
+            //return $pdf->download('listado.pdf');
+           return view("boleta",['ElementosArray' =>$ElementosArray]);
+
+>>>>>>> 10d7ac553470abc005f49c5edc3c6c950ccfbcc3
         }
         $ccUser=$transaccionReference;
         return view('existente',['identificacion' => $ccUser]);// se debe cambiar
