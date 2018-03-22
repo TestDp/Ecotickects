@@ -85,13 +85,13 @@ class AsistentesController extends Controller
         $medioPago = $_REQUEST['polPaymentMethodType'];
         if ($estadoTransaccion == 4 ) {
             $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($transaccionReference,$estadoTransaccion,$medioPago);
-            $evento =$this->eventoServicio->obtenerEvento(46);
+            $evento =$this->eventoServicio->obtenerEvento(5);
             $ElementosArray= array('evento' => $evento,'pinEvento'=>$listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->PinBoleta);
 
-            $pdf = PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
+            //$pdf = PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
 
-            return $pdf->download('listado.pdf');
-           // return view("boleta",['ElementosArray' =>$ElementosArray]);
+            //return $pdf->download('listado.pdf');
+            return view("boleta",['ElementosArray' =>$ElementosArray]);
         }
         $ccUser=$transaccionReference;
         return view('existente',['identificacion' => $ccUser]);// se debe cambiar
