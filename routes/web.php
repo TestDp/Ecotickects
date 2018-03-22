@@ -71,8 +71,8 @@ Route::post('registrarAsistente',[
     'uses' =>'Evento\AsistentesController@registrarAsistente'
 ]);
 
-Route::post('registrarAsistentePago',[
-    'uses' =>'Evento\AsistentesController@postRegistrarAsistentePago'
+Route::post('FormularioAsistentePago',[
+    'uses' =>'Evento\AsistentesController@registrarAsistentePagoPost'
 ]);
 
 Route::get('RespuestaPagos',[

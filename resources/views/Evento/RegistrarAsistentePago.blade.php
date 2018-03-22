@@ -105,7 +105,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form id="formularioEvento"  method="POST">
+                <form id="formularioEvento">
                     <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
@@ -367,9 +367,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button">
-                                        Comprar
-                                    </button>
+                                    <input onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button" value="Comprar"/>
                                 </div>
                             </div>
                         </div>
