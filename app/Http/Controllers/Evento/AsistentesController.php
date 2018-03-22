@@ -1,15 +1,11 @@
 <?php
 
 namespace Ecotickets\Http\Controllers\Evento;
-
-
-use Illuminate\Cache\Repository;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EstadisticasServicio;
 use Eco\Negocio\Logica\EventosServicio;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -83,17 +79,28 @@ class AsistentesController extends Controller
         $estadoTransaccion = $_REQUEST['transactionState'];
         $transaccionId = $_REQUEST['transactionId'];
         $transaccionReference = $_REQUEST['referenceCode'];
+        $correoElectronico = $_REQUEST['buyerEmail'];
         $medioPago = $_REQUEST['polPaymentMethodType'];
         if ($estadoTransaccion == 4 ) {
             $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($transaccionReference,$estadoTransaccion,$medioPago);
-            $evento =$this->eventoServicio->obtenerEvento(5);
-            $ElementosArray= array('evento' => $evento,'pinEvento'=>$listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->PinBoleta);
-           // $pdf = \PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
-            //PDF::setOptions(['isJavascriptEnabled ',true]);
-            //$pdf = \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray]);
-            //$pdf->setOptions(['enable-javascript',true]);
-            //return $pdf->download('ticket.pdf');
-          //  return view("boletatest",['ElementosArray' =>$ElementosArray]);
+            $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
+            $ElementosArray= array('evento' => $evento);
+            $correoSaliente='info@loversfestival.com';
+            $nombreEvento = $evento->Nombre_Evento;
+            $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+            Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($pinesImagenes,$correoElectronico,$correoSaliente,$nombreEvento,$evento,$transaccionReference){
+                $msj->from($correoSaliente,'Invitación '.$nombreEvento);
+                $msj->subject('Importante - Aquí esta tu pase de acceso');
+                $msj->to($correoElectronico);
+                $msj->bcc('soporteecotickets@gmail.com');
+                foreach ($pinesImagenes as $pin){
+                    $qr= base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(200)->generate($nombreEvento.' - CC - '.$pin->PinBoleta.'ECOTICKETS'));
+                    $ElementosArray= array('evento' => $evento,'qr'=>$qr);
+                    \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray])->save('../storage/app/boletas/ECOTICKET'.$pin->id.'.pdf');
+                    $qrImagen =storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf';
+                    $msj->attach($qrImagen);
+                }
+            });
            return view("boleta",['ElementosArray' =>$ElementosArray]);
         }
         $ccUser=$transaccionReference;
