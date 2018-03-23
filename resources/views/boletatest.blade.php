@@ -8,12 +8,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<title>ticket</title>
 </head>
-<<<<<<< HEAD
 <body style="background: #8abd51 url(http://dpsoluciones.co/wp-content/uploads/2018/03/Boleta-back.png) no-repeat center center; background-size: cover;">
 
-<div id="qrBoleta" style="width:800px;height:200px;">
-
-</div>
 
 	<div style="border: solid 5px #fff;" class="container">
 		<div style="text-align: center;" class="row">
@@ -29,26 +25,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<input type="hidden" id="pinboleta" value="{{$ElementosArray["pinEvento"]}}">
 			<input type="hidden" id="nombreEvento" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">
 			<div style="text-align: center;" class="col-md-12">
-				<div id="qrBoleta">
-
-				</div>
+				<img src="data:image/png;base64,{!! $ElementosArray["qr"]!!}">
 			</div>
 		</div>
 	</div>
 
-=======
-<body>
 
-<div class="container">
-<div class="row">
-	<input type="hidden" id="nombreEvento" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">
-	<img src="data:image/png;base64,{!! $ElementosArray["qr"]!!}">
-</div>
-</div>
->>>>>>> 176c2be1ef0b272004473b106bda8ffa4991d30a
 <script src="js/Evento/eventoPago.js"></script>
 <script src="js/Plugins/Qrcode/qrcode.js"></script>
 <script src="js/Plugins/Jquery/jquery-3.1.1.js"></script>

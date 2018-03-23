@@ -83,17 +83,6 @@ class AsistentesController extends Controller
         $medioPago = $_REQUEST['polPaymentMethodType'];
         if ($estadoTransaccion == 4 ) {
             $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($transaccionReference,$estadoTransaccion,$medioPago);
-<<<<<<< HEAD
-            $evento =$this->eventoServicio->obtenerEvento(5);
-            $ElementosArray= array('evento' => $evento,'pinEvento'=>$listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->PinBoleta);
-           // $pdf = \PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
-            //PDF::setOptions(['isJavascriptEnabled ',true]);
-            $pdf = \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray]);
-            //$pdf->setOptions(['enable-javascript',true]);
-            return $pdf->download('ticket.pdf');
-          //  return view("boletatest",['ElementosArray' =>$ElementosArray]);
-           //return view("boleta",['ElementosArray' =>$ElementosArray]);
-=======
             $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
             $ElementosArray= array('evento' => $evento);
             $correoSaliente='info@loversfestival.com';
@@ -113,7 +102,6 @@ class AsistentesController extends Controller
                 }
             });
            return view("boleta",['ElementosArray' =>$ElementosArray]);
->>>>>>> 176c2be1ef0b272004473b106bda8ffa4991d30a
         }
         $ccUser=$transaccionReference;
         return view('existente',['identificacion' => $ccUser]);// se debe cambiar
