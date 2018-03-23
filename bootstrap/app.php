@@ -41,6 +41,7 @@ $app->singleton(
     Ecotickets\Exceptions\Handler::class
 );
 
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

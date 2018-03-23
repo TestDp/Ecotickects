@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<input type="hidden" id="pinboleta" value="{{$ElementosArray["pinEvento"]}}">
+
 				<input type="hidden" id="nombreEvento" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">
 				<div style="text-align: center;" class="col-md-12">
 					<div id="qrBoleta">
