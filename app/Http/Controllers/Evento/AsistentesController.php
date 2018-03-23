@@ -94,7 +94,7 @@ class AsistentesController extends Controller
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
                 foreach ($pinesImagenes as $pin){
-                    $qr= base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(200)->generate($nombreEvento.' - CC - '.$pin->PinBoleta.'ECOTICKETS'));
+                    $qr= base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(280)->generate($nombreEvento.' - CC - '.$pin->PinBoleta.'ECOTICKETS'));
                     $ElementosArray= array('evento' => $evento,'qr'=>$qr);
                     \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray])->save('../storage/app/boletas/ECOTICKET'.$pin->id.'.pdf');
                     $qrImagen =storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf';
