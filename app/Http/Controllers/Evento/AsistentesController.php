@@ -90,11 +90,11 @@ class AsistentesController extends Controller
             $ElementosArray= array('evento' => $evento,'pinEvento'=>$listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->PinBoleta);
            // $pdf = \PDF::loadView('boleta', ['ElementosArray' =>$ElementosArray]);
             //PDF::setOptions(['isJavascriptEnabled ',true]);
-            //$pdf = \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray]);
+            $pdf = \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray]);
             //$pdf->setOptions(['enable-javascript',true]);
-            //return $pdf->download('ticket.pdf');
+            return $pdf->download('ticket.pdf');
           //  return view("boletatest",['ElementosArray' =>$ElementosArray]);
-           return view("boleta",['ElementosArray' =>$ElementosArray]);
+           //return view("boleta",['ElementosArray' =>$ElementosArray]);
         }
         $ccUser=$transaccionReference;
         return view('existente',['identificacion' => $ccUser]);// se debe cambiar
