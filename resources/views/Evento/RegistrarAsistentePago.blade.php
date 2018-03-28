@@ -393,6 +393,7 @@
             <input id="responseUrl"  name="responseUrl"    type="hidden"  value="">
             <input id="confirmationUrl" name="confirmationUrl"    type="hidden"  value="">
         </form>
+
     </div>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Evento/eventoPago.js') }}"></script>

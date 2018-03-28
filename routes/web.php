@@ -76,7 +76,11 @@ Route::post('FormularioAsistentePago',[
 ]);
 
 Route::get('RespuestaPagos',[
-    'uses' =>'Evento\AsistentesController@getRespuestaPagos'
+    'uses' =>'Evento\AsistentesController@RespuestaPagos'
+]);
+
+Route::get('RespuestaPagosUsuario',[
+    'uses' =>'Evento\AsistentesController@RespuestaPagosUsuario'
 ]);
 
 Route::get('ListaAsistentes/{idEvento}',[

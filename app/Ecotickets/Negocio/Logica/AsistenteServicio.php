@@ -41,7 +41,7 @@ class AsistenteServicio
             $info_pagos->currency = env('CURRENCY');
             $info_pagos->signature = md5(env('APIKEYPAYU') . '~' . env('MERCHANTID') . '~' . $info_pagos->referenceCode . '~' . $respuesta['infoPago']->PrecioTotal . '~' . env('CURRENCY'));
             $info_pagos->test = env('TEST');
-            $info_pagos->buyerEmail = "cristianmg13@hotmail.com";
+            $info_pagos->buyerEmail = $asistente->Email;
             $info_pagos->responseUrl = "http://localhost:8080/Ecotickects/public/RespuestaPagos";
             $info_pagos->confirmationUrl = "http://localhost:8080/Ecotickects/public/RespuestaPagos";
             return ['respuesta' => true, 'info' => $info_pagos];
@@ -61,7 +61,14 @@ class AsistenteServicio
         return $respuesta;
     }
 
-
+    public function validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta)
+    {
+        $firmaVerificar = md5(env('APIKEYPAYU') . '~' . $merchantId . '~' . $referenciaVenta . '~' . $valor . '~' . $moneda. '~' .$estadoVenta);
+        if($firmaVerificar ==$firmaVenta){
+            return true;
+        }
+        return false;
+    }
     public function obtenerAsistentesXEvento($idEvento)
     {
         return $this->asistenteRepositorio->obtenerAsistentesXEvento($idEvento);
