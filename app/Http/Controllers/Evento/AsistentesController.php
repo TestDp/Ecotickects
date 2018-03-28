@@ -88,12 +88,13 @@ class AsistentesController extends Controller
         $moneda= $formRegistro->currency;
         $estadoVenta = $formRegistro->state_pol;
         $firmaVenta = $formRegistro->sign;
+        //NOTA:linea para verificar la informacion enviada  por payu
         ///$verficarFirma  = $this->asistenteServicio->validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta);
         if ($estadoVenta == 4) {
             $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta,$estadoVenta,$medioPago);
             $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
             $ElementosArray= array('evento' => $evento);
-            $correoSaliente='info@loversfestival.com';
+            $correoSaliente='info@loversfestival.com';//PONER EL CORREO DE MANERA GENERAL
             $nombreEvento = $evento->Nombre_Evento;
             $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
             Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($pinesImagenes,$correoElectronico,$correoSaliente,$nombreEvento,$evento){
@@ -120,8 +121,7 @@ class AsistentesController extends Controller
         $transaccionReference = $_REQUEST['referenceCode'];
         $medioPago = $_REQUEST['polPaymentMethodType'];
         if ($estadoTransaccion == 4 ) {
-            $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($transaccionReference,$estadoTransaccion,$medioPago);
-            $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
+            $evento =$this->eventoServicio->obtenerEvento(1);//PONER EL ID DEL EVENTO DE MANERA GENERAL
             $ElementosArray= array('evento' => $evento);
             return view("respuesta",['ElementosArray' =>$ElementosArray]);
         }
@@ -166,17 +166,20 @@ class AsistentesController extends Controller
         return response()->json($this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc));
     }
 
-
+    /*Metodo para  activar el qr del asistente al evento, recibe  como parametros el id del evento y el id  del asistente
+    o usuario**/
     public function ActivarQRAsistenteXEvento($idEvento,$idAsistente)
     {
         return $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$idAsistente);
     }
 
+    /*Metodo que me retornar los usuarios que asistienron al evento**/
     public function AsistentesActivos($idEvento)
     {
         return response()->json($this->asistenteServicio->AsistentesActivos($idEvento));
     }
-    //buscar qr y activarlo
+
+    /*Metodo para  activar y leer el qr, hacer las dos operaciones en un sola**/
     public function ActivarQRAsistenteXEventoApp($idEvento,$cc)
     {
         $usuario=$this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
