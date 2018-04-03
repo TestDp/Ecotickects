@@ -81,10 +81,21 @@ class AsistenteRepositorio
         DB::beginTransaction();
         try {
             $asistente->save();
-            for ($i = 0; $i <= $registroAsistente->CantidadTickets; $i++) {
+            for ($i = 0; $i < $registroAsistente->CantidadTickets; $i++) {
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
                 $asistenteXeventoo->Asistente_id = $asistente->id;
                 $asistenteXeventoo->PinBoleta = $this->GenerarPin();
+
+                //pone el mismo id en elcampo idcomprador si es solo un tickets
+                // si son vario le pone a los demas el idcomprador con el id del padre
+                if ($i == 0) {
+                    $asistenteXeventoo->idAsistenteCompra = $asistenteXeventoo->id;
+
+                }else{
+                    $asistenteXeventoo->idAsistenteCompra = $infoComprador;
+                }
+                ////
+
                 $asistenteXeventoo->save();
                 if ($registroAsistente->Respuesta_id && $i == 0) {
                     foreach ($registroAsistente->Respuesta_id as $respuestasAsistente) {
@@ -101,6 +112,8 @@ class AsistenteRepositorio
                     $infoPago = $this->crearInfoPago($registroAsistente);
                     $infoPago->AsistenteXEvento_id = $asistenteXeventoo->id;
                     $infoPago->save();
+                    //setea este valor con el id del comprador padre
+                    $infoComprador = $asistenteXeventoo->id;
                 }
             }
             DB::commit();
@@ -203,11 +216,27 @@ class AsistenteRepositorio
 
     public function GenerarPin()
     {
-        $key = '';
-        $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ';
-        $max = strlen($pattern) - 1;
-        for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
-        return $key;
+        // $key = '';
+        // $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ';
+        // $max = strlen($pattern) - 1;
+        // for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
+        // return $key;
+
+        $esUnico = 0;    
+        do 
+        {
+         $key = '';
+         $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ';
+         $max = strlen($pattern) - 1;
+         for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
+
+         $verificarPinBoletaPaga = count(AsistenteXEvento::where('PinBoleta', '=', $key)->get());
+        if ($verificarPinBoletaPaga == 0) {
+            return $key;
+        }
+        
+           
+        }while ($esUnico =0);
     }
 
     private function crearInfoPago($RequestInFoPago)
@@ -245,11 +274,19 @@ class AsistenteRepositorio
 
     public function obtenerPinesBoletas($idInfoPagos)
     {
+        // $infopago = InfoPago::where('id', '=', $idInfoPagos)->first();
+        // $asistenteXEventos = AsistenteXEvento::where('id', '=', $infopago->AsistenteXEvento_id)->first();
+        // $asistentesXEventos = AsistenteXEvento::where('Evento_id', '=', $asistenteXEventos->Evento_id)
+        //     ->where('Asistente_id', '=', $asistenteXEventos->Asistente_id)
+        //     ->where('esPago', '=', true)->get();
+        // return $asistentesXEventos;
+
         $infopago = InfoPago::where('id', '=', $idInfoPagos)->first();
         $asistenteXEventos = AsistenteXEvento::where('id', '=', $infopago->AsistenteXEvento_id)->first();
         $asistentesXEventos = AsistenteXEvento::where('Evento_id', '=', $asistenteXEventos->Evento_id)
-            ->where('Asistente_id', '=', $asistenteXEventos->Asistente_id)
-            ->where('esPago', '=', true)->get();
+            ->where('id', '=', $asistenteXEventos->id)
+            ->where('esPago', '=', true)
+            ->Orwhere('idAsistenteCompra', '=', $asistenteXEventos->id)->get();
         return $asistentesXEventos;
     }
 }
