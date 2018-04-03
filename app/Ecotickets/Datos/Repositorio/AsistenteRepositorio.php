@@ -104,9 +104,6 @@ class AsistenteRepositorio
                         $respuestasAsistenteXevento->AsistenteXEvento_id = $asistenteXeventoo->id;
                         $respuestasAsistenteXevento->save();
                     }
-                    $infoPago = $this->crearInfoPago($registroAsistente);
-                    $infoPago->AsistenteXEvento_id = $asistenteXeventoo->id;
-                    $infoPago->save();
                 }
                 if ($i == 0) {
                     $infoPago = $this->crearInfoPago($registroAsistente);
@@ -289,4 +286,6 @@ class AsistenteRepositorio
             ->Orwhere('idAsistenteCompra', '=', $asistenteXEventos->id)->get();
         return $asistentesXEventos;
     }
+
+
 }
