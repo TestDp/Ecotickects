@@ -61,6 +61,14 @@ class AsistenteServicio
         return $respuesta;
     }
 
+    public function validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta)
+    {
+        $firmaVerificar = md5(env('APIKEYPAYU') . '~' . $merchantId . '~' . $referenciaVenta . '~' . $valor . '~' . $moneda. '~' .$estadoVenta);
+        if($firmaVerificar ==$firmaVenta){
+            return true;
+        }
+        return false;
+    }
 
     public function obtenerAsistentesXEvento($idEvento)
     {

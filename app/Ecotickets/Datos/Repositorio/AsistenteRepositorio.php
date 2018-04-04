@@ -72,6 +72,7 @@ class AsistenteRepositorio
     {
         $asistente = $this->ObtenerAsistente($registroAsistente->Identificacion);
         $infoPago = '';
+        $infoComprador ='';
         if ($asistente) {
             $asistente = $this->actualizarAsistente($registroAsistente->Identificacion, new Asistente($registroAsistente->all()));
         } else {
@@ -88,10 +89,7 @@ class AsistenteRepositorio
 
                 //pone el mismo id en elcampo idcomprador si es solo un tickets
                 // si son vario le pone a los demas el idcomprador con el id del padre
-                if ($i == 0) {
-                    $asistenteXeventoo->idAsistenteCompra = $asistenteXeventoo->id;
-
-                }else{
+                if ($i != 0) {
                     $asistenteXeventoo->idAsistenteCompra = $infoComprador;
                 }
                 ////
@@ -213,27 +211,15 @@ class AsistenteRepositorio
 
     public function GenerarPin()
     {
-        // $key = '';
-        // $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ';
-        // $max = strlen($pattern) - 1;
-        // for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
-        // return $key;
-
-        $esUnico = 0;    
         do 
         {
-         $key = '';
-         $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ';
-         $max = strlen($pattern) - 1;
-         for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
-
-         $verificarPinBoletaPaga = count(AsistenteXEvento::where('PinBoleta', '=', $key)->get());
-        if ($verificarPinBoletaPaga == 0) {
-            return $key;
-        }
-        
-           
-        }while ($esUnico =0);
+             $key = '';
+             $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ';
+             $max = strlen($pattern) - 1;
+             for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
+             $verificarPinBoletaPaga = count(AsistenteXEvento::where('PinBoleta', '=', $key)->get());
+        }while ($verificarPinBoletaPaga >0);
+        return $key;
     }
 
     private function crearInfoPago($RequestInFoPago)
@@ -271,13 +257,6 @@ class AsistenteRepositorio
 
     public function obtenerPinesBoletas($idInfoPagos)
     {
-        // $infopago = InfoPago::where('id', '=', $idInfoPagos)->first();
-        // $asistenteXEventos = AsistenteXEvento::where('id', '=', $infopago->AsistenteXEvento_id)->first();
-        // $asistentesXEventos = AsistenteXEvento::where('Evento_id', '=', $asistenteXEventos->Evento_id)
-        //     ->where('Asistente_id', '=', $asistenteXEventos->Asistente_id)
-        //     ->where('esPago', '=', true)->get();
-        // return $asistentesXEventos;
-
         $infopago = InfoPago::where('id', '=', $idInfoPagos)->first();
         $asistenteXEventos = AsistenteXEvento::where('id', '=', $infopago->AsistenteXEvento_id)->first();
         $asistentesXEventos = AsistenteXEvento::where('Evento_id', '=', $asistenteXEventos->Evento_id)

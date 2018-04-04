@@ -79,7 +79,7 @@ Route::get('RespuestaPagos',[
     'uses' =>'Evento\AsistentesController@RespuestaPagos'
 ]);
 
-Route::get('RespuestaPagosUsuario',[
+Route::post('RespuestaPagosUsuario',[
     'uses' =>'Evento\AsistentesController@RespuestaPagosUsuario'
 ]);
 
