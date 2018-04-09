@@ -89,8 +89,8 @@ class AsistentesController extends Controller
         $estadoVenta = $formRegistro->state_pol;
         $firmaVenta = $formRegistro->sign;
         //NOTA:linea para verificar la informacion enviada  por payu
-        ///$verficarFirma  = $this->asistenteServicio->validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta);
-        if ($estadoVenta == 4) {
+        $verficarFirma  = $this->asistenteServicio->validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta);
+        if ($estadoVenta == 4 && $verficarFirma) {
             $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta,$estadoVenta,$medioPago);
             $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
             $ElementosArray= array('evento' => $evento);
