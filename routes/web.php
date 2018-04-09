@@ -199,3 +199,7 @@ Route::get('/terminosCondiciones', function () {
     return view('terminosCondiciones');
 });
 
+Route::get('/respuestaPago', function () {
+    return view('respuestaPago');
+});
+

@@ -12,6 +12,7 @@ use Eco\Datos\Modelos\Asistente;
 use Eco\Datos\Modelos\AsistenteXEvento;
 use Eco\Datos\Modelos\Ciudad;
 use Eco\Datos\Modelos\InfoPago;
+use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\PrecioBoleta;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Eco\Datos\Modelos\CodigoAsistente;
@@ -39,6 +40,8 @@ class AsistenteRepositorio
                 $asistente->save();
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
                 $asistenteXeventoo->Asistente_id = $asistente->id;
+                $asistenteXeventoo->esPago = 0;
+                $asistenteXeventoo->PinBoleta = 0;
                 $asistenteXeventoo->save();
                 if ($registroAsistente->Respuesta_id) {
                     foreach ($registroAsistente->Respuesta_id as $respuestasAsistente) {
@@ -285,6 +288,17 @@ class AsistenteRepositorio
             ->where('esPago', '=', true)
             ->Orwhere('idAsistenteCompra', '=', $asistenteXEventos->id)->get();
         return $asistentesXEventos;
+    }
+
+
+    public function ObtenerEventoRefe($idInfoPago)
+    {
+       
+        $infopago = InfoPago::where('id', '=', $idInfoPago)->first();
+        $asistenteXEventos = AsistenteXEvento::where('id', '=', $infopago->AsistenteXEvento_id)->first();
+        $evento = Evento::where('id','=',$asistenteXEventos->Evento_id)->get()->first();
+            
+        return $evento;
     }
 
 

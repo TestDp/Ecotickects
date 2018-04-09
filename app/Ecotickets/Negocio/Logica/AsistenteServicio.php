@@ -42,7 +42,7 @@ class AsistenteServicio
             $info_pagos->signature = md5(env('APIKEYPAYU') . '~' . env('MERCHANTID') . '~' . $info_pagos->referenceCode . '~' . $respuesta['infoPago']->PrecioTotal . '~' . env('CURRENCY'));
             $info_pagos->test = env('TEST');
             $info_pagos->buyerEmail = "cristianmg13@hotmail.com";
-            $info_pagos->responseUrl = "http://localhost:100/Ecotickects/public/RespuestaPagos";
+            $info_pagos->responseUrl = "http://localhost:100/Ecotickects/public/RespuestaPagosUsuario";
             $info_pagos->confirmationUrl = "http://localhost:100/Ecotickects/public/RespuestaPagos";
             return ['respuesta' => true, 'info' => $info_pagos];
         }
@@ -60,6 +60,16 @@ class AsistenteServicio
         }
         return $respuesta;
     }
+
+    public function ObtenerEventoRefe($referenceCode)
+    {
+        $idinfopago = explode(env('REFERENCECODE'), $referenceCode)[1];
+        $respuesta= $this->asistenteRepositorio->ObtenerEventoRefe($idinfopago);
+       
+        return $respuesta;
+    }
+
+
 
 
     public function obtenerAsistentesXEvento($idEvento)

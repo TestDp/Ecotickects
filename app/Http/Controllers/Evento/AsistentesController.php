@@ -120,11 +120,48 @@ class AsistentesController extends Controller
         $estadoTransaccion = $_REQUEST['transactionState'];
         $transaccionReference = $_REQUEST['referenceCode'];
         $medioPago = $_REQUEST['polPaymentMethodType'];
-        if ($estadoTransaccion == 4 ) {
-            $evento =$this->eventoServicio->obtenerEvento(1);//PONER EL ID DEL EVENTO DE MANERA GENERAL
-            $ElementosArray= array('evento' => $evento);
-            return view("respuesta",['ElementosArray' =>$ElementosArray]);
+        // if ($estadoTransaccion == 4 ) {
+        //     $evento =$this->asistenteServicio->ObtenerEventoRefe($transaccionReference);//PONER EL ID DEL EVENTO DE MANERA GENERAL
+        //     $ElementosArray= array('evento' => $evento);
+        //     return view("respuesta",['ElementosArray' =>$ElementosArray]);
+        // }
+
+        $evento =$this->asistenteServicio->ObtenerEventoRefe($transaccionReference);
+        switch ($estadoTransaccion) {
+            case 4: /* Approved */ 
+            $ElementosArray= array('evento' => $evento,'mensaje' => "APROVADO");
+            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+            break;
+
+            case 7: /* Pending*/ 
+            $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE");
+            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+            break;
+
+            case 6: /* Declined*/ 
+            $ElementosArray= array('evento' => $evento,'mensaje' => "DECLINADO");
+            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+            break;
+
+            case 104: /* Error*/ 
+            $ElementosArray= array('evento' => $evento,'mensaje' => "ERROR");
+            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+            break;
+
+            case 5: /* Expired*/ 
+            $ElementosArray= array('evento' => $evento,'mensaje' => "EXPIRADO");
+            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+            break;
+            
+            default: /* Do something */
+            $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE POR PYU");
+            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+            break;
         }
+        
+
+
+
         $ccUser=$transaccionReference;
         return view('existente',['identificacion' => $ccUser]);// se debe cambiar
     }
