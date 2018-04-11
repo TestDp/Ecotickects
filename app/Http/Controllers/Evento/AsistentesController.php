@@ -80,6 +80,7 @@ class AsistentesController extends Controller
      se hace de  manera asincronica.Metodo de comunicacion entre sistemas.**/
     public function RespuestaPagos(Request $formRegistro)
     {
+
         $correoElectronico = $formRegistro->email_buyer;
         $medioPago = $formRegistro->payment_method_id;
         $merchantId = $formRegistro->merchantId;
