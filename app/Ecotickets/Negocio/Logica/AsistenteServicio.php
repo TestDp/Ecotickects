@@ -61,6 +61,34 @@ class AsistenteServicio
         return $respuesta;
     }
 
+
+    public function validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta)
+    {
+        $newValor = $this->transformaValor($valor);
+        try{
+            $firmaVerificar = md5(env('APIKEYPAYU').'~'.$merchantId.'~'.$referenciaVenta.'~'.$newValor.'~'.$moneda.'~'.$estadoVenta);
+            if($firmaVerificar == $firmaVenta){
+                return 1;
+            }
+            return 0;
+        }catch (\Exception $e){
+            $error = $e->getMessage();
+            return $error;
+        }
+
+    }
+
+    public function transformaValor($valor){
+        $stringEntero = explode('.', $valor)[0];
+        $stringDecimal = explode('.', $valor)[1];
+        $primerDigito = substr($stringDecimal, 0,1);
+        $segundoDigito = substr($stringDecimal, 1,1);
+        if($segundoDigito==0){
+            return $stringEntero.'.'.$primerDigito;
+        }
+        return $valor;
+    }
+
     public function ObtenerEventoRefe($referenceCode)
     {
         $idinfopago = explode(env('REFERENCECODE'), $referenceCode)[1];

@@ -83,7 +83,7 @@ class AsistentesController extends Controller
 
         $correoElectronico = $formRegistro->email_buyer;
         $medioPago = $formRegistro->payment_method_id;
-        $merchantId = $formRegistro->merchantId;
+        $merchantId = $formRegistro->merchant_id;
         $referenciaVenta= $formRegistro->reference_sale;
         $valor= $formRegistro->value;
         $moneda= $formRegistro->currency;
@@ -91,7 +91,7 @@ class AsistentesController extends Controller
         $firmaVenta = $formRegistro->sign;
         //NOTA:linea para verificar la informacion enviada  por payu
         $verficarFirma  = $this->asistenteServicio->validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta);
-        if ($estadoVenta == 4 && $verficarFirma) {
+        if ($estadoVenta == 4 && $verficarFirma == 1) {
             $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta,$estadoVenta,$medioPago);
             $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
             $ElementosArray= array('evento' => $evento);
