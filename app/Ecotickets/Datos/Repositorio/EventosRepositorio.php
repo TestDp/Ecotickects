@@ -31,6 +31,9 @@ class EventosRepositorio
             if($EdEvento->ImagenFlyerEvento != null){
                 $evento->FlyerEvento  = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
             }
+
+            $evento->Espago = 0;
+
             $evento ->save();
             //fin del bloque
             $ind =0;
