@@ -1,4 +1,4 @@
-var urlBase = "/Ecotickects/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+var urlBase = "/Ecophp/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 function RegistrarUsuario () {
     var form = $("#formularioEvento");
     var token = $("#_token").val()

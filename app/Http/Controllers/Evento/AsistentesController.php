@@ -77,40 +77,50 @@ class AsistentesController extends Controller
     }
 
     /**Metodo de respuesta de la plataforma de pagos payu para el envio de  la  boleta al correo electronico, el  llamado
-     se hace de  manera asincronica.Metodo de comunicacion entre sistemas.**/
+    se hace de  manera asincronica.Metodo de comunicacion entre sistemas.**/
     public function RespuestaPagos(Request $formRegistro)
     {
-
-        $correoElectronico = $formRegistro->email_buyer;
-        $medioPago = $formRegistro->payment_method_id;
-        $merchantId = $formRegistro->merchant_id;
-        $referenciaVenta= $formRegistro->reference_sale;
-        $valor= $formRegistro->value;
-        $moneda= $formRegistro->currency;
-        $estadoVenta = $formRegistro->state_pol;
-        $firmaVenta = $formRegistro->sign;
-        //NOTA:linea para verificar la informacion enviada  por payu
-        $verficarFirma  = $this->asistenteServicio->validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta);
-        if ($estadoVenta == 4 && $verficarFirma == 1) {
-            $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta,$estadoVenta,$medioPago);
-            $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
-            $ElementosArray= array('evento' => $evento);
-            $correoSaliente='info@loversfestival.com';//PONER EL CORREO DE MANERA GENERAL
-            $nombreEvento = $evento->Nombre_Evento;
-            $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
-            Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($pinesImagenes,$correoElectronico,$correoSaliente,$nombreEvento,$evento){
-                $msj->from($correoSaliente,'Invitación '.$nombreEvento);
-                $msj->subject('Importante - Aquí esta tu pase de acceso');
-                $msj->to($correoElectronico);
-                $msj->bcc('soporteecotickets@gmail.com');
-                foreach ($pinesImagenes as $pin){
-                    $qr= base64_encode(\QrCode::format('png')->merge('../../pruebas.ecotickets.co/img/iconoPequeno.png')->size(280)->generate($nombreEvento.' - CC - '.$pin->PinBoleta.'ECOTICKETS'));
-                    $ElementosArray= array('evento' => $evento,'qr'=>$qr);
-                    \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray])->save(storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf');
-                    $qrImagen =storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf';
-                    $msj->attach($qrImagen);
-                }
-            });
+        try {
+            $correoElectronico = $formRegistro->email_buyer;
+            $medioPago = $formRegistro->payment_method_id;
+            $merchantId = $formRegistro->merchant_id;
+            $referenciaVenta= $formRegistro->reference_sale;
+            $valor= $formRegistro->value;
+            $moneda= $formRegistro->currency;
+            $estadoVenta = $formRegistro->state_pol;
+            $firmaVenta = $formRegistro->sign;
+            //NOTA:linea para verificar la informacion enviada  por payu
+            $verficarFirma  = $this->asistenteServicio->validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta);
+            //$verificarfirma:1 para la validacion de la firma es correcta
+            //$verificarfirma:0 para la validacion de la firma es incorrecta
+            if ($estadoVenta == 4 && $verficarFirma == 1) {
+                $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta,$estadoVenta,$medioPago);
+                $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
+                $ElementosArray = array('evento' => $evento);
+                $correoSaliente =$evento->CorreoEnviarInvitacion;//PONER EL CORREO DE MANERA GENERAL
+                $nombreEvento = $evento->Nombre_Evento;
+                $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+                Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($pinesImagenes,$correoElectronico,$correoSaliente,$nombreEvento,$evento){
+                    $msj->from($correoSaliente,'Invitación '.$nombreEvento);
+                    $msj->subject('Importante - Aquí esta tu pase de acceso');
+                    $msj->to($correoElectronico);
+                    $msj->bcc('soporteecotickets@gmail.com');
+                    foreach ($pinesImagenes as $pin){
+                        $qr= base64_encode(\QrCode::format('png')->merge('../../pruebas.ecotickets.co/img/iconoPequeno.png')->size(280)->generate($nombreEvento.' - CC - '.$pin->PinBoleta.'ECOTICKETS'));
+                        $ElementosArray= array('evento' => $evento,'qr'=>$qr);
+                        \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray])->save(storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf');
+                        $qrImagen =storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf';
+                        $msj->attach($qrImagen);
+                    }
+                });
+            }else{
+                // se actualiza la informmacion del pago cuando el estado de la transaccion es diferente a 4
+                $this->asistenteServicio->actualizarInfoPagos($referenciaVenta,$estadoVenta,$medioPago);
+            }
+            return response('OK',200);
+        }catch (\Exception $e){
+            $error = $e->getMessage();
+            return reponse('ERROR',404);
         }
     }
 
@@ -121,45 +131,39 @@ class AsistentesController extends Controller
         $estadoTransaccion = $_REQUEST['transactionState'];
         $transaccionReference = $_REQUEST['referenceCode'];
         $medioPago = $_REQUEST['polPaymentMethodType'];
-        // if ($estadoTransaccion == 4 ) {
-        //     $evento =$this->asistenteServicio->ObtenerEventoRefe($transaccionReference);//PONER EL ID DEL EVENTO DE MANERA GENERAL
-        //     $ElementosArray= array('evento' => $evento);
-        //     return view("respuesta",['ElementosArray' =>$ElementosArray]);
-        // }
-
         $evento =$this->asistenteServicio->ObtenerEventoRefe($transaccionReference);
         switch ($estadoTransaccion) {
-            case 4: /* Approved */ 
-            $ElementosArray= array('evento' => $evento,'mensaje' => "APROVADO");
-            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
-            break;
+            case 4: /* Approved */
+                $ElementosArray= array('evento' => $evento,'mensaje' => "APROVADO");
+                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                break;
 
-            case 7: /* Pending*/ 
-            $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE");
-            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
-            break;
+            case 7: /* Pending*/
+                $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE");
+                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                break;
 
-            case 6: /* Declined*/ 
-            $ElementosArray= array('evento' => $evento,'mensaje' => "DECLINADO");
-            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
-            break;
+            case 6: /* Declined*/
+                $ElementosArray= array('evento' => $evento,'mensaje' => "DECLINADO");
+                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                break;
 
-            case 104: /* Error*/ 
-            $ElementosArray= array('evento' => $evento,'mensaje' => "ERROR");
-            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
-            break;
+            case 104: /* Error*/
+                $ElementosArray= array('evento' => $evento,'mensaje' => "ERROR");
+                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                break;
 
-            case 5: /* Expired*/ 
-            $ElementosArray= array('evento' => $evento,'mensaje' => "EXPIRADO");
-            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
-            break;
-            
+            case 5: /* Expired*/
+                $ElementosArray= array('evento' => $evento,'mensaje' => "EXPIRADO");
+                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                break;
+
             default: /* Do something */
-            $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE POR PYU");
-            return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
-            break;
+                $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE POR PYU");
+                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                break;
         }
-        
+
 
 
 
@@ -180,12 +184,12 @@ class AsistentesController extends Controller
         $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
         $CantidadAsistentes = $this->EstadisticasServicios-> NumeroAsistentes($idEvento);
         $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados,
-                               'CantidadAsistentes'=>$CantidadAsistentes];
+            'CantidadAsistentes'=>$CantidadAsistentes];
         return response()->json($cantidadAsistentes);
     }
 
     /**Metodo que me retorna un asistente o usuario registrado al evento, se realiza la busqueda por mmedio de la
-     identificación.*/
+    identificación.*/
     public function ObtenerAsistente($cc)
     {
         return response()->json($this -> asistenteServicio ->ObtenerAsistente($cc));

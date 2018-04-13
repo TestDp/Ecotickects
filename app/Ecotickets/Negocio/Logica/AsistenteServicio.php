@@ -61,6 +61,11 @@ class AsistenteServicio
         return $respuesta;
     }
 
+    public function actualizarInfoPagos($referenceCode, $estadotransaccion, $medioPago){
+        $idinfopago = explode(env('REFERENCECODE'), $referenceCode)[1];
+        $respuesta = $this->asistenteRepositorio->actualizarInfoPagos($idinfopago, $estadotransaccion, $medioPago);
+        return $respuesta;
+    }
 
     public function validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta)
     {
