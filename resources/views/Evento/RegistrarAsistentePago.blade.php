@@ -158,11 +158,7 @@
                                     <input id="Edad" name="Edad" type="number" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
-                                    @if($ElementosArray["EventoId"] ==38)
                                     Dirección
-                                    @else
-                                        Agencia/Empresa
-                                    @endif
                                     <input id="Dirección" name="Dirección" type="text" class="form-control" />
                                 </div>
                             </div>
@@ -228,7 +224,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button">
+                                    <button onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button">
                                         Comprar
                                     </button>
                                 </div>
@@ -273,11 +269,7 @@
                                     <input id="Edad" name="Edad" type="number" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
-                                    @if($ElementosArray["EventoId"] ==5)
-                                        Dirección
-                                    @else
-                                        Agencia/Empresa
-                                    @endif
+                                    Dirección
                                     <input id="Dirección" name="Dirección" type="text" class="form-control"  />
                                 </div>
                             </div>
@@ -367,7 +359,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input onclick="RegistrarUsuario()" class="btn btn-blue ripple trial-button" value="Comprar"/>
+                                    <input onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
                                 </div>
                             </div>
                         </div>

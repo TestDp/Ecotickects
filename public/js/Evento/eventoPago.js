@@ -44,3 +44,230 @@ function generarQRCodePago(nombreEvento,pinBoleta)
     var qr = create_qrcode(nombreEvento +" - CC - " + pinBoleta + "ECOTICKETS" );
     $("#qrBoleta").html(qr);
 }
+
+function validarCamposRegistrarAsistente() {
+
+    validarFormularioPago();
+    if ($("#formularioEvento").valid()) {
+        RegistrarUsuario ();
+    }
+
+}
+
+function validarFormularioPago(){
+    $("#formularioEvento").validate({
+        rules: {
+            Nombres: {
+                required: true
+                // minlength: 2
+            },
+            Apellidos: {
+                required: true
+            },
+            Identificacion: {
+                required: true
+            },
+            telefono: {
+                required: true
+            },
+            Email: {
+                required: true,
+                email: true
+            },
+            confEmail: {
+                equalTo: "#Email",
+                email: true
+            },
+            Departamento_id: {
+                required: true
+            },
+            Ciudad_id: {
+                required: true
+            },
+            genero: {
+                required: true
+            },
+            Edad: {
+                required: true,
+                //min: 18
+            },
+            terminos: {
+                required: true
+            },
+            HabeasData: {
+                required: true
+            },
+            localidad: {
+                required: true
+            },
+            CantidadTickets: {
+                required: true
+            },
+            'Respuesta_id[0]': {
+                required: true
+            },
+            'Respuesta_id[1]': {
+                required: true
+            },
+            'Respuesta_id[2]': {
+                required: true
+            },
+            'Respuesta_id[3]': {
+                required: true
+            },
+            'Respuesta_id[4]': {
+                required: true
+            },
+            'Respuesta_id[5]': {
+                required: true
+            },
+            'Respuesta_id[6]': {
+                required: true
+            },
+            'Respuesta_id[7]': {
+                required: true
+            },
+            'Respuesta_id[8]': {
+                required: true
+            },
+            'Respuesta_id[9]': {
+                required: true
+            },
+            'Respuesta_id[10]': {
+                required: true
+            },
+            'Respuesta_id[11]': {
+                required: true
+            },
+            'Respuesta_id[12]': {
+                required: true
+            },
+            'Respuesta_id[13]': {
+                required: true
+            },
+            'Respuesta_id[14]': {
+                required: true
+            },
+            'Respuesta_id[15]': {
+                required: true
+            },
+            'Respuesta_id[16]': {
+                required: true
+            },
+            'Respuesta_id[17]': {
+                required: true
+            },
+            'Respuesta_id[18]': {
+                required: true
+            },
+
+        },
+        messages: {
+            Nombres: {
+                required: "*El nombre es obligatorio"
+            },
+            Apellidos: {
+                required: "*El apellido es obligatorio"
+            },
+            Identificacion: {
+                required: "*La identificación es obligatorio"
+            },
+            telefono: {
+                required: "*El telefono es obligatorio"
+            },
+            Email: {
+                required: "*El email es obligatorio",
+                email: "Se debe  ingresar un correo valido"
+            },
+            confEmail: {
+                equalTo: "*Los correos debe ser iguales",
+                email: "Se debe  ingresar un correo valido"
+            },
+            Departamento_id: {
+                required: "*El departamento es obligatorio"
+            },
+            Ciudad_id: {
+                required: "*La ciudad es obligatoria"
+            },
+            genero: {
+                required: "*El rol es obligatorio"
+            },
+            Edad: {
+                required: "*La edad es obligatoria"  ,
+                //min: "*Debes ser mayor de edad para asistir al evento"
+            },
+            terminos: {
+                required: "*Los términos son obligatorios"
+            },
+            HabeasData: {
+                required: "*El  HabeasData es obligatorio"
+            },
+            localidad: {
+                required: "*La localidad es obligatoria"
+            },
+            CantidadTickets: {
+                required: "*La cantidad de Tickets es obligatoria"
+            },
+            'Respuesta_id[0]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[1]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[2]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[3]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[4]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[5]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[6]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[7]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[8]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[9]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[10]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[11]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[12]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[13]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[14]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[15]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[16]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[17]': {
+                required: "*Seleccione una opción por favor"
+            },
+            'Respuesta_id[18]': {
+                required: "*Seleccione una opción por favor"
+            },
+
+        }
+
+    });
+
+}

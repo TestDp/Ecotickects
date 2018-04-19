@@ -6,9 +6,9 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3>CREAR EVENTO</h3></div>
-					<div style="text-align: left;" class="col-md-12">
-				<div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
-				</div>
+                    <div style="text-align: left;" class="col-md-12">
+                        <div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
+                    </div>
 
                     <form id="crearEvento" action="crearEvento" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
@@ -104,7 +104,7 @@
                         <br/>
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-12">
-                                <input type="button" class="btn btn-blue ripple trial-button" data-toggle="modal" data-target="#EnunciadoPregunta" value="Agregar Pregunta"/>
+                                <input type="button" class="btn btn-blue ripple trial-button" onclick="AgregarPregunta()" value="Agregar Pregunta"/>
                             </div>
                             <div id="EnunciadoPregunta" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
@@ -142,11 +142,10 @@
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-12">
                                 <h3 class="col-md-12" >Preguntas</h3>
-                                <hr style="border-top-color:lightslategray; width:100%" />
-                                <div id="ListaPreguntas"></div>
 
+                                <div id="ListaPreguntas">
 
-
+                                </div>
                                 <hr style="border-top-color:lightslategray; width:100%" />
                                 <div class="row">
                                     <div style="margin-bottom:2%;" class="col-md-12">
@@ -165,49 +164,200 @@
 
 
     <div hidden="hidden">
-
         <div class="panel-group" id="divPregunta" name="divPregunta">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <a id="tituloPregunta" name="tituloPregunta" data-toggle="collapse" href="#collapse"></a>
-                            <input id="TextoPregunta" name="TextoPregunta" type="hidden" />
-                            <input id="TextoTipoPregunta" name="TextoTipoPregunta" type="hidden"  value="1"/>
-                            <div class="input-group-addon alert-warning">
-                                <a id="agregarRespuesta" name="agregarRespuesta" title="Agregar Respuesta" data-toggle="modal" data-target="#EnunciadoRespuesta"><span class="glyphicon glyphicon-plus"  ></span></a>
-                                <a  title="Eliminar Pregunta"><span class="glyphicon glyphicon-erase"></span></a>
-
-                                <div id="EnunciadoRespuesta" name="EnunciadoRespuesta" class="modal fade" role="dialog">
+            <hr style="border-top-color:lightslategray; width:100%" />
+            <div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon alert-warning">
+                                    <span><strong>¿</strong></span>
+                                </div>
+                                <input class="form-control" type="text" id="enunciadoPregunta" name="enunciadoPregunta"   />
+                                <div class="input-group-addon alert-warning">
+                                    <span><strong>?</strong> </span>
+                                </div>
+                                <div class="input-group-addon alert-warning">
+                                    <a id="eliminarPregunta" name="eliminarPregunta" title="Eliminar Pregunta" data-toggle="modal" data-target="#modalElimianarPregunta"><span class="glyphicon glyphicon-minus"  ></span></a>
+                                </div>
+                                <div class="input-group-addon alert-warning">
+                                    <a id="agregarRespuesta" name="agregarRespuesta" title="Agregar Respuesta" data-toggle="modal" data-target="#modalElimianarPregunta"><span class="glyphicon glyphicon-plus"  ></span></a>
+                                </div>
+                                <!-- Modal confirmación elimminar pregunta-->
+                                <div id="modalElimianarPregunta" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Enunciado de la respuesta</h4>
+                                                <h4 class="modal-title">Enunciado de la pregunta</h4>
                                             </div>
                                             <div class="modal-body" style="text-align:center; color:black">
                                                 <div class="row">
-                                                    <div class="col-md-12">
-                                                        <input id="Respuesta" name="Respuesta" class="form-control" type="text" id="enunciadoPregunta" name="enunciadoPregunta"  />
-                                                    </div>
+                                                    ¿Esta seguro que desea eliminar la pregunta?
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarRespuesta(this)">Agregar</button>
+                                                <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Modal confirmación elimminar pregunta-->
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon alert-warning">
+                                    <span><strong>*</strong></span>
+                                </div>
+                                <input class="form-control" type="text" id="enunciadoPregunta" name="enunciadoPregunta"   />
+                                <div class="input-group-addon alert-warning">
+                                    <a id="eliminarRespuesta" name="eliminarRespuesta" title="Eliminar Respuesta" data-toggle="modal" data-target="#modalElimianarRespuesta"><span class="glyphicon glyphicon-minus"  ></span></a>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                                <div id="modalElimianarRespuesta" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Enunciado de la pregunta</h4>
+                                            </div>
+                                            <div class="modal-body" style="text-align:center; color:black">
+                                                <div class="row">
+                                                    ¿Esta seguro que desea eliminar la respuesta?
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon alert-warning">
+                                    <span><strong>*</strong></span>
+                                </div>
+                                <input class="form-control" type="text" id="enunciadoPregunta" name="enunciadoPregunta"   />
+                                <div class="input-group-addon alert-warning">
+                                    <a id="eliminarRespuesta" name="eliminarRespuesta" title="Eliminar Respuesta" data-toggle="modal" data-target="#modalElimianarRespuesta"><span class="glyphicon glyphicon-minus"  ></span></a>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                                <div id="modalElimianarRespuesta" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Enunciado de la pregunta</h4>
+                                            </div>
+                                            <div class="modal-body" style="text-align:center; color:black">
+                                                <div class="row">
+                                                    ¿Esta seguro que desea eliminar la respuesta?
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon alert-warning">
+                                    <span><strong>*</strong></span>
+                                </div>
+                                <input class="form-control" type="text" id="enunciadoPregunta" name="enunciadoPregunta"   />
+                                <div class="input-group-addon alert-warning">
+                                    <a id="eliminarRespuesta" name="eliminarRespuesta" title="Eliminar Respuesta" data-toggle="modal" data-target="#modalElimianarRespuesta"><span class="glyphicon glyphicon-minus"  ></span></a>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                                <div id="modalElimianarRespuesta" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Enunciado de la pregunta</h4>
+                                            </div>
+                                            <div class="modal-body" style="text-align:center; color:black">
+                                                <div class="row">
+                                                    ¿Esta seguro que desea eliminar la respuesta?
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon alert-warning">
+                                    <span><strong>*</strong></span>
+                                </div>
+                                <input class="form-control" type="text" id="enunciadoPregunta" name="enunciadoPregunta"   />
+                                <div class="input-group-addon alert-warning">
+                                    <a id="eliminarRespuesta" name="eliminarRespuesta" title="Eliminar Respuesta" data-toggle="modal" data-target="#modalElimianarRespuesta"><span class="glyphicon glyphicon-minus"  ></span></a>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                                <div id="modalElimianarRespuesta" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Enunciado de la pregunta</h4>
+                                            </div>
+                                            <div class="modal-body" style="text-align:center; color:black">
+                                                <div class="row">
+                                                    ¿Esta seguro que desea eliminar la respuesta?
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-blue ripple trial-button" data-dismiss="modal" onclick="AgregarPregunta()">Agregar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal confirmación elimminar respuesta-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                </div>
-                <div id="collapse" name="collapse" class="panel-collapse collapse">
-                    <ul class="list-group" id="ListaRespuestas" name="ListaRespuestas">
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -220,7 +370,7 @@
     <script src="{{ asset('js/Plugins/EditorTexto/ckeditor.js') }}"></script>
 
     <script type="text/javascript">
-            CKEDITOR.replace('informacionEvento');
+        CKEDITOR.replace('informacionEvento');
     </script>
 
 @endsection

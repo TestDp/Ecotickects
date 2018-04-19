@@ -8,9 +8,10 @@ var arrayColores= ["#000033","#0000CC","#003300","#0033FF","#006600","#006699",
     "#CC6633","#FF0066","#FF0099","#FF00CC","#FF00FF","#FF3300","#FF3333","#FF3366","#FF3399","#FF33CC","#FF33FF","#FF6600","#FF6633","#FF6666","#FF6699","#FF66CC",
     "#FF66FF","#FF9900","#FF9933","#FF9966","#FF9999"];
 
+var numeroPregunta = 0;
+
 //funcion que me retorna las ciudades dependiendo del departamento seleccionado
-function CargarMunicipiosDepartamento(idCiudad)
-{
+function CargarMunicipiosDepartamento(idCiudad){
     var idDepartamento =$("#Departamento_id").val();
     var $idCiudad =$("#Ciudad_id");
     $.ajax({
@@ -37,9 +38,8 @@ function CargarMunicipiosDepartamento(idCiudad)
 
 }
 
-var numeroPregunta = 0;
-function AgregarPregunta()
-{
+
+function AgregarPregunta(){
     //funcionalidad de agregar y mostrar pregunta
     var divPregunta = $("#divPregunta").clone();
     divPregunta.attr("id","pregunta");
@@ -56,16 +56,15 @@ function AgregarPregunta()
 }
 
 
-function  AgregarRespuesta(element)
-{
+function  AgregarRespuesta(element){
   var divPregunta = $(element).closest("div[name=pregunta]");
   var enunciadoRepuesta = divPregunta.find("input[name=Respuesta]").val();
   var htmlRespuesta = '<li class="list-group-item">'+enunciadoRepuesta+'<input id="TextoRespuesta" name="TextoRespuesta" type="hidden" value="'+enunciadoRepuesta+'" /></li>';
   divPregunta.find("ul[name=ListaRespuestas]").append(htmlRespuesta);
 }
 
-function EditarNombrePreguntasYRespuetas()
-{
+//Metodo para  editar los nombres  de los  elementos para  ser enviados  al  controlador
+function EditarNombrePreguntasYRespuetas(){
     $("#ListaPreguntas").find("div[name=pregunta]").each(function (i,pregunta) {
         $(pregunta).find("input[name=TextoPregunta]").attr("name","Enunciado[" + i+ "]");
         $(pregunta).find("input[name=TextoTipoPregunta]").attr("name","TipoPregunta_id[" + i + "]");
@@ -95,8 +94,7 @@ function ValidarPin () {
     });
 }
 
-function generarQRCode()
-{
+function generarQRCode(){
     var qr = create_qrcode($("#nomEvenQR").val() +" - CC - " + $("#Identificacion").val() + "ECOTICKETS" );
     var src = $(qr).attr('src');
     $("#imagen").val(src);
@@ -540,8 +538,6 @@ function construirGraficoKPI() {
 
 }
 
-
-
 function construirBarrasAsistentesCiudades() {
     var idEvento = $("#idevento").val();
     $.ajax({
@@ -771,11 +767,6 @@ function construirGraficoJuntas() {
 
 }
 
-
-
-
-
-
 function BuscarAsistente() {
     var cc = $("#Identificacion").val();
     $.ajax({
@@ -815,13 +806,11 @@ function BuscarAsistente() {
     });
 }
 
-function leerIdentificacion()
-{
+function leerIdentificacion(){
     validarQR($("#idEvento").val(),$("#cc").val());
 }
 
-function leerQR()
-{
+function leerQR() {
     var stringQR = $("#lectorQR").val();
     var string1 = stringQR.split("CC - ");
     if(string1.length>1){
@@ -839,8 +828,7 @@ function leerQR()
 
 }
 
-function validarQR(idEvento,cc)
-{
+function validarQR(idEvento,cc) {
     $.ajax({
         url: urlBase+'InformacionQR/'+idEvento+'/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
