@@ -9,7 +9,7 @@ var arrayColores= ["#000033","#0000CC","#003300","#0033FF","#006600","#006699",
     "#FF66FF","#FF9900","#FF9933","#FF9966","#FF9999"];
 
 var numeroPregunta = 0;
-
+var numeroRespuesta = 0;
 //funcion que me retorna las ciudades dependiendo del departamento seleccionado
 function CargarMunicipiosDepartamento(idCiudad){
     var idDepartamento =$("#Departamento_id").val();
@@ -44,25 +44,36 @@ function AgregarPregunta(){
     var divPregunta = $("#divPregunta").clone();
     divPregunta.attr("id","pregunta");
     divPregunta.attr("name","pregunta");
-    divPregunta.find("a[name=tituloPregunta]").text('¿'+$("#enunciadoPregunta").val()+'?');
-    divPregunta.find("a[name=tituloPregunta]").attr("href","#pregunta"+numeroPregunta);
-    divPregunta.find("div[name=collapse]").attr("id","pregunta"+numeroPregunta);
-    divPregunta.find("a[name=agregarRespuesta]").attr("data-target","#EnunciadoRespuesta"+numeroPregunta);
-    divPregunta.find("div[name=EnunciadoRespuesta]").attr("id","EnunciadoRespuesta"+numeroPregunta);
-    //funcioalidad de agregar los valores para ser guardados
-    divPregunta.find("input[name = TextoPregunta]").val($("#enunciadoPregunta").val());
+    divPregunta.find("a[name=eliminarPregunta]").attr("data-target","#modalElimianarPregunta"+numeroPregunta);
+    divPregunta.find("div[name=modalElimianarPregunta]").attr("id","modalElimianarPregunta"+numeroPregunta);
+        //bloque para asignar id diferentes a los modales de eliminar pregunta
+            divPregunta.find("div[name=Respuesta]").each(function(ind,element){
+                $(element).find("a[name=eliminarRespuesta]").attr("data-target","#modalElimianarRespuesta"+numeroRespuesta+numeroPregunta);
+                $(element).find("div[name=modalElimianarRespuesta]").attr("id","modalElimianarRespuesta"+numeroRespuesta+numeroPregunta);
+                numeroRespuesta++;
+            });
     numeroPregunta++;
     $("#ListaPreguntas").append(divPregunta);
 }
 
-
-function  AgregarRespuesta(element){
-  var divPregunta = $(element).closest("div[name=pregunta]");
-  var enunciadoRepuesta = divPregunta.find("input[name=Respuesta]").val();
-  var htmlRespuesta = '<li class="list-group-item">'+enunciadoRepuesta+'<input id="TextoRespuesta" name="TextoRespuesta" type="hidden" value="'+enunciadoRepuesta+'" /></li>';
-  divPregunta.find("ul[name=ListaRespuestas]").append(htmlRespuesta);
+function  EliminarPregunta(element) {
+    $("#elmentosEliminados").append($(element).closest("div[name=pregunta]"));
 }
 
+function  AgregarRespuesta(element){
+    var divRespuesta = $("#RespuestaPlantilla").clone();
+    divRespuesta.removeAttrs('hidden')
+    divRespuesta.attr("id","Respuesta");
+    divRespuesta.attr("name","Respuesta");
+    divRespuesta.find("a[name=eliminarRespuesta]").attr("data-target","#modalElimianarRespuesta"+numeroRespuesta+numeroPregunta);
+    divRespuesta.find("div[name=modalElimianarRespuesta]").attr("id","modalElimianarRespuesta"+numeroRespuesta+numeroPregunta);
+    $(element).closest("div[name=pregunta]").append(divRespuesta);
+    numeroRespuesta++;
+}
+
+function  EliminarRespuesta(element) {
+    $("#elmentosEliminados").append($(element).closest("div[name=Respuesta]"));
+}
 //Metodo para  editar los nombres  de los  elementos para  ser enviados  al  controlador
 function EditarNombrePreguntasYRespuetas(){
     $("#ListaPreguntas").find("div[name=pregunta]").each(function (i,pregunta) {
@@ -316,7 +327,6 @@ function validarCamposCrearEvento() {
     }
 
 }
-
 
 function validarFormularioCrearEvento(){
     $("#crearEvento").validate({
