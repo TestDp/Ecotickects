@@ -218,7 +218,9 @@ class AsistentesController extends Controller
     /*Metodo que me retornar los usuarios que asistienron al evento**/
     public function AsistentesActivos($idEvento)
     {
-        return response()->json($this->asistenteServicio->AsistentesActivos($idEvento));
+        $ListaUsuarios= array('usuariosRegistrados' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento),
+            'Asistentes'=>$this->asistenteServicio->AsistentesActivos($idEvento));
+        return response()->json($ListaUsuarios);
     }
 
     /*Metodo para  activar y leer el qr, hacer las dos operaciones en un sola**/
