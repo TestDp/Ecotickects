@@ -2,6 +2,7 @@
 
 namespace Ecotickets\Http\Controllers\Auth;
 
+use Ecotickets\Role;
 use Ecotickets\User;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -62,10 +63,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        $user
+            ->roles()
+            ->attach(Role::where('name', 'user')->first());
+        return $user;
     }
 }
