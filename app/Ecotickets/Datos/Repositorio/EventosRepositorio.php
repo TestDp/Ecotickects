@@ -14,6 +14,7 @@ use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Respuesta;
+use Eco\Datos\Modelos\PrecioBoleta;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Null_;
 use PhpParser\Node\Stmt\Echo_;
@@ -32,9 +33,20 @@ class EventosRepositorio
                 $evento->FlyerEvento  = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
             }
 
-            $evento->Espago = 0;
-
             $evento ->save();
+
+            if($EdEvento->esPago == 1){              
+                $PrecioBoleta = new PrecioBoleta();
+                $PrecioBoleta ->localidad = $EdEvento->localidad;
+                $PrecioBoleta ->precio = $EdEvento->precio;
+                $PrecioBoleta ->Evento_id = $evento -> id;
+                $PrecioBoleta ->cantidad = 1; 
+                $PrecioBoleta ->save();
+                                
+             }
+
+
+
             //fin del bloque
             $ind =0;
             //Validar si el array es vacio

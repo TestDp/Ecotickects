@@ -90,6 +90,35 @@
                             </div>
                         </div>
                         <div style="margin:0px !important;" class="row">
+                            <div class="col-md-6">
+                                Codigo PULEP
+                                <input id="CodigoPulep" name="CodigoPulep" type="text" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                Evento Pago
+                                <select id="esPago" name="esPago" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    <option value="0">No</option>
+                                    <option value="1">SI</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin:0px !important;" class="row">
+                            <div class="col-md-3" >
+                                Localidad
+                                <select id="localidad" name="localidad" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    <option value="0">General</option>
+                                    <option value="1">VIP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6" >
+                                Precio Boleta
+                                <input id="precio" name="precio" type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div style="margin:0px !important;" class="row">
                             <div class="col-md-12">
                                 Flyer del evento
                                 <input type="file" class="form-control" name="ImagenFlyerEvento" >
