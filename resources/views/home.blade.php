@@ -1,4 +1,4 @@
-@extends('layouts.eventos')
+@extends('layouts.profile')
 
 @section('content')
     <div class="container">
