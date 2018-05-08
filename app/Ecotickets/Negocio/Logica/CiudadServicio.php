@@ -23,4 +23,8 @@ class CiudadServicio
         return $this->ciudadRepor->obtenerCiudades($idDepartamento);
     }
 
+    public function obtenerListaCiudades()
+    {
+        return $this->ciudadRepor->obtenerListaCiudades();
+    }
 }

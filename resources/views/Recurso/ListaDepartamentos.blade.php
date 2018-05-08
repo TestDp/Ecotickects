@@ -5,71 +5,63 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Lista de Asistentes</h3></div>
-                    <div style="overflow-x:auto;" class="panel-body">
+                    <div class="panel-heading text-center"><h3>Departamentos</h3></div>
+
+                    <div class="panel-body">
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+						<div style="padding-bottom:2%;" class="row">
+							<div style="text-align: left;" class="col-md-6">
+							<a class="btn btn-blue ripple trial-button" href="#">Agregar Departamento</a>
+							</div>
+						</div>
+						<div style="overflow-x:auto;">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                             <thead>
                             <tr >
-                                <th>
-                                    Identificación
+                                <th >
+                                    Codigo
                                 </th>
-                                <th>
+                                <th >
                                     Nombre
                                 </th>
-                                <th>
-                                    Apellidos
-                                </th>
-                                <th>
-                                    Celular
-                                </th>
-                                <th>
-                                    Correo
-                                </th>
-                                <th>
-                                    Ciudad
+                                <th >
+                                  Accción
                                 </th>
                             </tr>
                             </thead>
                             <tbody >
-                            @foreach($ListaAsistentes["Asistentes"] as $asistente)
-                            <tr >
-                                <th>
-                                  {{$asistente->Identificacion}}
-                                </th>
-                                <th>
-                                    {{$asistente->Nombres}}
-                                </th>
-                                <th>
-                                    {{$asistente->Apellidos}}
-                                </th>
-                                <th>
-                                    {{$asistente->telefono}}
-                                </th>
-                                <th>
-                                    {{$asistente->Email}}
-                                </th>
-                                <th>
-                                    {{$asistente->ciudad->Nombre_Ciudad}}
-                                </th>
-                            </tr>
+                            @foreach($listaDepartamentos as $departamento)
+                                <tr>
+                                    <td >
+                                        {{ $departamento->Codigo_Departamento }}
+                                    </td>
+                                    <td >
+                                        {{ $departamento->Nombre_Departamento }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-blue ripple trial-button" href="#">Editar</a>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
-
                         </table>
+						</div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 
-
-    <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#TablaListaAsistentes').DataTable({
+            var table = $('#TablaListaEventos').DataTable({
                 dom: 'B<"clear">lfrtip',
                 buttons: {
                     name: 'primary',

@@ -70,14 +70,14 @@
                         <a href="#homeEventos" data-toggle="collapse" aria-expanded="false">Eventos</a>
                         <ul class="collapse list-unstyled" id="homeEventos">
                             <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
-                            <li><a href="{{ url('/MisEventos') }}">Mis Eventos</a></li>
+                            <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#homeCupones" data-toggle="collapse" aria-expanded="false">Cupones</a>
                         <ul class="collapse list-unstyled" id="homeCupones">
-                            <li><a href="#">Crear Cupones</a></li>
-                            <li><a href="#">Mis Cupones</a></li>
+                            <li><a href="{{ url('FormularioEvento') }}">Crear Cupones</a></li>
+                            <li><a href="{{ url('MisCupones') }}">Mis Cupones</a></li>
                         </ul>
                     </li>
                     <li>
@@ -86,12 +86,18 @@
                     <li>
                         <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false">Maestros</a>
                         <ul class="collapse list-unstyled" id="homeMaestros">
-                            <li><a href="#">Departamentos</a></li>
-                            <li><a href="#">Ciudades</a></li>
+                            <li><a href="{{ url('departamentos') }}">Departamentos</a></li>
+                            <li><a href="{{ url('ListaCiudades') }}">Ciudades</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ route('register') }}">Registrar Usuario</a>
+                        <a href="#homeUsuarios" data-toggle="collapse" aria-expanded="false">Usuarios y Roles</a>
+                        <ul class="collapse list-unstyled" id="homeUsuarios">
+                            <li><a href="{{ route('register') }}">Registrar Usuario</a></li>
+                            <li><a href="{{ url('usuarios') }}">Usuarios</a></li>
+                            <li><a href="{{ url('') }}">Agregar Rol</a></li>
+                            <li><a href="{{ url('') }}">Roles</a></li>
+                        </ul>
                     </li>
 					<li>
                         <a href="{{ route('logout') }}"

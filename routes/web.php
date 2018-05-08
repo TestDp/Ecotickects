@@ -38,6 +38,7 @@ Route::get('Eventos', [
 Route::get('Cupones', [
     'uses' =>'Ecotickets\EcoticketsController@ObtenerCupones'
 ]);
+
 Auth::routes();
 
 /** Obtiene el formulario del evento*/
@@ -60,10 +61,7 @@ Route::get('FormularioEvento', 'Evento\EventosController@obtenerFormularioEvento
 /*Obtener mi eventos*/
 Route::get('MisEventos', 'Evento\EventosController@ObtenerMisEventos')->name('MisEventos');
 
-/*Obtiene las ciudades por departamento*/
-Route::post('Ciudades/{idDepartamento}',[
-    'uses' =>'Evento\CiudadController@obtenerCiudades'
-]);
+
 
 /*Guarda el evento del organizador*/
 Route::post('crearEvento',[
@@ -186,6 +184,7 @@ Route::get('AsistentesXFechaApp/{idEvento}',[
 Route::get('JuntasAsistentesApp/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@NumeroJuntasAsistentes'
 ]);
+
 Route::get('EstadisticasApp/{idEvento}',[
     'uses' =>'Evento\EstadisticasController@EstadisticasApp'
 ]);
@@ -207,3 +206,30 @@ Route::get('/respuestaPago', function () {
     return view('respuestaPago');
 });
 
+// INICIO DE RUTAS PARA EL CONTROLADOR DE CUPONES//
+
+    Route::get('MisCupones', 'Cupon\CuponesController@ObtenerMisCupones')->name('MisCupones');
+
+//FIN DE RUTAS PARA EL CONTROLADOR DE CUPONES//
+
+//INICIO DE RUTAS PARA EL CONTROLADOR DE  DEPARTAMENTOS//
+
+    Route::get('departamentos', 'Recurso\DepartamentoController@ObtenerDepartamento')->name('Departamentos');
+
+//FIN DE RUTAS PARA EL CONTROLADOR DE  DEPARTAMENTOS//
+
+//INICIO DE RUTAS PARA EL CONTROLADOR DE  CIUDADES//
+
+    /*Obtiene las ciudades por departamento*/
+    Route::post('Ciudades/{idDepartamento}',['uses' =>'Recurso\CiudadController@obtenerCiudades']);
+
+    /*Obtiene las ciudades por departamento*/
+    Route::get('ListaCiudades',['uses' =>'Recurso\CiudadController@obtenerListaCiudades']);
+
+//FIN DE RUTAS PARA EL CONTROLADOR DE  CIUDADES//
+
+//INICIO DE RUTAS PARA EL CONTROLADOR DE  USUARIOS//
+
+Route::get('usuarios', 'UsuarioYRol\UsuarioController@ObtenerUsuarios')->name('usuarios');
+
+//FIN DE RUTAS PARA EL CONTROLADOR DE  USUARIOS//

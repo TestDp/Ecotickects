@@ -21,4 +21,8 @@ class CiudadRepositorio
         return $ciudades;
     }
 
+    public function obtenerListaCiudades()
+    {
+        return Ciudad::all();
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecotickets\Http\Controllers\Evento;
+namespace Ecotickets\Http\Controllers\Recurso;
 
 use Eco\Negocio\Logica\CiudadServicio;
 use Ecotickets\Http\Controllers\Controller;
@@ -15,6 +15,7 @@ class CiudadController extends Controller
     {
         $this->ciudadServicio = $ciudadServicio;
     }
+
     public function obtenerCiudades($idDepartamento)
     {
        $ciudades = $this->ciudadServicio->obtenerCiudades($idDepartamento);
@@ -25,6 +26,13 @@ class CiudadController extends Controller
         $ciudades = $this->ciudadServicio->obtenerCiudades($idDepartamento);
         $ciudadesArray=['ciudades'=>$ciudades];
         return response()->json($ciudadesArray);
+    }
+
+    public function obtenerListaCiudades(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin']);
+        $ciudades = $this->ciudadServicio->obtenerListaCiudades();
+        return view('Recurso/ListaCiudades',['listaCiudades' =>$ciudades]);
     }
 
 }
