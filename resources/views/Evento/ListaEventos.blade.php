@@ -9,72 +9,34 @@
 							<a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a>
 							</div>
 						</div>
-	<div style="overflow-x:auto;">
-<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
-    <thead>
-    <tr >
-        <th >
-            Nombre
-        </th>
-        <th >
-            Lugar
-        </th>
-        <th >
-            Ciudad
-        </th>
-        <th >
-            Departamento
-        </th>
-        <th >
-            Fecha del Evento
-        </th>
-        <th >
-            Fecha Inicial de registro
-        </th>
-        <th >
-            Fecha Final de registro
-        </th>
-        <th></th>
-    </tr>
-    </thead>
+	<tbody>
+<div class="gtco-section">
+		<div class="gtco-container">
+			<div class="row row-pb-md">
+				<div class="col-md-12">
+					<ul id="gtco-portfolio-list">
 
-    <tbody >
+    
     @foreach($ListaEventos["eventos"] as $evento)
-        <tr>
-
-            <td >
-                {{ $evento->Nombre_Evento }}
-            </td>
-            <td >
-                {{ $evento->Lugar_Evento }}
-            </td>
-            <td >
-                {{ $evento->ciudad->Nombre_Ciudad }}
-            </td>
-            <td>
-                {{ $evento->ciudad->departamento->Nombre_Departamento }}
-            </td>
-            <td >
-                {{ $evento->Fecha_Evento }}
-            </td>
-            <td >
-                {{ $evento->Fecha_Inicial_Registro }}
-            </td>
-            <td>
-                {{ $evento->Fecha_Final_Registro }}
-            </td>
-            <td>
+	
+		<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(http://dpsoluciones.co/wp-content/uploads/2017/11/Dp-Nature2.png);">
+      		<div style="height:15%;"><h1>{{ $evento->Nombre_Evento }}</h1></div>
+			<h1>-----------------</h1>
+			<h2>{{ $evento->Lugar_Evento }}</h2>			   
+			<h4>{{ $evento->ciudad->Nombre_Ciudad }}</h4>			   
+			<h4>{{ $evento->ciudad->departamento->Nombre_Departamento }}</h4>
+			<h1>-----------------</h1>            
                 @if($evento->esPago)
-                <a class="btn btn-blue ripple trial-button" href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}">Registrarse</a>
+                <a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
                 @else
-                    <a class="btn btn-blue ripple trial-button" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">Registrarse</a>
+                <a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
                 @endif
-            </td>
-        </tr>
+           </li>
     @endforeach
-    </tbody>
-</table>
-</div>
+    
+	</ul>
+</div></div></div></div>
+</tbody>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {

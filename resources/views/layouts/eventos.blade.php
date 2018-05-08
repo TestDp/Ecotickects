@@ -48,6 +48,32 @@
 	<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{asset('js/Plugins/data-table/datatables.css')}}" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/animate.css') }}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/icomoon.css') }}">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/themify-icons.css') }}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/bootstrap.css') }}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/magnific-popup.css') }}">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/owl.theme.default.min.css') }}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{{ asset('css/EventosEco/style.css') }}">
+
+	<!-- Modernizr JS -->
+	<script src="{{ asset('js/EventosEco/modernizr-2.6.2.min.js') }}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
     	<div class="preloader">
@@ -132,6 +158,25 @@
 	<script src="{{asset('js/main.js') }}"></script>
 	<script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
 	<script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
+	
+	
+	<!-- jQuery -->
+	<script src="{{ asset('js/EventosEco/jquery.min.js') }}"></script>
+	<!-- jQuery Easing -->
+	<script src="{{ asset('js/EventosEco/jquery.easing.1.3.js') }}"></script>
+	<!-- Bootstrap -->
+	<script src="{{ asset('js/EventosEco/bootstrap.min.js') }}"></script>
+	<!-- Waypoints -->
+	<script src="{{ asset('js/EventosEco/jquery.waypoints.min.js') }}"></script>
+	<!-- Carousel -->
+	<script src="{{ asset('js/EventosEco/owl.carousel.min.js') }}"></script>
+	<!-- countTo -->
+	<script src="{{ asset('js/EventosEco/jquery.countTo.js') }}"></script>
+	<!-- Magnific Popup -->
+	<script src="{{ asset('js/EventosEco/jquery.magnific-popup.min.js') }}"></script>
+	<script src="{{ asset('js/EventosEco/magnific-popup-options.js') }}"></script>
+	<!-- Main -->
+	<script src="{{ asset('js/EventosEco/main.js') }}"></script>
 
 </body>
 </html>
