@@ -1,4 +1,4 @@
-@extends('layouts.eventos')
+@extends('layouts.profile')
 
 @section('content')
     <div class="container">
@@ -96,28 +96,36 @@
                             </div>
                             <div class="col-md-3">
                                 Evento Pago
-                                <select id="esPago" name="esPago" class="form-control">
+                                <select id="esPago" name="esPago" class="form-control" onchange="MostrarDivBoletas()">
                                     <option value="">Seleccionar</option>
                                     <option value="0">No</option>
                                     <option value="1">SI</option>
                                 </select>
                             </div>
                         </div>
-                        <div style="margin:0px !important;" class="row">
-                            <div class="col-md-3" >
-                                Localidad
-                                <select id="localidad" name="localidad" class="form-control">
-                                    <option value="">Seleccionar</option>
-                                    <option value="0">General</option>
-                                    <option value="1">VIP</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6" >
-                                Precio Boleta
-                                <input id="precio" name="precio" type="text" class="form-control" />
+                        <div id="divBoletas" hidden>
+                            <hr/>
+                            <div class="panel-heading text-center"><h4>Lista de Precios</h4></div>
+
+                            <div class="row" id="PreciosBoletas" name="PreciosBoletas">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                            <div class="input-group-addon" >
+                                                Localidad
+                                                <input id="localidad" name="localidad" type="text" class="form-control" />
+                                            </div>
+                                            <div class="input-group-addon" >
+                                                Precio Boleta
+                                                <input id="precio" name="precio" type="number" class="form-control" />
+                                            </div>
+                                            <div class="input-group-addon">
+                                                <a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
+                                            </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
+                        <hr/>
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-12">
                                 Flyer del evento
@@ -160,6 +168,7 @@
 
 
     <div hidden="hidden">
+
         <div class="panel-group" id="divPregunta" name="divPregunta">
             <hr style="border-top-color:lightslategray; width:100%" />
                 <div class="row">
@@ -389,6 +398,24 @@
                         </div>
                     </div>
                     <!-- Modal confirmación elimminar respuesta-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row"  id="DivPreciosBoletas" hidden>
+        <div class="col-md-10">
+            <div class="form-group">
+                <div class="input-group-addon" >
+                    Localidad
+                    <input id="localidad" name="localidad" type="text" class="form-control" />
+                </div>
+                <div class="input-group-addon" >
+                    Precio Boleta
+                    <input id="precio" name="precio" type="number" class="form-control" />
+                </div>
+                <div class="input-group-addon">
+                    <a id="elimminarLocalidad" name="elimminarLocalidad" title="Eliminar localidad" onclick="EliminarLocalidad(this)"><span class="glyphicon glyphicon-minus"  ></span></a>
                 </div>
             </div>
         </div>

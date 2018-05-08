@@ -73,41 +73,7 @@
                             <li><a href="{{ route('login') }}">Inicio de Sesión</a></li>
                          <!--   <li><a href="{{ route('register') }}">Registrarse</a></li>-->
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    </li>
-									<li>
-                                        <a href="{{ route('home') }}">
-                                            Mis Eventos
-                                        </a>
-                                    </li>
-									<li>
-                                        <a href="{{ url('Eventos') }}">
-                                            Todos los eventos
-                                        </a>
-                                    </li>
-									<li>
-                                        <a href="{{ url('Cupones') }}">
-                                            Todos los cupones
-                                        </a>
-                                    </li>
-									<li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Cerrar Sesión
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
+							 <li><a href="{{ url('/home') }}">Home</a></li>
                         @endguest
                     </ul>
 			</div>
@@ -115,14 +81,14 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-		
-	
+
+
 	<section id="pricing" class="section">
 		<div class="container">
 		@yield('content')
-	</div>	
+	</div>
 	</section>
-	
+
 	<footer>
 		<div class="container">
 			<div class="row">
@@ -131,7 +97,7 @@
 					<h5 class="light regular light-white">Administración, gestión y estadísticas de tus eventos.</h5>
 					<a href="http://dpsoluciones.co/nuestros-servicios/" target="_blank" class="btn btn-blue ripple trial-button">Ver más</a>
 				</div>
-			
+
 			</div>
 			<div class="row bottom-footer text-center-mobile">
 				<div class="col-sm-8">
@@ -147,7 +113,7 @@
 			</div>
 		</div>
 	</footer>
-	
+
 
 
 	<!-- Holder for mobile navigation -->

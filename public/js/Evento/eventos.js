@@ -1,4 +1,4 @@
-var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+var urlBase = "/Ecophp/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 var arrayColores= ["#000033","#0000CC","#003300","#0033FF","#006600","#006699",
     "#0066CC","#009966","#009999","#0099CC","#0099FF","#00CC99","#00CCCC","#00CCFF","#00FF00","#00FF33",
     "#00FF66","#00FF99","#330033","#330066","#330099","#3300CC","#3300FF","#333300","#333333","#333366","#333399","#3333CC","#3333FF",
@@ -83,7 +83,13 @@ function EditarNombrePreguntasYRespuetas(){
             $(respuesta).attr("name","TextoRespuesta[" + i + "][" + j +"]");
         })
    });
-
+    //editar los  nommbres de los  campos  cuando el evento es pago
+    if($("#esPago").val() ==1){
+        $("#divBoletas").find("div[name=PreciosBoletas]").each(function (i,precioBoleta) {
+            $(precioBoleta).find("input[name=localidad]").attr("name","localidad["+ i +"]");
+            $(precioBoleta).find("input[name=precio]").attr("name","precio["+ i +"]");
+        });
+    }
 }
 
 function ValidarPin () {
@@ -535,7 +541,7 @@ function construirGraficoKPI() {
                   gauge.maxValue = parseInt(result.CantidadEsperada); // set max gauge value
                   gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
                   gauge.animationSpeed = 32; // set animation speed (32 is default value)
-                  gauge.set(parseInt(result.CantidadRegistrados)); // set actual value
+                  gauge.set(parseInt(result.CantidadAsistentes)); // set actual value
                   
             
                
@@ -911,4 +917,25 @@ function activarQRUsuario(){
         }
     });
 
+}
+
+function  MostrarDivBoletas(){
+
+    if($("#esPago").val() ==1){
+        $("#divBoletas").removeAttr("hidden");
+    }else{
+        $("#divBoletas").attr("hidden","hidden");
+    }
+}
+
+function AgregarNuevaLocalidad(){
+    var divLocalidad = $("#DivPreciosBoletas").clone();
+    divLocalidad.attr("id","PreciosBoletas");
+    divLocalidad.attr("name","PreciosBoletas");
+    divLocalidad.removeAttr("hidden");
+    $("#divBoletas").append(divLocalidad);
+}
+
+function EliminarLocalidad(element){
+    $(element).closest("div[name=PreciosBoletas]").remove();
 }

@@ -21,12 +21,7 @@ class EventosServicio
 
     public function crearEvento($EdEvento)
     {
-        if($EdEvento->Nombre_Evento == "Evento123")
-        {
-            return false;
-        }else{
             return $this->eventoRepor->crearEvento($EdEvento);
-        }
 
     }
 

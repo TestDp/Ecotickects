@@ -1,7 +1,7 @@
 @extends('layouts.eventos')
 
 @section('content')
-	<div class="row title text-center">
+	<div class="row title text-ri">
 								<h2 class="black">EVENTOS ECOTICKETS</h2>
 	</div>
 						<div style="padding-bottom:2%;" class="row">

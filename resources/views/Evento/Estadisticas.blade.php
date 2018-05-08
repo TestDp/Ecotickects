@@ -9,11 +9,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <canvas id="canvasCantidadAsistentes" class="img-responsive"></canvas>
-                </div>  
+                </div>
+                @if ($idUser !=1)
 				<div class="col-md-6">
                     <canvas id="canvasAsistentesXFecha" class="img-responsive"></canvas>
-                </div>				
+                </div>
+                @endif
             </div>
+            @if ($idUser !=1)
 			<div class="row">                
                 <div class="col-md-6">
                     <canvas style="height:600px !important;" id="canvasCiudadesAsistens" class="img-responsive"></canvas>
@@ -22,13 +25,13 @@
                     <canvas style="height:600px !important;" id="canvasEdadesAsistentes" class="img-responsive"></canvas>
                 </div>   
             </div>
-            <div class="row" hidden="hidden">
+            @endif
+            <div class="row">
                 <div class="col-md-6">
                     <canvas style="height:600px !important;" id="canvasJuntAsistens" class="img-responsive"></canvas>
                 </div>  
                 <div class="col-sm-6">
                     <canvas style="height:300px !important;" id="canvasKPI" class="img-responsive"></canvas>
-                    <div id="preview-textfield" class="preview-textfield reset" style="font-size: 41px;">20</div>
                 </div>
             </div>
         </div>

@@ -64,28 +64,46 @@
                 <ul class="list-unstyled components">
                     <p>{{ Auth::user()->name }}</p>
                     <li>
-                        <a href="{{ url('/') }}">Inicio</a>
+                        <a href="{{ url('/home') }}">Home</a>
                     </li>
                     <li class="active">
-                        <a href="#">Mis Eventos</a>
+                        <a href="#homeEventos" data-toggle="collapse" aria-expanded="false">Eventos</a>
+                        <ul class="collapse list-unstyled" id="homeEventos">
+                            <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
+                            <li><a href="{{ url('/MisEventos') }}">Mis Eventos</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">Todos los eventos</a>
+                        <a href="#homeCupones" data-toggle="collapse" aria-expanded="false">Cupones</a>
+                        <ul class="collapse list-unstyled" id="homeCupones">
+                            <li><a href="#">Crear Cupones</a></li>
+                            <li><a href="#">Mis Cupones</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">Todos los cupones</a>
+                        <a href="#">Estadísticas Generales</a>
+                    </li>
+                    <li>
+                        <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false">Maestros</a>
+                        <ul class="collapse list-unstyled" id="homeMaestros">
+                            <li><a href="#">Departamentos</a></li>
+                            <li><a href="#">Ciudades</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}">Registrar Usuario</a>
                     </li>
 					<li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Cerrar Sesión
-                                        </a>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            Cerrar Sesión
+                        </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
                 </ul>
             </nav>
 
@@ -117,6 +135,7 @@
          <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
 
          <script type="text/javascript">
              $(document).ready(function () {

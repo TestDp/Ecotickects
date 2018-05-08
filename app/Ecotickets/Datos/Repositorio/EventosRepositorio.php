@@ -34,15 +34,18 @@ class EventosRepositorio
             }
 
             $evento ->save();
+            $indPrecio =0;
+            if($EdEvento->esPago == 1){
+                foreach ($EdEvento->localidad as $localidad ){
+                    $PrecioBoleta = new PrecioBoleta();
+                    $PrecioBoleta ->localidad = $localidad;
+                    $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
+                    $PrecioBoleta ->Evento_id = $evento -> id;
+                    $PrecioBoleta ->cantidad = 1;
+                    $PrecioBoleta ->save();
+                    $indPrecio++;
+                }
 
-            if($EdEvento->esPago == 1){              
-                $PrecioBoleta = new PrecioBoleta();
-                $PrecioBoleta ->localidad = $EdEvento->localidad;
-                $PrecioBoleta ->precio = $EdEvento->precio;
-                $PrecioBoleta ->Evento_id = $evento -> id;
-                $PrecioBoleta ->cantidad = 1; 
-                $PrecioBoleta ->save();
-                                
              }
 
 

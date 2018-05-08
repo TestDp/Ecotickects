@@ -53,8 +53,12 @@ Route::get('FormularioAsistentePago/{idEvento}', [
 /**Retorna  el home de los usuario mostrando los eventos creados por él*/
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 /*Obtiene el formularion para guardar un evento*/
 Route::get('FormularioEvento', 'Evento\EventosController@obtenerFormularioEvento')->name('CrearEvento');
+
+/*Obtener mi eventos*/
+Route::get('MisEventos', 'Evento\EventosController@ObtenerMisEventos')->name('MisEventos');
 
 /*Obtiene las ciudades por departamento*/
 Route::post('Ciudades/{idDepartamento}',[
