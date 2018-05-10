@@ -33,12 +33,16 @@ class EcoticketsController extends Controller
     }
     public  function  ObtenerEventos()
     {
-        return $this->eventoServicio->obtenerEventos();
+        $eventos = $this->eventoServicio->obtenerEventos();
+        $ListaEventos= array('eventos' => $eventos);
+        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
     }
 
     public  function  ObtenerCupones(EventosServicio $eventosServicio)
     {
-        return $this->eventoServicio->obtenerCupones();
+        $eventos = $this->eventoServicio->obtenerCupones();
+        $ListaEventos= array('eventos' => $eventos);
+        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
     }
 
     //metodo que me muestra el formulario del registro para el evento

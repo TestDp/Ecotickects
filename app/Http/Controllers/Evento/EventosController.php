@@ -88,4 +88,43 @@ class EventosController extends Controller
         return view('Evento/MisEventos',['ListaEventos' => $ListaEventos]);
     }
 
+    public function FormularioActivarFunciones(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin','user']);
+        $user = Auth::user();
+        $eventos=[];
+        if(Auth::user()->hasRole('admin'))
+        {
+            $eventos = Evento::all();
+        }else{
+            $eventos = Evento::where("user_id","=",$user->id)->get();
+        }
+        $ListaEventos= array('eventos' => $eventos);
+        return view('Evento/ActivarFuncionesEventos',['ListaEventos' => $ListaEventos]);
+    }
+
+    /*metodo para activar o desactivar si el evento es pago*/
+    public function ActivarEventoPago($idEvento,$FlagEsActivo)
+    {
+        return response()->json($this->eventoServicio->ActivarEventoPago($idEvento,$FlagEsActivo));
+    }
+
+    /*metodo para activar o desactivar la tienda del evento*/
+    public function ActivarTienda($idEvento,$FlagEsActivo)
+    {
+        return response()->json($this->eventoServicio->ActivarTienda($idEvento,$FlagEsActivo));
+    }
+
+    /*metodo para activar o desactivar la solicitud de pin*/
+    public function ActivarSolicitarPIN($idEvento,$FlagEsActivo)
+    {
+        return response()->json($this->eventoServicio->ActivarSolicitarPIN($idEvento,$FlagEsActivo));
+    }
+
+    /*metodo para activar o desactivar si el evento es publico o no*/
+    public function ActivarEsPublico($idEvento,$FlagEsActivo)
+    {
+        return response()->json($this->eventoServicio->ActivarEsPublico($idEvento,$FlagEsActivo));
+    }
+
 }

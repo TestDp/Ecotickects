@@ -81,8 +81,15 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false">Configuraciones Evento</a>
+                        <ul class="collapse list-unstyled" id="homeConfiguraciones">
+                            <li><a href="{{ url('ActivarFunciones') }}">Activar Funciones</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#">Estadísticas Generales</a>
                     </li>
+                    @if(Auth::user()->hasRole('admin'))
                     <li>
                         <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false">Maestros</a>
                         <ul class="collapse list-unstyled" id="homeMaestros">
@@ -99,6 +106,7 @@
                             <li><a href="{{ url('') }}">Roles</a></li>
                         </ul>
                     </li>
+                    @endif
 					<li>
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
@@ -142,6 +150,7 @@
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
+        <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
 
          <script type="text/javascript">
              $(document).ready(function () {

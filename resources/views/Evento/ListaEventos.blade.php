@@ -31,6 +31,9 @@
                 @else
                 <a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
                 @endif
+            @if($evento->activarTienda ==1)
+                <a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Tienda</h5></a>
+            @endif
            </li>
     @endforeach
     

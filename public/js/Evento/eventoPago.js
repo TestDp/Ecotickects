@@ -1,4 +1,4 @@
-var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+var urlBase = "/Ecophp/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 function RegistrarUsuario () {
     var form = $("#formularioEvento");
     var token = $("#_token").val()
@@ -46,12 +46,10 @@ function generarQRCodePago(nombreEvento,pinBoleta)
 }
 
 function validarCamposRegistrarAsistente() {
-
     validarFormularioPago();
     if ($("#formularioEvento").valid()) {
         RegistrarUsuario ();
     }
-
 }
 
 function validarFormularioPago(){
@@ -270,4 +268,101 @@ function validarFormularioPago(){
 
     });
 
+}
+
+function ActivarEsPago (element,idEvento) {
+    var FlagEsActivo ="";
+     if($(element).prop( "checked" ))
+     {
+         FlagEsActivo =1;
+     }else{
+         FlagEsActivo =0;
+     }
+
+    $.ajax({
+        url: urlBase+'ActivarEventoPago/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            FlagEsActivo: FlagEsActivo,
+            idEvento:idEvento,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+
+            }
+        }
+    });
+}
+
+function ActivarTienda (element,idEvento) {
+    var FlagEsActivo ="";
+    if($(element).prop( "checked" ))
+    {
+        FlagEsActivo =1;
+    }else{
+        FlagEsActivo =0;
+    }
+    $.ajax({
+        url: urlBase+'ActivarTienda/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            FlagEsActivo: FlagEsActivo,
+            idEvento:idEvento,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+
+            }
+        }
+    });
+}
+
+function ActivarSolicitarPIN (element,idEvento) {
+    var FlagEsActivo ="";
+    if($(element).prop( "checked" ))
+    {
+        FlagEsActivo =1;
+    }else{
+        FlagEsActivo =0;
+    }
+    $.ajax({
+        url: urlBase+'ActivarSolicitarPIN/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            FlagEsActivo: FlagEsActivo,
+            idEvento:idEvento,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+
+            }
+        }
+    });
+}
+
+function ActivarEsPublico (element,idEvento) {
+    var FlagEsActivo ="";
+    if($(element).prop( "checked" ))
+    {
+        FlagEsActivo =1;
+    }else{
+        FlagEsActivo =0;
+    }
+    $.ajax({
+        url: urlBase+'ActivarEsPublico/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            FlagEsActivo: FlagEsActivo,
+            idEvento:idEvento,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+
+            }
+        }
+    });
 }

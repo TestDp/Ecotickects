@@ -12,7 +12,7 @@ class Evento extends Model
                           'Fecha_Inicial_Registro','Fecha_Final_Registro',
                           'Tipo_Evento','user_id','Ciudad_id','FlyerEvento',
                           'numeroAsistentes','SolicitarPIN','CorreoEnviarInvitacion',
-                          'EsPublico','informacionEvento','esPago','CodigoPulep'];
+                          'EsPublico','informacionEvento','esPago','CodigoPulep','activarTienda'];
 
     public function user(){
         return $this->belongsTo('User');

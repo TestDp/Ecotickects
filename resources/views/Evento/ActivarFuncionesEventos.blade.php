@@ -6,18 +6,13 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3>Mis Eventos</h3></div>
-
+                    <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
                         @endif
-						<div style="padding-bottom:2%;" class="row">
-							<div style="text-align: left;" class="col-md-6">
-							<a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
-							</div>
-						</div>
 						<div style="overflow-x:auto;">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                             <thead>
@@ -29,31 +24,16 @@
                                     Nombre
                                 </th>
                                 <th >
-                                    Lugar
+                                    Activar Pago
                                 </th>
                                 <th >
-                                    Ciudad
+                                    Activar Tienda
                                 </th>
                                 <th >
-                                    Departamento
+                                    Activar PIN
                                 </th>
                                 <th >
-                                    Fecha del Evento
-                                </th>
-                                <th >
-                                    Fecha Inicial de registro
-                                </th>
-                                <th >
-                                    Fecha Final de registro
-                                </th>
-                                <th >
-                                    Usuarios Registrados
-                                </th>
-                                <th>
-                                    Estadísticas
-                                </th>
-								<th>
-                                    Leer QR
+                                    Activar Evento Publico
                                 </th>
                             </tr>
                             </thead>
@@ -67,31 +47,32 @@
                                         {{ $evento->Nombre_Evento }}
                                     </td>
                                     <td >
-                                        {{ $evento->Lugar_Evento }}
+                                        @if($evento->esPago ==1)
+                                            <input type="checkbox"  onclick="ActivarEsPago(this,{{ $evento->id }})" checked/>
+                                        @else
+                                            <input type="checkbox"  onclick="ActivarEsPago(this,{{ $evento->id }})" />
+                                        @endif
                                     </td>
                                     <td >
-                                        {{ $evento->ciudad->Nombre_Ciudad }}
-                                    </td>
-                                    <td>
-                                        {{ $evento->ciudad->departamento->Nombre_Departamento }}
-                                    </td>
-                                    <td >
-                                        {{ $evento->Fecha_Evento }}
+                                        @if($evento->activarTienda ==1)
+                                            <input type="checkbox"  onclick="ActivarTienda(this,{{ $evento->id }})" checked/>
+                                        @else
+                                            <input type="checkbox"  onclick="ActivarTienda(this,{{ $evento->id }})" />
+                                        @endif
                                     </td>
                                     <td >
-                                        {{ $evento->Fecha_Inicial_Registro }}
+                                        @if($evento->SolicitarPIN ==1)
+                                            <input type="checkbox"  onclick="ActivarSolicitarPIN(this,{{ $evento->id }})" checked/>
+                                        @else
+                                            <input type="checkbox"  onclick="ActivarSolicitarPIN(this,{{ $evento->id }})" />
+                                        @endif
                                     </td>
-                                    <td>
-                                        {{ $evento->Fecha_Final_Registro }}
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
-                                    </td>
-									<td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}">Leer QR</a>
+                                    <td >
+                                        @if($evento->EsPublico ==1)
+                                            <input type="checkbox"  onclick="ActivarEsPublico(this,{{ $evento->id }})" checked/>
+                                        @else
+                                            <input type="checkbox"  onclick="ActivarEsPublico(this,{{ $evento->id }})" />
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -106,6 +87,7 @@
 
 
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
+    <script src="{{ asset('js/Evento/eventoPago.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

@@ -108,20 +108,84 @@ class EventosRepositorio
             $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
             $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
         }
-
-        $ListaEventos = array('eventos' => $eventos);
-        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
+        return $eventos;
     }
 
     public  function  ObtenerCupones()
     {
-        $eventos = Evento::where('Tipo_Evento','=','Cupon')->get();
-        foreach ($eventos as $evento)
+        $cupones = Evento::where('Tipo_Evento','=','Cupon')->get();
+        foreach ($cupones as $cupon)
         {
-            $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
-            $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
+            $cupon->ciudad= Ciudad::where('id','=',$cupon ->Ciudad_id)->get()->first();
+            $cupon->ciudad->departamento=Departamento::where('id','=',$cupon ->ciudad->Departamento_id)->get()->first();
         }
-        $ListaEventos = array('eventos' => $eventos);
-        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
+        return $cupones;
+    }
+
+    public function ActivarEventoPago($idEvento,$FlagEsActivo)
+    {
+        DB::beginTransaction();
+        try{
+            $evento = Evento::where('id','=',$idEvento)->get()->first();
+            $evento->esPago = $FlagEsActivo;
+            $evento ->save();
+            DB::commit();
+        }catch (\Exception $e)
+        {
+            $error = $e->getMessage();
+            DB::rollback();
+            return  false;
+        }
+        return true;
+    }
+
+    public function ActivarTienda($idEvento,$FlagEsActivo)
+    {
+        DB::beginTransaction();
+        try{
+            $evento = Evento::where('id','=',$idEvento)->get()->first();
+            $evento->activarTienda = $FlagEsActivo;
+            $evento ->save();
+            DB::commit();
+        }catch (\Exception $e)
+        {
+            $error = $e->getMessage();
+            DB::rollback();
+            return  false;
+        }
+        return true;
+    }
+
+    public function ActivarSolicitarPIN($idEvento,$FlagEsActivo)
+    {
+        DB::beginTransaction();
+        try{
+            $evento = Evento::where('id','=',$idEvento)->get()->first();
+            $evento->SolicitarPIN = $FlagEsActivo;
+            $evento ->save();
+            DB::commit();
+        }catch (\Exception $e)
+        {
+            $error = $e->getMessage();
+            DB::rollback();
+            return  false;
+        }
+        return true;
+    }
+    public function ActivarEsPublico($idEvento,$FlagEsActivo)
+    {
+        DB::beginTransaction();
+        try{
+            $evento = Evento::where('id','=',$idEvento)->get()->first();
+            $evento->EsPublico = $FlagEsActivo;
+            $evento ->save();
+            DB::commit();
+        }catch (\Exception $e)
+        {
+            $error = $e->getMessage();
+            DB::rollback();
+            return  false;
+        }
+        return true;
     }
 }

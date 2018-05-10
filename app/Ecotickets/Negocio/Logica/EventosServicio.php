@@ -39,4 +39,24 @@ class EventosServicio
     {
         return $this->eventoRepor->ObtenerCupones();
     }
+
+    public function ActivarEventoPago($idEvento,$FlagEsActivo)
+    {
+        return $this->eventoRepor->ActivarEventoPago($idEvento,$FlagEsActivo);
+    }
+
+    public function ActivarTienda($idEvento,$FlagEsActivo)
+    {
+        return $this->eventoRepor->ActivarTienda($idEvento,$FlagEsActivo);
+    }
+
+    public function ActivarSolicitarPIN($idEvento,$FlagEsActivo)
+    {
+        return $this->eventoRepor->ActivarSolicitarPIN($idEvento,$FlagEsActivo);
+    }
+
+    public function ActivarEsPublico($idEvento,$FlagEsActivo)
+    {
+        return $this->eventoRepor->ActivarEsPublico($idEvento,$FlagEsActivo);
+    }
 }
