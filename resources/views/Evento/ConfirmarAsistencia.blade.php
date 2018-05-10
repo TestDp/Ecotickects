@@ -17,12 +17,12 @@
 						<h3>¿Contamos con tu asistencia para vivir la experiencia Lovers Festival?. </h3>
 						<div class="row">
 								<div class="col-md-6">
-															<b style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+															<b style="font-family: sans-serif; font-size: 40px;" class="wpcf7-form-control-wrap">
 																<input type="radio" name="terminos" value="1" id="terminos" /> SI 
 															</b>
 								</div>
 								<div class="col-md-6">
-															<b style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+															<b style="font-family: sans-serif; font-size: 40px;" class="wpcf7-form-control-wrap">
 																<input type="radio" name="HabeasData" value="1" id="HabeasData" /> NO 
 															</b>
 								</div>
