@@ -23,6 +23,10 @@ Route::get('/respuesta', function () {
     return view('respuesta');
 });
 
+Route::get('/confirmarAsistencia', function () {
+    return view('Evento/ConfirmarAsistencia');
+});
+
 Route::get('/existente', function () {
     return view('existente');
 });

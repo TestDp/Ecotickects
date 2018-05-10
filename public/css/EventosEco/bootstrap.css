@@ -3581,7 +3581,7 @@ tbody.collapse.in {
 
 .navbar {
   position: relative;
-  min-height: 55px;
+  min-height: 100px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -3718,7 +3718,7 @@ tbody.collapse.in {
   padding: 17.5px 15px;
   font-size: 18px;
   line-height: 20px;
-  height: 55px;
+  height: 100px;
 }
 .navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
@@ -3934,6 +3934,7 @@ tbody.collapse.in {
   .navbar-right {
     float: right !important;
     margin-right: -15px;
+	padding-top:3%;
   }
   .navbar-right ~ .navbar-right {
     margin-right: 0;
