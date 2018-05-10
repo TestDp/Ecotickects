@@ -1469,7 +1469,7 @@ form label {
 }
 @media screen and (max-width: 768px) {
   #gtco-features-3 {
-    top: -2em;
+    top: 0em;
   }
 }
 #gtco-features-3 .feature {
