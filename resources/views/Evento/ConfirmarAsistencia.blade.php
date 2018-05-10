@@ -15,21 +15,24 @@
 						</span>
 						<img style="width:10%;" src="http://www.loversfestival.com/wp-content/uploads/2018/02/logo-lovers.png"></img>
 						<h3>¿Contamos con tu asistencia para vivir la experiencia Lovers Festival?. </h3>
+						<form action="">
 						<div class="row">
 								<div class="col-md-6">
-															<b style="font-family: sans-serif; font-size: 40px;" class="wpcf7-form-control-wrap">
-																<input type="radio" name="terminos" value="1" id="terminos" /> SI 
+															<b style="font-family: sans-serif; font-size: 40px;" >
+																<input type="radio" name="confirmarAsistencia" value="si" id="si" /> SI 
 															</b>
 								</div>
 								<div class="col-md-6">
-															<b style="font-family: sans-serif; font-size: 40px;" class="wpcf7-form-control-wrap">
-																<input type="radio" name="HabeasData" value="1" id="HabeasData" /> NO 
+															<b style="font-family: sans-serif; font-size: 40px;" >
+																<input type="radio" name="confirmarAsistencia" value="no" id="no" /> NO 
 															</b>
 								</div>
 						</div>
+						</form>
+						
 						<div class="row">
 							<div class="col-md-12">
-								<button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
+								<button type="submit" onclick="" class="btn btn-blue ripple trial-button">
 									Enviar
 								</button>
 							</div>
