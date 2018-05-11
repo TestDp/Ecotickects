@@ -20,7 +20,7 @@
 						<div class="col-md-3">
 						</div>
 							<div class="col-md-6">
-								Identificación
+								Ingresa tu número de identificación
 								<input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
 							</div>
 						<div class="col-md-3">
