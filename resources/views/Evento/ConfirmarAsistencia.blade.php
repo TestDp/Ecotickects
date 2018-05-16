@@ -40,7 +40,7 @@
 																<input type="radio" name="confirmarAsistencia" value="no" id="no" /> NO 
 															</b>
 								</div>
-								                                            <label for="confirmarAsistencia" class="error" style="display:none;">Please choose one.</label>
+								                                            <label for="confirmarAsistencia" class="error" style="display:none;">*Tienes que seleccionar una opción a la pregunta.</label>
 
 						</div>
 						<div class="row">
