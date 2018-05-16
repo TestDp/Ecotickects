@@ -964,10 +964,10 @@ function validarCamposConfirmacion(){
         },
         messages: {
             Identificacion: {
-                required: "*La Identificacion es Obligatoria"
+                required: "*La Identificación es Obligatoria"
             },
             confirmarAsistencia: {
-                required: "*Tienes que seleccionar una opcion a la pregunta"
+                required: "*Tienes que seleccionar una opción a la pregunta"
             }
 
         }

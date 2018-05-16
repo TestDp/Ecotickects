@@ -14,7 +14,7 @@
 						<span class="icon" style="background-image: url(http://dpsoluciones.co/wp-content/uploads/2018/05/icono.png); background-position: center; background-repeat: no-repeat;">
 							<i></i>
 						</span>
-						<img style="width:10%;" src="http://www.loversfestival.com/wp-content/uploads/2018/02/logo-lovers.png"></img>
+						<div style="width:100%;"></div>
 						<h3>¿Contamos con tu asistencia para vivir la experiencia  {{$Evento ->Nombre_Evento}} ?</h3>
 						<form id="ConfirmarAsistente" action="{{url('ConfirmarAsistente')}}" method="POST" enctype="multipart/form-data">
 							<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
@@ -40,6 +40,8 @@
 																<input type="radio" name="confirmarAsistencia" value="no" id="no" /> NO 
 															</b>
 								</div>
+								                                            <label for="confirmarAsistencia" class="error" style="display:none;">Please choose one.</label>
+
 						</div>
 						<div class="row">
 							<div class="col-md-12">
