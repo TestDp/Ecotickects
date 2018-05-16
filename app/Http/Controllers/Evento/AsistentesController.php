@@ -240,9 +240,9 @@ class AsistentesController extends Controller
         
          $usuario=$this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
          $respuestaConfirmacion= $this->asistenteServicio->ConfirmarAsistencia($idEvento,$usuario->id,$confirmaAsistencia);
-         $informacionUsuario =['usuario'=>$usuario,'respuestaConfirmacion'=>$respuestaConfirmacion];
-         //return response()->json($informacionUsuario);
-        return redirect('/');
+         $informacionUsuario = array('usuario'=>$usuario,'respuestaConfirmacion'=>$respuestaConfirmacion,'Evento' => $this->eventoServicio->obtenerEvento($idEvento));
+
+        return view('Evento/RespuestaConfirmarAsistencia',$informacionUsuario);
 
     }
 
