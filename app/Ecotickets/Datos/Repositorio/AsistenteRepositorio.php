@@ -280,5 +280,25 @@ class AsistenteRepositorio
         return $evento;
     }
 
+    public function ConfirmarAsistencia($idEvento, $idAsistente, $respuesta)
+    {
+        $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)->get()->first();
+        if($respuesta == "si")
+        {
+                $asistenteEvento->esPerfilado = true;
+                $asistenteEvento->save();
+                return 'Gracias por confirmar Asistencia';         
+        }
+         else {
+            $asistenteEvento->esPerfilado = null;
+            $asistenteEvento->save();
+            return 'El Usuario NO Confirmo Asistencia';    
+             }
+        return 'Error ingresando el usuario';
 
-}
+    }
+        
+       
+} 
+
+

@@ -231,4 +231,25 @@ class AsistentesController extends Controller
         $informacionUsuario =['usuario'=>$usuario,'respuestaActivación'=>$respuestaActivacion];
         return response()->json($informacionUsuario);
     }
+
+    public function ConfirmarAsistente(Request $formConfirma)
+    
+    {
+        $cc = $formConfirma->Identificacion;
+        $idEvento = $formConfirma->idEvento;
+        $confirmaAsistencia = $formConfirma->confirmarAsistencia;
+        
+         $usuario=$this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
+         $respuestaConfirmacion= $this->asistenteServicio->ConfirmarAsistencia($idEvento,$usuario->id,$confirmaAsistencia);
+         $informacionUsuario =['usuario'=>$usuario,'respuestaConfirmacion'=>$respuestaConfirmacion];
+         //return response()->json($informacionUsuario);
+        return redirect('/');
+
+    }
+
+     /*Metodo que me retorna el formulario para la lectura del qr con el evento al que se le va a leer el qr**/
+     public function ObtenerFormularioConfirmacionAsistente($idEvento)
+     {
+         return view('Evento/ConfirmarAsistencia',['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
+     }
 }

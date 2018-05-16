@@ -21,8 +21,6 @@ Auth::routes();
 
     Route::get('/respuesta', function () {return view('respuesta');});
 
-    Route::get('/confirmarAsistencia', function () {return view('Evento/ConfirmarAsistencia');});
-
     Route::get('/existente', function () {return view('existente');});
 
     Route::get('vistaCorreo', function () {return view('Email.correo');});
@@ -32,6 +30,9 @@ Auth::routes();
     Route::get('/terminosCondiciones', function () {return view('terminosCondiciones');});
 
     Route::get('/respuestaPago', function () {return view('respuestaPago');});
+
+    //Route::get('/confirmarAsistencia', function () {return view('Evento/ConfirmarAsistencia');});
+    
 
 /*FIN VISTAS SIN CONTROLADOR*/
 
@@ -103,6 +104,12 @@ Auth::routes();
 
     Route::post('InformacionQR/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEvento']);
 
+    Route::get('ConfirmarAsistencia/{idEvento}',['uses' =>'Evento\AsistentesController@ObtenerFormularioConfirmacionAsistente']);
+    
+    //Route::post('ConfirmarAsistencia/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ConfirmarAsistente']);
+    
+    Route::post('ConfirmarAsistente',['uses' =>'Evento\AsistentesController@ConfirmarAsistente']);
+    
 // FIN DE RUTAS PARA EL CONTROLADOR DE ASISTENTES//
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE ESTADISTICAS //

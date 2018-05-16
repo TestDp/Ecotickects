@@ -939,3 +939,30 @@ function AgregarNuevaLocalidad(){
 function EliminarLocalidad(element){
     $(element).closest("div[name=PreciosBoletas]").remove();
 }
+
+function validarCamposConfirmacion(){
+    $("#ConfirmarAsistente").validate({
+        rules: {
+            Identificacion: {
+                required: true
+                // minlength: 2
+            },
+            confirmarAsistencia: {
+                required: true
+            }
+
+        },
+        messages: {
+            Identificacion: {
+                required: "*La Identificacion es Obligatoria"
+            },
+            confirmarAsistencia: {
+                required: "*Tienes que seleccionar una opcion a la pregunta"
+            }
+
+        }
+
+    });
+
+}
+

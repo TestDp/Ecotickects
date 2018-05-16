@@ -153,4 +153,10 @@ class AsistenteServicio
     {
         return $this->asistenteRepositorio->AsistentesActivos($idEvento);
     }
+
+    public function ConfirmarAsistencia($idEvento, $idAsistente, $respuesta)
+    {
+        return $this->asistenteRepositorio->ConfirmarAsistencia($idEvento, $idAsistente, $respuesta);
+    }
+
 }
