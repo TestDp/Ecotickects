@@ -233,7 +233,6 @@ class AsistentesController extends Controller
     }
 
     public function ConfirmarAsistente(Request $formConfirma)
-    
     {
         $cc = $formConfirma->Identificacion;
         $idEvento = $formConfirma->idEvento;

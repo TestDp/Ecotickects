@@ -43,7 +43,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<button type="submit" class="btn btn-blue ripple trial-button" onclick="validarCamposConfirmacion()" >
+								<button type="button" class="btn btn-blue ripple trial-button" onclick="EnviarFormulario()" >
 									Enviar
 								</button>
 							</div>
@@ -62,6 +62,5 @@
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 	<script src="{{ asset('js/Evento/eventos.js') }}"></script>
 	<script src="{{ asset('js/Plugins/EditorTexto/ckeditor.js') }}"></script>
-
 
 @endsection

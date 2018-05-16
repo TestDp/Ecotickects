@@ -157,26 +157,26 @@
 	<script src="{{asset('js/jquery.onepagenav.js') }}"></script>
 	<script src="{{asset('js/main.js') }}"></script>
 	<script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
-	<script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
-	
-	
-	<!-- jQuery -->
-	<script src="{{ asset('js/EventosEco/jquery.min.js') }}"></script>
-	<!-- jQuery Easing -->
-	<script src="{{ asset('js/EventosEco/jquery.easing.1.3.js') }}"></script>
-	<!-- Bootstrap -->
-	<script src="{{ asset('js/EventosEco/bootstrap.min.js') }}"></script>
-	<!-- Waypoints -->
-	<script src="{{ asset('js/EventosEco/jquery.waypoints.min.js') }}"></script>
-	<!-- Carousel -->
-	<script src="{{ asset('js/EventosEco/owl.carousel.min.js') }}"></script>
-	<!-- countTo -->
-	<script src="{{ asset('js/EventosEco/jquery.countTo.js') }}"></script>
-	<!-- Magnific Popup -->
-	<script src="{{ asset('js/EventosEco/jquery.magnific-popup.min.js') }}"></script>
-	<script src="{{ asset('js/EventosEco/magnific-popup-options.js') }}"></script>
-	<!-- Main -->
-	<script src="{{ asset('js/EventosEco/main.js') }}"></script>
+
+		<!-- jQuery Easing -->
+		<script src="{{ asset('js/EventosEco/jquery.easing.1.3.js') }}"></script>
+		<!-- Bootstrap -->
+		<script src="{{ asset('js/EventosEco/bootstrap.min.js') }}"></script>
+		<!-- Waypoints -->
+		<script src="{{ asset('js/EventosEco/jquery.waypoints.min.js') }}"></script>
+		<!-- Carousel -->
+		<script src="{{ asset('js/EventosEco/owl.carousel.min.js') }}"></script>
+		<!-- countTo -->
+		<script src="{{ asset('js/EventosEco/jquery.countTo.js') }}"></script>
+		<!-- Magnific Popup -->
+		<script src="{{ asset('js/EventosEco/jquery.magnific-popup.min.js') }}"></script>
+		<script src="{{ asset('js/EventosEco/magnific-popup-options.js') }}"></script>
+		<!-- Main -->
+		<script src="{{ asset('js/EventosEco/main.js') }}"></script>
+
+
+
+
 
 </body>
 </html>

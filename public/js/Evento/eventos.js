@@ -940,6 +940,16 @@ function EliminarLocalidad(element){
     $(element).closest("div[name=PreciosBoletas]").remove();
 }
 
+
+function EnviarFormulario() {
+
+    validarCamposConfirmacion();
+    if ($("#ConfirmarAsistente").valid()) {
+        $("#ConfirmarAsistente").submit();
+    }
+
+}
+
 function validarCamposConfirmacion(){
     $("#ConfirmarAsistente").validate({
         rules: {
