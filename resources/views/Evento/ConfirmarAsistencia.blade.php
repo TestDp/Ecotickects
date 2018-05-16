@@ -15,7 +15,7 @@
 							<i></i>
 						</span>
 						<img style="width:10%;" src="http://www.loversfestival.com/wp-content/uploads/2018/02/logo-lovers.png"></img>
-						<h3>¿Contamos con tu asistencia para vivir la experiencia Lovers Festival?. </h3>
+						<h3>¿Contamos con tu asistencia para vivir la experiencia  {{$Evento ->Nombre_Evento}} ?</h3>
 						<form id="ConfirmarAsistente" action="{{url('ConfirmarAsistente')}}" method="POST" enctype="multipart/form-data">
 							<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 							<input type="hidden" id="idEvento" name="idEvento" value="{{$Evento ->id}}">
