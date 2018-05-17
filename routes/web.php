@@ -179,3 +179,15 @@ Auth::routes();
     Route::get('usuarios', 'UsuarioYRol\UsuarioController@ObtenerUsuarios')->name('usuarios');
 
 //FIN DE RUTAS PARA EL CONTROLADOR DE  USUARIOS//
+
+//INICIO DE RUTAS PARA EL CONTROLADOR DE  PRODUCTOS//
+
+    Route::get('formularioProducto', 'Tienda\ProductosController@getFormularioProducto')->name('formularioProducto');
+
+    Route::post('crearProducto',['uses' =>'Tienda\ProductosController@crearProducto']);/*Guarda el producto */
+
+    Route::get('misproductos', 'Tienda\ProductosController@ObtenerMisProductos')->name('misproductos');
+
+    Route::get('FormularioActivarProducto/{idProducto}',['uses' =>'Tienda\ProductosController@FormularioActivarProductos']);
+
+//FIN DE RUTAS PARA EL CONTROLADOR DE  PRODUCTOS//

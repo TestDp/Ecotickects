@@ -47,9 +47,6 @@ class EventosRepositorio
                 }
 
              }
-
-
-
             //fin del bloque
             $ind =0;
             //Validar si el array es vacio
@@ -58,7 +55,6 @@ class EventosRepositorio
                 // ciclo que recorre el arrya de enunciado para obtener el texto de las preguntas
                 foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
                 {
-
                     $Pregunta = new Pregunta();
                     $Pregunta ->Enunciado = $EnunciadoPregunta;
                     $Pregunta ->Evento_id = $evento -> id;

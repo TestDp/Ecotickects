@@ -33,4 +33,10 @@ class Evento extends Model
     public function preciosBoletas(){
         return $this->hasMany('Eco\Datos\Modelos\PrecioBoleta','Evento_id','id');
     }
+
+    public function prodcutosEventos(){
+        return $this->hasMany('Eco\Datos\Modelos\ProductosXevento','Evento_id','id');
+    }
+
+
 }

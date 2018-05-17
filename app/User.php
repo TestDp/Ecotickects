@@ -31,6 +31,9 @@ class User extends Authenticatable
         return $this->hasMany('Ecotickets\Datos\Modelos\Evento');
     }
 
+    public function productos(){
+        return $this->hasMany('Ecotickets\Datos\Modelos\Producto');
+    }
     public function roles()
     {
         return $this

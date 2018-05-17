@@ -81,6 +81,13 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="#homeTienda" data-toggle="collapse" aria-expanded="false">Tienda</a>
+                        <ul class="collapse list-unstyled" id="homeTienda">
+                            <li><a href="{{ url('formularioProducto') }}">Crear Producto</a></li>
+                            <li><a href="{{ url('misproductos') }}">Mis Productos</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false">Configuraciones Evento</a>
                         <ul class="collapse list-unstyled" id="homeConfiguraciones">
                             <li><a href="{{ url('ActivarFunciones') }}">Activar Funciones</a></li>

@@ -15,7 +15,7 @@ class Asistente extends Model
     }
 
     public function asistentesXEventos(){
-        return $this->hasMany('AsistenteXEvento','Evento_id','id');
+        return $this->hasMany('AsistenteXEvento','Asistente_id','id');
     }
 
 }
