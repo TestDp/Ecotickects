@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Nombre Producto</h3></div>
+                    <div class="panel-heading text-center"><h3>{{$producto->Nombre_Producto}}</h3></div>
                     <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <div class="panel-body">
                         @if (session('status'))
@@ -13,6 +13,24 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                            Eventos
+                            <div style="margin:0px !important;" class="row">
+
+                                <div class="col-md-4">
+
+                                    <select id="Evento" name="Evento"  class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        @foreach($eventoLista as $evento)
+                                            <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="button" class="form-control" value="Activar" onclick="ActivarProducto({{$producto->id }})"/>
+                                </div>
+                            </div>
+
+                            <hr/>
 						<div style="overflow-x:auto;">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                             <thead>
@@ -24,7 +42,7 @@
                                     Nombre evento
                                 </th>
                                 <th >
-                                    Activar Producto
+
                                 </th>
 
                             </tr>
@@ -39,11 +57,7 @@
                                         {{ $evento->Nombre_Evento }}
                                     </td>
                                     <td >
-                                        @if($evento->esPago ==1)
-                                            <input type="checkbox"  onclick="ActivarEsPago(this,{{$evento->id}},{{$idProducto}})" checked/>
-                                        @else
-                                            <input type="checkbox"  onclick="ActivarEsPago(this,{{$evento->id}},{{$idProducto}})" />
-                                        @endif
+                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/FormularioActivarProducto',['idProducto' => $producto->id,'idEvento'=>$evento->id ]) }}">Desactivar</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -59,6 +73,7 @@
 
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script src="{{ asset('js/Evento/eventoPago.js') }}"></script>
+    <script src="{{ asset('js/Tienda/Tienda.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

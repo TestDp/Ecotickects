@@ -3,6 +3,7 @@
 namespace Ecotickets\Http\Controllers\Tienda;
 
 use Eco\Datos\Modelos\Evento;
+use Eco\Datos\Modelos\Producto;
 use Eco\Negocio\Logica\ProductosServicio;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
@@ -45,7 +46,13 @@ class ProductosController extends Controller
     {
         $request->user()->authorizeRoles(['admin','user']);
         $user = Auth::user();
-        $productos = $this->productosServicio->ObtenerMisProductos($user->id);
+        $productos=[];
+        if(Auth::user()->hasRole('admin'))
+        {
+            $productos = Producto::all();//lineas de codigo que se deben llevar por capas
+        }else{
+            $productos = $this->productosServicio->ObtenerMisProductos($user->id);
+        }
         $rutaImagenes='imagenesProductos/'.$user->id.'/'; //desde variable de configuracion se debe llamar
         $ListaProductos= array('productos' => $productos,'rutaImagenes'=>$rutaImagenes);
         return view('Tienda/ListaProducto',$ListaProductos);
@@ -60,9 +67,22 @@ class ProductosController extends Controller
         {
             $eventos = Evento::all();//lineas de codigo que se deben llevar por capas
         }else{
-            $eventos = Evento::where("user_id","=",$user->id)->get();
+            $eventos = $this->productosServicio->ObtenerProductosXeventos($idProducto);
         }
-        $ListaEventos= array('eventos' => $eventos,'idProducto' =>$idProducto);
+        $producto = $this->productosServicio->ObtenerProducto($idProducto);
+        $eventoListaDesplegable = $this->productosServicio->ObtenerListaDesplegable($idProducto,$user->id);
+        $ListaEventos= array('eventos' => $eventos,'producto' =>$producto,'eventoLista'=>$eventoListaDesplegable);
         return view('Tienda/ActivarProductoEventos',$ListaEventos);
     }
+
+    public  function  agregarProductoXEventos($idProducto,$idEvento)
+    {
+        return response()->json($this->productosServicio->agregarProductoXEventos($idProducto,$idEvento));
+    }
+
+    public  function  eliminarProductoXEventos($idProducto,$idEvento)
+    {
+        return response()->json($this->productosServicio->eliminarProductoXEventos($idProducto,$idEvento));
+    }
+
 }

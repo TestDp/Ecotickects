@@ -190,4 +190,6 @@ Auth::routes();
 
     Route::get('FormularioActivarProducto/{idProducto}',['uses' =>'Tienda\ProductosController@FormularioActivarProductos']);
 
+    Route::post('ActivarProducto/{idProducto}/{idEvento}',['uses' =>'Tienda\ProductosController@agregarProductoXEventos']);
+
 //FIN DE RUTAS PARA EL CONTROLADOR DE  PRODUCTOS//
