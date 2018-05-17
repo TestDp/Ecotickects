@@ -67,7 +67,7 @@ class ProductosRepositorio
     {
         DB::beginTransaction();
         try{
-            $productoxevento = Producto::where('Producto_id','=',$idProducto)->where('Evento_id','=',$idEvento)->get()->first();
+            $productoxevento = ProductosXevento::where('Producto_id','=',$idProducto)->where('Evento_id','=',$idEvento)->get()->first();
             $productoxevento->delete();
             DB::commit();
         }catch (\Exception $e) {

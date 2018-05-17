@@ -82,7 +82,12 @@ class ProductosController extends Controller
 
     public  function  eliminarProductoXEventos($idProducto,$idEvento)
     {
-        return response()->json($this->productosServicio->eliminarProductoXEventos($idProducto,$idEvento));
+        if($this->productosServicio->eliminarProductoXEventos($idProducto,$idEvento) )
+        {
+            return redirect('/FormularioActivarProducto/'.$idProducto);
+        }else{
+            return redirect('/home');
+        }
     }
 
 }

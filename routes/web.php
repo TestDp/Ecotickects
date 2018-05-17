@@ -192,4 +192,6 @@ Auth::routes();
 
     Route::post('ActivarProducto/{idProducto}/{idEvento}',['uses' =>'Tienda\ProductosController@agregarProductoXEventos']);
 
+    Route::get('DesactivarProducto/{idProducto}/{idEvento}',['uses' =>'Tienda\ProductosController@eliminarProductoXEventos']);
+
 //FIN DE RUTAS PARA EL CONTROLADOR DE  PRODUCTOS//

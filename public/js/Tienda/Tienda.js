@@ -12,7 +12,7 @@ function ActivarProducto (idProducto) {
         type: 'POST',
         success: function (result) {
             if (result) {
-
+                location.reload(true);
             }
         }
     });

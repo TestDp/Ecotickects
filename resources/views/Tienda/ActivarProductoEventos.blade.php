@@ -57,7 +57,7 @@
                                         {{ $evento->Nombre_Evento }}
                                     </td>
                                     <td >
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/FormularioActivarProducto',['idProducto' => $producto->id,'idEvento'=>$evento->id ]) }}">Desactivar</a>
+                                        <a class="btn btn-blue ripple trial-button" href="{{ url('DesactivarProducto',['idProducto' => $producto->id,'idEvento'=>$evento->id ]) }}">Desactivar</a>
                                     </td>
                                 </tr>
                             @endforeach
