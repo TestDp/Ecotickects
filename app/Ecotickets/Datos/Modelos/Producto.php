@@ -11,7 +11,7 @@ class Producto extends Model
     protected $fillable =['Codigo','Nombre_Producto','precio','cantidad','Imagen_Producto','user_id'];
 
     public function user(){
-        return $this->belongsTo('User');
+        return $this->belongsTo('Ecotickets\User','user_id');
     }
 
     public function prodcutosEventos(){

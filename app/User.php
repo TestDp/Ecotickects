@@ -32,7 +32,7 @@ class User extends Authenticatable
     }
 
     public function productos(){
-        return $this->hasMany('Ecotickets\Datos\Modelos\Producto');
+        return $this->hasMany('Ecotickets\Datos\Modelos\Producto','user_id','id');
     }
     public function roles()
     {

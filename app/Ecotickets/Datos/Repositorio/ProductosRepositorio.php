@@ -89,4 +89,16 @@ class ProductosRepositorio
         return $arrayeventos;//Lista de Eventos que que tiene productos por evento
     }
 
+    public function  obtenerProductosXEvento($idEvento)
+    {
+        $arrayProductos = array();
+        $productosxeventos =ProductosXevento::where('Evento_id','=',$idEvento)->get();
+        $iduser='';
+        foreach ($productosxeventos as $productoXEvento) {
+            $producto = Producto::where('id','=', $productoXEvento->Producto_id)->first();
+            $iduser = $producto->user->id;
+            $arrayProductos[] = $producto;
+        }
+        return ["Productos"=>$arrayProductos,'idUser'=>$iduser];
+    }
 }

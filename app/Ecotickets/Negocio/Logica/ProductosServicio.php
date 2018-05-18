@@ -71,4 +71,9 @@ class ProductosServicio
         }
         return $arrayEventosLista;
     }
+
+    public function  obtenerProductosXEvento($idEvento)
+    {
+        return $this->productosRepor->obtenerProductosXEvento($idEvento);
+    }
 }

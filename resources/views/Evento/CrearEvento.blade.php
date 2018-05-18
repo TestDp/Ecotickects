@@ -9,7 +9,6 @@
                     <div style="text-align: left;" class="col-md-12">
                         <div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
                     </div>
-
                     <form id="crearEvento" action="crearEvento" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

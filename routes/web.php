@@ -57,6 +57,9 @@ Auth::routes();
 
     Route::post('pin/{idPin}',['uses' =>'Ecotickets\EcoticketsController@validarPIN']);/*Valida el pin*/
 
+    Route::get('Tienda/{idEvento}', ['uses' =>'Ecotickets\EcoticketsController@obtenerProductosXEvento']);/** Obtiene el formulario de la tienda*/
+
+
 // FIN DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE EVENTOS//

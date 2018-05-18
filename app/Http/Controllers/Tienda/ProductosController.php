@@ -53,7 +53,7 @@ class ProductosController extends Controller
         }else{
             $productos = $this->productosServicio->ObtenerMisProductos($user->id);
         }
-        $rutaImagenes='imagenesProductos/'.$user->id.'/'; //desde variable de configuracion se debe llamar
+        $rutaImagenes = env('RutaProductosAdmin').$user->id.'/'; //desde variable de configuracion se debe llamar
         $ListaProductos= array('productos' => $productos,'rutaImagenes'=>$rutaImagenes);
         return view('Tienda/ListaProducto',$ListaProductos);
     }
@@ -89,5 +89,6 @@ class ProductosController extends Controller
             return redirect('/home');
         }
     }
+
 
 }

@@ -8,6 +8,7 @@ use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EventosServicio;
+use Eco\Negocio\Logica\ProductosServicio;
 use Ecotickets\Http\Controllers\Controller;
 use Eco\Negocio\Logica\AsistenteServicio;
 
@@ -19,12 +20,17 @@ class EcoticketsController extends Controller
     protected $eventoServicio;
     protected $departamentoServicio;
     protected $asistenteServicio;
+    protected $productosServicio;
 
-    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio,AsistenteServicio $asistenteServicio)
+    public function __construct(EventosServicio $eventoServicio,
+                                DepartamentoServicio $departamentoServicio,
+                                AsistenteServicio $asistenteServicio,
+                                ProductosServicio $productosServicio)
     {
         $this->departamentoServicio=$departamentoServicio;
         $this->eventoServicio = $eventoServicio;
         $this->asistenteServicio = $asistenteServicio;
+        $this->productosServicio = $productosServicio;
     }
 
     public  function  welcome()
@@ -87,10 +93,19 @@ class EcoticketsController extends Controller
         $ListaEventos= array('eventos' => $eventos);
         return response()->json(['ListaEventos' => $ListaEventos]);
     }
+
     public function validarPIN($idPin)
     {
         return response()->json($this->asistenteServicio->validarPIN($idPin));
     }
 
-
+    //Metodo para obtener los productos activos para la tienda del evento
+    //$idEvento: id o pk del evento
+    public function  obtenerProductosXEvento($idEvento)
+    {
+        $productosXEventos = $this->productosServicio->obtenerProductosXEvento($idEvento);
+        $rutaImagenes=env('RutaTiendaProducto').$productosXEventos['idUser'].'/';
+        $ListaProductos = array('productos' => $productosXEventos['Productos'],'rutaImagenes'=>$rutaImagenes);
+        return view('Tienda/TiendaEvento',$ListaProductos);
+    }
 }
