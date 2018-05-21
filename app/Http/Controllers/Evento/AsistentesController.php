@@ -239,10 +239,16 @@ class AsistentesController extends Controller
         $confirmaAsistencia = $formConfirma->confirmarAsistencia;
         
          $usuario=$this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
+
+         if ($usuario !=NULL)
+         {
          $respuestaConfirmacion= $this->asistenteServicio->ConfirmarAsistencia($idEvento,$usuario->id,$confirmaAsistencia);
          $informacionUsuario = array('usuario'=>$usuario,'respuestaConfirmacion'=>$respuestaConfirmacion,'Evento' => $this->eventoServicio->obtenerEvento($idEvento));
 
         return view('Evento/RespuestaConfirmarAsistencia',$informacionUsuario);
+         }
+         $informacionUsuario = array('usuario'=>$cc,'respuestaConfirmacion'=>'No esta Registrada en:','Evento' => $this->eventoServicio->obtenerEvento($idEvento));
+        return view('Evento/RespuestaConfirmarAsistenciaNoUser',$informacionUsuario);
 
     }
 
