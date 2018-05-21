@@ -155,6 +155,8 @@ Auth::routes();
 
     Route::get('AsistentesActivosApp/{idEvento}',['uses' =>'Evento\AsistentesController@AsistentesActivos']);
 
+    Route::get('ValidarYActivarQR/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEventoApp']);
+
 // FIN DE RUTAS DE LOS WS DE LA APP//
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE CUPONES//
@@ -198,3 +200,10 @@ Auth::routes();
     Route::get('DesactivarProducto/{idProducto}/{idEvento}',['uses' =>'Tienda\ProductosController@eliminarProductoXEventos']);
 
 //FIN DE RUTAS PARA EL CONTROLADOR DE  PRODUCTOS//
+
+//INICIO DE RUTAS PARA EL CONTROLADOR DE  FACTURA//
+
+    Route::post('RegistrarCompra',['uses' =>'Tienda\FacturaController@crearFactura']);
+
+//FIN DE RUTAS PARA EL CONTROLADOR DE  FACTURA//
+

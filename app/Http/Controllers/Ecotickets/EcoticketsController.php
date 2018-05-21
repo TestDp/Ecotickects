@@ -105,7 +105,7 @@ class EcoticketsController extends Controller
     {
         $productosXEventos = $this->productosServicio->obtenerProductosXEvento($idEvento);
         $rutaImagenes=env('RutaTiendaProducto').$productosXEventos['idUser'].'/';
-        $ListaProductos = array('productos' => $productosXEventos['Productos'],'rutaImagenes'=>$rutaImagenes);
+        $ListaProductos = array('productos' => $productosXEventos['Productos'],'rutaImagenes'=>$rutaImagenes,'idEvento'=>$idEvento);
         return view('Tienda/TiendaEvento',$ListaProductos);
     }
 }

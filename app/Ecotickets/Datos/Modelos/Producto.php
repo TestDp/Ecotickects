@@ -18,4 +18,8 @@ class Producto extends Model
         return $this->hasMany('Eco\Datos\Modelos\ProductosXevento','Producto_id','id');
     }
 
+    public function productosDetalleFactura(){
+        return $this->hasMany('Eco\Datos\Modelos\DetalleFactura','Producto_id','id');
+    }
+
 }

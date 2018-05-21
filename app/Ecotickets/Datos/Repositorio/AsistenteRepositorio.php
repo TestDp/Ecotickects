@@ -272,11 +272,9 @@ class AsistenteRepositorio
 
     public function ObtenerEventoRefe($idInfoPago)
     {
-       
         $infopago = InfoPago::where('id', '=', $idInfoPago)->first();
         $asistenteXEventos = AsistenteXEvento::where('id', '=', $infopago->AsistenteXEvento_id)->first();
         $evento = Evento::where('id','=',$asistenteXEventos->Evento_id)->get()->first();
-            
         return $evento;
     }
 

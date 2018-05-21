@@ -163,10 +163,6 @@ class AsistentesController extends Controller
                 return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
                 break;
         }
-
-
-
-
         $ccUser=$transaccionReference;
         return view('existente',['identificacion' => $ccUser]);// se debe cambiar
     }
@@ -226,9 +222,14 @@ class AsistentesController extends Controller
     /*Metodo para  activar y leer el qr, hacer las dos operaciones en un sola**/
     public function ActivarQRAsistenteXEventoApp($idEvento,$cc)
     {
-        $usuario=$this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
-        $respuestaActivacion= $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$usuario->id);
-        $informacionUsuario =['usuario'=>$usuario,'respuestaActivación'=>$respuestaActivacion];
+        $usuario = $this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
+        $respuestaActivacion ='';
+        if($usuario != null){
+            $respuestaActivacion= $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$usuario->id);
+        }else{
+            $respuestaActivacion = 'USUARIO NO REGISTRADO';
+        }
+        $informacionUsuario =['usuario'=>$usuario,'respuestaActivacion'=>$respuestaActivacion];
         return response()->json($informacionUsuario);
     }
 

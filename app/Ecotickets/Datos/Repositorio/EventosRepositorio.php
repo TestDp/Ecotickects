@@ -16,8 +16,7 @@ use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Respuesta;
 use Eco\Datos\Modelos\PrecioBoleta;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Null_;
-use PhpParser\Node\Stmt\Echo_;
+
 
 class EventosRepositorio
 {

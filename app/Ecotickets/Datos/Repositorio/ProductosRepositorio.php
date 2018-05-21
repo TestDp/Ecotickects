@@ -12,6 +12,7 @@ use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Producto;
 use Eco\Datos\Modelos\ProductosXevento;
 use Illuminate\Support\Facades\DB;
+
 class ProductosRepositorio
 {
 

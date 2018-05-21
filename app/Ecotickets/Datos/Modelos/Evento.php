@@ -38,5 +38,8 @@ class Evento extends Model
         return $this->hasMany('Eco\Datos\Modelos\ProductosXevento','Evento_id','id');
     }
 
+    public function facturasEvento(){
+        return $this->hasMany('Eco\Datos\Modelos\Factura','Evento_id','id');
+    }
 
 }
