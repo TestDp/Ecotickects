@@ -205,5 +205,9 @@ Auth::routes();
 
     Route::post('RegistrarCompra',['uses' =>'Tienda\FacturaController@crearFactura']);
 
+    Route::post('RespuestaPagosTiendaPayu',['uses' =>'Tienda\FacturaController@RespuestaPagosTiendaPayu']);
+
+    Route::get('RespuestaPagosUsuarioTienda',['uses' =>'Tienda\FacturaController@RespuestaPagosUsuarioTienda']);
+
 //FIN DE RUTAS PARA EL CONTROLADOR DE  FACTURA//
 

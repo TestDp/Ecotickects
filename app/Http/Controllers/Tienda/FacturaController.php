@@ -25,7 +25,7 @@ class FacturaController extends Controller
 
     /**Metodo de respuesta de la plataforma de pagos payu para confirmar el pago, el  llamado
     se hace de  manera asincronica.Metodo de comunicacion entre sistemas.**/
-    public function RespuestaPagosTienda(Request $formRegistro)
+    public function RespuestaPagosTiendaPayu(Request $formRegistro)
     {
         try {
             $merchantId = $formRegistro->merchant_id;

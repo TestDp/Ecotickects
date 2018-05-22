@@ -61,7 +61,8 @@ class EcoticketsController extends Controller
         if($CantidadRegistrados<$CantidadEsperada && $evento->EsPublico ==true && $evento->esPago == false){
             $evento =$this->eventoServicio->obtenerEvento($idEvento);
             $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
-            $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
+            $rutaImagenes=env('RutaFlyerEventoRegistrarAsistente');
+            $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento,'rutaImagenes'=>$rutaImagenes);
             return view('Evento/RegistrarAsistente',['ElementosArray' =>$ElementosArray]);
         }else{
             return view('cantidadSuperada');
@@ -77,7 +78,8 @@ class EcoticketsController extends Controller
         if($CantidadRegistrados<$CantidadEsperada && $this->eventoServicio->obtenerEvento($idEvento)->EsPublico ==true){
             $evento =$this->eventoServicio->obtenerEvento($idEvento);
             $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
-            $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento);
+            $rutaImagenes=env('RutaFlyerEventoRegistrarAsistente');
+            $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento,'rutaImagenes'=>$rutaImagenes);
             return view('Evento/RegistrarAsistentePago',['ElementosArray' =>$ElementosArray]);
         }else{
             return view('cantidadSuperada');

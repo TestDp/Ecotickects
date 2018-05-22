@@ -11,7 +11,7 @@
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <img class="img-responsive" src="{{ asset('storage/FlyerDeEventos/'.$ElementosArray["evento"]->FlyerEvento) }}"></img>
+                                    <img class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
                                 </div>
                             </div>
                         @endif

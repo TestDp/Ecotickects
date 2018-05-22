@@ -27,6 +27,7 @@ class EventosRepositorio
         try{
             //inicio del bloque donde se guarda el evento para obtener el id del evento
             $evento = new Evento($EdEvento->all());
+            $evento->activarTienda = false;
             //Asignamos el nombre del archivo
             if($EdEvento->ImagenFlyerEvento != null){
                 $evento->FlyerEvento  = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
