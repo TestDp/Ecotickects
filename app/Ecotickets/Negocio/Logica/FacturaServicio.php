@@ -26,6 +26,7 @@ class FacturaServicio
     {
         $factura = new Factura($EdFactura->all());
         $factura ->Cancelada = false;
+        $factura ->despachado = false;
         $ind =0;
         $ArrayDetalleFactura = array();
         foreach ($EdFactura->cantidad as $cantidad)
