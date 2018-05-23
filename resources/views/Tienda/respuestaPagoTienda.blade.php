@@ -10,7 +10,7 @@
 							<img src="{{ asset('img/icono.png') }}">
 							<h3 class="white light">GRACIAS REALIZAR LA COMPRA </h3>
 							<h4 class="light-white light"></br>
-								Si el estado de tu transaccion es aprovada reclama puedes reclmar el pedido.</br>
+								Si el estado de tu transacción es Aprobado reclama puedes reclamar el pedido.</br>
 								</h4>
 							<h3 class="white light">Estado de la transaccion es:{{ $ElementosArray["mensaje"]}}</h3>
 						</div>						

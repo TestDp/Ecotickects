@@ -64,7 +64,7 @@ class FacturaController extends Controller
         $transaccionReference = $_REQUEST['referenceCode'];
         switch ($estadoTransaccion) {
             case 4: /* Approved */
-                $ElementosArray= array('mensaje' => "APROVADO");
+                $ElementosArray= array('mensaje' => "APROBADO");
                 return view("Tienda/respuestaPagoTienda",['ElementosArray' =>$ElementosArray]);
                 break;
 
@@ -89,7 +89,7 @@ class FacturaController extends Controller
                 break;
 
             default: /* Do something */
-                $ElementosArray= array('mensaje' => "PENDIENTE POR PYU");
+                $ElementosArray= array('mensaje' => "PENDIENTE POR PAYU");
                 return view("Tienda/respuestaPagoTienda",['ElementosArray' =>$ElementosArray]);
                 break;
         }
