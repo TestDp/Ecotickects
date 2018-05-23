@@ -42,7 +42,7 @@ class EventosController extends Controller
             if($EdEvento->hasFile('ImagenFlyerEvento')){
                 $file = $EdEvento->file('ImagenFlyerEvento');
                 $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
-                $file->move(public_path().'/FlyerDeEventos/', $nombre);
+                $file->move('FlyerDeEventos', $nombre);
             }
             return redirect('/home');
         }else{

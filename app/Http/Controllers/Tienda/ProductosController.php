@@ -33,7 +33,7 @@ class ProductosController extends Controller
             if($EdProducto->hasFile('Imagen_Producto')){
                 $file = $EdProducto->file('Imagen_Producto');
                 $nombre = 'imagenProducto_'.$EdProducto->Nombre_Producto.'.jpg';
-                $file->move(public_path().'/imagenesProductos/'.$user->id.'/', $nombre);
+                $file->move('imagenesProductos/'.$user->id.'/', $nombre);
             }
             return redirect('/misproductos');
         }else{
