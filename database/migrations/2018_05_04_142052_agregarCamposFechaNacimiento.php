@@ -14,7 +14,7 @@ class AgregarCamposFechaNacimiento extends Migration
     public function up()
     {
         Schema::table('tbl_asistentes', function (Blueprint $table) {
-            $table->date('fechaNacimiento');
+            $table->date('fechaNacimiento')->nullable();
         });
     }
 

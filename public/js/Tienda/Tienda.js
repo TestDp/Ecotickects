@@ -1,4 +1,4 @@
-var urlBase = "/Ecophp/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 
 function ActivarProducto (idProducto) {
     idEvento =$("#Evento").val();
@@ -36,7 +36,7 @@ function  agregarProductoAlCarrito(element) {
             tr = tr +'<td >'+inputPrecio.val()+'</td>';
             tr = tr +'<td id="cantidad" name="cantidad">'+1+'</td>';
             tr = tr +'<td id="subtotal" name="subtotal">'+subtotal+'</td>';
-            tr = tr +'<td > <input type="button"  onclick="quitarProductoDelCarrito(this)"/></td>';
+            tr = tr +'<td > <input type="button" onclick="quitarProductoDelCarrito(this)" value="-"/></td>';
             tr = tr +'</tr>';
         $("#listaProductos").append(tr);
     }else{

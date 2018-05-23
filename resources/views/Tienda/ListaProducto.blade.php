@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>MIS PRODUCTOS</h3></div>
+                    <div style="background-color:#8abd51 !important; color:#fff;" class="panel-heading text-center"><h3>MIS PRODUCTOS</h3></div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -14,7 +14,7 @@
                         @endif
                         <div style="padding-bottom:2%;" class="row">
                             <div style="text-align: left;" class="col-md-6">
-                                <a class="btn btn-blue ripple trial-button" href="{{ url('formularioProducto    ') }}">Crear Producto</a>
+                                <a style="background-color:#8abd51 !important; color:#fff !important;" class="btn btn-blue ripple trial-button" href="{{ url('formularioProducto    ') }}">Crear Producto</a>
                             </div>
                         </div>
                         <div style="overflow-x:auto;">
@@ -44,8 +44,8 @@
                                 <tbody >
                                 @foreach($productos as $Producto)
                                     <tr>
-                                        <td >
-                                            <img src="{{$rutaImagenes.$Producto->Imagen_Producto}}" />
+                                        <td class="imgProducto">
+                                            <img style="width:100px; !important" src="{{$rutaImagenes.$Producto->Imagen_Producto}}" />
                                         </td>
                                         <td >
                                             {{ $Producto->Codigo }}
@@ -60,7 +60,7 @@
                                             {{ $Producto->cantidad }}
                                         </td>
                                         <td>
-                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/FormularioActivarProducto',['idProducto' => $Producto->id ]) }}">Activar en Evento</a>
+                                            <a style="background-color:#8abd51 !important; color:#fff !important;" class="btn btn-blue ripple trial-button" href="{{ url('/FormularioActivarProducto',['idProducto' => $Producto->id ]) }}">Activar en Evento</a>
                                         </td>
                                     </tr>
                                 @endforeach

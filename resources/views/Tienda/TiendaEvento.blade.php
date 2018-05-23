@@ -5,19 +5,20 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Tienda</h3></div>
-                    <div style="overflow-x:auto;">
-                        <div class="row">
+                    <div style="background-color:#8abd51 !important; padding-top: 2%;" class="panel-heading text-center"><h3>Tienda</h3></div>
+                    <div style="overflow-x:auto; padding: 2%;">
+                        <div style="padding-top:1%;" class="row">
                             <div class="col-md-6">
                                 @foreach($productos as $Producto)
                                     <div class="col-md-4" id="producto" name="producto">
                                         <button onclick="agregarProductoAlCarrito(this)">
-                                            <img src="{{$rutaImagenes.$Producto->Imagen_Producto}}" />
+                                            <img style="width:100%;" src="{{$rutaImagenes.$Producto->Imagen_Producto}}" />
                                         </button>
                                         <input type="hidden" id="precio" name="precio" value="{{$Producto->precio}}">
                                         <input type="hidden" id="idProducto" name="idProducto" value="{{$Producto->id}}">
                                         <input type="hidden" id="nombreProducto" name="nombreProducto" value="{{$Producto->Nombre_Producto}}">
-                                        ${{$Producto->precio}}
+                                        {{$Producto->Nombre_Producto}}</br>
+										<b>${{$Producto->precio}}</b>
                                     </div>
                                 @endforeach
                             </div>
@@ -35,9 +36,9 @@
                                                     Precio
                                                 </th>
                                                 <th>
-                                                    cantidad
+                                                    Cantidad
                                                 </th>
-                                                <th>subtotal</th>
+                                                <th>Subtotal</th>
                                                 <th>
 
                                                 </th>
@@ -55,8 +56,8 @@
                                             </tfoot>
                                         </table>
                                     </div>
-                                    Correo Electronico
-                                    <input type="text" class="form-control" id="CorreoComprador" name="CorreoComprador"/>
+                                    Correo Electrónico
+                                    <input style="margin-bottom: 2%;" type="text" class="form-control" id="CorreoComprador" name="CorreoComprador"/>
                                     <input type="hidden" class="form-control" id="Evento_id" name="Evento_id" value="{{$idEvento}}"/>
                                     <input onclick="validarCamposFormularioCompra()" class="btn btn-blue ripple trial-button" value="Comprar"/>
                                 </form>

@@ -5,7 +5,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<div class="owl-twitter owl-carousel">
+					<div>
 						<div class="item text-center">
 							<img src="{{ asset('img/icono.png') }}">
 							<h3 class="white light">GRACIAS REALIZAR LA COMPRA </h3>
