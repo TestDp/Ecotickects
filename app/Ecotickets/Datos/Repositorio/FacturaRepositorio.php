@@ -9,6 +9,8 @@
 namespace Eco\Datos\Repositorio;
 
 
+use Eco\Datos\Modelos\DetalleFactura;
+use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Factura;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +41,55 @@ class FacturaRepositorio
         try{
             $factura = Factura::where('id', '=', $idfactura)->get()->first();
             $factura->Cancelada = $estado;
+            $factura->save();
+            DB::commit();
+            return true;
+        }catch (\Exception $e) {
+            $error = $e->getMessage();
+            DB::rollback();
+            return false;
+        }
+        return false;
+
+    }
+
+    public  function  EventosConVentas($idUser)
+    {
+        $eventosConVentas = array();
+        $miseventos = Evento::where('user_id', '=', $idUser)->get();
+        foreach ($miseventos as $evento)
+        {
+            $facturasEvento= Factura::where('Evento_id', '=', $evento->id)->get()->first();
+            if($facturasEvento != null)
+               $eventosConVentas[]=$evento;
+        }
+        return $eventosConVentas;
+    }
+
+    public  function  VentasPorEvento($idEvento)
+    {
+        return  Factura::where('Evento_id', '=', $idEvento)->get();
+    }
+
+    public  function  obtenerDetalleFactura($idFactura)
+    {
+         $Detallefactura = DetalleFactura::where('Factura_id', '=', $idFactura)->get();
+         foreach ($Detallefactura as $detalle)
+             $detalle->producto;
+         return $Detallefactura;
+    }
+
+    public  function obtenerFactura($idFactura)
+    {
+        return Factura::where('id', '=', $idFactura)->get()->first();
+    }
+
+    public  function actualizarEstadoFacturaDespachada($idfactura,$estadoDespachada){
+        DB::beginTransaction();
+        try{
+            $factura = Factura::where('id', '=', $idfactura)->get()->first();
+            $factura->despachado = $estadoDespachada;
+            $factura->save();
             DB::commit();
             return true;
         }catch (\Exception $e) {

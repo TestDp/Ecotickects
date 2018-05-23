@@ -67,8 +67,30 @@ class FacturaServicio
         $idFactura = explode(env('REFERENCECODETIENDA'), $Rerefecia)[1];
         return $idFactura;
     }
-    public  function actualizarEstadoFactura($idfactura,$estado)
+    public function actualizarEstadoFactura($idfactura,$estado)
     {
-        return $this->actualizarEstadoFactura($idfactura,$estado);
+        return $this->facturaRepor->actualizarEstadoFactura($idfactura,$estado);
+    }
+
+    public  function  EventosConVentas($idUser)
+    {
+        return $this->facturaRepor-> EventosConVentas($idUser);
+    }
+
+    public  function  VentasPorEvento($idEvento)
+    {
+        return $this->facturaRepor->VentasPorEvento($idEvento);
+    }
+    public  function  obtenerDetalleFactura($idFactura)
+    {
+        return $this->facturaRepor->obtenerDetalleFactura($idFactura);
+    }
+    public  function obtenerFactura($idFactura)
+    {
+        return $this->facturaRepor->obtenerFactura($idFactura);
+    }
+    public  function actualizarEstadoFacturaDespachada($idfactura,$estadoDespachada)
+    {
+        return $this->facturaRepor->actualizarEstadoFacturaDespachada($idfactura,$estadoDespachada);
     }
 }

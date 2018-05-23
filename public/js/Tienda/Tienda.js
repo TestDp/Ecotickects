@@ -131,3 +131,21 @@ function RegistrarCompra () {
         }
     });
 }
+
+function despacharVenta (idfactura) {
+    var estadoDespachada= 1;
+    $.ajax({
+        url: urlBase+'DespacharPedido/'+idfactura+'/'+estadoDespachada,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            idfactura: idfactura,
+            estadoDespachada:estadoDespachada,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+                $("#despacha").html("SI")
+            }
+        }
+    });
+}

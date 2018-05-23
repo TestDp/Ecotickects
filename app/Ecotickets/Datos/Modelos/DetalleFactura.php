@@ -10,6 +10,6 @@ class DetalleFactura extends Model
     protected $fillable =['subTotal','cantidad','Producto_id','Factura_id'];
 
     public function producto(){
-        return $this->belongsTo('Producto');
+        return $this->belongsTo('Eco\Datos\Modelos\Producto','Producto_id','id');
     }
 }

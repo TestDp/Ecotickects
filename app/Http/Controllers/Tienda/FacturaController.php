@@ -3,19 +3,23 @@
 namespace Ecotickets\Http\Controllers\Tienda;
 
 use Eco\Negocio\Logica\AsistenteServicio;
+use Eco\Negocio\Logica\EventosServicio;
 use Ecotickets\Http\Controllers\Controller;
 use Eco\Negocio\Logica\FacturaServicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FacturaController extends Controller
 {
     protected $facturaServicio;
     protected $asistenteServicio;
+    protected $eventoServicio;
 
-    public function __construct(FacturaServicio $facturaServicio,AsistenteServicio $asistenteServicio)
+    public function __construct(FacturaServicio $facturaServicio,AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio)
     {
         $this->facturaServicio = $facturaServicio;
         $this->asistenteServicio = $asistenteServicio;
+        $this->eventoServicio = $eventoServicio;
     }
 
     public function crearFactura(Request $EdFactura)
@@ -89,7 +93,36 @@ class FacturaController extends Controller
                 return view("Tienda/respuestaPagoTienda",['ElementosArray' =>$ElementosArray]);
                 break;
         }
-        $ccUser=$transaccionReference;
-        return view('existente',['identificacion' => $ccUser]);// se debe cambiar
+
+        return redirect('/');
+    }
+
+    public  function  EventosConVentas(Request $request){
+        $request->user()->authorizeRoles(['admin','user']);
+        $user = Auth::user();
+        $misEventosConVentas =  $this->facturaServicio->EventosConVentas($user->id);
+        return view("Tienda/EventosConVentas",['misEventosConVentas'=>$misEventosConVentas]);
+    }
+
+    public function  VentasPorEvento(Request $request,$idEvento)
+    {
+        $request->user()->authorizeRoles(['admin','user']);
+        $VentasPorEvento = $this->facturaServicio->VentasPorEvento($idEvento);
+        $evento = $this->eventoServicio->obtenerEvento($idEvento);
+        return view("Tienda/VentasPorEvento",['VentasPorEvento'=>$VentasPorEvento,'nombreEvento'=>$evento->Nombre_Evento]);
+    }
+
+    public  function  obtenerDetalleFactura(Request $request,$idFactura)
+    {
+        $request->user()->authorizeRoles(['admin','user']);
+        $detallesFactura = $this->facturaServicio->obtenerDetalleFactura($idFactura);
+        $factura =  $this->facturaServicio->obtenerFactura($idFactura);
+        return view("Tienda/DetalleVenta",['detallesFactura'=>$detallesFactura,'factura'=>$factura]);
+
+    }
+
+    public  function actualizarEstadoFacturaDespachada($idfactura,$estadoDespachada)
+    {
+        return response()->json($this->facturaServicio->actualizarEstadoFacturaDespachada($idfactura,$estadoDespachada));
     }
 }

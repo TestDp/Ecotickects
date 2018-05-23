@@ -209,5 +209,14 @@ Auth::routes();
 
     Route::get('RespuestaPagosUsuarioTienda',['uses' =>'Tienda\FacturaController@RespuestaPagosUsuarioTienda']);
 
+    Route::get('EventoConVentas',['uses' =>'Tienda\FacturaController@EventosConVentas']);
+
+    Route::get('VentasPorEvento/{idEvento}',['uses' =>'Tienda\FacturaController@VentasPorEvento']);
+
+    Route::get('DetalleVenta/{idFactura}',['uses' =>'Tienda\FacturaController@obtenerDetalleFactura']);
+
+    Route::post('DespacharPedido/{idfactura}/{estadoDespachada}',['uses' =>'Tienda\FacturaController@actualizarEstadoFacturaDespachada']);
+
+
 //FIN DE RUTAS PARA EL CONTROLADOR DE  FACTURA//
 

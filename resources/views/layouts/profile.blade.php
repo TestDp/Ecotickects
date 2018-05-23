@@ -85,6 +85,7 @@
                         <ul class="collapse list-unstyled" id="homeTienda">
                             <li><a href="{{ url('formularioProducto') }}">Crear Producto</a></li>
                             <li><a href="{{ url('misproductos') }}">Mis Productos</a></li>
+                            <li><a href="{{ url('EventoConVentas') }}">Eventos con Ventas</a></li>
                         </ul>
                     </li>
                     <li>

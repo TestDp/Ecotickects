@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Factura extends Model
 {
     protected $table = 'Tbl_Factura';
-    protected $fillable =['PrecioTotal','TotalIva','CorreoComprador','Evento_id','Cancelada'];
+    protected $fillable =['PrecioTotal','TotalIva','CorreoComprador','Evento_id','Cancelada','despachado'];
 
     public function evento(){
         return $this->belongsTo('Evento');

@@ -44,16 +44,6 @@ class EventosController extends Controller
                 $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
                 $file->move(public_path().'/FlyerDeEventos/', $nombre);
             }
-
-            /**obtenemos el campo file definido en el formulario
-            $FlyerEvento = $EdEvento->ImagenFlyerEvento;
-            if($FlyerEvento != null){
-                //Asignamos el nombre del archivo
-                $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
-                //indicamos que queremos guardar un nuevo archivo en el disco local
-
-                \Storage::disk('local')->put('/public/FlyerDeEventos/'.$nombre,file_get_contents($FlyerEvento));
-            }**/
             return redirect('/home');
         }else{
             return redirect('/');
