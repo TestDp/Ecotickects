@@ -20,7 +20,7 @@
 </div>
 
 	<div>
-	<div style="background: #8abd51 url(http://dpsoluciones.co/wp-content/uploads/2018/03/Boleta-back.png) no-repeat center center; background-size: cover; padding-top:10%; padding-bottom:10%; text-align: center;" class="row">
+	<div style="background: #8abd51; padding-top:10%; padding-bottom:10%; text-align: center;" class="row">
 		<input type="hidden" id="nombreEvento" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">
 		<img src="data:image/png;base64,{!! $ElementosArray["qr"]!!}">
 	</div>
