@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>CREAR EVENTO</h3></div>
+                    <div class="panel-heading text-center"><h3>CREAR ENCUESTA</h3></div>
                     <div style="text-align: left;" class="col-md-12">
                         <div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
                     </div>
@@ -14,127 +14,69 @@
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-6">
-                                Nombre del Evento
+                                Nombre de la encuesta
                                 <input id="Nombre_Evento" name="Nombre_Evento" type="text" class="form-control" />
                             </div>
-                            <div class="col-md-3">
-                                Tipo de Evento
-                                <select id="Tipo_Evento" name="Tipo_Evento" class="form-control">
-                                    <option value="">Seleccionar</option>
-                                    <option value="Evento">Evento</option>
-                                    <option value="Cupon">Cupón</option>
-                                </select>
+                            <div class="col-md-3" hidden>
+                                <input id="Tipo_Evento" name="Tipo_Evento" type="text" value="Evento" class="form-control" />
                             </div>
-                            <div class="col-md-3">
-                                Solicitar PIN
-                                <select id="SolicitarPIN" name="SolicitarPIN" class="form-control">
-                                    <option value="">Seleccionar</option>
-                                    <option value="0">No</option>
-                                    <option value="1">SI</option>
-                                </select>
+                            <div class="col-md-3" hidden>
+                                <input id="SolicitarPIN" name="SolicitarPIN" type="text" value="0" class="form-control" />
                             </div>
                         </div>
                         <div style="margin:0px !important;" class="row">
 
-                            <div class="col-md-4">
-                                Departamento del Evento
-                                <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
-                                    <option value="">Seleccionar</option>
-                                    @foreach($formulario["departamentos"] as $Departamento)
-                                        <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="col-md-4" hidden>
+                                <input id="Departamento_id" name="Departamento_id" type="text" value="1" class="form-control" />
                             </div>
-                            <div class="col-md-4">
-                                Ciudad del Evento
-                                <select id="Ciudad_id" name="Ciudad_id" class="form-control">
-
-                                </select>
+                            <div class="col-md-4" hidden>
+                                <input id="Ciudad_id" name="Ciudad_id" type="text" value="1" class="form-control" />
                             </div>
-                            <div class="col-md-4">
-                                Lugar del Evento
-                                <input id="Lugar_Evento" name="Lugar_Evento" type="text" class="form-control" />
+                            <div class="col-md-4" hidden>
+                                <input id="Lugar_Evento" name="Lugar_Evento" type="text" value="NoAplica" class="form-control" />
                             </div>
                         </div>
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-4">
-                                Fecha del Evento
-                                <input id="Fecha_Evento" name="Fecha_Evento" type="date" class="form-control" />
-                            </div>
-                            <div class="col-md-4">
-                                Fecha inicial de registro del Evento
+                                Fecha inicial de registro de la encuesta
                                 <input id="Fecha_Inicial_Registro" name="Fecha_Inicial_Registro" type="date" class="form-control" />
                             </div>
                             <div class="col-md-4">
-                                Fecha final de registro del Evento
+                                Fecha final de registro de la encuesta
                                 <input id="Fecha_Final_Registro" name="Fecha_Final_Registro" type="date" class="form-control" />
                             </div>
                         </div>
                         <div style="margin:0px !important;" class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3" hidden>
                                 Número máximo de Asistentes
-                                <input id="numeroAsistentes" name="numeroAsistentes" type="text" class="form-control" />
+                                <input id="numeroAsistentes" name="numeroAsistentes" type="text" class="form-control" value="1000000"/>
                             </div>
-                            <div class="col-md-3">
-                                Evento Publico
-                                <select id="EsPublico" name="EsPublico" class="form-control">
-                                    <option value="">Seleccionar</option>
-                                    <option value="1">SI</option>
-                                    <option value="0">No</option>
-                                </select>
+                            <div class="col-md-3" hidden>
+                                <input id="EsPublico" name="EsPublico" type="text" class="form-control" value="1"/>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" hidden>
                                 Correo para enviar invitación
-                                <input id="CorreoEnviarInvitacion" name="CorreoEnviarInvitacion" type="text" class="form-control" />
+                                <input id="CorreoEnviarInvitacion" name="CorreoEnviarInvitacion" type="text" class="form-control" value="miautonomia@xxx.com"/>
                             </div>
                         </div>
-                        <div style="margin:0px !important;" class="row">
-                            <div class="col-md-6">
+                        <div style="margin:0px !important;" class="row" hidden>
+                            <div class="col-md-6" >
                                 Codigo PULEP
-                                <input id="CodigoPulep" name="CodigoPulep" type="text" class="form-control" />
+                                <input id="CodigoPulep" name="CodigoPulep" type="text" class="form-control" value="noaplica"/>
                             </div>
                             <div class="col-md-3">
-                                Evento Pago
-                                <select id="esPago" name="esPago" class="form-control" onchange="MostrarDivBoletas()">
-                                    <option value="">Seleccionar</option>
-                                    <option value="0">No</option>
-                                    <option value="1">SI</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="divBoletas" hidden>
-                            <hr/>
-                            <div class="panel-heading text-center"><h4>Lista de Precios</h4></div>
-
-                            <div class="row" id="PreciosBoletas" name="PreciosBoletas">
-                                <div class="col-md-10">
-                                    <div class="form-group">
-                                            <div class="input-group-addon" >
-                                                Localidad
-                                                <input id="localidad" name="localidad" type="text" class="form-control" />
-                                            </div>
-                                            <div class="input-group-addon" >
-                                                Precio Boleta
-                                                <input id="precio" name="precio" type="number" class="form-control" />
-                                            </div>
-                                            <div class="input-group-addon">
-                                                <a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
-                                            </div>
-                                    </div>
-                                </div>
+                                <input id="esPago" name="esPago" type="text" class="form-control" value="0"/>
                             </div>
                         </div>
                         <hr/>
-                        <div style="margin:0px !important;" class="row">
+                        <div style="margin:0px !important;" class="row" hidden>
                             <div class="col-md-12">
-                                Flyer del evento
-                                <input type="file" class="form-control" name="ImagenFlyerEvento" >
+                                <input type="file" class="form-control" name="ImagenFlyerEvento" value="noaplica">
                             </div>
                         </div>
-                        <div style="margin:0px !important;" class="row">
+                        <div style="margin:0px !important;" class="row" hidden>
                             <div class="col-md-12">
-                                Información para envio del la invitación
-                                <textarea id="informacionEvento" name="informacionEvento"></textarea>
+                                <input type="file" class="form-control" name="informacionEvento" value="noaplica">
                             </div>
                         </div>
                         <br/>

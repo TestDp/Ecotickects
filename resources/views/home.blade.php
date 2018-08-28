@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Bievenido a Ecotickets</h3></div>
+                    <div class="panel-heading text-center"><h3>Bievenido a Miautonomia</h3></div>
 
                     <div class="panel-body">
                         @if (session('status'))

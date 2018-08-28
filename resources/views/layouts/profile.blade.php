@@ -63,55 +63,15 @@
 
                 <ul class="list-unstyled components">
                     <p>{{ Auth::user()->name }}</p>
+                    @if(Auth::user()->hasRole('admin'))
                     <li>
                         <a href="{{ url('/home') }}">Home</a>
                     </li>
                     <li class="active">
-                        <a href="#homeEventos" data-toggle="collapse" aria-expanded="false">Eventos</a>
+                        <a href="#homeEventos" data-toggle="collapse" aria-expanded="false">Encuestas</a>
                         <ul class="collapse list-unstyled" id="homeEventos">
-                            <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
-                            <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#homeCupones" data-toggle="collapse" aria-expanded="false">Cupones</a>
-                        <ul class="collapse list-unstyled" id="homeCupones">
-                            <li><a href="{{ url('FormularioEvento') }}">Crear Cupones</a></li>
-                            <li><a href="{{ url('MisCupones') }}">Mis Cupones</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#homeTienda" data-toggle="collapse" aria-expanded="false">Tienda</a>
-                        <ul class="collapse list-unstyled" id="homeTienda">
-                            <li><a href="{{ url('formularioProducto') }}">Crear Producto</a></li>
-                            <li><a href="{{ url('misproductos') }}">Mis Productos</a></li>
-                            <li><a href="{{ url('EventoConVentas') }}">Eventos con Ventas</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false">Configuraciones Evento</a>
-                        <ul class="collapse list-unstyled" id="homeConfiguraciones">
-                            <li><a href="{{ url('ActivarFunciones') }}">Activar Funciones</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Estadísticas Generales</a>
-                    </li>
-                    @if(Auth::user()->hasRole('admin'))
-                    <li>
-                        <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false">Maestros</a>
-                        <ul class="collapse list-unstyled" id="homeMaestros">
-                            <li><a href="{{ url('departamentos') }}">Departamentos</a></li>
-                            <li><a href="{{ url('ListaCiudades') }}">Ciudades</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#homeUsuarios" data-toggle="collapse" aria-expanded="false">Usuarios y Roles</a>
-                        <ul class="collapse list-unstyled" id="homeUsuarios">
-                            <li><a href="{{ route('register') }}">Registrar Usuario</a></li>
-                            <li><a href="{{ url('usuarios') }}">Usuarios</a></li>
-                            <li><a href="{{ url('') }}">Agregar Rol</a></li>
-                            <li><a href="{{ url('') }}">Roles</a></li>
+                            <li><a href="{{ url('FormularioEvento') }}">Crear Encuesta</a></li>
+                            <li><a href="{{ url('MisEventos') }}">Mis Encuesta</a></li>
                         </ul>
                     </li>
                     @endif
