@@ -90,23 +90,15 @@
 				<div class="col-md-6">
 					<div class="intro-table intro-table-hover">
 						<h3 class="white heading hide-hover">EVENTOS</h3>
-						<div class="bottom">
-							<h4 class="white heading small-heading no-margin regular">Busca tu evento</h4>
-							<h4 class="white heading small-pt">y regístrate</h4>
-							<a href="{{ url('Eventos') }}" class="btn btn-white-fill expand">VER EVENTOS</a>
-						</div>
+
 					</div>
 				</div>	
 				<div class="col-md-6">
 					<div class="intro-table intro-table-hover">
 						<h3 class="white heading hide-hover">CUPONES</h3>
-						<div class="bottom">
-							<h4 class="white heading small-heading no-margin regular">Busca tu cupón</h4>
-							<h4 class="white heading small-pt">y obténlo</h4>
-							<a href="{{ url('Cupones') }}" class="btn btn-white-fill expand">VER CUPONES</a>
-						</div>
+
 					</div>
-				</div>				
+				</div>
 			</div>
 		</div>
 	</section>
