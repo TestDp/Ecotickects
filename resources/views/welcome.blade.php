@@ -73,60 +73,20 @@
 			<div class="table">
 				<div class="header-text">
 					<div class="row">
-						<div class="col-md-12 text-center">
-							<h3 class="light black">Desarrollado por DPSoluciones.</h3>
-							<h1 class="black typed">MiAutonomía</h1>
-							<span class="typed-cursor">|</span>
+					<div class="col-md-12">
+					<div class="service">
+						<div class="icon-holder">
+							<img src="img/icons/icono.png" alt="" class="icon">
 						</div>
+						<h4 class="heading">MIAUTONOMÍA</h4>
+						<p class="description">A elementum ligula lacus ac quam ultrices a scelerisque praesent vel suspendisse scelerisque a aenean hac montes.</p>
+					</div>
+				</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-<section>
-		<div class="cut cut-top"></div>
-		<div class="container">
-			<div class="row intro-tables">
-				<<div class="col-md-6">
-					<div class="intro-table intro-table-hover">
-						<h3 class="white heading hide-hover">EVENTOS</h3>
-						<div class="bottom">
-							<h4 class="white heading small-heading no-margin regular">Busca tu evento</h4>
-							<h4 class="white heading small-pt">y regístrate</h4>
-							<a href="{{ url('Eventos') }}" class="btn btn-white-fill expand">VER EVENTOS</a>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-	
-	
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center-mobile">
-					<h3 class="white">Crea tu cuenta y adquiere tu licencia anual!</h3>
-					<h5 class="light regular light-white">Administración, gestión y estadísticas de tus eventos.</h5>
-					<a href="http://dpsoluciones.co/nuestros-servicios/" target="_blank" class="btn btn-blue ripple trial-button">Ver más</a>
-				</div>
-			
-			</div>
-			<div class="row bottom-footer text-center-mobile">
-				<div class="col-sm-8">
-					<p>Todos los derechos reservados 2018. Desarrollado por <a href="http://www.dpsoluciones.co/" target="_blank">DPS</a></p>
-				</div>
-				<div class="col-sm-4 text-right text-center-mobile">
-					<ul class="social-footer">
-						<li><a href="https://web.facebook.com/dpsolucionesrionegro/?_rdc=1&_rdr" target="_blank"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="https://twitter.com/dpsolucionesrio" target="_blank"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="https://www.instagram.com/dpsolucionesrio/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<!-- Holder for mobile navigation -->
 	<div class="mobile-nav">
 		<ul>
