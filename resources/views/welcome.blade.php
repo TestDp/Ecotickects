@@ -75,7 +75,7 @@
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<h3 class="light black">Desarrollado por DPSoluciones.</h3>
-							<h1 class="black typed">Una forma simple de proteger el planeta.</h1>
+							<h1 class="black typed">MiAutonomía</h1>
 							<span class="typed-cursor">|</span>
 						</div>
 					</div>
@@ -87,18 +87,17 @@
 		<div class="cut cut-top"></div>
 		<div class="container">
 			<div class="row intro-tables">
-				<div class="col-md-6">
+				<<div class="col-md-6">
 					<div class="intro-table intro-table-hover">
 						<h3 class="white heading hide-hover">EVENTOS</h3>
-
-					</div>
-				</div>	
-				<div class="col-md-6">
-					<div class="intro-table intro-table-hover">
-						<h3 class="white heading hide-hover">CUPONES</h3>
-
+						<div class="bottom">
+							<h4 class="white heading small-heading no-margin regular">Busca tu evento</h4>
+							<h4 class="white heading small-pt">y regístrate</h4>
+							<a href="{{ url('Eventos') }}" class="btn btn-white-fill expand">VER EVENTOS</a>
+						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
