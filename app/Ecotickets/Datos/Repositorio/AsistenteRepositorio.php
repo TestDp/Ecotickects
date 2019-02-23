@@ -132,8 +132,45 @@ class AsistenteRepositorio
         foreach ($listaAsistentesEventos as $asistenteXEvento) {
             $asistente = Asistente::where('id', '=', $asistenteXEvento->Asistente_id)->first();
             $asistente->ciudad = Ciudad::where('id', '=', $asistente->Ciudad_id)->get()->first();
+            $asistente->CantidadBoletas = 0;
+            $asistente->PrecioTotal = 0;
             $arrayAsistentes[] = $asistente;
         }
+
+
+        return $arrayAsistentes;
+    }
+
+    public function obtenerAsistentesXEventoPago($idEvento)
+    {
+        $asistentesPago = DB::table('tbl_asistentes')
+            ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
+            ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->get();
+
+        foreach ($asistentesPago as $asistenteXEventoPago) {
+
+            $asistenteXEventoPago->ciudad = Ciudad::where('id', '=', $asistenteXEventoPago->Ciudad_id)->get()->first();
+            $arrayAsistentes[] = $asistenteXEventoPago;
+        }
+        return $arrayAsistentes;
+
+        /*
+       select  a.Identificacion, a.Nombres, a.Apellidos, a.telefono, a.Email, c.Nombre_Ciudad, p.cantidadBoletas, p.precioTotal
+from tbl_asistentesXeventos  as ae
+inner join tbl_asistentes as a
+on ae.Asistente_id = a.id
+inner join Tbl_Ciudades as c
+on a.Ciudad_id = c.id
+inner join Tbl_InfoPagos as p
+on ae.id = p.AsistenteXEvento_id
+where Evento_id =27 and EstadosTransaccion_id = 4
+
+
+*/
 
 
         return $arrayAsistentes;
@@ -312,6 +349,17 @@ class AsistenteRepositorio
             return 'El Usuario NO Confirmo Asistencia';    
              }
         return 'Error ingresando el usuario';
+
+    }
+
+    public function Espago($idEvento)
+    {
+        $espago = count(Evento::where('id', '=', $idEvento)->where('Espago', '=', 1)->get());
+
+        if ($espago == 0) {
+            return false;
+        }
+        return true;
 
     }
         

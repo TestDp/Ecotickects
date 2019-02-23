@@ -805,6 +805,8 @@ function BuscarAsistente() {
                 $("#Dirección").val(result.Dirección);
                 $("#Departamento_id").val(result.ciudad.Departamento_id);
                 CargarMunicipiosDepartamento(result.ciudad.id);
+                $("#cantidadBoletas").val(result.cantidadBoletas);
+                $("#precioTotal").val(result.precioTotal);
             }else{
                 $("#Nombres").val("");
                 $("#Nombres").removeAttrs("readonly");
@@ -817,6 +819,8 @@ function BuscarAsistente() {
                 $("#Dirección").val("");
                 $("#Departamento_id").val("");
                 $("#Ciudad_id").find("option").remove();//Removemos las opciónes anteriores
+                $("#cantidadBoletas").val("");
+                $("#precioTotal").val("");
             }
         }
     });

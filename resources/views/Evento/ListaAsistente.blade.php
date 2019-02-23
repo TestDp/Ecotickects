@@ -28,6 +28,12 @@
                                 <th>
                                     Ciudad
                                 </th>
+                                <th>
+                                    CantidadBoletas
+                                </th>
+                                <th>
+                                    TotalCompra
+                                </th>
                             </tr>
                             </thead>
                             <tbody >
@@ -50,6 +56,12 @@
                                 </td>
                                 <td>
                                     {{$asistente->ciudad->Nombre_Ciudad}}
+                                </td>
+                                <td>
+                                    {{$asistente->CantidadBoletas}}
+                                </td>
+                                <td>
+                                    {{$asistente->PrecioTotal}}
                                 </td>
                             </tr>
                             @endforeach

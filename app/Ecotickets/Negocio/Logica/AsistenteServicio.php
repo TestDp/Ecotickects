@@ -112,6 +112,12 @@ class AsistenteServicio
 
     public function obtenerAsistentesXEvento($idEvento)
     {
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            return $this->asistenteRepositorio->obtenerAsistentesXEventoPago($idEvento);
+        }
+
         return $this->asistenteRepositorio->obtenerAsistentesXEvento($idEvento);
     }
 
