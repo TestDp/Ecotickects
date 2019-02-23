@@ -157,6 +157,25 @@ class AsistenteRepositorio
         return true;
     }
 
+    public function ActualizarPinBusquedaCorreo($correo)
+    {
+        $pinActualizar = CodigoAsistente::where('Identificacion', '=', $correo)->get()->first();
+        if($pinActualizar != null){
+            $pinActualizar->TipoCodigo = '1';
+            $pinActualizar->save();
+        }
+        return true;
+    }
+
+    //se actualiza el pin solo ingresando el correo electronico donde se ingresa la cc, no se actualiza el estado del pin
+    public function ActualizarPinSinActualizarEstado($correo, $idPin)
+    {
+        $pinActualizar = CodigoAsistente::where('Codigo', '=', $idPin)->get()->first();
+        $pinActualizar->Identificacion = $correo;
+        $pinActualizar->save();
+        return true;
+    }
+
     public function ObtnerCantidadAsistentes($idEvento)
     {
         return count(AsistenteXEvento::where('Evento_id', '=', $idEvento)->get());

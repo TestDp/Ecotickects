@@ -30,6 +30,11 @@ class AsistenteServicio
     {
         $respuesta = $this->asistenteRepositorio->registrarAsistentePago($asistente);
         if ($respuesta['respuesta']) {
+
+            $pin = $asistente ->pinIngresar;
+            if($pin){
+                $this->ActualizarPinSinActualizarEstado($asistente->Email,$pin);
+            }
             $info_pagos = new \stdClass();
             $info_pagos->merchantId = env('MERCHANTID');
             $info_pagos->accountId = env('ACCOUNTID');
@@ -120,6 +125,13 @@ class AsistenteServicio
         return $this->asistenteRepositorio->ActualizarPin($ced, $idPin);
     }
 
+    public function ActualizarPinSinActualizarEstado($correo, $idPin){
+        return $this->asistenteRepositorio->ActualizarPinSinActualizarEstado($correo, $idPin);
+    }
+
+    public function ActualizarPinBusquedaCorreo($correo){
+        return $this->asistenteRepositorio->ActualizarPinBusquedaCorreo($correo);
+    }
     public function ObtnerCantidadAsistentes($idEvento)
     {
         return $this->asistenteRepositorio->ObtnerCantidadAsistentes($idEvento);

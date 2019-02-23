@@ -181,6 +181,29 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-3">
+                                    Localidad
+                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
+                                            <option value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}">{{ $Localidad->localidad }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    Precio Ecotickets
+                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
+                                </div>
+                                <div class="col-md-3">
+                                    Cantidad De Ecotickets
+                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-control" onkeyup="calcularPrecioTotal()"  />
+                                </div>
+                                <div class="col-md-3">
+                                    Precio Total
+                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
                                     Comentario
                                     <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
@@ -224,9 +247,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button">
-                                        Comprar
-                                    </button>
+                                    <input onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
                                 </div>
                             </div>
                         </div>
