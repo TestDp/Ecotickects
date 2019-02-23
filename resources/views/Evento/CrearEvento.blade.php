@@ -57,17 +57,29 @@
                             </div>
                         </div>
                         <div style="margin:0px !important;" class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 Fecha del Evento
                                 <input id="Fecha_Evento" name="Fecha_Evento" type="date" class="form-control" />
                             </div>
-                            <div class="col-md-4">
-                                Fecha inicial de registro del Evento
+                            <div class="col-md-2">
+                                Hora del Evento
+                                <input type="time" name="Hora_Evento" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                Fecha inicial de registro
                                 <input id="Fecha_Inicial_Registro" name="Fecha_Inicial_Registro" type="date" class="form-control" />
                             </div>
-                            <div class="col-md-4">
-                                Fecha final de registro del Evento
+                            <div class="col-md-2">
+                                Hora inicial de registro
+                                <input type="time" name="Hora_Inicial_Registro" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                Fecha final de registro
                                 <input id="Fecha_Final_Registro" name="Fecha_Final_Registro" type="date" class="form-control" />
+                            </div>
+                            <div class="col-md-2">
+                                Hora final de registro
+                                <input type="time" name="Hora_Final_Registro" class="form-control">
                             </div>
                         </div>
                         <div style="margin:0px !important;" class="row">

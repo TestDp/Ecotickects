@@ -9,6 +9,7 @@
 namespace Eco\Datos\Repositorio;
 
 
+use DateTime;
 use Eco\Datos\Modelos\Ciudad;
 use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
@@ -27,6 +28,9 @@ class EventosRepositorio
         try{
             //inicio del bloque donde se guarda el evento para obtener el id del evento
             $evento = new Evento($EdEvento->all());
+            $evento->Fecha_Evento=new DateTime($EdEvento->Fecha_Evento . $EdEvento->Hora_Evento);
+            $evento->Fecha_Inicial_Registro=new DateTime($EdEvento->Fecha_Inicial_Registro . $EdEvento->Hora_Inicial_Registro);
+            $evento->Fecha_Final_Registro=new DateTime($EdEvento->Fecha_Final_Registro . $EdEvento->Hora_Final_Registro);
             $evento->activarTienda = false;
             //Asignamos el nombre del archivo
             if($EdEvento->ImagenFlyerEvento != null){
@@ -80,7 +84,7 @@ class EventosRepositorio
             DB::rollback();
             return  false;
         }
-        return true;
+            return true;
     }
 
     public function obtenerEvento($idEvento)

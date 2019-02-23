@@ -1,4 +1,4 @@
-var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+var urlBase = "/Ecotickects/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 var arrayColores= ["#000033","#0000CC","#003300","#0033FF","#006600","#006699",
     "#0066CC","#009966","#009999","#0099CC","#0099FF","#00CC99","#00CCCC","#00CCFF","#00FF00","#00FF33",
     "#00FF66","#00FF99","#330033","#330066","#330099","#3300CC","#3300FF","#333300","#333333","#333366","#333399","#3333CC","#3333FF",
@@ -327,7 +327,15 @@ function validarFormulario(){
 function validarCamposCrearEvento() {
 
     validarFormularioCrearEvento();
-    if ($("#crearEvento").valid()) {
+    var validarCamposLocalidad = true;
+    var validarCamposPrecioBoleta = true;
+    if($("#esPago").val() == 1){//se valida si seleccionó si el evento es pago
+        validarCamposLocalidad = validarCamposDinamicos($('#crearEvento'),'localidad','input','*','','*La localidad es obligatoria');
+        validarCamposPrecioBoleta = validarCamposDinamicos($('#crearEvento'),'precio','input','*','','*El precio es obligatorio');
+    }
+    var validarCamposPreguntas = validarCamposDinamicos($('#crearEvento'),'TextoPregunta','input','*','','*La pregunta es obligatoria');
+    var validarCamposRespuestas = validarCamposDinamicos($('#crearEvento'),'TextoRespuesta','input','*','','*La respuesta es obligatoria');
+    if ($("#crearEvento").valid() && validarCamposLocalidad && validarCamposPrecioBoleta && validarCamposPreguntas && validarCamposRespuestas) {
         EditarNombrePreguntasYRespuetas();
         $("#crearEvento").submit();
     }
@@ -338,8 +346,8 @@ function validarFormularioCrearEvento(){
     $("#crearEvento").validate({
         rules: {
             Nombre_Evento: {
-                required: true
-                // minlength: 2
+                required: true,
+                maxlength: 30
             },
             Tipo_Evento: {
                 required: true
@@ -363,6 +371,15 @@ function validarFormularioCrearEvento(){
                 required: true
             },
             Fecha_Final_Registro: {
+                required: true
+            },
+            Hora_Evento: {
+                required: true
+            },
+            Hora_Inicial_Registro: {
+                required: true
+            },
+            Hora_Final_Registro: {
                 required: true
             },
             numeroAsistentes: {
@@ -377,12 +394,17 @@ function validarFormularioCrearEvento(){
             },
             informacionEvento: {
                 required: true
+            },
+            esPago:{
+                required: true
             }
+
 
         },
         messages: {
             Nombre_Evento: {
-                required: "*El nombre del evento es obligatorio"
+                required: "*El nombre del evento es obligatorio",
+                maxlength: "*El nombre debe tener máximo 30 caracteres"
             },
             Tipo_Evento: {
                 required: "*El tipo de evento es obligatorio"
@@ -397,7 +419,7 @@ function validarFormularioCrearEvento(){
                 required: "*la ciudad es obligatoria"
             },
             Lugar_Evento: {
-                equalTo: "*El lugar del evento  es obligatorio"
+                required: "*El lugar del evento  es obligatorio"
             },
             Fecha_Evento: {
                 required: "*La fecha del evento es obligatoria"
@@ -406,10 +428,19 @@ function validarFormularioCrearEvento(){
                 required: "*La fecha inicial es obligatoria"
             },
             Fecha_Final_Registro: {
-                required: "*la fecha final es obligatoria"
+                required: "*La fecha final es obligatoria"
+            },
+            Hora_Evento: {
+                required: "*La hora del evento es obligatoria"
+            },
+            Hora_Inicial_Registro: {
+                required: "*La hora incial de es obligatoria"
+            },
+            Hora_Final_Registro: {
+                required: "*La hora final es obligatoria"
             },
             numeroAsistentes: {
-                required: "*El numero maximo de asistentes es obligatorio"
+                required: "*El numero máximo de asistentes es obligatorio"
             },
             EsPublico: {
                 required: "*Se debe  seleccionar una  opción"
@@ -420,6 +451,9 @@ function validarFormularioCrearEvento(){
             },
             informacionEvento: {
                 required: "*la información del evento es obligatorio"
+            },
+            esPago:{
+                required: "*Se debe selecccionar si el evento es pago"
             }
 
         }
@@ -980,3 +1014,82 @@ function validarCamposConfirmacion(){
 
 }
 
+
+
+
+//validacion de campos dinamicos
+
+
+//contenedor: contenedor donde se encuentran los campos dinamicos a validar ejemplo $("#actividades")
+//nameElementoAValidar: nombre(name) de los elementos a validar ejemplo "DescripcionActividad"
+//tipoElemento:tipo de elemento a buscar para realizar la validacion por ejemplo "input"
+//tipoSelector: es el tipo de selector para jquery un ejemplo es el asterisco(*) es el que encuentra todos elementos que contengan un subestring especificada,
+//sino se especifica un selector se toma el igual como defecto..consultar api de jquery https://api.jquery.com/category/selectors/
+//errorClass:es la clase con la que va aparecer la etiqueta que mostrara el mensaje de validación por defecto viene con la clase "error-dinamico".
+//errorMensaje: mensaje que se mostrará de la validación el mensaje por defecto es "el campo es obligatorio"
+function validarCamposDinamicos(contenedor, nameElementoAValidar, tipoElemento,tipoSelector, errorClass,errorMensaje) {
+
+    if (contenedor != undefined && nameElementoAValidar != undefined)
+    {
+        var formulario = $(contenedor);
+
+        var stringElementoBuscar = "";
+        if (tipoSelector != undefined)
+        {
+            stringElementoBuscar = tipoElemento + "[name" + tipoSelector + "=" + nameElementoAValidar + "]";
+        } else
+        {
+            stringElementoBuscar = tipoElemento + "[name=" + nameElementoAValidar + "]";
+        }
+
+        var valido = true;
+        var labelError="";
+        if (errorClass === undefined && errorMensaje === undefined)
+        {
+            labelError = '<label class="error-dinamico">El campo es obligatorio</label>';
+        } else if (errorClass != undefined && errorMensaje === undefined)
+        {
+            labelError = '<label class="' + errorClass + '">El campo es obligatorio</label>';
+        } else if (errorClass != undefined && errorMensaje != undefined)
+        {
+            labelError = '<label class="' + errorClass + '">' + errorMensaje + '</label>';
+        } else if (errorClass === undefined && errorMensaje != undefined)
+        {
+            labelError = '<label class="error-dinamico">' + errorMensaje + '</label>';
+        }
+
+        formulario.find(stringElementoBuscar).each(function (ind,element) {
+            var label = $(element).next("label");
+            if ($(element).val().trim() === '') {
+                if (label != undefined) {
+                    label.remove();
+                }
+                $(element).after(labelError);
+                $(element).attr("onchange", "quitarlabelError(this)");
+                valido = false;
+            } else
+            {
+                label.remove();
+            }
+        })
+        return valido;
+    } else {
+        return false;
+    }
+
+
+}
+
+//funcion para quitar las etiquetas de la validación dimamica
+function quitarlabelError(element)
+{
+    var label = $(element).next("label");
+    if ($(element).val().trim() === '') {
+        if (label != undefined) {
+            label.remove();
+        }
+    } else {
+        label.remove();
+    }
+
+}
