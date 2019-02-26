@@ -46,6 +46,7 @@ Auth::routes();
 // INICIO DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
     Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@welcome']);
+    Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@ObtenerEventos']);
 
     Route::get('Eventos', ['uses' =>'Ecotickets\EcoticketsController@ObtenerEventos']);
 

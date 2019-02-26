@@ -33,6 +33,26 @@
 	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
 	<!-- Main style -->
 	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+	
+		<!-- Animate.css -->
+	<link rel="stylesheet" href="css/EventosEco/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/EventosEco/icomoon.css">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="css/EventosEco/themify-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/EventosEco/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/EventosEco/magnific-popup.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/EventosEco/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/EventosEco/owl.theme.default.min.css') }}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/EventosEco/style.css">
+	
 </head>
 
 <body>
@@ -55,10 +75,11 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			@if (Route::has('login'))
 				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="#eventos">EVENTOS</a></li>
 					@auth
                         <li><a href="{{ url('/home') }}">Home</a></li>
                     @else
-                        <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                        <li><a href="{{ route('login') }}" class="btn btn-blue">Iniciar Sesión</a></li>
                      <!--<li><a href="{{ route('register') }}">Registrarse</a></li>-->
                     @endauth
 				</ul>
@@ -73,42 +94,63 @@
 			<div class="table">
 				<div class="header-text">
 					<div class="row">
-						<div class="col-md-12 text-center">
-							<h3 class="light black">Desarrollado por DPSoluciones.</h3>
-							<h1 class="black typed">Una forma simple de proteger el planeta.</h1>
-							<span class="typed-cursor">|</span>
+						<div class="col-md-12 text-center">							
+							<h1 class="black typed">Una forma simple de proteger el planeta.</h1><span class="typed-cursor">|</span>
+							<h3 class="light black">Administra tu evento sosteniblemente</h3>
+							<a href="#" class="btn btn-blue ripple trial-button">PUBLICA TU EVENTO</a>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-<section>
-		<div class="cut cut-top"></div>
+<section style="padding-top:3%;" id="eventos">
 		<div class="container">
-			<div class="row intro-tables">
-				<div class="col-md-6">
-					<div class="intro-table intro-table-hover">
-						<h3 class="white heading hide-hover">EVENTOS</h3>
-						<div class="bottom">
-							<h4 class="white heading small-heading no-margin regular">Busca tu evento</h4>
-							<h4 class="white heading small-pt">y regístrate</h4>
-							<a href="{{ url('Eventos') }}" class="btn btn-white-fill expand">VER EVENTOS</a>
-						</div>
-					</div>
-				</div>	
-				<div class="col-md-6">
-					<div class="intro-table intro-table-hover">
-						<h3 class="white heading hide-hover">CUPONES</h3>
-						<div class="bottom">
-							<h4 class="white heading small-heading no-margin regular">Busca tu cupón</h4>
-							<h4 class="white heading small-pt">y obténlo</h4>
-							<a href="{{ url('Cupones') }}" class="btn btn-white-fill expand">VER CUPONES</a>
-						</div>
-					</div>
-				</div>				
+			<div class="row text-center title">
+				<h2 style="color:#74b12e; font-size: 40px; font-weight: 800;">#EllosCuidanElPlaneta</h2>
+				<h4 class="light muted">Ellos confían en nosotros y cuidan el medio ambiente<span class="open-blink"></span></h4>
 			</div>
-		</div>
+		<div class="gtco-section">
+		<div class="gtco-container">
+			<div class="row row-pb-md">
+				<div class="col-md-12">
+					<ul id="gtco-portfolio-list">
+
+						@foreach($ListaEventos["eventos"] as $evento)
+
+					<li class="one-third animate-box" data-animate-effect="fadeIn">
+						<div class="team text-center">
+							<div class="cover" style="background:url('{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}'); background-size:cover;">
+								<div class="overlay text-center">
+									<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}">{{ $evento->Nombre_Evento }}</a></h3>
+								</div>
+							</div>
+							<img src="img/logo.jpg" alt="Team Image" class="avatar">
+							<div class="title">
+								<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h4>{{ $evento->Nombre_Evento }}</h4></a>
+								<h5 class="muted regular"><b>Fecha: </b>{{ $evento->Fecha_Evento }}</h5>
+								<h5 class="muted regular"><b>Lugar: </b>{{ $evento->Lugar_Evento }}</h5>
+								<h5 class="muted regular"><b>Municipio: </b>{{ $evento->ciudad->Nombre_Ciudad }}</h5>
+								<h5 class="muted regular"><b>Departamento: </b>{{ $evento->ciudad->departamento->Nombre_Departamento }}</h5>
+												
+							</div>						
+								@if($evento->esPago)
+									<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+								@else
+									<a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+								@endif
+								@if($evento->activarTienda ==1)
+									<a href="{{url('Tienda', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Tienda</h5></a>
+								@endif
+						</div>
+					</li>
+						@endforeach
+
+					</ul>
+				</div></div></div></div>
+				
+				</div>
 	</section>
 	
 	
@@ -143,6 +185,7 @@
 		<a href="#" class="close-link"><i class="arrow_up"></i></a>
 	</div>
 	<!-- Scripts -->
+	<script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -66,8 +66,15 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
   font-family: "Droid Sans", Arial, sans-serif;
   font-weight: 400;
-  margin: 0 0 20px 0;
+  margin: 0 0 5px 0;
 }
+
+h4{
+	color:#74b12e !important;
+	font-size: 25px;
+    font-weight: 700;
+	
+	}
 
 ::-webkit-selection {
   color: #fff;
@@ -1653,8 +1660,7 @@ form label {
   }
 }
 #gtco-portfolio-list li a {
-  min-height: 100px;
-  padding: 2em;
+  padding: 3%;
   position: relative;
   width: 100%;
   display: block;
@@ -1753,7 +1759,7 @@ form label {
 #gtco-portfolio-list li.one-third {
 	width: 32.3%;
 	border: 2px solid #fff;
-	padding: 3%;
+	padding: 1%;
 	text-align: center;
 }
 @media screen and (max-width: 768px) {

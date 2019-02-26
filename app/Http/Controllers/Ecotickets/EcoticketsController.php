@@ -40,8 +40,9 @@ class EcoticketsController extends Controller
     public  function  ObtenerEventos()
     {
         $eventos = $this->eventoServicio->obtenerEventos();
-        $ListaEventos= array('eventos' => $eventos);
-        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
+        $rutaImagenes=env('RutaFlyerEventoWelcome');
+        $ListaEventos= array('eventos' => $eventos,'rutaImagenes'=>$rutaImagenes);
+        return view('welcome',['ListaEventos' => $ListaEventos]);
     }
 
     public  function  ObtenerCupones(EventosServicio $eventosServicio)

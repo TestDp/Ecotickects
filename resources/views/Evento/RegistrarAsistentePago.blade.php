@@ -10,8 +10,8 @@
                     <div class="panel-body">
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <img class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
+                                <div class="col-sm-12" style="background-size: cover; width: 100%; height: 400px;background:url('{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}'); background-size:cover;">
+                              
                                 </div>
                             </div>
                         @endif
