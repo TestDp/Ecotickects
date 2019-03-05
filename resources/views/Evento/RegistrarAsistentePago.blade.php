@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
-                                <div class="col-sm-12" style="background-size: cover; width: 100%; height: 400px;background:url('{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}'); background-size:cover;">
+                                <div class="col-sm-12" style="background-size: cover; width: 100%; height: 400px;background:url('{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}'); background-size:cover; background-repeat: no-repeat; background-position: center;">
                               
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div style="background:#fff; border-radius:5px; padding:2%;" class="container">
         <div class="row">
             <div class="col-md-12">
                 <form id="formularioEvento">

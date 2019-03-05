@@ -89,14 +89,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" data-active-url="{{ asset('img/logo-active.png') }}" alt=""></a>
+				<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo-active-negro.png') }}" data-active-url="{{ asset('img/logo-active-negro.png') }}" alt=""></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			 <ul class="nav navbar-nav navbar-right main-nav">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Inicio de Sesión</a></li>
+                            <li><a href="{{ route('login') }}" class="btn btn-blue">Inicio de Sesión</a></li>
                          <!--   <li><a href="{{ route('register') }}">Registrarse</a></li>-->
                         @else
 							 <li><a href="{{ url('/home') }}">Home</a></li>
