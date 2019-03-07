@@ -233,17 +233,6 @@ where Evento_id =27 and EstadosTransaccion_id = 4
 
     public function ObtenerAsistentePago($idEvento, $cc)
     {
-
-       /* $asistente = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
-            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
-            ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
-            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
-            ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
-            ->select('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id' )
-            ->get()->first();
-       */
-
         $asistente = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             //->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
