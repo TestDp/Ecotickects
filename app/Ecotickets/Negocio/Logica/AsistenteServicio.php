@@ -150,21 +150,48 @@ class AsistenteServicio
 
     public function ObtenerInformacionDelAsistenteXEvento($idEvento, $cc)
     {
-        $asistente = $this->asistenteRepositorio->ObtenerAsistente($cc);
-        if ($asistente != null) {
-            $AsistenteEvento = $this->asistenteRepositorio->ObtenerAsistenteXEvento($idEvento, $asistente->id);
-            if ($AsistenteEvento != null) {
-                $asistente->esActivo = $AsistenteEvento->esActivo;
-                $asistente->esPerfilado = $AsistenteEvento->esPerfilado;
-                return $asistente;
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            $asistente = $this->asistenteRepositorio->ObtenerAsistentePago($idEvento,$cc);
+            if ($asistente != null) {
+                $AsistenteEvento = $this->asistenteRepositorio->ObtenerAsistenteXEventoPago($idEvento, $asistente->id, $cc);
+                if ($AsistenteEvento != null) {
+                    $asistente->esActivo = $AsistenteEvento->esActivo;
+                    $asistente->esPerfilado = $AsistenteEvento->esPerfilado;
+                    return $asistente;
+                }
             }
+            return null;
         }
-        return null;
+        else
+        {
+            $asistente = $this->asistenteRepositorio->ObtenerAsistente($cc);
+            if ($asistente != null) {
+                $AsistenteEvento = $this->asistenteRepositorio->ObtenerAsistenteXEvento($idEvento, $asistente->id);
+                if ($AsistenteEvento != null) {
+                    $asistente->esActivo = $AsistenteEvento->esActivo;
+                    $asistente->esPerfilado = $AsistenteEvento->esPerfilado;
+                    return $asistente;
+                }
+            }
+            return null;
+        }
+
+
+
     }
 
-    public function ActivarQRAsistenteXEvento($idEvento, $idAsistente)
+    public function ActivarQRAsistenteXEvento($idEvento, $idAsistente, $cc)
     {
-        return $this->asistenteRepositorio->ActivarQRAsistenteXEvento($idEvento, $idAsistente);
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            return $this->asistenteRepositorio->ActivarQRAsistenteXEventoPago($idEvento, $idAsistente, $cc);
+        }
+
+            return $this->asistenteRepositorio->ActivarQRAsistenteXEvento($idEvento, $idAsistente);
+
     }
 
     public function AsistentesActivos($idEvento)

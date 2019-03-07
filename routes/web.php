@@ -98,7 +98,7 @@ Auth::routes();
 
     Route::get('RespuestaPagosUsuario',['uses' =>'Evento\AsistentesController@RespuestaPagosUsuario']);
 
-    Route::post('ActivarQR/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento']);
+    Route::post('ActivarQR/{idEvento}/{cc}/{identificacion}',['uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento']);
 
     Route::post('CantidadAsistentes/{idEvento}',['uses' =>'Evento\AsistentesController@ObtnerCantidadAsistentes']);
 

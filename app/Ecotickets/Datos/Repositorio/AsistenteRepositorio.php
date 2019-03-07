@@ -143,6 +143,8 @@ class AsistenteRepositorio
 
     public function obtenerAsistentesXEventoPago($idEvento)
     {
+
+        $arrayAsistentes = array();
         $asistentesPago = DB::table('tbl_asistentes')
             ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
@@ -215,12 +217,32 @@ where Evento_id =27 and EstadosTransaccion_id = 4
 
     public function ObtnerCantidadAsistentes($idEvento)
     {
+
+
         return count(AsistenteXEvento::where('Evento_id', '=', $idEvento)->get());
     }
 
     public function ObtenerAsistente($cc)
     {
         $asistente = Asistente::where('Identificacion', '=', $cc)->get()->first();
+        if ($asistente) {
+            $asistente->ciudad = Ciudad::where('id', '=', $asistente->Ciudad_id)->get()->first();
+        }
+        return $asistente;
+    }
+
+    public function ObtenerAsistentePago($idEvento, $cc)
+    {
+        //$asistente = DB::table('tbl_asistentes')
+        $asistente = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
+            ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
+            ->select('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id' )
+            ->get()->first();
+
         if ($asistente) {
             $asistente->ciudad = Ciudad::where('id', '=', $asistente->Ciudad_id)->get()->first();
         }
@@ -243,9 +265,32 @@ where Evento_id =27 and EstadosTransaccion_id = 4
         return AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)->get()->first();
     }
 
+    public function ObtenerAsistenteXEventoPago($idEvento, $idAsistente, $cc)
+    {
+        return AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)
+            ->where('PinBoleta', '=', $cc)->get()->first();
+    }
+
+
+
     public function ActivarQRAsistenteXEvento($idEvento, $idAsistente)
     {
         $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)->get()->first();
+        if ($asistenteEvento->esActivo == false) {
+            $asistenteEvento->esActivo = true;
+            $asistenteEvento->save();
+            return 'Usuario ingresado con exito';
+        } else {
+            return 'El Usuario YA INGRESO';
+        }
+        return 'Error ingresando el usuario';
+    }
+
+    public function ActivarQRAsistenteXEventoPago($idEvento, $idAsistente, $cc)
+    {
+        $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)
+            ->where('Asistente_id', '=', $idAsistente)
+            ->where('PinBoleta', '=', $cc)->get()->first();
         if ($asistenteEvento->esActivo == false) {
             $asistenteEvento->esActivo = true;
             $asistenteEvento->save();

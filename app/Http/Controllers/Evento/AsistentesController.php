@@ -207,9 +207,9 @@ class AsistentesController extends Controller
 
     /*Metodo para  activar el qr del asistente al evento, recibe  como parametros el id del evento y el id  del asistente
     o usuario**/
-    public function ActivarQRAsistenteXEvento($idEvento,$idAsistente)
+    public function ActivarQRAsistenteXEvento($idEvento,$idAsistente,$cc)
     {
-        return $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$idAsistente);
+        return $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$idAsistente,$cc);
     }
 
     /*Metodo que me retornar los usuarios que asistienron al evento**/
@@ -226,7 +226,7 @@ class AsistentesController extends Controller
         $usuario = $this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
         $respuestaActivacion ='';
         if($usuario != null){
-            $respuestaActivacion= $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$usuario->id);
+            $respuestaActivacion= $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$usuario->id, $cc);
         }else{
             $respuestaActivacion = 'USUARIO NO REGISTRADO';
         }
