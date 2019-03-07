@@ -911,7 +911,7 @@ function validarQR(idEvento,cc) {
                             $("#qrActivo").attr("style", "font-size:20px; color:green;");
                             $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR");
                         }
-                        $("#lectorQR").val(c);
+                        $("#lectorQR").val(cc);
                     }
                     else{
                         $("#qrActivo").attr("style", "font-size:20px; color:red;");
@@ -944,11 +944,7 @@ function validarQR(idEvento,cc) {
 function activarQRUsuario(){
 
     //var identificacion = " ";
-    var stringQR = $("#lectorQR").val();
-    var string1 = stringQR.split("CC - ");
-    if(string1.length>1){
-        var identificacion = string1[1].split("ECO")[0];
-    }
+    var identificacion = $("#lectorQR").val();
     var cedulaUsuario = $("#pk_usuario").val();
     var idEvento = $("#idEvento").val();
     $.ajax({
