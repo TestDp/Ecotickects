@@ -97,7 +97,7 @@
                                         <a class="btn btn-blue ripple trial-button" href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}">Leer QR</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/FormularioEditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
+                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -26,6 +26,7 @@ class EventosRepositorio
     {
         DB::beginTransaction();
         try{
+
             //inicio del bloque donde se guarda el evento para obtener el id del evento
             $evento = new Evento($EdEvento->all());
             $evento->Fecha_Evento=new DateTime($EdEvento->Fecha_Evento . $EdEvento->Hora_Evento);
@@ -50,7 +51,7 @@ class EventosRepositorio
                     $indPrecio++;
                 }
 
-             }
+            }
             //fin del bloque
             $ind =0;
             //Validar si el array es vacio
@@ -84,8 +85,100 @@ class EventosRepositorio
             DB::rollback();
             return  false;
         }
-            return true;
+        return true;
     }
+
+    public function editarEvento($EdEvento)
+    {
+        DB::beginTransaction();
+        try{
+
+            //inicio del bloque donde se guarda el evento para obtener el id del evento
+            $evento = Evento::find($EdEvento->id);
+            $evento->Nombre_Evento = $EdEvento->Nombre_Evento;
+            $evento->Tipo_Evento = $EdEvento->Tipo_Evento;
+            $evento->SolicitarPIN = $EdEvento->SolicitarPIN;
+            $evento->Ciudad_id = $EdEvento->Ciudad_id;
+            $evento->Lugar_Evento = $EdEvento->Lugar_Evento;
+            $evento->numeroAsistentes = $EdEvento->numeroAsistentes;
+            $evento->EsPublico = $EdEvento->EsPublico;
+            $evento->CorreoEnviarInvitacion = $EdEvento->CorreoEnviarInvitacion;
+            $evento->CodigoPulep = $EdEvento->CodigoPulep;
+            $evento->esPago = $EdEvento->esPago;
+            $evento->informacionEvento = $EdEvento->informacionEvento;
+            $evento->Fecha_Evento=new DateTime($EdEvento->Fecha_Evento . $EdEvento->Hora_Evento);
+            $evento->Fecha_Inicial_Registro=new DateTime($EdEvento->Fecha_Inicial_Registro . $EdEvento->Hora_Inicial_Registro);
+            $evento->Fecha_Final_Registro=new DateTime($EdEvento->Fecha_Final_Registro . $EdEvento->Hora_Final_Registro);
+            $evento->activarTienda = false;
+            //Asignamos el nombre del archivo
+            if($EdEvento->ImagenFlyerEvento != null){
+                $evento->FlyerEvento  = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
+            }
+            $evento ->save();
+
+            $indPrecio =0;
+            if($EdEvento->esPago == 1){
+                PrecioBoleta::where('Evento_id','=',$EdEvento->id)->delete();
+                foreach ($EdEvento->localidad as $localidad ){
+                    $PrecioBoleta = new PrecioBoleta();
+                    $PrecioBoleta ->localidad = $localidad;
+                    $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
+                    $PrecioBoleta ->Evento_id = $evento -> id;
+                    $PrecioBoleta ->cantidad = 1;
+                    $PrecioBoleta ->save();
+                    $indPrecio++;
+                }
+
+            }else{
+                PrecioBoleta::where('Evento_id','=',$EdEvento->id)->delete();
+            }
+            //fin del bloque
+            $ind =0;
+            //Validar si el array es vacio
+            if($EdEvento->Enunciado)
+            {
+               $preguntas =  Pregunta::where('Evento_id','=',$EdEvento->id)->get();
+               foreach ($preguntas as $pregunta){
+                   Respuesta::where('Pregunta_id','=',$pregunta->id)->delete();
+               }
+                Pregunta::where('Evento_id','=',$EdEvento->id)->delete();
+                // ciclo que recorre el array de enunciado para obtener el texto de las preguntas
+                foreach ($EdEvento->Enunciado  as $EnunciadoPregunta)
+                {
+                    $Pregunta = new Pregunta();
+                    $Pregunta ->Enunciado = $EnunciadoPregunta;
+                    $Pregunta ->Evento_id = $evento -> id;
+                    $Pregunta ->TipoPregunta_id = 1;//NOTA:SE DEBE GUARDAR DINAMICAMENTE
+                    $Pregunta ->save();// se guarda la pregunta para obtner el id y poder relacionarlo con la respuesta
+                    //se recorre el array en la posicion ind para sacar las respuestas relacionadas a las preguntas
+                    foreach ($EdEvento->TextoRespuesta[$ind] as $EnunciadoRespuesta)
+                    {
+                        $Respuesta = new Respuesta();
+                        $Respuesta ->EnunciadoRespuesta = $EnunciadoRespuesta;
+                        $Respuesta ->Pregunta_id = $Pregunta->id;
+                        $Respuesta ->save();// se guarda la respuesta
+                    }
+                    $ind++;
+
+                }
+            }else{
+                $preguntas =  Pregunta::where('Evento_id','=',$EdEvento->id)->get();
+                foreach ($preguntas as $pregunta){
+                    Respuesta::where('Pregunta_id','=',$pregunta->id)->delete();
+                }
+                Pregunta::where('Evento_id','=',$EdEvento->id)->delete();
+            }
+
+            DB::commit();
+        }catch (\Exception $e) {
+
+            $error = $e->getMessage();
+            DB::rollback();
+            return  false;
+        }
+        return true;
+    }
+
 
     public function obtenerEvento($idEvento)
     {

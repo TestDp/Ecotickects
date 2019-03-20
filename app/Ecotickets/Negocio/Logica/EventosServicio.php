@@ -24,6 +24,11 @@ class EventosServicio
             return $this->eventoRepor->crearEvento($EdEvento);
 
     }
+    public function editarEvento($EdEvento)
+    {
+        return $this->eventoRepor->editarEvento($EdEvento);
+
+    }
 
     public function obtenerEvento($idEvento)
     {

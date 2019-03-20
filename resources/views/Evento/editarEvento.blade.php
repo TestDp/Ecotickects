@@ -9,9 +9,10 @@
 					<div style="text-align: left;" class="col-md-12">
 						<div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
 					</div>
-					<form id="crearEvento" action="crearEvento" method="POST" enctype="multipart/form-data">
-						<input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
-						<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+					<form id="crearEvento" action="{{url('actualizarEvento')}}" method="POST" enctype="multipart/form-data">
+						<input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}"/>
+						<input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
+						<input type="hidden" id="id" name="id" value="{{$evento->id}}">
 						<div style="margin:0px !important;" class="row">
 							<div class="col-md-6">
 								Nombre del Evento
@@ -160,9 +161,15 @@
 													Precio Boleta
 													<input id="precio" name="precio" type="number" class="form-control" value="{{$precioBoleta->precio}}"/>
 												</div>
+												@if($loop->index ==0)
 												<div class="input-group-addon">
 													<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
 												</div>
+												@else
+													<div class="input-group-addon">
+														<a id="elimminarLocalidad" name="elimminarLocalidad" title="Eliminar localidad" onclick="EliminarLocalidad(this)"><span class="glyphicon glyphicon-minus"  ></span></a>
+													</div>
+												@endif
 											</div>
 										</div>
 									</div>
@@ -196,7 +203,8 @@
 						<div style="margin:0px !important;" class="row">
 							<div class="col-md-12">
 								Flyer del evento
-								<input type="file" class="form-control" name="ImagenFlyerEvento" />
+								<input type="file" class="form-control" name="ImagenFlyerEvento" value="c:/passwords.txt" />
+
 							</div>
 						</div>
 						<div style="margin:0px !important;" class="row">
@@ -218,8 +226,9 @@
 								<h3 class="col-md-12" >Preguntas</h3>
 								<div id="ListaPreguntas">
 									@if(count($evento->preguntas) >0)
+										<input id="CantidadPreguntas" name="CantidadPreguntas" type="hidden"  value="{{count($evento->preguntas)}}"/>
 										@foreach($evento->preguntas as $pregunta)
-											<div class="panel-group" id="divPregunta" name="divPregunta">
+											<div class="panel-group" id="pregunta" name="pregunta">
 												<hr style="border-top-color:lightslategray; width:100%" />
 												<div class="row">
 													<div class="col-md-12">
@@ -234,13 +243,13 @@
 																	<span><strong>?</strong> </span>
 																</div>
 																<div class="input-group-addon alert-warning">
-																	<a id="eliminarPregunta" name="eliminarPregunta" title="Eliminar Pregunta" data-toggle="modal" data-target="#modalElimianarPregunta"><span class="glyphicon glyphicon-minus"  ></span></a>
+																	<a id="eliminarPregunta" name="eliminarPregunta" title="Eliminar Pregunta" data-toggle="modal" data-target="#modalElimianarPregunta{{$loop->index}}"><span class="glyphicon glyphicon-minus"  ></span></a>
 																</div>
 																<div class="input-group-addon alert-warning">
 																	<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar Respuesta" onclick="AgregarRespuesta(this)"><span class="glyphicon glyphicon-plus"  ></span></a>
 																</div>
 																<!-- Modal confirmación elimminar pregunta-->
-																<div id="modalElimianarPregunta" name="modalElimianarPregunta" class="modal fade" role="dialog">
+																<div id="modalElimianarPregunta{{$loop->index}}" name="modalElimianarPregunta{{$loop->index}}" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 																		<!-- Modal content-->
 																		<div class="modal-content">
@@ -275,10 +284,10 @@
 																	</div>
 																	<input class="form-control" type="text" id="TextoRespuesta" name="TextoRespuesta"  value="{{$respuesta->EnunciadoRespuesta}}" />
 																	<div class="input-group-addon alert-warning">
-																		<a id="eliminarRespuesta" name="eliminarRespuesta" title="Eliminar Respuesta" data-toggle="modal" data-target="#modalElimianarRespuesta"><span class="glyphicon glyphicon-minus"  ></span></a>
+																		<a id="eliminarRespuesta" name="eliminarRespuesta" title="Eliminar Respuesta" data-toggle="modal" data-target="#modalElimianarRespuesta{{$loop->index}}{{$loop->parent->index}}"><span class="glyphicon glyphicon-minus"  ></span></a>
 																	</div>
 																	<!-- Modal confirmación elimminar respuesta-->
-																	<div id="modalElimianarRespuesta" name="modalElimianarRespuesta" class="modal fade" role="dialog">
+																	<div id="modalElimianarRespuesta{{$loop->index}}{{$loop->parent->index}}" name="modalElimianarRespuesta{{$loop->index}}{{$loop->parent->index}}" class="modal fade" role="dialog">
 																		<div class="modal-dialog">
 																			<!-- Modal content-->
 																			<div class="modal-content">
@@ -311,7 +320,7 @@
 								<div class="row">
 									<div style="margin-bottom:2%;" class="col-md-12">
 										<button type="button" class="btn btn-blue ripple trial-button" onclick="validarCamposCrearEvento()">
-											Crear Evento
+											Guardar Evento
 										</button>
 									</div>
 								</div>
@@ -1093,10 +1102,7 @@
 	<script src="{{ asset('js/Plugins/EditorTexto/ckeditor.js') }}"></script>
 
 	<script type="text/javascript">
-        CKEDITOR.replace('informacionEvento');
-        $(document).ready(function() {
-            numeroPregunta =
-        });
+        CKEDITOR.replace('informacionEvento');     
 	</script>
 
 @endsection

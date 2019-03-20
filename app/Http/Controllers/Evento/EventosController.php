@@ -73,6 +73,21 @@ class EventosController extends Controller
 
     }
 
+    public function editarEvento(Request $EdEvento)
+    {
+        if($this->eventoServicio->editarEvento($EdEvento) )        {
+
+            if($EdEvento->hasFile('ImagenFlyerEvento')){
+                $file = $EdEvento->file('ImagenFlyerEvento');
+                $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
+                $file->move('FlyerDeEventos', $nombre);
+            }
+            return redirect('/home');
+        }else{
+            return redirect('/');
+        }
+
+    }
     /*Metodo que me retorna la lista de asistentes*/
     public function ObtenerListaAsistentes($idEvento)
     {

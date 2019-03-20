@@ -159,7 +159,7 @@
                             <div class="col-md-12">
                                 <h3 class="col-md-12" >Preguntas</h3>
                                 <div id="ListaPreguntas">
-
+                                    <input id="CantidadPreguntas" name="CantidadPreguntas" type="hidden"  value="0"/>
                                 </div>
                                 <hr style="border-top-color:lightslategray; width:100%" />
                                 <div class="row">

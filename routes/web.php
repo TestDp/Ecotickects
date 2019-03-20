@@ -68,13 +68,17 @@ Auth::routes();
 
     Route::get('FormularioEvento', 'Evento\EventosController@obtenerFormularioEvento')->name('CrearEvento');/*Obtiene el formulario para guardar un evento*/
 
-    Route::get('FormularioEditarEvento/{idEvento}', 'Evento\EventosController@obtenerFormularioEditarEvento')->name('EditarEvento');/*Obtiene el formulario para editar un evento*/
+    Route::get('EditarEvento/{idEvento}', 'Evento\EventosController@obtenerFormularioEditarEvento')->name('EditarEvento');/*Obtiene el formulario para editar un evento*/
 
     Route::get('MisEventos', 'Evento\EventosController@ObtenerMisEventos')->name('MisEventos');/*Obtener mi eventos*/
 
     Route::get('ActivarFunciones', 'Evento\EventosController@FormularioActivarFunciones')->name('ActivarFunciones');
 
     Route::post('crearEvento',['uses' =>'Evento\EventosController@crearEvento']);/*Guarda el evento del organizador*/
+
+   // Route::post('actualizarEvento',['uses' =>'Evento\EventosController@editarEvento']);/*Edita el evento del organizador*/
+
+    Route::post('actualizarEvento', 'Evento\EventosController@editarEvento')->name('actualizarEvento');
 
     Route::get('ListaAsistentes/{idEvento}',['uses' =>'Evento\EventosController@ObtenerListaAsistentes']);
 

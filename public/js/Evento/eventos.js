@@ -43,6 +43,10 @@ function CargarMunicipiosDepartamento(idCiudad){
 
 
 function AgregarPregunta(){
+
+    if(numeroPregunta == 0)//para validar la cantidad de preguntas que ya se tienen, esto se hace es para la parte de editar evento
+        numeroPregunta = $("#CantidadPreguntas").val();
+
     //funcionalidad de agregar y mostrar pregunta
     var divPregunta = $("#divPregunta").clone();
     divPregunta.attr("id","pregunta");
