@@ -73,14 +73,14 @@
                             <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
                         </ul>
                     </li>
-                    <li>
+                <!--      <li>
                         <a href="#homeCupones" data-toggle="collapse" aria-expanded="false">Cupones</a>
                         <ul class="collapse list-unstyled" id="homeCupones">
                             <li><a href="{{ url('FormularioEvento') }}">Crear Cupones</a></li>
                             <li><a href="{{ url('MisCupones') }}">Mis Cupones</a></li>
                         </ul>
                     </li>
-                    <li>
+               <li>
                         <a href="#homeTienda" data-toggle="collapse" aria-expanded="false">Tienda</a>
                         <ul class="collapse list-unstyled" id="homeTienda">
                             <li><a href="{{ url('formularioProducto') }}">Crear Producto</a></li>
@@ -89,14 +89,15 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="#">Estadísticas Generales</a>
+                    </li>-->
+                    <li>
                         <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false">Configuraciones Evento</a>
                         <ul class="collapse list-unstyled" id="homeConfiguraciones">
                             <li><a href="{{ url('ActivarFunciones') }}">Activar Funciones</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">Estadísticas Generales</a>
-                    </li>
+
                     @if(Auth::user()->hasRole('admin'))
                     <li>
                         <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false">Maestros</a>

@@ -55,6 +55,9 @@
 								<th>
                                     Leer QR
                                 </th>
+                                <th>
+
+                                </th>
                             </tr>
                             </thead>
                             <tbody >
@@ -93,6 +96,9 @@
 									<td>
                                         <a class="btn btn-blue ripple trial-button" href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}">Leer QR</a>
                                     </td>
+                                    <td>
+                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/FormularioEditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -105,7 +111,7 @@
     </div>
 
 
-    <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
+   <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

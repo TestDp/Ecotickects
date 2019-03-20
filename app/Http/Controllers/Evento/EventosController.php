@@ -6,6 +6,7 @@ use Eco\Datos\Modelos\Ciudad;
 use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
 use Eco\Negocio\Logica\AsistenteServicio;
+use Eco\Negocio\Logica\CiudadServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
@@ -17,14 +18,17 @@ class EventosController extends Controller
     protected $eventoServicio;
     protected $departamentoServicio;
     protected $asistenteServicio;
+    protected  $ciudadServicio;
 
 
-    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio,AsistenteServicio $asistenteServicio)
+    public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio,
+                                AsistenteServicio $asistenteServicio,CiudadServicio $ciudadServicio)
     {
         $this->middleware('auth');
         $this->departamentoServicio=$departamentoServicio;
         $this->eventoServicio = $eventoServicio;
         $this->asistenteServicio = $asistenteServicio;
+        $this->ciudadServicio = $ciudadServicio;
     }
 
 
@@ -33,6 +37,24 @@ class EventosController extends Controller
         $departamentos = $this->departamentoServicio->obtenerDepartamento();
         $formulario = array('departamentos' => $departamentos);
         return view('Evento/CrearEvento',['formulario' =>$formulario]);
+    }
+
+    public function obtenerFormularioEditarEvento($idEvento)
+    {
+        $departamentos = $this->departamentoServicio->obtenerDepartamento();
+        $formulario = array('departamentos' => $departamentos);
+        $evento = $this->eventoServicio->obtenerEvento($idEvento);
+        $ciudades = $this->ciudadServicio->obtenerCiudades($evento->ciudad->departamento->id);
+        $fechaEventoCompleta = new \DateTime($evento->Fecha_Evento);
+        $fechaIniRegistroCompleta = new \DateTime($evento->Fecha_Inicial_Registro);
+        $fechaFinRegistroCompleta = new \DateTime($evento->Fecha_Final_Registro);
+        $evento->fechaEventoSinHora=$fechaEventoCompleta->format('Y-m-d');
+        $evento->horaEvento = $fechaEventoCompleta->format('H:i:s');
+        $evento->fechaIniRegistroSinHora = $fechaIniRegistroCompleta->format('Y-m-d');
+        $evento->horaIniRegistro = $fechaEventoCompleta->format('H:i:s');
+        $evento->fechaFinRegistroSinHora = $fechaFinRegistroCompleta->format('Y-m-d');
+        $evento->horaFinRegistro = $fechaFinRegistroCompleta->format('H:i:s');
+        return view('Evento/editarEvento',['formulario' =>$formulario,'evento'=>$evento,'ciudades'=>$ciudades]);
     }
 
     public function crearEvento(Request $EdEvento)

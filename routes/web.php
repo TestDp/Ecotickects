@@ -68,6 +68,8 @@ Auth::routes();
 
     Route::get('FormularioEvento', 'Evento\EventosController@obtenerFormularioEvento')->name('CrearEvento');/*Obtiene el formulario para guardar un evento*/
 
+    Route::get('FormularioEditarEvento/{idEvento}', 'Evento\EventosController@obtenerFormularioEditarEvento')->name('EditarEvento');/*Obtiene el formulario para editar un evento*/
+
     Route::get('MisEventos', 'Evento\EventosController@ObtenerMisEventos')->name('MisEventos');/*Obtener mi eventos*/
 
     Route::get('ActivarFunciones', 'Evento\EventosController@FormularioActivarFunciones')->name('ActivarFunciones');
@@ -92,7 +94,8 @@ Auth::routes();
 
     Route::post('registrarAsistente',['uses' =>'Evento\AsistentesController@registrarAsistente']);
 
-    Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@registrarAsistentePagoPost']);
+    Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@GenerarQRS']);
+    //Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@registrarAsistentePagoPost']);
 
     Route::post('RespuestaPagos',['uses' =>'Evento\AsistentesController@RespuestaPagos']);
 
