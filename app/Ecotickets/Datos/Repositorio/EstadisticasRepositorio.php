@@ -40,6 +40,36 @@ class EstadisticasRepositorio
     // }
 
     
+    public function ObtenerAsistentesXCiudadPago($idEvento)
+    {
+        $arrayNombresCiudades = array();
+        $cantidadmaxima = 0;
+        $arrayCantidadCiudades = array();
+        $AsistentesCiudad = DB::table('tbl_asistentesXeventos')
+            ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
+            ->join('Tbl_Ciudades', 'tbl_asistentes.Ciudad_id', '=', 'Tbl_Ciudades.id')
+            ->join('Tbl_InfoPagos', function ($join) {
+                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
+            })
+            ->groupBy('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id')
+            ->select('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id',DB::raw('count(Tbl_Ciudades.id) as cantidad'))
+            ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->get();
+
+
+        foreach ($AsistentesCiudad as $asistente){
+            $arrayNombresCiudades[]=$asistente->Nombre_Ciudad;
+            $arrayCantidadCiudades[]=$asistente->cantidad;
+            if($cantidadmaxima < $asistente->cantidad)
+            {
+                $cantidadmaxima = $asistente->cantidad;
+            }
+        }
+        $arrayAsistentesCiudad =array("nombreCiudades"=>$arrayNombresCiudades,'Cantidad'=>$arrayCantidadCiudades, 'Maximo'=>$cantidadmaxima);
+        return $arrayAsistentesCiudad;
+    }
+
     public function ObtenerAsistentesXCiudad($idEvento)
     {
         $arrayNombresCiudades = array();
@@ -87,6 +117,33 @@ class EstadisticasRepositorio
         return $arrayEdadesAsistentes;
     }
 
+    public function RangoDeEdadesEventoPago($idEvento)
+    {
+        $arrayEdadesAsistentes = array();
+        $cantidadmaxima = 0;
+        $arrayCantidadEdadesAsistentes = array();
+        $AsistentesEdades = DB::table('tbl_asistentesXeventos')
+            ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
+            ->join('Tbl_InfoPagos', function ($join) {
+                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
+            })
+            ->groupBy('tbl_asistentes.Edad')
+            ->select('tbl_asistentes.Edad',DB::raw('count(tbl_asistentes.Edad) as cantidad'))
+            ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->get();
+        foreach ($AsistentesEdades as $asistenteEdad){
+            $arrayEdadesAsistentes[]="Edad ".$asistenteEdad->Edad;
+            $arrayCantidadEdadesAsistentes[]=$asistenteEdad->cantidad;
+            if($cantidadmaxima < $asistenteEdad->cantidad)
+            {
+                $cantidadmaxima = $asistenteEdad->cantidad;
+            }
+        }
+        $arrayEdadesAsistentes =array("LabelEdades"=>$arrayEdadesAsistentes,'Cantidad'=>$arrayCantidadEdadesAsistentes, 'Maximo'=>$cantidadmaxima);
+        return $arrayEdadesAsistentes;
+    }
+
     public function NumeroAsistentesXFecha($idEvento)
     {
         $arrayFechasAsistentes = array();
@@ -98,6 +155,34 @@ class EstadisticasRepositorio
            ->select(DB::raw("DATE_FORMAT(tbl_asistentes.created_at, '%Y-%m-%d') as created_at"),DB::raw('count(tbl_asistentes.created_at) as cantidad'))
             ->groupBy('created_at')
             ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
+            ->get();
+        foreach ($AsistentesEdades as $asistenteEdad){
+            $arrayFechasAsistentes[]=$asistenteEdad->created_at;
+            $arrayCantidadFechasAsistentes[]=$asistenteEdad->cantidad;
+            if($cantidadmaxima < $asistenteEdad->cantidad)
+            {
+                $cantidadmaxima = $asistenteEdad->cantidad;
+            }
+        }
+        $arrayFechasAsistentes =array("LabelFechas"=>$arrayFechasAsistentes,'Cantidad'=>$arrayCantidadFechasAsistentes, 'Maximo'=>$cantidadmaxima);
+        return $arrayFechasAsistentes;
+    }
+
+    public function NumeroAsistentesXFechaPago($idEvento)
+    {
+        $arrayFechasAsistentes = array();
+        $cantidadmaxima = 0;
+        $arrayCantidadFechasAsistentes = array();
+        $AsistentesEdades = DB::table('tbl_asistentesXeventos')
+            ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
+            // ->groupBy('tbl_asistentes.Edad')
+            ->join('Tbl_InfoPagos', function ($join) {
+                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
+            })
+            ->select(DB::raw("DATE_FORMAT(tbl_asistentes.created_at, '%Y-%m-%d') as created_at"),DB::raw('count(tbl_asistentes.created_at) as cantidad'))
+            ->groupBy('created_at')
+            ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->get();
         foreach ($AsistentesEdades as $asistenteEdad){
             $arrayFechasAsistentes[]=$asistenteEdad->created_at;
@@ -146,6 +231,19 @@ class EstadisticasRepositorio
             ['Evento_id', '=', $idEvento],
             ['esActivo', '=', '1'],
         ])->get());
+    }
+
+    public function NumeroAsistentesPago($idEvento)
+    {
+        return  count(AsistenteXEvento::join('Tbl_InfoPagos', function ($join) {
+            $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
+        })
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentesXeventos.esActivo', '=', 1)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->get());
+
+
     }
 
     // public function ObtnerCantidadAsistentes($idEvento)

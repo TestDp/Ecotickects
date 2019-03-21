@@ -64,7 +64,8 @@ class EstadisticasController extends Controller
     public function EstadisticasApp($idEvento)
     {
         $CantidadRegistrados = $this -> asistenteServicio ->ObtnerCantidadAsistentes($idEvento);
-        $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        //$CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        $CantidadEsperada =$this -> asistenteServicio ->ObtnerCantidadAsistentes($idEvento);
         $CantidadAsistentes = $this->estadisticasServicio-> NumeroAsistentes($idEvento);
         $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados,'CantidadAsistentes'=>$CantidadAsistentes];
         $cantidadJuntas = $this -> estadisticasServicio ->NumeroJuntas($idEvento);

@@ -483,20 +483,18 @@ function construirGraficoCantidadAsistentes() {
                 var ctx = document.getElementById("canvasCantidadAsistentes");
                 var data = {
                     labels: [
-                        "Personas Esperadas",
+
                         "Personas Registradas",
                         "Asistentes"
                     ],
                     datasets: [
                         {
-                            data: [result.CantidadEsperada, result.CantidadRegistrados,result.CantidadAsistentes],
+                            data: [ result.CantidadRegistrados,result.CantidadAsistentes],
                             backgroundColor: [
-                                "#E5E8E8",
                                 "#82E0AA",
                                 "#CC3300"
                             ],
                             hoverBackgroundColor: [
-                                "#E5E8E8",
                                 "#82E0AA",
                                 "#CC3300"
                             ]
@@ -582,7 +580,7 @@ function construirGraficoKPI() {
                   gauge.maxValue = parseInt(result.CantidadEsperada); // set max gauge value
                   gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
                   gauge.animationSpeed = 32; // set animation speed (32 is default value)
-                  gauge.set(parseInt(result.CantidadAsistentes)); // set actual value
+                  gauge.set(parseInt(result.CantidadRegistrados)); // set actual value
                   
             
                
@@ -917,6 +915,8 @@ function validarQR(idEvento,cc) {
                             $("#qrActivo").html("¡SI!,USUARIO PUEDE INGRESAR");
                         }
                         $("#lectorQR").val(cc);
+
+                        activarQRUsuario();
                     }
                     else{
                         $("#qrActivo").attr("style", "font-size:20px; color:red;");
@@ -940,6 +940,9 @@ function validarQR(idEvento,cc) {
 
 
         }
+
+
+
     });
 
 

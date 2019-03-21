@@ -140,6 +140,12 @@ class AsistenteServicio
     }
     public function ObtnerCantidadAsistentes($idEvento)
     {
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            return $this->asistenteRepositorio->ObtnerCantidadAsistentesPago($idEvento);
+        }
+
         return $this->asistenteRepositorio->ObtnerCantidadAsistentes($idEvento);
     }
 

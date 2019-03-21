@@ -222,6 +222,19 @@ where Evento_id =27 and EstadosTransaccion_id = 4
         return count(AsistenteXEvento::where('Evento_id', '=', $idEvento)->get());
     }
 
+    public function ObtnerCantidadAsistentesPago($idEvento)
+    {
+
+        return  count(AsistenteXEvento::join('Tbl_InfoPagos', function ($join) {
+                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
+            })
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->get());
+
+
+    }
+
     public function ObtenerAsistente($cc)
     {
         $asistente = Asistente::where('Identificacion', '=', $cc)->get()->first();

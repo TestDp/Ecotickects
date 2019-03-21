@@ -28,16 +28,35 @@ class EstadisticasServicio
     // }
     public function ObtenerAsistentesXCiudad($idEvento)
     {
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            return $this->estadisticasRepositorio->ObtenerAsistentesXCiudadPago($idEvento);
+        }
+
+
         return $this->estadisticasRepositorio->ObtenerAsistentesXCiudad($idEvento);
     }
 
     public function RangoDeEdadesEvento($idEvento)
     {
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            return $this->estadisticasRepositorio->RangoDeEdadesEventoPago($idEvento);
+        }
+
         return $this->estadisticasRepositorio->RangoDeEdadesEvento($idEvento);
     }
 
     public function NumeroAsistentesXFecha($idEvento)
     {
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            return $this->estadisticasRepositorio->NumeroAsistentesXFechaPago($idEvento);
+        }
+
         return $this->estadisticasRepositorio->NumeroAsistentesXFecha($idEvento);
     }
 
@@ -52,6 +71,12 @@ class EstadisticasServicio
     }
     public function NumeroAsistentes($idEvento)
     {
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            return $this->estadisticasRepositorio->NumeroAsistentesPago($idEvento);
+        }
+
         return $this->estadisticasRepositorio->NumeroAsistentes($idEvento);
     }
 
