@@ -26,9 +26,9 @@
                                 <th >
                                     Activar Pago
                                 </th>
-                                <th >
+                                <!--th >
                                     Activar Tienda
-                                </th>
+                                </th-->
                                 <th >
                                     Activar PIN
                                 </th>
@@ -53,13 +53,13 @@
                                             <input type="checkbox"  onclick="ActivarEsPago(this,{{ $evento->id }})" />
                                         @endif
                                     </td>
-                                    <td >
+                                    <!--td >
                                         @if($evento->activarTienda ==1)
                                             <input type="checkbox"  onclick="ActivarTienda(this,{{ $evento->id }})" checked/>
                                         @else
                                             <input type="checkbox"  onclick="ActivarTienda(this,{{ $evento->id }})" />
                                         @endif
-                                    </td>
+                                    </td-->
                                     <td >
                                         @if($evento->SolicitarPIN ==1)
                                             <input type="checkbox"  onclick="ActivarSolicitarPIN(this,{{ $evento->id }})" checked/>

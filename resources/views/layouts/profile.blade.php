@@ -71,6 +71,8 @@
                         <ul class="collapse list-unstyled" id="homeEventos">
                             <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
                             <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
+                            <li><a href="{{ url('FormularioUsuario') }}">Registrar y Enviar Invitación</a></li>
+                            <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones</a></li>
                         </ul>
                     </li>
                 <!--      <li>

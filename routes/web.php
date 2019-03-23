@@ -98,8 +98,17 @@ Auth::routes();
 
     Route::post('registrarAsistente',['uses' =>'Evento\AsistentesController@registrarAsistente']);
 
-    Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@GenerarQRS']);
-    //Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@registrarAsistentePagoPost']);
+    //Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@GenerarQRS']);
+
+    Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@registrarAsistentePagoPost']);
+
+    Route::get('FormularioUsuario',['uses' =>'Evento\AsistentesController@obtenerFormularioUsuario']);
+
+    Route::get('RegistrarYEnviar',['uses' =>'Evento\AsistentesController@obtenerFormularioInvitaciones']);
+
+    Route::get('UsuariosXEvento/{idEvento}',['uses' =>'Evento\AsistentesController@CargarUsuariosXEvento']);
+
+    Route::post('registrarUsuario',['uses' =>'Evento\AsistentesController@registrarUsuario']);
 
     Route::post('RespuestaPagos',['uses' =>'Evento\AsistentesController@RespuestaPagos']);
 

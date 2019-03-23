@@ -168,6 +168,9 @@ function validarFormulario(){
             HabeasData: {
                 required: true
             },
+            Evento_id:{
+                required: true
+            },
             'Respuesta_id[0]': {
                 required: true
             },
@@ -266,6 +269,9 @@ function validarFormulario(){
             },
             HabeasData: {
                 required: "*El  HabeasData es obligatorio"
+            },
+            Evento_id:{
+                required: "*Se debe seleccionar un evento"
             },
             'Respuesta_id[0]': {
                 required: "*Seleccione una opción por favor"
@@ -559,7 +565,7 @@ function construirGraficoKPI() {
 
                       staticLabels: {
                         font: "15px sans-serif",  // Specifies font
-                        labels: [0, (result.CantidadEsperada/5), (2*(result.CantidadEsperada/5)), (3*(result.CantidadEsperada/5)), (4*(result.CantidadEsperada/5)), result.CantidadEsperada],  // Print labels at these values
+                        labels: [0, (result.CantidadEsperada/5), (2*(result.CantidadEsperada/5)), (3*(result.CantidadEsperada/5)), (4*(result.CantidadEsperada/5)),parseInt(result.CantidadEsperada)],  // Print labels at these values
                         color: "#000000",  // Optional: Label text color
                         fractionDigits: 0  // Optional: Numerical precision. 0=round off.
                       },
@@ -1107,5 +1113,44 @@ function quitarlabelError(element)
     } else {
         label.remove();
     }
+}
 
+//funcion para registrar un usuario desde el administrador
+function validarCamposRegistrarUsuario() {
+    validarFormulario();
+}
+
+//Funcion para cargar la vista con los usuarios registrados en los eventos
+function ajaxRenderSectionCargarUsuarios() {
+    var idEvento = $("#Evento_id").val();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'UsuariosXEvento/'+idEvento,
+        dataType: 'json',
+        success: function (data) {
+            $('#listaUsuarios').empty().append($(data));
+        },
+        error: function (data) {
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
+function SelecTodosUsuarios(element){
+    if($(element).prop( "checked")) {
+        $("#tablaUsuarios").find('input[name=chkUsuario]').each(function (ind, check) {
+            if (!$(check).prop("checked")) {
+                $(check).prop("checked", "checked")
+            }
+        });
+    }else{
+        $("#tablaUsuarios").find('input[name=chkUsuario]').each(function (ind, check) {
+            $(check).prop("checked", false);
+        });
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace Ecotickets\Http\Controllers\Evento;
+
 use Eco\Datos\Modelos\InfoPago;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
@@ -10,6 +11,8 @@ use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
 
 
 class AsistentesController extends Controller
@@ -20,51 +23,86 @@ class AsistentesController extends Controller
     protected $departamentoServicio;
 
     /** Metodo constructor de la clase.*/
-    public function __construct(AsistenteServicio $asistenteServicio,EventosServicio $eventoServicio,
-                                EstadisticasServicio $EstadisticasServicios,DepartamentoServicio $departamentoServicio)
+    public function __construct(AsistenteServicio $asistenteServicio, EventosServicio $eventoServicio,
+                                EstadisticasServicio $EstadisticasServicios, DepartamentoServicio $departamentoServicio)
     {
         //$this->middleware('auth');
         $this->asistenteServicio = $asistenteServicio;
         $this->eventoServicio = $eventoServicio;
         $this->EstadisticasServicios = $EstadisticasServicios;
-        $this->departamentoServicio=$departamentoServicio;
+        $this->departamentoServicio = $departamentoServicio;
     }
 
     /* Metodo para  registrar un asistente  cuando el evento es gratuito.**/
     public function registrarAsistente(Request $formRegistro)
     {
-        $respuesta=$this->asistenteServicio->registrarAsistente($formRegistro);
-        if($respuesta =='true')
-        {
+        $respuesta = $this->asistenteServicio->registrarAsistente($formRegistro);
+        if ($respuesta == 'true') {
             $file = $formRegistro->imagen;
-            $ced = $formRegistro ->Identificacion;
-            $pin = $formRegistro ->pinIngresar;
-            if($pin){
-                $this->asistenteServicio->ActualizarPin($ced,$pin);
+            $ced = $formRegistro->Identificacion;
+            $pin = $formRegistro->pinIngresar;
+            if ($pin) {
+                $this->asistenteServicio->ActualizarPin($ced, $pin);
             }
-            $nombre = $formRegistro ->Identificacion . 'imagenQR.png';
+            $nombre = $formRegistro->Identificacion . 'imagenQR.png';
             //indicamos que queremos guardar un nuevo archivo en el disco local
-            \Storage::disk('local')->put('/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre,file_get_contents($file));
-            $qrImagen = storage_path('app').'/QrDeEventos/'.$formRegistro->Evento_id.'/'.$nombre;
+            \Storage::disk('local')->put('/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre, file_get_contents($file));
+            $qrImagen = storage_path('app') . '/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre;
             $correoElectronico = $formRegistro->Email;
-            $evento =$this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
-            $ElementosArray= array('evento' => $evento);
-            $correoSaliente=$evento->CorreoEnviarInvitacion;
+            $evento = $this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
+            $ElementosArray = array('evento' => $evento);
+            $correoSaliente = $evento->CorreoEnviarInvitacion;
             $nombreEvento = $evento->Nombre_Evento;
-            Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($qrImagen,$correoElectronico,$correoSaliente,$nombreEvento){
-                $msj->from($correoSaliente,'Invitación '.$nombreEvento);
+            Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($qrImagen, $correoElectronico, $correoSaliente, $nombreEvento) {
+                $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
                 $msj->attach($qrImagen);
             });
-            return view("respuesta",['ElementosArray' =>$ElementosArray]);
-        }else{
-            if($respuesta == '2'){
-                $ccUser=$formRegistro ->Identificacion;
-                return view('existente',['identificacion' => $ccUser]);
+            return view("respuesta", ['ElementosArray' => $ElementosArray]);
+        } else {
+            if ($respuesta == '2') {
+                $ccUser = $formRegistro->Identificacion;
+                return view('existente', ['identificacion' => $ccUser]);
+            } else {
+                return redirect('/');
             }
-            else{
+        }
+    }
+
+    /* Metodo para  registrar un asistente  cuando el evento es gratuito.**/
+    public function registrarUsuario(Request $formRegistro)
+    {
+        $respuesta = $this->asistenteServicio->registrarAsistente($formRegistro);
+        if ($respuesta == 'true') {
+            $correoElectronico = $formRegistro->Email;
+            $evento = $this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
+            $ElementosArray = array('evento' => $evento);
+            $correoSaliente = $evento->CorreoEnviarInvitacion;
+            $nombreEvento = $evento->Nombre_Evento;
+            $ccUser = $formRegistro->Identificacion;
+            Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$ccUser) {
+                $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
+                $msj->subject('Importante - Aquí esta tu pase de acceso');
+                $msj->to($correoElectronico);
+                $msj->bcc('soporteecotickets@gmail.com');
+                $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
+                $ElementosArray = array('evento' => $evento, 'qr' => $qr);
+                //preguntamos si el directorio existe
+                if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
+                    mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
+                }
+                \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $ccUser. '.pdf');
+                $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $ccUser . '.pdf';
+                $msj->attach($qrImagen);
+            });
+            return redirect("FormularioUsuario")->with('status', true);;
+        } else {
+            if ($respuesta == '2') {
+                $ccUser = $formRegistro->Identificacion;
+                return view('existente', ['identificacion' => $ccUser]);
+            } else {
                 return redirect('/');
             }
         }
@@ -76,52 +114,68 @@ class AsistentesController extends Controller
         return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
     }
 
+    /*Metodo para generar qrs.**/
+    public function GenerarQRS(Request $formRegistro)
+    {
+        $evento = $this->eventoServicio->obtenerEvento(4);
+        $nombreEvento = $evento->Nombre_Evento;
+        $pinesImagenes = ['1036941420',
+            '1037654446',
+            '1040048369'];
+        foreach ($pinesImagenes as $pin) {
+            $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin . 'ECOTICKETS'));
+            $ElementosArray = array('evento' => $evento, 'qr' => $qr);
+            \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/ECOTICKET' . $pin . '.pdf');
+            // $qrImagen =storage_path('app').'/boletas/ECOTICKET'.$pin.'.pdf';
+        }
+    }
+
     /**Metodo de respuesta de la plataforma de pagos payu para el envio de  la  boleta al correo electronico, el  llamado
-    se hace de  manera asincronica.Metodo de comunicacion entre sistemas.**/
+     * se hace de  manera asincronica.Metodo de comunicacion entre sistemas.**/
     public function RespuestaPagos(Request $formRegistro)
     {
         try {
             $correoElectronico = $formRegistro->email_buyer;
             $medioPago = $formRegistro->payment_method_id;
             $merchantId = $formRegistro->merchant_id;
-            $referenciaVenta= $formRegistro->reference_sale;
-            $valor= $formRegistro->value;
-            $moneda= $formRegistro->currency;
+            $referenciaVenta = $formRegistro->reference_sale;
+            $valor = $formRegistro->value;
+            $moneda = $formRegistro->currency;
             $estadoVenta = $formRegistro->state_pol;
             $firmaVenta = $formRegistro->sign;
             //NOTA:linea para verificar la informacion enviada  por payu
-            $verficarFirma  = $this->asistenteServicio->validarFirmaPago($merchantId,$referenciaVenta,$valor,$moneda,$estadoVenta,$firmaVenta);
+            $verficarFirma = $this->asistenteServicio->validarFirmaPago($merchantId, $referenciaVenta, $valor, $moneda, $estadoVenta, $firmaVenta);
             //$verificarfirma:1 para la validacion de la firma es correcta
             //$verificarfirma:0 para la validacion de la firma es incorrecta
             if ($estadoVenta == 4 && $verficarFirma == 1) {
                 $this->asistenteServicio->ActualizarPinBusquedaCorreo($formRegistro->email_buyer);
-                $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta,$estadoVenta,$medioPago);
-                $evento =$this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
+                $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta, $estadoVenta, $medioPago);
+                $evento = $this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
                 $ElementosArray = array('evento' => $evento);
                 $correoSaliente = $evento->CorreoEnviarInvitacion;//PONER EL CORREO DE MANERA GENERAL
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
-                Mail::send('Email/correo',['ElementosArray' =>$ElementosArray],function($msj) use($pinesImagenes,$correoElectronico,$correoSaliente,$nombreEvento,$evento){
-                    $msj->from($correoSaliente,'Invitación '.$nombreEvento);
+                Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento) {
+                    $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                     $msj->subject('Importante - Aquí esta tu pase de acceso');
                     $msj->to($correoElectronico);
                     $msj->bcc('soporteecotickets@gmail.com');
-                    foreach ($pinesImagenes as $pin){
-                        $qr= base64_encode(\QrCode::format('png')->merge('../../pruebas.ecotickets.co/img/iconoPequeno.png')->size(280)->generate($nombreEvento.' - CC - '.$pin->PinBoleta.'ECOTICKETS'));
-                        $ElementosArray= array('evento' => $evento,'qr'=>$qr);
-                        \PDF::loadView('boletatest', ['ElementosArray' =>$ElementosArray])->save(storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf');
-                        $qrImagen =storage_path('app').'/boletas/ECOTICKET'.$pin->id.'.pdf';
+                    foreach ($pinesImagenes as $pin) {
+                        $qr = base64_encode(\QrCode::format('png')->merge('../../pruebas.ecotickets.co/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
+                        $ElementosArray = array('evento' => $evento, 'qr' => $qr);
+                        \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/ECOTICKET' . $pin->id . '.pdf');
+                        $qrImagen = storage_path('app') . '/boletas/ECOTICKET' . $pin->id . '.pdf';
                         $msj->attach($qrImagen);
                     }
                 });
-            }else{
+            } else {
                 // se actualiza la informmacion del pago cuando el estado de la transaccion es diferente a 4
-                $this->asistenteServicio->actualizarInfoPagos($referenciaVenta,$estadoVenta,$medioPago);
+                $this->asistenteServicio->actualizarInfoPagos($referenciaVenta, $estadoVenta, $medioPago);
             }
-            return response('OK',200);
-        }catch (\Exception $e){
+            return response('OK', 200);
+        } catch (\Exception $e) {
             $error = $e->getMessage();
-            return reponse('ERROR',404);
+            return reponse('ERROR', 404);
         }
     }
 
@@ -132,40 +186,40 @@ class AsistentesController extends Controller
         $estadoTransaccion = $_REQUEST['transactionState'];
         $transaccionReference = $_REQUEST['referenceCode'];
         $medioPago = $_REQUEST['polPaymentMethodType'];
-        $evento =$this->asistenteServicio->ObtenerEventoRefe($transaccionReference);
+        $evento = $this->asistenteServicio->ObtenerEventoRefe($transaccionReference);
         switch ($estadoTransaccion) {
             case 4: /* Approved */
-                $ElementosArray= array('evento' => $evento,'mensaje' => "APROVADO");
-                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "APROVADO");
+                return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
 
             case 7: /* Pending*/
-                $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE");
-                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "PENDIENTE");
+                return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
 
             case 6: /* Declined*/
-                $ElementosArray= array('evento' => $evento,'mensaje' => "DECLINADO");
-                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "DECLINADO");
+                return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
 
             case 104: /* Error*/
-                $ElementosArray= array('evento' => $evento,'mensaje' => "ERROR");
-                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "ERROR");
+                return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
 
             case 5: /* Expired*/
-                $ElementosArray= array('evento' => $evento,'mensaje' => "EXPIRADO");
-                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "EXPIRADO");
+                return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
 
             default: /* Do something */
-                $ElementosArray= array('evento' => $evento,'mensaje' => "PENDIENTE POR PYU");
-                return view("respuestaPago",['ElementosArray' =>$ElementosArray]);
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "PENDIENTE POR PYU");
+                return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
         }
-        $ccUser=$transaccionReference;
-        return view('existente',['identificacion' => $ccUser]);// se debe cambiar
+        $ccUser = $transaccionReference;
+        return view('existente', ['identificacion' => $ccUser]);// se debe cambiar
     }
 
     /*Metodo para validar si el pin ingresado el formulario es valido.*/
@@ -177,60 +231,60 @@ class AsistentesController extends Controller
     /*Metodo que me retorna un array con los cantidad de usuarios registrados,esperados y asistentes.**/
     public function ObtnerCantidadAsistentes($idEvento)
     {
-        $CantidadRegistrados = $this -> asistenteServicio ->ObtnerCantidadAsistentes($idEvento);
-        $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
-        $CantidadAsistentes = $this->EstadisticasServicios-> NumeroAsistentes($idEvento);
-        $cantidadAsistentes = ['CantidadEsperada'=>$CantidadEsperada,'CantidadRegistrados'=>$CantidadRegistrados,
-            'CantidadAsistentes'=>$CantidadAsistentes];
+        $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
+        $CantidadEsperada = $this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        $CantidadAsistentes = $this->EstadisticasServicios->NumeroAsistentes($idEvento);
+        $cantidadAsistentes = ['CantidadEsperada' => $CantidadEsperada, 'CantidadRegistrados' => $CantidadRegistrados,
+            'CantidadAsistentes' => $CantidadAsistentes];
         return response()->json($cantidadAsistentes);
     }
 
     /**Metodo que me retorna un asistente o usuario registrado al evento, se realiza la busqueda por mmedio de la
-    identificación.*/
+     * identificación.*/
     public function ObtenerAsistente($cc)
     {
-        return response()->json($this -> asistenteServicio ->ObtenerAsistente($cc));
+        return response()->json($this->asistenteServicio->ObtenerAsistente($cc));
     }
 
     /*Metodo que me retorna el formulario para la lectura del qr con el evento al que se le va a leer el qr**/
     public function FormularioQR($idEvento)
     {
-        return view('Evento/LecturaQR',['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
+        return view('Evento/LecturaQR', ['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
     }
 
     /*Metodo que me retorna la informacion del asistente, se realza la busqueda por id del evento y por la identificacion
     del usuario**/
-    public  function ObtenerInformacionDelAsistenteXEvento($idEvento,$cc)
+    public function ObtenerInformacionDelAsistenteXEvento($idEvento, $cc)
     {
-        return response()->json($this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc));
+        return response()->json($this->asistenteServicio->ObtenerInformacionDelAsistenteXEvento($idEvento, $cc));
     }
 
     /*Metodo para  activar el qr del asistente al evento, recibe  como parametros el id del evento y el id  del asistente
     o usuario**/
-    public function ActivarQRAsistenteXEvento($idEvento,$idAsistente,$cc)
+    public function ActivarQRAsistenteXEvento($idEvento, $idAsistente, $cc)
     {
-        return $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$idAsistente,$cc);
+        return $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento, $idAsistente, $cc);
     }
 
     /*Metodo que me retornar los usuarios que asistienron al evento**/
     public function AsistentesActivos($idEvento)
     {
-        $ListaUsuarios= array('usuariosRegistrados' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento),
-            'Asistentes'=>$this->asistenteServicio->AsistentesActivos($idEvento));
+        $ListaUsuarios = array('usuariosRegistrados' => $this->asistenteServicio->obtenerAsistentesXEvento($idEvento),
+            'Asistentes' => $this->asistenteServicio->AsistentesActivos($idEvento));
         return response()->json($ListaUsuarios);
     }
 
     /*Metodo para  activar y leer el qr, hacer las dos operaciones en un sola**/
-    public function ActivarQRAsistenteXEventoApp($idEvento,$cc)
+    public function ActivarQRAsistenteXEventoApp($idEvento, $cc)
     {
-        $usuario = $this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
-        $respuestaActivacion ='';
-        if($usuario != null){
-            $respuestaActivacion= $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento,$usuario->id, $cc);
-        }else{
+        $usuario = $this->asistenteServicio->ObtenerInformacionDelAsistenteXEvento($idEvento, $cc);
+        $respuestaActivacion = '';
+        if ($usuario != null) {
+            $respuestaActivacion = $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento, $usuario->id, $cc);
+        } else {
             $respuestaActivacion = 'USUARIO NO REGISTRADO';
         }
-        $informacionUsuario =['usuario'=>$usuario,'respuestaActivacion'=>$respuestaActivacion];
+        $informacionUsuario = ['usuario' => $usuario, 'respuestaActivacion' => $respuestaActivacion];
         return response()->json($informacionUsuario);
     }
 
@@ -239,24 +293,51 @@ class AsistentesController extends Controller
         $cc = $formConfirma->Identificacion;
         $idEvento = $formConfirma->idEvento;
         $confirmaAsistencia = $formConfirma->confirmarAsistencia;
-        
-         $usuario=$this -> asistenteServicio ->ObtenerInformacionDelAsistenteXEvento($idEvento,$cc);
 
-         if ($usuario !=NULL)
-         {
-         $respuestaConfirmacion= $this->asistenteServicio->ConfirmarAsistencia($idEvento,$usuario->id,$confirmaAsistencia);
-         $informacionUsuario = array('usuario'=>$usuario,'respuestaConfirmacion'=>$respuestaConfirmacion,'Evento' => $this->eventoServicio->obtenerEvento($idEvento));
+        $usuario = $this->asistenteServicio->ObtenerInformacionDelAsistenteXEvento($idEvento, $cc);
 
-        return view('Evento/RespuestaConfirmarAsistencia',$informacionUsuario);
-         }
-         $informacionUsuario = array('usuario'=>$cc,'respuestaConfirmacion'=>'No esta Registrada en:','Evento' => $this->eventoServicio->obtenerEvento($idEvento));
-        return view('Evento/RespuestaConfirmarAsistenciaNoUser',$informacionUsuario);
+        if ($usuario != NULL) {
+            $respuestaConfirmacion = $this->asistenteServicio->ConfirmarAsistencia($idEvento, $usuario->id, $confirmaAsistencia);
+            $informacionUsuario = array('usuario' => $usuario, 'respuestaConfirmacion' => $respuestaConfirmacion, 'Evento' => $this->eventoServicio->obtenerEvento($idEvento));
+
+            return view('Evento/RespuestaConfirmarAsistencia', $informacionUsuario);
+        }
+        $informacionUsuario = array('usuario' => $cc, 'respuestaConfirmacion' => 'No esta Registrada en:', 'Evento' => $this->eventoServicio->obtenerEvento($idEvento));
+        return view('Evento/RespuestaConfirmarAsistenciaNoUser', $informacionUsuario);
 
     }
 
-     /*Metodo que me retorna el formulario para la lectura del qr con el evento al que se le va a leer el qr**/
-     public function ObtenerFormularioConfirmacionAsistente($idEvento)
-     {
-         return view('Evento/ConfirmarAsistencia',['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
-     }
+    /*Metodo que me retorna el formulario para la lectura del qr con el evento al que se le va a leer el qr**/
+    public function ObtenerFormularioConfirmacionAsistente($idEvento)
+    {
+        return view('Evento/ConfirmarAsistencia', ['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
+    }
+
+
+    //metodo que registrar un usuario al evento desde el administrador
+    public function obtenerFormularioUsuario()
+    {
+        $eventos = $this->eventoServicio->obtenerEventos();
+        $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
+        $rutaImagenes = env('RutaFlyerEventoRegistrarAsistente');
+        $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
+        return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray]);
+
+    }
+
+    //Metodo para obtener el formualario para registrar y enviar invitaciones masivamentes
+    public  function obtenerFormularioInvitaciones(){
+        $eventos = $this->eventoServicio->obtenerEventos();
+        return view('Evento/RegistrarYEnviarInvitacion',['eventos'=>$eventos]);
+    }
+
+    //Metodo para cargar  la vista de crear el tipo de documento
+    public function CargarUsuariosXEvento($idEvento)
+    {
+        $listaUsuarios = $this->asistenteServicio->obtenerAsistentesXEvento($idEvento);
+        $view = View::make('Evento/UsuariosXEvento')->with('listaUsuario',$listaUsuarios);;
+        $sections = $view->renderSections();
+        return Response::json($sections['UsuarioXEvento']);
+    }
+
 }
