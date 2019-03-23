@@ -529,7 +529,7 @@ section {
 }
 
 .team .cover .overlay {
-	height: 250px;
+	height: 200px;
 	padding-top: 60px;
 	opacity: 0;
 	background: rgba(116, 178, 45, 0.9);

@@ -108,8 +108,8 @@
 <section style="padding-top:3%;" id="eventos">
 		<div class="container">
 			<div class="row text-center title">
-				<h2 style="color:#74b12e; font-size: 40px; font-weight: 800;">#EllosCuidanElPlaneta</h2>
-				<h4 class="light muted">Ellos confían en nosotros y cuidan el medio ambiente<span class="open-blink"></span></h4>
+				<h2 style="color:#74b12e; font-size: 28px; font-weight: 800;">#EllosCuidanElPlaneta</h2>
+				<h4 class="light muted">Son nuestros aliados en el cuidado del medio ambiente.<span class="open-blink"></span></h4>
 			</div>
 		<div class="gtco-section">
 		<div class="gtco-container">
