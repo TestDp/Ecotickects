@@ -58,7 +58,7 @@
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-									<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" data-active-url="{{ asset('img/logo-active.png') }}" alt=""></a>
+									<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo-active-negro.png') }}" data-active-url="{{ asset('img/logo-active-negro.png') }}" alt=""></a>
                 </div>
 
                 <ul class="list-unstyled components">

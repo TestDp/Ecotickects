@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div style="width:970px !important;" class="container">
         @if (session('status'))
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script>
@@ -18,6 +18,9 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3>REGISTRAR USUARIO</h3></div>
+					<div style="text-align: left;" class="col-md-12">
+                        <div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
+                    </div>
                 <form id="formularioEvento" action="{{url('registrarUsuario')}}" method="POST">
                     <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" id="esActivo" name="esActivo" value="0">
@@ -25,8 +28,8 @@
                     <input type="hidden" name="terminos" value="1" id="terminos" />
                     <input type="hidden" name="HabeasData" value="1" id="HabeasData" />
                     <input type="hidden" id="ComentarioEvento" name="ComentarioEvento"  value="BoletaGratis123" />
-                    <div id="formAsistente">
-                            <div class="row">
+                    <div id="formAsistente" style="margin:0px !important;" class="row">
+                            <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
                                     Identificación
                                     <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
@@ -36,7 +39,7 @@
                                     <input id="Nombres" name="Nombres" type="text" class="form-control" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
                                     Apellidos
                                     <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
@@ -46,7 +49,7 @@
                                     <input id="telefono" name="telefono" type="text" class="form-control" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
                                     Email
                                     <input id="Email" name="Email" type="text" class="form-control" />
@@ -57,7 +60,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
                                     Edad
                                     <input id="Edad" name="Edad" type="number" class="form-control" />
@@ -67,7 +70,7 @@
                                     <input id="Dirección" name="Dirección" type="text" class="form-control"  />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
                                     Departamento persona
                                     <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
@@ -84,7 +87,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div style="margin:0px !important;" class="row">
                                 <div class="col-md-12">
                                     Evento al cual desea registrar el usuario
                                     <select id="Evento_id" name="Evento_id" class="form-control">
@@ -96,14 +99,14 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="row">
+                            <div style="margin:0px !important;" class="row">
                                 <div class="col-md-12">
                                     <button type="submit" onclick="validarCamposRegistrarUsuario()" class="btn btn-blue ripple trial-button">
                                         Registrar
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                    </div>
                 </form>
             </div>
             </div>
