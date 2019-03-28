@@ -75,7 +75,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			@if (Route::has('login'))
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<li><a href="#eventos">EVENTOS</a></li>
+					<li><a href="#eventos"><b>EVENTOS</b></a></li>
+					<li><a href="#eco"><b>¿POR QUÉ ECOTICKETS?</b></a></li>
 					@auth
                         <li><a href="{{ url('/home') }}">Home</a></li>
                     @else
@@ -152,27 +153,71 @@
 				
 				</div>
 	</section>
+		<section id="eco" class="section">
+				<div class="container">
+			<div class="row text-center title">
+				<h2>Muchas facilidades al alcance de tus manos</h2>
+				<h4 class="light muted">¿Y tus eventos ya se transformaron digitalmente?</h4>
+			</div>
+			<div class="row services">
+				<div class="col-md-4">
+					<div class="service">
+						<div class="icon-holder">
+							<img src="img/icons/heart-blue.png" alt="" class="icon">
+						</div>
+						<h4 class="heading">¿Quieres salvar el planeta?</h4>
+						<p class="description">Comunícate con nosotros y te explicaremos el "porque" Ecotickets cuida el medio ambiente.</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="service">
+						<div class="icon-holder">
+							<img src="img/icons/guru-blue.png" alt="" class="icon">
+						</div>
+						<h4 class="heading">¡Acceso ágil y fluido!</h4>
+						<p class="description">Ecotickets APP te permite registrar y controlar el acceso a tus eventos de una forma fácil y rápida.</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="service">
+						<div class="icon-holder">
+							<img src="img/icons/weight-blue.png" alt="" class="icon">
+						</div>
+						<h4 class="heading">¡En los datos está el poder!</h4>
+						<p class="description">Controla todas las estadísticas de tus eventos. Toda la información a tu alcance en cualquier momento.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	
 	
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12 text-center-mobile">
-					<h3 class="white">Crea tu cuenta y adquiere tu licencia anual!</h3>
+			<div class="col-sm-3 text-center-mobile">
+			<img src="img/logo.png" data-active-url="img/logo-active.png" alt="" style="width:100%;">
+			</div>
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">¡Comunícate con nosotros y salvemos el planeta!</h3>
 					<h5 class="light regular light-white">Administración, gestión y estadísticas de tus eventos.</h5>
-					<a href="http://dpsoluciones.co/nuestros-servicios/" target="_blank" class="btn btn-blue ripple trial-button">Ver más</a>
 				</div>
-			
+			<div class="col-sm-3 text-center-mobile">
+			<a href="http://dpsoluciones.co/" target="_blank" class="btn btn-white-fill">CONTÁCTANOS</a>
+			</div>
 			</div>
 			<div class="row bottom-footer text-center-mobile">
-				<div class="col-sm-8">
-					<p>Todos los derechos reservados 2018. Desarrollado por <a href="http://www.dpsoluciones.co/" target="_blank">DPS</a></p>
+				<div class="col-sm-3">
+					<p style="color:#fff; text-align:center;">Una forma simple de proteger el planeta</p>
 				</div>
-				<div class="col-sm-4 text-right text-center-mobile">
+				<div class="col-sm-6">
+					<p style="color:#fff; text-align:center;">Desarrollado por <a href="http://www.dpsoluciones.co/" target="_blank"><img src="https://dpsoluciones.co/logoDPS.png"></a></p>
+				</div>
+				<div class="col-sm-3 text-right text-center-mobile">
 					<ul class="social-footer">
-						<li><a href="https://web.facebook.com/dpsolucionesrionegro/?_rdc=1&_rdr" target="_blank"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="https://twitter.com/dpsolucionesrio" target="_blank"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="https://www.instagram.com/dpsolucionesrio/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+						<li><b style="color:#fff;">Síguenos</b></li>
+						<li><a href="https://www.facebook.com/Ecotickets/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://www.instagram.com/ecotickets/" target="_blank"><i class="fa fa-instagram"></i></a></li>
 					</ul>
 				</div>
 			</div>

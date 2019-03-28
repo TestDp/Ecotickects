@@ -475,7 +475,7 @@ section {
 	display: inline-block;
 	margin-bottom: 40px;
 	padding: 10px;
-	background: white;
+	background: transparent;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
@@ -488,7 +488,7 @@ section {
 }
 
 .service .icon-holder > img.icon {
-	width: 40px;
+	width: 90px;
 }
 
 .service:hover {
@@ -512,6 +512,7 @@ section {
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	transform: scale(0);
+	color:#fff;
 }
 
 .service:hover .description {
@@ -553,7 +554,7 @@ section {
 }
 /* Pricing */
 
-#pricing {
+#eco {
 	background: #74b12e url('../img/pricing1.jpg') no-repeat center center;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -660,8 +661,8 @@ section {
 /* Footer */
 
 footer {
-	padding: 140px 0 40px;
-	background: url('../img/footer.jpg');
+	padding: 40px 0 40px;
+	background: #393939 !important;
 	-webkit-background-size: cover;
 	background-size: cover;
 }
