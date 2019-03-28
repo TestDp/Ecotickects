@@ -107,10 +107,59 @@
 		</div>
 	</header>
 <section style="padding-top:3%;" id="eventos">
-		<div class="container">
+	<div class="container">
+		<div class="row text-center title">
+			<h2 style="color:#74b12e; font-size: 28px; font-weight: 800;">#EllosCuidanElPlaneta</h2>
+			<h4 class="light muted">Son nuestros aliados en el cuidado del medio ambiente.<span class="open-blink"></span></h4>
+			<h2 style="color:#74b12e; font-size: 28px; font-weight: 800;">Destacados</h2>
+		</div>
+		<div class="gtco-section">
+			<div class="gtco-container">
+				<div class="row row-pb-md">
+					<div class="col-md-12">
+						<ul id="gtco-portfolio-list">
+
+							@foreach($ListaEventosDestacados["eventosDestacados"] as $eventoDestacado)
+
+								<li class="one-third animate-box" data-animate-effect="fadeIn">
+									<div class="team text-center">
+										<div class="cover" style="background:url('{{ $ListaEventosDestacados["rutaImagenes"].$eventoDestacado->FlyerEvento}}'); background-size:cover;">
+											<div class="overlay text-center">
+												<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}">{{ $eventoDestacado->Nombre_Evento }}</a></h3>
+											</div>
+										</div>
+										<img src="img/logo.jpg" alt="Team Image" class="avatar">
+										<div class="title">
+											<a href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><h4>{{ $eventoDestacado->Nombre_Evento }}</h4></a>
+											<h5 class="muted regular"><b>Fecha: </b>{{ $eventoDestacado->Fecha_Evento }}</h5>
+											<h5 class="muted regular"><b>Lugar: </b>{{ $eventoDestacado->Lugar_Evento }}</h5>
+											<h5 class="muted regular"><b>Municipio: </b>{{ $eventoDestacado->ciudad->Nombre_Ciudad }}</h5>
+											<h5 class="muted regular"><b>Departamento: </b>{{ $eventoDestacado->ciudad->departamento->Nombre_Departamento }}</h5>
+
+										</div>
+										@if($eventoDestacado->esPago)
+											<a href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+										@else
+											<a href="{{url('FormularioAsistente', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+										@endif
+										@if($eventoDestacado->activarTienda ==1)
+											<a href="{{url('Tienda', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Tienda</h5></a>
+										@endif
+									</div>
+								</li>
+							@endforeach
+
+						</ul>
+					</div></div></div></div>
+
+	</div>
+
+
+
+
+	<div class="container">
 			<div class="row text-center title">
-				<h2 style="color:#74b12e; font-size: 28px; font-weight: 800;">#EllosCuidanElPlaneta</h2>
-				<h4 class="light muted">Son nuestros aliados en el cuidado del medio ambiente.<span class="open-blink"></span></h4>
+				<h2 style="color:#74b12e; font-size: 28px; font-weight: 800;">Proximos Eventos</h2>
 			</div>
 		<div class="gtco-section">
 		<div class="gtco-container">

@@ -195,7 +195,19 @@ class EventosRepositorio
 
     public  function  ObtenerEventos()
     {
-        $eventos = Evento::where('Tipo_Evento','=','Evento')->where('EsPublico','=',true)->get();
+        $eventos = Evento::where('Tipo_Evento','=','Evento')->where('EsPublico','=',true)->orderBy('Fecha_Evento', 'ASC')->get();
+        foreach ($eventos as $evento)
+        {
+            $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
+            $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
+        }
+        return $eventos;
+    }
+
+    public  function  ObtenerEventosDestacados()
+    {
+        $eventos = Evento::where('Tipo_Evento','=','Evento')->where('EsPublico','=',true)
+            ->where('CodigoPulep','=','12345')->orderBy('Fecha_Evento', 'ASC')->get();
         foreach ($eventos as $evento)
         {
             $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();

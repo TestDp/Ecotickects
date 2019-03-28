@@ -40,6 +40,11 @@ class EventosServicio
         return $this->eventoRepor->ObtenerEventos();
     }
 
+    public function obtenerEventosDestacados()
+    {
+        return $this->eventoRepor->obtenerEventosDestacados();
+    }
+
     public function obtenerCupones()
     {
         return $this->eventoRepor->ObtenerCupones();

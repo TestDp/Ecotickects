@@ -42,7 +42,11 @@ class EcoticketsController extends Controller
         $eventos = $this->eventoServicio->obtenerEventos();
         $rutaImagenes=env('RutaFlyerEventoWelcome');
         $ListaEventos= array('eventos' => $eventos,'rutaImagenes'=>$rutaImagenes);
-        return view('welcome',['ListaEventos' => $ListaEventos]);
+
+        $eventosDestacados = $this->eventoServicio->obtenerEventosDestacados();
+        $ListaEventosDestacados= array('eventosDestacados' => $eventosDestacados,'rutaImagenes'=>$rutaImagenes);
+
+        return view('welcome',['ListaEventos' => $ListaEventos], ['ListaEventosDestacados' => $ListaEventosDestacados] );
     }
 
     public  function  ObtenerCupones(EventosServicio $eventosServicio)
