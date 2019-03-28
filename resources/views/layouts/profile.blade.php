@@ -64,10 +64,10 @@
                 <ul class="list-unstyled components">
                     <p>{{ Auth::user()->name }}</p>
                     <li>
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}"><img src="{{ asset('img/home.png') }}"><b> Home</b></a>
                     </li>
                     <li class="active">
-                        <a href="#homeEventos" data-toggle="collapse" aria-expanded="false">Eventos</a>
+                        <a href="#homeEventos" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/eventos.png') }}"><b> Eventos</b></a>
                         <ul class="collapse list-unstyled" id="homeEventos">
                             <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
                             <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
@@ -94,7 +94,7 @@
                         <a href="#">Estadísticas Generales</a>
                     </li>-->
                     <li>
-                        <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false">Configuraciones Evento</a>
+                        <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/config-eventos.png') }}"><b> Configuraciones Evento</b></a>
                         <ul class="collapse list-unstyled" id="homeConfiguraciones">
                             <li><a href="{{ url('ActivarFunciones') }}">Activar Funciones</a></li>
                         </ul>
@@ -122,7 +122,7 @@
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
-                            Cerrar Sesión
+                            <img src="{{ asset('img/cerrar.png') }}"><b> Cerrar Sesión</b>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
