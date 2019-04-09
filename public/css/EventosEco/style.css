@@ -47,13 +47,13 @@ body {
 }
 
 a {
-  color: #17B794;
+  color: #8abd51;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
 }
 a:hover, a:active, a:focus {
-  color: #17B794;
+  color: #8abd51;
   outline: none;
   text-decoration: none;
 }
@@ -78,17 +78,17 @@ h4{
 
 ::-webkit-selection {
   color: #fff;
-  background: #17B794;
+  background: #8abd51;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #17B794;
+  background: #8abd51;
 }
 
 ::selection {
   color: #fff;
-  background: #17B794;
+  background: #8abd51;
 }
 
 .gtco-container {
@@ -120,7 +120,7 @@ h4{
   font-weight: bold;
 }
 .gtco-nav #gtco-logo em {
-  color: #17B794;
+  color: #8abd51;
 }
 .gtco-nav a {
   padding: 5px 10px;
@@ -215,7 +215,7 @@ h4{
   color: #fff;
 }
 .gtco-nav ul li.btn-cta a {
-  color: #17B794;
+  color: #8abd51;
 }
 .gtco-nav ul li.btn-cta a span {
   background: #fff;
@@ -340,7 +340,7 @@ h4{
   width: 100%;
 }
 .gtco-cover a {
-  color: #17B794;
+  color: #8abd51;
 }
 .gtco-cover a:hover {
   color: white;
@@ -469,7 +469,7 @@ h4{
   display: inline-block;
   zoom: 1;
   *display: inline;
-  color: #17B794;
+  color: #8abd51;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -575,7 +575,7 @@ form label {
 #gtco-counter .counter {
   font-size: 50px;
   margin-bottom: 10px;
-  color: #17B794;
+  color: #8abd51;
   font-weight: 100;
   display: block;
 }
@@ -678,7 +678,7 @@ form label {
   height: 90px;
   font-size: 40px;
   line-height: 40px;
-  color: #17B794;
+  color: #8abd51;
 }
 .feature-center p, .feature-center h3 {
   margin-bottom: 30px;
@@ -704,7 +704,7 @@ form label {
   display: table-cell;
   vertical-align: middle;
   font-size: 40px;
-  color: #17B794;
+  color: #8abd51;
 }
 .feature-left .feature-copy {
   float: right;
@@ -740,7 +740,7 @@ form label {
   margin-left: -25px;
   height: 2px;
   left: 50%;
-  background: #17B794;
+  background: #8abd51;
 }
 .gtco-heading p {
   font-size: 20px;
@@ -843,7 +843,7 @@ form label {
 }
 .gtco-tabs .gtco-tab-nav li.active a {
   background: #fff;
-  color: #17B794;
+  color: #8abd51;
 }
 .gtco-tabs .gtco-tab-content-wrap {
   clear: both;
@@ -878,7 +878,7 @@ form label {
   }
 }
 .gtco-tabs .icon-xlg i {
-  color: #17B794;
+  color: #8abd51;
 }
 
 #gtco-subscribe {
@@ -915,7 +915,7 @@ form label {
 #gtco-subscribe .btn {
   height: 54px;
   border: none !important;
-  background: #17B794;
+  background: #8abd51;
   color: #fff;
   font-size: 16px;
   text-transform: uppercase;
@@ -1255,9 +1255,9 @@ form label {
 }
 
 .btn-primary {
-  background: #17B794;
+  background: #8abd51;
   color: #fff;
-  border: 2px solid #17B794 !important;
+  border: 2px solid #8abd51 !important;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background: #1acea6 !important;
@@ -1265,11 +1265,11 @@ form label {
 }
 .btn-primary.btn-outline {
   background: transparent;
-  color: #17B794;
-  border: 2px solid #17B794;
+  color: #8abd51;
+  border: 2px solid #8abd51;
 }
 .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
-  background: #17B794;
+  background: #8abd51;
   color: #fff;
 }
 
@@ -1419,7 +1419,7 @@ form label {
 .form-control:active, .form-control:focus {
   outline: none;
   box-shadow: none;
-  border-color: #17B794;
+  border-color: #8abd51;
 }
 
 .row-pb-md {
@@ -1463,7 +1463,7 @@ form label {
   margin-left: 0px;
 }
 .gtco-nav .gtco-contact ul li a i {
-  color: #17B794;
+  color: #8abd51;
 }
 .gtco-nav .gtco-contact ul li a:hover i {
   color: #fff;
@@ -1881,7 +1881,7 @@ form label {
 .owl-theme .owl-dots .owl-dot span {
   width: 10px;
   height: 10px;
-  background: #17B794;
+  background: #8abd51;
   -webkit-transition: 0.2s;
   -o-transition: 0.2s;
   transition: 0.2s;
@@ -1889,12 +1889,12 @@ form label {
 }
 .owl-theme .owl-dots .owl-dot span:hover {
   background: none;
-  border: 2px solid #17B794;
+  border: 2px solid #8abd51;
 }
 
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
   background: none;
-  border: 2px solid #17B794;
+  border: 2px solid #8abd51;
 }
 
 /*# sourceMappingURL=style.css.map */
