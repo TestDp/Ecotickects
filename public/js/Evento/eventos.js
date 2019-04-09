@@ -1,5 +1,6 @@
 
-var urlBase = "/Ecotickects/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+//var urlBase = "/Ecotickects/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 
 
 var arrayColores= ["#000033","#0000CC","#003300","#0033FF","#006600","#006699",

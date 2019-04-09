@@ -221,6 +221,7 @@ class EstadisticasRepositorio
             ['tbl_asistentesXeventos.Evento_id','=',$idEvento],
             ['tbl_asistentesXeventos.esActivo', '=', '1',]])
          ->distinct('tbl_asistentesXeventos.ComentarioEvento')
+            ->havingRaw('cantidad > 1')
          ->get());
         
     }
