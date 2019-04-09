@@ -75,8 +75,10 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			@if (Route::has('login'))
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<li><a href="#eventos"><b>EVENTOS</b></a></li>
-					<li><a href="#eco"><b>¿POR QUÉ ECOTICKETS?</b></a></li>
+					<li><a href="#eventos"><b>Eventos</b></a></li>
+					<li><a href="#eco"><b>¿Por qué Ecotickets?</b></a></li>
+					<li><a href="#aliados"><b>#EstamosCuidandoElPlaneta</b></a></li>
+					<li><a href="#contacto"><b>Contáctanos</b></a></li>
 					@auth
                         <li><a href="{{ url('/home') }}">Home</a></li>
                     @else
@@ -240,7 +242,7 @@
 		</div>
 	</section>
 	
-			<section class="section">
+			<section id="aliados" class="section">
 				<div class="container">
 			<div class="row text-center title">
 				<h2 style="color:#000000; font-size: 28px; font-weight: 800;">Ellos confían en nosotros</h2>
@@ -278,7 +280,7 @@
 			</section>
 	
 	
-	<footer>
+	<footer id="contacto">
 		<div class="container">
 			<div class="row">
 			<div class="col-sm-3 text-center-mobile">
