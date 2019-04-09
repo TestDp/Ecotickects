@@ -3443,7 +3443,7 @@ tbody.collapse.in {
 }
 .nav > li > a:hover, .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color: #393939;
 }
 .nav > li.disabled > a {
   color: #777777;

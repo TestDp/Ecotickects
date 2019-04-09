@@ -240,6 +240,43 @@
 		</div>
 	</section>
 	
+			<section class="section">
+				<div class="container">
+			<div class="row text-center title">
+				<h2 style="color:#000000; font-size: 28px; font-weight: 800;">Ellos confían en nosotros</h2>
+				<h4 class="light muted">#EstamosCuidandoElPlaneta</h4>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<img style="display:block; margin:auto;" width="50%" src="img/lovers.png"></img>
+				</div>
+				<div class="col-md-3">
+				<img style="display:block; margin:auto;" width="50%" src="img/colasistencia.png"></img>
+				</div>
+				<div class="col-md-3">
+				<img style="display:block; margin:auto;" width="50%" src="img/sena.png"></img>
+				</div>
+				<div class="col-md-3">
+				<img style="display:block; margin:auto;" width="50%" src="img/ccoa.png"></img>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					
+				</div>
+				<div class="col-md-3">
+				<img style="display:block; margin:auto;" width="50%" src="img/mute.png"></img>
+				</div>
+				<div class="col-md-3">
+				<img style="display:block; margin:auto;" width="50%" src="img/asocomunal.png"></img>
+				</div>
+				<div class="col-md-3">
+				
+				</div>
+			</div>				
+			</div>
+			</section>
+	
 	
 	<footer>
 		<div class="container">

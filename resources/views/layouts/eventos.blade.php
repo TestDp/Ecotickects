@@ -109,7 +109,7 @@
 	</nav>
 
 
-	<section id="pricing" class="section">
+	<section id="eco" class="section">
 		<div class="container">
 		@yield('content')
 	</div>
