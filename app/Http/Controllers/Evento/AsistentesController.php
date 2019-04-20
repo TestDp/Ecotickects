@@ -3,6 +3,7 @@
 namespace Ecotickets\Http\Controllers\Evento;
 
 use Eco\Datos\Modelos\InfoPago;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
@@ -160,6 +161,10 @@ class AsistentesController extends Controller
                     $msj->subject('Importante - Aquí esta tu pase de acceso');
                     $msj->to($correoElectronico);
                     $msj->bcc('soporteecotickets@gmail.com');
+                    //preguntamos si el directorio existe
+                    if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
+                        mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
+                    }
                     foreach ($pinesImagenes as $pin) {
                         $qr = base64_encode(\QrCode::format('png')->merge('../../pruebas.ecotickets.co/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
                         $ElementosArray = array('evento' => $evento, 'qr' => $qr);
@@ -317,9 +322,9 @@ class AsistentesController extends Controller
     //metodo que registrar un usuario al evento desde el administrador
     public function obtenerFormularioUsuario()
     {
-        $eventos = $this->eventoServicio->obtenerEventos();
+        $user = Auth::user();
+        $eventos = $this->eventoServicio->ObtenerMisEventos($user->id);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
-        $rutaImagenes = env('RutaFlyerEventoRegistrarAsistente');
         $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
         return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray]);
 

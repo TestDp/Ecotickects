@@ -43,7 +43,7 @@ class EventosController extends Controller
     {
         $departamentos = $this->departamentoServicio->obtenerDepartamento();
         $formulario = array('departamentos' => $departamentos);
-        $evento = $this->eventoServicio->obtenerEvento($idEvento);
+        $evento = $this->eventoServicio->obtenerEventoEditar($idEvento);
         $ciudades = $this->ciudadServicio->obtenerCiudades($evento->ciudad->departamento->id);
         $fechaEventoCompleta = new \DateTime($evento->Fecha_Evento);
         $fechaIniRegistroCompleta = new \DateTime($evento->Fecha_Inicial_Registro);

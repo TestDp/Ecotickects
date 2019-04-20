@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class PrecioBoleta extends Model
 {
     protected $table = 'Tbl_PreciosBoletas';
-    protected $fillable =['localidad','Evento_id','precio','cantidad'];
+    protected $fillable =['localidad','Evento_id','precio','cantidad','esActiva'];
 
     public function evento(){
         return $this->belongsTo('Evento');

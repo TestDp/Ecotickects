@@ -1,6 +1,6 @@
 
-//var urlBase = "/Ecotickects/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
-var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+var urlBase = "/Ecotickects/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+//var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 
 
 var arrayColores= ["#000033","#0000CC","#003300","#0033FF","#006600","#006699",
@@ -87,15 +87,27 @@ function EditarNombrePreguntasYRespuetas(){
     $("#ListaPreguntas").find("div[name=pregunta]").each(function (i,pregunta) {
         $(pregunta).find("input[name=TextoPregunta]").attr("name","Enunciado[" + i+ "]");
         $(pregunta).find("input[name=TextoTipoPregunta]").attr("name","TipoPregunta_id[" + i + "]");
+        $(pregunta).find("input[name=PreguntaId]").attr("name","Pregunta_id[" + i + "]");
         $(pregunta).find("input[name=TextoRespuesta]").each(function (j,respuesta) {
             $(respuesta).attr("name","TextoRespuesta[" + i + "][" + j +"]");
-        })
+        });
+        $(pregunta).find("input[name=Respuesta_Id]").each(function (j,respuesta) {
+            $(respuesta).attr("name","Respuesta_Id[" + i + "][" + j +"]");
+        });
    });
     //editar los  nommbres de los  campos  cuando el evento es pago
     if($("#esPago").val() ==1){
         $("#divBoletas").find("div[name=PreciosBoletas]").each(function (i,precioBoleta) {
+            $(precioBoleta).find("input[name=idPrecioBoleta]").attr("name","idPrecioBoleta["+ i +"]");
             $(precioBoleta).find("input[name=localidad]").attr("name","localidad["+ i +"]");
             $(precioBoleta).find("input[name=precio]").attr("name","precio["+ i +"]");
+            if($(precioBoleta).find("input[name=esActiva]").prop( "checked" ))
+            {
+                $(precioBoleta).find("input[name=Activa]").val('1');
+            }else{
+                $(precioBoleta).find("input[name=Activa]").val('0');
+            }
+            $(precioBoleta).find("input[name=Activa]").attr("name","Activa["+ i +"]");
         });
     }
 }

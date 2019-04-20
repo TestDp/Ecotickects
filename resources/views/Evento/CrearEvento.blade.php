@@ -150,14 +150,14 @@
                             </div>
                         </div>
                         <br/>
-                        <div style="margin:0px !important;" class="row">
+                        <div style="margin:0px !important;" class="row" hidden>
                             <div class="col-md-12">
                                 <input type="button" class="btn btn-blue ripple trial-button" onclick="AgregarPregunta()" value="Agregar Pregunta"/>
                             </div>
                         </div>
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-12">
-                                <h3 class="col-md-12" >Preguntas</h3>
+                                <h3 class="col-md-12" hidden="hidden">Preguntas</h3>
                                 <div id="ListaPreguntas">
                                     <input id="CantidadPreguntas" name="CantidadPreguntas" type="hidden"  value="0"/>
                                 </div>

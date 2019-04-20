@@ -14,6 +14,7 @@ class EventosServicio
 {
 
     protected $eventoRepor;
+
     public function __construct(EventosRepositorio $eventoRepor)
     {
         $this->eventoRepor = $eventoRepor;
@@ -33,6 +34,11 @@ class EventosServicio
     public function obtenerEvento($idEvento)
     {
       return  $this->eventoRepor->obtenerEvento($idEvento);
+    }
+
+    public function obtenerEventoEditar($idEvento)
+    {
+        return  $this->eventoRepor->obtenerEventoEditar($idEvento);
     }
 
     public function obtenerEventos()
@@ -68,5 +74,9 @@ class EventosServicio
     public function ActivarEsPublico($idEvento,$FlagEsActivo)
     {
         return $this->eventoRepor->ActivarEsPublico($idEvento,$FlagEsActivo);
+    }
+
+    public  function  ObtenerMisEventos($idUser){
+        return $this->eventoRepor->ObtenerMisEventos($idUser);
     }
 }

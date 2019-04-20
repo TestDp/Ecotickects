@@ -26,7 +26,6 @@ class EventosRepositorio
     {
         DB::beginTransaction();
         try{
-
             //inicio del bloque donde se guarda el evento para obtener el id del evento
             $evento = new Evento($EdEvento->all());
             $evento->Fecha_Evento=new DateTime($EdEvento->Fecha_Evento . $EdEvento->Hora_Evento);
@@ -46,11 +45,11 @@ class EventosRepositorio
                     $PrecioBoleta ->localidad = $localidad;
                     $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
                     $PrecioBoleta ->Evento_id = $evento -> id;
+                    $PrecioBoleta ->esActiva = 1;
                     $PrecioBoleta ->cantidad = 1;
                     $PrecioBoleta ->save();
                     $indPrecio++;
                 }
-
             }
             //fin del bloque
             $ind =0;
@@ -118,20 +117,30 @@ class EventosRepositorio
 
             $indPrecio =0;
             if($EdEvento->esPago == 1){
-                PrecioBoleta::where('Evento_id','=',$EdEvento->id)->delete();
+               // PrecioBoleta::where('Evento_id','=',$EdEvento->id)->delete();
                 foreach ($EdEvento->localidad as $localidad ){
-                    $PrecioBoleta = new PrecioBoleta();
-                    $PrecioBoleta ->localidad = $localidad;
-                    $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
-                    $PrecioBoleta ->Evento_id = $evento -> id;
-                    $PrecioBoleta ->cantidad = 1;
-                    $PrecioBoleta ->save();
+                    if($EdEvento->idPrecioBoleta[$indPrecio] == 0)
+                    {
+                        $PrecioBoleta = new PrecioBoleta();
+                        $PrecioBoleta ->localidad = $localidad;
+                        $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
+                        $PrecioBoleta ->esActiva = $EdEvento->Activa[$indPrecio];
+                        $PrecioBoleta ->Evento_id = $evento -> id;
+                        $PrecioBoleta ->cantidad = 1;
+                        $PrecioBoleta ->save();
+                    }else{
+                        $PrecioBoleta = PrecioBoleta::find($EdEvento->idPrecioBoleta[$indPrecio]);
+                        $PrecioBoleta ->localidad = $localidad;
+                        $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
+                        $PrecioBoleta ->esActiva = $EdEvento->Activa[$indPrecio];
+                        $PrecioBoleta ->Evento_id = $evento -> id;
+                        $PrecioBoleta ->cantidad = 1;
+                        $PrecioBoleta ->save();
+                    }
                     $indPrecio++;
                 }
-
-            }else{
-                PrecioBoleta::where('Evento_id','=',$EdEvento->id)->delete();
             }
+
             //fin del bloque
             $ind =0;
             //Validar si el array es vacio
@@ -184,7 +193,8 @@ class EventosRepositorio
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
         $evento->preguntas;
-        $evento->preciosBoletas;
+        $evento->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+                                ->where('esActiva','=',1)->get();
         $evento->preguntas->each(function($preguntas){
             $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
         });
@@ -193,6 +203,18 @@ class EventosRepositorio
         return $evento ;
     }
 
+    public function obtenerEventoEditar($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+        $evento->preguntas;
+        $evento->preciosBoletas;
+        $evento->preguntas->each(function($preguntas){
+            $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
+        });
+        $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
+        $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
+        return $evento ;
+    }
     public  function  ObtenerEventos()
     {
         $eventos = Evento::where('Tipo_Evento','=','Evento')->where('EsPublico','=',true)->orderBy('Fecha_Evento', 'ASC')->get();
@@ -277,6 +299,7 @@ class EventosRepositorio
         }
         return true;
     }
+
     public function ActivarEsPublico($idEvento,$FlagEsActivo)
     {
         DB::beginTransaction();

@@ -79,9 +79,10 @@ class EcoticketsController extends Controller
     public function obtenerFormularioAsistentePago($idEvento)
     {
         $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
-        $CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        $evento =$this->eventoServicio->obtenerEvento($idEvento);
+        //$CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
+        $CantidadEsperada =$evento->numeroAsistentes;
         if($CantidadRegistrados<$CantidadEsperada && $this->eventoServicio->obtenerEvento($idEvento)->EsPublico ==true){
-            $evento =$this->eventoServicio->obtenerEvento($idEvento);
             $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
             $rutaImagenes=env('RutaFlyerEventoRegistrarAsistente');
             $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,'EventoId'=>$idEvento,'rutaImagenes'=>$rutaImagenes);
