@@ -127,12 +127,20 @@
 									<div class="team text-center">
 										<div class="cover" style="background:url('{{ $ListaEventosDestacados["rutaImagenes"].$eventoDestacado->FlyerEvento}}'); background-size:cover;">
 											<div class="overlay text-center">
-												<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}">{{ $eventoDestacado->Nombre_Evento }}</a></h3>
+												@if($eventoDestacado->esPago)
+													<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}">{{ $eventoDestacado->Nombre_Evento }}</a></h3>
+												@else
+													<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistente', ['idEvento' => $eventoDestacado->id ])}}">{{ $eventoDestacado->Nombre_Evento }}</a></h3>
+												@endif
 											</div>
 										</div>
 										<img src="img/logo.jpg" alt="Team Image" class="avatar">
 										<div class="title">
-											<a href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><h4>{{ $eventoDestacado->Nombre_Evento }}</h4></a>
+											@if($eventoDestacado->esPago)
+												<a href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><h4>{{ $eventoDestacado->Nombre_Evento }}</h4></a>
+											@else
+												<a href="{{url('FormularioAsistente', ['idEvento' => $eventoDestacado->id ])}}"><h4>{{ $eventoDestacado->Nombre_Evento }}</h4></a>
+											@endif
 											<h5 class="muted regular"><b>Fecha: </b>{{ $eventoDestacado->Fecha_Evento }}</h5>
 											<h5 class="muted regular"><b>Lugar: </b>{{ $eventoDestacado->Lugar_Evento }}</h5>
 											<h5 class="muted regular"><b>Municipio: </b>{{ $eventoDestacado->ciudad->Nombre_Ciudad }}</h5>
@@ -175,12 +183,20 @@
 						<div class="team text-center">
 							<div class="cover" style="background:url('{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}'); background-size:cover;">
 								<div class="overlay text-center">
-									<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}">{{ $evento->Nombre_Evento }}</a></h3>
+									@if($evento->esPago)
+										<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}">{{ $evento->Nombre_Evento }}</a></h3>
+									@else
+										<h3 class="white"><a style="color:#fff !important;" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}">{{ $evento->Nombre_Evento }}</a></h3>
+									@endif
 								</div>
 							</div>
 							<img src="img/logo.jpg" alt="Team Image" class="avatar">
 							<div class="title">
-								<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h4>{{ $evento->Nombre_Evento }}</h4></a>
+								@if($evento->esPago)
+									<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h4>{{ $evento->Nombre_Evento }}</h4></a>
+								@else
+									<a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h4>{{ $evento->Nombre_Evento }}</h4></a>
+								@endif
 								<h5 class="muted regular"><b>Fecha: </b>{{ $evento->Fecha_Evento }}</h5>
 								<h5 class="muted regular"><b>Lugar: </b>{{ $evento->Lugar_Evento }}</h5>
 								<h5 class="muted regular"><b>Municipio: </b>{{ $evento->ciudad->Nombre_Ciudad }}</h5>
