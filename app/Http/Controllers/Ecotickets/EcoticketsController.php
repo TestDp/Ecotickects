@@ -116,4 +116,9 @@ class EcoticketsController extends Controller
         $ListaProductos = array('productos' => $productosXEventos['Productos'],'rutaImagenes'=>$rutaImagenes,'idEvento'=>$idEvento);
         return view('Tienda/TiendaEvento',$ListaProductos);
     }
+
+    public function  ActualizarEventosFecha()
+    {
+        $this->eventoServicio->ActualizarEventosFecha();
+    }
 }

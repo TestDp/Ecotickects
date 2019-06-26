@@ -75,11 +75,15 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			@if (Route::has('login'))
 				<ul class="nav navbar-nav navbar-right main-nav">
-					<li><a href="#eventos"><b>Eventos</b></a></li>
-					<li><a href="#eco"><b>¿Por qué Ecotickets?</b></a></li>
+				<li><a  onclick="ActualizarEventosFecha()" href="#eventos" ><b>EVENTOS</b></a></li>
+				<li><a href="#eventos"><b>Eventos</b></a></li>
+				<li><a href="#eco"><b>¿Por qué Ecotickets?</b></a></li>
+
 					<li><a href="#aliados"><b>#EstamosCuidandoElPlaneta</b></a></li>
-					<li><a href="#contacto"><b>Contáctanos</b></a></li>
-					@auth
+
+				<li><a href="#eco"><b>¿POR QUÉ ECOTICKETS?</b></a></li>
+			<li><a href="#contacto"><b>Contáctanos</b></a></li>
+			@auth
                         <li><a href="{{ url('/home') }}">Home</a></li>
                     @else
                         <li><a href="{{ route('login') }}" class="btn btn-blue">Iniciar Sesión</a></li>
@@ -342,6 +346,7 @@
 	<script src="js/typewriter.js"></script>
 	<script src="js/jquery.onepagenav.js"></script>
 	<script src="js/main.js"></script>
+	<script src="{{ asset('js/Evento/eventos.js') }}"></script>
 </body>
 
 </html>

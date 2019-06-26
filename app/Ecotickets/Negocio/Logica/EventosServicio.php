@@ -76,7 +76,12 @@ class EventosServicio
         return $this->eventoRepor->ActivarEsPublico($idEvento,$FlagEsActivo);
     }
 
+
+    public function  ActualizarEventosFecha()
     public  function  ObtenerMisEventos($idUser){
+    {
         return $this->eventoRepor->ObtenerMisEventos($idUser);
+        $this->eventoRepor->ActualizarEventosFecha();
     }
-}
+<<<<<<< .mine    }
+=======>>>>>>> .theirs}

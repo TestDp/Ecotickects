@@ -23,7 +23,16 @@ class AsistenteServicio
 
     public function registrarAsistente($asistente)
     {
-        return $this->asistenteRepositorio->registrarAsistente($asistente);
+        $espago = $this->asistenteRepositorio->Espago($asistente->Evento_id);
+        $invitacion = 0;
+        if ($espago)
+        {
+            $invitacion = 1;
+            return $this->asistenteRepositorio->registrarAsistente($asistente, $invitacion);
+        }
+
+
+        return $this->asistenteRepositorio->registrarAsistente($asistente, $invitacion);
     }
 
     public function registrarAsistentePago($asistente)

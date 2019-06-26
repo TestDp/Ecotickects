@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\DB;
 class AsistenteRepositorio
 {
     //Metodo que registra a una asistente  cuando el evento no tiene costo
-    public function registrarAsistente($registroAsistente)
+    public function registrarAsistente($registroAsistente, $invitacion)
     {
         $asistente = $this->ObtenerAsistente($registroAsistente->Identificacion);
         if ($asistente) {
@@ -41,7 +41,13 @@ class AsistenteRepositorio
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
                 $asistenteXeventoo->Asistente_id = $asistente->id;
                 $asistenteXeventoo->esPago = 0;
+                if ($invitacion) {
+                    $asistenteXeventoo->PinBoleta = $asistente->Identificacion;
+
+                } else {
+
                 $asistenteXeventoo->PinBoleta = 0;
+                    }
                 $asistenteXeventoo->save();
                 if ($registroAsistente->Respuesta_id) {
                     foreach ($registroAsistente->Respuesta_id as $respuestasAsistente) {
@@ -153,6 +159,25 @@ class AsistenteRepositorio
             ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->get();
 
+        /*$asistentesPago = DB::table('tbl_asistentes')
+        ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
+            ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->select(\DB::raw('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id', 'Tbl_InfoPagos.CantidadBoletas', 'Tbl_InfoPagos.PrecioTotal', '"Paga" as TipoBoleta' ))
+            //->orderBy('tbl_asistentes.id', 'DESC')
+            ->get();*/
+
+
+        /*$asistenteinvitado = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentesXeventos.ComentarioEvento', '=', "BoletaGratis123")
+            ->select(\DB::raw('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id', '"1" as CantidadBoletas', '"0" as PrecioTotal', '"Invitacion" as TipoBoleta' ))
+            ->orderBy('tbl_asistentes.id', 'DESC')
+            ->get()->first();*/
+
         foreach ($asistentesPago as $asistenteXEventoPago) {
 
             $asistenteXEventoPago->ciudad = Ciudad::where('id', '=', $asistenteXEventoPago->Ciudad_id)->get()->first();
@@ -246,7 +271,7 @@ where Evento_id =27 and EstadosTransaccion_id = 4
 
     public function ObtenerAsistentePago($idEvento, $cc)
     {
-        $asistente = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+        $asistentepago = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             //->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
             ->join('Tbl_InfoPagos', function ($join) {
@@ -255,8 +280,26 @@ where Evento_id =27 and EstadosTransaccion_id = 4
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
-            ->select('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id' )
+            ->select(\DB::raw('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id' ))
+           ->orderBy('tbl_asistentes.id', 'DESC')
+        ->get()->first();
+
+        $asistenteinvitado = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
+            ->where('tbl_asistentesXeventos.ComentarioEvento', '=', "BoletaGratis123")
+            ->select(\DB::raw('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id' ))
+            ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
+
+        //$asistente = $asistentepago->merge($asistenteinvitado);
+        if($asistentepago == null)
+        {
+            $asistente =  $asistenteinvitado;
+        }else{
+            $asistente =  $asistentepago;
+        }
+        //$asistente =  $asistentepago->union($asistenteinvitado)->get();
 
 
 

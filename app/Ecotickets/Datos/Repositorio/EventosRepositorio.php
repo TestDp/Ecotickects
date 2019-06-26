@@ -321,4 +321,16 @@ class EventosRepositorio
         $eventos = Evento::where("user_id","=",$idUser)->get();
         return $eventos;
     }
+
+    public function  ActualizarEventosFecha()
+    {
+        DB::statement("CALL SpActualizarEventos()");
+        $actualiza = 1;
+
+       // Update `Tbl_Eventos`
+        //set EsPublico = 0
+        // WHERE Fecha_Evento < now()
+    }
+
+
 }

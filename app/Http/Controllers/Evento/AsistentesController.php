@@ -261,6 +261,7 @@ class AsistentesController extends Controller
     del usuario**/
     public function ObtenerInformacionDelAsistenteXEvento($idEvento, $cc)
     {
+
         return response()->json($this->asistenteServicio->ObtenerInformacionDelAsistenteXEvento($idEvento, $cc));
     }
 

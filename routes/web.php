@@ -92,6 +92,10 @@ Auth::routes();
 
     Route::post('ActivarEsPublico/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarEsPublico']);
 
+    Route::post('ActualizarEventosFecha',['uses' =>'Evento\EventosController@ActualizarEventosFecha']);
+
+    //Route::post('ActualizarEventosFecha',['uses'Eventos\EventosController@ActualizarEventosFecha']);
+
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE ASISTENTES//
@@ -157,6 +161,18 @@ Auth::routes();
     Route::get('InformacionQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEvento']);
 
     Route::get('ActivarQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento']);
+
+
+
+
+
+    Route::get('ActivarPinApp/{idEvento}/{idPin}',['uses' =>'Evento\AsistentesController@ActivarPinPago']);
+
+    Route::get('DesactivarQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@DesactivarQRAsistenteXEvento']);
+
+
+
+
 
     Route::get('CantidadAsistentesApp/{idEvento}',['uses' =>'Evento\AsistentesController@ObtnerCantidadAsistentes']);
 

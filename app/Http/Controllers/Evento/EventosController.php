@@ -161,4 +161,9 @@ class EventosController extends Controller
         return response()->json($this->eventoServicio->ActivarEsPublico($idEvento,$FlagEsActivo));
     }
 
+    public function  ActualizarEventosFecha()
+    {
+        $this->eventoServicio->ActualizarEventosFecha();
+    }
+
 }
