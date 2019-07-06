@@ -171,7 +171,7 @@
 											<div class="product-body">
 												<p class="product-category">Comidas</p>
 												<h3 class="product-name"><a href="#">Ricuras Rionegro</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
@@ -197,7 +197,7 @@
 											<div class="product-body">
 												<p class="product-category">Comidas</p>
 												<h3 class="product-name"><a href="#">Pizzas con sentido</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
@@ -223,7 +223,7 @@
 											<div class="product-body">
 												<p class="product-category">Comidas</p>
 												<h3 class="product-name"><a href="#">Q´Chido</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
 												<div class="product-rating">
 												</div>
 											</div>
@@ -241,7 +241,7 @@
 											<div class="product-body">
 												<p class="product-category">Comidas</p>
 												<h3 class="product-name"><a href="#">Los Quesudos</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<h4 class="product-price">$7.000<del class="product-old-price">$10.000</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
@@ -264,7 +264,7 @@
 											<div class="product-body">
 												<p class="product-category">Comidas</p>
 												<h3 class="product-name"><a href="#">Los trailers</a></h3>
-												<h4 class="product-price">$98000 <del class="product-old-price">$99000</del></h4>
+												<h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
