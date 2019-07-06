@@ -28,6 +28,8 @@ Auth::routes();
     Route::get('/habeasData', function () { return view('habeasData');});
 
     Route::get('/terminosCondiciones', function () {return view('terminosCondiciones');});
+	
+	Route::get('/ecupones', function () {return view('ecupones');});
 
     Route::get('/respuestaPago', function () {return view('respuestaPago');});
 
