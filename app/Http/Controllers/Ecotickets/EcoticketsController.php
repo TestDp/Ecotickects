@@ -41,6 +41,7 @@ class EcoticketsController extends Controller
     {
         $eventos = $this->eventoServicio->obtenerEventos();
         $rutaImagenes=env('RutaFlyerEventoWelcome');
+
         $ListaEventos= array('eventos' => $eventos,'rutaImagenes'=>$rutaImagenes);
 
         $eventosDestacados = $this->eventoServicio->obtenerEventosDestacados();
@@ -52,8 +53,9 @@ class EcoticketsController extends Controller
     public  function  ObtenerCupones(EventosServicio $eventosServicio)
     {
         $eventos = $this->eventoServicio->obtenerCupones();
-        $ListaEventos= array('eventos' => $eventos);
-        return view('Evento/ListaEventos',['ListaEventos' => $ListaEventos]);
+        $rutaImagenes=env('RutaFlyerEventoWelcome');
+        $ListaEventos= array('eventos' => $eventos,'rutaImagenes'=>$rutaImagenes);
+        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
     }
 
     //metodo que me muestra el formulario del registro para el evento

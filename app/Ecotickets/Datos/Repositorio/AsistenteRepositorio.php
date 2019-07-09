@@ -299,7 +299,6 @@ where Evento_id =27 and EstadosTransaccion_id = 4
         }else{
             $asistente =  $asistentepago;
         }
-        //$asistente =  $asistentepago->union($asistenteinvitado)->get();
 
 
 
