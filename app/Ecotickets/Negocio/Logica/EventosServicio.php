@@ -77,11 +77,10 @@ class EventosServicio
     }
 
 
-    public function  ActualizarEventosFecha()
-    public  function  ObtenerMisEventos($idUser){
+    //public function  ActualizarEventosFecha()
+    public  function  ObtenerMisEventos($idUser)
     {
         return $this->eventoRepor->ObtenerMisEventos($idUser);
         $this->eventoRepor->ActualizarEventosFecha();
-    }
-<<<<<<< .mine    }
-=======>>>>>>> .theirs}
+}
+}
