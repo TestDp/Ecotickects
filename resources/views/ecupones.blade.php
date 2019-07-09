@@ -116,7 +116,7 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="#">INICIO</a></li>
-						<li><a href="#">ECOTICKETS</a></li>
+						<li><a href="{{ url('/') }}">ECOTICKETS</a></li>
 						<li><a href="#">COMIDAS</a></li>
 						<li><a href="#">ROPA</a></li>
 						<li><a href="#">TECNOLOGÍA</a></li>
