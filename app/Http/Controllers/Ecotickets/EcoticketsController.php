@@ -55,7 +55,7 @@ class EcoticketsController extends Controller
         $eventos = $this->eventoServicio->obtenerCupones();
         $rutaImagenes=env('RutaFlyerEventoWelcome');
         $ListaEventos= array('eventos' => $eventos,'rutaImagenes'=>$rutaImagenes);
-        return view('Evento/ListaCupones',['ListaEventos' => $ListaEventos]);
+        return view('Evento/ListaEcupones',['ListaEventos' => $ListaEventos]);
     }
 
     //metodo que me muestra el formulario del registro para el evento
