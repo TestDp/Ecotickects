@@ -170,7 +170,7 @@
                                         <img src={{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}>
                                         <div class="product-label">
                                             <span class="sale">{{ $evento->Nombre_Evento }}</span>
-                                            <span class="¡HOY!">{{ $evento->Fecha_Evento }}</span>
+                                            <span class="¡HOY!">Vence en : {{ $evento->Plazo }}  Dias</span>
                                         </div>
                                     </div>
                                     <div class="product-body">

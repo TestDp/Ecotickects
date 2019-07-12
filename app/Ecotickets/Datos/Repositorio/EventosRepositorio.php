@@ -241,10 +241,15 @@ class EventosRepositorio
     public  function  ObtenerCupones()
     {
         $cupones = Evento::where('Tipo_Evento','=','Cupon')->get();
+        $FechaActual = new DateTime();
         foreach ($cupones as $cupon)
         {
             $cupon->ciudad= Ciudad::where('id','=',$cupon ->Ciudad_id)->get()->first();
             $cupon->ciudad->departamento=Departamento::where('id','=',$cupon ->ciudad->Departamento_id)->get()->first();
+            $fechaEvento = new DateTime($cupon->Fecha_Evento);
+            $diferencia =  $FechaActual->diff($fechaEvento);
+            $cupon->Plazo = $diferencia->days;
+
         }
         return $cupones;
     }
