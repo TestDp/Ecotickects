@@ -79,7 +79,7 @@
 				<li><a href="#eventos"><b>Eventos</b></a></li>
 				<li><a href="#eco"><b>¿Por qué Ecotickets?</b></a></li>
 				<li><a href="#aliados"><b>#EstamosCuidandoElPlaneta</b></a></li>
-				<li><a href="{{ url('/ecupones') }}"><b>Ecupones</b></a></li>
+				<li><a href="{{ url('/Cupones') }}"><b>Ecupones</b></a></li>
 			@auth
                         <li><a href="{{ url('/home') }}">Home</a></li>
                     @else
