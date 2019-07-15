@@ -1,10 +1,5 @@
-
-@extends('layouts.eventos')
-
-@section('content')
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,30 +7,28 @@
 
     <title>Ecupones</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="Cssecupones/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="Cssecupones/css/bootstrap.min.css">
 
-    <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="Cssecupones/css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="Cssecupones/css/slick-theme.css"/>
+	<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="Cssecupones/css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="Cssecupones/css/slick-theme.css"/>
 
-    <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="Cssecupones/css/nouislider.min.css"/>
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="Cssecupones/css/nouislider.min.css"/>
 
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="Cssecupones/css/font-awesome.min.css">
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="Cssecupones/css/font-awesome.min.css">
 
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="Cssecupones/css/style.css"/>
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="Cssecupones/css/style.css"/>
 
 
     <link rel="manifest" href="img/favicons/manifest.json">
     <link rel="shortcut icon" href="img/favicons/favicon.png">
     <meta name="msapplication-TileColor" content="#00a8ff">
     <meta name="msapplication-config" content="img/favicons/browserconfig.xml">
-
-
 </head>
 
 <body>
@@ -170,7 +163,7 @@
                                         <img src={{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}>
                                         <div class="product-label">
                                             <span class="sale">{{ $evento->Nombre_Evento }}</span>
-                                            <span class="¡HOY!">Vence en : {{ $evento->Plazo }}  Dias</span>
+                                            <span class="new">Vence en: {{ $evento->Plazo }} días</span>
                                         </div>
                                     </div>
                                     <div class="product-body">
@@ -187,106 +180,14 @@
                                     </div>
                                     <div class="add-to-cart">
                                         @if($evento->esPago)
-                                            <a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Obtener cupón</h5></a>
+                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
                                         @else
-                                            <a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Obtener cupón</h5></a>
+                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
                                         @endif
                                     </div>
                                 </div>
                                 <!-- /product -->
                             @endforeach
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="Cssecupones/img/product02.png" alt="">
-                                        <div class="product-label">
-                                            <span class="¡HOY!">¡HOY!</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Comidas</p>
-                                        <h3 class="product-name"><a href="#">Pizzas con sentido</a></h3>
-                                        <h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Obtener cupón</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
-
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="Cssecupones/img/product03.png" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">-30%</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Comidas</p>
-                                        <h3 class="product-name"><a href="#">Q´Chido</a></h3>
-                                        <h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
-                                        <div class="product-rating">
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Obtener cupón</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
-
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="Cssecupones/img/product04.png" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Comidas</p>
-                                        <h3 class="product-name"><a href="#">Los Quesudos</a></h3>
-                                        <h4 class="product-price">$7.000<del class="product-old-price">$10.000</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Obtener cupón</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
-
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="Cssecupones/img/product05.png" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Comidas</p>
-                                        <h3 class="product-name"><a href="#">Los trailers</a></h3>
-                                        <h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Obtener cupón</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
                             </div>
                             <div id="slick-nav-1" class="products-slick-nav"></div>
                         </div>
@@ -364,29 +265,12 @@
 </div>
 
 <!-- jQuery Plugins -->
-<script src="Cssecupones/js/jquery.min.js"></script>
-<script src="Cssecupones/js/bootstrap.min.js"></script>
-<script src="Cssecupones/js/slick.min.js"></script>
-<script src="Cssecupones/js/nouislider.min.js"></script>
-<script src="Cssecupones/js/jquery.zoom.min.js"></script>
-<script src="Cssecupones/js/main.js"></script>
-
-
-<!-- Scripts -->
-<script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/typewriter.js"></script>
-<script src="js/jquery.onepagenav.js"></script>
-<script src="js/main.js"></script>
-<script src="{{ asset('js/Evento/eventos.js') }}"></script>
+		<script src="Cssecupones/js/jquery.min.js"></script>
+		<script src="Cssecupones/js/bootstrap.min.js"></script>
+		<script src="Cssecupones/js/slick.min.js"></script>
+		<script src="Cssecupones/js/nouislider.min.js"></script>
+		<script src="Cssecupones/js/jquery.zoom.min.js"></script>
+		<script src="Cssecupones/js/main.js"></script>
+		<script src="{{ asset('js/Evento/eventos.js') }}"></script>
 </body>
-
-
-
-
-
-
 </html>
