@@ -47,15 +47,19 @@ class EcoticketsController extends Controller
         $eventosDestacados = $this->eventoServicio->obtenerEventosDestacados();
         $ListaEventosDestacados= array('eventosDestacados' => $eventosDestacados,'rutaImagenes'=>$rutaImagenes);
 
-        return view('welcome',['ListaEventos' => $ListaEventos], ['ListaEventosDestacados' => $ListaEventosDestacados] );
+        $cupones = $this->eventoServicio->obtenerCupones();
+        $ListaEcupones= array('cupones' => $cupones,'rutaImagenes'=>$rutaImagenes);
+
+
+        return view('welcome',array('ListaEcupones' => $ListaEcupones,'ListaEventos' => $ListaEventos, 'ListaEventosDestacados' => $ListaEventosDestacados) );
     }
 
-    public  function  ObtenerCupones(EventosServicio $eventosServicio)
+    public  function  ObtenerCupones()
     {
-        $eventos = $this->eventoServicio->obtenerCupones();
+        $cupones = $this->eventoServicio->obtenerCupones();
         $rutaImagenes=env('RutaFlyerEventoWelcome');
-        $ListaEventos= array('eventos' => $eventos,'rutaImagenes'=>$rutaImagenes);
-        return view('Evento/ListaEcupones',['ListaEventos' => $ListaEventos]);
+        $ListaEcupones= array('cupones' => $cupones,'rutaImagenes'=>$rutaImagenes);
+        return view('Evento/ListaEcupones',['ListaEcupones' => $ListaEcupones]);
     }
 
     //metodo que me muestra el formulario del registro para el evento

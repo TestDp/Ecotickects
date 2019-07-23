@@ -220,6 +220,107 @@
 				</div></div></div></div>
 				
 				</div>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="Cssecupones/css/bootstrap.min.css">
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="Cssecupones/css/slick.css"/>
+	<link type="text/css" rel="stylesheet" href="Cssecupones/css/slick-theme.css"/>
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="Cssecupones/css/nouislider.min.css"/>
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="Cssecupones/css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="Cssecupones/css/style.css"/>
+
+
+	<link rel="manifest" href="img/favicons/manifest.json">
+	<link rel="shortcut icon" href="img/favicons/favicon.png">
+	<meta name="msapplication-TileColor" content="#00a8ff">
+	<meta name="msapplication-config" content="img/favicons/browserconfig.xml">
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <!-- section title -->
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h3 class="title">Ecupones | Sé feliz y cuida el medio ambiente</h3>
+                        <div class="section-nav">
+                            <ul class="section-tab-nav tab-nav">
+                                <li class="active"><a data-toggle="tab" href="#tab1">Restaurantes</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Almacenes</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Tiendas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /section title -->
+
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab1" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1">
+                                    <!-- product -->
+									@foreach($ListaEcupones["cupones"] as $cupon)
+										<div class="product">
+											<div class="product-img">
+												<img src={{ $ListaEcupones["rutaImagenes"].$cupon->FlyerEvento}}>
+												<div class="product-label">
+													<span class="sale">{{ $cupon->Nombre_Evento }}</span>
+													<span class="new">Vence en: {{ $cupon->Plazo }} días</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">Comidas</p>
+												<h3 class="product-name"><a href="#">{{ $cupon->Lugar_Evento }}</a></h3>
+												<h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												@if($cupon->esPago)
+													<button class="add-to-cart-btn"><a href="{{url('FormularioAsistentePago', ['idEvento' => $cupon->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
+												@else
+													<button class="add-to-cart-btn"><a href="{{url('FormularioAsistente', ['idEvento' => $cupon->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
+												@endif
+											</div>
+										</div>
+										<!-- /product -->
+									@endforeach
+                                </div>
+                                <div id="slick-nav-1" class="products-slick-nav"></div>
+                            </div>
+                            <!-- /tab -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Products tab & slick -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+
+
+
+
+
 	</section>
 		<section id="eco" class="section">
 				<div class="container">
@@ -344,6 +445,17 @@
 	<script src="js/jquery.onepagenav.js"></script>
 	<script src="js/main.js"></script>
 	<script src="{{ asset('js/Evento/eventos.js') }}"></script>
+
+	<script src="Cssecupones/js/jquery.min.js"></script>
+	<script src="Cssecupones/js/bootstrap.min.js"></script>
+	<script src="Cssecupones/js/slick.min.js"></script>
+	<script src="Cssecupones/js/nouislider.min.js"></script>
+	<script src="Cssecupones/js/jquery.zoom.min.js"></script>
+	<script src="Cssecupones/js/main.js"></script>
+
+
+
+
 </body>
 
 </html>

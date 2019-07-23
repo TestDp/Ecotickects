@@ -157,18 +157,18 @@
                         <div id="tab1" class="tab-pane active">
                             <div class="products-slick" data-nav="#slick-nav-1">
                                 <!-- product -->
-                                @foreach($ListaEventos["eventos"] as $evento)
+                                @foreach($ListaEcupones["cupones"] as $cupon)
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src={{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}>
+                                        <img src={{ $ListaEcupones["rutaImagenes"].$cupon->FlyerEvento}}>
                                         <div class="product-label">
-                                            <span class="sale">{{ $evento->Nombre_Evento }}</span>
-                                            <span class="new">Vence en: {{ $evento->Plazo }} días</span>
+                                            <span class="sale">{{ $cupon->Nombre_Evento }}</span>
+                                            <span class="new">Vence en: {{ $cupon->Plazo }} días</span>
                                         </div>
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Comidas</p>
-                                        <h3 class="product-name"><a href="#">{{ $evento->Lugar_Evento }}</a></h3>
+                                        <h3 class="product-name"><a href="#">{{ $cupon->Lugar_Evento }}</a></h3>
                                         <h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
@@ -179,10 +179,10 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        @if($evento->esPago)
-                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
+                                        @if($cupon->esPago)
+                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistentePago', ['idEvento' => $cupon->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
                                         @else
-                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
+                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistente', ['idEvento' => $cupon->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
                                         @endif
                                     </div>
                                 </div>
