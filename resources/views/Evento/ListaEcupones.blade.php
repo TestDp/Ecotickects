@@ -137,7 +137,7 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">Ecupones | Sé feliz y cuida el medio ambiente</h3>
+                    <h3 class="title">Ecupones Destacados</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Restaurantes</a></li>
@@ -162,7 +162,7 @@
                                     <div class="product-img">
                                         <img src={{ $ListaEcupones["rutaImagenes"].$cupon->FlyerEvento}}>
                                         <div class="product-label">
-                                            <span class="sale">{{ $cupon->Nombre_Evento }}</span>
+                                            <span class="sale">{{ $cupon->Nombre_Evento }}</span></br>
                                             <span class="new">Vence en: {{ $cupon->Plazo }} días</span>
                                         </div>
                                     </div>
@@ -202,6 +202,112 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
+
+<!-- STORE -->
+	<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<div class="row">
+				<!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Ecupones | Sé feliz y cuida el medio ambiente</h3>
+                    <div class="section-nav">
+                        <ul class="section-tab-nav tab-nav">
+                            <li class="active"><a data-toggle="tab" href="#tab1">Restaurantes</a></li>
+                            <li><a data-toggle="tab" href="#tab1">Almacenes</a></li>
+                            <li><a data-toggle="tab" href="#tab1">Tiendas</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /section title -->
+					<div id="store" class="col-md-12">
+						<!-- store top filter -->
+						<div class="store-filter clearfix">
+							<div class="store-sort">
+								<label>
+									Ordenar por:
+									<select class="input-select">
+										<option value="0">Popularidad</option>
+										<option value="1">Fecha</option>
+									</select>
+								</label>
+
+								<label>
+									Mostrar:
+									<select class="input-select">
+										<option value="0">20</option>
+										<option value="1">50</option>
+									</select>
+								</label>
+							</div>
+							<ul class="store-grid">
+								<li class="active"><i class="fa fa-th"></i></li>
+								<li><a href="#"><i class="fa fa-th-list"></i></a></li>
+							</ul>
+						</div>
+						<!-- /store top filter -->
+
+						<!-- store products -->
+						<div class="row">
+							<!-- product -->
+							@foreach($ListaEcupones["cupones"] as $cupon)
+							<div class="col-md-4 col-xs-6">							
+								<div class="product">
+									<div class="product-img">
+										<img src={{ $ListaEcupones["rutaImagenes"].$cupon->FlyerEvento}}>
+										<div class="product-label">
+											<span class="sale">{{ $cupon->Nombre_Evento }}</span></br>
+											<span class="new">Vence en: {{ $cupon->Plazo }} días</span>
+										</div>
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name"><a href="#">{{ $cupon->Lugar_Evento }}</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+									</div>
+									<div class="add-to-cart">
+                                        @if($cupon->esPago)
+                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistentePago', ['idEvento' => $cupon->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
+                                        @else
+                                            <button class="add-to-cart-btn"><a href="{{url('FormularioAsistente', ['idEvento' => $cupon->id ])}}"><i class="fa fa-shopping-cart"></i> Obtener cupón</a></button>
+                                        @endif
+                                    </div>
+								</div>
+							</div>
+							@endforeach
+							<!-- /product -->		
+					<div class="clearfix visible-sm visible-xs"></div>
+						</div>
+						
+						<!-- /store products -->
+
+						<!-- store bottom filter -->
+						<div class="store-filter clearfix">
+							<span class="store-qty">Mostrando 20-100 cupones</span>
+							<ul class="store-pagination">
+								<li class="active">1</li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+							</ul>
+						</div>
+						<!-- /store bottom filter -->
+					</div>
+					<!-- /STORE -->
+			</div>
+		</div>
+	</div>
 
 <!-- FOOTER -->
 <footer id="footer">

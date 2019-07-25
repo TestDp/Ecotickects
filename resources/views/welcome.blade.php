@@ -69,7 +69,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><img src="img/logo.png" data-active-url="img/logo-active.png" alt=""></a>
+				<a class="navbar-brand" href="#"><img style="height: auto !important;" src="img/logo.png" data-active-url="img/logo-active.png" alt=""></a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -83,7 +83,7 @@
 			@auth
                         <li><a href="{{ url('/home') }}">Home</a></li>
                     @else
-                        <li><a href="{{ route('login') }}" class="btn btn-blue">Iniciar Sesión</a></li>
+                        <li><a style="padding: 17px 15px !important;" href="{{ route('login') }}" class="btn btn-blue">Iniciar Sesión</a></li>
                      <!--<li><a href="{{ route('register') }}">Registrarse</a></li>-->
                     @endauth
 				</ul>
@@ -149,9 +149,9 @@
 
 										</div>
 										@if($eventoDestacado->esPago)
-											<a href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+											<a href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
 										@else
-											<a href="{{url('FormularioAsistente', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+											<a href="{{url('FormularioAsistente', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
 										@endif
 										@if($eventoDestacado->activarTienda ==1)
 											<a href="{{url('Tienda', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Tienda</h5></a>
@@ -205,9 +205,9 @@
 												
 							</div>						
 								@if($evento->esPago)
-									<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+									<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
 								@else
-									<a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+									<a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
 								@endif
 								@if($evento->activarTienda ==1)
 									<a href="{{url('Tienda', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Tienda</h5></a>
@@ -242,7 +242,7 @@
 	<meta name="msapplication-TileColor" content="#00a8ff">
 	<meta name="msapplication-config" content="img/favicons/browserconfig.xml">
     <!-- SECTION -->
-    <div class="section">
+    <div style="padding-bottom:5%;" class="section">
         <!-- container -->
         <div class="container">
             <!-- row -->
@@ -251,7 +251,7 @@
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h3 class="title">Ecupones | Sé feliz y cuida el medio ambiente</h3>
+                        <h2 style="color:#74b12e; font-size: 28px; font-weight: 800; text-align:center;">Ecupones | Sé feliz y cuida el medio ambiente</h2>
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
                                 <li class="active"><a data-toggle="tab" href="#tab1">Restaurantes</a></li>
@@ -276,7 +276,7 @@
 											<div class="product-img">
 												<img src={{ $ListaEcupones["rutaImagenes"].$cupon->FlyerEvento}}>
 												<div class="product-label">
-													<span class="sale">{{ $cupon->Nombre_Evento }}</span>
+													<span class="sale">{{ $cupon->Nombre_Evento }}</span></br>
 													<span class="new">Vence en: {{ $cupon->Plazo }} días</span>
 												</div>
 											</div>
@@ -325,7 +325,7 @@
 		<section id="eco" class="section">
 				<div class="container">
 			<div class="row text-center title">
-				<h2>Muchas facilidades al alcance de tus manos</h2>
+				<h2 style="color:#ffffff; font-size: 28px; font-weight: 700; text-align:center;">Muchas facilidades al alcance de tus manos</h2>
 				<h4 class="light muted">¿Y tus eventos ya se transformaron digitalmente?</h4>
 			</div>
 			<div class="row services">
