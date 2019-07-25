@@ -264,7 +264,7 @@
 										</div>
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
+										<p class="product-category">Comidas</p>
 										<h3 class="product-name"><a href="#">{{ $cupon->Lugar_Evento }}</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
