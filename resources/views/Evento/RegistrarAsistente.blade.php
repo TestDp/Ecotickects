@@ -18,23 +18,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-7">Id:</label>
-                                    <div class="col-md-10">
-                                        {{$ElementosArray["evento"] ->id }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-md-8">Nombre:</label>
-                                    <div class="col-md-10">
-                                        {{$ElementosArray["evento"] ->Tipo_Evento }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-md-7">Tipo:</label>
+                                    <label class="col-md-7">Nombre:</label>
                                     <div class="col-md-10">
                                         {{ $ElementosArray["evento"] ->Nombre_Evento }}
                                         <input type="hidden" id="nomEvenQR" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">
@@ -70,30 +54,59 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class="form-group">
+                            <div class="form-group">
+                                @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
+                                    <label class="col-md-7">Fecha Expiración del Cupon:</label>
+                                @else
                                     <label class="col-md-7">Fecha:</label>
-                                    <div class="col-md-10">
-                                        {{ $ElementosArray["evento"] ->Fecha_Evento }}
-                                    </div>
+                                @endif
+                                <div class="col-md-10">
+                                    {{ $ElementosArray["evento"] ->Fecha_Evento }}
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
+
+                                    @else
+                                        <label class="col-md-8">Fecha Incial de registro:</label>
+                                        <div class="col-md-10">
+                                            {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
+                                        </div>
+                                    @endif
+
+
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-8">Fecha Incial de registro:</label>
-                                    <div class="col-md-10">
-                                        {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
+                                    @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
+
+                                    @else
                                     <label class="col-md-7">Fecha Final de registro:</label>
                                     <div class="col-md-10">
                                         {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
+                                            <label class="col-md-8">Recomendaciones:</label>
+                                            <div class="col-md-10">
+                                                {!! $ElementosArray["evento"] ->informacionEvento !!}
+                                            </div>
+                                        @else
+                                        @endif
+                                    </div>
+                                </div>
+
+                            </div>
 
                     </div>
                 </div>
