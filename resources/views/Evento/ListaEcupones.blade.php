@@ -138,7 +138,7 @@
             <div class="col-md-12">
                 <div class="section-title">
                     <h3 class="title">Ecupones Destacados</h3>
-                    <div class="section-nav">
+                    <div style="display:none;" class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Restaurantes</a></li>
                             <li><a data-toggle="tab" href="#tab1">Almacenes</a></li>
@@ -169,14 +169,7 @@
                                     <div class="product-body">
                                         <p class="product-category">Comidas</p>
                                         <h3 class="product-name"><a href="#">{{ $cupon->Lugar_Evento }}</a></h3>
-                                        <h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        <h4 style="display:none;" class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
                                     </div>
                                     <div class="add-to-cart">
                                         @if($cupon->esPago)
@@ -213,7 +206,7 @@
             <div class="col-md-12">
                 <div class="section-title">
                     <h3 class="title">Ecupones | Sé feliz y cuida el medio ambiente</h3>
-                    <div class="section-nav">
+                    <div style="display:none;" class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Restaurantes</a></li>
                             <li><a data-toggle="tab" href="#tab1">Almacenes</a></li>
@@ -224,32 +217,6 @@
             </div>
             <!-- /section title -->
 					<div id="store" class="col-md-12">
-						<!-- store top filter -->
-						<div class="store-filter clearfix">
-							<div class="store-sort">
-								<label>
-									Ordenar por:
-									<select class="input-select">
-										<option value="0">Popularidad</option>
-										<option value="1">Fecha</option>
-									</select>
-								</label>
-
-								<label>
-									Mostrar:
-									<select class="input-select">
-										<option value="0">20</option>
-										<option value="1">50</option>
-									</select>
-								</label>
-							</div>
-							<ul class="store-grid">
-								<li class="active"><i class="fa fa-th"></i></li>
-								<li><a href="#"><i class="fa fa-th-list"></i></a></li>
-							</ul>
-						</div>
-						<!-- /store top filter -->
-
 						<!-- store products -->
 						<div class="row">
 							<!-- product -->
@@ -266,14 +233,7 @@
 									<div class="product-body">
 										<p class="product-category">Comidas</p>
 										<h3 class="product-name"><a href="#">{{ $cupon->Lugar_Evento }}</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
+										<h4 style="display:none;" class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 									</div>
 									<div class="add-to-cart">
                                         @if($cupon->esPago)

@@ -6,17 +6,61 @@
 
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Información del Evento </div>
+                    <div class="panel-heading" style="background:#74b12e;"><h1 style="text-align:center;">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h1></div>
                     <div class="panel-body">
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-4">
                                     <img class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
                                 </div>
-                            </div>
-                        @endif
-                        <div class="row">
-                            <div class="col-sm-4">
+                            @endif
+							   <div style="padding:1%; color:#000;" class="col-sm-4">
+									<div class="form-group">
+										<label class="col-md-7">Lugar:</label>
+										<div class="col-md-10">
+											{{ $ElementosArray["evento"] ->Lugar_Evento }}
+										</div>
+									</div>
+								</div>
+								 <div style="padding:1%; color:#000;" class="col-sm-4">
+									<div class="form-group">
+										<label class="col-md-8">Ciudad de ubicación:</label>
+										<div class="col-md-10">
+											{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}
+										</div>
+									</div>
+								</div>
+								<div style="border: dashed 2px #fff; padding:2%; background:#ff8000; color:#fff;" class="col-sm-8">
+									<div class="form-group">
+										@if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
+											<label class="col-md-7">Cupón válido hasta:</label>
+										@else
+											<label class="col-md-7">Fecha:</label>
+										@endif
+										<div class="col-md-10">
+											{{ $ElementosArray["evento"] ->Fecha_Evento }}
+										</div>
+									</div>
+								</div>
+								<div style="border: solid 2px #74b12e; padding:2%; color:#000;" class="col-sm-8">
+                                    <div class="form-group">
+                                        @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
+                                            <label class="col-md-8">Recomendaciones:</label>
+                                            <div class="col-md-10">
+                                                {!! $ElementosArray["evento"] ->informacionEvento !!}
+                                            </div>
+                                        @else
+                                        @endif
+                                    </div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+								<h4 style="color:#000 !important; font-size:20px !important; text-align:center;">Diligencia la siguiente información para obtener tu código QR luego revisa tu correo electrónico y ¡DISFRUTA! (recuerda revisar tu bandeja de spam).</h4>
+								</div>
+							</div>	
+                        <div style="display:none;" class="row">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-md-7">Nombre:</label>
                                     <div class="col-md-10">
@@ -26,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div style="display:none;" class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="col-md-7">Lugar:</label>
@@ -35,7 +79,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div style="display:none;" class="col-sm-4">
                                 <div class="form-group">
                                     <label class="col-md-8">Ciudad:</label>
                                     <div class="col-md-10">
@@ -43,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div style="display:none;" class="col-sm-4">
                                 <div class="form-group">
                                     <label class="col-md-7">Departamento:</label>
                                     <div class="col-md-10">
@@ -52,7 +96,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div style="display:none;" class="row">
                             <div class="col-sm-4">
                             <div class="form-group">
                                 @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
@@ -70,7 +114,7 @@
                                     @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
 
                                     @else
-                                        <label class="col-md-8">Fecha Incial de registro:</label>
+                                        <label class="col-md-8">Fecha Inicial de registro:</label>
                                         <div class="col-md-10">
                                             {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
                                         </div>
@@ -92,7 +136,7 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="row">
+                            <div style="display:none;" class="row">
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -194,7 +238,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    Comentario
+                                    Comentario (Opcional)
                                     <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
                                 </div>
                             </div>
@@ -288,7 +332,7 @@
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    Departamento persona
+                                    Departamento
                                     <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
@@ -297,7 +341,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    Ciudad Persona
+                                    Ciudad
                                     <select id="Ciudad_id" name="Ciudad_id" class="form-control">
 
                                     </select>
@@ -305,7 +349,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    Comentario
+                                    Comentario (Opcional)
                                     <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
                                 </div>
                             </div>
