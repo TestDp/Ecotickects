@@ -222,6 +222,8 @@ class EventosRepositorio
         {
             $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
             $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
+            $timestamp = strtotime($evento->Fecha_Evento);
+            $evento->Fecha_Evento = date(" d/m/y  h.i A", $timestamp);
         }
         return $eventos;
     }
@@ -234,6 +236,8 @@ class EventosRepositorio
         {
             $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
             $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
+            $timestamp = strtotime($evento->Fecha_Evento);
+            $evento->Fecha_Evento = date("d/m/y  h.i A", $timestamp);
         }
         return $eventos;
     }
@@ -248,6 +252,8 @@ class EventosRepositorio
             $cupon->ciudad->departamento=Departamento::where('id','=',$cupon ->ciudad->Departamento_id)->get()->first();
             $fechaEvento = new DateTime($cupon->Fecha_Evento);
             $diferencia =  $FechaActual->diff($fechaEvento);
+            $timestamp = strtotime($cupon->Fecha_Evento);
+            $cupon->Fecha_Evento = date(" d/m/y  h.i A", $timestamp);
             $cupon->Plazo = $diferencia->days;
 
         }
