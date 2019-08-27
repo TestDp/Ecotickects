@@ -244,7 +244,7 @@ class EventosRepositorio
 
     public  function  ObtenerCupones()
     {
-        $cupones = Evento::where('Tipo_Evento','=','Cupon')->get();
+        $cupones = Evento::where('Tipo_Evento','=','Cupon')->where('EsPublico','=',true)->get();
         $FechaActual = new DateTime();
         foreach ($cupones as $cupon)
         {
