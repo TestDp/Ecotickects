@@ -42,9 +42,15 @@
                 <li><a href="#"><i class="fa fa-envelope-o"></i> info@ecotickets.co</a></li>
                 <li><a href="#"><i class="fa fa-map-marker"></i> Rionegro - Antioquia</a></li>
             </ul>
+			@if (Route::has('login'))
             <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-user-o"></i> Inicia Sesión</a></li>
+						@auth
+                        <li><a href="{{ url('/home') }}">Home</a></li>
+                    @else
+                <li><a href="{{ route('login') }}"><i class="fa fa-user-o"></i> Inicia Sesión</a></li>
+			@endauth
             </ul>
+			@endif
         </div>
     </div>
     <!-- /TOP HEADER -->

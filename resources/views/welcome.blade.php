@@ -284,13 +284,6 @@
 												<p class="product-category">Comidas</p>
 												<h3 class="product-name"><a href="#">{{ $cupon->Lugar_Evento }}</a></h3>
 												<h4 class="product-price">$7.000 <del class="product-old-price">$10.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
 											</div>
 											<div class="add-to-cart">
 												@if($cupon->esPago)
