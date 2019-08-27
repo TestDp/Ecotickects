@@ -307,6 +307,7 @@
         </div>
         <!-- /container -->
     </div>
+	<a style="text-align:center; margin:0% 30% 2% 30%; display:block;" href="{{ url('/Cupones') }}" class="btn btn-blue ripple trial-button">VER MÁS CUPONES</a>
     <!-- /SECTION -->
 
 
