@@ -16,7 +16,7 @@
                             </div>
                         @endif
                         <div class="row">
-                            <div class="col-sm-4">
+                            <!--div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="col-md-7">Id:</label>
                                     <div class="col-md-10">
@@ -26,15 +26,15 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-8">Nombre:</label>
+                                    <label class="col-md-8">Tipo:</label>
                                     <div class="col-md-10">
                                         {{$ElementosArray["evento"] ->Tipo_Evento }}
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-7">Tipo:</label>
+                                    <label class="col-md-7">Nombre:</label>
                                     <div class="col-md-10">
                                         {{ $ElementosArray["evento"] ->Nombre_Evento }}
                                         <input type="hidden" id="nomEvenQR" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">

@@ -255,3 +255,16 @@ Auth::routes();
 
 //FIN DE RUTAS PARA EL CONTROLADOR DE  FACTURA//
 
+
+//CONTROLADOR ROL
+Route::get('crearRol', 'UsuarioYRol\RolController@CrearRol')->name('crearRol');//cargar la vista para crear un rol
+Route::get('editarRol/{idRol}', 'UsuarioYRol\RolController@EditarRol')->name('editarRol');//cargar la vista para editar un rol
+Route::post('guardarRol', 'UsuarioYRol\RolController@GuardarRol')->name('guardarRol');//Guardar la informacion del rol
+Route::get('roles', 'UsuarioYRol\RolController@ObtenerRoles')->name('roles');//Obtiene la lista de tipos de roles
+
+//CONTROLADOR USUARIOS
+Route::get('crearUsuario', 'UsuarioYRol\UsuarioController@CrearUsuarioEmpresa')->name('crearUsuario');//cargar la vista para crear un usuario
+Route::get('editarUsuario/{idUsuario}','UsuarioYRol\UsuarioController@EditarUsuarioEmpresa')->name('editarUsuario');//Cargar la vista para editar un usuario
+Route::post('guardarUsuario', 'UsuarioYRol\UsuarioController@GuardarUsuarioEmpresa')->name('guardarUsuario');//Guardar la informacion del usuario
+Route::get('usuarios', 'UsuarioYRol\UsuarioController@ObtenerUsuarios')->name('usuarios');//Obtiene la lista de usuarios
+Route::get('/register/verify/{code}', 'UsuarioYRol\UsuarioController@verifarCorreo'); //verificar correo electronico

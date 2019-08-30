@@ -376,16 +376,17 @@
 										@endforeach
 									@endif
 								</div>
-								<hr style="border-top-color:lightslategray; width:100%" />
-								<div class="row">
-									<div style="margin-bottom:2%;" class="col-md-12">
-										<button type="button" class="btn btn-blue ripple trial-button" onclick="validarCamposCrearEvento()">
-											Guardar Evento
-										</button>
-									</div>
-								</div>
+
 							</div>
 						</div>
+                        <hr style="border-top-color:lightslategray; width:100%" />
+                        <div class="row">
+                            <div style="margin-bottom:2%;" class="col-md-12">
+                                <button type="button" class="btn btn-blue ripple trial-button" onclick="validarCamposCrearEvento()">
+                                    Guardar Evento
+                                </button>
+                            </div>
+                        </div>
 					</form>
 				</div>
 			</div>

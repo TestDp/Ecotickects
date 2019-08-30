@@ -13,11 +13,13 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-						<div style="padding-bottom:2%;" class="row">
-							<div style="text-align: left;" class="col-md-6">
-							<a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
-							</div>
-						</div>
+                        @if(Auth::user()->buscarRecurso('FormularioEvento'))
+                            <div style="padding-bottom:2%;" class="row">
+                                <div style="text-align: left;" class="col-md-6">
+                                <a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
+                                </div>
+                            </div>
+                        @endif
 						<div style="overflow-x:auto;">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                             <thead>
@@ -46,18 +48,26 @@
                                 <th >
                                     Fecha Final de registro
                                 </th>
-                                <th >
-                                    Usuarios Registrados
-                                </th>
-                                <th>
-                                    Estadísticas
-                                </th>
-								<th>
-                                    Leer QR
-                                </th>
-                                <th>
+                                @if(Auth::user()->buscarRecurso('ListaAsistentes'))
+                                    <th >
+                                        Usuarios Registrados
+                                    </th>
+                                @endif
+                                @if(Auth::user()->buscarRecurso('Estadisticas'))
+                                    <th>
+                                        Estadísticas
+                                    </th>
+                                @endif
+                                @if(Auth::user()->buscarRecurso('LecturaQR'))
+                                    <th>
+                                        Leer QR
+                                    </th>
+                                @endif
+                                @if(Auth::user()->buscarRecurso('EditarEvento'))
+                                    <th>
 
-                                </th>
+                                    </th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody >
@@ -87,18 +97,26 @@
                                     <td>
                                         {{ $evento->Fecha_Final_Registro }}
                                     </td>
-                                    <td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
-                                    </td>
-									<td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}">Leer QR</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
-                                    </td>
+                                    @if(Auth::user()->buscarRecurso('ListaAsistentes'))
+                                        <td>
+                                                 <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
+                                        </td>
+                                    @endif
+                                    @if(Auth::user()->buscarRecurso('Estadisticas'))
+                                        <td>
+                                                <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
+                                        </td>
+                                    @endif
+                                    @if(Auth::user()->buscarRecurso('LecturaQR'))
+                                        <td>
+                                                <a class="btn btn-blue ripple trial-button" href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}">Leer QR</a>
+                                        </td>
+                                    @endif
+                                    @if(Auth::user()->buscarRecurso('EditarEvento'))
+                                        <td>
+                                                <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

@@ -14,6 +14,9 @@ use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
 
 
 class AsistentesController extends Controller
@@ -54,6 +57,30 @@ class AsistentesController extends Controller
             $ElementosArray = array('evento' => $evento);
             $correoSaliente = $evento->CorreoEnviarInvitacion;
             $nombreEvento = $evento->Nombre_Evento;
+
+            ///inicio
+
+                $transport = (new Swift_SmtpTransport('mail.facin.co', 26,'tls'))
+                    ->setUsername('prueba@facin.co')
+                    ->setPassword('k},#jBz[L)jY')
+                ;
+                // Create the Mailer using your created Transport
+                $mailer = new Swift_Mailer($transport);
+
+                // Create a message
+                $message = (new Swift_Message('Wonderful Subject'))
+                    ->setFrom(['prueba@facin.co' => 'John Doe'])
+                    ->setTo(['cristianmg13@hotmail.com' => 'A name'])
+                    ->setBody('Here is the message itself')
+                ;
+
+                // Send the message
+                $result = $mailer->send($message);
+
+
+            /// fin
+
+
             Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($qrImagen, $correoElectronico, $correoSaliente, $nombreEvento) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
@@ -83,6 +110,13 @@ class AsistentesController extends Controller
             $correoSaliente = $evento->CorreoEnviarInvitacion;
             $nombreEvento = $evento->Nombre_Evento;
             $ccUser = $formRegistro->Identificacion;
+
+
+
+
+
+
+
             Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$ccUser) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
@@ -156,6 +190,11 @@ class AsistentesController extends Controller
                 $correoSaliente = $evento->CorreoEnviarInvitacion;//PONER EL CORREO DE MANERA GENERAL
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+
+
+
+
+
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                     $msj->subject('Importante - Aquí esta tu pase de acceso');
@@ -252,8 +291,11 @@ class AsistentesController extends Controller
     }
 
     /*Metodo que me retorna el formulario para la lectura del qr con el evento al que se le va a leer el qr**/
-    public function FormularioQR($idEvento)
+    public function FormularioQR(Request $request,$idEvento)
     {
+        $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         return view('Evento/LecturaQR', ['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
     }
 
@@ -321,8 +363,10 @@ class AsistentesController extends Controller
 
 
     //metodo que registrar un usuario al evento desde el administrador
-    public function obtenerFormularioUsuario()
+    public function obtenerFormularioUsuario(Request $request)
     {
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
         $eventos = $this->eventoServicio->ObtenerMisEventos($user->id);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario

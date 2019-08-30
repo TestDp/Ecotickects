@@ -1,22 +1,37 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: LaPoint
- * Date: 8/05/2018
- * Time: 5:15 PM
+ * User: DPS-C
+ * Date: 6/09/2018
+ * Time: 3:34 PM
  */
 
 namespace Eco\Datos\Repositorio;
 
-use Ecotickets\User;
 
+
+use Ecotickets\User;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioRepositorio
 {
 
-    public  function  ObtenerUsuarios()
+    public  function  ObtenerListaUsuarios($idEmpresa,$idUsuario)
     {
-        return User::all();
+        $users = DB::table('users')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->join('Tbl_Empresas', 'Tbl_Empresas.id', '=', 'Tbl_Sedes.Empresa_id')
+            ->select('users.*')
+            ->where('Tbl_Empresas.id', '=', $idEmpresa)
+            ->where('users.id','<>',$idUsuario)
+            ->get();
+        return $users;
     }
 
+    public  function  ObtenerUsuario($idUsuario)
+    {
+
+        return User::where('id', '=', $idUsuario)->get()->first();
+
+    }
 }

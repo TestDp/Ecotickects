@@ -84,5 +84,10 @@ class EventosServicio
     {
         return $this->eventoRepor->ObtenerMisEventos($idUser);
         $this->eventoRepor->ActualizarEventosFecha();
-  }
+    }
+
+    public function ListaDeEventosSede($idSede,$idTipo)
+    {
+        return $this->eventoRepor->ListaDeEventosSede($idSede,$idTipo);
+    }
 }

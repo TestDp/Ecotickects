@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 class FacturaRepositorio
 {
+
     public function crearFactura($Factura,$ArrayDetallesFactura)
     {
         DB::beginTransaction();

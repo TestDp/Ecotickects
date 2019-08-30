@@ -66,15 +66,25 @@
                     <li>
                         <a href="{{ url('/home') }}"><img src="{{ asset('img/home.png') }}"><b> Home</b></a>
                     </li>
-                    <li class="active">
-                        <a href="#homeEventos" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/eventos.png') }}"><b> Eventos</b></a>
-                        <ul class="collapse list-unstyled" id="homeEventos">
-                            <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
-                            <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
-                            <li><a href="{{ url('FormularioUsuario') }}">Registrar y Enviar Invitación</a></li>
-                            <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones</a></li>
-                        </ul>
-                    </li>
+                    @if(Auth::user()->buscarRecurso('GestionEvento'))
+                        <li class="active">
+                            <a href="#homeEventos" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/eventos.png') }}"><b> Eventos</b></a>
+                            <ul class="collapse list-unstyled" id="homeEventos">
+                                <!--@if(Auth::user()->buscarRecurso('FormularioEvento'))
+                                    <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
+                                @endif-->
+                                @if(Auth::user()->buscarRecurso('MisEventos'))
+                                    <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
+                                 @endif
+                                @if(Auth::user()->buscarRecurso('FormularioUsuario'))
+                                    <li><a href="{{ url('FormularioUsuario') }}">Registrar y Enviar Invitación</a></li>
+                                @endif
+                                @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
+                                    <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones</a></li>
+                                @endif
+                            </ul>
+                        </li>
+                    @endif
                 <!--      <li>
                         <a href="#homeCupones" data-toggle="collapse" aria-expanded="false">Cupones</a>
                         <ul class="collapse list-unstyled" id="homeCupones">
@@ -93,30 +103,34 @@
                     <li>
                         <a href="#">Estadísticas Generales</a>
                     </li>-->
-                    <li>
-                        <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/config-eventos.png') }}"><b> Configuraciones Evento</b></a>
-                        <ul class="collapse list-unstyled" id="homeConfiguraciones">
-                            <li><a href="{{ url('ActivarFunciones') }}">Activar Funciones</a></li>
-                        </ul>
-                    </li>
-
-                    @if(Auth::user()->hasRole('admin'))
-                    <li>
-                        <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false">Maestros</a>
-                        <ul class="collapse list-unstyled" id="homeMaestros">
-                            <li><a href="{{ url('departamentos') }}">Departamentos</a></li>
-                            <li><a href="{{ url('ListaCiudades') }}">Ciudades</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#homeUsuarios" data-toggle="collapse" aria-expanded="false">Usuarios y Roles</a>
-                        <ul class="collapse list-unstyled" id="homeUsuarios">
-                            <li><a href="{{ route('register') }}">Registrar Usuario</a></li>
-                            <li><a href="{{ url('usuarios') }}">Usuarios</a></li>
-                            <li><a href="{{ url('') }}">Agregar Rol</a></li>
-                            <li><a href="{{ url('') }}">Roles</a></li>
-                        </ul>
-                    </li>
+                    @if(Auth::user()->buscarRecurso('ConfiguracionesEvento'))
+                        <li>
+                            <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/config-eventos.png') }}"><b> Configuraciones Evento</b></a>
+                            <ul class="collapse list-unstyled" id="homeConfiguraciones">
+                                @if(Auth::user()->buscarRecurso('ActivarFunciones'))
+                                    <li><a href="{{ url('ActivarFunciones') }}">Activar Funciones</a></li>
+                                @endif
+                            </ul>
+                        </li>
+                    @endif
+                    @if(Auth::user()->buscarRecurso('Administrador'))
+                        <li>
+                            <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false"><b>Administrador</b></a>
+                            <ul class="collapse list-unstyled" id="homeMaestros">
+                                @if(Auth::user()->buscarRecurso('Usuarios'))
+                                    <li><a href="{{ url('usuarios') }}">Usuarios</a></li>
+                                @endif
+                                @if(Auth::user()->buscarRecurso('Roles'))
+                                    <li><a href="{{ url('roles') }}">Roles</a></li>
+                                @endif
+                                @if(Auth::user()->buscarRecurso('Departamentos'))
+                                    <li><a href="{{ url('departamentos') }}">Departamentos</a></li>
+                                @endif
+                                @if(Auth::user()->buscarRecurso('Ciudades'))
+                                    <li><a href="{{ url('ListaCiudades') }}">Ciudades</a></li>
+                                @endif
+                            </ul>
+                        </li>
                     @endif
 					<li>
                         <a href="{{ route('logout') }}"
@@ -148,7 +162,10 @@
                         
                     </div>
                 </nav>
-					@yield('content')
+
+                <div id="principalPanel">
+                    @yield('content')
+                </div>
             </div>
         </div>
 
@@ -162,6 +179,8 @@
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
         <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
+        <!-- sweet plugins-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
          <script type="text/javascript">
              $(document).ready(function () {

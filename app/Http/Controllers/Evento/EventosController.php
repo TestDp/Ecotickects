@@ -32,8 +32,10 @@ class EventosController extends Controller
     }
 
 
-    public function obtenerFormularioEvento()
+    public function obtenerFormularioEvento(Request $request)
     {
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();
         $formulario = array('departamentos' => $departamentos);
         return view('Evento/CrearEvento',['formulario' =>$formulario]);
@@ -59,8 +61,10 @@ class EventosController extends Controller
 
     public function crearEvento(Request $EdEvento)
     {
-        if($this->eventoServicio->crearEvento($EdEvento) )        {
-
+        $urlinfo= $EdEvento->getPathInfo();
+        $EdEvento->user()->AutorizarUrlRecurso($urlinfo);
+        if($this->eventoServicio->crearEvento($EdEvento) )
+        {
             if($EdEvento->hasFile('ImagenFlyerEvento')){
                 $file = $EdEvento->file('ImagenFlyerEvento');
                 $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
@@ -89,14 +93,20 @@ class EventosController extends Controller
 
     }
     /*Metodo que me retorna la lista de asistentes*/
-    public function ObtenerListaAsistentes($idEvento)
+    public function ObtenerListaAsistentes(Request $request,$idEvento)
     {
+        $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $ListaAsistentes= array('Asistentes' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento));
         return view('Evento/ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
     }
 
-    public function obtenerEstadisticas($idEvento)
+    public function obtenerEstadisticas(Request $request,$idEvento)
     {
+        $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
         $idEvento=$this->eventoServicio->obtenerEvento($idEvento)->id;
         return view('Evento/Estadisticas',['idEvento' => $idEvento,'idUser'=>$user->id]);
@@ -104,16 +114,18 @@ class EventosController extends Controller
 
     public function ObtenerMisEventos(Request $request)
     {
-        $request->user()->authorizeRoles(['admin','user']);
-        $user = Auth::user();
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
+       // $user = Auth::user();
+        $idSede = Auth::user()->Sede->id;
         $eventos=[];
-        if(Auth::user()->hasRole('admin'))
+      /**  if(Auth::user()->hasRole('admin'))
         {
             $eventos = Evento::all();
         }else{
             $eventos = Evento::where("user_id","=",$user->id)->get();
-        }
-
+        }**/
+        $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
         $eventos->each(function($eventos){
             $eventos->ciudad = Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
             $eventos->ciudad->departamento=Departamento::where('id','=',$eventos->ciudad->Departamento_id)->get()->first();

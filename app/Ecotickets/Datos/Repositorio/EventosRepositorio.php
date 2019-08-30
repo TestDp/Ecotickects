@@ -73,7 +73,6 @@ class EventosRepositorio
                         $Respuesta ->save();// se guarda la respuesta
                     }
                     $ind++;
-
                 }
             }
 
@@ -330,6 +329,21 @@ class EventosRepositorio
 
     public  function  ObtenerMisEventos($idUser){
         $eventos = Evento::where("user_id","=",$idUser)->get();
+        return $eventos;
+    }
+
+    //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
+    public function ListaDeEventosSede($idSede,$idTipo)
+    {
+        $eventos = DB::table('Tbl_Eventos')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->select('Tbl_Eventos.*')
+            ->where('Tbl_Sedes.id', '=', $idSede)
+            ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
+            //->orderBy('Tbl_Facturas.id')
+            ->latest()
+            ->paginate(10);
         return $eventos;
     }
 
