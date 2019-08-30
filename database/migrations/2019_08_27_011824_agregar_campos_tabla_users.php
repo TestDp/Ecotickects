@@ -15,7 +15,7 @@ class AgregarCamposTablaUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('last_name');
-            $table->string('username',15)->unique();
+            $table->string('username',15)->nullable()->unique();
             $table->boolean('CorreoConfirmado')->default(0);
             $table->string('CodigoConfirmacion')->nullable();
         });

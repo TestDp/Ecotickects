@@ -14,7 +14,8 @@ class AgregarCampoSedeIdEnUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('Sede_id')->nullable()->unsigned();
+            $table->unsignedInteger('Sede_id')->default(1);
+
             $table->foreign('Sede_id')->references('id')->on('Tbl_Sedes');
         });
     }
