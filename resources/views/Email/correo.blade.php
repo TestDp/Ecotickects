@@ -1,4 +1,4 @@
-@if($ElementosArray["evento"] ->id ==8 || $ElementosArray["evento"] ->id ==5 || $ElementosArray["evento"] ->id ==5)
+@if($ElementosArray["evento"] ->Tipo_Evento =='Cupon')
 	<div class="row">
 		<div class="col-md-12">
 			<div style="padding-top:1%; border: 8px solid #ffffff; font-family: sans-serif;width: 100%; height: 100%;"id="qrcode">
