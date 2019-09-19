@@ -216,7 +216,12 @@ class EventosRepositorio
     }
     public  function  ObtenerEventos()
     {
-        $eventos = Evento::where('Tipo_Evento','=','Evento')->where('EsPublico','=',true)->orderBy('Fecha_Evento', 'ASC')->get();
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+
+        $eventos = Evento::where('Tipo_Evento','=','Evento')
+            ->where('EsPublico','=',true)->where('Fecha_Evento','>',$fechaActual)
+            ->orderBy('Fecha_Evento', 'ASC')->get();
         foreach ($eventos as $evento)
         {
             $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
@@ -229,8 +234,13 @@ class EventosRepositorio
 
     public  function  ObtenerEventosDestacados()
     {
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+
         $eventos = Evento::where('Tipo_Evento','=','Evento')->where('EsPublico','=',true)
-            ->where('CodigoPulep','=','12345')->orderBy('Fecha_Evento', 'ASC')->get();
+            ->where('CodigoPulep','=','12345')
+            ->where('Fecha_Evento','>',$fechaActual)
+            ->orderBy('Fecha_Evento', 'ASC')->get();
         foreach ($eventos as $evento)
         {
             $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
@@ -243,7 +253,12 @@ class EventosRepositorio
 
     public  function  ObtenerCupones()
     {
-        $cupones = Evento::where('Tipo_Evento','=','Cupon')->where('EsPublico','=',true)->get();
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+
+        $cupones = Evento::where('Tipo_Evento','=','Cupon')
+            ->where('EsPublico','=',true)
+            ->where('Fecha_Evento','>',$fechaActual)->get();
         $FechaActual = new DateTime();
         foreach ($cupones as $cupon)
         {
