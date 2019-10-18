@@ -28,6 +28,7 @@
                     <input type="hidden" name="terminos" value="1" id="terminos" />
                     <input type="hidden" name="HabeasData" value="1" id="HabeasData" />
                     <input type="hidden" id="ComentarioEvento" name="ComentarioEvento"  value="BoletaGratis123" />
+                    <input type="hidden" id="Promotor_id" name="Promotor_id"  value="0" />
                     <div id="formAsistente" style="margin:0px !important;" class="row">
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
