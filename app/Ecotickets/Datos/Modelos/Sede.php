@@ -27,5 +27,11 @@ class Sede extends  Model
         return $this->hasMany(User::class,'Sede_id','id');
     }
 
+    public function PromotoresXsede(){
+        return $this->hasMany('Eco\Datos\Modelos\PromotoresXSede','Sede_id','id');
+    }
+
+
+
 
 }

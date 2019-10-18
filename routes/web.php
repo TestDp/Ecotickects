@@ -110,11 +110,15 @@ Auth::routes();
 
     Route::get('FormularioUsuario',['uses' =>'Evento\AsistentesController@obtenerFormularioUsuario']);
 
+    Route::get('FormularioPromotor',['uses' =>'Evento\AsistentesController@obtenerFormularioPromotor']);
+
     Route::get('RegistrarYEnviar',['uses' =>'Evento\AsistentesController@obtenerFormularioInvitaciones']);
 
     Route::get('UsuariosXEvento/{idEvento}',['uses' =>'Evento\AsistentesController@CargarUsuariosXEvento']);
 
     Route::post('registrarUsuario',['uses' =>'Evento\AsistentesController@registrarUsuario']);
+
+    Route::post('registrarPromotor',['uses' =>'Evento\AsistentesController@registrarPromotor']);
 
     Route::post('RespuestaPagos',['uses' =>'Evento\AsistentesController@RespuestaPagos']);
 

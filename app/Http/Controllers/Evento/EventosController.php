@@ -130,6 +130,12 @@ class EventosController extends Controller
             $eventos->ciudad = Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
             $eventos->ciudad->departamento=Departamento::where('id','=',$eventos->ciudad->Departamento_id)->get()->first();
         });
+        $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
+        $eventosPasados->each(function($eventosPasados){
+            $eventosPasados->ciudad = Ciudad::where('id','=',$eventosPasados ->Ciudad_id)->get()->first();
+            $eventosPasados->ciudad->departamento=Departamento::where('id','=',$eventosPasados->ciudad->Departamento_id)->get()->first();
+        });
+
         $ListaEventos= array('eventos' => $eventos);
         return view('Evento/MisEventos',['ListaEventos' => $ListaEventos]);
     }

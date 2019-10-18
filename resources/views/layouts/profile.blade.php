@@ -79,6 +79,9 @@
                                 @if(Auth::user()->buscarRecurso('FormularioUsuario'))
                                     <li><a href="{{ url('FormularioUsuario') }}">Registrar y Enviar Invitación</a></li>
                                 @endif
+                                        @if(Auth::user()->buscarRecurso('FormularioUsuario'))
+                                            <li><a href="{{ url('FormularioPromotor') }}">Registrar Promotor</a></li>
+                                        @endif
                                 @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
                                     <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones</a></li>
                                 @endif

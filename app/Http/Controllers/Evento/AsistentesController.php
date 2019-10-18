@@ -143,6 +143,46 @@ class AsistentesController extends Controller
         }
     }
 
+    /* Metodo para  registrar un asistente  cuando el evento es gratuito.**/
+    public function registrarPromotor(Request $formRegistro)
+    {
+        $respuesta = $this->asistenteServicio->registrarPromotor($formRegistro);
+        if ($respuesta == 'true') {
+            $correoElectronico = $formRegistro->Email;
+            //
+            $sede = $this->eventoServicio->obtenerSede($formRegistro->Sede_id);
+            $ElementosArray = array('sede' => $sede);
+            //
+            $correoSaliente = 'info@loversfestival.com';
+            $nombreEvento = $sede->Nombre;
+            $ccUser = $formRegistro->Identificacion;
+
+            Mail::send('Email/correoPromotor', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$sede,$ccUser) {
+                $msj->from($correoSaliente, 'Certificación Promotor ' . $nombreEvento);
+                $msj->subject('Importante - Certificado Promotor');
+                $msj->to($correoElectronico);
+                $msj->bcc('soporteecotickets@gmail.com');
+                $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
+                $ElementosArray = array('sede' => $sede, 'qr' => $qr);
+                //preguntamos si el directorio existe
+                if (!file_exists(storage_path('app') . '/boletas/'.$sede->id)) {
+                    mkdir(storage_path('app') . '/boletas/'.$sede->id, 0777, true);
+                }
+                \PDF::loadView('certificadoPromotor', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/'.$sede->id.'/ECOTICKET' . $ccUser. '.pdf');
+                $qrImagen = storage_path('app') . '/boletas/'.$sede->id.'/ECOTICKET' . $ccUser . '.pdf';
+                $msj->attach($qrImagen);
+            });
+            return redirect("FormularioPromotor")->with('status', true);;
+        } else {
+            if ($respuesta == '2') {
+                $ccUser = $formRegistro->Identificacion;
+                return view('existente', ['identificacion' => $ccUser]);
+            } else {
+                return redirect('/');
+            }
+        }
+    }
+
     /*Metodo cuando se esta registrando un asistente que esta comprando una boleta.**/
     public function registrarAsistentePagoPost(Request $formRegistro)
     {
@@ -372,6 +412,18 @@ class AsistentesController extends Controller
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
         return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray]);
+
+    }
+
+    public function obtenerFormularioPromotor(Request $request)
+    {
+        $urlinfo= $request->getPathInfo();
+       // $request->user()->AutorizarUrlRecurso($urlinfo);
+        $user = Auth::user();
+        $sedes = $this->eventoServicio->ObtenerMisSedes($user->id);
+        $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
+        $ElementosArray = array('sedes' => $sedes, 'departamentos' => $departamentos,);
+        return view('Evento/RegistrarPromotor', ['ElementosArray' => $ElementosArray]);
 
     }
 

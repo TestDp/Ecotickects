@@ -36,6 +36,11 @@ class EventosServicio
       return  $this->eventoRepor->obtenerEvento($idEvento);
     }
 
+    public function obtenerSede($idSede)
+    {
+        return  $this->eventoRepor->obtenerSede($idSede);
+    }
+
     public function obtenerEventoEditar($idEvento)
     {
         return  $this->eventoRepor->obtenerEventoEditar($idEvento);
@@ -86,8 +91,18 @@ class EventosServicio
         $this->eventoRepor->ActualizarEventosFecha();
     }
 
+    public  function  ObtenerMisSedes($idUser)
+    {
+        return $this->eventoRepor->ObtenerMisSedes($idUser);
+
+    }
+
     public function ListaDeEventosSede($idSede,$idTipo)
     {
         return $this->eventoRepor->ListaDeEventosSede($idSede,$idTipo);
+    }
+    public function ListaDeEventosPasadosSede($idSede,$idTipo)
+    {
+        return $this->eventoRepor->ListaDeEventosPasadosSede($idSede,$idTipo);
     }
 }

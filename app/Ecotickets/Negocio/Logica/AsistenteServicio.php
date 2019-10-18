@@ -219,4 +219,12 @@ class AsistenteServicio
         return $this->asistenteRepositorio->ConfirmarAsistencia($idEvento, $idAsistente, $respuesta);
     }
 
+    public function registrarPromotor($promotor)
+    {
+
+
+
+        return $this->asistenteRepositorio->registrarPromotor($promotor);
+    }
+
 }

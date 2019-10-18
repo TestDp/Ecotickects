@@ -234,6 +234,8 @@
                                     <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
                                 </div>
                             </div>
+
+
                             <div class="row">
 
                                 <div class="col-md-12">
@@ -370,6 +372,34 @@
                                 <div class="col-md-3">
                                     Precio Total
                                     <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+
+
+
+                                        @if($ElementosArray["evento"] ->usoPromotor ==1)
+
+
+
+
+
+                                   Seleccione  Promotor
+                                    <select id="Promotor_id" name="Promotor_id"  class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        @foreach($ElementosArray["evento"] ->promotores as $Promotor)
+                                            <option value="{{ $Promotor->id }}">{{ $Promotor->Nombres }}</option>
+                                        @endforeach
+                                    </select>
+
+
+                                    @else
+
+                                    @endif
+
+
+
                                 </div>
                             </div>
                             <div class="row">

@@ -14,6 +14,7 @@ use Eco\Datos\Modelos\Ciudad;
 use Eco\Datos\Modelos\InfoPago;
 use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\PrecioBoleta;
+use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Eco\Datos\Modelos\CodigoAsistente;
 use Faker\Provider\DateTime;
@@ -94,6 +95,7 @@ class AsistenteRepositorio
             for ($i = 0; $i < $registroAsistente->CantidadTickets; $i++) {
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
                 $asistenteXeventoo->Asistente_id = $asistente->id;
+                $asistenteXeventoo->Promotor_id = $registroAsistente->Promotor_id;
                 $asistenteXeventoo->PinBoleta = $this->GenerarPin();
 
                 //pone el mismo id en elcampo idcomprador si es solo un tickets
@@ -324,6 +326,11 @@ where Evento_id =27 and EstadosTransaccion_id = 4
         return AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)->get()->first();
     }
 
+    public function ObtenerPromotorXSede($idSede, $idAsistente)
+    {
+        return PromotoresXSede::where('Sede_id', '=', $idSede)->where('Asistente_id', '=', $idAsistente)->get()->first();
+    }
+
     public function ObtenerAsistenteXEventoPago($idEvento, $idAsistente, $cc)
     {
         return AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)
@@ -466,8 +473,49 @@ where Evento_id =27 and EstadosTransaccion_id = 4
         return true;
 
     }
-        
-       
+
+    public function registrarPromotor($registroPromotor)
+    {
+        $asistente = $this->ObtenerAsistente($registroPromotor->Identificacion);
+        if ($asistente) {
+            $asistente = $this->actualizarAsistente($registroPromotor->Identificacion, new Asistente($registroPromotor->all()));
+        } else {
+            $asistente = new Asistente($registroPromotor->all());
+        }
+
+        $identificacionPromotor = $this->ObtenerPromotorXSede($registroPromotor->Sede_id, $asistente->id);
+
+        if ($identificacionPromotor == null) {
+            DB::beginTransaction();
+            try {
+                $asistente->save();
+                $promotorXSede = new PromotoresXSede($registroPromotor->all());
+                $promotorXSede->Asistente_id = $asistente->id;
+                $promotorXSede->esActivo = 1;
+
+                $promotorXSede->save();
+
+                DB::commit();
+
+            } catch (\Exception $e) {
+
+                $error = $e->getMessage();
+                DB::rollback();
+                dd($error);
+                return $error;
+                //     return  false;
+            }
+
+            return true;
+
+        } else {
+            return '2';// se devuelve 1 cuando el usuario ya se encuentra registrado
+        }
+
+    }
+
+
+
 } 
 
 

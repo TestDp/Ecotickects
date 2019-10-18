@@ -101,10 +101,16 @@ class User extends Authenticatable
     }
 
 
+   /* public function sede()
+    {
+        return $this->belongsTo('Eco\Datos\Modelos\Sede');
+    }*/
+
     public function Sede()
     {
         return $this->belongsTo(Sede::class,'Sede_id');
     }
+
 
     public  function buscarRecurso($recurso)
     {

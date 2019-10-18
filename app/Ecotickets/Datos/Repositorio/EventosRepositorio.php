@@ -14,9 +14,12 @@ use Eco\Datos\Modelos\Ciudad;
 use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\Pregunta;
+use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\Respuesta;
 use Eco\Datos\Modelos\PrecioBoleta;
+use Eco\Datos\Modelos\Sede;
 use Illuminate\Support\Facades\DB;
+use Ecotickets\User;
 
 
 class EventosRepositorio
@@ -192,6 +195,17 @@ class EventosRepositorio
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
         $evento->preguntas;
+        $user1 = User::where ('id', '=', $evento->user_id)->get()->first();
+
+        $promo = DB::table('Tbl_PromotoresXSedes')
+            ->join('tbl_asistentes', 'tbl_asistentes.id', '=', 'Tbl_PromotoresXSedes.Asistente_id')
+            ->select('tbl_asistentes.*','Tbl_PromotoresXSedes.id' )
+            ->where('Tbl_PromotoresXSedes.Sede_id', '=', $user1->Sede_id)->get();
+
+
+
+
+        $evento->promotores = $promo;
         $evento->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
                                 ->where('esActiva','=',1)->get();
         $evento->preguntas->each(function($preguntas){
@@ -201,6 +215,14 @@ class EventosRepositorio
         $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
         return $evento ;
     }
+
+    public function obtenerSede($idSede)
+    {
+        $sede = Sede::where('id','=',$idSede)->get()->first();
+
+        return $sede;
+    }
+
 
     public function obtenerEventoEditar($idEvento)
     {
@@ -347,6 +369,14 @@ class EventosRepositorio
         return $eventos;
     }
 
+    public  function  ObtenerMisSedes($idUser){
+        $usuario = User::where("id","=",$idUser)->get()->first();
+
+        $sedes = Sede::where("id","=",$usuario->Sede_id)->get();
+
+        return $sedes;
+    }
+
     //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
     public function ListaDeEventosSede($idSede,$idTipo)
     {
@@ -356,6 +386,25 @@ class EventosRepositorio
             ->select('Tbl_Eventos.*')
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
+            ->where('Tbl_Eventos.EsPublico', '=', 1)
+            ->orderBy('Fecha_Evento', 'ASC')
+            //->orderBy('Tbl_Facturas.id')
+            ->latest()
+            ->paginate(10);
+        return $eventos;
+    }
+
+    //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
+    public function ListaDeEventosPasadosSede($idSede,$idTipo)
+    {
+        $eventos = DB::table('Tbl_Eventos')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->select('Tbl_Eventos.*')
+            ->where('Tbl_Sedes.id', '=', $idSede)
+            ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
+            ->where('Tbl_Eventos.EsPublico', '=', 0)
+            ->orderBy('Fecha_Evento', 'DESC')
             //->orderBy('Tbl_Facturas.id')
             ->latest()
             ->paginate(10);
