@@ -8,7 +8,7 @@
             <script>
                 swal({
                     title: "transaccción exitosa!",
-                    text: "Usuario registrado con exito!",
+                    text: "Promotor registrado con exito!",
                     icon: "success",
                     button: "OK",
                 });
@@ -17,19 +17,18 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>REGISTRAR USUARIO</h3></div>
-					<div style="text-align: left;" class="col-md-12">
+                    <div class="panel-heading text-center"><h3>REGISTRAR PROMOTORES</h3></div>
+                    <div style="text-align: left;" class="col-md-12">
                         <div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
                     </div>
-                <form id="formularioEvento" action="{{url('registrarUsuario')}}" method="POST">
-                    <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
-                    <input type="hidden" id="esActivo" name="esActivo" value="0">
-                    <input type="hidden" id="esPerfilado" name="esPerfilado" value="0">
-                    <input type="hidden" name="terminos" value="1" id="terminos" />
-                    <input type="hidden" name="HabeasData" value="1" id="HabeasData" />
-                    <input type="hidden" id="ComentarioEvento" name="ComentarioEvento"  value="BoletaGratis123" />
-                    <input type="hidden" id="Promotor_id" name="Promotor_id"  value="1" />
-                    <div id="formAsistente" style="margin:0px !important;" class="row">
+                    <form id="formularioEvento" action="{{url('registrarPromotor')}}" method="POST">
+                        <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
+                        <input type="hidden" id="esActivo" name="esActivo" value="0">
+                        <input type="hidden" id="esPerfilado" name="esPerfilado" value="0">
+                        <input type="hidden" name="terminos" value="1" id="terminos" />
+                        <input type="hidden" name="HabeasData" value="1" id="HabeasData" />
+                        <input type="hidden" id="esPromotor" name="esPromotor" value="1">
+                        <div id="formAsistente" style="margin:0px !important;" class="row">
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
                                     Identificación
@@ -90,11 +89,11 @@
                             </div>
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-12">
-                                    Evento al cual desea registrar el usuario
-                                    <select id="Evento_id" name="Evento_id" class="form-control">
+                                    Sede a la cual quiere registrar el Promotor
+                                    <select id="Sede_id" name="Sede_id" class="form-control">
                                         <option value="">Seleccionar</option>
-                                        @foreach($ElementosArray["eventos"] as $evento)
-                                            <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento}}</option>
+                                        @foreach($ElementosArray["sedes"] as $sede)
+                                            <option value="{{ $sede->id }}">{{ $sede->Nombre}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -107,9 +106,9 @@
                                     </button>
                                 </div>
                             </div>
-                    </div>
-                </form>
-            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
