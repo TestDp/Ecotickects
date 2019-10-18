@@ -144,14 +144,14 @@
 											@endif
 											<h5 class="muted regular"><b>Fecha: </b>{{ $eventoDestacado->Fecha_Evento }}</h5>
 											<h5 class="muted regular"><b>Lugar: </b>{{ $eventoDestacado->Lugar_Evento }}</h5>
-											<h5 class="muted regular"><b>Municipio: </b>{{ $eventoDestacado->ciudad->Nombre_Ciudad }}</h5>
-											<h5 class="muted regular"><b>Departamento: </b>{{ $eventoDestacado->ciudad->departamento->Nombre_Departamento }}</h5>
+											<h5 class="muted regular"><b>Ciudad: </b>{{ $eventoDestacado->ciudad->Nombre_Ciudad }}</h5>
+											<h5 style="display:none;" class="muted regular"><b>Departamento: </b>{{ $eventoDestacado->ciudad->departamento->Nombre_Departamento }}</h5>
 
 										</div>
 										@if($eventoDestacado->esPago)
-											<a href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+											<div class="add-to-cart"><button style="border: 1px #8abd51 solid; background-color:#8abd51; width:100%; border-radius: 25px;" class="add-to-cart-btn"><a style="color:#fff !important; font-weight:700;" href="{{url('FormularioAsistentePago', ['idEvento' => $eventoDestacado->id ])}}"><i class="fa fa-shopping-cart"></i> COMPRAR</a></button></div>
 										@else
-											<a href="{{url('FormularioAsistente', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+											<div class="add-to-cart"><button style="border: 1px #8abd51 solid; background-color:#8abd51; width:100%; border-radius: 25px;" class="add-to-cart-btn"><a style="color:#fff !important; font-weight:700;" href="{{url('FormularioAsistente', ['idEvento' => $eventoDestacado->id ])}}"><i class="fa fa-list"></i> REGÍSTRATE</a></button></div>
 										@endif
 										@if($eventoDestacado->activarTienda ==1)
 											<a href="{{url('Tienda', ['idEvento' => $eventoDestacado->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Tienda</h5></a>
@@ -200,14 +200,14 @@
 								@endif
 								<h5 class="muted regular"><b>Fecha: </b>{{ $evento->Fecha_Evento }}</h5>
 								<h5 class="muted regular"><b>Lugar: </b>{{ $evento->Lugar_Evento }}</h5>
-								<h5 class="muted regular"><b>Municipio: </b>{{ $evento->ciudad->Nombre_Ciudad }}</h5>
-								<h5 class="muted regular"><b>Departamento: </b>{{ $evento->ciudad->departamento->Nombre_Departamento }}</h5>
+								<h5 class="muted regular"><b>Ciudad: </b>{{ $evento->ciudad->Nombre_Ciudad }}</h5>
+								<h5 style="display:none;" class="muted regular"><b>Departamento: </b>{{ $evento->ciudad->departamento->Nombre_Departamento }}</h5>
 												
 							</div>						
 								@if($evento->esPago)
-									<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+									<div class="add-to-cart"><button style="border: 1px #8abd51 solid; background-color:#8abd51; width:100%; border-radius: 25px;" class="add-to-cart-btn"><a style="color:#fff !important; font-weight:700;" href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}"><i class="fa fa-shopping-cart"></i> COMPRAR</a></button></div>
 								@else
-									<a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><h5 style="color:#fff; border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Registrarse</h5></a>
+									<div class="add-to-cart"><button style="border: 1px #8abd51 solid; background-color:#8abd51; width:100%; border-radius: 25px;" class="add-to-cart-btn"><a style="color:#fff !important; font-weight:700;" href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}"><i class="fa fa-list"></i> REGÍSTRATE</a></button></div>
 								@endif
 								@if($evento->activarTienda ==1)
 									<a href="{{url('Tienda', ['idEvento' => $evento->id ])}}"><h5 style="border: 1px #8abd51 solid; background-color:#8abd51; padding: 3%;">Tienda</h5></a>
@@ -387,7 +387,11 @@
 				
 				</div>
 			</div>				
-			</div>
+			</div>	
+					<!-- boton soporte -->
+			<ul id="boton-soporte">
+				<li><a href="https://api.whatsapp.com/send?phone=573117234163&text=Escribo%20desde%20Ecotickets..." target="_blank"><img src="img/soporte.png" alt="" /></a></li>
+			</ul>
 			</section>
 	
 	

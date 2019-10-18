@@ -8,6 +8,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" style="background:#74b12e;"><h1 style="text-align:center;">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h1></div>
                     <div class="panel-body">
+					@if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
                                 <div class="col-sm-4">
@@ -151,7 +152,29 @@
                                 </div>
 
                             </div>
-
+						@else
+						 <div class="row">
+								 <div class="col-sm-6">
+                                    <img class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
+                                </div>
+								<div style="text-align:center; border-top: 2px solid #74b12e; border-left: 2px solid #74b12e; border-right: 2px solid #74b12e;  padding:1%;" class="col-sm-3">
+								<label>Evento:</label> {{ $ElementosArray["evento"] ->Nombre_Evento }}
+								</div>
+								<div style="text-align:center; border-top: 2px solid #74b12e; border-right: 2px solid #74b12e; border-left: 2px solid #74b12e; padding:1%;" class="col-sm-3">
+								<label>Ciudad:</label> {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}
+								</div>
+								<div style="text-align:center; border: 2px solid #74b12e; padding:1%;" class="col-sm-6">
+								<label>Lugar del evento:</label> {{ $ElementosArray["evento"] ->Lugar_Evento }}</br>
+								<label>Fecha del evento:</label> {{ $ElementosArray["evento"] ->Fecha_Evento }}
+								</div>
+								<div style="text-align:center; border: 2px solid #d7d7d7; background:#d7d7d7; padding:2%;" class="col-sm-3">
+								<label>Lanzamiento:</label></br>{{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
+								</div>
+								<div style="text-align:center; border: 2px solid #d7d7d7; background:#d7d7d7; padding:2%;" class="col-sm-3">
+								<label>Finalización:</label></br>{{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
+								</div>
+                            </div>
+					@endif	
                     </div>
                 </div>
             </div>

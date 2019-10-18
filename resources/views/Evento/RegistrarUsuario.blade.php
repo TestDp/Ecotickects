@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div style="width:970px !important;" class="container">
+    <div class="container">
         @if (session('status'))
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script>

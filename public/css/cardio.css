@@ -547,6 +547,7 @@ section {
 	z-index: 2;
 	margin-top: -60px;
 	border-radius: 50%;
+	border: 2px solid #49b30f;
 }
 
 .team .title {
@@ -1140,6 +1141,29 @@ footer .social-footer li:hover a {
 #TablaListaEventos{margin-top:2%;}
 
 .error {color:red !important; font-size:14px;}
+
+/* boton-soporte*/
+#boton-soporte {
+	  position: fixed;
+	  top: 30%;
+	  right: 0px;
+	  padding: 0;
+	  list-style: none;
+	  z-index: 99;
+}
+
+#boton-soporte li a {display: block;}
+
+#boton-soporte li a img {
+	display: block;
+	max-width:90px;
+    -webkit-transition:  background .2s ease-in-out;
+  -moz-transition:  background .2s ease-in-out;
+  -o-transition:  background .2s ease-in-out;
+  transition:  background .2s ease-in-out;
+}
+
+#boton-soporte li a:hover img {background: rgba(0, 0, 0, .2);}
 
 
 

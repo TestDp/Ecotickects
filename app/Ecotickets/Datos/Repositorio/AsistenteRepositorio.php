@@ -41,6 +41,7 @@ class AsistenteRepositorio
                 $asistente->save();
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
                 $asistenteXeventoo->Asistente_id = $asistente->id;
+				$asistenteXeventoo->Promotor_id = 1;
                 $asistenteXeventoo->esPago = 0;
                 if ($invitacion) {
                     $asistenteXeventoo->PinBoleta = $asistente->Identificacion;

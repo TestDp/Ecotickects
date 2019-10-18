@@ -113,6 +113,11 @@
 		<div class="container">
 		@yield('content')
 	</div>
+			<!-- boton soporte -->
+			<ul id="boton-soporte">
+				<li><a href="https://api.whatsapp.com/send?phone=573117234163&text=Escribo%20desde%20Ecotickets..." target="_blank"><img src="{{ asset('img/soporte.png') }}" alt="" /></a></li>
+			</ul>
+			</section>
 	</section>
 
 	<footer>

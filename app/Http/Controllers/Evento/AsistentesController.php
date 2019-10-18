@@ -43,15 +43,15 @@ class AsistentesController extends Controller
         $respuesta = $this->asistenteServicio->registrarAsistente($formRegistro);
         if ($respuesta == 'true') {
             $file = $formRegistro->imagen;
-            $ced = $formRegistro->Identificacion;
+			$ccUser = $formRegistro->Identificacion;
             $pin = $formRegistro->pinIngresar;
             if ($pin) {
-                $this->asistenteServicio->ActualizarPin($ced, $pin);
+                $this->asistenteServicio->ActualizarPin($ccUser, $pin);
             }
-            $nombre = $formRegistro->Identificacion . 'imagenQR.png';
+            //$nombre = $formRegistro->Identificacion . 'imagenQR.png';
             //indicamos que queremos guardar un nuevo archivo en el disco local
-            \Storage::disk('local')->put('/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre, file_get_contents($file));
-            $qrImagen = storage_path('app') . '/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre;
+            //\Storage::disk('local')->put('/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre, file_get_contents($file));
+            //$qrImagen = storage_path('app') . '/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre;
             $correoElectronico = $formRegistro->Email;
             $evento = $this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
             $ElementosArray = array('evento' => $evento);
@@ -60,7 +60,7 @@ class AsistentesController extends Controller
 
             ///inicio
 
-                $transport = (new Swift_SmtpTransport('mail.facin.co', 26,'tls'))
+             /*   $transport = (new Swift_SmtpTransport('mail.facin.co', 26,'tls'))
                     ->setUsername('prueba@facin.co')
                     ->setPassword('k},#jBz[L)jY')
                 ;
@@ -77,16 +77,25 @@ class AsistentesController extends Controller
                 // Send the message
                 $result = $mailer->send($message);
 
-
+			*/
             /// fin
 
 
-            Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($qrImagen, $correoElectronico, $correoSaliente, $nombreEvento) {
+            Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($evento, $ccUser, $correoElectronico, $correoSaliente, $nombreEvento) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
+				$qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
+                $ElementosArray = array('evento' => $evento, 'qr' => $qr);
+                //preguntamos si el directorio existe
+                if (!file_exists(storage_path('app') . '/cortesias/'.$evento->id)) {
+                    mkdir(storage_path('app') . '/cortesias/'.$evento->id, 0777, true);
+                }
+                \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/cortesias/'.$evento->id.'/ECOTICKET' . $ccUser. '.pdf');
+                $qrImagen = storage_path('app') . '/cortesias/'.$evento->id.'/ECOTICKET' . $ccUser . '.pdf';
                 $msj->attach($qrImagen);
+                //$msj->attach($qrImagen);
             });
             return view("respuesta", ['ElementosArray' => $ElementosArray]);
         } else {
