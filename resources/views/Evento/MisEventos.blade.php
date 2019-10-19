@@ -96,10 +96,10 @@
                                                         {{ $evento->Lugar_Evento }}
                                                     </td>
                                                     <td >
-                                                        {{ $evento->ciudad->Nombre_Ciudad }}
+                                                        {{ $evento->Nombre_Ciudad }}
                                                     </td>
                                                     <td>
-                                                        {{ $evento->ciudad->departamento->Nombre_Departamento }}
+                                                        {{ $evento->Nombre_Departamento }}
                                                     </td>
                                                     <td >
                                                         {{ $evento->Fecha_Evento }}
@@ -136,8 +136,6 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade" id="EventosPasados" role="tabpanel" aria-labelledby="profile-tab">
                                     <!-- poner la tabla de eventos pasados-->
                                     <div style="overflow-x:auto;">
@@ -191,50 +189,50 @@
                                             </tr>
                                             </thead>
                                             <tbody >
-                                            @foreach($ListaEventos["eventos"] as $evento)
+                                            @foreach($ListaEventosPasados["eventosPasados"] as $eventoPasado)
                                                 <tr>
                                                     <td >
-                                                        {{ $evento->id }}
+                                                        {{ $eventoPasado->id }}
                                                     </td>
                                                     <td >
-                                                        {{ $evento->Nombre_Evento }}
+                                                        {{ $eventoPasado->Nombre_Evento }}
                                                     </td>
                                                     <td >
-                                                        {{ $evento->Lugar_Evento }}
+                                                        {{ $eventoPasado->Lugar_Evento }}
                                                     </td>
                                                     <td >
-                                                        {{ $evento->ciudad->Nombre_Ciudad }}
+                                                        {{ $eventoPasado->Nombre_Ciudad }}
                                                     </td>
                                                     <td>
-                                                        {{ $evento->ciudad->departamento->Nombre_Departamento }}
+                                                        {{ $eventoPasado->Nombre_Departamento }}
                                                     </td>
                                                     <td >
-                                                        {{ $evento->Fecha_Evento }}
+                                                        {{ $eventoPasado->Fecha_Evento }}
                                                     </td>
                                                     <td >
-                                                        {{ $evento->Fecha_Inicial_Registro }}
+                                                        {{ $eventoPasado->Fecha_Inicial_Registro }}
                                                     </td>
                                                     <td>
-                                                        {{ $evento->Fecha_Final_Registro }}
+                                                        {{ $eventoPasado->Fecha_Final_Registro }}
                                                     </td>
                                                     @if(Auth::user()->buscarRecurso('ListaAsistentes'))
                                                         <td>
-                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
+                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}">ver</a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                         <td>
-                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
+                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $eventoPasado->id ]) }}">ver</a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('LecturaQR'))
                                                         <td>
-                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}">Leer QR</a>
+                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/LecturaQR',['idEvento' => $eventoPasado->id ]) }}">Leer QR</a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('EditarEvento'))
                                                         <td>
-                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
+                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $eventoPasado->id ]) }}">Editar</a>
                                                         </td>
                                                     @endif
                                                 </tr>
@@ -244,6 +242,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
 
                     </div>

@@ -126,18 +126,14 @@ class EventosController extends Controller
             $eventos = Evento::where("user_id","=",$user->id)->get();
         }**/
         $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
-        $eventos->each(function($eventos){
-            $eventos->ciudad = Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
-            $eventos->ciudad->departamento=Departamento::where('id','=',$eventos->ciudad->Departamento_id)->get()->first();
-        });
+
         $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
-        $eventosPasados->each(function($eventosPasados){
-            $eventosPasados->ciudad = Ciudad::where('id','=',$eventosPasados ->Ciudad_id)->get()->first();
-            $eventosPasados->ciudad->departamento=Departamento::where('id','=',$eventosPasados->ciudad->Departamento_id)->get()->first();
-        });
+
 
         $ListaEventos= array('eventos' => $eventos);
-        return view('Evento/MisEventos',['ListaEventos' => $ListaEventos]);
+        $ListaEventosPasados= array('eventosPasados' => $eventosPasados);
+
+        return view('Evento/MisEventos',array('ListaEventos' => $ListaEventos, 'ListaEventosPasados' => $ListaEventosPasados));
     }
 
     public function FormularioActivarFunciones(Request $request)

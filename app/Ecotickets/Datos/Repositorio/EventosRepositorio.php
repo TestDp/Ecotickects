@@ -383,12 +383,13 @@ class EventosRepositorio
         $eventos = DB::table('Tbl_Eventos')
             ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
             ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
-            ->select('Tbl_Eventos.*')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'Tbl_Eventos.Ciudad_id')
+            ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
+            ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 1)
             ->orderBy('Fecha_Evento', 'ASC')
-            //->orderBy('Tbl_Facturas.id')
             ->latest()
             ->paginate(10);
         return $eventos;
@@ -400,12 +401,13 @@ class EventosRepositorio
         $eventos = DB::table('Tbl_Eventos')
             ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
             ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
-            ->select('Tbl_Eventos.*')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'Tbl_Eventos.Ciudad_id')
+            ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
+            ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 0)
             ->orderBy('Fecha_Evento', 'DESC')
-            //->orderBy('Tbl_Facturas.id')
             ->latest()
             ->paginate(10);
         return $eventos;

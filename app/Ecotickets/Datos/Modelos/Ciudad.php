@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ciudad extends Model
 {
     protected $table = 'Tbl_Ciudades';
-    protected $fillable =['id','Codigo_Ciudad','Nombre_Ciudad'];
+    protected $fillable =['id','Codigo_Ciudad','Nombre_Ciudad', 'Departamento_id'];
     public function eventos(){
         return $this->hasMany('Evento','Ciudad_id','id');
     }
