@@ -104,8 +104,9 @@ class EcoticketsController extends Controller
             $eventos->ciudad = Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
             $eventos->ciudad->departamento=Departamento::where('id','=',$eventos->ciudad->Departamento_id)->get()->first();
         });
-        $ListaEventos= array('eventos' => $eventos);
-        return response()->json(['ListaEventos' => $ListaEventos]);
+       // $ListaEventos= array('eventos' => $eventos);
+        //return response()->json(['ListaEventos' => $ListaEventos]);
+        return response()->json($eventos);
     }
 
     public function validarPIN($idPin)

@@ -26,7 +26,7 @@ class AsistentesController extends Controller
     protected $EstadisticasServicios;
     protected $departamentoServicio;
 
-    /** Metodo constructor de la clase.*/
+    /**Metodo constructor de la clase.*/
     public function __construct(AsistenteServicio $asistenteServicio, EventosServicio $eventoServicio,
                                 EstadisticasServicio $EstadisticasServicios, DepartamentoServicio $departamentoServicio)
     {
@@ -37,9 +37,15 @@ class AsistentesController extends Controller
         $this->departamentoServicio = $departamentoServicio;
     }
 
+    public function registrarAsistentetem(Request $formRegistro)
+    {
+        $this->GenerarQRS($formRegistro);
+    }
+
     /* Metodo para  registrar un asistente  cuando el evento es gratuito.**/
     public function registrarAsistente(Request $formRegistro)
     {
+
         $respuesta = $this->asistenteServicio->registrarAsistente($formRegistro);
         if ($respuesta == 'true') {
             $file = $formRegistro->imagen;
@@ -58,29 +64,23 @@ class AsistentesController extends Controller
             $correoSaliente = $evento->CorreoEnviarInvitacion;
             $nombreEvento = $evento->Nombre_Evento;
 
-            ///inicio
-
+            //inicio prueba de concepto de envio de correos
              /*   $transport = (new Swift_SmtpTransport('mail.facin.co', 26,'tls'))
-                    ->setUsername('prueba@facin.co')
-                    ->setPassword('k},#jBz[L)jY')
+                    ->setUsername('info@facin.co')
+                    ->setPassword('_}LH&oQc4.K_')
                 ;
                 // Create the Mailer using your created Transport
                 $mailer = new Swift_Mailer($transport);
-
                 // Create a message
                 $message = (new Swift_Message('Wonderful Subject'))
-                    ->setFrom(['prueba@facin.co' => 'John Doe'])
+                    ->setFrom(['info@ecotickets.co' => 'Diego Patino'])
                     ->setTo(['cristianmg13@hotmail.com' => 'A name'])
-                    ->setBody('Here is the message itself')
-                ;
-
+                    ->setBody('este es un mensaje de prueba');
                 // Send the message
                 $result = $mailer->send($message);
+            ///fin prueba de concepto de envio de correos
 
 			*/
-            /// fin
-
-
             Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($evento, $ccUser, $correoElectronico, $correoSaliente, $nombreEvento) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
@@ -119,13 +119,6 @@ class AsistentesController extends Controller
             $correoSaliente = $evento->CorreoEnviarInvitacion;
             $nombreEvento = $evento->Nombre_Evento;
             $ccUser = $formRegistro->Identificacion;
-
-
-
-
-
-
-
             Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$ccUser) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
@@ -201,11 +194,14 @@ class AsistentesController extends Controller
     /*Metodo para generar qrs.**/
     public function GenerarQRS(Request $formRegistro)
     {
-        $evento = $this->eventoServicio->obtenerEvento(4);
+        $evento = $this->eventoServicio->obtenerEvento(194);
         $nombreEvento = $evento->Nombre_Evento;
-        $pinesImagenes = ['1036941420',
-            '1037654446',
-            '1040048369'];
+        $pinesImagenes = ['W3dTnubyrB',
+            'obL9rlGokN',
+            'posvNAOdWC',
+            'rSe6ZewXvc',
+            'FpRekkbPoc',
+            '2tc1gg6Nex'];
         foreach ($pinesImagenes as $pin) {
             $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin . 'ECOTICKETS'));
             $ElementosArray = array('evento' => $evento, 'qr' => $qr);
@@ -239,11 +235,6 @@ class AsistentesController extends Controller
                 $correoSaliente = $evento->CorreoEnviarInvitacion;//PONER EL CORREO DE MANERA GENERAL
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
-
-
-
-
-
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                     $msj->subject('Importante - Aquí esta tu pase de acceso');

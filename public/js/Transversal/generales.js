@@ -1,4 +1,4 @@
-var urlBase ="";
+var urlBase;
 
 //funcion para obtener la url en al cual se esta ejecuntando la aplicación
 function obtenerUlrBase() {
@@ -7,7 +7,7 @@ function obtenerUlrBase() {
         case 'ecotickets.co.co':
             rootFolder = '/'; break;
         case 'localhost':
-            rootFolder = 'http://localhost/Ecotickects/trunk/public/'; break;
+            rootFolder = '/Ecotickects/trunk/public/'; break;
         default:  // set whatever you want
     }
     var urlBase = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + rootFolder;

@@ -1,6 +1,12 @@
-var urlBase = "/Ecotickets/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+//var urlBase = "/Ecotickets/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 //var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 
+try {
+    urlBase = obtenerUlrBase();
+} catch (e) {
+    console.error(e.message);
+    throw new Error("El modulo transversales es requerido");
+};
 
 var arrayColores= ["#000033","#0000CC","#003300","#0033FF","#006600","#006699",
     "#0066CC","#009966","#009999","#0099CC","#0099FF","#00CC99","#00CCCC","#00CCFF","#00FF00","#00FF33",

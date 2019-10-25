@@ -2,9 +2,17 @@
 
 namespace Ecotickets\Http\Controllers\Auth;
 
+use Eco\Datos\Modelos\Empresa;
+use Eco\Datos\Modelos\Rol;
+use Eco\Datos\Modelos\Sede;
 use Ecotickets\Role;
 use Ecotickets\User;
 use Ecotickets\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -40,6 +48,19 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return: redirecciona al usuario al inicio de sesión
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+        return view('auth.RespuestaRegistro',['respuesta'=>true]);
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -50,8 +71,12 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'last_name' => 'required|max:255',
+            'username' => 'required|max:15|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'CorreoElectronico'=>'required|string|email|max:255',
+            'SitioWeb' =>'required|string|url|max:255'
         ]);
     }
 
@@ -63,14 +88,49 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-        $user
-            ->roles()
-            ->attach(Role::where('name', 'user')->first());
-        return $user;
+        DB::beginTransaction();
+        try {
+            $empresa = Empresa::create([
+                'NitEmpresa'=> $data['NitEmpresa'],
+                'TipoDocumento'=> 'CC',
+                'IdentificacionRepresentante'=> $data['IdentificacionRepresentante'],
+                'RazonSocial'=> $data['RazonSocial'],
+                'Direccion'=> $data['Direccion'],
+                'Telefono'=> $data['Telefono'],
+                'CorreoElectronico'=> $data['CorreoElectronico'],
+                'SitioWeb'=> $data['SitioWeb'],
+                'EsActiva'=> 1,
+                'LogoEmpresa'=> 'Imagen logo Empresa'
+            ]);
+            $sede = Sede::create([
+                'Nombre' => 'Sede '.$data['RazonSocial'],
+                'Direccion' => $data['Direccion'],
+                'Telefono' => $data['Telefono'],
+                'Empresa_id' =>$empresa->id
+            ]);
+            $data['CodigoConfirmacion'] = str_random(25);
+            $user = User::create([
+                'name' => $data['name'],
+                'last_name' => $data['last_name'],
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'Sede_id' =>$sede->id,
+                'CodigoConfirmacion' => $data['CodigoConfirmacion']
+            ]);
+            $user
+                ->roles()
+                ->attach(Rol::where('Nombre', 'SuperAdmin')->first());
+            DB::commit();
+            Mail::send('Correos.ConfirmarCorreo', $data, function($message) use ($data) {
+                $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
+            });
+            return $user;
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            DB::rollback();
+            return ['respuesta' => false, 'error' => $error];
+        }
     }
+
 }

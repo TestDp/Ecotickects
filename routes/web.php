@@ -104,7 +104,7 @@ Auth::routes();
 
     Route::post('registrarAsistente',['uses' =>'Evento\AsistentesController@registrarAsistente']);
 
-    //Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@GenerarQRS']);
+   //Route::post('GenerarQRS',['uses' =>'Evento\AsistentesController@GenerarQRS']);//linea temporal
 
     Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@registrarAsistentePagoPost']);
 

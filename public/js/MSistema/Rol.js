@@ -1,3 +1,11 @@
+try {
+    urlBase = obtenerUlrBase();
+} catch (e) {
+    console.error(e.message);
+    throw new Error("El modulo transversales es requerido");
+};
+
+
 //Funcion para cargar la vista de crear un rol
 function ajaxRenderSectionCrearRol() {
     PopupPosition();

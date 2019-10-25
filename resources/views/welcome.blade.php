@@ -84,7 +84,7 @@
                         <li><a href="{{ url('/home') }}">Home</a></li>
                     @else
                         <li><a style="padding: 17px 15px !important;" href="{{ route('login') }}" class="btn btn-blue">Iniciar Sesión</a></li>
-                     <!--<li><a href="{{ route('register') }}">Registrarse</a></li>-->
+                     <li><a href="{{ route('register') }}">Registrarse</a></li>
                     @endauth
 				</ul>
 			@endif
