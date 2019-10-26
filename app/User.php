@@ -6,6 +6,7 @@ use Eco\Datos\Modelos\Rol;
 use Eco\Datos\Modelos\Sede;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public  $keyCacheRoles = "roles";
 
     public function eventos(){
         return $this->hasMany('Ecotickets\Datos\Modelos\Evento');
@@ -90,7 +93,9 @@ class User extends Authenticatable
 
     public  function AutorizarUrlRecurso($urlrecurso)
     {
-        $roles = $this->roles()->get();
+        $roles = Cache::rememberForever($this->keyCacheRoles,function (){
+            return $this->roles()->get();
+        });
         foreach ($roles as $rol)
         {
             if ($rol->recursos()->where('UrlRecurso', $urlrecurso)->first()) {
@@ -114,7 +119,17 @@ class User extends Authenticatable
 
     public  function buscarRecurso($recurso)
     {
-        $roles = $this->roles()->get();
+
+        //$keyCacheRecursos = "recursos";
+        $roles = Cache::rememberForever($this->keyCacheRoles,function (){
+            return $this->roles()->get();
+        });
+
+        /*$recursos = Cache::rememberForever($keyCacheRecursos,function (){
+            return $this->roles()->get();;
+        });*/
+
+        //$roles = $this->roles()->get();
         foreach ($roles as $rol)
         {
             if ($rol->recursos()->where('Nombre', $recurso)->first()) {
@@ -126,7 +141,9 @@ class User extends Authenticatable
 
     public  function ListaRecursos()
     {
-        $roles = $this->roles()->get();
+        $roles = Cache::rememberForever($this->keyCacheRoles,function (){
+            return $this->roles()->get();
+        });
         $recursosRol = array();
         foreach ($roles as $rol)
         {
