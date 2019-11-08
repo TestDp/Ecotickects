@@ -44,10 +44,9 @@
     </div>
     <link href="{{asset('js/Plugins/data-table/datatables.css')}}" rel="stylesheet">
     <!-- Plugins-->
-    <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
-
-    <script src="{{ asset('js/MSistema/Rol.js') }}"></script>
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
+    <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
+    <script src="{{ asset('js/MSistema/Rol.js') }}"></script>
 
     <script type="text/javascript">
         // Material Select Initialization

@@ -108,13 +108,15 @@ Auth::routes();
 
     Route::post('registrarAsistente',['uses' =>'Evento\AsistentesController@registrarAsistente']);
 
-   //Route::post('GenerarQRS',['uses' =>'Evento\AsistentesController@GenerarQRS']);//linea temporal
+   Route::post('GenerarQRS',['uses' =>'Evento\AsistentesController@GenerarQRS']);//linea temporal
 
     Route::post('FormularioAsistentePago',['uses' =>'Evento\AsistentesController@registrarAsistentePagoPost']);
 
     Route::get('FormularioUsuario',['uses' =>'Evento\AsistentesController@obtenerFormularioUsuario']);
 
     Route::get('FormularioPromotor',['uses' =>'Evento\AsistentesController@obtenerFormularioPromotor']);
+
+    Route::get('FormularioReenviarInvitacion',['uses' =>'Evento\AsistentesController@obtenerFormularioReenviarInvitacion']);
 
     Route::get('RegistrarYEnviar',['uses' =>'Evento\AsistentesController@obtenerFormularioInvitaciones']);
 
@@ -172,17 +174,9 @@ Auth::routes();
 
     Route::get('ActivarQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento']);
 
-
-
-
-
     Route::get('ActivarPinApp/{idEvento}/{idPin}',['uses' =>'Evento\AsistentesController@ActivarPinPago']);
 
     Route::get('DesactivarQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@DesactivarQRAsistenteXEvento']);
-
-
-
-
 
     Route::get('CantidadAsistentesApp/{idEvento}',['uses' =>'Evento\AsistentesController@ObtnerCantidadAsistentes']);
 

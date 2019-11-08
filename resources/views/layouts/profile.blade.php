@@ -85,6 +85,9 @@
                                 @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
                                     <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones</a></li>
                                 @endif
+                                @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
+                                    <li><a href="{{ url('FormularioReenviarInvitacion') }}">Reenviar Invitaciones</a></li>
+                                @endif
                             </ul>
                         </li>
                     @endif

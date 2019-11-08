@@ -194,20 +194,29 @@ class AsistentesController extends Controller
     /*Metodo para generar qrs.**/
     public function GenerarQRS(Request $formRegistro)
     {
-        $evento = $this->eventoServicio->obtenerEvento(194);
+        $evento = $this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
+        $correoElectronico = $formRegistro->correo;
         $nombreEvento = $evento->Nombre_Evento;
-        $pinesImagenes = ['W3dTnubyrB',
-            'obL9rlGokN',
-            'posvNAOdWC',
-            'rSe6ZewXvc',
-            'FpRekkbPoc',
-            '2tc1gg6Nex'];
-        foreach ($pinesImagenes as $pin) {
-            $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin . 'ECOTICKETS'));
+        $correoSaliente = $evento->CorreoEnviarInvitacion;
+        $pinUser= $formRegistro->pin;
+        $ElementosArray = array('evento' => $evento);
+        Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$pinUser) {
+            $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
+            $msj->subject('Importante - Aquí esta tu pase de acceso');
+            $msj->to($correoElectronico);
+            $msj->bcc('soporteecotickets@gmail.com');
+            $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pinUser . 'ECOTICKETS'));
             $ElementosArray = array('evento' => $evento, 'qr' => $qr);
-            \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/ECOTICKET' . $pin . '.pdf');
-            // $qrImagen =storage_path('app').'/boletas/ECOTICKET'.$pin.'.pdf';
-        }
+            //preguntamos si el directorio existe
+            if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
+                mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
+            }
+            \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pinUser. '.pdf');
+            $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pinUser . '.pdf';
+            $msj->attach($qrImagen);
+        });
+        return redirect('/home');
+
     }
 
     /**Metodo de respuesta de la plataforma de pagos payu para el envio de  la  boleta al correo electronico, el  llamado
@@ -343,7 +352,6 @@ class AsistentesController extends Controller
     del usuario**/
     public function ObtenerInformacionDelAsistenteXEvento($idEvento, $cc)
     {
-
         return response()->json($this->asistenteServicio->ObtenerInformacionDelAsistenteXEvento($idEvento, $cc));
     }
 
@@ -431,6 +439,12 @@ class AsistentesController extends Controller
     public  function obtenerFormularioInvitaciones(){
         $eventos = $this->eventoServicio->obtenerEventos();
         return view('Evento/RegistrarYEnviarInvitacion',['eventos'=>$eventos]);
+    }
+
+    //Metodo para obtener el formualario para registrar y Reenviar invitaciones
+    public  function obtenerFormularioReenviarInvitacion(){
+        $eventos = $this->eventoServicio->obtenerEventos();
+        return view('Evento/ReenviarInvitacion',['eventos'=>$eventos]);
     }
 
     //Metodo para cargar  la vista de crear el tipo de documento
