@@ -88,6 +88,8 @@ Auth::routes();
 
     Route::get('Estadisticas/{idEvento}',['uses' =>'Evento\EventosController@obtenerEstadisticas']);
 
+    Route::get('Liquidacion/{idEvento}',['uses' =>'Evento\EventosController@obtenerLiquidacion']);
+
     Route::post('ActivarEventoPago/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarEventoPago']);
 
     Route::post('ActivarTienda/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarTienda']);

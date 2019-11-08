@@ -413,6 +413,45 @@ class EventosRepositorio
         return $eventos;
     }
 
+    //retorna una lista de etapas y la liquidacion neta restando el porcentajes y commisiones
+    public function obtenerLiquidacion($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+        $user1 = User::where ('id', '=', $evento->user_id)->get()->first();
+
+
+
+        $etapas = DB::table('Tbl_ConfiguracionXSedes')
+            ->select(DB::Raw('resul.* , Tbl_ConfiguracionXSedes.Porcentaje * 100  as Porcentaje,
+        Tbl_ConfiguracionXSedes.comision1 + Tbl_ConfiguracionXSedes.comision2 as ComisionXBoleta,
+        (resul.TotalEtapa - (resul.TotalEtapa * Tbl_ConfiguracionXSedes.Porcentaje) - (Tbl_ConfiguracionXSedes.comision1 + Tbl_ConfiguracionXSedes.comision2) * resul.cantidadBoletas) as Total'))
+
+            ->join(DB::raw('(SELECT u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
+                    from tbl_asistentesXeventos as ae
+                    inner join tbl_asistentes as a
+                    on ae.Asistente_id = a.id
+                    inner join Tbl_Ciudades as c
+                    on a.Ciudad_id = c.id
+                    inner join Tbl_InfoPagos as p
+                    on ae.id = p.AsistenteXEvento_id
+                    inner join Tbl_Eventos as e
+                    on ae.Evento_id = e.id
+                    inner join users as u
+                    on e.user_id = u.id
+                    where Evento_id =27 and EstadosTransaccion_id = 4
+                    group by  u.Sede_id, p.precioTotal/cantidadBoletas) resul'),
+                function($join)
+                {
+
+                    $join->on('resul.PrecioEtapa','>','Tbl_ConfiguracionXSedes.PrecioMinimo')
+                        ->on('resul.PrecioEtapa','<=','Tbl_ConfiguracionXSedes.PrecioMaximo');
+                })
+
+            ->get();
+
+        return $etapas;
+    }
+
     public function  ActualizarEventosFecha()
     {
         DB::statement("CALL SpActualizarEventos()");

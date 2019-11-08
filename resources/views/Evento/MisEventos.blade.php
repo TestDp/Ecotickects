@@ -81,6 +81,11 @@
 
                                                     </th>
                                                 @endif--}}
+                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
+                                                    <th>
+                                                        Liquidación
+                                                    </th>
+                                                @endif
                                             </tr>
                                             </thead>
                                             <tbody >
@@ -130,6 +135,13 @@
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
                                                         </td>
                                                     @endif--}}
+
+                                                    @if(Auth::user()->buscarRecurso('EditarEvento'))
+                                                    <td>
+
+                                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}">Liquidacion</a>
+                                                    </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -186,6 +198,9 @@
 
                                                     </th>
                                                 @endif--}}
+                                                <th>
+
+                                                </th>
                                             </tr>
                                             </thead>
                                             <tbody >
@@ -235,6 +250,9 @@
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $eventoPasado->id ]) }}">Editar</a>
                                                         </td>
                                                     @endif--}}
+                                                    <td>
+                                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}">Liquidacion</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

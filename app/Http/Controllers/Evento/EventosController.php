@@ -112,13 +112,24 @@ class EventosController extends Controller
         return view('Evento/Estadisticas',['idEvento' => $idEvento,'idUser'=>$user->id]);
     }
 
+    public function obtenerLiquidacion(Request $request,$idEvento)
+    {
+       // $urlinfo= $request->getPathInfo();
+       // $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+      //  $request->user()->AutorizarUrlRecurso($urlinfo);
+        $user = Auth::user();
+        $evento=$this->eventoServicio->obtenerEvento($idEvento)->id;
+        $ListaEtapas= array('Etapas' => $this -> eventoServicio ->obtenerLiquidacion($idEvento));
+        //return view('Evento/ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
+        return view('Evento/Liquidacion',['ListaEtapas' => $ListaEtapas,'idUser'=>$user->id]);
+    }
+
     public function ObtenerMisEventos(Request $request)
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
        // $user = Auth::user();
         $idSede = Auth::user()->Sede->id;
-        $eventos=[];
       /**  if(Auth::user()->hasRole('admin'))
         {
             $eventos = Evento::all();

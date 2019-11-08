@@ -105,4 +105,8 @@ class EventosServicio
     {
         return $this->eventoRepor->ListaDeEventosPasadosSede($idSede,$idTipo);
     }
+    public function obtenerLiquidacion($idEvento)
+    {
+        return $this->eventoRepor->obtenerLiquidacion($idEvento);
+    }
 }
