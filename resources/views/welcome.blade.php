@@ -119,6 +119,10 @@
 		<div class="gtco-section">
 			<div class="gtco-container">
 				<div class="row row-pb-md">
+
+					<li><a href="{{ url('FormularioAsistentePago') }}">Registrar y Enviar Invitación</a></li>
+
+	
 					<div class="col-md-12">
 						<ul id="gtco-portfolio-list">
 

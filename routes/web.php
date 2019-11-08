@@ -31,6 +31,8 @@ Auth::routes();
 	
 	Route::get('/ecupones', function () {return view('ecupones');});
 
+    Route::get('/Cortesia', function () {return view('cortesia');});
+
     Route::get('/respuestaPago', function () {return view('respuestaPago');});
 
     //Route::get('/confirmarAsistencia', function () {return view('Evento/ConfirmarAsistencia');});

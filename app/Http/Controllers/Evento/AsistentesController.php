@@ -92,7 +92,7 @@ class AsistentesController extends Controller
                 if (!file_exists(storage_path('app') . '/cortesias/'.$evento->id)) {
                     mkdir(storage_path('app') . '/cortesias/'.$evento->id, 0777, true);
                 }
-                \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/cortesias/'.$evento->id.'/ECOTICKET' . $ccUser. '.pdf');
+                \PDF::loadView('cortesia', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/cortesias/'.$evento->id.'/ECOTICKET' . $ccUser. '.pdf');
                 $qrImagen = storage_path('app') . '/cortesias/'.$evento->id.'/ECOTICKET' . $ccUser . '.pdf';
                 $msj->attach($qrImagen);
                 //$msj->attach($qrImagen);
