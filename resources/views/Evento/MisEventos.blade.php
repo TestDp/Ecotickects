@@ -29,6 +29,7 @@
                                 <li>
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#EventosPasados" role="tab" aria-controls="profile"
                                        aria-selected="false">Eventos pasados</a>
+
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
@@ -66,7 +67,7 @@
                                                         Usuarios Registrados
                                                     </th>
                                                 @endif
-                                                @if(Auth::user()->buscarRecurso('Estadisticas'))
+                                                {{--@if(Auth::user()->buscarRecurso('Estadisticas'))
                                                     <th>
                                                         Estadísticas
                                                     </th>
@@ -86,6 +87,7 @@
                                                         Liquidación
                                                     </th>
                                                 @endif
+                                                @endif--}}
                                             </tr>
                                             </thead>
                                             <tbody >
@@ -120,6 +122,11 @@
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
                                                         </td>
                                                     @endif
+                                                    {{--@if(Auth::user()->buscarRecurso('ListaAsistentesGuestList'))
+                                                        <td>
+                                                            <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentesGuestList',['idEvento' => $evento->id ]) }}">ver</a>
+                                                        </td>
+                                                    @endif
                                                     @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                         <td>
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
@@ -134,7 +141,8 @@
                                                         <td>
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
                                                         </td>
-                                                    @endif--}}
+<<<<<<< .mine                                                    @endif--}}
+=======                                                    @endif--}}
 
                                                     @if(Auth::user()->buscarRecurso('EditarEvento'))
                                                     <td>
@@ -142,7 +150,7 @@
                                                         <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}">Liquidacion</a>
                                                     </td>
                                                     @endif
-                                                </tr>
+>>>>>>> .theirs                                                </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
@@ -183,7 +191,7 @@
                                                         Usuarios Registrados
                                                     </th>
                                                 @endif
-                                                @if(Auth::user()->buscarRecurso('Estadisticas'))
+                                                {{-- @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                     <th>
                                                         Estadísticas
                                                     </th>
@@ -197,11 +205,12 @@
                                                     <th>
 
                                                     </th>
-                                                @endif--}}
+<<<<<<< .mine                                                @endif--}}
+=======                                                @endif--}}
                                                 <th>
 
                                                 </th>
-                                            </tr>
+>>>>>>> .theirs                                            </tr>
                                             </thead>
                                             <tbody >
                                             @foreach($ListaEventosPasados["eventosPasados"] as $eventoPasado)
@@ -235,7 +244,7 @@
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}">ver</a>
                                                         </td>
                                                     @endif
-                                                    @if(Auth::user()->buscarRecurso('Estadisticas'))
+                                                    {{-- @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                         <td>
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $eventoPasado->id ]) }}">ver</a>
                                                         </td>
@@ -249,11 +258,12 @@
                                                         <td>
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/EditarEvento',['idEvento' => $eventoPasado->id ]) }}">Editar</a>
                                                         </td>
-                                                    @endif--}}
+<<<<<<< .mine                                                    @endif--}}
+=======                                                    @endif--}}
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}">Liquidacion</a>
                                                     </td>
-                                                </tr>
+>>>>>>> .theirs                                                </tr>
                                             @endforeach
                                             </tbody>
                                         </table>

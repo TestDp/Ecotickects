@@ -98,8 +98,26 @@ class EventosController extends Controller
         $urlinfo= $request->getPathInfo();
         $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $ListaAsistentes= array('Asistentes' => $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento));
-        return view('Evento/ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
+
+        $asistentes = $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento);
+        $asistentesGuestList = $this -> asistenteServicio ->obtenerAsistentesXEventoGuestList($idEvento);
+
+        $ListaAsistentes = array ('asistentes' => $asistentes);
+        $ListaAsistentesGuestList = array ('asistentesGuestList' => $asistentesGuestList );
+
+        return view('Evento/ListaAsistente', array('ListaAsistentes' => $ListaAsistentes,'ListaAsistentesGuestList' => $ListaAsistentesGuestList));
+
+
+    }
+
+    /*Metodo que me retorna la lista de asistentes Guest List*/
+    public function ObtenerListaAsistentesGuestList(Request $request,$idEvento)
+    {
+        $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+        $request->user()->AutorizarUrlRecurso($urlinfo);
+        $ListaAsistentesGuestList= array('Asistentes' => $this -> asistenteServicio ->obtenerAsistentesXEventoGuestList($idEvento));
+        return view('Evento/ListaAsistenteGuestList',['ListaAsistentesGuestList' =>$ListaAsistentesGuestList]);
     }
 
     public function obtenerEstadisticas(Request $request,$idEvento)

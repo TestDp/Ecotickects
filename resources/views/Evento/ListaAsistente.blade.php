@@ -6,68 +6,139 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3>Usuarios Registrados</h3></div>
-                    <div style="overflow-x:auto;" class="panel-body">
-						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaAsistentes" class="table table-bordered">
-                            <thead>
-                            <tr >
-                                <th>
-                                    Identificación
-                                </th>
-                                <th>
-                                    Nombre
-                                </th>
-                                <th>
-                                    Apellidos
-                                </th>
-                                <th>
-                                    Celular
-                                </th>
-                                <th>
-                                    Correo
-                                </th>
-                                <th>
-                                    Ciudad
-                                </th>
-                                <th>
-                                    CantidadBoletas
-                                </th>
-                                <th>
-                                    TotalCompra
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody >
-                            @foreach($ListaAsistentes["Asistentes"] as $asistente)
-                            <tr >
-                                <td>
-                                  {{$asistente->Identificacion}}
-                                </td>
-                                <td>
-                                    {{$asistente->Nombres}}
-                                </td>
-                                <td>
-                                    {{$asistente->Apellidos}}
-                                </td>
-                                <td>
-                                    {{$asistente->telefono}}
-                                </td>
-                                <td>
-                                    {{$asistente->Email}}
-                                </td>
-                                <td>
-                                    {{$asistente->ciudad->Nombre_Ciudad}}
-                                </td>
-                                <td>
-                                    {{$asistente->CantidadBoletas}}
-                                </td>
-                                <td>
-                                    {{$asistente->PrecioTotal}}
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
+                        <div style="overflow-x:auto;" class="panel-body">
+                            <ul class="nav nav-tabs" >
+                                <li class="active">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#ListaAsistentes" role="tab" aria-controls="home"
+                                       aria-selected="true">Lista Asistentes</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ListaInvitados" role="tab" aria-controls="profile"
+                                       aria-selected="false">Lista Invitados</a>
 
-                        </table>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade in active" id="ListaAsistentes" role="tabpanel" aria-labelledby="home-tab">
+                                    <div style="overflow-x:auto;">
+                                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaAsistentes" class="table table-bordered">
+                                <thead>
+                                <tr >
+                                    <th>
+                                        Identificación
+                                    </th>
+                                    <th>
+                                        Nombre
+                                    </th>
+                                    <th>
+                                        Apellidos
+                                    </th>
+                                    <th>
+                                        Celular
+                                    </th>
+                                    <th>
+                                        Correo
+                                    </th>
+                                    <th>
+                                        Ciudad
+                                    </th>
+                                    <th>
+                                        CantidadBoletas
+                                    </th>
+                                    <th>
+                                        TotalCompra
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody >
+                                @foreach($ListaAsistentes["asistentes"] as $asistente)
+                                    <tr >
+                                        <td>
+                                            {{$asistente->Identificacion}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->Nombres}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->Apellidos}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->telefono}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->Email}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->ciudad->Nombre_Ciudad}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->CantidadBoletas}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->PrecioTotal}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                            </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade show active" id="ListaInvitados" role="tabpanel" aria-labelledby="home-tab">
+                                    <div style="overflow-x:auto;">
+                                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaAsistentes" class="table table-bordered">
+                                            <thead>
+                                            <tr >
+                                                <th>
+                                                    Identificación
+                                                </th>
+                                                <th>
+                                                    Nombre
+                                                </th>
+                                                <th>
+                                                    Apellidos
+                                                </th>
+                                                <th>
+                                                    Celular
+                                                </th>
+                                                <th>
+                                                    Correo
+                                                </th>
+                                                <th>
+                                                    Ciudad
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody >
+                                            @foreach($ListaAsistentesGuestList["asistentesGuestList"] as $asistenteGL)
+                                                <tr >
+                                                    <td>
+                                                        {{$asistenteGL->Identificacion}}
+                                                    </td>
+                                                    <td>
+                                                        {{$asistenteGL->Nombres}}
+                                                    </td>
+                                                    <td>
+                                                        {{$asistenteGL->Apellidos}}
+                                                    </td>
+                                                    <td>
+                                                        {{$asistenteGL->telefono}}
+                                                    </td>
+                                                    <td>
+                                                        {{$asistenteGL->Email}}
+                                                    </td>
+                                                    <td>
+                                                        {{$asistenteGL->Nombre_Ciudad}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

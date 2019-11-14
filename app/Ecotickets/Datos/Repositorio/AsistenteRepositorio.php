@@ -150,6 +150,22 @@ class AsistenteRepositorio
         return $arrayAsistentes;
     }
 
+    public function obtenerAsistentesXEventoGuessList($idEvento)
+    {
+        $arrayAsistentes = array();
+        $asistentesGuestList = DB::table('tbl_asistentes')
+            ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'tbl_asistentes.Ciudad_id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentesXeventos.ComentarioEvento', '=', "BoletaGratis123")
+            ->orderBy('tbl_asistentes.id', 'DESC')
+            ->get();
+
+        return $asistentesGuestList;
+
+
+    }
+
     public function obtenerAsistentesXEventoPago($idEvento)
     {
 
@@ -198,7 +214,6 @@ on a.Ciudad_id = c.id
 inner join Tbl_InfoPagos as p
 on ae.id = p.AsistenteXEvento_id
 where Evento_id =27 and EstadosTransaccion_id = 4
-
 
 */
 
@@ -474,6 +489,20 @@ where Evento_id =27 and EstadosTransaccion_id = 4
         return true;
 
     }
+
+
+    public function EsGuestList($idEvento)
+    {
+        $esGuestList = count(AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('ComentarioEvento', '=', "BoletaGratis123")->get());
+
+        if ($esGuestList == 0) {
+            return false;
+        }
+        return true;
+
+    }
+        
+       
 
     public function registrarPromotor($registroPromotor)
     {

@@ -86,6 +86,8 @@ Auth::routes();
 
     Route::get('ListaAsistentes/{idEvento}',['uses' =>'Evento\EventosController@ObtenerListaAsistentes']);
 
+    Route::get('ListaAsistentesGuestList/{idEvento}',['uses' =>'Evento\EventosController@ObtenerListaAsistentesGuestList']);
+
     Route::get('Estadisticas/{idEvento}',['uses' =>'Evento\EventosController@obtenerEstadisticas']);
 
     Route::get('Liquidacion/{idEvento}',['uses' =>'Evento\EventosController@obtenerLiquidacion']);
