@@ -32,7 +32,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="EventosProximo" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="tab-pane fade in active" id="EventosProximo" role="tabpanel" aria-labelledby="home-tab">
                                     <div style="overflow-x:auto;">
                                         <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
                                             <thead>
@@ -271,6 +271,19 @@
 
 
    <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script>
+$(document).ready(function(){
+	$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+		localStorage.setItem('activeTab', $(e.target).attr('href'));
+	});
+	var activeTab = localStorage.getItem('activeTab');
+	if(activeTab){
+		$('#home-tab a[href="' + activeTab + '"]').tab('show');
+	}
+});
+</script>
 
     <script type="text/javascript">
         $(document).ready(function() {
