@@ -1,4 +1,5 @@
-var urlBase = "/Ecotickets/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+
+var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 
 try {
     urlBase = obtenerUlrBase();
@@ -530,10 +531,59 @@ function construirGraficoCantidadAsistentes() {
             }
         }
     });
+}
 
+function construirGraficoLiquidacion() {
+    var idPin = $("#idevento").val();
+    $.ajax({
+        url: urlBase+'LiquidacionGrafica/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            idPin: idPin,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+                var ctx = document.getElementById("canvasLiquidacion");
 
+                var data = {
+                    labels:
+                        result.PrecioEtapas,
+                    datasets: [
+                        {
+                            data: result.CantidadBoletas,
+                            label: "Cantidad Boletas",
+                            backgroundColor: [
+                                "#3FC929",
+                                "#BC6FEE",
+                                "#29BDC9",
+                                "#BDC929",
+                                "#6FBEEE",
+                                "#EE6F97"
+                            ],
+                            hoverBackgroundColor: [
+                                "#3FC929",
+                                "#BC6FEE",
+                                "#29BDC9",
+                                "#BDC929",
+                                "#6FBEEE",
+                                "#EE6F97"
+                            ]
+                        }]
+                }
+                var myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Boletas x Etapa'
+                        }}
 
-
+                });
+            }
+        }
+    });
 }
 
 function construirGraficoKPI() {
@@ -1170,4 +1220,11 @@ function SelecTodosUsuarios(element){
             $(check).prop("checked", false);
         });
     }
+}
+
+function ActualizarEventosFecha(){
+    $.ajax({
+        url: urlBase+'ActualizarEventosFecha',//primero el modulo/controlador/metodo que esta en el controlador
+        type: 'POST'})
+
 }

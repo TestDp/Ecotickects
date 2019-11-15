@@ -142,6 +142,25 @@ class EventosController extends Controller
         return view('Evento/Liquidacion',['ListaEtapas' => $ListaEtapas,'idUser'=>$user->id]);
     }
 
+    public function obtenerLiquidacionGrafica($idEvento)
+    {
+
+        $user = Auth::user();
+        $ListaEtapas= $this -> eventoServicio ->obtenerLiquidacion($idEvento);
+
+        foreach ($ListaEtapas as $etapa){
+            $arrayEtapa[]=$etapa->PrecioEtapa;
+            $arrayCantidadBoletas[]=$etapa->CantidadBoletas;
+
+        }
+
+        $liquidacion = ['PrecioEtapas' => $arrayEtapa, 'CantidadBoletas' => $arrayCantidadBoletas];
+        return response()->json($liquidacion);
+
+    }
+
+
+
     public function ObtenerMisEventos(Request $request)
     {
         $urlinfo= $request->getPathInfo();
