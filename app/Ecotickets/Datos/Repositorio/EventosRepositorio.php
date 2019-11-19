@@ -380,6 +380,9 @@ class EventosRepositorio
     //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
     public function ListaDeEventosSede($idSede,$idTipo)
     {
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+
         $eventos = DB::table('Tbl_Eventos')
             ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
             ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
@@ -389,6 +392,7 @@ class EventosRepositorio
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 1)
+            ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
             ->orderBy('Fecha_Evento', 'ASC')
             ->latest()
             ->paginate(10);
