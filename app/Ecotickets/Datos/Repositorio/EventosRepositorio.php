@@ -393,7 +393,7 @@ class EventosRepositorio
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 1)
             ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
-            ->orderBy('Fecha_Evento', 'ASC')
+            ->orderBy('Tbl_Eventos.Fecha_Evento', 'ASC')
             ->latest()
             ->paginate(10);
         return $eventos;
