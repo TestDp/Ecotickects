@@ -122,7 +122,7 @@
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
                                                         </td>
                                                     @endif
-                                                    
+
                                                     @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                         <td>
                                                             <a class="btn btn-blue ripple trial-button" href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
