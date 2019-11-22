@@ -24,7 +24,7 @@
                             <ul class="nav nav-tabs" >
                                 <li class="active">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#EventosProximo" role="tab" aria-controls="home"
-                                       aria-selected="true">Eventos Proximos</a>
+                                       aria-selected="true">Eventos Próximos</a>
                                 </li>
                                 <li>
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#EventosPasados" role="tab" aria-controls="profile"
@@ -142,7 +142,7 @@
 
                                                     <td>
 
-                                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}">Liquidacion</a>
+                                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}">Liquidación</a>
                                                     </td>
 
                                              </tr>
@@ -254,7 +254,7 @@
                                                     @endif
 
                                                     <td>
-                                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}">Liquidacion</a>
+                                                        <a class="btn btn-blue ripple trial-button" href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}">Liquidación</a>
                                                     </td>
                                             </tr>
                                             @endforeach

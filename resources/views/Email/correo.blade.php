@@ -3,13 +3,15 @@
 		<div class="col-md-12">
 			<div style="padding-top:1%; border: 8px solid #ffffff; font-family: sans-serif;width: 100%; height: 100%;"id="qrcode">
 				<div style="padding:5%; text-align:center;">
-					<h2 style="font-size: 30px; font-weight: 700; color:#184c8b;">Prepárate para una tarde llena de risas</h2>
+					<h2 style="font-size: 30px; font-weight: 700; color:#184c8b;">Si del cielo te caen Limones...aprende a usar Ecupones</h2>
 					<p style="color:#86c440; text-align: center; font-family: sans-serif; font-size:20px;"><b>Lugar del evento:</b>{{ $ElementosArray["evento"] ->Lugar_Evento }}</br>
 						<b>Fecha:</b> {{ $ElementosArray["evento"] ->Fecha_Evento }}</br>
 						<b style="font-size:16px;">Ciudad: </b>{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</br>
-					<p style="color:#000000;">DEBES PRESENTAR EL CÓDIGO QR EN LA ENTRADA DEL EVENTO </b></p>
+					<p style="color:#000000;"><b>PRESENTA TU SMARTPHONE CON EL CÓDIGO QR ADJUNTO </b></p></br>
+					<p style="color:#000000;">En la entrada del establecimiento para redimir tu <b>ECUPÓN</b></p>
+					<p style="color:#000000;"><b>*No es necesario imprimirlo presenta tu SmartPhone cuidemos el medio ambiente.</b></p>
 					</p>
-					<img style="width:100%;" src="http://colasistencia.net/wp-content/uploads/2018/01/correo-1.png"></img>
+					<img style="width:100%;" src="https://dpsoluciones.co/wp-content/uploads/2019/08/Logo-1.png"></img>
 				</div>
 			</div>
 		</div>
