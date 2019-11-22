@@ -158,6 +158,7 @@ class AsistenteRepositorio
             ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'tbl_asistentes.Ciudad_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentesXeventos.ComentarioEvento', '=', "BoletaGratis123")
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad,  "Gratis" as TipoBoleta' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get();
 
@@ -175,6 +176,7 @@ class AsistenteRepositorio
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id, Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta' ))
             ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->get();
 
