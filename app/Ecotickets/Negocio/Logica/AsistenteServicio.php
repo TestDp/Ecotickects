@@ -240,8 +240,6 @@ class AsistenteServicio
     public function registrarPromotor($promotor)
     {
 
-
-
         return $this->asistenteRepositorio->registrarPromotor($promotor);
     }
 

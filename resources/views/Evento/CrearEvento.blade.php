@@ -113,6 +113,14 @@
                                     <option value="1">SI</option>
                                 </select>
                             </div>
+                            <div class="col-md-3" id="divPromotor" hidden>
+                                Activar Promotores
+                                <select id="usoPromotor" name="usoPromotor" class="form-control" >
+                                    <option value="">Seleccionar</option>
+                                    <option value="0">No</option>
+                                    <option value="1">SI</option>
+                                </select>
+                            </div>
                         </div>
                         <div id="divBoletas" hidden>
                             <hr/>

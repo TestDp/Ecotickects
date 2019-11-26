@@ -393,8 +393,7 @@ class EventosRepositorio
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 1)
             ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
-            ->orderBy('Tbl_Eventos.Fecha_Evento', 'ASC')
-            ->latest()
+            ->orderBy('Fecha_Evento', 'asc')
             ->paginate(10);
         return $eventos;
     }
@@ -411,8 +410,7 @@ class EventosRepositorio
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 0)
-            ->orderBy('Fecha_Evento', 'DESC')
-            ->latest()
+            ->orderBy('Fecha_Evento', 'desc')
             ->paginate(10);
         return $eventos;
     }
