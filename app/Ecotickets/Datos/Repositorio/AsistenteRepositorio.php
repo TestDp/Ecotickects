@@ -96,7 +96,14 @@ class AsistenteRepositorio
             for ($i = 0; $i < $registroAsistente->CantidadTickets; $i++) {
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
                 $asistenteXeventoo->Asistente_id = $asistente->id;
-                $asistenteXeventoo->Promotor_id = $registroAsistente->Promotor_id;
+                if($registroAsistente->Promotor_id)
+                {
+                    $asistenteXeventoo->Promotor_id = $registroAsistente->Promotor_id;
+                }
+                else{
+                    $asistenteXeventoo->Promotor_id =1;
+                }
+
                 $asistenteXeventoo->PinBoleta = $this->GenerarPin();
 
                 //pone el mismo id en elcampo idcomprador si es solo un tickets
