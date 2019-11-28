@@ -186,10 +186,12 @@ class EventosController extends Controller
 
     public function FormularioActivarFunciones(Request $request)
     {
-        $request->user()->authorizeRoles(['admin','user']);
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
+        $idSede = Auth::user()->Sede->id;
         $eventos=[];
-        if(Auth::user()->hasRole('admin'))
+        if(Auth::user()->hasRole('SuperAdmin'))
         {
             $eventos = Evento::all();
         }else{
