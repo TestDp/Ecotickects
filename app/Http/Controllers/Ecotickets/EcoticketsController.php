@@ -11,6 +11,8 @@ use Eco\Negocio\Logica\EventosServicio;
 use Eco\Negocio\Logica\ProductosServicio;
 use Ecotickets\Http\Controllers\Controller;
 use Eco\Negocio\Logica\AsistenteServicio;
+use Ecotickets\User;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -99,13 +101,17 @@ class EcoticketsController extends Controller
     }
     public function EventosApp($idUser)
     {
-        $eventos = Evento::where("user_id","=",$idUser)->get();
-        $eventos->each(function($eventos){
-            $eventos->ciudad = Ciudad::where('id','=',$eventos ->Ciudad_id)->get()->first();
-            $eventos->ciudad->departamento=Departamento::where('id','=',$eventos->ciudad->Departamento_id)->get()->first();
-        });
-       // $ListaEventos= array('eventos' => $eventos);
-        //return response()->json(['ListaEventos' => $ListaEventos]);
+        $user = User::where("id","=",$idUser)->get();
+
+        $idSede = Auth::user()->Sede->id;
+        $eventos=[];
+        if(Auth::user()->hasRole('SuperAdmin'))
+        {
+            $eventos = Evento::all();
+        }else{
+            $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+        }
+
         return response()->json($eventos);
     }
 

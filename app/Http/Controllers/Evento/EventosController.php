@@ -188,14 +188,13 @@ class EventosController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $user = Auth::user();
         $idSede = Auth::user()->Sede->id;
         $eventos=[];
         if(Auth::user()->hasRole('SuperAdmin'))
         {
             $eventos = Evento::all();
         }else{
-            $eventos = Evento::where("user_id","=",$user->id)->get();
+            $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
         }
         $ListaEventos= array('eventos' => $eventos);
         return view('Evento/ActivarFuncionesEventos',['ListaEventos' => $ListaEventos]);
