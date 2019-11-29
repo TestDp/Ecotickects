@@ -499,6 +499,32 @@ where Evento_id =27 and EstadosTransaccion_id = 4
 
     }
 
+    public function ActivarPinPago($idEvento, $idPin)
+    {
+        $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('PinBoleta', '=', $idPin)->get()->first();
+        if ($asistenteEvento->esActivo == false) {
+            $asistenteEvento->esActivo = true;
+            $asistenteEvento->save();
+            return 'Boleta Activada con exito';
+        } else {
+            return 'La boleta ya fue ACTIVADA';
+        }
+        return 'Error activando la boleta vuelva a intentarlo';
+    }
+
+    public function DesactivarQRAsistenteXEvento($idEvento, $idAsistente)
+    {
+        $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)->get()->first();
+        if ($asistenteEvento->esActivo == true) {
+            $asistenteEvento->esActivo = false;
+            $asistenteEvento->save();
+            return 'Usuario desactivado con exito';
+        } else {
+            return 'El Usuario ya se encuentra desactivado';
+        }
+        return 'Error desactivando el usuario';
+    }
+
 
     public function EsGuestList($idEvento)
     {

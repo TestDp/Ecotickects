@@ -409,6 +409,19 @@ class AsistentesController extends Controller
         return view('Evento/ConfirmarAsistencia', ['Evento' => $this->eventoServicio->obtenerEvento($idEvento)]);
     }
 
+    /*Metodo para  activar el PIN  de la boleta paga, recibe  como parametros el id del evento y PIN de la boleta**/
+    public function ActivarPinPago($idEvento, $idPin)
+    {
+        return $this->asistenteServicio->ActivarPinPago($idEvento, $idPin);
+    }
+
+    /*Metodo para  Desactivar el qr del asistente al evento, recibe  como parametros el id del evento y el id  del asistente
+   o usuario**/
+    public function DesactivarQRAsistenteXEvento($idEvento,$idAsistente)
+    {
+        return $this->asistenteServicio->DesactivarQRAsistenteXEvento($idEvento,$idAsistente);
+    }
+
 
     //metodo que registrar un usuario al evento desde el administrador
     public function obtenerFormularioUsuario(Request $request)
