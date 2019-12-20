@@ -99,7 +99,7 @@ class RegisterController extends Controller
                 'Telefono'=> $data['Telefono'],
                 'CorreoElectronico'=> $data['CorreoElectronico'],
                 'SitioWeb'=> $data['SitioWeb'],
-                'EsActiva'=> 1,
+                'EsActiva'=> 0,
                 'LogoEmpresa'=> 'Imagen logo Empresa'
             ]);
             $sede = Sede::create([
@@ -120,7 +120,7 @@ class RegisterController extends Controller
             ]);
             $user
                 ->roles()
-                ->attach(Rol::where('Nombre', 'SuperAdmin')->first());
+                ->attach(Rol::where('Nombre', 'Admin')->first());
             DB::commit();
             Mail::send('Correos.ConfirmarCorreo', $data, function($message) use ($data) {
                 $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');

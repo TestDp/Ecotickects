@@ -7,32 +7,41 @@
             <input type="hidden" id="idevento" value="{{$idEvento}}">
             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
             <div class="row">
+                @if(Auth::user()->buscarRecurso('EstadisticaCantidadXAsistentes'))
                 <div class="col-md-6">
                     <canvas id="canvasCantidadAsistentes" class="img-responsive"></canvas>
                 </div>
-                @if ($idUser !=1)
+               @endif
+                @if(Auth::user()->buscarRecurso('EstadisticaAsistentesXFecha'))
 				<div class="col-md-6">
                     <canvas id="canvasAsistentesXFecha" class="img-responsive"></canvas>
                 </div>
                 @endif
             </div>
-            @if ($idUser !=1)
-			<div class="row">                
+
+			<div class="row">
+                @if(Auth::user()->buscarRecurso('EstadisticaCiudadesXAsistens'))
                 <div class="col-md-6">
                     <canvas style="height:600px !important;" id="canvasCiudadesAsistens" class="img-responsive"></canvas>
                 </div>
-				<div class="col-sm-6">
-                    <canvas style="height:600px !important;" id="canvasEdadesAsistentes" class="img-responsive"></canvas>
-                </div>   
+                @endif
+                @if(Auth::user()->buscarRecurso('EstadisticaEdadesXAsistentes'))
+                    <div class="col-sm-6">
+                        <canvas style="height:600px !important;" id="canvasEdadesAsistentes" class="img-responsive"></canvas>
+                    </div>
+                @endif
             </div>
-            @endif
             <div class="row">
+                @if(Auth::user()->buscarRecurso('EstadisticaJuntAsistentes'))
                 <div class="col-md-6">
                     <canvas style="height:600px !important;" id="canvasJuntAsistens" class="img-responsive"></canvas>
-                </div>  
+                </div>
+                @endif
+                @if(Auth::user()->buscarRecurso('EstadisticaKPI'))
                 <div class="col-sm-6">
                     <canvas style="height:300px !important;" id="canvasKPI" class="img-responsive"></canvas>
                 </div>
+                @endif
             </div>
         </div>
     </div>

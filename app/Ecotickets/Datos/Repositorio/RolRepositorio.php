@@ -11,12 +11,14 @@ namespace Eco\Datos\Repositorio;
 use Eco\Datos\Modelos\RecursoSistemaPorRol;
 use Eco\Datos\Modelos\Rol;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class RolRepositorio
 {
     public  function GuardarRol($Rol)
     {
         DB::beginTransaction();
+        Cache::flush();
         try {
 
             if(isset($Rol['id']))

@@ -63,33 +63,45 @@ class EventosController extends Controller
     {
         $urlinfo= $EdEvento->getPathInfo();
         $EdEvento->user()->AutorizarUrlRecurso($urlinfo);
-        if($this->eventoServicio->crearEvento($EdEvento) )
+        $respuestaProceso = $this->eventoServicio->crearEvento($EdEvento);
+        if($respuestaProceso)
         {
             if($EdEvento->hasFile('ImagenFlyerEvento')){
                 $file = $EdEvento->file('ImagenFlyerEvento');
                 $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
                 $file->move('FlyerDeEventos', $nombre);
             }
-            return redirect('/home');
-        }else{
-            return redirect('/');
         }
+        $idSede = Auth::user()->Sede->id;
+        $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+        $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
+        $ListaEventos= array('eventos' => $eventos);
+        $ListaEventosPasados= array('eventosPasados' => $eventosPasados);
+        return view('Evento/MisEventos',array('ListaEventos' => $ListaEventos,
+                                                    'ListaEventosPasados' => $ListaEventosPasados,
+                                                    'respuestaProceso'=>$respuestaProceso));
 
     }
 
     public function editarEvento(Request $EdEvento)
     {
-        if($this->eventoServicio->editarEvento($EdEvento) )        {
-
+        $respuestaProceso = $this->eventoServicio->editarEvento($EdEvento);
+        if($respuestaProceso)
+        {
             if($EdEvento->hasFile('ImagenFlyerEvento')){
                 $file = $EdEvento->file('ImagenFlyerEvento');
                 $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
                 $file->move('FlyerDeEventos', $nombre);
             }
-            return redirect('/home');
-        }else{
-            return redirect('/');
         }
+        $idSede = Auth::user()->Sede->id;
+        $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+        $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
+        $ListaEventos= array('eventos' => $eventos);
+        $ListaEventosPasados= array('eventosPasados' => $eventosPasados);
+        return view('Evento/MisEventos',array('ListaEventos' => $ListaEventos,
+            'ListaEventosPasados' => $ListaEventosPasados,
+            'respuestaProceso'=>$respuestaProceso));
 
     }
     /*Metodo que me retorna la lista de asistentes*/
@@ -165,22 +177,11 @@ class EventosController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-       // $user = Auth::user();
         $idSede = Auth::user()->Sede->id;
-      /**  if(Auth::user()->hasRole('admin'))
-        {
-            $eventos = Evento::all();
-        }else{
-            $eventos = Evento::where("user_id","=",$user->id)->get();
-        }**/
         $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
-
         $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
-
-
         $ListaEventos= array('eventos' => $eventos);
         $ListaEventosPasados= array('eventosPasados' => $eventosPasados);
-
         return view('Evento/MisEventos',array('ListaEventos' => $ListaEventos, 'ListaEventosPasados' => $ListaEventosPasados));
     }
 
@@ -188,6 +189,7 @@ class EventosController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
+        $user = Auth::user();
         $idSede = Auth::user()->Sede->id;
         $eventos=[];
         if(Auth::user()->hasRole('SuperAdmin'))

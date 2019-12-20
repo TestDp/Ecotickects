@@ -39,11 +39,11 @@ class User extends Authenticatable
     public function productos(){
         return $this->hasMany('Ecotickets\Datos\Modelos\Producto','user_id','id');
     }
-   /** public function roles()
+    /** public function roles()
     {
-        return $this
-            ->belongsToMany('Ecotickets\Role')
-            ->withTimestamps();
+    return $this
+    ->belongsToMany('Ecotickets\Role')
+    ->withTimestamps();
     }*/
 
     public function roles()
@@ -75,12 +75,12 @@ class User extends Authenticatable
         }
         return false;
     }
-   /** public function hasRole($role)
+    /** public function hasRole($role)
     {
-        if ($this->roles()->where('name', $role)->first()) {
-            return true;
-        }
-        return false;
+    if ($this->roles()->where('name', $role)->first()) {
+    return true;
+    }
+    return false;
     }*/
 
     public function hasRole($role)
@@ -93,9 +93,10 @@ class User extends Authenticatable
 
     public  function AutorizarUrlRecurso($urlrecurso)
     {
-        $roles = Cache::rememberForever($this->keyCacheRoles,function (){
+        /*$roles = Cache::rememberForever($this->keyCacheRoles,function (){
             return $this->roles()->get();
-        });
+        });*/
+        $roles = $this->roles()->get();
         foreach ($roles as $rol)
         {
             if ($rol->recursos()->where('UrlRecurso', $urlrecurso)->first()) {
@@ -106,10 +107,10 @@ class User extends Authenticatable
     }
 
 
-   /* public function sede()
-    {
-        return $this->belongsTo('Eco\Datos\Modelos\Sede');
-    }*/
+    /* public function sede()
+     {
+         return $this->belongsTo('Eco\Datos\Modelos\Sede');
+     }*/
 
     public function Sede()
     {
@@ -121,15 +122,15 @@ class User extends Authenticatable
     {
 
         //$keyCacheRecursos = "recursos";
-        $roles = Cache::rememberForever($this->keyCacheRoles,function (){
-            return $this->roles()->get();
-        });
+        /* $roles = Cache::rememberForever($this->keyCacheRoles,function (){
+             return $this->roles()->get();
+         });*/
 
         /*$recursos = Cache::rememberForever($keyCacheRecursos,function (){
             return $this->roles()->get();;
         });*/
 
-        //$roles = $this->roles()->get();
+        $roles = $this->roles()->get();
         foreach ($roles as $rol)
         {
             if ($rol->recursos()->where('Nombre', $recurso)->first()) {
@@ -141,9 +142,10 @@ class User extends Authenticatable
 
     public  function ListaRecursos()
     {
-        $roles = Cache::rememberForever($this->keyCacheRoles,function (){
-            return $this->roles()->get();
-        });
+        /**$roles = Cache::rememberForever($this->keyCacheRoles,function (){
+        return $this->roles()->get();
+        });*/
+        $roles =$this->roles()->get();
         $recursosRol = array();
         foreach ($roles as $rol)
         {

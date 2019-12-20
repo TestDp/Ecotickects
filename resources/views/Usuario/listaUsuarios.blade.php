@@ -51,8 +51,9 @@
     <!-- Plugins-->
     <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
     <!-- propias-->
-    <script src="{{ asset('js/MSistema/Usuario.js') }}"></script>
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
+    <script src="{{ asset('js/MSistema/Usuario.js') }}"></script>
+
 
     <script type="text/javascript">
         // Material Select Initialization
