@@ -106,6 +106,7 @@ function EditarNombrePreguntasYRespuetas(){
             $(precioBoleta).find("input[name=idPrecioBoleta]").attr("name","idPrecioBoleta["+ i +"]");
             $(precioBoleta).find("input[name=localidad]").attr("name","localidad["+ i +"]");
             $(precioBoleta).find("input[name=precio]").attr("name","precio["+ i +"]");
+            $(precioBoleta).find("input[name=cantidad]").attr("name","cantidad["+ i +"]");
             if($(precioBoleta).find("input[name=esActiva]").prop( "checked" ))
             {
                 $(precioBoleta).find("input[name=Activa]").val('1');
@@ -1021,7 +1022,6 @@ function validarQR(idEvento,cc) {
 
 }
 
-
 function activarQRUsuario(){
 
     //var identificacion = " ";
@@ -1056,8 +1056,6 @@ function  MostrarDivBoletas(){
         $("#divPromotor").attr("hidden","hidden");
     }
 }
-
-
 
 function AgregarNuevaLocalidad(){
     var divLocalidad = $("#DivPreciosBoletas").clone();
@@ -1106,9 +1104,6 @@ function validarCamposConfirmacion(){
     });
 
 }
-
-
-
 
 //validacion de campos dinamicos
 
@@ -1174,8 +1169,7 @@ function validarCamposDinamicos(contenedor, nameElementoAValidar, tipoElemento,t
 }
 
 //funcion para quitar las etiquetas de la validación dimamica
-function quitarlabelError(element)
-{
+function quitarlabelError(element) {
     var label = $(element).next("label");
     if ($(element).val().trim() === '') {
         if (label != undefined) {

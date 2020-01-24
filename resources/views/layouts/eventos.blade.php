@@ -7,7 +7,7 @@
 	<title>ECOTICKETS | DPSOLUCIONES</title>
 	<!-- CSRF Token -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
@@ -22,14 +22,14 @@
 	<meta name="msapplication-config" content="{{ asset('img/favicons/browserconfig.xml') }}">
 	<meta name="theme-color" content="#ffffff">
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113476867-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113476867-1"></script>
+	<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'UA-113476867-1');
-</script>
+        gtag('config', 'UA-113476867-1');
+	</script>
 
 	<!-- Normalize -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
@@ -46,9 +46,9 @@
 	<!-- Main style -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/cardio.css') }}">
 	<!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{asset('js/Plugins/data-table/datatables.css')}}" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="{{ asset('css/EventosEco/animate.css') }}">
 	<!-- Icomoon Icon Fonts-->
@@ -76,110 +76,110 @@
 	<![endif]-->
 </head>
 <body>
-    	<div class="preloader">
-		<img src="{{ asset('img/loader.gif') }}" alt="Preloader image">
-	</div>
-	<nav style="top: 0px !important; margin-bottom: 0px !important;" class="navbar navbar-default navbar-static-top">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo-active-negro.png') }}" data-active-url="{{ asset('img/logo-active-negro.png') }}" alt=""></a>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			 <ul class="nav navbar-nav navbar-right main-nav">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}" class="btn btn-blue">Inicio de Sesión</a></li>
-                         <!--   <li><a href="{{ route('register') }}">Registrarse</a></li>-->
-                        @else
-							 <li><a href="{{ url('/home') }}">Home</a></li>
-                        @endguest
-                    </ul>
-			</div>
-			<!-- /.navbar-collapse -->
+<div class="preloader">
+	<img src="{{ asset('img/loader.gif') }}" alt="Preloader image">
+</div>
+<nav style="top: 0px !important; margin-bottom: 0px !important;" class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo-active-negro.png') }}" data-active-url="{{ asset('img/logo-active-negro.png') }}" alt=""></a>
 		</div>
-		<!-- /.container-fluid -->
-	</nav>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right main-nav">
+				<!-- Authentication Links -->
+				@guest
+					<li><a href="{{ route('login') }}" class="btn btn-blue">Inicio de Sesión</a></li>
+				<!--   <li><a href="{{ route('register') }}">Registrarse</a></li>-->
+				@else
+					<li><a href="{{ url('/home') }}">Home</a></li>
+				@endguest
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
+</nav>
 
 
-	<section id="eco" class="section">
-		<div class="container">
+<section id="eco" class="section">
+	<div class="container">
 		@yield('content')
 	</div>
-			<!-- boton soporte -->
-			<ul id="boton-soporte">
-				<li><a href="https://api.whatsapp.com/send?phone=573117234163&text=Escribo%20desde%20Ecotickets..." target="_blank"><img src="{{ asset('img/soporte.png') }}" alt="" /></a></li>
-			</ul>
-			</section>
-	</section>
+	<!-- boton soporte -->
+	<ul id="boton-soporte">
+		<li><a href="https://api.whatsapp.com/send?phone=573117234163&text=Escribo%20desde%20Ecotickets..." target="_blank"><img src="{{ asset('img/soporte.png') }}" alt="" /></a></li>
+	</ul>
+</section>
+</section>
 
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center-mobile">
-					<h3 class="white">Crea tu cuenta y adquiere tu licencia anual!</h3>
-					<h5 class="light regular light-white">Administración, gestión y estadísticas de tus eventos.</h5>
-					<a href="http://dpsoluciones.co/nuestros-servicios/" target="_blank" class="btn btn-blue ripple trial-button">Ver más</a>
-				</div>
-
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-center-mobile">
+				<h3 class="white">Crea tu cuenta y adquiere tu licencia anual!</h3>
+				<h5 class="light regular light-white">Administración, gestión y estadísticas de tus eventos.</h5>
+				<a href="http://dpsoluciones.co/nuestros-servicios/" target="_blank" class="btn btn-blue ripple trial-button">Ver más</a>
 			</div>
-			<div class="row bottom-footer text-center-mobile">
-				<div class="col-sm-8">
-					<p>Todos los derechos reservados 2018. Desarrollado por <a href="http://www.dpsoluciones.co/" target="_blank">DPS</a></p>
-				</div>
-				<div class="col-sm-4 text-right text-center-mobile">
-					<ul class="social-footer">
-						<li><a href="https://web.facebook.com/dpsolucionesrionegro/?_rdc=1&_rdr" target="_blank"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="https://twitter.com/dpsolucionesrio" target="_blank"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="https://www.instagram.com/dpsolucionesrio/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-					</ul>
-				</div>
+
+		</div>
+		<div class="row bottom-footer text-center-mobile">
+			<div class="col-sm-8">
+				<p>Todos los derechos reservados 2018. Desarrollado por <a href="http://www.dpsoluciones.co/" target="_blank">DPS</a></p>
+			</div>
+			<div class="col-sm-4 text-right text-center-mobile">
+				<ul class="social-footer">
+					<li><a href="https://web.facebook.com/dpsolucionesrionegro/?_rdc=1&_rdr" target="_blank"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="https://twitter.com/dpsolucionesrio" target="_blank"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="https://www.instagram.com/dpsolucionesrio/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+				</ul>
 			</div>
 		</div>
-	</footer>
-
-
-
-	<!-- Holder for mobile navigation -->
-	<div class="mobile-nav">
-		<ul>
-		</ul>
-		<a href="#" class="close-link"><i class="arrow_up"></i></a>
 	</div>
-	<!-- Scripts -->
-	<script src="{{asset('js/jquery-1.11.1.min.js')}}"></script>
-	<script src="{{asset('js/owl.carousel.min.js')}}"></script>
-	<script src="{{asset('js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('js/wow.min.js')}}"></script>
-	<script src="{{asset('js/typewriter.js')}}"></script>
-	<script src="{{asset('js/jquery.onepagenav.js') }}"></script>
-	<script src="{{asset('js/main.js') }}"></script>
-	<script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
-
-		<!-- jQuery Easing -->
-		<script src="{{ asset('js/EventosEco/jquery.easing.1.3.js') }}"></script>
-		<!-- Bootstrap -->
-		<script src="{{ asset('js/EventosEco/bootstrap.min.js') }}"></script>
-		<!-- Waypoints -->
-		<script src="{{ asset('js/EventosEco/jquery.waypoints.min.js') }}"></script>
-		<!-- Carousel -->
-		<script src="{{ asset('js/EventosEco/owl.carousel.min.js') }}"></script>
-		<!-- countTo -->
-		<script src="{{ asset('js/EventosEco/jquery.countTo.js') }}"></script>
-		<!-- Magnific Popup -->
-		<script src="{{ asset('js/EventosEco/jquery.magnific-popup.min.js') }}"></script>
-		<script src="{{ asset('js/EventosEco/magnific-popup-options.js') }}"></script>
-		<!-- Main -->
-		<script src="{{ asset('js/EventosEco/main.js') }}"></script>
+</footer>
 
 
+
+<!-- Holder for mobile navigation -->
+<div class="mobile-nav">
+	<ul>
+	</ul>
+	<a href="#" class="close-link"><i class="arrow_up"></i></a>
+</div>
+<!-- Scripts -->
+<script src="{{asset('js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/wow.min.js')}}"></script>
+<script src="{{asset('js/typewriter.js')}}"></script>
+<script src="{{asset('js/jquery.onepagenav.js') }}"></script>
+<script src="{{asset('js/main.js') }}"></script>
+<script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
+
+<!-- jQuery Easing -->
+<script src="{{ asset('js/EventosEco/jquery.easing.1.3.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('js/EventosEco/bootstrap.min.js') }}"></script>
+<!-- Waypoints -->
+<script src="{{ asset('js/EventosEco/jquery.waypoints.min.js') }}"></script>
+<!-- Carousel -->
+<script src="{{ asset('js/EventosEco/owl.carousel.min.js') }}"></script>
+<!-- countTo -->
+<script src="{{ asset('js/EventosEco/jquery.countTo.js') }}"></script>
+<!-- Magnific Popup -->
+<script src="{{ asset('js/EventosEco/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('js/EventosEco/magnific-popup-options.js') }}"></script>
+<!-- Main -->
+<script src="{{ asset('js/EventosEco/main.js') }}"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 

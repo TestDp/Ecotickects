@@ -47,9 +47,7 @@ function calcularPrecioTotal() {
     $("#PrecioTotal").val($("#valorBoleta").val()*$("#CantidadTickets").val());
 }
 
-
-function generarQRCodePago(nombreEvento,pinBoleta)
-{
+function generarQRCodePago(nombreEvento,pinBoleta) {
     var qr = create_qrcode(nombreEvento +" - CC - " + pinBoleta + "ECOTICKETS" );
     $("#qrBoleta").html(qr);
 }
@@ -60,9 +58,6 @@ function validarCamposRegistrarAsistente() {
         RegistrarUsuario();
     }
 }
-
-
-
 
 function validarFormularioPago(){
     $("#formularioEvento").validate({
@@ -282,27 +277,34 @@ function validarFormularioPago(){
 
 }
 
-function validarCodigoPromocional(element,idEvento) {
-    var CodigoPromocional ="";
-    CodigoPromocional = $(element).value();
-
+function validarCodigoPromocional(idEvento) {
+   var CodigoPromocional = $("#Codigo").val();
     $.ajax({
         type: 'GET',
-        url: urlBase+'ValidarCodigoPromo/'+idEvento+'/'+CodigoPromocional,//primero el modulo/controlador/metodo que esta en el controlador
-        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
-            CodigoPromocional: CodigoPromocional,
-            idEvento:idEvento,
-            _token :$("#_token").val()
-        },
+        url: urlBase+'ValidarCodigoPromo/'+idEvento+'/'+CodigoPromocional,
         dataType: 'json',
         success: function (result) {
             if (result) {
-                //$("#valorBoleta").val($("#localidad").find('option:selected').data('num'));
-                //$("#PrecioTotal").val($("#valorBoleta").val()*$("#CantidadTickets").val());
-                //$('#listaUsuarios').empty().append($(data));
-                $('#localidad').empty().append($(result.preciosBoletas));
-                $("#localidad").val(result.preciosBoletas->localidad);
-
+                if(result.length > 0) {
+                    swal({
+                        title: "Código activado!",
+                        text: "su código fue activado con exito!",
+                        icon: "success",
+                        button: "OK",
+                    });
+                    $.each(result, function (ind, element) {
+                        var opcion = new Option(element.localidad, element.id);
+                        $(opcion).attr("data-num", element.precio)
+                        $("#localidad").append(opcion);//agregamos las opciónes consultadas
+                    });
+                }else{
+                    swal({
+                        title: "Código invalido!",
+                        text: "su código es invalido, intente de nuevo!",
+                        icon: "error",
+                        button: "OK",
+                    });
+                }
             }
         },
         error: function (result) {
@@ -316,8 +318,6 @@ function validarCodigoPromocional(element,idEvento) {
         }
     });
 }
-
-
 
 function ActivarEsPago (element,idEvento) {
     var FlagEsActivo ="";

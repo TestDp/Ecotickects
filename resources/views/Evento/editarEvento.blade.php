@@ -1,6 +1,7 @@
 @extends('layouts.profile')
 
 @section('content')
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -162,6 +163,10 @@
 													Precio Boleta
 													<input id="precio" name="precio" type="number" class="form-control" value="{{$precioBoleta->precio}}"/>
 												</div>
+                                                <div class="input-group-addon" >
+                                                    Cantidad
+                                                    <input id="cantidad" name="cantidad" type="number" value="{{$precioBoleta->cantidad}}" class="form-control" />
+                                                </div>
                                                 <div class="input-group-addon" >
                                                     Activar
                                                     <input type="hidden" id="Activa" name="Activa" class="form-control" />
@@ -644,6 +649,10 @@
 					Precio Boleta
 					<input id="precio" name="precio" type="number" class="form-control" />
 				</div>
+                <div class="input-group-addon" >
+                    Cantidad
+                    <input id="cantidad" name="cantidad" type="number" class="form-control" />
+                </div>
                 <div class="input-group-addon" >
                     <input type="hidden" id="Activa" name="Activa" class="form-control" />
                     Activar

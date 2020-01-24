@@ -137,6 +137,10 @@
                                                 Precio Boleta
                                                 <input id="precio" name="precio" type="number" class="form-control" />
                                             </div>
+                                            <div class="input-group-addon" >
+                                                Cantidad
+                                                <input id="cantidad" name="cantidad" type="number" class="form-control" />
+                                            </div>
                                             <div class="input-group-addon">
                                                 <a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
                                             </div>
@@ -432,6 +436,10 @@
                 <div class="input-group-addon" >
                     Precio Boleta
                     <input id="precio" name="precio" type="number" class="form-control" />
+                </div>
+                <div class="input-group-addon" >
+                    Cantidad
+                    <input id="cantidad" name="cantidad" type="number" class="form-control" />
                 </div>
                 <div class="input-group-addon">
                     <a id="elimminarLocalidad" name="elimminarLocalidad" title="Eliminar localidad" onclick="EliminarLocalidad(this)"><span class="glyphicon glyphicon-minus"  ></span></a>

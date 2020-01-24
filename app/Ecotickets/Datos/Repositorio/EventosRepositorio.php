@@ -58,7 +58,7 @@ class EventosRepositorio
                     $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
                     $PrecioBoleta ->Evento_id = $evento -> id;
                     $PrecioBoleta ->esActiva = 1;
-                    $PrecioBoleta ->cantidad = 1;
+                    $PrecioBoleta ->cantidad = $EdEvento->cantidad[$indPrecio];;
                     $PrecioBoleta ->save();
                     $indPrecio++;
                 }
@@ -137,7 +137,7 @@ class EventosRepositorio
                         $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
                         $PrecioBoleta ->esActiva = $EdEvento->Activa[$indPrecio];
                         $PrecioBoleta ->Evento_id = $evento -> id;
-                        $PrecioBoleta ->cantidad = 1;
+                        $PrecioBoleta ->cantidad = $EdEvento->cantidad[$indPrecio];
                         $PrecioBoleta ->save();
                     }else{
                         $PrecioBoleta = PrecioBoleta::find($EdEvento->idPrecioBoleta[$indPrecio]);
@@ -145,7 +145,7 @@ class EventosRepositorio
                         $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
                         $PrecioBoleta ->esActiva = $EdEvento->Activa[$indPrecio];
                         $PrecioBoleta ->Evento_id = $evento -> id;
-                        $PrecioBoleta ->cantidad = 1;
+                        $PrecioBoleta ->cantidad = $EdEvento->cantidad[$indPrecio];
                         $PrecioBoleta ->save();
                     }
                     $indPrecio++;
@@ -203,21 +203,10 @@ class EventosRepositorio
 
     public function obtenerBoletaPromo($idEvento, $codigo)
     {
-        //insertar las variables de cantidad de boletas
-        $eventoCodigoPromo = Evento::where('id','=',$idEvento)->get()->first();
-        $eventoCodigoPromo->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+        return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
             ->where('esActiva','=',1)
             ->where('esCodigoPromo','=',1)
             ->where('Codigo','=',$codigo)->get();
-
-        if ($eventoCodigoPromo->preciosBoletas == null)
-        {
-            $eventoCodigoPromo->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
-                ->where('esActiva','=',1)
-                ->where('esCodigoPromo','=',0)->get();
-        }
-
-        return $eventoCodigoPromo;
     }
     public function obtenerEvento($idEvento)
     {

@@ -230,9 +230,6 @@ class EventosController extends Controller
     {
         $this->eventoServicio->ActualizarEventosFecha();
     }
-    public function obtenerBoletaPromo($idEvento,$codigo)
-    {
-        return response()->json($this->eventoServicio->obtenerBoletaPromo($idEvento,$codigo));
-    }
+
 
 }

@@ -64,6 +64,7 @@ Auth::routes();
 
     Route::get('Tienda/{idEvento}', ['uses' =>'Ecotickets\EcoticketsController@obtenerProductosXEvento']);/** Obtiene el formulario de la tienda*/
 
+    Route::get('ValidarCodigoPromo/{idEvento}/{CodigoPromocional}',['uses' =>'Ecotickets\EcoticketsController@obtenerBoletaPromo']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
@@ -95,8 +96,6 @@ Auth::routes();
     Route::post('LiquidacionGrafica/{idEvento}',['uses' =>'Evento\EventosController@obtenerLiquidacionGrafica']);
 
     Route::post('ActivarEventoPago/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarEventoPago']);
-
-    Route::get('ValidarCodigoPromo/{idEvento}/{CodigoPromocional}',['uses' =>'Evento\EventosController@obtenerBoletaPromo']);
 
     Route::post('ActivarTienda/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarTienda']);
 

@@ -150,4 +150,9 @@ class EcoticketsController extends Controller
 
         return response()->json($eventos);
     }
+
+    public function obtenerBoletaPromo($idEvento,$CodigoPromocional)
+    {
+        return response()->json($this->eventoServicio->obtenerBoletaPromo($idEvento,$CodigoPromocional));
+    }
 }
