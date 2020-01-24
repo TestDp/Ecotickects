@@ -141,9 +141,9 @@ class AsistenteRepositorio
         return ['respuesta' => false, 'error' => 'hubo un error guardando'];
     }
 
-    public function obtenerAsistentesXEvento($idEvento)
+  public function obtenerAsistentesXEvento($idEvento)
     {
-        $arrayAsistentes = array();
+       /* $arrayAsistentes = array();
         $listaAsistentesEventos = AsistenteXEvento::where('Evento_id', '=', $idEvento)->get();
         foreach ($listaAsistentesEventos as $asistenteXEvento) {
             $asistente = Asistente::where('id', '=', $asistenteXEvento->Asistente_id)->first();
@@ -151,10 +151,19 @@ class AsistenteRepositorio
             $asistente->CantidadBoletas = 0;
             $asistente->PrecioTotal = 0;
             $arrayAsistentes[] = $asistente;
-        }
+        }*/
 
 
-        return $arrayAsistentes;
+
+        $listaAsistentesEventos = DB::table('tbl_asistentes')
+            ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id, "0" as CantidadBoletas, "0" as PrecioTotal, "Gratis" as TipoBoleta' ))
+            ->get();
+
+
+        return $listaAsistentesEventos;
     }
 
     public function obtenerAsistentesXEventoGuessList($idEvento)
@@ -302,12 +311,16 @@ where Evento_id =27 and EstadosTransaccion_id = 4
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             //->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
             ->join('Tbl_InfoPagos', function ($join) {
-                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos..idAsistenteCompra');
+                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
             })
+
+            ->join('Tbl_PreciosBoletas', 'Tbl_PreciosBoletas.Evento_id', '=', 'tbl_asistentesXeventos.Evento_id')
+
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
-            ->select(\DB::raw('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id' ))
+            ->whereRaw('Tbl_PreciosBoletas.precio = (Tbl_InfoPagos.PrecioTotal / Tbl_InfoPagos.CantidadBoletas)')
+            ->select(\DB::raw('tbl_asistentes.id, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
            ->orderBy('tbl_asistentes.id', 'DESC')
         ->get()->first();
 
@@ -315,7 +328,7 @@ where Evento_id =27 and EstadosTransaccion_id = 4
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
             ->where('tbl_asistentesXeventos.ComentarioEvento', '=', "BoletaGratis123")
-            ->select(\DB::raw('tbl_asistentes.id',  'tbl_asistentes.Nombres', 'tbl_asistentes.Apellidos', 'tbl_asistentes.Identificacion', 'tbl_asistentes.telefono', 'tbl_asistentes.Email', 'tbl_asistentes.Edad', 'tbl_asistentes.Dirección', 'tbl_asistentes.Ciudad_id' ))
+            ->select(\DB::raw('tbl_asistentes.id, "0", "Cortesia", tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
 

@@ -1,3 +1,4 @@
+//var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 try {
     urlBase = obtenerUlrBase();
 } catch (e) {
@@ -59,6 +60,9 @@ function validarCamposRegistrarAsistente() {
         RegistrarUsuario();
     }
 }
+
+
+
 
 function validarFormularioPago(){
     $("#formularioEvento").validate({
@@ -277,6 +281,43 @@ function validarFormularioPago(){
     });
 
 }
+
+function validarCodigoPromocional(element,idEvento) {
+    var CodigoPromocional ="";
+    CodigoPromocional = $(element).value();
+
+    $.ajax({
+        type: 'GET',
+        url: urlBase+'ValidarCodigoPromo/'+idEvento+'/'+CodigoPromocional,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            CodigoPromocional: CodigoPromocional,
+            idEvento:idEvento,
+            _token :$("#_token").val()
+        },
+        dataType: 'json',
+        success: function (result) {
+            if (result) {
+                //$("#valorBoleta").val($("#localidad").find('option:selected').data('num'));
+                //$("#PrecioTotal").val($("#valorBoleta").val()*$("#CantidadTickets").val());
+                //$('#listaUsuarios').empty().append($(data));
+                $('#localidad').empty().append($(result.preciosBoletas));
+                $("#localidad").val(result.preciosBoletas->localidad);
+
+            }
+        },
+        error: function (result) {
+            var errors = result.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+
+                });
+            }
+        }
+    });
+}
+
+
 
 function ActivarEsPago (element,idEvento) {
     var FlagEsActivo ="";

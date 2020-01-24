@@ -369,6 +369,19 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
+                                    Codigo de Descuento
+                                    <input id="Codigo" name="Codigo" type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                Validar
+                                    <input  onclick="validarCodigoPromocional(this.Codigo,{{$ElementosArray["EventoId"]}})" class="btn btn-blue ripple trial-button"  name="Validador" value="Validar Codigo"   />
+                                </div>
+                                <div class="col-md-3">
+                                    <label id="Mensaje" name="Mensaje" type="label" show="hide" class="form-control"  />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
                                     Localidad
                                     <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
                                         <option value="">Seleccionar</option>

@@ -31,6 +31,11 @@ class EventosServicio
 
     }
 
+    public function obtenerBoletaPromo($idEvento, $codigo)
+    {
+        return  $this->eventoRepor->obtenerBoletaPromo($idEvento, $codigo);
+    }
+
     public function obtenerEvento($idEvento)
     {
       return  $this->eventoRepor->obtenerEvento($idEvento);

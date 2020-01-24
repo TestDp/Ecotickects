@@ -96,6 +96,8 @@ Auth::routes();
 
     Route::post('ActivarEventoPago/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarEventoPago']);
 
+    Route::get('ValidarCodigoPromo/{idEvento}/{CodigoPromocional}',['uses' =>'Evento\EventosController@obtenerBoletaPromo']);
+
     Route::post('ActivarTienda/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarTienda']);
 
     Route::post('ActivarSolicitarPIN/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarSolicitarPIN']);
@@ -173,6 +175,8 @@ Auth::routes();
     Route::get('logoutApp',['uses' =>'Auth\LoginController@logoutApp']);
 
     Route::get('EventosApp/{idUser}', ['uses' =>'Ecotickets\EcoticketsController@EventosApp']);
+
+    Route::get('EventosAppXamarin/{idUser}', ['uses' =>'Ecotickets\EcoticketsController@EventosAppXamarin']);
 
     Route::get('InformacionQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEvento']);
 

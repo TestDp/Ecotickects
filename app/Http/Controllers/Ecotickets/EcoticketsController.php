@@ -101,11 +101,11 @@ class EcoticketsController extends Controller
     }
     public function EventosApp($idUser)
     {
-        $user = User::where("id","=",$idUser)->get();
+        $user = User::where("id","=",$idUser)->first();
 
-        $idSede = Auth::user()->Sede->id;
+        $idSede = $user->Sede->id;
         $eventos=[];
-        if(Auth::user()->hasRole('SuperAdmin'))
+        if($user->hasRole('SuperAdmin'))
         {
             $eventos = Evento::all();
         }else{
@@ -133,5 +133,21 @@ class EcoticketsController extends Controller
     public function  ActualizarEventosFecha()
     {
         $this->eventoServicio->ActualizarEventosFecha();
+    }
+
+    public function EventosAppXamarin($idUser)
+    {
+        $user = User::where("id","=",$idUser)->first();
+
+        $idSede = $user->Sede->id;
+        $eventos=[];
+        if($user->hasRole('SuperAdmin'))
+        {
+            $eventos = Evento::all();
+        }else{
+            $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+        }
+
+        return response()->json($eventos);
     }
 }

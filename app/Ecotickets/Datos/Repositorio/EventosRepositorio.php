@@ -200,6 +200,25 @@ class EventosRepositorio
     }
 
 
+
+    public function obtenerBoletaPromo($idEvento, $codigo)
+    {
+        //insertar las variables de cantidad de boletas
+        $eventoCodigoPromo = Evento::where('id','=',$idEvento)->get()->first();
+        $eventoCodigoPromo->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+            ->where('esActiva','=',1)
+            ->where('esCodigoPromo','=',1)
+            ->where('Codigo','=',$codigo)->get();
+
+        if ($eventoCodigoPromo->preciosBoletas == null)
+        {
+            $eventoCodigoPromo->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+                ->where('esActiva','=',1)
+                ->where('esCodigoPromo','=',0)->get();
+        }
+
+        return $eventoCodigoPromo;
+    }
     public function obtenerEvento($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
@@ -215,8 +234,10 @@ class EventosRepositorio
 
 
         $evento->promotores = $promo;
+        //insertar las variables de cantidad de boletas
         $evento->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
-                                ->where('esActiva','=',1)->get();
+                                ->where('esActiva','=',1)
+                                ->where('esCodigoPromo','=',0)->get();
         $evento->preguntas->each(function($preguntas){
             $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
         });
@@ -402,8 +423,7 @@ class EventosRepositorio
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 1)
             ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
-            ->orderBy('Fecha_Evento', 'asc')
-            ->paginate(10);
+            ->orderBy('Fecha_Evento', 'asc')->get();
         return $eventos;
     }
 
@@ -419,8 +439,7 @@ class EventosRepositorio
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
             ->where('Tbl_Eventos.EsPublico', '=', 0)
-            ->orderBy('Fecha_Evento', 'desc')
-            ->paginate(10);
+            ->orderBy('Fecha_Evento', 'desc')->get();
         return $eventos;
     }
 
@@ -437,7 +456,7 @@ class EventosRepositorio
         cast(Tbl_ConfiguracionXSedes.comision1 + Tbl_ConfiguracionXSedes.comision2 as decimal(12,0)) as ComisionXBoleta,
         (resul.TotalEtapa - (resul.TotalEtapa * Tbl_ConfiguracionXSedes.Porcentaje) - (Tbl_ConfiguracionXSedes.comision1 + Tbl_ConfiguracionXSedes.comision2) * resul.cantidadBoletas) as Total'))
 
-            ->join(DB::raw('(SELECT u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
+            ->join(DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento ,u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
                     from tbl_asistentesXeventos as ae
                     inner join tbl_asistentes as a
                     on ae.Asistente_id = a.id
@@ -450,12 +469,13 @@ class EventosRepositorio
                     inner join users as u
                     on e.user_id = u.id
                     where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
-                    group by  u.Sede_id, p.precioTotal/cantidadBoletas) resul'),
+                    group by  e.Nombre_Evento, u.Sede_id, p.precioTotal/cantidadBoletas) resul'),
                 function($join)
                 {
 
                     $join->on('resul.PrecioEtapa','>','Tbl_ConfiguracionXSedes.PrecioMinimo')
-                        ->on('resul.PrecioEtapa','<=','Tbl_ConfiguracionXSedes.PrecioMaximo');
+                        ->on('resul.PrecioEtapa','<=','Tbl_ConfiguracionXSedes.PrecioMaximo')
+                    ->on('resul.Sede_id','=','Tbl_ConfiguracionXSedes.Sede_id');
                 })
 
             ->get();
