@@ -282,7 +282,7 @@ class AsistentesController extends Controller
         $evento = $this->asistenteServicio->ObtenerEventoRefe($transaccionReference);
         switch ($estadoTransaccion) {
             case 4: /* Approved */
-                $ElementosArray = array('evento' => $evento, 'mensaje' => "APROVADO");
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "APROBADO");
                 return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
 
@@ -307,7 +307,7 @@ class AsistentesController extends Controller
                 break;
 
             default: /* Do something */
-                $ElementosArray = array('evento' => $evento, 'mensaje' => "PENDIENTE POR PYU");
+                $ElementosArray = array('evento' => $evento, 'mensaje' => "PENDIENTE POR PAYU");
                 return view("respuestaPago", ['ElementosArray' => $ElementosArray]);
                 break;
         }

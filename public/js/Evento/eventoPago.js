@@ -292,6 +292,7 @@ function validarCodigoPromocional(idEvento) {
                         icon: "success",
                         button: "OK",
                     });
+					document.getElementById('mensaje-cupon').innerHTML = "Cupón Válido - Ahora selecciona en LOCALIDAD la opción CODPROMO20";
                     $.each(result, function (ind, element) {
                         var opcion = new Option(element.localidad, element.id);
                         $(opcion).attr("data-num", element.precio)
@@ -304,6 +305,7 @@ function validarCodigoPromocional(idEvento) {
                         icon: "error",
                         button: "OK",
                     });
+					document.getElementById('mensaje-cupon').innerHTML = "Cupón Inválido inténtalo de nuevo";
                 }
             }
         },

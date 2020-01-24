@@ -121,7 +121,7 @@
                     @endif
                     @if(Auth::user()->buscarRecurso('Administrador'))
                         <li>
-                            <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false"><b>Administrador</b></a>
+                            <a href="#homeMaestros" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/admin.png') }}"><b> Administrador</b></a>
                             <ul class="collapse list-unstyled" id="homeMaestros">
                                 @if(Auth::user()->buscarRecurso('Usuarios'))
                                     <li><a href="{{ url('usuarios') }}">Usuarios</a></li>
