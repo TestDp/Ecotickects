@@ -293,9 +293,11 @@ function validarCodigoPromocional(idEvento) {
                         button: "OK",
                     });
 					document.getElementById('mensaje-cupon').innerHTML = "Cupón Válido - Ahora selecciona en LOCALIDAD la opción CODPROMO20";
+                    document.getElementById('mensaje-cupon').style.color = "#74b12e";
                     $.each(result, function (ind, element) {
                         var opcion = new Option(element.localidad, element.id);
-                        $(opcion).attr("data-num", element.precio)
+                        $(opcion).attr("data-num", element.precio);
+                        $(opcion).attr("style", "color:green;");
                         $("#localidad").append(opcion);//agregamos las opciónes consultadas
                     });
                 }else{
@@ -306,6 +308,7 @@ function validarCodigoPromocional(idEvento) {
                         button: "OK",
                     });
 					document.getElementById('mensaje-cupon').innerHTML = "Cupón Inválido inténtalo de nuevo";
+                    document.getElementById('mensaje-cupon').style.color = "#E11D32";
                 }
             }
         },
