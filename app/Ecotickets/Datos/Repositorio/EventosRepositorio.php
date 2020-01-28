@@ -279,7 +279,13 @@ class EventosRepositorio
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
         $evento->preguntas;
-        $evento->preciosBoletas;
+        $evento->preciosBoletas = DB::table('Tbl_PreciosBoletas')
+            ->leftjoin('Tbl_PreciosBoletas as ph','Tbl_PreciosBoletas.id', '=', 'ph.PrecioBoletaPadre_Id')
+            ->select('Tbl_PreciosBoletas.*','ph.esCodigoPromo', 'ph.Codigo', 'ph.Porcentaje', 'ph.PrecioBoletaPadre_Id')
+            ->where('Tbl_PreciosBoletas.Evento_id', '=',$idEvento)
+            ->where('Tbl_PreciosBoletas.esCodigoPromo', '=',0)->get();
+
+
         $evento->preguntas->each(function($preguntas){
             $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
         });
