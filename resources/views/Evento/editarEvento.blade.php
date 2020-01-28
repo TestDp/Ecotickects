@@ -177,7 +177,7 @@
                                                         <input type="checkbox" id="esActiva" name="esActiva" class="form-control"  />
                                                     @endif
                                                 </div>
-                                                @if($precioBoleta->esPromo ==1)
+                                                @if($precioBoleta->esCodigoPromo ==1)
                                                     <div class="input-group-addon" >
                                                         <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
                                                         Activar Cod-Promo
