@@ -153,8 +153,9 @@
 								@foreach($evento->preciosBoletas as $precioBoleta)
 									<div class="row" id="PreciosBoletas" name="PreciosBoletas">
                                         <input id="idPrecioBoleta" name="idPrecioBoleta" type="hidden"  value="{{$precioBoleta->id}}"/>
-										<div class="col-md-10">
-											<div class="form-group">
+                                        <input id="PrecioBoletaPadre_Id" name="PrecioBoletaPadre_Id" type="hidden"  value="{{$precioBoleta->PrecioBoletaPadre_Id}}"/>
+										<div class="col-md-12">
+											<div class="form-group" id="rowPrecio" name="rowPrecio">
 												<div class="input-group-addon" >
 													Localidad
 													<input id="localidad" name="localidad" type="text" class="form-control" value="{{$precioBoleta->localidad}}"/>
@@ -176,6 +177,35 @@
                                                         <input type="checkbox" id="esActiva" name="esActiva" class="form-control"  />
                                                     @endif
                                                 </div>
+                                                @if($precioBoleta->esPromo ==1)
+                                                    <div class="input-group-addon" >
+                                                        <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+                                                        Activar Cod-Promo
+                                                        <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)" checked/>
+                                                    </div>
+                                                    <div class="input-group-addon" id="divCodigo" name="divCodigo" >
+                                                        Código
+                                                        <input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->Codigo}}"/>
+                                                    </div>
+                                                    <div class="input-group-addon"  id="divPorcentaje" name="divPorcentaje" >
+                                                        Porcentaje
+                                                        <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" value="{{$precioBoleta->Porcentaje}}"/>
+                                                    </div>
+                                                @else
+                                                    <div class="input-group-addon" >
+                                                        <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+                                                        Activar Cod-Promo
+                                                        <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
+                                                    </div>
+                                                    <div  id="divCodigo" name="divCodigo" hidden="hidden">
+                                                        Código
+                                                        <input id="Codigo" name="Codigo" type="text" class="form-control" />
+                                                    </div>
+                                                    <div   id="divPorcentaje" name="divPorcentaje" hidden="hidden" >
+                                                        Porcentaje
+                                                        <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" />
+                                                    </div>
+                                                @endif
 												@if($loop->index ==0)
 												<div class="input-group-addon">
 													<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
@@ -198,8 +228,8 @@
                                     @foreach($evento->preciosBoletas as $precioBoleta)
                                         <div class="row" id="PreciosBoletas" name="PreciosBoletas">
                                             <input id="idPrecioBoleta" name="idPrecioBoleta" type="hidden"  value="{{$precioBoleta->id}}"/>
-                                            <div class="col-md-10">
-                                                <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="form-group" id="rowPrecio" name="rowPrecio">
                                                     <div class="input-group-addon" >
                                                         Localidad
                                                         <input id="localidad" name="localidad" type="text" class="form-control" value="{{$precioBoleta->localidad}}"/>
@@ -217,9 +247,38 @@
                                                             <input type="checkbox" id="esActiva" name="esActiva" class="form-control"  />
                                                         @endif
                                                     </div>
+                                                    @if($precioBoleta->esPromo ==1)
+                                                        <div class="input-group-addon" >
+                                                            <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+                                                            Activar Cod-Promo
+                                                            <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)" checked/>
+                                                        </div>
+                                                        <div class="input-group-addon" id="divCodigo" name="divCodigo" >
+                                                            Código
+                                                            <input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->Codigo}}"/>
+                                                        </div>
+                                                        <div class="input-group-addon"  id="divPorcentaje" name="divPorcentaje" >
+                                                            Porcentaje
+                                                            <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" value="{{$precioBoleta->Porcentaje}}"/>
+                                                        </div>
+                                                    @else
+                                                        <div class="input-group-addon" >
+                                                            <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+                                                            Activar Cod-Promo
+                                                            <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
+                                                        </div>
+                                                        <div  id="divCodigo" name="divCodigo" hidden="hidden">
+                                                            Código
+                                                            <input id="Codigo" name="Codigo" type="text" class="form-control" />
+                                                        </div>
+                                                        <div   id="divPorcentaje" name="divPorcentaje" hidden="hidden" >
+                                                            Porcentaje
+                                                            <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" />
+                                                        </div>
+                                                    @endif
                                                     @if($loop->index ==0)
                                                         <div class="input-group-addon">
-                                                            <a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
+                                                            <a id="agregarLocalidad" name="agregarLocalidad" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
                                                         </div>
                                                     @else
                                                         <div class="input-group-addon">
@@ -238,8 +297,8 @@
 
 								<div class="row" id="PreciosBoletas" name="PreciosBoletas">
                                     <input id="idPrecioBoleta" name="idPrecioBoleta" type="hidden" class="form-control" value="0"/>
-									<div class="col-md-10">
-										<div class="form-group">
+									<div class="col-md-12">
+										<div class="form-group" id="rowPrecio" name="rowPrecio">
 											<div class="input-group-addon" >
 												Localidad
 												<input id="localidad" name="localidad" type="text" class="form-control" />
@@ -252,6 +311,19 @@
                                                 Activar
                                                 <input type="hidden" id="Activa" name="Activa" class="form-control" />
                                                 <input type="checkbox" id="esActiva" name="esActiva" class="form-control" />
+                                            </div>
+                                            <div class="input-group-addon" >
+                                                <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+                                                Activar Cod-Promo
+                                                <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
+                                            </div>
+                                            <div  id="divCodigo" name="divCodigo" hidden="hidden">
+                                                Código
+                                                <input id="Codigo" name="Codigo" type="text" class="form-control" />
+                                            </div>
+                                            <div   id="divPorcentaje" name="divPorcentaje" hidden="hidden" >
+                                                Porcentaje
+                                                <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" />
                                             </div>
 											<div class="input-group-addon">
 												<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
@@ -639,8 +711,8 @@
 
 	<div class="row"  id="DivPreciosBoletas" hidden>
         <input id="idPrecioBoleta" name="idPrecioBoleta" type="hidden"  value="0"/>
-		<div class="col-md-10">
-			<div class="form-group">
+		<div class="col-md-12">
+			<div class="form-group" id="rowPrecio" name="rowPrecio">
 				<div class="input-group-addon" >
 					Localidad
 					<input id="localidad" name="localidad" type="text" class="form-control" />
@@ -658,6 +730,20 @@
                     Activar
                     <input type="checkbox" id="esActiva" name="esActiva" class="form-control" />
                 </div>
+				<div class="input-group-addon" >
+					<input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+					Activar Cod-Promo
+					<input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
+				</div>
+                <div  id="divCodigo" name="divCodigo" hidden="hidden">
+                    Código
+                    <input id="Codigo" name="Codigo" type="text" class="form-control" />
+                </div>
+                <div   id="divPorcentaje" name="divPorcentaje" hidden="hidden" >
+                    Porcentaje
+                    <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" />
+                </div>
+
 				<div class="input-group-addon">
 					<a id="elimminarLocalidad" name="elimminarLocalidad" title="Eliminar localidad" onclick="EliminarLocalidad(this)"><span class="glyphicon glyphicon-minus"  ></span></a>
 				</div>

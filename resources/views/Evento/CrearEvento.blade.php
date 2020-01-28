@@ -127,7 +127,7 @@
                             <div class="panel-heading text-center"><h4>Lista de Precios</h4></div>
 
                             <div class="row" id="PreciosBoletas" name="PreciosBoletas">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                             <div class="input-group-addon" >
                                                 Localidad
@@ -427,7 +427,7 @@
     </div>
 
     <div class="row"  id="DivPreciosBoletas" hidden>
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="form-group">
                 <div class="input-group-addon" >
                     Localidad

@@ -292,14 +292,16 @@ function validarCodigoPromocional(idEvento) {
                         icon: "success",
                         button: "OK",
                     });
-					document.getElementById('mensaje-cupon').innerHTML = "Cupón Válido - Ahora selecciona en LOCALIDAD la opción CODPROMO20";
-                    document.getElementById('mensaje-cupon').style.color = "#74b12e";
+					var nomLocalidad="";
                     $.each(result, function (ind, element) {
                         var opcion = new Option(element.localidad, element.id);
                         $(opcion).attr("data-num", element.precio);
                         $(opcion).attr("style", "color:green;");
+                        nomLocalidad = nomLocalidad + element.localidad;
                         $("#localidad").append(opcion);//agregamos las opciónes consultadas
                     });
+                    document.getElementById('mensaje-cupon').innerHTML = "Cupón Válido - Ahora selecciona en LOCALIDAD la opción "+ nomLocalidad;
+                    document.getElementById('mensaje-cupon').style.color = "#74b12e";
                 }else{
                     swal({
                         title: "Código invalido!",
@@ -317,9 +319,15 @@ function validarCodigoPromocional(idEvento) {
             if (errors) {
                 $.each(errors, function (i) {
                     console.log(errors[i]);
-
                 });
             }
+            swal({
+                title: "Error!",
+                text: "Hubo un error mientras se validaba el codigo intentalo de nuevo!",
+                icon: "error",
+                button: "OK",
+            });
+            docu
         }
     });
 }
@@ -332,7 +340,6 @@ function ActivarEsPago (element,idEvento) {
      }else{
          FlagEsActivo =0;
      }
-
     $.ajax({
         url: urlBase+'ActivarEventoPago/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.

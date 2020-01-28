@@ -128,7 +128,6 @@ class EventosRepositorio
 
             $indPrecio =0;
             if($EdEvento->esPago == 1){
-               // PrecioBoleta::where('Evento_id','=',$EdEvento->id)->delete();
                 foreach ($EdEvento->localidad as $localidad ){
                     if($EdEvento->idPrecioBoleta[$indPrecio] == 0)
                     {
@@ -136,17 +135,55 @@ class EventosRepositorio
                         $PrecioBoleta ->localidad = $localidad;
                         $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
                         $PrecioBoleta ->esActiva = $EdEvento->Activa[$indPrecio];
-                        $PrecioBoleta ->Evento_id = $evento -> id;
+                        $PrecioBoleta ->Evento_id = $evento ->id;
                         $PrecioBoleta ->cantidad = $EdEvento->cantidad[$indPrecio];
                         $PrecioBoleta ->save();
+                        if($EdEvento->esPromo[$indPrecio]==1){
+                            $precioBoletaPromo = new PrecioBoleta();
+                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->precio = $EdEvento->precio[$indPrecio];
+                            $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
+                            $precioBoletaPromo ->Evento_id = $evento ->id;
+                            $precioBoletaPromo ->cantidad = $EdEvento->cantidad[$indPrecio];
+                            $precioBoletaPromo ->esCodigoPromo = $EdEvento->esPromo[$indPrecio];
+                            $precioBoletaPromo ->Codigo = $EdEvento->Codigo[$indPrecio];
+                            $precioBoletaPromo ->Porcentaje = $EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->PrecioBoletaPadre_Id = $PrecioBoleta->id;
+                            $precioBoletaPromo ->save();
+                        }
                     }else{
                         $PrecioBoleta = PrecioBoleta::find($EdEvento->idPrecioBoleta[$indPrecio]);
                         $PrecioBoleta ->localidad = $localidad;
                         $PrecioBoleta ->precio = $EdEvento->precio[$indPrecio];
                         $PrecioBoleta ->esActiva = $EdEvento->Activa[$indPrecio];
-                        $PrecioBoleta ->Evento_id = $evento -> id;
+                        $PrecioBoleta ->Evento_id = $evento ->id;
                         $PrecioBoleta ->cantidad = $EdEvento->cantidad[$indPrecio];
                         $PrecioBoleta ->save();
+                        if($EdEvento->esPromo[$indPrecio]==1 && $EdEvento->PrecioBoletaPadre_Id[$indPrecio] !=null){
+                            $precioBoletaPromo = PrecioBoleta::find($EdEvento->PrecioBoletaPadre_Id[$indPrecio]);
+                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->precio = $EdEvento->precio[$indPrecio];
+                            $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
+                            $precioBoletaPromo ->Evento_id = $evento ->id;
+                            $precioBoletaPromo ->cantidad = $EdEvento->cantidad[$indPrecio];
+                            $precioBoletaPromo ->esCodigoPromo = $EdEvento->esPromo[$indPrecio];
+                            $precioBoletaPromo ->Codigo = $EdEvento->Codigo[$indPrecio];
+                            $precioBoletaPromo ->Porcentaje = $EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->PrecioBoletaPadre_Id = $PrecioBoleta->id;
+                            $precioBoletaPromo ->save();
+                        }else{
+                            $precioBoletaPromo = new PrecioBoleta();
+                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->precio = $EdEvento->precio[$indPrecio];
+                            $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
+                            $precioBoletaPromo ->Evento_id = $evento ->id;
+                            $precioBoletaPromo ->cantidad = $EdEvento->cantidad[$indPrecio];
+                            $precioBoletaPromo ->esCodigoPromo = $EdEvento->esPromo[$indPrecio];
+                            $precioBoletaPromo ->Codigo = $EdEvento->Codigo[$indPrecio];
+                            $precioBoletaPromo ->Porcentaje = $EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->PrecioBoletaPadre_Id = $PrecioBoleta->id;
+                            $precioBoletaPromo ->save();
+                        }
                     }
                     $indPrecio++;
                 }
@@ -213,15 +250,10 @@ class EventosRepositorio
         $evento = Evento::where('id','=',$idEvento)->get()->first();
         $evento->preguntas;
         $user1 = User::where ('id', '=', $evento->user_id)->get()->first();
-
         $promo = DB::table('Tbl_PromotoresXSedes')
             ->join('tbl_asistentes', 'tbl_asistentes.id', '=', 'Tbl_PromotoresXSedes.Asistente_id')
             ->select('tbl_asistentes.*','Tbl_PromotoresXSedes.id' )
             ->where('Tbl_PromotoresXSedes.Sede_id', '=', $user1->Sede_id)->get();
-
-
-
-
         $evento->promotores = $promo;
         //insertar las variables de cantidad de boletas
         $evento->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)

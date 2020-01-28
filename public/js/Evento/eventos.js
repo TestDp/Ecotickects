@@ -1,6 +1,3 @@
-
-//var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
-
 try {
     urlBase = obtenerUlrBase();
 } catch (e) {
@@ -16,9 +13,9 @@ var arrayColores= ["#6FBEEE","#0000CC","#003300","#0033FF","#006600","#006699",
     "#99FF99","#99FFCC","#99FFFF","#CC0000","#CC00CC","#CC00FF","#CC3300","#CC3333","#CC3366","#CC3399","#CC33CC","#CC33FF","#CC6600",
     "#CC6633","#FF0066","#FF0099","#FF00CC","#FF00FF","#FF3300","#FF3333","#FF3366","#FF3399","#FF33CC","#FF33FF","#FF6600","#FF6633","#FF6666","#FF6699","#FF66CC",
     "#FF66FF","#FF9900","#FF9933","#FF9966","#FF9999"];
-
 var numeroPregunta = 0;
 var numeroRespuesta = 0;
+
 //funcion que me retorna las ciudades dependiendo del departamento seleccionado
 function CargarMunicipiosDepartamento(idCiudad){
     var idDepartamento =$("#Departamento_id").val();
@@ -46,7 +43,6 @@ function CargarMunicipiosDepartamento(idCiudad){
     });
 
 }
-
 
 function AgregarPregunta(){
 
@@ -87,6 +83,7 @@ function  AgregarRespuesta(element){
 function  EliminarRespuesta(element) {
     $("#elmentosEliminados").append($(element).closest("div[name=Respuesta]"));
 }
+
 //Metodo para  editar los nombres  de los  elementos para  ser enviados  al  controlador
 function EditarNombrePreguntasYRespuetas(){
     $("#ListaPreguntas").find("div[name=pregunta]").each(function (i,pregunta) {
@@ -104,15 +101,25 @@ function EditarNombrePreguntasYRespuetas(){
     if($("#esPago").val() ==1){
         $("#divBoletas").find("div[name=PreciosBoletas]").each(function (i,precioBoleta) {
             $(precioBoleta).find("input[name=idPrecioBoleta]").attr("name","idPrecioBoleta["+ i +"]");
+            $(precioBoleta).find("input[name=PrecioBoletaPadre_Id]").attr("name","PrecioBoletaPadre_Id["+ i +"]");
             $(precioBoleta).find("input[name=localidad]").attr("name","localidad["+ i +"]");
             $(precioBoleta).find("input[name=precio]").attr("name","precio["+ i +"]");
             $(precioBoleta).find("input[name=cantidad]").attr("name","cantidad["+ i +"]");
+            $(precioBoleta).find("input[name=Codigo]").attr("name","Codigo["+ i +"]");
+            $(precioBoleta).find("input[name=Porcentaje]").attr("name","Porcentaje["+ i +"]");
             if($(precioBoleta).find("input[name=esActiva]").prop( "checked" ))
             {
                 $(precioBoleta).find("input[name=Activa]").val('1');
             }else{
                 $(precioBoleta).find("input[name=Activa]").val('0');
             }
+            if($(precioBoleta).find("input[name=boletaPromo]").prop( "checked" ))
+            {
+                $(precioBoleta).find("input[name=esPromo]").val('1');
+            }else{
+                $(precioBoleta).find("input[name=esPromo]").val('0');
+            }
+            $(precioBoleta).find("input[name=esPromo]").attr("name","esPromo["+ i +"]");
             $(precioBoleta).find("input[name=Activa]").attr("name","Activa["+ i +"]");
         });
     }
@@ -357,21 +364,26 @@ function validarFormulario(){
 }
 
 function validarCamposCrearEvento() {
-
     validarFormularioCrearEvento();
     var validarCamposLocalidad = true;
     var validarCamposPrecioBoleta = true;
+    var validarCamposCantidad = true;
+    var validarCamposCodigo = true;
+    var validarCamposPorcentaje = true;
     if($("#esPago").val() == 1){//se valida si seleccionó si el evento es pago
         validarCamposLocalidad = validarCamposDinamicos($('#crearEvento'),'localidad','input','*','','*La localidad es obligatoria');
         validarCamposPrecioBoleta = validarCamposDinamicos($('#crearEvento'),'precio','input','*','','*El precio es obligatorio');
+        validarCamposCantidad = validarCamposDinamicos($('#crearEvento'),'cantidad','input','*','','*La cantidad es obligatoria');
+        validarCamposCodigo = validarCamposDinamicos($('#crearEvento'),'Codigo','input','*','','*El código es obligatorio');
+        validarCamposPorcentaje = validarCamposDinamicos($('#crearEvento'),'Porcentaje','input','*','','*El porcentaje es obligatorio');
     }
     var validarCamposPreguntas = validarCamposDinamicos($('#crearEvento'),'TextoPregunta','input','*','','*La pregunta es obligatoria');
     var validarCamposRespuestas = validarCamposDinamicos($('#crearEvento'),'TextoRespuesta','input','*','','*La respuesta es obligatoria');
-    if ($("#crearEvento").valid() && validarCamposLocalidad && validarCamposPrecioBoleta && validarCamposPreguntas && validarCamposRespuestas) {
+    if ($("#crearEvento").valid() && validarCamposLocalidad && validarCamposPrecioBoleta &&
+        validarCamposPreguntas && validarCamposRespuestas && validarCamposCantidad && validarCamposCodigo && validarCamposPorcentaje) {
         EditarNombrePreguntasYRespuetas();
         $("#crearEvento").submit();
     }
-
 }
 
 function validarFormularioCrearEvento(){
@@ -1047,13 +1059,27 @@ function activarQRUsuario(){
 }
 
 function  MostrarDivBoletas(){
-
     if($("#esPago").val() ==1){
         $("#divBoletas").removeAttr("hidden");
         $("#divPromotor").removeAttr("hidden");
     }else{
         $("#divBoletas").attr("hidden","hidden");
         $("#divPromotor").attr("hidden","hidden");
+    }
+}
+
+function MostrarDivBoletaPromocional(element){
+    if($(element).prop( "checked" )){
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").removeAttr("hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").removeAttr("hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("class","input-group-addon");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("class","input-group-addon");
+
+    }else{
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").removeAttr("class");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").removeAttr("class");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("hidden","hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("hidden","hidden");
     }
 }
 
@@ -1069,14 +1095,11 @@ function EliminarLocalidad(element){
     $(element).closest("div[name=PreciosBoletas]").remove();
 }
 
-
 function EnviarFormulario() {
-
     validarCamposConfirmacion();
     if ($("#ConfirmarAsistente").valid()) {
         $("#ConfirmarAsistente").submit();
     }
-
 }
 
 function validarCamposConfirmacion(){
@@ -1105,9 +1128,7 @@ function validarCamposConfirmacion(){
 
 }
 
-//validacion de campos dinamicos
-
-
+//VALIDACION DE CAMPOS DINAMICOS
 //contenedor: contenedor donde se encuentran los campos dinamicos a validar ejemplo $("#actividades")
 //nameElementoAValidar: nombre(name) de los elementos a validar ejemplo "DescripcionActividad"
 //tipoElemento:tipo de elemento a buscar para realizar la validacion por ejemplo "input"
@@ -1116,11 +1137,9 @@ function validarCamposConfirmacion(){
 //errorClass:es la clase con la que va aparecer la etiqueta que mostrara el mensaje de validación por defecto viene con la clase "error-dinamico".
 //errorMensaje: mensaje que se mostrará de la validación el mensaje por defecto es "el campo es obligatorio"
 function validarCamposDinamicos(contenedor, nameElementoAValidar, tipoElemento,tipoSelector, errorClass,errorMensaje) {
-
     if (contenedor != undefined && nameElementoAValidar != undefined)
     {
         var formulario = $(contenedor);
-
         var stringElementoBuscar = "";
         if (tipoSelector != undefined)
         {
@@ -1129,7 +1148,6 @@ function validarCamposDinamicos(contenedor, nameElementoAValidar, tipoElemento,t
         {
             stringElementoBuscar = tipoElemento + "[name=" + nameElementoAValidar + "]";
         }
-
         var valido = true;
         var labelError="";
         if (errorClass === undefined && errorMensaje === undefined)
@@ -1145,7 +1163,6 @@ function validarCamposDinamicos(contenedor, nameElementoAValidar, tipoElemento,t
         {
             labelError = '<label class="error-dinamico">' + errorMensaje + '</label>';
         }
-
         formulario.find(stringElementoBuscar).each(function (ind,element) {
             var label = $(element).next("label");
             if ($(element).val().trim() === '') {
@@ -1159,13 +1176,11 @@ function validarCamposDinamicos(contenedor, nameElementoAValidar, tipoElemento,t
             {
                 label.remove();
             }
-        })
+        });
         return valido;
     } else {
         return false;
     }
-
-
 }
 
 //funcion para quitar las etiquetas de la validación dimamica
@@ -1224,5 +1239,4 @@ function ActualizarEventosFecha(){
     $.ajax({
         url: urlBase+'ActualizarEventosFecha',//primero el modulo/controlador/metodo que esta en el controlador
         type: 'POST'})
-
 }
