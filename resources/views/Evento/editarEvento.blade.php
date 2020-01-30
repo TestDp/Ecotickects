@@ -147,13 +147,13 @@
 							</div>
 						</div>
 						@if ($evento->esPago ==1)
-							<div id="divBoletas">
+							<div id="divBoletas" name="divBoletas">
 								<hr/>
 								<div class="panel-heading text-center"><h4>Lista de Precios</h4></div>
 								@foreach($evento->preciosBoletas as $precioBoleta)
 									<div class="row" id="PreciosBoletas" name="PreciosBoletas">
                                         <input id="idPrecioBoleta" name="idPrecioBoleta" type="hidden"  value="{{$precioBoleta->id}}"/>
-                                        <input id="PrecioBoletaPadre_Id" name="PrecioBoletaPadre_Id" type="hidden"  value="{{$precioBoleta->PrecioBoletaPadre_Id}}"/>
+                                        <input id="PrecioBoletaPadre_Id" name="PrecioBoletaPadre_Id" type="hidden"  value="{{$precioBoleta->idHijo}}"/>
 										<div class="col-md-12">
 											<div class="form-group" id="rowPrecio" name="rowPrecio">
 												<div class="input-group-addon" >
@@ -222,7 +222,7 @@
 							</div>
 						@else
                             @if(count($evento->preciosBoletas)>0)
-                                <div id="divBoletas" hidden>
+                                <div id="divBoletas" name="divBoletas" hidden>
                                     <hr/>
                                     <div class="panel-heading text-center"><h4>Lista de Precios</h4></div>
                                     @foreach($evento->preciosBoletas as $precioBoleta)
@@ -291,10 +291,9 @@
                                     @endforeach
                                 </div>
                             @else
-							<div id="divBoletas" hidden>
+							<div id="divBoletas" name="divBoletas" hidden>
 								<hr/>
 								<div class="panel-heading text-center"><h4>Lista de Precios</h4></div>
-
 								<div class="row" id="PreciosBoletas" name="PreciosBoletas">
                                     <input id="idPrecioBoleta" name="idPrecioBoleta" type="hidden" class="form-control" value="0"/>
 									<div class="col-md-12">

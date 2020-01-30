@@ -374,13 +374,22 @@ function validarCamposCrearEvento() {
         validarCamposLocalidad = validarCamposDinamicos($('#crearEvento'),'localidad','input','*','','*La localidad es obligatoria');
         validarCamposPrecioBoleta = validarCamposDinamicos($('#crearEvento'),'precio','input','*','','*El precio es obligatorio');
         validarCamposCantidad = validarCamposDinamicos($('#crearEvento'),'cantidad','input','*','','*La cantidad es obligatoria');
-        validarCamposCodigo = validarCamposDinamicos($('#crearEvento'),'Codigo','input','*','','*El código es obligatorio');
-        validarCamposPorcentaje = validarCamposDinamicos($('#crearEvento'),'Porcentaje','input','*','','*El porcentaje es obligatorio');
+
+
+        $("#divBoletas").find('input[name=boletaPromo]').each(function (ind, check) {
+            if ($(check).prop("checked")) {
+                var contenedor =  $(check).closest('div[name=rowPrecio]');
+                validarCamposCodigo = validarCamposDinamicos(contenedor,'Codigo','input','*','','*El código es obligatorio');
+                validarCamposPorcentaje = validarCamposDinamicos(contenedor,'Porcentaje','input','*','','*El porcentaje es obligatorio');
+            }
+        });
+
     }
     var validarCamposPreguntas = validarCamposDinamicos($('#crearEvento'),'TextoPregunta','input','*','','*La pregunta es obligatoria');
     var validarCamposRespuestas = validarCamposDinamicos($('#crearEvento'),'TextoRespuesta','input','*','','*La respuesta es obligatoria');
     if ($("#crearEvento").valid() && validarCamposLocalidad && validarCamposPrecioBoleta &&
-        validarCamposPreguntas && validarCamposRespuestas && validarCamposCantidad && validarCamposCodigo && validarCamposPorcentaje) {
+        validarCamposPreguntas && validarCamposRespuestas && validarCamposCantidad &&
+        validarCamposCodigo && validarCamposPorcentaje) {
         EditarNombrePreguntasYRespuetas();
         $("#crearEvento").submit();
     }

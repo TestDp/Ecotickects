@@ -22,13 +22,12 @@ class EventosServicio
 
     public function crearEvento($EdEvento)
     {
-            return $this->eventoRepor->crearEvento($EdEvento);
-
+        return $this->eventoRepor->crearEvento($EdEvento);
     }
+
     public function editarEvento($EdEvento)
     {
         return $this->eventoRepor->editarEvento($EdEvento);
-
     }
 
     public function obtenerBoletaPromo($idEvento, $codigo)
@@ -38,7 +37,7 @@ class EventosServicio
 
     public function obtenerEvento($idEvento)
     {
-      return  $this->eventoRepor->obtenerEvento($idEvento);
+        return  $this->eventoRepor->obtenerEvento($idEvento);
     }
 
     public function obtenerSede($idSede)
@@ -86,20 +85,14 @@ class EventosServicio
         return $this->eventoRepor->ActivarEsPublico($idEvento,$FlagEsActivo);
     }
 
-
-   // public function  ActualizarEventosFecha()
-   // public  function  ObtenerMisEventos($idUser)
-    //public function  ActualizarEventosFecha()
     public  function  ObtenerMisEventos($idUser)
     {
         return $this->eventoRepor->ObtenerMisEventos($idUser);
-        $this->eventoRepor->ActualizarEventosFecha();
     }
 
     public  function  ObtenerMisSedes($idUser)
     {
         return $this->eventoRepor->ObtenerMisSedes($idUser);
-
     }
 
     public function ListaDeEventosSede($idSede,$idTipo)

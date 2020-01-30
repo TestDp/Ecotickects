@@ -104,22 +104,18 @@ class EventosController extends Controller
             'respuestaProceso'=>$respuestaProceso));
 
     }
+
     /*Metodo que me retorna la lista de asistentes*/
     public function ObtenerListaAsistentes(Request $request,$idEvento)
     {
         $urlinfo= $request->getPathInfo();
         $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
         $request->user()->AutorizarUrlRecurso($urlinfo);
-
         $asistentes = $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento);
         $asistentesGuestList = $this -> asistenteServicio ->obtenerAsistentesXEventoGuestList($idEvento);
-
         $ListaAsistentes = array ('asistentes' => $asistentes);
         $ListaAsistentesGuestList = array ('asistentesGuestList' => $asistentesGuestList );
-
         return view('Evento/ListaAsistente', array('ListaAsistentes' => $ListaAsistentes,'ListaAsistentesGuestList' => $ListaAsistentesGuestList));
-
-
     }
 
     /*Metodo que me retorna la lista de asistentes Guest List*/
@@ -144,34 +140,21 @@ class EventosController extends Controller
 
     public function obtenerLiquidacion(Request $request,$idEvento)
     {
-       // $urlinfo= $request->getPathInfo();
-       // $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
-      //  $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
-        $evento=$this->eventoServicio->obtenerEvento($idEvento)->id;
         $ListaEtapas= array('Etapas' => $this -> eventoServicio ->obtenerLiquidacion($idEvento));
-        //return view('Evento/ListaAsistente',['ListaAsistentes' =>$ListaAsistentes]);
         return view('Evento/Liquidacion',['ListaEtapas' => $ListaEtapas,'idUser'=>$user->id]);
     }
 
     public function obtenerLiquidacionGrafica($idEvento)
     {
-
-        $user = Auth::user();
         $ListaEtapas= $this -> eventoServicio ->obtenerLiquidacion($idEvento);
-
         foreach ($ListaEtapas as $etapa){
             $arrayEtapa[]=$etapa->PrecioEtapa;
             $arrayCantidadBoletas[]=$etapa->CantidadBoletas;
-
         }
-
         $liquidacion = ['PrecioEtapas' => $arrayEtapa, 'CantidadBoletas' => $arrayCantidadBoletas];
         return response()->json($liquidacion);
-
     }
-
-
 
     public function ObtenerMisEventos(Request $request)
     {
@@ -189,7 +172,6 @@ class EventosController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $user = Auth::user();
         $idSede = Auth::user()->Sede->id;
         $eventos=[];
         if(Auth::user()->hasRole('SuperAdmin'))
@@ -230,6 +212,5 @@ class EventosController extends Controller
     {
         $this->eventoServicio->ActualizarEventosFecha();
     }
-
 
 }

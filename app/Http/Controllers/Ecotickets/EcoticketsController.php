@@ -39,20 +39,16 @@ class EcoticketsController extends Controller
     {
         return view('welcome');
     }
+
     public  function  ObtenerEventos()
     {
         $eventos = $this->eventoServicio->obtenerEventos();
         $rutaImagenes=env('RutaFlyerEventoWelcome');
-
         $ListaEventos= array('eventos' => $eventos,'rutaImagenes'=>$rutaImagenes);
-
         $eventosDestacados = $this->eventoServicio->obtenerEventosDestacados();
         $ListaEventosDestacados= array('eventosDestacados' => $eventosDestacados,'rutaImagenes'=>$rutaImagenes);
-
         $cupones = $this->eventoServicio->obtenerCupones();
         $ListaEcupones= array('cupones' => $cupones,'rutaImagenes'=>$rutaImagenes);
-
-
         return view('welcome',array('ListaEcupones' => $ListaEcupones,'ListaEventos' => $ListaEventos, 'ListaEventosDestacados' => $ListaEventosDestacados) );
     }
 
@@ -88,7 +84,6 @@ class EcoticketsController extends Controller
     {
         $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
         $evento =$this->eventoServicio->obtenerEvento($idEvento);
-        //$CantidadEsperada =$this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
         $CantidadEsperada =$evento->numeroAsistentes;
         if($CantidadRegistrados<$CantidadEsperada && $this->eventoServicio->obtenerEvento($idEvento)->EsPublico ==true){
             $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
@@ -99,10 +94,10 @@ class EcoticketsController extends Controller
             return view('cantidadSuperada');
         }
     }
+
     public function EventosApp($idUser)
     {
         $user = User::where("id","=",$idUser)->first();
-
         $idSede = $user->Sede->id;
         $eventos=[];
         if($user->hasRole('SuperAdmin'))
@@ -111,7 +106,6 @@ class EcoticketsController extends Controller
         }else{
             $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
         }
-
         return response()->json($eventos);
     }
 
@@ -138,7 +132,6 @@ class EcoticketsController extends Controller
     public function EventosAppXamarin($idUser)
     {
         $user = User::where("id","=",$idUser)->first();
-
         $idSede = $user->Sede->id;
         $eventos=[];
         if($user->hasRole('SuperAdmin'))
@@ -147,7 +140,6 @@ class EcoticketsController extends Controller
         }else{
             $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
         }
-
         return response()->json($eventos);
     }
 

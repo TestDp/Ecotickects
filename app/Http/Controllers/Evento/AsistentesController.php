@@ -45,19 +45,14 @@ class AsistentesController extends Controller
     /* Metodo para  registrar un asistente  cuando el evento es gratuito.**/
     public function registrarAsistente(Request $formRegistro)
     {
-
         $respuesta = $this->asistenteServicio->registrarAsistente($formRegistro);
         if ($respuesta == 'true') {
             $file = $formRegistro->imagen;
-			$ccUser = $formRegistro->Identificacion;
+            $ccUser = $formRegistro->Identificacion;
             $pin = $formRegistro->pinIngresar;
             if ($pin) {
                 $this->asistenteServicio->ActualizarPin($ccUser, $pin);
             }
-            //$nombre = $formRegistro->Identificacion . 'imagenQR.png';
-            //indicamos que queremos guardar un nuevo archivo en el disco local
-            //\Storage::disk('local')->put('/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre, file_get_contents($file));
-            //$qrImagen = storage_path('app') . '/QrDeEventos/' . $formRegistro->Evento_id . '/' . $nombre;
             $correoElectronico = $formRegistro->Email;
             $evento = $this->eventoServicio->obtenerEvento($formRegistro->Evento_id);
             $ElementosArray = array('evento' => $evento);
@@ -65,28 +60,28 @@ class AsistentesController extends Controller
             $nombreEvento = $evento->Nombre_Evento;
 
             //inicio prueba de concepto de envio de correos
-             /*   $transport = (new Swift_SmtpTransport('mail.facin.co', 26,'tls'))
-                    ->setUsername('info@facin.co')
-                    ->setPassword('_}LH&oQc4.K_')
-                ;
-                // Create the Mailer using your created Transport
-                $mailer = new Swift_Mailer($transport);
-                // Create a message
-                $message = (new Swift_Message('Wonderful Subject'))
-                    ->setFrom(['info@ecotickets.co' => 'Diego Patino'])
-                    ->setTo(['cristianmg13@hotmail.com' => 'A name'])
-                    ->setBody('este es un mensaje de prueba');
-                // Send the message
-                $result = $mailer->send($message);
-            ///fin prueba de concepto de envio de correos
+            /*   $transport = (new Swift_SmtpTransport('mail.facin.co', 26,'tls'))
+                   ->setUsername('info@facin.co')
+                   ->setPassword('_}LH&oQc4.K_')
+               ;
+               // Create the Mailer using your created Transport
+               $mailer = new Swift_Mailer($transport);
+               // Create a message
+               $message = (new Swift_Message('Wonderful Subject'))
+                   ->setFrom(['info@ecotickets.co' => 'Diego Patino'])
+                   ->setTo(['cristianmg13@hotmail.com' => 'A name'])
+                   ->setBody('este es un mensaje de prueba');
+               // Send the message
+               $result = $mailer->send($message);
+           ///fin prueba de concepto de envio de correos
 
-			*/
+           */
             Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($evento, $ccUser, $correoElectronico, $correoSaliente, $nombreEvento) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
-				$qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
+                $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
                 $ElementosArray = array('evento' => $evento, 'qr' => $qr);
                 //preguntamos si el directorio existe
                 if (!file_exists(storage_path('app') . '/cortesias/'.$evento->id)) {
@@ -95,7 +90,6 @@ class AsistentesController extends Controller
                 \PDF::loadView('cortesia', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/cortesias/'.$evento->id.'/ECOTICKET' . $ccUser. '.pdf');
                 $qrImagen = storage_path('app') . '/cortesias/'.$evento->id.'/ECOTICKET' . $ccUser . '.pdf';
                 $msj->attach($qrImagen);
-                //$msj->attach($qrImagen);
             });
             return view("respuesta", ['ElementosArray' => $ElementosArray]);
         } else {
@@ -151,14 +145,11 @@ class AsistentesController extends Controller
         $respuesta = $this->asistenteServicio->registrarPromotor($formRegistro);
         if ($respuesta == 'true') {
             $correoElectronico = $formRegistro->Email;
-            //
             $sede = $this->eventoServicio->obtenerSede($formRegistro->Sede_id);
             $ElementosArray = array('sede' => $sede);
-            //
             $correoSaliente = 'info@loversfestival.com';
             $nombreEvento = $sede->Nombre;
             $ccUser = $formRegistro->Identificacion;
-
             Mail::send('Email/correoPromotor', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$sede,$ccUser) {
                 $msj->from($correoSaliente, 'Certificación Promotor ' . $nombreEvento);
                 $msj->subject('Importante - Certificado Promotor');
@@ -216,7 +207,6 @@ class AsistentesController extends Controller
             $msj->attach($qrImagen);
         });
         return redirect('/home');
-
     }
 
     /**Metodo de respuesta de la plataforma de pagos payu para el envio de  la  boleta al correo electronico, el  llamado
@@ -389,18 +379,14 @@ class AsistentesController extends Controller
         $cc = $formConfirma->Identificacion;
         $idEvento = $formConfirma->idEvento;
         $confirmaAsistencia = $formConfirma->confirmarAsistencia;
-
         $usuario = $this->asistenteServicio->ObtenerInformacionDelAsistenteXEvento($idEvento, $cc);
-
         if ($usuario != NULL) {
             $respuestaConfirmacion = $this->asistenteServicio->ConfirmarAsistencia($idEvento, $usuario->id, $confirmaAsistencia);
             $informacionUsuario = array('usuario' => $usuario, 'respuestaConfirmacion' => $respuestaConfirmacion, 'Evento' => $this->eventoServicio->obtenerEvento($idEvento));
-
             return view('Evento/RespuestaConfirmarAsistencia', $informacionUsuario);
         }
         $informacionUsuario = array('usuario' => $cc, 'respuestaConfirmacion' => 'No esta Registrada en:', 'Evento' => $this->eventoServicio->obtenerEvento($idEvento));
         return view('Evento/RespuestaConfirmarAsistenciaNoUser', $informacionUsuario);
-
     }
 
     /*Metodo que me retorna el formulario para la lectura del qr con el evento al que se le va a leer el qr**/
@@ -422,7 +408,6 @@ class AsistentesController extends Controller
         return $this->asistenteServicio->DesactivarQRAsistenteXEvento($idEvento,$idAsistente);
     }
 
-
     //metodo que registrar un usuario al evento desde el administrador
     public function obtenerFormularioUsuario(Request $request)
     {
@@ -433,13 +418,12 @@ class AsistentesController extends Controller
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
         return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray]);
-
     }
 
     public function obtenerFormularioPromotor(Request $request)
     {
         $urlinfo= $request->getPathInfo();
-       // $request->user()->AutorizarUrlRecurso($urlinfo);
+        // $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
         $sedes = $this->eventoServicio->ObtenerMisSedes($user->id);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
