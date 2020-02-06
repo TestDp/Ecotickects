@@ -9,16 +9,19 @@
 namespace Eco\Negocio\Logica;
 
 use Eco\Datos\Repositorio\AsistenteRepositorio;
+use Eco\Datos\Repositorio\EventosRepositorio;
 use Eco\Negocio\EntidadesDominio\EDInfopagos;
 
 
 class AsistenteServicio
 {
     protected $asistenteRepositorio;
+    protected $eventoRepositorio;
 
-    public function __construct(AsistenteRepositorio $asistenteRepositorio)
+    public function __construct(AsistenteRepositorio $asistenteRepositorio,EventosRepositorio $eventoRepositorio)
     {
         $this->asistenteRepositorio = $asistenteRepositorio;
+        $this->eventoRepositorio = $eventoRepositorio;
     }
 
     public function registrarAsistente($asistente)
@@ -30,8 +33,6 @@ class AsistenteServicio
             $invitacion = 1;
             return $this->asistenteRepositorio->registrarAsistente($asistente, $invitacion);
         }
-
-
         return $this->asistenteRepositorio->registrarAsistente($asistente, $invitacion);
     }
 
@@ -70,6 +71,7 @@ class AsistenteServicio
         if ($respuesta['respuesta'])
         {
             $asistentesEventosPines=$this->asistenteRepositorio->obtenerPinesBoletas($respuesta['infoPago']->id);
+            $asistentesEventosPines->precioBoleta = $this->eventoRepositorio->obtenerPrecioBoleta($respuesta['infoPago']->PrecioBoleta_id);
             return ['respuesta' => true, 'ListaAsistesEventoPines' => $asistentesEventosPines];
         }
         return $respuesta;
@@ -94,7 +96,6 @@ class AsistenteServicio
             $error = $e->getMessage();
             return $error;
         }
-
     }
 
     public function transformaValor($valor){

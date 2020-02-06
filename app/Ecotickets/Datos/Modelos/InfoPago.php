@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class InfoPago extends Model
 {
     protected $table = 'Tbl_InfoPagos';
-    protected $fillable =['NumeroFactura','CantidadBoletas','PrecioTotal','TotalIva','Ganancia','Fecha_Compra','AsistenteXEvento_id','EstadosTransaccion_id','MediosDePago_id'];
+    protected $fillable =['NumeroFactura','CantidadBoletas','PrecioTotal','TotalIva','Ganancia',
+        'Fecha_Compra','AsistenteXEvento_id','EstadosTransaccion_id','MediosDePago_id','PrecioBoleta_id'];
 
     public function asistenteXevento(){
         return $this->belongsTo('AsistenteXEvento');

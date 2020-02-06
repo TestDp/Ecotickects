@@ -260,6 +260,11 @@ class EventosRepositorio
             ->where('esCodigoPromo','=',1)
             ->where('Codigo','=',$codigo)->get();
     }
+
+    public function  obtenerPrecioBoleta($idPrecioBoleta){
+        return PrecioBoleta::find($idPrecioBoleta)->get();
+    }
+
     public function obtenerEvento($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
@@ -286,7 +291,6 @@ class EventosRepositorio
     public function obtenerSede($idSede)
     {
         $sede = Sede::where('id','=',$idSede)->get()->first();
-
         return $sede;
     }
 
@@ -349,7 +353,6 @@ class EventosRepositorio
     {
         $fechaActual = new DateTime('today');
         $fechaActual->modify('-1 day');
-
         $cupones = Evento::where('Tipo_Evento','=','Cupon')
             ->where('EsPublico','=',true)
             ->where('Fecha_Evento','>',$fechaActual)->get();
@@ -363,7 +366,6 @@ class EventosRepositorio
             $timestamp = strtotime($cupon->Fecha_Evento);
             $cupon->Fecha_Evento = date(" d/m/y  h.i A", $timestamp);
             $cupon->Plazo = $diferencia->days;
-
         }
         return $cupones;
     }
@@ -443,9 +445,7 @@ class EventosRepositorio
 
     public  function  ObtenerMisSedes($idUser){
         $usuario = User::where("id","=",$idUser)->get()->first();
-
         $sedes = Sede::where("id","=",$usuario->Sede_id)->get();
-
         return $sedes;
     }
 
@@ -454,7 +454,6 @@ class EventosRepositorio
     {
         $fechaActual = new DateTime('today');
         $fechaActual->modify('-1 day');
-
         $eventos = DB::table('Tbl_Eventos')
             ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
             ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')

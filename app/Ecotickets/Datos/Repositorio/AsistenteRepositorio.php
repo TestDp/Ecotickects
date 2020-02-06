@@ -347,7 +347,8 @@ class AsistenteRepositorio
 
     private function crearInfoPago($RequestInFoPago)
     {
-        $precioTotal = (PrecioBoleta::where('id', '=', $RequestInFoPago->localidad)->first()->precio) * $RequestInFoPago->CantidadTickets;
+        $precioBoleta= PrecioBoleta::where('id', '=', $RequestInFoPago->localidad)->first();
+        $precioTotal = $precioBoleta->precio * $RequestInFoPago->CantidadTickets;
         $infopago = new InfoPago();
         $infopago->NumeroFactura = 1;//numero temporal
         $infopago->CantidadBoletas = $RequestInFoPago->CantidadTickets;
@@ -357,6 +358,7 @@ class AsistenteRepositorio
         $infopago->Fecha_Compra = new \DateTime();
         $infopago->EstadosTransaccion_id = 1;
         $infopago->MediosDePago_id = 1;
+        $infopago->PrecioBoleta_id=$precioBoleta->id;
         return $infopago;
     }
 
