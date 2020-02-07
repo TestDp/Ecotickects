@@ -160,7 +160,7 @@ class EventosRepositorio
                         $PrecioBoleta ->save();
                         if($EdEvento->esPromo[$indPrecio] == 1 && $EdEvento->PrecioBoletaPadre_Id[$indPrecio] !=null){
                             $precioBoletaPromo = PrecioBoleta::find($EdEvento->PrecioBoletaPadre_Id[$indPrecio]);
-                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio].'%';
                             $precioBoletaPromo ->precio = $this->CalcularPrecioBoletaPromo($EdEvento->precio[$indPrecio],$EdEvento->Porcentaje[$indPrecio]);
                             $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
                             $precioBoletaPromo ->Evento_id = $evento ->id;
@@ -172,7 +172,7 @@ class EventosRepositorio
                             $precioBoletaPromo ->save();
                         }else if($EdEvento->esPromo[$indPrecio] == 0 && $EdEvento->PrecioBoletaPadre_Id[$indPrecio] !=null){
                             $precioBoletaPromo = PrecioBoleta::find($EdEvento->PrecioBoletaPadre_Id[$indPrecio]);
-                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio].'%';
                             $precioBoletaPromo ->precio = $this->CalcularPrecioBoletaPromo($EdEvento->precio[$indPrecio],$EdEvento->Porcentaje[$indPrecio]);
                             $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
                             $precioBoletaPromo ->Evento_id = $evento ->id;
@@ -185,7 +185,7 @@ class EventosRepositorio
                         }
                         else if($EdEvento->esPromo[$indPrecio]==1) {
                             $precioBoletaPromo = new PrecioBoleta();
-                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio];
+                            $precioBoletaPromo ->localidad = $localidad.'-Promo-'.$EdEvento->Porcentaje[$indPrecio].'%';
                             $precioBoletaPromo ->precio = $this-> CalcularPrecioBoletaPromo($EdEvento->precio[$indPrecio],$EdEvento->Porcentaje[$indPrecio]);
                             $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
                             $precioBoletaPromo ->Evento_id = $evento ->id;

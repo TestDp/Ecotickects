@@ -55,9 +55,8 @@
 	<input style="margin-left: 45%;" type="button" onclick="activarQRUsuario()" value="Ingresar" class="btn btn-blue ripple trial-button">
 
 
-
-
 	<script src="{{ asset('js/Evento/eventos.js') }}"></script>
+	<script src="{{ asset('js/Transversal/generales.js') }}"></script>
 
 
 @endsection

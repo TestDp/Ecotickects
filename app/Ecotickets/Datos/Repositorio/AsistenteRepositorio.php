@@ -18,7 +18,9 @@ use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Eco\Datos\Modelos\CodigoAsistente;
 use Faker\Provider\DateTime;
+use stdClass;
 use Illuminate\Support\Facades\DB;
+use Eco\Datos\DTO\LecturaQRDTO;
 
 
 class AsistenteRepositorio
@@ -133,7 +135,7 @@ class AsistenteRepositorio
             ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id, "0" as CantidadBoletas, "0" as PrecioTotal, "Gratis" as TipoBoleta' ))
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad, "0" as CantidadBoletas, "0" as PrecioTotal, "Gratis" as TipoBoleta' ))
             ->get();
         return $listaAsistentesEventos;
     }
@@ -153,20 +155,17 @@ class AsistenteRepositorio
 
     public function obtenerAsistentesXEventoPago($idEvento)
     {
-        $arrayAsistentes = array();
+
         $asistentesPago = DB::table('tbl_asistentes')
             ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id, Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta' ))
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad, Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta' ))
             ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->get();
-         foreach ($asistentesPago as $asistenteXEventoPago) {
-            $asistenteXEventoPago->ciudad = Ciudad::where('id', '=', $asistenteXEventoPago->Ciudad_id)->get()->first();
-            $arrayAsistentes[] = $asistenteXEventoPago;
-        }
-        return $arrayAsistentes;
+
+        return $asistentesPago;
     }
 
     public function validarPIN($idPin)
@@ -242,14 +241,14 @@ class AsistenteRepositorio
             ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
             ->whereRaw('Tbl_PreciosBoletas.precio = (Tbl_InfoPagos.PrecioTotal / Tbl_InfoPagos.CantidadBoletas)')
-            ->select(\DB::raw('tbl_asistentes.id, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
+            ->select(\DB::raw('tbl_asistentes.id, tbl_asistentesXeventos.esActivo, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
         $asistenteinvitado = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
             ->where('tbl_asistentesXeventos.ComentarioEvento', '=', "BoletaGratis123")
-            ->select(\DB::raw('tbl_asistentes.id, "0", "Cortesia", tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id' ))
+            ->select(\DB::raw('tbl_asistentes.id,tbl_asistentesXeventos.esActivo, "0", "Cortesia", tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
         //$asistente = $asistentepago->merge($asistenteinvitado);
@@ -428,13 +427,26 @@ class AsistenteRepositorio
 
     public function ActivarPinPago($idEvento, $idPin)
     {
-        $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('PinBoleta', '=', $idPin)->get()->first();
+       $result =  new LecturaQRDTO();
+        $asistenteEventoCompleto = $this->ObtenerAsistentePago($idEvento, $idPin);
+        $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)
+            ->where('PinBoleta', '=', $idPin)
+            ->get()->first();
         if ($asistenteEvento->esActivo == false) {
             $asistenteEvento->esActivo = true;
             $asistenteEvento->save();
-            return 'Boleta Activada con exito';
+            $result->Mensaje = 'Boleta Activada con exito';
+            $result->Activa =  true;
+            $result->Localidad = $asistenteEventoCompleto->localidad;
+            $result->Identificacion = $asistenteEventoCompleto->Identificacion;
+            $result->Nombre = $asistenteEventoCompleto->Nombres;
+            return $result;
         } else {
-            return 'La boleta ya fue ACTIVADA';
+
+            $result->Mensaje = 'La boleta ya fue ACTIVADA';
+            $result->Activa =  false;
+            $result->Localidad = $asistenteEventoCompleto->localidad;
+            return $result;
         }
         return 'Error activando la boleta vuelva a intentarlo';
     }

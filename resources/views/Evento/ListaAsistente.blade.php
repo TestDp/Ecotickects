@@ -69,7 +69,7 @@
                                             {{$asistente->Email}}
                                         </td>
                                         <td>
-                                            {{$asistente->ciudad->Nombre_Ciudad}}
+                                            {{$asistente->Nombre_Ciudad}}
                                         </td>
                                         <td>
                                             {{$asistente->CantidadBoletas}}

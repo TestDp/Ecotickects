@@ -398,7 +398,8 @@ class AsistentesController extends Controller
     /*Metodo para  activar el PIN  de la boleta paga, recibe  como parametros el id del evento y PIN de la boleta**/
     public function ActivarPinPago($idEvento, $idPin)
     {
-        return $this->asistenteServicio->ActivarPinPago($idEvento, $idPin);
+       // return $this->asistenteServicio->ActivarPinPago($idEvento, $idPin);
+        return response()->json($this->asistenteServicio->ActivarPinPago($idEvento, $idPin));
     }
 
     /*Metodo para  Desactivar el qr del asistente al evento, recibe  como parametros el id del evento y el id  del asistente
