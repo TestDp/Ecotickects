@@ -368,10 +368,11 @@ class AsistentesController extends Controller
         if ($usuario != null) {
             $respuestaActivacion = $this->asistenteServicio->ActivarQRAsistenteXEvento($idEvento, $usuario->id, $cc);
         } else {
-            $respuestaActivacion = 'USUARIO NO REGISTRADO';
+            //$respuestaActivacion = 'USUARIO NO REGISTRADO';
+            $respuestaActivacion = $this->asistenteServicio->ActivarPinPago($idEvento, $cc);
         }
-        $informacionUsuario = ['usuario' => $usuario, 'respuestaActivacion' => $respuestaActivacion];
-        return response()->json($informacionUsuario);
+        //$informacionUsuario = ['usuario' => $usuario, 'respuestaActivacion' => $respuestaActivacion];
+        return response()->json($respuestaActivacion);
     }
 
     public function ConfirmarAsistente(Request $formConfirma)

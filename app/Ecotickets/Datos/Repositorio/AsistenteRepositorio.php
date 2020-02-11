@@ -293,30 +293,64 @@ class AsistenteRepositorio
 
     public function ActivarQRAsistenteXEvento($idEvento, $idAsistente)
     {
+        $result =  new LecturaQRDTO();
+        $asistente = Asistente::where('id','=',$idAsistente)->get()->first();
         $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)->get()->first();
-        if ($asistenteEvento->esActivo == false) {
-            $asistenteEvento->esActivo = true;
-            $asistenteEvento->save();
-            return 'Usuario ingresado con exito';
-        } else {
-            return 'El Usuario YA INGRESO';
+        if ($asistenteEvento) {
+            if ($asistenteEvento->esActivo == false) {
+                $asistenteEvento->esActivo = true;
+                $asistenteEvento->save();
+                $result->Mensaje = 'Boleta Activada con exito';
+                $result->Activa = true;
+                $result->Localidad = 'GENERAL';
+                $result->Identificacion = $asistente->Identificacion;
+                $result->Nombre = $asistente->Nombres;
+                return $result;
+            } else {
+                $result->Mensaje = 'La boleta ya fue ACTIVADA';
+                $result->Activa = false;
+                $result->Localidad = 'GENERAL';
+                $result->Identificacion = $asistente->Identificacion;
+                $result->Nombre = $asistente->Nombres;
+                return $result;
+            }
         }
-        return 'Error ingresando el usuario';
+        $result->Mensaje = 'Error activando la boleta PIN INVALIDO';
+        $result->Activa = false;
+        return $result;
     }
 
     public function ActivarQRAsistenteXEventoPago($idEvento, $idAsistente, $cc)
     {
+
+        $result =  new LecturaQRDTO();
+        $asistenteEventoCompleto = $this->ObtenerAsistentePago($idEvento, $cc);
         $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)
-            ->where('Asistente_id', '=', $idAsistente)
-            ->where('PinBoleta', '=', $cc)->get()->first();
-        if ($asistenteEvento->esActivo == false) {
-            $asistenteEvento->esActivo = true;
-            $asistenteEvento->save();
-            return 'Usuario ingresado con exito';
-        } else {
-            return 'El Usuario YA INGRESO';
+            ->where('PinBoleta', '=', $cc)
+            ->get()->first();
+        if ($asistenteEvento) {
+            if ($asistenteEvento->esActivo == false) {
+                $asistenteEvento->esActivo = true;
+                $asistenteEvento->save();
+                $result->Mensaje = 'Boleta Activada con exito';
+                $result->Activa = true;
+                $result->Localidad = $asistenteEventoCompleto->localidad;
+                $result->Identificacion = $asistenteEventoCompleto->Identificacion;
+                $result->Nombre = $asistenteEventoCompleto->Nombres;
+                return $result;
+            } else {
+
+                $result->Mensaje = 'La boleta ya fue ACTIVADA';
+                $result->Activa = false;
+                $result->Localidad = $asistenteEventoCompleto->localidad;
+                return $result;
+            }
         }
-        return 'Error ingresando el usuario';
+        $result->Mensaje = 'Error activando la boleta PIN INVALIDO';
+        $result->Activa = false;
+        return $result;
+
+
     }
 
     public function AsistentesActivos($idEvento)
@@ -451,6 +485,7 @@ class AsistenteRepositorio
             }
         }
         $result->Mensaje = 'Error activando la boleta PIN INVALIDO';
+        $result->Activa = false;
         return $result;
     }
 
