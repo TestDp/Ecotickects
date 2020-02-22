@@ -424,8 +424,13 @@ class AsistentesController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
+        $idSede = Auth::user()->Sede->id;
+        $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+
+        /*$urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
-        $eventos = $this->eventoServicio->ObtenerMisEventos($user->id);
+        $eventos = $this->eventoServicio->ObtenerMisEventos($user->id);*/
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
         return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray]);

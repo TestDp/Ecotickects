@@ -297,10 +297,16 @@ class AsistenteRepositorio
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
+            ->where('Tbl_InfoPagos.created_at', '>=', 'Tbl_PreciosBoletas.created_at')
+            ->where('Tbl_InfoPagos.created_at', '<', 'Tbl_PreciosBoletas.updated_at')
             ->whereRaw('Tbl_PreciosBoletas.precio = (Tbl_InfoPagos.PrecioTotal / Tbl_InfoPagos.CantidadBoletas)')
+           // ->whereRaw('Tbl_PreciosBoletas.precio = (Tbl_InfoPagos.PrecioTotal / Tbl_InfoPagos.CantidadBoletas) and Tbl_InfoPagos.created_at >= Tbl_PreciosBoletas.created_at and
+           // Tbl_InfoPagos.created_at < Tbl_PreciosBoletas.updated_at')
             ->select(\DB::raw('tbl_asistentes.id, tbl_asistentesXeventos.esActivo, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
+
+
         $asistenteinvitado = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
