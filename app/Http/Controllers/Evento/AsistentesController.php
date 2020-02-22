@@ -128,7 +128,7 @@ class AsistentesController extends Controller
                 $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $ccUser . '.pdf';
                 $msj->attach($qrImagen);
             });
-            return redirect("FormularioUsuario")->with('status', true);;
+            return redirect("FormularioUsuario")->with('status', true);
         } else {
             if ($respuesta == '2') {
                 $ccUser = $formRegistro->Identificacion;
@@ -175,6 +175,14 @@ class AsistentesController extends Controller
             }
         }
     }
+
+
+    public function EnviarBoletas(Request $formRegistro)
+    {
+        return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
+
+    }
+
 
     /*Metodo cuando se esta registrando un asistente que esta comprando una boleta.**/
     public function registrarAsistentePagoPost(Request $formRegistro)
@@ -230,11 +238,12 @@ class AsistentesController extends Controller
                 $this->asistenteServicio->ActualizarPinBusquedaCorreo($formRegistro->email_buyer);
                 $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta, $estadoVenta, $medioPago);
                 $evento = $this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
+                $localidad = $listaAsistentesXEventosPines['localidad'];
                 $ElementosArray = array('evento' => $evento);
                 $correoSaliente = $evento->CorreoEnviarInvitacion;//PONER EL CORREO DE MANERA GENERAL
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
-                Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento) {
+                Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento,$localidad) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                     $msj->subject('Importante - Aquí esta tu pase de acceso');
                     $msj->to($correoElectronico);
@@ -244,8 +253,8 @@ class AsistentesController extends Controller
                         mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
                     }
                     foreach ($pinesImagenes as $pin) {
-                        $qr = base64_encode(\QrCode::format('png')->merge('../../pruebas.ecotickets.co/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
-                        $ElementosArray = array('evento' => $evento, 'qr' => $qr);
+                        $qr = base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
+                        $ElementosArray = array('evento' => $evento, 'qr' => $qr,'localidad'=>$localidad);
                         \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/ECOTICKET' . $pin->id . '.pdf');
                         $qrImagen = storage_path('app') . '/boletas/ECOTICKET' . $pin->id . '.pdf';
                         $msj->attach($qrImagen);

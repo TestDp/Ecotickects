@@ -8,15 +8,17 @@
 
 namespace Eco\Datos\Repositorio;
 
-
-
 use Ecotickets\User;
 use Illuminate\Support\Facades\DB;
 
 class UsuarioRepositorio
 {
-
-    public  function  ObtenerListaUsuarios($idEmpresa,$idUsuario)
+    public  function  ObtenerListaUsuariosSuperAdmin()
+    {
+        $users = User::all();
+        return $users;
+    }
+    public  function  ObtenerListaUsuariosEmpresa($idEmpresa,$idUsuario)
     {
         $users = DB::table('users')
             ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
@@ -30,7 +32,6 @@ class UsuarioRepositorio
 
     public  function  ObtenerUsuario($idUsuario)
     {
-
         return User::where('id', '=', $idUsuario)->get()->first();
 
     }

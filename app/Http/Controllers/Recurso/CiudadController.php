@@ -30,7 +30,8 @@ class CiudadController extends Controller
 
     public function obtenerListaCiudades(Request $request)
     {
-        $request->user()->authorizeRoles(['admin']);
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $ciudades = $this->ciudadServicio->obtenerListaCiudades();
         return view('Recurso/ListaCiudades',['listaCiudades' =>$ciudades]);
     }

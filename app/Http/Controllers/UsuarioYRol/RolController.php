@@ -88,7 +88,7 @@ class RolController extends Controller
         if($request->user()->hasRole("SuperAdmin")){
             $roles = $this->rolServicio->ObtenerRolesSupeAdmin($idEmpreesa);
         }else{
-            $roles = $this->rolServicio->ObtenerListaRoles($idEmpreesa);
+            $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario($request->user()->id);
         }
         $view = View::make('Rol/listaRoles')->with('listRoles',$roles);
         if($request->ajax()){

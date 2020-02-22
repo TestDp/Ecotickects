@@ -66,6 +66,8 @@ Auth::routes();
 
     Route::get('ValidarCodigoPromo/{idEvento}/{CodigoPromocional}',['uses' =>'Ecotickets\EcoticketsController@obtenerBoletaPromo']);
 
+    Route::get('probar',['uses' =>'Evento\AsistentesController@RespuestaPagos']); /**LINEA PARA BORRAR*/
+
 // FIN DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
@@ -273,7 +275,15 @@ Route::get('roles', 'UsuarioYRol\RolController@ObtenerRoles')->name('roles');//O
 
 //CONTROLADOR USUARIOS
 Route::get('crearUsuario', 'UsuarioYRol\UsuarioController@CrearUsuarioEmpresa')->name('crearUsuario');//cargar la vista para crear un usuario
-Route::get('editarUsuario/{idUsuario}','UsuarioYRol\UsuarioController@EditarUsuarioEmpresa')->name('editarUsuario');//Cargar la vista para editar un usuario
+Route::get('FormularioEditarUsuario/{idUsuario}','UsuarioYRol\UsuarioController@EditarUsuarioEmpresa')->name('FormularioEditarUsuario');//Cargar la vista para editar un usuario
 Route::post('guardarUsuario', 'UsuarioYRol\UsuarioController@GuardarUsuarioEmpresa')->name('guardarUsuario');//Guardar la informacion del usuario
+Route::post('EditarUsuario', 'UsuarioYRol\UsuarioController@EditarUsuario')->name('EditarUsuario');
+Route::post('CambiarContrasena', 'UsuarioYRol\UsuarioController@CambiarContrasenaUsuario')->name('CambiarContrasena');
 Route::get('usuarios', 'UsuarioYRol\UsuarioController@ObtenerUsuarios')->name('usuarios');//Obtiene la lista de usuarios
 Route::get('/register/verify/{code}', 'UsuarioYRol\UsuarioController@verifarCorreo'); //verificar correo electronico
+
+//CONTROLADOR SEDE
+Route::get('sedes', 'MEmpresa\SedeController@ObtenerSedes')->name('sedes');//Obtiene la lista de sedes
+Route::get('crearSede', 'MEmpresa\SedeController@CrearSede')->name('crearSede');//cargar la vista para crear una sede
+Route::get('editarSede/{idSede}', 'MEmpresa\SedeController@EditarSede')->name('editarSede');//cargar la vista para editar una sede
+Route::post('guardarSede', 'MEmpresa\SedeController@GuardarSede')->name('guardarSede');//Guardar la informacion de la sede

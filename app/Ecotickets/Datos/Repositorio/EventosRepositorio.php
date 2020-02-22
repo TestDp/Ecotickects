@@ -114,6 +114,7 @@ class EventosRepositorio
             $evento->CorreoEnviarInvitacion = $EdEvento->CorreoEnviarInvitacion;
             $evento->CodigoPulep = $EdEvento->CodigoPulep;
             $evento->esPago = $EdEvento->esPago;
+            $evento->esActivo = $EdEvento->esActivo;
             $evento->informacionEvento = $EdEvento->informacionEvento;
             $evento->Fecha_Evento=new DateTime($EdEvento->Fecha_Evento . $EdEvento->Hora_Evento);
             $evento->Fecha_Inicial_Registro=new DateTime($EdEvento->Fecha_Inicial_Registro . $EdEvento->Hora_Inicial_Registro);
@@ -262,7 +263,7 @@ class EventosRepositorio
     }
 
     public function  obtenerPrecioBoleta($idPrecioBoleta){
-        return PrecioBoleta::find($idPrecioBoleta)->get();
+        return PrecioBoleta::where('id','=',$idPrecioBoleta)->get()->first();
     }
 
     public function obtenerEvento($idEvento)
@@ -312,6 +313,7 @@ class EventosRepositorio
         $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
         return $evento ;
     }
+
     public  function  ObtenerEventos()
     {
         $fechaActual = new DateTime('today');
@@ -449,6 +451,57 @@ class EventosRepositorio
         return $sedes;
     }
 
+    //retorna una lista de eventos y cupones para el rol de super admin
+    public function ListaDeEventosSuperAdmin($idTipo)
+    {
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+        $eventos = DB::table('Tbl_Eventos')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'Tbl_Eventos.Ciudad_id')
+            ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
+            ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
+            ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
+            ->where('Tbl_Eventos.EsPublico', '=', 1)
+            ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
+            ->orderBy('Fecha_Evento', 'asc')->get();
+        return $eventos;
+    }
+
+    //retorna una lista de eventos y cupones filtrados por sede  filtrados por Empresa  y por cupon o evento
+    public function ListaDeEventosEmpresa($idEmpresa,$idTipo)
+    {
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+        $eventos = DB::table('Tbl_Eventos')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'Tbl_Eventos.Ciudad_id')
+            ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
+            ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
+            ->where('Tbl_Sedes.Empresa_id', '=', $idEmpresa)
+            ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
+            ->where('Tbl_Eventos.EsPublico', '=', 1)
+            ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
+            ->orderBy('Fecha_Evento', 'asc')->get();
+        return $eventos;
+    }
+
+    //retorna una lista de eventos y cupones filtrados por sede  filtrados por empresa  y por cupon o evento
+    public function ListaDeEventosPasadosEmpresa($idEmpresa,$idTipo)
+    {
+        $eventos = DB::table('Tbl_Eventos')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'Tbl_Eventos.Ciudad_id')
+            ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
+            ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
+            ->where('Tbl_Sedes.Empresa_id', '=', $idEmpresa)
+            ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
+            ->where('Tbl_Eventos.EsPublico', '=', 0)
+            ->orderBy('Fecha_Evento', 'desc')->get();
+        return $eventos;
+    }
+
     //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
     public function ListaDeEventosSede($idSede,$idTipo)
     {
@@ -483,6 +536,7 @@ class EventosRepositorio
             ->orderBy('Fecha_Evento', 'desc')->get();
         return $eventos;
     }
+
 
     //retorna una lista de etapas y la liquidacion neta restando el porcentajes y commisiones
     public function obtenerLiquidacion($idEvento)
@@ -531,11 +585,6 @@ class EventosRepositorio
     public function  ActualizarEventosFecha()
     {
         DB::statement("CALL SpActualizarEventos()");
-        $actualiza = 1;
-
-       // Update `Tbl_Eventos`
-        //set EsPublico = 0
-        // WHERE Fecha_Evento < now()
     }
 
 

@@ -19,7 +19,8 @@ class DepartamentoController extends Controller
 
     public  function ObtenerDepartamento(Request $request)
     {
-        $request->user()->authorizeRoles(['admin']);
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();
         return view('Recurso/ListaDepartamentos',['listaDepartamentos' =>$departamentos]);
     }

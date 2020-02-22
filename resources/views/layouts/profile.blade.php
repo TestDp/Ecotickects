@@ -129,6 +129,9 @@
                                 @if(Auth::user()->buscarRecurso('Roles'))
                                     <li><a href="{{ url('roles') }}">Roles</a></li>
                                 @endif
+                                @if(Auth::user()->buscarRecurso('Sedes'))
+                                    <li> <a href="{{ url('sedes') }}" >Sedes</a></li>
+                                @endif
                                 @if(Auth::user()->buscarRecurso('Departamentos'))
                                     <li><a href="{{ url('departamentos') }}">Departamentos</a></li>
                                 @endif
@@ -144,7 +147,6 @@
                                      document.getElementById('logout-form').submit();">
                             <img src="{{ asset('img/cerrar.png') }}"><b> Cerrar Sesión</b>
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>

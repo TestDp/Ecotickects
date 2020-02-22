@@ -36,6 +36,11 @@ class AsistenteServicio
         return $this->asistenteRepositorio->registrarAsistente($asistente, $invitacion);
     }
 
+    public function EnviarBoletas($asistente)
+    {
+        return $this->asistenteRepositorio->registrarAsistentePago($asistente);
+
+    }
     public function registrarAsistentePago($asistente)
     {
         $respuesta = $this->asistenteRepositorio->registrarAsistentePago($asistente);
@@ -71,8 +76,8 @@ class AsistenteServicio
         if ($respuesta['respuesta'])
         {
             $asistentesEventosPines=$this->asistenteRepositorio->obtenerPinesBoletas($respuesta['infoPago']->id);
-            $asistentesEventosPines->precioBoleta = $this->eventoRepositorio->obtenerPrecioBoleta($respuesta['infoPago']->PrecioBoleta_id);
-            return ['respuesta' => true, 'ListaAsistesEventoPines' => $asistentesEventosPines];
+            $localidad = $this->eventoRepositorio->obtenerPrecioBoleta($respuesta['infoPago']->PrecioBoleta_id);
+            return ['respuesta' => true, 'ListaAsistesEventoPines' => $asistentesEventosPines,'localidad'=>$localidad];
         }
         return $respuesta;
     }

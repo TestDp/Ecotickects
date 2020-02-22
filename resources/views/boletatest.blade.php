@@ -130,6 +130,8 @@ body {
 			<div class="bandname -bold">{{ $ElementosArray["evento"] ->Nombre_Evento }}</div>
 			<div class="tourname">LUGAR: {{ $ElementosArray["evento"] ->Lugar_Evento }}</div>
 			<div class="tourname">FECHA: {{ $ElementosArray["evento"] ->Fecha_Evento }}</div>
+			<div class="tourname">LOCALIDAD: {{ $ElementosArray["localidad"] ->localidad }}</div>
+			<div class="tourname">PRECIO: {{ $ElementosArray["localidad"] ->precio }}</div>
 			<div class="tourname">
 			  <small>Presenta este código <b>en tu SMARTPHONE</b>.</small>
 			  <div>	

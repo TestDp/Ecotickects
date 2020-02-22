@@ -39,4 +39,14 @@ class RolServicio
     public function ObtenerRolesSupeAdmin($idEmpreesa){
         return $this->rolRepositorio->ObtenerRolesSupeAdmin($idEmpreesa);
     }
+
+    public  function ObtenerRolesUsuario($idUsuario)
+    {
+        return $this->rolRepositorio->ObtenerRolesUsuario($idUsuario);
+    }
+
+    public  function  ObtenerRolesAsignadosXUsuario($idUsuario)
+    {
+        return $this->rolRepositorio->ObtenerRolesAsignadosXUsuario($idUsuario);
+    }
 }

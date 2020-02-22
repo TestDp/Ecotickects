@@ -17,7 +17,6 @@ use Eco\Datos\Modelos\PrecioBoleta;
 use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Eco\Datos\Modelos\CodigoAsistente;
-use Faker\Provider\DateTime;
 use stdClass;
 use Illuminate\Support\Facades\DB;
 use Eco\Datos\DTO\LecturaQRDTO;
@@ -129,6 +128,64 @@ class AsistenteRepositorio
         return ['respuesta' => false, 'error' => 'hubo un error guardando'];
     }
 
+    public function EnviarBoletas($asistente){
+
+        $asistente = $this->ObtenerAsistente($registroAsistente->Identificacion);
+        $infoPago = '';
+        $infoComprador ='';
+        if ($asistente) {
+            $asistente = $this->actualizarAsistente($registroAsistente->Identificacion, new Asistente($registroAsistente->all()));
+        } else {
+            $asistente = new Asistente($registroAsistente->all());
+        }
+        DB::beginTransaction();
+        try {
+            $asistente->save();
+            for ($i = 0; $i < $registroAsistente->CantidadTickets; $i++) {
+                $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
+                $asistenteXeventoo->Asistente_id = $asistente->id;
+                if($registroAsistente->Promotor_id)
+                {
+                    $asistenteXeventoo->Promotor_id = $registroAsistente->Promotor_id;
+                }
+                else{
+                    $asistenteXeventoo->Promotor_id =1;
+                }
+                $asistenteXeventoo->PinBoleta = $this->GenerarPin();
+                //pone el mismo id en elcampo idcomprador si es solo un tickets
+                // si son vario le pone a los demas el idcomprador con el id del padre
+                if ($i != 0) {
+                    $asistenteXeventoo->idAsistenteCompra = $infoComprador;
+                }
+                ////
+                $asistenteXeventoo->save();
+                if ($registroAsistente->Respuesta_id && $i == 0) {
+                    foreach ($registroAsistente->Respuesta_id as $respuestasAsistente) {
+                        $respuestasAsistenteXevento = new RespuestaAsistenteXEvento();
+                        $respuestasAsistenteXevento->Respuesta_id = $respuestasAsistente;
+                        $respuestasAsistenteXevento->AsistenteXEvento_id = $asistenteXeventoo->id;
+                        $respuestasAsistenteXevento->save();
+                    }
+                }
+                if ($i == 0) {
+                    $infoPago = $this->crearInfoPago($registroAsistente);
+                    $infoPago->AsistenteXEvento_id = $asistenteXeventoo->id;
+                    $infoPago->save();
+                    //setea este valor con el id del comprador padre
+                    $infoComprador = $asistenteXeventoo->id;
+                }
+            }
+            DB::commit();
+            return ['respuesta' => true, 'infoPago' => $infoPago];
+
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            DB::rollback();
+            return ['respuesta' => false, 'error' => $error];
+        }
+        return ['respuesta' => false, 'error' => 'hubo un error guardando'];
+
+    }
     public function obtenerAsistentesXEvento($idEvento)
     {
         $listaAsistentesEventos = DB::table('tbl_asistentes')

@@ -94,10 +94,21 @@ class EventosServicio
     {
         return $this->eventoRepor->ObtenerMisSedes($idUser);
     }
+    public function ListaDeEventosSuperAdmin($idTipo){
+        return $this->eventoRepor->ListaDeEventosSuperAdmin($idTipo);
+    }
 
     public function ListaDeEventosSede($idSede,$idTipo)
     {
         return $this->eventoRepor->ListaDeEventosSede($idSede,$idTipo);
+    }
+    public function ListaDeEventosEmpresa($idEmpresa,$idTipo)
+    {
+        return $this->eventoRepor->ListaDeEventosSede($idEmpresa,$idTipo);
+    }
+    public function ListaDeEventosPasadosEmpresa($idEmpresa,$idTipo)
+    {
+        return $this->eventoRepor->ListaDeEventosPasadosEmpresa($idEmpresa,$idTipo);
     }
     public function ListaDeEventosPasadosSede($idSede,$idTipo)
     {
