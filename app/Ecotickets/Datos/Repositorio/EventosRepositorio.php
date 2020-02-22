@@ -114,7 +114,7 @@ class EventosRepositorio
             $evento->CorreoEnviarInvitacion = $EdEvento->CorreoEnviarInvitacion;
             $evento->CodigoPulep = $EdEvento->CodigoPulep;
             $evento->esPago = $EdEvento->esPago;
-            $evento->esActivo = $EdEvento->esActivo;
+            $evento->esActivo = 1;
             $evento->informacionEvento = $EdEvento->informacionEvento;
             $evento->Fecha_Evento=new DateTime($EdEvento->Fecha_Evento . $EdEvento->Hora_Evento);
             $evento->Fecha_Inicial_Registro=new DateTime($EdEvento->Fecha_Inicial_Registro . $EdEvento->Hora_Inicial_Registro);
@@ -295,7 +295,6 @@ class EventosRepositorio
         return $sede;
     }
 
-
     public function obtenerEventoEditar($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
@@ -318,9 +317,10 @@ class EventosRepositorio
     {
         $fechaActual = new DateTime('today');
         $fechaActual->modify('-1 day');
-
         $eventos = Evento::where('Tipo_Evento','=','Evento')
-            ->where('EsPublico','=',true)->where('Fecha_Evento','>',$fechaActual)
+            ->where('EsPublico','=',true)
+            ->where('esActivo','=',true)
+            ->where('Fecha_Evento','>',$fechaActual)
             ->orderBy('Fecha_Evento', 'ASC')->get();
         foreach ($eventos as $evento)
         {
@@ -336,8 +336,9 @@ class EventosRepositorio
     {
         $fechaActual = new DateTime('today');
         $fechaActual->modify('-1 day');
-
-        $eventos = Evento::where('Tipo_Evento','=','Evento')->where('EsPublico','=',true)
+        $eventos = Evento::where('Tipo_Evento','=','Evento')
+            ->where('EsPublico','=',true)
+            ->where('esActivo','=',true)
             ->where('CodigoPulep','=','12345')
             ->where('Fecha_Evento','>',$fechaActual)
             ->orderBy('Fecha_Evento', 'ASC')->get();
@@ -357,6 +358,7 @@ class EventosRepositorio
         $fechaActual->modify('-1 day');
         $cupones = Evento::where('Tipo_Evento','=','Cupon')
             ->where('EsPublico','=',true)
+            ->where('esActivo','=',true)
             ->where('Fecha_Evento','>',$fechaActual)->get();
         $FechaActual = new DateTime();
         foreach ($cupones as $cupon)
@@ -461,7 +463,7 @@ class EventosRepositorio
             ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
             ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
-            ->where('Tbl_Eventos.EsPublico', '=', 1)
+            ->where('Tbl_Eventos.esActivo', '=', 1)
             ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
             ->orderBy('Fecha_Evento', 'asc')->get();
         return $eventos;
@@ -480,7 +482,7 @@ class EventosRepositorio
             ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
             ->where('Tbl_Sedes.Empresa_id', '=', $idEmpresa)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
-            ->where('Tbl_Eventos.EsPublico', '=', 1)
+            ->where('Tbl_Eventos.esActivo', '=', 1)
             ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
             ->orderBy('Fecha_Evento', 'asc')->get();
         return $eventos;
@@ -497,7 +499,7 @@ class EventosRepositorio
             ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
             ->where('Tbl_Sedes.Empresa_id', '=', $idEmpresa)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
-            ->where('Tbl_Eventos.EsPublico', '=', 0)
+            ->where('Tbl_Eventos.esActivo', '=', 0)
             ->orderBy('Fecha_Evento', 'desc')->get();
         return $eventos;
     }
@@ -515,7 +517,7 @@ class EventosRepositorio
             ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
-            ->where('Tbl_Eventos.EsPublico', '=', 1)
+            ->where('Tbl_Eventos.esActivo', '=', 1)
             ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
             ->orderBy('Fecha_Evento', 'asc')->get();
         return $eventos;
@@ -532,7 +534,7 @@ class EventosRepositorio
             ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
             ->where('Tbl_Sedes.id', '=', $idSede)
             ->where('Tbl_Eventos.Tipo_Evento', '=', $idTipo)
-            ->where('Tbl_Eventos.EsPublico', '=', 0)
+            ->where('Tbl_Eventos.esActivo', '=', 0)
             ->orderBy('Fecha_Evento', 'desc')->get();
         return $eventos;
     }

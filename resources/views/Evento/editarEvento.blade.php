@@ -145,19 +145,6 @@
 									@endif
 								</select>
 							</div>
-							<div class="col-md-3">
-								Activar Evento
-								<select id="esActivo" name="esActivo" class="form-control"
-									<option value="">Seleccionar</option>
-									@if ($evento->esActivo ==1)
-										<option value="0">No</option>
-										<option value="1" selected>SI</option>
-									@else
-										<option value="0" selected>No</option>
-										<option value="1">SI</option>
-									@endif
-								</select>
-							</div>
 						</div>
 						@if ($evento->esPago ==1)
 							<div id="divBoletas" name="divBoletas">

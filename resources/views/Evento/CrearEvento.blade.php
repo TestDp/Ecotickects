@@ -12,6 +12,7 @@
                     <form id="crearEvento" action="crearEvento" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" id="esActivo" name="esActivo" value="1">
                         <div style="margin:0px !important;" class="row">
                             <div class="col-md-6">
                                 Nombre del Evento
@@ -108,14 +109,6 @@
                             <div class="col-md-3">
                                 Evento Pago
                                 <select id="esPago" name="esPago" class="form-control" onchange="MostrarDivBoletas()">
-                                    <option value="">Seleccionar</option>
-                                    <option value="0">No</option>
-                                    <option value="1">SI</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                Activar Evento
-                                <select id="esActivo" name="esActivo" class="form-control" onchange="MostrarDivBoletas()">
                                     <option value="">Seleccionar</option>
                                     <option value="0">No</option>
                                     <option value="1">SI</option>
