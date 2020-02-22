@@ -544,16 +544,13 @@ class EventosRepositorio
     public function obtenerLiquidacion($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
-        $user1 = User::where ('id', '=', $evento->user_id)->get()->first();
-
-
-
         $etapas = DB::table('Tbl_ConfiguracionXSedes')
             ->select(DB::Raw('resul.* , concat(cast((Tbl_ConfiguracionXSedes.Porcentaje * 100) as decimal(12,1)),"%")  as Porcentaje,
         cast(Tbl_ConfiguracionXSedes.comision1 + Tbl_ConfiguracionXSedes.comision2 as decimal(12,0)) as ComisionXBoleta,
         (resul.TotalEtapa - (resul.TotalEtapa * Tbl_ConfiguracionXSedes.Porcentaje) - (Tbl_ConfiguracionXSedes.comision1 + Tbl_ConfiguracionXSedes.comision2) * resul.cantidadBoletas) as Total'))
 
-            ->join(DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,(case when p.MediosDePago_id = 2 then 1 else 0 end) as EsTC ,u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
+            ->join(DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,(case when p.MediosDePago_id = 2 then 1 else 0 end) 
+                    as EsTC ,u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
                     from tbl_asistentesXeventos as ae
                     inner join tbl_asistentes as a
                     on ae.Asistente_id = a.id
@@ -581,6 +578,7 @@ class EventosRepositorio
         $etapas->TotalGeneral =  $etapas->sum('Total');
         $etapas->CantidadTotal =  $etapas->sum('CantidadBoletas');
         $etapas->idEvento = $idEvento;
+        $etapas->evento = $evento;
 
         return $etapas;
     }

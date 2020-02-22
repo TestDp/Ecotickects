@@ -89,31 +89,31 @@
                                             <th>
                                                 Fecha Final de registro
                                             </th>
-                                           <!-- @if(Auth::user()->buscarRecurso('ListaAsistentes'))-->
+                                            @if(Auth::user()->buscarRecurso('ListaAsistentes'))
                                                 <th>
                                                     Usuarios Registrados
                                                 </th>
-                                           <!-- @endif 
-                                            @if(Auth::user()->buscarRecurso('Estadisticas'))-->
+                                            @endif
+                                            @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                 <th>
                                                     Estadísticas
                                                 </th>
-                                           <!-- @endif
-                                            @if(Auth::user()->buscarRecurso('LecturaQR'))-->
+                                            @endif
+                                            @if(Auth::user()->buscarRecurso('LecturaQR'))
                                                 <th>
                                                     Leer QR
                                                 </th>
-                                           <!-- @endif
-                                            @if(Auth::user()->buscarRecurso('EditarEvento'))-->
+                                            @endif
+                                            @if(Auth::user()->buscarRecurso('EditarEvento'))
                                                 <th>
                                                     Editar
                                                 </th>
-                                           <!-- @endif
-                                            @if(Auth::user()->buscarRecurso('EditarEvento'))-->
+                                            @endif
+                                            @if(Auth::user()->buscarRecurso('Liquidacion'))
                                                 <th>
                                                     Liquidación
                                                 </th>
-                                           <!-- @endif-->
+                                           @endif
 
                                         </tr>
                                         </thead>
@@ -144,39 +144,39 @@
                                                 <td>
                                                     {{ $evento->Fecha_Final_Registro }}
                                                 </td>
-                                               <!-- @if(Auth::user()->buscarRecurso('ListaAsistentes'))-->
+                                                @if(Auth::user()->buscarRecurso('ListaAsistentes'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}">ver</a>
                                                     </td>
-                                               <!-- @endif
+                                               @endif
 
-                                                @if(Auth::user()->buscarRecurso('Estadisticas'))-->
+                                                @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}">ver</a>
                                                     </td>
-                                               <!-- @endif
-                                                @if(Auth::user()->buscarRecurso('LecturaQR'))-->
+                                               @endif
+                                                @if(Auth::user()->buscarRecurso('LecturaQR'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}">Leer
                                                             QR</a>
                                                     </td>
-                                               <!-- @endif
-                                                @if(Auth::user()->buscarRecurso('EditarEvento'))-->
+                                               @endif
+                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}">Editar</a>
                                                     </td>
-                                              <!--  @endif-->
+                                                @endif
 
-
+                                                @if(Auth::user()->buscarRecurso('Liquidacion'))
                                                 <td>
-
                                                     <a class="btn btn-blue ripple trial-button"
                                                        href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}">Liquidación</a>
                                                 </td>
+                                                @endif
 
                                             </tr>
                                         @endforeach
@@ -216,26 +216,26 @@
                                             <th>
                                                 Fecha Final de registro
                                             </th>
-                                           <!-- @if(Auth::user()->buscarRecurso('ListaAsistentes'))-->
+                                           @if(Auth::user()->buscarRecurso('ListaAsistentes'))
                                                 <th>
                                                     Usuarios Registrados
                                                 </th>
-                                           <!-- @endif
-                                            @if(Auth::user()->buscarRecurso('Estadisticas'))-->
+                                            @endif
+                                            @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                 <th>
                                                     Estadísticas
                                                 </th>
-                                           <!-- @endif
-                                            @if(Auth::user()->buscarRecurso('LecturaQR'))-->
+                                            @endif
+                                            @if(Auth::user()->buscarRecurso('LecturaQR'))
                                                 <th>
                                                     Leer QR
                                                 </th>
-                                          <!--  @endif
-                                            @if(Auth::user()->buscarRecurso('EditarEvento'))-->
+                                            @endif
+                                            @if(Auth::user()->buscarRecurso('EditarEvento'))
                                                 <th>
 
                                                 </th>
-                                           <!-- @endif-->
+                                            @endif
                                             <th>
 
                                             </th>
@@ -267,36 +267,38 @@
                                                 <td>
                                                     {{ $eventoPasado->Fecha_Final_Registro }}
                                                 </td>
-                                               <!-- @if(Auth::user()->buscarRecurso('ListaAsistentes'))-->
+                                                @if(Auth::user()->buscarRecurso('ListaAsistentes'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}">ver</a>
                                                     </td>
-                                               <!-- @endif
-                                                @if(Auth::user()->buscarRecurso('Estadisticas'))-->
+                                                @endif
+                                                @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/Estadisticas',['idEvento' => $eventoPasado->id ]) }}">ver</a>
                                                     </td>
-                                               <!-- @endif
-                                                @if(Auth::user()->buscarRecurso('LecturaQR'))-->
+                                                @endif
+                                                @if(Auth::user()->buscarRecurso('LecturaQR'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/LecturaQR',['idEvento' => $eventoPasado->id ]) }}">Leer
                                                             QR</a>
                                                     </td>
-                                               <!-- @endif
-                                                @if(Auth::user()->buscarRecurso('EditarEvento'))-->
+                                               @endif
+                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
                                                     <td>
                                                         <a class="btn btn-blue ripple trial-button"
                                                            href="{{ url('/EditarEvento',['idEvento' => $eventoPasado->id ]) }}">Editar</a>
                                                     </td>
-                                               <!-- @endif-->
-
+                                                 @endif
+                                                @if(Auth::user()->buscarRecurso('Liquidacion'))
                                                 <td>
                                                     <a class="btn btn-blue ripple trial-button"
                                                        href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}">Liquidación</a>
                                                 </td>
+                                                @endif
+
                                             </tr>
                                         @endforeach
                                         </tbody>

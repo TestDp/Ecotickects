@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Liquidación Boleteria {{ $ListaEtapas["Etapas"]->first() ->Nombre_Evento }}</h3></div>
+                    <div class="panel-heading text-center"><h3>Liquidación Boleteria {{ $ListaEtapas["Etapas"]->evento ->Nombre_Evento }}</h3></div>
                     <div style="overflow-x:auto;" class="panel-body">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaLiquidacion" class="table table-bordered">
                             <thead>

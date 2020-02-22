@@ -81,7 +81,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <button onclick="GuardarRol()" type="button" class="btn btn-success">Crear Rol</button>
+                                <button onclick="GuardarRol()" type="button" class="btn btn-success">Editar Rol</button>
                             </div>
 
                         </div>

@@ -52,13 +52,11 @@
 </head>
 <body>
 
-
-
         <div class="wrapper">
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-									<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo-active-negro.png') }}" data-active-url="{{ asset('img/logo-active-negro.png') }}" alt=""></a>
+					<a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo-active-negro.png') }}" data-active-url="{{ asset('img/logo-active-negro.png') }}" alt=""></a>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -85,7 +83,7 @@
                                 @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
                                     <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones</a></li>
                                 @endif
-                                @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
+                                @if(Auth::user()->buscarRecurso('FormularioReenviarInvitacion'))
                                     <li><a href="{{ url('FormularioReenviarInvitacion') }}">Reenviar Invitaciones</a></li>
                                 @endif
                             </ul>

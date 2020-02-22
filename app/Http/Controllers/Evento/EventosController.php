@@ -141,6 +141,8 @@ class EventosController extends Controller
     public function obtenerLiquidacion(Request $request,$idEvento)
     {
         $user = Auth::user();
+        //$urlinfo= $request->getPathInfo();
+        //$request->user()->AutorizarUrlRecurso($urlinfo);
         $ListaEtapas= array('Etapas' => $this -> eventoServicio ->obtenerLiquidacion($idEvento));
         return view('Evento/Liquidacion',['ListaEtapas' => $ListaEtapas,'idUser'=>$user->id]);
     }
@@ -185,13 +187,18 @@ class EventosController extends Controller
     {
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
+        $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $idSede = Auth::user()->Sede->id;
         $eventos=[];
-        if(Auth::user()->hasRole('SuperAdmin'))
-        {
-            $eventos = Evento::all();
+        if($request->user()->hasRole("SuperAdmin")){
+            $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
+
         }else{
-            $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+            if($request->user()->hasRole("Admin")){
+                $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
+            }else{
+                $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+            }
         }
         $ListaEventos= array('eventos' => $eventos);
         return view('Evento/ActivarFuncionesEventos',['ListaEventos' => $ListaEventos]);
