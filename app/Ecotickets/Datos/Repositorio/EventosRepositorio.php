@@ -524,6 +524,41 @@ class EventosRepositorio
         return $eventos;
     }
 
+    public function ObtenerEventosUsuario($idUser)
+    {
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+        $eventos = DB::table('Tbl_Eventos')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'Tbl_Eventos.Ciudad_id')
+            ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
+            ->join('Tbl_Permisos_Usuarios_X_Evento', 'Tbl_Eventos.id', '=', 'Tbl_Permisos_Usuarios_X_Evento.Evento_id')
+            ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
+            ->where('users.id', '=', $idUser)
+            ->where('Tbl_Eventos.esActivo', '=', 1)
+            ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
+            ->orderBy('Fecha_Evento', 'asc')->get();
+        return $eventos;
+    }
+
+    public function ObtenerEventosUsuarioPasados($idUser)
+    {
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+        $eventos = DB::table('Tbl_Eventos')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'Tbl_Eventos.Ciudad_id')
+            ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
+            ->join('Tbl_Permisos_Usuarios_X_Evento', 'Tbl_Eventos.id', '=', 'Tbl_Permisos_Usuarios_X_Evento.Evento_id')
+            ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
+            ->where('users.id', '=', $idUser)
+            ->where('Tbl_Eventos.esActivo', '=', 0)
+            ->orderBy('Fecha_Evento', 'DESC')->get();
+        return $eventos;
+    }
+
     //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
     public function ListaDeEventosPasadosSede($idSede,$idTipo)
     {
