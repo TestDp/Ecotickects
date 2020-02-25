@@ -32,4 +32,10 @@ class UsuarioServicio
     public  function  ObtenerUsuario($idUsuario){
         return $this->usuarioRepositorio->ObtenerUsuario($idUsuario);
     }
+    public function AcivarPermisoXEvento($idEvento,$idUsuario){
+        return $this->usuarioRepositorio->ActivarPermisoXEvento($idEvento,$idUsuario);
+    }
+    public function DesacivarPermisoXEvento($idEvento,$idUsuario){
+        return $this->usuarioRepositorio->DesacivarPermisoXEvento($idEvento,$idUsuario);
+    }
 }

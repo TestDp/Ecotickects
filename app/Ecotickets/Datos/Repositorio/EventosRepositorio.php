@@ -13,6 +13,7 @@ use DateTime;
 use Eco\Datos\Modelos\Ciudad;
 use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
+use Eco\Datos\Modelos\PermisosUsuarioXEvento;
 use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\Respuesta;
@@ -588,5 +589,11 @@ class EventosRepositorio
         DB::statement("CALL SpActualizarEventos()");
     }
 
+    //retorna los eventos a los que tienen permisos los usuarios creados por el adminitrador u Organizador
+    public function ListaDeEventosXUsuario($idUsuario)
+    {
+        $eventos = PermisosUsuarioXEvento::where('user_id','=',$idUsuario)->get();
+        return $eventos;
+    }
 
 }

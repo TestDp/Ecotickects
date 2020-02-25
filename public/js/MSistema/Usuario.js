@@ -210,16 +210,16 @@ function CambiarContrasena(element) {
 }
 
 
-//Funcion para mostrar la lista de categorias
-function ajaxRenderSectionListaUsuarios() {
+
+function ajaxRenderSectionCargarEventosXUsuario(idUsuario) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'usuarios',
+        url: urlBase +'EventosXUsuario/'+idUsuario,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
-            $('#principalPanel').empty().append($(data));
+            $('#panelPermisosUsuarios'+idUsuario).empty().append($(data));
         },
         error: function (data) {
             OcultarPopupposition();
@@ -228,6 +228,31 @@ function ajaxRenderSectionListaUsuarios() {
                 $.each(errors, function (i) {
                     console.log(errors[i]);
                 });
+            }
+        }
+    });
+}
+
+function ActivarPermisoEvento (element,idEvento,idUsuario) {
+    var esActivo ="";
+    if($(element).prop( "checked" ))
+    {
+        esActivo =1;
+    }else{
+        esActivo =0;
+    }
+    $.ajax({
+        url: urlBase+'ActivarPermisoEvento/'+idEvento+'/'+idUsuario+'/'+esActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+            idEvento:idEvento,
+            idUsuario: idUsuario,
+            esActivo:esActivo,
+            _token :$("#_token").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+
             }
         }
     });

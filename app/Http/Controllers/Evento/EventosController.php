@@ -2,8 +2,7 @@
 
 namespace Ecotickets\Http\Controllers\Evento;
 
-use Eco\Datos\Modelos\Ciudad;
-use Eco\Datos\Modelos\Departamento;
+
 use Eco\Datos\Modelos\Evento;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\CiudadServicio;
@@ -12,6 +11,8 @@ use Eco\Negocio\Logica\EventosServicio;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
 
 class EventosController extends Controller
 {
@@ -111,11 +112,13 @@ class EventosController extends Controller
         $urlinfo= $request->getPathInfo();
         $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
         $request->user()->AutorizarUrlRecurso($urlinfo);
+        $evento = $this->eventoServicio->obtenerEvento($idEvento);
         $asistentes = $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento);
         $asistentesGuestList = $this -> asistenteServicio ->obtenerAsistentesXEventoGuestList($idEvento);
         $ListaAsistentes = array ('asistentes' => $asistentes);
         $ListaAsistentesGuestList = array ('asistentesGuestList' => $asistentesGuestList );
-        return view('Evento/ListaAsistente', array('ListaAsistentes' => $ListaAsistentes,'ListaAsistentesGuestList' => $ListaAsistentesGuestList));
+        return view('Evento/ListaAsistente', array('ListaAsistentes' => $ListaAsistentes,
+            'ListaAsistentesGuestList' => $ListaAsistentesGuestList,"evento"=>$evento));
     }
 
     /*Metodo que me retorna la lista de asistentes Guest List*/
@@ -134,15 +137,15 @@ class EventosController extends Controller
         $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
-        $idEvento=$this->eventoServicio->obtenerEvento($idEvento)->id;
-        return view('Evento/Estadisticas',['idEvento' => $idEvento,'idUser'=>$user->id]);
+        $evento = $this->eventoServicio->obtenerEvento($idEvento);
+        return view('Evento/Estadisticas',['idEvento' => $evento->id,'idUser'=>$user->id,'evento'=>$evento]);
     }
 
     public function obtenerLiquidacion(Request $request,$idEvento)
     {
         $user = Auth::user();
-        //$urlinfo= $request->getPathInfo();
-        //$request->user()->AutorizarUrlRecurso($urlinfo);
+        $urlinfo= $request->getPathInfo();
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $ListaEtapas= array('Etapas' => $this -> eventoServicio ->obtenerLiquidacion($idEvento));
         return view('Evento/Liquidacion',['ListaEtapas' => $ListaEtapas,'idUser'=>$user->id]);
     }
@@ -231,6 +234,29 @@ class EventosController extends Controller
     public function  ActualizarEventosFecha()
     {
         $this->eventoServicio->ActualizarEventosFecha();
+    }
+
+    public function  obtenerVistaEventosXUsuario(Request $request,$idUsuario)
+    {
+        $idEmpreesa = Auth::user()->Sede->Empresa->id;
+        $idSede = Auth::user()->Sede->id;
+        $eventosUsuario = $this->eventoServicio->ListaDeEventosXUsuario($idUsuario);
+        $eventos=null;
+        if($request->user()->hasRole("SuperAdmin")){
+            $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
+        }else{
+            if($request->user()->hasRole("Admin")){
+                $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
+            }else{
+                $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+            }
+        }
+        $view = View::make('Usuario/AsignarPermisosEventoVP',['listEventos'=>$eventos,
+                                                                'eventosUsuario'=>$eventosUsuario,'idUsuario'=>$idUsuario]);
+        if($request->ajax()){
+            $sections = $view->renderSections();
+            return Response::json($sections['content']);
+        }else return view('Usuario/AsignarPermisosEventoVP',['listEventos'=>$eventos,'eventosUsuario'=>$eventosUsuario]);
     }
 
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">Estadísticas </div>
+        <div class="panel-heading">Estadísticas {{$evento->Nombre_Evento}} </div>
         <div class="panel-body">
             <input type="hidden" id="idevento" value="{{$idEvento}}">
             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

@@ -37,8 +37,11 @@
                                             <button onclick="ajaxRenderSectionEditarUsuario({{$usuario->id}})" type="button" class="btn btn-default" aria-label="Left Align" title="Editar Usuario">
                                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
                                             </button>
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" title="Cambiar contraseña">
+                                            <button   type="button" class="btn btn-default" data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" title="Cambiar contraseña">
                                                 <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
+                                            </button>
+                                            <button onclick="ajaxRenderSectionCargarEventosXUsuario({{$usuario->id}})" type="button" class="btn btn-default" data-toggle="modal" data-target="#modalPermisosEvento{{$usuario->id}}" title="Asignar Permisos">
+                                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true" ></span>
                                             </button>
                                         <!--modal cambio de contraseña-->
                                             <form id="formContrasena" name="formContrasena">
@@ -73,8 +76,33 @@
 
                                                 </div>
                                             </div>
-                                            <!--modal cambio de contraseña-->
                                             </form>
+                                            <!--modal cambio de contraseña-->
+                                            <!-- modal asignar permissos a eventos-->
+                                            <div class="modal fade" id="modalPermisosEvento{{$usuario->id}}" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Asignar permisos a eventos: {{$usuario->name}}</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div id="panelPermisosUsuarios{{$usuario->id}}" name="panelPermisosUsuarios{{$usuario->id}}">
+                                                                    @yield('content')
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button  type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- modal asignar permissos a eventos-->
+
                                         </td>
                                     </tr>
                                 @endforeach

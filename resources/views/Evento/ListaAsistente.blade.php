@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Usuarios Registrados</h3></div>
+                    <div class="panel-heading text-center"><h3>Usuarios Registrados  {{$evento->Nombre_Evento}}</h3></div>
                         <div style="overflow-x:auto;" class="panel-body">
                             <ul class="nav nav-tabs" >
                                 <li class="active">

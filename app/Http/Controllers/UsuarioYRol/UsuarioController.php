@@ -209,4 +209,15 @@ class UsuarioController extends  Controller
         $user->save();
         return redirect('/home')->with('notification', 'Has confirmado correctamente tu correo!');
     }
+
+    /*metodo para activar o desactivar si el evento es pago*/
+    public function ActivarPermisoXEvento($idEvento,$idUsuario,$esActivo)
+    {
+        if($esActivo == 1){
+            return response()->json($this->usuarioServicio->AcivarPermisoXEvento($idEvento,$idUsuario));
+        }else{
+            return response()->json($this->usuarioServicio->DesacivarPermisoXEvento($idEvento,$idUsuario));
+        }
+
+    }
 }

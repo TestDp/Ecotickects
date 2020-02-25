@@ -118,4 +118,9 @@ class EventosServicio
     {
         return $this->eventoRepor->obtenerLiquidacion($idEvento);
     }
+
+    public function ListaDeEventosXUsuario($idUsuario)
+    {
+        return $this->eventoRepor->ListaDeEventosXUsuario($idUsuario);
+    }
 }

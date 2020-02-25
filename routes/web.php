@@ -107,6 +107,9 @@ Auth::routes();
 
     Route::post('ActualizarEventosFecha',['uses' =>'Evento\EventosController@ActualizarEventosFecha']);
 
+    Route::get('EventosXUsuario/{idUsuario}',['uses' =>'Evento\EventosController@obtenerVistaEventosXUsuario']);
+
+
     //Route::post('ActualizarEventosFecha',['uses'Eventos\EventosController@ActualizarEventosFecha']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
@@ -281,6 +284,8 @@ Route::post('EditarUsuario', 'UsuarioYRol\UsuarioController@EditarUsuario')->nam
 Route::post('CambiarContrasena', 'UsuarioYRol\UsuarioController@CambiarContrasenaUsuario')->name('CambiarContrasena');
 Route::get('usuarios', 'UsuarioYRol\UsuarioController@ObtenerUsuarios')->name('usuarios');//Obtiene la lista de usuarios
 Route::get('/register/verify/{code}', 'UsuarioYRol\UsuarioController@verifarCorreo'); //verificar correo electronico
+Route::post('ActivarPermisoEvento/{idEvento}/{idUsuario}/{esActivo}',['uses' =>'UsuarioYRol\UsuarioController@ActivarPermisoXEvento']);
+
 
 //CONTROLADOR SEDE
 Route::get('sedes', 'MEmpresa\SedeController@ObtenerSedes')->name('sedes');//Obtiene la lista de sedes
