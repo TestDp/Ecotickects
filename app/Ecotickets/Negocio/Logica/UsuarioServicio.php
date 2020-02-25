@@ -38,4 +38,6 @@ class UsuarioServicio
     public function DesacivarPermisoXEvento($idEvento,$idUsuario){
         return $this->usuarioRepositorio->DesacivarPermisoXEvento($idEvento,$idUsuario);
     }
+
+
 }

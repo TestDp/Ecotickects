@@ -167,8 +167,7 @@ class EventosController extends Controller
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
-        $idSede = Auth::user()->Sede->id;
-        $ussertes= Auth::user();
+        $idUser = Auth::user()->id;
         if($request->user()->hasRole("SuperAdmin")){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
             $eventosPasados = Evento::all();
@@ -177,8 +176,8 @@ class EventosController extends Controller
                 $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
                 $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosEmpresa($idEmpreesa,'Evento');
             }else{
-                $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
-                $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
+                $eventos = $this->eventoServicio->ObtenerEventosUsuario($idUser);
+                $eventosPasados = $this->eventoServicio->ObtenerEventosUsuarioPasados($idUser);
             }
         }
         $ListaEventos= array('eventos' => $eventos);
@@ -191,8 +190,8 @@ class EventosController extends Controller
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
-        $idSede = Auth::user()->Sede->id;
-        $eventos=[];
+        $idUser = Auth::user()->id;
+        $eventos = null;
         if($request->user()->hasRole("SuperAdmin")){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
 
@@ -200,7 +199,7 @@ class EventosController extends Controller
             if($request->user()->hasRole("Admin")){
                 $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
             }else{
-                $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+                $eventos = $this->eventoServicio->ObtenerEventosUsuario($idUser);
             }
         }
         $ListaEventos= array('eventos' => $eventos);

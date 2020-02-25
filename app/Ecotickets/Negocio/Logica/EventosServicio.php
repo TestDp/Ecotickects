@@ -123,4 +123,12 @@ class EventosServicio
     {
         return $this->eventoRepor->ListaDeEventosXUsuario($idUsuario);
     }
+
+    public function ObtenerEventosUsuario($idUsuario){
+        return $this->eventoRepor->ObtenerEventosUsuario($idUsuario);
+    }
+
+    public function ObtenerEventosUsuarioPasados($idUsuario){
+        return $this->eventoRepor->ObtenerEventosUsuarioPasados($idUsuario);
+    }
 }
