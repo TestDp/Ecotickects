@@ -68,9 +68,6 @@
                         <li class="active">
                             <a href="#homeEventos" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/eventos.png') }}"><b> Eventos</b></a>
                             <ul class="collapse list-unstyled" id="homeEventos">
-                                <!--@if(Auth::user()->buscarRecurso('FormularioEvento'))
-                                    <li><a href="{{ url('FormularioEvento') }}">Crear Evento</a></li>
-                                @endif-->
                                 @if(Auth::user()->buscarRecurso('MisEventos'))
                                     <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
                                  @endif
@@ -89,24 +86,29 @@
                             </ul>
                         </li>
                     @endif
-                <!--      <li>
-                        <a href="#homeCupones" data-toggle="collapse" aria-expanded="false">Cupones</a>
-                        <ul class="collapse list-unstyled" id="homeCupones">
-                            <li><a href="{{ url('FormularioEvento') }}">Crear Cupones</a></li>
-                            <li><a href="{{ url('MisCupones') }}">Mis Cupones</a></li>
-                        </ul>
-                    </li>
-               <li>
-                        <a href="#homeTienda" data-toggle="collapse" aria-expanded="false">Tienda</a>
-                        <ul class="collapse list-unstyled" id="homeTienda">
-                            <li><a href="{{ url('formularioProducto') }}">Crear Producto</a></li>
-                            <li><a href="{{ url('misproductos') }}">Mis Productos</a></li>
-                            <li><a href="{{ url('EventoConVentas') }}">Eventos con Ventas</a></li>
-                        </ul>
-                    </li>
+                    @if(Auth::user()->buscarRecurso('GestionCupones'))
                     <li>
-                        <a href="#">Estadísticas Generales</a>
-                    </li>-->
+                        <a href="#homeCupones" data-toggle="collapse" aria-expanded="false"><b>Cupones</b></a>
+                        <ul class="collapse list-unstyled" id="homeCupones">
+                            @if(Auth::user()->buscarRecurso('MisCupones'))
+                             <li><a href="{{ url('MisCupones') }}">Mis Cupones</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                    @endif
+                    @if(Auth::user()->buscarRecurso('GestionTienda'))
+                    <li>
+                        <a href="#homeTienda" data-toggle="collapse" aria-expanded="false"><b>Tienda</b></a>
+                        <ul class="collapse list-unstyled" id="homeTienda">
+                            @if(Auth::user()->buscarRecurso('misproductos'))
+                                <li><a href="{{ url('misproductos') }}">Mis Productos</a></li>
+                            @endif
+                            @if(Auth::user()->buscarRecurso('EventoConVentas'))
+                                <li><a href="{{ url('EventoConVentas') }}">Eventos con Ventas</a></li>
+                            @endif
+                        </ul>
+                    </li>
+                    @endif
                     @if(Auth::user()->buscarRecurso('ConfiguracionesEvento'))
                         <li>
                             <a href="#homeConfiguraciones" data-toggle="collapse" aria-expanded="false"><img src="{{ asset('img/config-eventos.png') }}"><b> Configuraciones Evento</b></a>

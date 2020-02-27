@@ -47,10 +47,14 @@ class UsuarioController extends  Controller
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
-        if($request->user()->hasRole("SuperAdmin")){
-            $roles = $this->rolServicio->ObtenerRolesSupeAdmin($idEmpreesa);
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $roles = $this->rolServicio->ObtenerRolesSupeAdmin();
         }else{
-            $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario($request->user()->id);
+            if($request->user()->hasRole(env('IdRolAdmin'))) {
+                $roles = $this->rolServicio->ObtenerRolesAsignadosEmpresa($idEmpreesa);
+            }else{
+                $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario(Auth::user()->id);
+            }
         }
         $sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
         $view = View::make('Usuario/crearUsuario',
@@ -66,16 +70,24 @@ class UsuarioController extends  Controller
     public function EditarUsuarioEmpresa(Request $request, $idUsuario)
     {
         $roles = null;
+        $sedes =null;
         $urlinfo= $request->getPathInfo();
         $urlinfo = explode('/'.$idUsuario,$urlinfo)[0];//se parte la url para quitarle el parametro y porder consultarla NOTA:provicional mientras se encuentra otra forma
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $usuario = $this->usuarioServicio->ObtenerUsuario($idUsuario);
-        $sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
-        if($request->user()->hasRole("SuperAdmin")){
-            $roles = $this->rolServicio->ObtenerRolesSupeAdmin($idEmpreesa);
+        $idSede = Auth::user()->Sede->id;
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $roles = $this->rolServicio->ObtenerRolesSupeAdmin();
+            $sedes = $this->sedeServicio->ObtenerListaSedesSuperAdmin();
         }else{
-            $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario($request->user()->id);
+            if($request->user()->hasRole(env('IdRolAdmin'))) {
+                $roles = $this->rolServicio->ObtenerRolesAsignadosEmpresa($idEmpreesa);
+                $sedes = $this->sedeServicio->ObtenerListaSedesEmpresa($idEmpreesa);
+            }else{
+                $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario(Auth::user()->id);
+                $sedes = $this->sedeServicio->ObtenerListaSedesEmpresa($idEmpreesa);
+            }
         }
         $rolesUsuario = $this->rolServicio->ObtenerRolesUsuario($idUsuario);
         $view = View::make('Usuario/editarUsuario',
@@ -116,7 +128,7 @@ class UsuarioController extends  Controller
         $usuarios = null;
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $idUsuario = Auth::user()->id;
-        if($request->user()->hasRole("SuperAdmin")){
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $usuarios = $this->usuarioServicio->ObtenerListaUsuariosSuperAdmin();
         }else{
             $usuarios = $this->usuarioServicio->ObtenerListaUsuariosEmpresa($idEmpreesa,$idUsuario);
@@ -186,7 +198,7 @@ class UsuarioController extends  Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $idUsuario = Auth::user()->id;
-        if($request->user()->hasRole("SuperAdmin")){
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $usuarios = $this->usuarioServicio->ObtenerListaUsuariosSuperAdmin();
         }else{
             $usuarios = $this->usuarioServicio->ObtenerListaUsuariosEmpresa($idEmpreesa,$idUsuario);
@@ -218,6 +230,5 @@ class UsuarioController extends  Controller
         }else{
             return response()->json($this->usuarioServicio->DesacivarPermisoXEvento($idEvento,$idUsuario));
         }
-
     }
 }

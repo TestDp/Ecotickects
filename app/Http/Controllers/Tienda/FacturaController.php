@@ -61,7 +61,6 @@ class FacturaController extends Controller
     public function RespuestaPagosUsuarioTienda()
     {
         $estadoTransaccion = $_REQUEST['transactionState'];
-        $transaccionReference = $_REQUEST['referenceCode'];
         switch ($estadoTransaccion) {
             case 4: /* Approved */
                 $ElementosArray= array('mensaje' => "APROBADO");
@@ -98,7 +97,7 @@ class FacturaController extends Controller
     }
 
     public  function  EventosConVentas(Request $request){
-        $request->user()->authorizeRoles(['admin','user']);
+
         $user = Auth::user();
         $misEventosConVentas =  $this->facturaServicio->EventosConVentas($user->id);
         return view("Tienda/EventosConVentas",['misEventosConVentas'=>$misEventosConVentas]);
@@ -106,7 +105,7 @@ class FacturaController extends Controller
 
     public function  VentasPorEvento(Request $request,$idEvento)
     {
-        $request->user()->authorizeRoles(['admin','user']);
+
         $VentasPorEvento = $this->facturaServicio->VentasPorEvento($idEvento);
         $evento = $this->eventoServicio->obtenerEvento($idEvento);
         return view("Tienda/VentasPorEvento",['VentasPorEvento'=>$VentasPorEvento,'nombreEvento'=>$evento->Nombre_Evento]);
@@ -114,7 +113,7 @@ class FacturaController extends Controller
 
     public  function  obtenerDetalleFactura(Request $request,$idFactura)
     {
-        $request->user()->authorizeRoles(['admin','user']);
+
         $detallesFactura = $this->facturaServicio->obtenerDetalleFactura($idFactura);
         $factura =  $this->facturaServicio->obtenerFactura($idFactura);
         return view("Tienda/DetalleVenta",['detallesFactura'=>$detallesFactura,'factura'=>$factura]);

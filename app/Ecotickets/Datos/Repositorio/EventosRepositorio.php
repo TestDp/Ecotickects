@@ -88,14 +88,14 @@ class EventosRepositorio
                     $ind++;
                 }
             }
-
             DB::commit();
+            return ["Respuesta"=>true,"idEvento"=>$evento->id];
         }catch (\Exception $e) {
             $error = $e->getMessage();
             DB::rollback();
-            return  false;
+            return ["Respuesta"=>false,"idEvento"=>null];
         }
-        return true;
+        return ["Respuesta"=>false,"idEvento"=>null];
     }
 
     public function editarEvento($EdEvento)
@@ -535,7 +535,7 @@ class EventosRepositorio
             ->join('Tbl_Departamentos', 'Tbl_Departamentos.id', '=', 'Tbl_Ciudades.Departamento_id')
             ->join('Tbl_Permisos_Usuarios_X_Evento', 'Tbl_Eventos.id', '=', 'Tbl_Permisos_Usuarios_X_Evento.Evento_id')
             ->select('Tbl_Eventos.*','Tbl_Ciudades.Nombre_Ciudad','Tbl_Departamentos.Nombre_Departamento' )
-            ->where('users.id', '=', $idUser)
+            ->where('Tbl_Permisos_Usuarios_X_Evento.user_id', '=', $idUser)
             ->where('Tbl_Eventos.esActivo', '=', 1)
             ->where('Tbl_Eventos.Fecha_Evento','>',$fechaActual)
             ->orderBy('Fecha_Evento', 'asc')->get();

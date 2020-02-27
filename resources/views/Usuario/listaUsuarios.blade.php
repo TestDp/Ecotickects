@@ -45,6 +45,7 @@
                                             </button>
                                         <!--modal cambio de contraseña-->
                                             <form id="formContrasena" name="formContrasena">
+                                                {{ csrf_field() }}
                                                 <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                                                 <input type="hidden" id="id" name="id" value="{{$usuario->id}}">
                                             <div class="modal fade" id="modalContrasena{{$usuario->id}}" role="dialog">

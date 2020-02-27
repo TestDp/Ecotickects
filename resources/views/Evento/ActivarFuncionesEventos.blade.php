@@ -26,9 +26,11 @@
                                 <th >
                                     Activar Pago
                                 </th>
-                                <!--th >
+                                @if(Auth::user()->buscarRecurso('ActivarTienda'))
+                                <th>
                                     Activar Tienda
-                                </th-->
+                                </th>
+                                @endif
                                 <th >
                                     Activar PIN
                                 </th>
@@ -53,13 +55,15 @@
                                             <input type="checkbox"  onclick="ActivarEsPago(this,{{ $evento->id }})" />
                                         @endif
                                     </td>
-                                    <!--td >
+                                    @if(Auth::user()->buscarRecurso('ActivarTienda'))
+                                    <td>
                                         @if($evento->activarTienda ==1)
                                             <input type="checkbox"  onclick="ActivarTienda(this,{{ $evento->id }})" checked/>
                                         @else
                                             <input type="checkbox"  onclick="ActivarTienda(this,{{ $evento->id }})" />
                                         @endif
-                                    </td-->
+                                    </td>
+                                    @endif
                                     <td >
                                         @if($evento->SolicitarPIN ==1)
                                             <input type="checkbox"  onclick="ActivarSolicitarPIN(this,{{ $evento->id }})" checked/>

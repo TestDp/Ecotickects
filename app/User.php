@@ -39,12 +39,7 @@ class User extends Authenticatable
     public function productos(){
         return $this->hasMany('Ecotickets\Datos\Modelos\Producto','user_id','id');
     }
-    /** public function roles()
-    {
-    return $this
-    ->belongsToMany('Ecotickets\Role')
-    ->withTimestamps();
-    }*/
+
 
     public function roles()
     {
@@ -60,6 +55,7 @@ class User extends Authenticatable
         }
         abort(401, 'Esta acción no está autorizada.');
     }
+
     public function hasAnyRole($roles)
     {
         if (is_array($roles)) {
@@ -75,17 +71,11 @@ class User extends Authenticatable
         }
         return false;
     }
-    /** public function hasRole($role)
-    {
-    if ($this->roles()->where('name', $role)->first()) {
-    return true;
-    }
-    return false;
-    }*/
 
-    public function hasRole($role)
+
+    public function hasRole($IdRole)
     {
-        if ($this->roles()->where('Nombre', $role)->first()) {
+        if ($this->roles()->where('Rol_id', '=',$IdRole)->first()) {
             return true;
         }
         return false;
@@ -93,9 +83,7 @@ class User extends Authenticatable
 
     public  function AutorizarUrlRecurso($urlrecurso)
     {
-        /*$roles = Cache::rememberForever($this->keyCacheRoles,function (){
-            return $this->roles()->get();
-        });*/
+
         $roles = $this->roles()->get();
         foreach ($roles as $rol)
         {
@@ -107,10 +95,6 @@ class User extends Authenticatable
     }
 
 
-    /* public function sede()
-     {
-         return $this->belongsTo('Eco\Datos\Modelos\Sede');
-     }*/
 
     public function Sede()
     {
@@ -120,16 +104,6 @@ class User extends Authenticatable
 
     public  function buscarRecurso($recurso)
     {
-
-        //$keyCacheRecursos = "recursos";
-        /* $roles = Cache::rememberForever($this->keyCacheRoles,function (){
-             return $this->roles()->get();
-         });*/
-
-        /*$recursos = Cache::rememberForever($keyCacheRecursos,function (){
-            return $this->roles()->get();;
-        });*/
-
         $roles = $this->roles()->get();
         foreach ($roles as $rol)
         {
@@ -142,9 +116,7 @@ class User extends Authenticatable
 
     public  function ListaRecursos()
     {
-        /**$roles = Cache::rememberForever($this->keyCacheRoles,function (){
-        return $this->roles()->get();
-        });*/
+
         $roles =$this->roles()->get();
         $recursosRol = array();
         foreach ($roles as $rol)

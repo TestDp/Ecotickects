@@ -65,6 +65,7 @@
             </div>
         </div>
     </form>
-    <script src="{{ asset('js/MSistema/Rol.js') }}"></script>
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
+    <script src="{{ asset('js/MSistema/Rol.js') }}"></script>
+
 @endsection

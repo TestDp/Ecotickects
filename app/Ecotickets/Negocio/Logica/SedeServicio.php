@@ -23,8 +23,12 @@ class SedeServicio
     public  function GuardarSede($Sede){
         return $this->sedeRepositorio->GuardarSede($Sede);
     }
-    public  function  ObtenerListaSedes($idEmpreesa){
-        return $this->sedeRepositorio->ObtenerListaSedes($idEmpreesa);
+    public  function  ObtenerListaSedesSuperAdmin(){
+        return $this->sedeRepositorio->ObtenerListaSedesSuperAdmin();
+    }
+    public  function  ObtenerListaSedesEmpresa($idEmpreesa)
+    {
+        return $this->sedeRepositorio->ObtenerListaSedesEmpresa($idEmpreesa);
     }
 
     public  function  ObtenerSede($idSede){

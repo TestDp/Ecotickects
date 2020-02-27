@@ -24,7 +24,10 @@ class UsuarioRepositorio
         $users = DB::table('users')
             ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
             ->join('Tbl_Empresas', 'Tbl_Empresas.id', '=', 'Tbl_Sedes.Empresa_id')
+            ->join('Tbl_Roles','Tbl_Roles.Empresa_id','=','Tbl_Empresas.id')
+            ->join('Tbl_Roles_Por_Usuarios','Tbl_Roles_Por_Usuarios.Rol_id','=','Tbl_Roles.id')
             ->select('users.*')
+            ->where('Tbl_Roles_Por_Usuarios.Rol_id','<>',13)
             ->where('Tbl_Empresas.id', '=', $idEmpresa)
             ->where('users.id','<>',$idUsuario)
             ->get();
@@ -65,5 +68,10 @@ class UsuarioRepositorio
             return  false;
         }
         return true;
+    }
+
+    public function UsuariosXSede($idsede)
+    {
+        return User::where('Sede_id', '=', $idsede)->get();
     }
 }

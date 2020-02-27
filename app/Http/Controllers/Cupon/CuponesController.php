@@ -19,7 +19,7 @@ class CuponesController extends Controller
 
     public  function  ObtenerMisCupones(Request $request)
     {
-        $request->user()->authorizeRoles(['admin','user']);
+       // $request->user()->authorizeRoles(['admin','user']);
         $user = Auth::user();
         $cupones = $this->cuponesServicio->ObtenerMisCupones($user->id);
         $ListaCupones= array('cupones' => $cupones);

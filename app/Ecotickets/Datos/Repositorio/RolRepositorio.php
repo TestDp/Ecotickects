@@ -64,10 +64,9 @@ class RolRepositorio
     }
 
     //Funcion para devolver los roles del superAdmin con los creados por el usuario
-    public function ObtenerRolesSupeAdmin($idEmpreesa)
+    public function ObtenerRolesSupeAdmin()
     {
-        return Rol::where('Empresa_id', '=', $idEmpreesa)
-                    ->OrWhere('Empresa_id','=',null) ->get();
+        return Rol::all();
     }
 
     //funcion para devolver los registros de la tabla roles x usuario
@@ -76,12 +75,18 @@ class RolRepositorio
       return Rol_Por_Usuario::where('user_id','=',$idUsuario)->get();
     }
 
-    //funcion para obtener los roles asignados al usurio, devuelve los registros de la tabla roles
+    public  function  ObtenerRolesAsignadosEmpresa($idEmpresa)
+    {
+        return Rol::where('Empresa_id', '=', $idEmpresa)->get();
+        return  $Roles;
+    }
 
+    //funcion para obtener los roles asignados al usurio, devuelve los registros de la tabla roles
     public  function  ObtenerRolesAsignadosXUsuario($idUsuario){
 
         $Roles = Rol::join('Tbl_Roles_Por_Usuarios', 'Tbl_Roles.id', '=', 'Tbl_Roles_Por_Usuarios.Rol_id')
             ->where('Tbl_Roles_Por_Usuarios.user_id', '=', $idUsuario)
+            ->Where('Tbl_Roles.Empresa_id','<>',null)
             ->select('Tbl_Roles.*')
             ->orderBy('Tbl_Roles.id', 'DESC')
             ->get();

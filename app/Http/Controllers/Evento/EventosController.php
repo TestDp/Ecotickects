@@ -8,6 +8,7 @@ use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\CiudadServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
 use Eco\Negocio\Logica\EventosServicio;
+use Eco\Negocio\Logica\UsuarioServicio;
 use Illuminate\Http\Request;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,16 +21,19 @@ class EventosController extends Controller
     protected $departamentoServicio;
     protected $asistenteServicio;
     protected  $ciudadServicio;
+    protected  $usuarioServicio;
 
 
     public function __construct(EventosServicio $eventoServicio,DepartamentoServicio $departamentoServicio,
-                                AsistenteServicio $asistenteServicio,CiudadServicio $ciudadServicio)
+                                AsistenteServicio $asistenteServicio,CiudadServicio $ciudadServicio,
+                                UsuarioServicio $usuarioServicio)
     {
         $this->middleware('auth');
         $this->departamentoServicio=$departamentoServicio;
         $this->eventoServicio = $eventoServicio;
         $this->asistenteServicio = $asistenteServicio;
         $this->ciudadServicio = $ciudadServicio;
+        $this->usuarioServicio = $usuarioServicio;
     }
 
 
@@ -65,22 +69,23 @@ class EventosController extends Controller
         $urlinfo= $EdEvento->getPathInfo();
         $EdEvento->user()->AutorizarUrlRecurso($urlinfo);
         $respuestaProceso = $this->eventoServicio->crearEvento($EdEvento);
-        if($respuestaProceso)
+        $idSede = Auth::user()->Sede->id;
+        if($respuestaProceso["Respuesta"])
         {
+            $this->usuarioServicio->AsignarPermisosNuevoEvento($respuestaProceso["idEvento"],$idSede);
             if($EdEvento->hasFile('ImagenFlyerEvento')){
                 $file = $EdEvento->file('ImagenFlyerEvento');
                 $nombre = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';
                 $file->move('FlyerDeEventos', $nombre);
             }
         }
-        $idSede = Auth::user()->Sede->id;
         $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
         $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
         $ListaEventos= array('eventos' => $eventos);
         $ListaEventosPasados= array('eventosPasados' => $eventosPasados);
         return view('Evento/MisEventos',array('ListaEventos' => $ListaEventos,
                                                     'ListaEventosPasados' => $ListaEventosPasados,
-                                                    'respuestaProceso'=>$respuestaProceso));
+                                                    'respuestaProceso' => $respuestaProceso));
 
     }
 
@@ -118,7 +123,7 @@ class EventosController extends Controller
         $ListaAsistentes = array ('asistentes' => $asistentes);
         $ListaAsistentesGuestList = array ('asistentesGuestList' => $asistentesGuestList );
         return view('Evento/ListaAsistente', array('ListaAsistentes' => $ListaAsistentes,
-            'ListaAsistentesGuestList' => $ListaAsistentesGuestList,"evento"=>$evento));
+            'ListaAsistentesGuestList' => $ListaAsistentesGuestList,"evento" => $evento));
     }
 
     /*Metodo que me retorna la lista de asistentes Guest List*/
@@ -168,11 +173,11 @@ class EventosController extends Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $idUser = Auth::user()->id;
-        if($request->user()->hasRole("SuperAdmin")){
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
             $eventosPasados = Evento::all();
         }else{
-            if($request->user()->hasRole("Admin")){
+            if($request->user()->hasRole(env('IdRolAdmin'))){
                 $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
                 $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosEmpresa($idEmpreesa,'Evento');
             }else{
@@ -192,11 +197,11 @@ class EventosController extends Controller
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $idUser = Auth::user()->id;
         $eventos = null;
-        if($request->user()->hasRole("SuperAdmin")){
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
 
         }else{
-            if($request->user()->hasRole("Admin")){
+            if($request->user()->hasRole(env('IdRolAdmin'))){
                 $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
             }else{
                 $eventos = $this->eventoServicio->ObtenerEventosUsuario($idUser);
@@ -241,10 +246,10 @@ class EventosController extends Controller
         $idSede = Auth::user()->Sede->id;
         $eventosUsuario = $this->eventoServicio->ListaDeEventosXUsuario($idUsuario);
         $eventos=null;
-        if($request->user()->hasRole("SuperAdmin")){
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
         }else{
-            if($request->user()->hasRole("Admin")){
+            if($request->user()->hasRole(env('IdRolAdmin'))){
                 $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
             }else{
                 $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');

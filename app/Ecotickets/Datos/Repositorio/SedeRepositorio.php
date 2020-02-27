@@ -41,7 +41,12 @@ class SedeRepositorio
         }
     }
 
-    public  function  ObtenerListaSedes($idEmpreesa)
+    public  function  ObtenerListaSedesSuperAdmin()
+    {
+        return Sede::all();
+    }
+
+    public  function  ObtenerListaSedesEmpresa($idEmpreesa)
     {
         return Sede::where('Empresa_id', '=', $idEmpreesa)->get();
     }

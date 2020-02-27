@@ -39,5 +39,13 @@ class UsuarioServicio
         return $this->usuarioRepositorio->DesacivarPermisoXEvento($idEvento,$idUsuario);
     }
 
+    public function AsignarPermisosNuevoEvento($idEvento,$idSede)
+    {
+        $usuarios = $this->usuarioRepositorio->UsuariosXSede($idSede);
+        foreach ($usuarios as $usuario){
+            $this->usuarioRepositorio->ActivarPermisoXEvento($idEvento,$usuario->id);
+        };
+    }
+
 
 }

@@ -78,10 +78,15 @@ class SedeController extends Controller
 
     //Metodo para obtener toda  la lista de sede de la empresa
     public  function ObtenerSedes(Request $request){
+        $sedes=null;
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
-        $sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $sedes = $this->sedeServicio->ObtenerListaSedesSuperAdmin();
+        }else{
+             $sedes = $this->sedeServicio->ObtenerListaSedesEmpresa($idEmpreesa);
+        }
         $view = View::make('MEmpresa/listaSedes')->with('listSedes',$sedes);
         if($request->ajax()){
             $sections = $view->renderSections();

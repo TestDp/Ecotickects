@@ -16,17 +16,15 @@ class ProductosController extends Controller
     {
         $this->middleware('auth');
         $this->productosServicio = $productosServicio;
-
     }
+
     public  function  getFormularioProducto(Request $request)
     {
-        $request->user()->authorizeRoles(['admin','user']);
         return view('Tienda/CrearProducto');
     }
 
     public function crearProducto(Request $EdProducto)
     {
-        $EdProducto->user()->authorizeRoles(['admin','user']);
         $user = Auth::user();
         if($this->productosServicio->crearProducto($EdProducto) ){
 
@@ -44,10 +42,9 @@ class ProductosController extends Controller
 
     public  function  ObtenerMisProductos(Request $request)
     {
-        $request->user()->authorizeRoles(['admin','user']);
         $user = Auth::user();
-        $productos=[];
-        if(Auth::user()->hasRole('admin'))
+        $productos=null;
+        if(Auth::user()->hasRole(env('IdRolSuperAdmin')))
         {
             $productos = Producto::all();//lineas de codigo que se deben llevar por capas
         }else{
@@ -60,10 +57,9 @@ class ProductosController extends Controller
 
     public function FormularioActivarProductos(Request $request,$idProducto)
     {
-        $request->user()->authorizeRoles(['admin','user']);
         $user = Auth::user();
-        $eventos=[];
-        if(Auth::user()->hasRole('admin'))
+        $eventos = null;
+        if(Auth::user()->hasRole(env('IdRolSuperAdmin')))
         {
             $eventos = Evento::all();//lineas de codigo que se deben llevar por capas
         }else{

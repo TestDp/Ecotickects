@@ -85,10 +85,14 @@ class RolController extends Controller
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
-        if($request->user()->hasRole("SuperAdmin")){
-            $roles = $this->rolServicio->ObtenerRolesSupeAdmin($idEmpreesa);
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $roles = $this->rolServicio->ObtenerRolesSupeAdmin();
         }else{
-            $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario($request->user()->id);
+            if($request->user()->hasRole(env('IdRolAdmin'))) {
+                $roles = $this->rolServicio->ObtenerRolesAsignadosEmpresa($idEmpreesa);
+            }else{
+                $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario(Auth::user()->id);
+            }
         }
         $view = View::make('Rol/listaRoles')->with('listRoles',$roles);
         if($request->ajax()){

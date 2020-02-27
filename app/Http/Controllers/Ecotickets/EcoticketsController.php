@@ -99,8 +99,8 @@ class EcoticketsController extends Controller
     {
         $user = User::where("id","=",$idUser)->first();
         $idSede = $user->Sede->id;
-        $eventos=[];
-        if($user->hasRole('SuperAdmin'))
+        $eventos=null;
+        if($user->hasRole(env('IdRolSuperAdmin')))
         {
             $eventos = Evento::all();
         }else{
@@ -134,7 +134,7 @@ class EcoticketsController extends Controller
         $user = User::where("id","=",$idUser)->first();
         $idSede = $user->Sede->id;
         $eventos=[];
-        if($user->hasRole('SuperAdmin'))
+        if($user->hasRole(env('IdRolSuperAdmin')))
         {
             $eventos = Evento::all();
         }else{

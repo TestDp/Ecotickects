@@ -104,7 +104,7 @@ class EventosServicio
     }
     public function ListaDeEventosEmpresa($idEmpresa,$idTipo)
     {
-        return $this->eventoRepor->ListaDeEventosSede($idEmpresa,$idTipo);
+        return $this->eventoRepor->ListaDeEventosEmpresa($idEmpresa,$idTipo);
     }
     public function ListaDeEventosPasadosEmpresa($idEmpresa,$idTipo)
     {
