@@ -162,7 +162,7 @@
 												</div>
 												<div class="input-group-addon" >
 													Precio Boleta
-													<input id="precio" name="precio" type="number" class="form-control" value="{{$precioBoleta->precio}}"/>
+													<input id="precio" name="precio" type="number" class="form-control" value="{{$precioBoleta->precio}}" readonly/>
 												</div>
                                                 <div class="input-group-addon" >
                                                     Cantidad
@@ -236,7 +236,7 @@
                                                     </div>
                                                     <div class="input-group-addon" >
                                                         Precio Boleta
-                                                        <input id="precio" name="precio" type="number" class="form-control" value="{{$precioBoleta->precio}}"/>
+                                                        <input id="precio" name="precio" type="number" class="form-control" value="{{$precioBoleta->precio}}" readonly/>
                                                     </div>
                                                     <div class="input-group-addon" >
                                                         Activar
