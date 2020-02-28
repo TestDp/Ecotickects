@@ -131,4 +131,6 @@ class EventosServicio
     public function ObtenerEventosUsuarioPasados($idUsuario){
         return $this->eventoRepor->ObtenerEventosUsuarioPasados($idUsuario);
     }
+
+
 }

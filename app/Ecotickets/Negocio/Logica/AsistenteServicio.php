@@ -259,4 +259,9 @@ class AsistenteServicio
         return $this->asistenteRepositorio->registrarPromotor($promotor);
     }
 
+    public function ActualizarEventosFecha()
+    {
+        $this->asistenteRepositorio->ActualizarEventosFecha();
+    }
+
 }

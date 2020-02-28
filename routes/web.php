@@ -105,12 +105,12 @@ Auth::routes();
 
     Route::post('ActivarEsPublico/{idEvento}/{FlagEsActivo}',['uses' =>'Evento\EventosController@ActivarEsPublico']);
 
-    Route::post('ActualizarEventosFecha',['uses' =>'Evento\EventosController@ActualizarEventosFecha']);
+   // Route::post('ActualizarEventosFecha',['uses' =>'Evento\EventosController@ActualizarEventosFecha']);
 
     Route::get('EventosXUsuario/{idUsuario}',['uses' =>'Evento\EventosController@obtenerVistaEventosXUsuario']);
 
 
-    //Route::post('ActualizarEventosFecha',['uses'Eventos\EventosController@ActualizarEventosFecha']);
+    Route::get('ActualizarEventosFecha',['uses' => 'Evento\AsistentesController@ActualizarEventosFecha']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
 

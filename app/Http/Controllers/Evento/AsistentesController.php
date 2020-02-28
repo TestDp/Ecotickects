@@ -469,4 +469,9 @@ class AsistentesController extends Controller
         return Response::json($sections['UsuarioXEvento']);
     }
 
+    public function  ActualizarEventosFecha()
+    {
+        $this->asistenteServicio->ActualizarEventosFecha();
+    }
+
 }

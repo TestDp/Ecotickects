@@ -604,6 +604,17 @@ class AsistenteRepositorio
             return '2';// se devuelve 1 cuando el usuario ya se encuentra registrado
         }
     }
+
+    public function  ActualizarEventosFecha()
+    {
+        $user = 1;
+
+        if ($user == 1) {
+            DB::statement("CALL SpActualizarEventos()");
+
+        }
+
+    }
 } 
 
 

@@ -619,10 +619,7 @@ class EventosRepositorio
         return $etapas;
     }
 
-    public function  ActualizarEventosFecha()
-    {
-        DB::statement("CALL SpActualizarEventos()");
-    }
+
 
     //retorna los eventos a los que tienen permisos los usuarios creados por el adminitrador u Organizador
     public function ListaDeEventosXUsuario($idUsuario)
