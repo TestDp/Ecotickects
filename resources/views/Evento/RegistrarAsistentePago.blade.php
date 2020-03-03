@@ -422,7 +422,7 @@
                                         <select id="Promotor_id" name="Promotor_id"  class="form-control">
                                             <option value="">Seleccionar</option>
                                             @foreach($ElementosArray["evento"] ->promotores as $Promotor)
-                                                <option value="{{ $Promotor->id }}">{{ $Promotor->Nombres }}</option>
+                                                <option value="{{ $Promotor->id }}">{{ $Promotor->Nombres }}. {{ $Promotor->Apellidos }}</option>
                                             @endforeach
                                         </select>
 
