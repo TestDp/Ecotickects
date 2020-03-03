@@ -150,6 +150,7 @@ class EventosController extends Controller
     {
         $user = Auth::user();
         $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $ListaEtapas= array('Etapas' => $this -> eventoServicio ->obtenerLiquidacion($idEvento));
         return view('Evento/Liquidacion',['ListaEtapas' => $ListaEtapas,'idUser'=>$user->id]);
