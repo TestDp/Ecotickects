@@ -56,7 +56,7 @@ class UsuarioController extends  Controller
                 $roles = $this->rolServicio->ObtenerRolesAsignadosXUsuario(Auth::user()->id);
             }
         }
-        $sedes = $this->sedeServicio->ObtenerListaSedes($idEmpreesa);
+        $sedes = $this->sedeServicio->ObtenerListaSedesEmpresa($idEmpreesa);
         $view = View::make('Usuario/crearUsuario',
             array('listRoles'=>$roles,'listSedes'=>$sedes));
         if($request->ajax()){
@@ -76,7 +76,6 @@ class UsuarioController extends  Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $usuario = $this->usuarioServicio->ObtenerUsuario($idUsuario);
-        $idSede = Auth::user()->Sede->id;
         if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $roles = $this->rolServicio->ObtenerRolesSupeAdmin();
             $sedes = $this->sedeServicio->ObtenerListaSedesSuperAdmin();
@@ -181,9 +180,14 @@ class UsuarioController extends  Controller
             DB::rollback();
             return ['respuesta' => false, 'error' => $error];
         }
+        $usuarios = null;
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $idUsuario = Auth::user()->id;
-        $usuarios = $this->usuarioServicio->ObtenerListaUsuarios($idEmpreesa,$idUsuario);
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $usuarios = $this->usuarioServicio->ObtenerListaUsuariosSuperAdmin();
+        }else{
+            $usuarios = $this->usuarioServicio->ObtenerListaUsuariosEmpresa($idEmpreesa,$idUsuario);
+        }
         $view = View::make('Usuario/listaUsuarios')->with('listUsuarios',$usuarios);
         if($request->ajax()){
             $sections = $view->renderSections();

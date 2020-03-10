@@ -132,13 +132,16 @@ class EcoticketsController extends Controller
     public function EventosAppXamarin($idUser)
     {
         $user = User::where("id","=",$idUser)->first();
-        $idSede = $user->Sede->id;
-        $eventos=[];
-        if($user->hasRole(env('IdRolSuperAdmin')))
-        {
-            $eventos = Evento::all();
+        $idEmpreesa = $user->Sede->Empresa->id;
+        $eventos=null;
+        if($user->hasRole(env('IdRolSuperAdmin'))){
+            $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
         }else{
-            $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+            if($user->hasRole(env('IdRolAdmin'))){
+                $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
+            }else{
+                $eventos = $this->eventoServicio->ObtenerEventosUsuario($idUser);
+            }
         }
         return response()->json($eventos);
     }

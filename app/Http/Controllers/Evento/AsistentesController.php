@@ -2,7 +2,8 @@
 
 namespace Ecotickets\Http\Controllers\Evento;
 
-use Eco\Datos\Modelos\InfoPago;
+
+use Eco\Datos\Modelos\PrecioBoleta;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
@@ -14,9 +15,7 @@ use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
-use Swift_Mailer;
-use Swift_Message;
-use Swift_SmtpTransport;
+
 
 
 class AsistentesController extends Controller
@@ -119,7 +118,10 @@ class AsistentesController extends Controller
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
                 $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
-                $ElementosArray = array('evento' => $evento, 'qr' => $qr);
+                $localidad =  new PrecioBoleta();
+                $localidad->localidad ='Cortesia';
+                $localidad->precio =0;
+                $ElementosArray = array('evento' => $evento, 'qr' => $qr,'localidad'=>$localidad);
                 //preguntamos si el directorio existe
                 if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
                     mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
@@ -180,7 +182,6 @@ class AsistentesController extends Controller
     public function EnviarBoletas(Request $formRegistro)
     {
         return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
-
     }
 
 
@@ -190,7 +191,7 @@ class AsistentesController extends Controller
         return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
     }
 
-    /*Metodo para generar qrs.**/
+    /*Metodo para generar qrs. sirve para reenviar las invitaciones**/
     public function GenerarQRS(Request $formRegistro)
     {
         $evento = $this->eventoServicio->obtenerEvento($formRegistro->Evento_id);

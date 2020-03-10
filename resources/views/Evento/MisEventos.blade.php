@@ -148,10 +148,11 @@
                                                             <a href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-edit"></i></a>
                                                         </td>
                                                     @endif
+                                                    @if(Auth::user()->buscarRecurso('Liquidacion'))
                                                     <td style="text-align:center;">
                                                         <a href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line">Ver</i></a>
                                                     </td>
-
+                                                    @endif
                                              </tr>
                                             @endforeach
                                             </tbody>
@@ -197,9 +198,11 @@
                                                         Leer QR
                                                     </th>
                                                 @endif
+                                                @if(Auth::user()->buscarRecurso('Liquidacion'))
                                                 <th>
-												Liquidación
+												    Liquidación
                                                 </th>
+                                                @endif
                                           </thead>
                                             <tbody >
                                             @foreach($ListaEventosPasados["eventosPasados"] as $eventoPasado)
@@ -237,9 +240,11 @@
                                                             <a href="{{ url('/LecturaQR',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-qrcode"></i></a>
                                                         </td>
                                                     @endif
+                                                    @if(Auth::user()->buscarRecurso('Liquidacion'))
                                                     <td style="text-align:center;">
                                                         <a href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line"></i></a>
                                                     </td>
+                                                    @endif
                                             </tr>
                                             @endforeach
                                             </tbody>

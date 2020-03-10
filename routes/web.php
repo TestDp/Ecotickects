@@ -34,6 +34,8 @@ Auth::routes();
     Route::get('/Cortesia', function () {return view('cortesia');});
 
     Route::get('/respuestaPago', function () {return view('respuestaPago');});
+	
+	Route::get('/siembravida', function () {return view('siembravida');});
 
     //Route::get('/confirmarAsistencia', function () {return view('Evento/ConfirmarAsistencia');});
     
