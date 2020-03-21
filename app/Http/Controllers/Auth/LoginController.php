@@ -2,9 +2,11 @@
 
 namespace Ecotickets\Http\Controllers\Auth;
 
+use Eco\Utilidades\JwtAutenticacion;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+
 
 
 class LoginController extends Controller
@@ -40,14 +42,14 @@ class LoginController extends Controller
 
     }
 
-    /**
-     * Handle a login request to the application.
+
+   /**  * Handle a login request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      *
-     * @throws \Illuminate\Validation\ValidationException
- /*
+     * @throws \Illuminate\Validation\ValidationException**/
+
    public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -57,7 +59,6 @@ class LoginController extends Controller
         // the IP address of the client making these requests into this application.
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
-
             return $this->sendLockoutResponse($request);
         }
 
@@ -86,6 +87,19 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    public function loginApp($correo,$password)
+    {
+        $jwtAut= new JwtAutenticacion();
+
+        if(!is_null($correo) && !is_null($password)){
+            $singUp = $jwtAut->SingUp($correo,$password);
+            return response()->json($singUp,200);
+        }
+
+
+    }
+
+
     protected function credentials(Request $request)
     {
         $login = $request->input($this->username());
@@ -99,14 +113,14 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'login';
+        return 'email';
     }
 
     protected function authenticated(Request $request, $user)
     {
         if($user->Sede->Empresa->EsActiva==0)
             return redirect('/welcome');
-    }*/
+    }
 
 
 }

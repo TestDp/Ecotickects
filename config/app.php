@@ -176,9 +176,13 @@ return [
         // Ecotickets\Providers\BroadcastServiceProvider::class,
         Ecotickets\Providers\EventServiceProvider::class,
         Ecotickets\Providers\RouteServiceProvider::class,
+        Ecotickets\Providers\JwtAuthServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+
+
 
     ],
 
@@ -229,7 +233,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'JWT' => Firebase\JWT\JWT::class
+        //'Jwt' => Eco\Utilidades\JwtAutenticacion::class
 
     ],
 
