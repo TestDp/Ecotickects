@@ -6,125 +6,37 @@
 
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="background:#74b12e;"><h1 style="text-align:center;">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h1></div>
+                    <div class="panel-heading" style="background:#74b12e;"><h4 style="text-align:center; font-weight:300; color:#fff !important;">Gracias por aportar al cuidado del planeta. Gracias por usar Ecotickets.</h4></div>
                     <div class="panel-body">
                         @if ($ElementosArray["evento"] ->FlyerEvento)
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <img class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
+                                    <img style="object-fit: cover; height: 100% !important; object-position: center center;" class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
                                 </div>
-                                <div style="text-align:center; border-top: 2px solid #74b12e; border-left: 2px solid #74b12e; border-right: 2px solid #74b12e;  padding:1%;" class="col-sm-3">
-                                    <label>Evento:</label> {{ $ElementosArray["evento"] ->Nombre_Evento }}
-                                </div>
-                                <div style="text-align:center; border-top: 2px solid #74b12e; border-right: 2px solid #74b12e; border-left: 2px solid #74b12e; padding:1%;" class="col-sm-3">
-                                    <label>Ciudad:</label> {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}
-                                </div>
-                                <div style="text-align:center; border: 2px solid #74b12e; padding:1%;" class="col-sm-6">
-                                    <label>Lugar del evento:</label> {{ $ElementosArray["evento"] ->Lugar_Evento }}</br>
-                                    <label>Fecha del evento:</label> {{ $ElementosArray["evento"] ->Fecha_Evento }}
-                                </div>
-                                <div style="text-align:center; border: 2px solid #d7d7d7; background:#d7d7d7; padding:2%;" class="col-sm-3">
-                                    <label>Lanzamiento:</label></br>{{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
-                                </div>
-                                <div style="text-align:center; border: 2px solid #d7d7d7; background:#d7d7d7; padding:2%;" class="col-sm-3">
-                                    <label>Finalización:</label></br>{{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
+								<div class="col-sm-6">
+								<h1 style="color: #000; text-transform: uppercase; text-align:left;">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h1>
+								</div>
+								<hr style="border: 1px solid #74b12e;">
+                                <div style="text-align:left;" class="col-sm-6">
+								<h3 style="color:#000;">Información General</h3>
+                                    <label><i class="fa fa-check"></i>Ciudad:</label> {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</br>
+									<label><i class="fa fa-check"></i>Lugar del evento:</label> {{ $ElementosArray["evento"] ->Lugar_Evento }}</br>
+									<label><i class="fa fa-check"></i>Fecha del evento:</label> {{ $ElementosArray["evento"] ->Fecha_Evento }}</br>
+								<hr style="border: 1px solid #74b12e;">
+								<h3 style="color:#000;">Boletería y Localidades</h3>	
+                                    <ul id="localidad" name="localidad" onchange="mostrarPrecioBoleta()">
+                                        @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
+                                            <li value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}"><p style="margin-bottom: 0px !important; color:#000 !important; text-transform: capitalize;">{{ $Localidad->localidad }}: <b>$ {{ $Localidad->precio }}</b></p></li>
+                                        @endforeach
+                                    </ul>
+								<hr style="border: 1px solid #74b12e;">	
+								<h3 style="color:#000;">Información Adicional</h3>
+                                 {!! $ElementosArray["evento"] ->informacionEvento !!}
                                 </div>
                             </div>
                         @endif
-                        <div style="display:none;" class="row">
-                        <!--div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-md-7">Id:</label>
-                                    <div class="col-md-10">
-                                        {{$ElementosArray["evento"] ->id }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-md-8">Tipo:</label>
-                                <div class="col-md-10">
-{{$ElementosArray["evento"] ->Tipo_Evento }}
-                                </div>
-                            </div>
-                        </div-->
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label class="col-md-7">Evento:</label>
-                                    <div class="col-md-10">
-                                        {{ $ElementosArray["evento"] ->Nombre_Evento }}
-                                        <input type="hidden" id="nomEvenQR" value="{{$ElementosArray["evento"] ->Nombre_Evento}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="display:none;" class="row">
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label class="col-md-7">Lugar del evento:</label>
-                                    <div class="col-md-10">
-                                        {{ $ElementosArray["evento"] ->Lugar_Evento }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label class="col-md-8">Ciudad:</label>
-                                    <div class="col-md-10">
-                                        {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label class="col-md-7">Departamento:</label>
-                                    <div class="col-md-10">
-                                        {{ $ElementosArray["evento"]->ciudad->departamento->Nombre_Departamento }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="display:none;"  class="row">
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
-                                        <label class="col-md-7">Fecha Expiración del Cupon:</label>
-                                    @else
-                                        <label class="col-md-7">Fecha:</label>
-                                    @endif
-                                    <div class="col-md-10">
-                                        {{ $ElementosArray["evento"] ->Fecha_Evento }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
 
-                                    @else
-                                        <label class="col-md-8">Válido desde:</label>
-                                        <div class="col-md-10">
-                                            {{ $ElementosArray["evento"] ->Fecha_Inicial_Registro }}
-                                        </div>
-                                    @endif
-
-
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
-
-                                    @else
-                                        <label class="col-md-7">Válido hasta:</label>
-                                        <div class="col-md-10">
-                                            {{ $ElementosArray["evento"] ->Fecha_Final_Registro }}
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div style="display:none;"  class="row">
+                        <div class="row">
 
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -422,7 +334,7 @@
                                         <select id="Promotor_id" name="Promotor_id"  class="form-control">
                                             <option value="">Seleccionar</option>
                                             @foreach($ElementosArray["evento"] ->promotores as $Promotor)
-                                                <option value="{{ $Promotor->id }}">{{ $Promotor->Nombres }}. {{ $Promotor->Apellidos }}</option>
+                                                <option value="{{ $Promotor->id }}">{{ $Promotor->Nombres }}</option>
                                             @endforeach
                                         </select>
 

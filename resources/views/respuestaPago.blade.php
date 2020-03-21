@@ -9,7 +9,7 @@
 						<div class="item text-center">
 							<img src="{{ asset('img/icono.png') }}">
 							<h3 class="white light">GRACIAS POR COMPRAR TU BOLETA AL EVENTO:{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
-							<h4 class="light-white light">En unos segundos recibirás un correo con la cantidad de boletas que compraste.</br>
+							<h4 style="color:#fff !important;" class="light-white light">En unos segundos recibirás un correo con la cantidad de boletas que compraste.</br>
 								Si el estado de tu transaccion es Aprobada.</br>
 								Recuerda revisar tu bandeja de Spam.</h4>
 							<h3 class="white light">Estado de la transacción:{{ $ElementosArray["mensaje"]}}</h3>

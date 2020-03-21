@@ -216,6 +216,7 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 
 .btn.btn-blue {
 	background: #74b12e;
+	border: 2px solid #74b12e;
 }
 
 .btn.btn-blue:hover {

@@ -444,7 +444,8 @@ class EventosRepositorio
     }
 
     public  function  ObtenerMisEventos($idUser){
-        $eventos = Evento::where("user_id","=",$idUser)->get();
+	$eventos = Evento::where("user_id","=",$idUser)->get();
+	//$eventos = Evento::find(1)->get();
         return $eventos;
     }
 

@@ -400,7 +400,7 @@ function validarFormularioCrearEvento(){
         rules: {
             Nombre_Evento: {
                 required: true,
-                maxlength: 30
+                maxlength: 60
             },
             Tipo_Evento: {
                 required: true
@@ -457,7 +457,7 @@ function validarFormularioCrearEvento(){
         messages: {
             Nombre_Evento: {
                 required: "*El nombre del evento es obligatorio",
-                maxlength: "*El nombre debe tener máximo 30 caracteres"
+                maxlength: "*El nombre debe tener máximo 50 caracteres"
             },
             Tipo_Evento: {
                 required: "*El tipo de evento es obligatorio"

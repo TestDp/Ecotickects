@@ -17,7 +17,7 @@ p {
     color: #999;
 }
 
-a{color: #8abd51;}
+a{color: #4db41e;}
 
 a, a:hover, a:focus {
     color: inherit;
@@ -42,8 +42,8 @@ a, a:hover, a:focus {
 
 .btn-info{
 	color: #fff;
-    background-color: #8abd51 !important;
-    border-color: #8abd51 !important;
+    background-color: #4db41e !important;
+    border-color: #4db41e !important;
 }
 
 .line {
@@ -94,13 +94,13 @@ a, a:hover, a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #8abd51;
+    color: #4db41e;
     background: #fff;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #8abd51;
+    background: #4db41e;
 }
 
 
@@ -124,7 +124,7 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #393939;
+    background: #ccc;
 	color:#fff;
 }
 
@@ -176,3 +176,5 @@ a.article, a.article:hover {
         display: none;
     }
 }
+
+.error{color:red !important;}
