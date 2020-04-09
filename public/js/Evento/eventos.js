@@ -920,7 +920,7 @@ function construirGraficoJuntas() {
 function BuscarAsistente() {
     var cc = $("#Identificacion").val();
     $.ajax({
-        url: urlBase+'asistenteResgistrado/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/asistenteResgistrado/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             cc: cc,
             _token :$("#_token").val()
