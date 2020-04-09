@@ -21,7 +21,7 @@ function CargarMunicipiosDepartamento(idCiudad){
     var idDepartamento =$("#Departamento_id").val();
     var $idCiudad =$("#Ciudad_id");
     $.ajax({
-        url: urlBase+'Ciudades/'+idDepartamento,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/Ciudades/'+idDepartamento,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idDepartamento: idDepartamento,
             _token :$("#_token").val()
@@ -128,7 +128,7 @@ function EditarNombrePreguntasYRespuetas(){
 function ValidarPin () {
     var idPin = $("#pinIngresar").val();
     $.ajax({
-        url: urlBase+'pin/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/pin/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idPin: idPin,
             _token :$("#_token").val()
@@ -518,7 +518,7 @@ function validarFormularioCrearEvento(){
 function construirGraficoCantidadAsistentes() {
     var idPin = $("#idevento").val();
     $.ajax({
-        url: urlBase+'CantidadAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/CantidadAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idPin: idPin,
             _token :$("#_token").val()
@@ -558,7 +558,7 @@ function construirGraficoCantidadAsistentes() {
 function construirGraficoLiquidacion() {
     var idPin = $("#idevento").val();
     $.ajax({
-        url: urlBase+'LiquidacionGrafica/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/LiquidacionGrafica/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idPin: idPin,
             _token :$("#_token").val()
@@ -611,7 +611,7 @@ function construirGraficoLiquidacion() {
 function construirGraficoKPI() {
     var idPin = $("#idevento").val();
     $.ajax({
-        url: urlBase+'CantidadAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/CantidadAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idPin: idPin,
             _token :$("#_token").val()
@@ -691,7 +691,7 @@ function construirGraficoKPI() {
 function construirBarrasAsistentesCiudades() {
     var idEvento = $("#idevento").val();
     $.ajax({
-        url: urlBase+'AsistentesXCiudad/'+idEvento,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/AsistentesXCiudad/'+idEvento,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idEvento: idEvento,
             _token :$("#_token").val()
@@ -753,7 +753,7 @@ function construirBarrasAsistentesCiudades() {
 function construirBarrasAsistentesEdades() {
     var idEvento = $("#idevento").val();
     $.ajax({
-        url: urlBase+'EdadesAsistentes/'+idEvento,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/EdadesAsistentes/'+idEvento,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idEvento: idEvento,
             _token :$("#_token").val()
@@ -815,7 +815,7 @@ function construirBarrasAsistentesEdades() {
 function construirBarrasAsistentesXFecha() {
     var idEvento = $("#idevento").val();
     $.ajax({
-        url: urlBase+'AsistentesXFecha/'+idEvento,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/AsistentesXFecha/'+idEvento,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idEvento: idEvento,
             _token :$("#_token").val()
@@ -877,7 +877,7 @@ function construirBarrasAsistentesXFecha() {
 function construirGraficoJuntas() {
     var idPin = $("#idevento").val();
     $.ajax({
-        url: urlBase+'JuntasAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/JuntasAsistentes/'+idPin,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idPin: idPin,
             _token :$("#_token").val()
@@ -984,7 +984,7 @@ function leerQR() {
 
 function validarQR(idEvento,cc) {
     $.ajax({
-        url: urlBase+'InformacionQR/'+idEvento+'/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/InformacionQR/'+idEvento+'/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             cc: cc,
             idEvento:idEvento,
@@ -1050,7 +1050,7 @@ function activarQRUsuario(){
     var cedulaUsuario = $("#pk_usuario").val();
     var idEvento = $("#idEvento").val();
     $.ajax({
-        url: urlBase+'ActivarQR/'+idEvento+'/'+cedulaUsuario+'/'+identificacion,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/ActivarQR/'+idEvento+'/'+cedulaUsuario+'/'+identificacion,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             cc: cedulaUsuario,
             idEvento:idEvento,
@@ -1214,7 +1214,7 @@ function ajaxRenderSectionCargarUsuarios() {
     var idEvento = $("#Evento_id").val();
     $.ajax({
         type: 'GET',
-        url: urlBase +'UsuariosXEvento/'+idEvento,
+        url: urlBase +'/UsuariosXEvento/'+idEvento,
         dataType: 'json',
         success: function (data) {
             $('#listaUsuarios').empty().append($(data));

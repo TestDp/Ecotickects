@@ -12,7 +12,7 @@ function RegistrarUsuario () {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase + 'FormularioAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + '/FormularioAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
@@ -38,7 +38,7 @@ function RegistrarUsuarioTemp () {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase + 'FormularioAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + '/FormularioAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
@@ -306,7 +306,7 @@ function validarCodigoPromocional(idEvento) {
    var CodigoPromocional = $("#Codigo").val();
     $.ajax({
         type: 'GET',
-        url: urlBase+'ValidarCodigoPromo/'+idEvento+'/'+CodigoPromocional,
+        url: urlBase+'/ValidarCodigoPromo/'+idEvento+'/'+CodigoPromocional,
         dataType: 'json',
         success: function (result) {
             if (result) {
@@ -366,7 +366,7 @@ function ActivarEsPago (element,idEvento) {
          FlagEsActivo =0;
      }
     $.ajax({
-        url: urlBase+'ActivarEventoPago/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/ActivarEventoPago/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             FlagEsActivo: FlagEsActivo,
             idEvento:idEvento,
@@ -390,7 +390,7 @@ function ActivarTienda (element,idEvento) {
         FlagEsActivo =0;
     }
     $.ajax({
-        url: urlBase+'ActivarTienda/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/ActivarTienda/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             FlagEsActivo: FlagEsActivo,
             idEvento:idEvento,
@@ -414,7 +414,7 @@ function ActivarSolicitarPIN (element,idEvento) {
         FlagEsActivo =0;
     }
     $.ajax({
-        url: urlBase+'ActivarSolicitarPIN/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/ActivarSolicitarPIN/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             FlagEsActivo: FlagEsActivo,
             idEvento:idEvento,
@@ -438,7 +438,7 @@ function ActivarEsPublico (element,idEvento) {
         FlagEsActivo =0;
     }
     $.ajax({
-        url: urlBase+'ActivarEsPublico/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/ActivarEsPublico/'+idEvento+'/'+FlagEsActivo,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             FlagEsActivo: FlagEsActivo,
             idEvento:idEvento,
@@ -498,7 +498,7 @@ function cargarFormularioPagoTC(tipoTC) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'FormularioPagoTc/'+tipoTC,
+        url: urlBase +'/FormularioPagoTc/'+tipoTC,
         dataType: 'json',
         success: function (result) {
             OcultarPopupposition();
@@ -519,7 +519,7 @@ function cargarFormularioPagoPSE() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'FormularioPagoPSE',
+        url: urlBase +'/FormularioPagoPSE',
         dataType: 'json',
         success: function (result) {
             OcultarPopupposition();
@@ -546,7 +546,7 @@ function CargarFormularioMediosDePago() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'FormularioMediosDePago',
+        url: urlBase +'/FormularioMediosDePago',
         dataType: 'json',
         success: function (result) {
             OcultarPopupposition();
@@ -570,7 +570,7 @@ function PagarCompraTC() {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase + 'pagarTC',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + '/pagarTC',//primero el modulo/controlador/metodo que esta en el controlador
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
@@ -595,7 +595,7 @@ function PagarCompraPSE() {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase + 'pagarPSE',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + '/pagarPSE',//primero el modulo/controlador/metodo que esta en el controlador
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
