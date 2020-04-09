@@ -79,6 +79,13 @@
 	<![endif]-->
 </head>
 <body>
+<div id="capa_loading" class="capa_loading" style="display:none;">Procesando...</div>
+<div id="_loading" class="_loading" style="display:none;">
+	<img class="img_loading" src="{{ asset('img/loader.gif') }}" />
+
+	<br>
+	<br>
+</div>
 <div class="preloader">
 	<img src="{{ asset('img/loader.gif') }}" alt="Preloader image">
 </div>

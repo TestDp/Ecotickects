@@ -9,6 +9,8 @@
 namespace Eco\Datos\Repositorio;
 
 
+use Eco\Datos\Modelos\InfoPago;
+
 class InfoPagosRepositorio
 {
 
@@ -43,5 +45,10 @@ class InfoPagosRepositorio
             return ['respuesta' => false, 'error' => $error];
         }
 
+    }
+
+    public function obtenerInfoPagos($idInfoPagos)
+    {
+        return InfoPago::where('id', '=', $idInfoPagos)->first();
     }
 }

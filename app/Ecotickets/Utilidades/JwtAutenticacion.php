@@ -22,7 +22,6 @@ class JwtAutenticacion
     }
 
     public  function SingUp($email,$password,$getToken=null){
-
         $usuario =  User::where(
                 'email','=', $email
             )->first();

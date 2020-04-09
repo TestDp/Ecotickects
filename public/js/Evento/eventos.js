@@ -1249,3 +1249,4 @@ function ActualizarEventosFecha(){
         url: urlBase+'ActualizarEventosFecha',//primero el modulo/controlador/metodo que esta en el controlador
         type: 'POST'})
 }
+

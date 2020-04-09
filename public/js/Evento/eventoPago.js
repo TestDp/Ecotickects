@@ -1,4 +1,4 @@
-//var urlBase = "/Eco-Tortoise/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
+
 try {
     urlBase = obtenerUlrBase();
 } catch (e) {
@@ -7,8 +7,33 @@ try {
 };
 
 
-//var urlBase = "/Ecotickects/trunk/public/"; //SE DEBE VALIDAR CUAL ES LA URL EN LA QUE SE ESTA CORRIENDO LA APP
 function RegistrarUsuario () {
+    var form = $("#formularioEvento");
+    var token = $("#_token").val()
+    $.ajax({
+        type: 'POST',
+        url: urlBase + 'FormularioAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
+        headers: {'X-CSRF-TOKEN': token},
+        data:form.serialize(),
+        dataType: "JSON",
+        success: function (result) {
+            OcultarPopupposition();
+            $('#eco').empty().append($(result));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
+
+function RegistrarUsuarioTemp () {
     var form = $("#formularioEvento");
     var token = $("#_token").val()
     $.ajax({
@@ -426,4 +451,171 @@ function ActivarEsPublico (element,idEvento) {
             }
         }
     });
+}
+
+function AgregarVlrPagoTC(tipoTC){
+        swal({
+            title: '¡El pago con tarjeta de credito contiene un costo adicional!',
+            text: "¿Está seguro que desea pagar con tarjeta de crédito?",
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: "Cancel",
+                    value: false,
+                    visible: true,
+                    className: "",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "OK",
+                    value: true,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                }},
+        }).then((result) => {
+            if (result) {
+                $("#aVisa").attr('onclick','cargarFormularioPagoTC("VISA")');
+                $("#aMasterCard").attr('onclick','cargarFormularioPagoTC("MASTERCARD")');
+                $("#aAmex").attr('onclick','cargarFormularioPagoTC("AMEX")');
+                $("#aDiners").attr('onclick','cargarFormularioPagoTC("DINERS")');
+                $("#aCodensa").attr('onclick','cargarFormularioPagoTC("CODENSA")');
+                var impuestos = parseInt($("#subTotal").val() * 0.07);
+                var total  = impuestos + parseInt($("#subTotal").val());
+                $("#tdTotalAPagar").html(total);
+            var row = '<tr id="trValorAdicional">';
+                row = row + '<td>1</td>';
+                row = row + '<td>Costo transacción</td>';
+                row = row +'<td>'+impuestos+'</td>';
+                row = row + '<td>'+impuestos+'</td>';
+                row = row + '</tr>';
+                $("#TablasDetalleFactura").append(row);
+                cargarFormularioPagoTC(tipoTC);
+            }
+        });
+}
+function cargarFormularioPagoTC(tipoTC) {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'FormularioPagoTc/'+tipoTC,
+        dataType: 'json',
+        success: function (result) {
+            OcultarPopupposition();
+            $('#divPSE').empty().append($(result));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+function cargarFormularioPagoPSE() {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'FormularioPagoPSE',
+        dataType: 'json',
+        success: function (result) {
+            OcultarPopupposition();
+            $("#divTC").remove();
+            $('#divMediosDePago').append($(result));
+            $('#aPSE').removeAttrs('onclick');
+            $('#aPSE').removeAttrs('style');
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
+
+
+function CargarFormularioMediosDePago() {
+    PopupPosition();
+    $.ajax({
+        type: 'GET',
+        url: urlBase +'FormularioMediosDePago',
+        dataType: 'json',
+        success: function (result) {
+            OcultarPopupposition();
+            $('#divMediosDePago').empty().append($(result));
+            $("#trValorAdicional").remove();
+            $("#tdTotalAPagar").html($("#subTotal").val());
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+function PagarCompraTC() {
+    var form = $("#formPagPy");
+    var token = $("#_token").val()
+    $.ajax({
+        type: 'POST',
+        url: urlBase + 'pagarTC',//primero el modulo/controlador/metodo que esta en el controlador
+        headers: {'X-CSRF-TOKEN': token},
+        data:form.serialize(),
+        dataType: "JSON",
+        success: function (result) {
+            OcultarPopupposition();
+            $('#eco').empty().append($(result));
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
+function PagarCompraPSE() {
+    var form = $("#formPagPy");
+    var token = $("#_token").val()
+    $.ajax({
+        type: 'POST',
+        url: urlBase + 'pagarPSE',//primero el modulo/controlador/metodo que esta en el controlador
+        headers: {'X-CSRF-TOKEN': token},
+        data:form.serialize(),
+        dataType: "JSON",
+        success: function (result) {
+            OcultarPopupposition();
+            window.location.href= result;
+        },
+        error: function (data) {
+            OcultarPopupposition();
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
+function guardarNombreBanco() {
+    var nombreBanco =  $("#banco").find("option:selected").text();
+    $("#nombreBanco").val(nombreBanco);
 }

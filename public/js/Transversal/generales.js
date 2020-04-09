@@ -7,7 +7,7 @@ function obtenerUlrBase() {
         case 'ecotickets.co':
             rootFolder = '/'; break;
         case 'localhost':
-            rootFolder = '/Ecotickets/trunk/public/'; break;
+            rootFolder = '/Ecotickects/trunk/public/'; break;
         default:  // set whatever you want
     }
     var urlBase = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + rootFolder;
@@ -23,6 +23,9 @@ function PopupPosition() {
     //$("#capa_loading").css({ "top": $(window).scrollTop() }).show();
     $("#capa_loading").show();
     $("#_loading").css({ "top": topLoading, "left": leftLoading }).show();
+   // $("#_loading").css({ "top": topLoading, "left": leftLoading });
+    //$("#_loading").removeAttrs('style')
+
 }
 
 //Oculta los divs que se utilizan para mostrar

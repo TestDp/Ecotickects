@@ -186,10 +186,32 @@ class AsistentesController extends Controller
 
 
     /*Metodo cuando se esta registrando un asistente que esta comprando una boleta.**/
-    public function registrarAsistentePagoPost(Request $formRegistro)
+    /*public function registrarAsistentePagoPost(Request $formRegistro)
     {
         return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
+    }*/
+
+    public function registrarAsistentePagoPost(Request $formRegistro)
+    {
+        $respuesta = $this->asistenteServicio->registrarAsistentePagoPayu($formRegistro);
+        $resumenPago = new \stdClass();
+        $resumenPago->CantidadTickets = $formRegistro->CantidadTickets;
+        $resumenPago->PrecioUnidad = $respuesta['infoPago']->PrecioTotal/$formRegistro->CantidadTickets;
+        $resumenPago->PrecioSubTotal = $respuesta['infoPago']->PrecioTotal;
+        $resumenPago->NombreComprador = $formRegistro->Nombres ." ". $formRegistro->Apellidos;
+        $resumenPago->Email = $formRegistro->Email;
+        $resumenPago->Referencia = env('REFERENCECODE') . $respuesta['infoPago']->id;
+        $resumenPago->Descripcion = env('DESCRIPCION');
+        $resumenPago->Direccion = $formRegistro->Dirección;
+        $resumenPago->Telefono = $formRegistro->telefono;
+        $resumenPago->InfoPId = $respuesta['infoPago']->id;
+        $resumenPago->nombreBoleta = $respuesta['infoPago']->nombreBoleta;
+        $view = View::make('MPagos/ResumenPago')->with('InfoPago',$resumenPago);
+        $sections = $view->renderSections();
+        return Response::json($sections['ResumenPago']);
+
     }
+
 
     /*Metodo para generar qrs. sirve para reenviar las invitaciones**/
     public function GenerarQRS(Request $formRegistro)
@@ -427,11 +449,6 @@ class AsistentesController extends Controller
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idSede = Auth::user()->Sede->id;
         $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
-
-        /*$urlinfo= $request->getPathInfo();
-        $request->user()->AutorizarUrlRecurso($urlinfo);
-        $user = Auth::user();
-        $eventos = $this->eventoServicio->ObtenerMisEventos($user->id);*/
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
         return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray]);
@@ -474,5 +491,7 @@ class AsistentesController extends Controller
     {
         $this->asistenteServicio->ActualizarEventosFecha();
     }
+
+
 
 }

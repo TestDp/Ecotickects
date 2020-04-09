@@ -118,6 +118,8 @@ class AsistenteRepositorio
                 }
             }
             DB::commit();
+            $precioBoleta = PrecioBoleta::where('id','=',$infoPago->PrecioBoleta_id)->get()->first();
+            $infoPago->nombreBoleta = $precioBoleta->localidad;
             return ['respuesta' => true, 'infoPago' => $infoPago];
 
         } catch (\Exception $e) {

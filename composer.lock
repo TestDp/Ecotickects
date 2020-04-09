@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f8e31950a4a2eed1c7d6ae841cdfa96",
+    "content-hash": "eb24f207993f63c6cb1ed8fafe3d4d8b",
     "packages": [
+        {
+            "name": "alexo/laravel-payu",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alejogutierrez/laravel-payu.git",
+                "reference": "936c16999054a9fd11b6a658de05e67eba1a0484"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alejogutierrez/laravel-payu/zipball/936c16999054a9fd11b6a658de05e67eba1a0484",
+                "reference": "936c16999054a9fd11b6a658de05e67eba1a0484",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "~1.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "vlucas/phpdotenv": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "sdk/lib"
+                ],
+                "psr-4": {
+                    "Alexo\\LaravelPayU\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alejandro Gutiérrez",
+                    "email": "alejandrogutierrezacosta@gmail.com"
+                }
+            ],
+            "description": "Una interfaz fluida para Laravel usando el SDK oficial de PayU latam.",
+            "keywords": [
+                "laravel",
+                "pagos",
+                "payu"
+            ],
+            "time": "2018-04-29T19:40:41+00:00"
+        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "1.0.3",

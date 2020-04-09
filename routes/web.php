@@ -157,6 +157,10 @@ Auth::routes();
     //Route::post('ConfirmarAsistencia/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ConfirmarAsistente']);
     
     Route::post('ConfirmarAsistente',['uses' =>'Evento\AsistentesController@ConfirmarAsistente']);
+
+
+
+
     
 // FIN DE RUTAS PARA EL CONTROLADOR DE ASISTENTES//
 
@@ -174,6 +178,7 @@ Auth::routes();
 
 
 // INICIO DE RUTAS DE LOS WS DE LA APP//
+
     Route::get('CiudadesWS/{idDepartamento}',['uses' =>'Evento\CiudadController@obtenerCiudades']);
 
     Route::get('loginApp/{correo}/{password}',['uses' =>'Auth\LoginController@loginApp']);
@@ -294,3 +299,12 @@ Route::get('sedes', 'MEmpresa\SedeController@ObtenerSedes')->name('sedes');//Obt
 Route::get('crearSede', 'MEmpresa\SedeController@CrearSede')->name('crearSede');//cargar la vista para crear una sede
 Route::get('editarSede/{idSede}', 'MEmpresa\SedeController@EditarSede')->name('editarSede');//cargar la vista para editar una sede
 Route::post('guardarSede', 'MEmpresa\SedeController@GuardarSede')->name('guardarSede');//Guardar la informacion de la sede
+
+//CONTROLADOR PAGOPAYU
+Route::post('pagarTC',['uses' =>'Evento\PagosController@PagarTC']);
+Route::post('pagarPSE',['uses' =>'Evento\PagosController@PagarPSE']);
+Route::get('FormularioPagoTc/{tipoTC}',['uses' =>'Evento\PagosController@CargarFormularioPagoTC']);
+Route::get('FormularioPagoPSE',['uses' =>'Evento\PagosController@CargarFormularioPagoPSE']);
+Route::get('FormularioMediosDePago',['uses' =>'Evento\PagosController@CargarFormularioMediosDePago']);
+
+//Route::get('pagar',['uses' =>'Evento\PagosController@Pagar']);

@@ -41,6 +41,11 @@ class AsistenteServicio
         return $this->asistenteRepositorio->registrarAsistentePago($asistente);
 
     }
+
+    public function registrarAsistentePagoPayu($asistente){
+        return $this->asistenteRepositorio->registrarAsistentePago($asistente);
+    }
+
     public function registrarAsistentePago($asistente)
     {
         $respuesta = $this->asistenteRepositorio->registrarAsistentePago($asistente);

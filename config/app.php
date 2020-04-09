@@ -181,6 +181,8 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
+        Alexo\LaravelPayU\LaravelPayUServiceProvider::class
+
 
 
 

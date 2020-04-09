@@ -1900,3 +1900,30 @@ form label {
 }
 
 /*# sourceMappingURL=style.css.map */
+.capa_loading {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: none;
+  z-index: 999;
+  background-color: rgba(50, 50, 50, 0.95);
+  background: rgba(50, 50, 50, 0.95);
+  color: rgba(50, 50, 50, 0.95);
+  filter: alpha(opacity=60);
+}
+
+._loading {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+}
+
+.img_loading {
+  height: 80px;
+  width: 80px;
+  display: inline-block;
+  _display: inline;
+  zoom: 1;
+  box-sizing: border-box;
+  vertical-align: top;
+}

@@ -1,6 +1,6 @@
 @extends('layouts.eventos')
 
-@section('content')
+@section('RespuestaPago')
 <section style="padding-top:40px !important;" class="section section-padded blue-bg">
 		<div class="container">
 			<div class="row">
