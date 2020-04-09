@@ -16,6 +16,7 @@ class PagosController extends Controller
     protected  $estadotrasaccion='PENDIENTE';
     protected  $bancosPSE;
     protected  $responsePSE;
+    protected  $errorPSE;
 
     public function __construct(PagosServicio $pagosServicio)
     {
@@ -34,14 +35,14 @@ class PagosController extends Controller
             LaravelPayU::getPSEBanks(function($banks) {
                 $this->bancosPSE = $banks;
             }, function($error) {
-                $test = 'hola';
+                $this->errorPSE = $error;
             });
             $view = View::make('MPagos/FormularioPagoPSEVP')->with('listaBancos',$this->bancosPSE);
             $sections = $view->renderSections();
             return Response::json($sections['FomularioPagoPSE']);
         } catch (\Exception $e) {
             $error = $e->getMessage();
-            return ['respuesta' => false, 'error' => $error];
+            return ['respuesta' => false, 'error' => $error,'errorPSE' =>$this->errorPSE];
         }
     }
 
