@@ -83,7 +83,7 @@
                                 <h4>Débito bancario PSE</h4>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <a id="aPSE" name="aPSE" class="navbar-brand" onclick="AgregarVlrPagoTC()" style="cursor:pointer;">
+                                        <a id="aPSE" name="aPSE" class="navbar-brand" onclick="cargarFormularioPagoPSE()" style="cursor:pointer;">
                                             <img style="height: auto !important;" src="../img/icono_pse.jpg" data-active-url="../img/icono_visa.png" alt="" width="100%" height="100%"/>
                                         </a>
                                     </div>
