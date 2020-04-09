@@ -30,14 +30,19 @@ class PagosController extends Controller
     }
     public  function  CargarFormularioPagoPSE()
     {
-        LaravelPayU::getPSEBanks(function($banks) {
-            $this->bancosPSE = $banks;
-        }, function($error) {
-            $test = 'hola';
-        });
-        $view = View::make('MPagos/FormularioPagoPSEVP')->with('listaBancos',$this->bancosPSE);
-        $sections = $view->renderSections();
-        return Response::json($sections['FomularioPagoPSE']);
+        try{
+            LaravelPayU::getPSEBanks(function($banks) {
+                $this->bancosPSE = $banks;
+            }, function($error) {
+                $test = 'hola';
+            });
+            $view = View::make('MPagos/FormularioPagoPSEVP')->with('listaBancos',$this->bancosPSE);
+            $sections = $view->renderSections();
+            return Response::json($sections['FomularioPagoPSE']);
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            return ['respuesta' => false, 'error' => $error];
+        }
     }
 
     public  function  CargarFormularioMediosDePago()
@@ -85,7 +90,7 @@ class PagosController extends Controller
         $order->value = $infoPago->PrecioTotal;
         $ip = $this->ObtenerIPComprador();
         $data = $this->pagosServicio->ObtenerParametrosPayuPSE($formPago,$order->reference,$order->value,$ip);
-       $order->payWith($data, function($response, $order)
+        $order->payWith($data, function($response, $order)
         {
             if ($response->code == 'SUCCESS')
             {
