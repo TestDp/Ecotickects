@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-7">
             <input type="text"  id="nombreTitular" name="nombreTitular" class="form-control"
-                   placeholder="Nombre completo" value="APPROVED">
+                   placeholder="Nombre completo" value="Cristian Mauricio Arenas Gomez">
         </div>
     </div>
     <div class="row">

@@ -42,7 +42,7 @@ class PagosController extends Controller
             return Response::json($sections['FomularioPagoPSE']);
         } catch (\Exception $e) {
             $error = $e->getMessage();
-            return ['respuesta' => false, 'error' => $error,'errorPSE' =>$this->errorPSE];
+            return ['respuesta' => false, 'error' => $error,'errorPSE' => $this->errorPSE];
         }
     }
 
@@ -108,17 +108,20 @@ class PagosController extends Controller
         }, function($error) {
             $this->resultadoPago = $error;
         });
-        return response()->json('http://dpsoluciones.co/');
+        if($this->responsePSE->transactionResponse->state=="PENDING"){
+           $URLPAGOPSE =  $this->responsePSE->transactionResponse->extraParameters->BANK_URL;
+            return response()->json(array('Respuesta'=>true,'URLPPAGOPSE'=>$URLPAGOPSE));
+        }
+        return response()->json(array('Respuesta'=>false,'URLPPAGOPSE'=>null));
 
     }
 
-    public function RespuestaPagoPSE(){
+    public function RespuestaPagoPSE()
+    {
         $ElementosArray = $this->pagosServicio->ObtenerInfoPagoRespuestaPSE($_REQUEST);
-        $view = View::make('MPagos/ResultadoPagoPSEVP',['InfoPago' => $ElementosArray]);
-        $sections = $view->renderSections();
-        return Response::json($sections['ResultadoPagoPSEVP']);
-
+        return View('MPagos/ResultadoPagoPSEVP',['InfoPago' => $ElementosArray]);
     }
+
     public function ObtenerIPComprador(){
         if (isset($_SERVER["HTTP_CLIENT_IP"]))
         {

@@ -55,7 +55,7 @@ class PagosServicio
             \PayUParameters::PAYER_STATE => "Rionegro",
             \PayUParameters::PAYER_COUNTRY => "CO",
             \PayUParameters::PAYER_POSTAL_CODE => "000000",
-            \PayUParameters::PAYER_PHONE => $formPago->numeroTel,
+            \PayUParameters::PAYER_PHONE => $formPago->numeroTel
         ];
         return $data;
     }
@@ -77,7 +77,7 @@ class PagosServicio
             \PayUParameters::IP_ADDRESS => $ip,
             \PayUParameters::CURRENCY => 'COP',
             \PayUParameters::PAYMENT_METHOD => "PSE",
-            \PayUParameters::PAYER_NAME => $formPago->nombrePagador,
+            \PayUParameters::PAYER_NAME => $formPago->nombreTitular,
             \PayUParameters::PAYER_EMAIL => $formPago->Email,
             \PayUParameters::PAYER_CONTACT_PHONE => $formPago->numeroTel,
             \PayUParameters::PAYER_DNI => $formPago->documentoPagador,
@@ -91,7 +91,10 @@ class PagosServicio
             \PayUParameters::PAYER_DOCUMENT_TYPE => $formPago->tipoDoc,
             \PayUParameters::PSE_FINANCIAL_INSTITUTION_CODE => $formPago->banco,
             \PayUParameters::PAYER_PERSON_TYPE => $formPago->tipoCliente,
-            \PayUParameters::RESPONSE_URL=>env('URLRESPONSE')
+            \PayUParameters::RESPONSE_URL=>env('URLRESPONSE'),
+            \PayUParameters::USER_AGENT =>"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
+            \PayUParameters::PAYER_COOKIE=>"_ga=GA1.1.516722673.1535080117"
+
         ];
         return $data;
     }
@@ -136,7 +139,7 @@ class PagosServicio
         $InfoPago->NumTransaccion = $responsePSE['cus'];
         $InfoPago->Banco = $responsePSE['pseBank'];
         $InfoPago->Valor =$responsePSE['TX_VALUE'];
-        $InfoPago->Moneda =$responsePSE['description'];
+        $InfoPago->Moneda =$responsePSE['currency'];
         $InfoPago->Descripcion = $responsePSE['description'];
         $InfoPago->IP = $responsePSE['pseReference1'];;
         return $InfoPago;

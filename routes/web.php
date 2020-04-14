@@ -306,5 +306,6 @@ Route::post('pagarPSE',['uses' =>'Evento\PagosController@PagarPSE']);
 Route::get('FormularioPagoTc/{tipoTC}',['uses' =>'Evento\PagosController@CargarFormularioPagoTC']);
 Route::get('FormularioPagoPSE',['uses' =>'Evento\PagosController@CargarFormularioPagoPSE']);
 Route::get('FormularioMediosDePago',['uses' =>'Evento\PagosController@CargarFormularioMediosDePago']);
+Route::get('RespuestaPagoPSE',['uses' =>'Evento\PagosController@RespuestaPagoPSE']);
 
 //Route::get('pagar',['uses' =>'Evento\PagosController@Pagar']);

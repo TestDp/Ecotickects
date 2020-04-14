@@ -186,10 +186,10 @@ class AsistentesController extends Controller
 
 
     /*Metodo cuando se esta registrando un asistente que esta comprando una boleta.**/
-    /*public function registrarAsistentePagoPost(Request $formRegistro)
+    public function registrarAsistentePagoPostWebCheckout(Request $formRegistro)
     {
         return response()->json($this->asistenteServicio->registrarAsistentePago($formRegistro));
-    }*/
+    }
 
     public function registrarAsistentePagoPost(Request $formRegistro)
     {
@@ -209,7 +209,6 @@ class AsistentesController extends Controller
         $view = View::make('MPagos/ResumenPago')->with('InfoPago',$resumenPago);
         $sections = $view->renderSections();
         return Response::json($sections['ResumenPago']);
-
     }
 
 
@@ -295,8 +294,8 @@ class AsistentesController extends Controller
     }
 
     /**Metodo de respuesta de la plataforma payu para mostrar el mensaje al usuario sobre el estado de la transaccion.
-     * el llamado se hace cuando se presiona el boton de regresar al sitio.*/
-    public function RespuestaPagosUsuario()
+     * el llamado se hace cuando se presiona el boton de regresar al sitio. WebCheckout*/
+    public function RespuestaPagosUsuarioWebCheckout()
     {
         $estadoTransaccion = $_REQUEST['transactionState'];
         $transaccionReference = $_REQUEST['referenceCode'];

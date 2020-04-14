@@ -9,7 +9,7 @@ try {
 
 function RegistrarUsuario () {
     var form = $("#formularioEvento");
-    var token = $("#_token").val()
+    var token = $("#_token").val();
     $.ajax({
         type: 'POST',
         url: urlBase + '/FormularioAsistentePago',//primero el modulo/controlador/metodo que esta en el controlador
@@ -17,6 +17,8 @@ function RegistrarUsuario () {
         data:form.serialize(),
         dataType: "JSON",
         success: function (result) {
+            var userAgent =  navigator.userAgent;
+            //var cokkie = document.cookie;
             OcultarPopupposition();
             $('#eco').empty().append($(result));
         },
@@ -566,8 +568,9 @@ function CargarFormularioMediosDePago() {
     });
 }
 function PagarCompraTC() {
+    PopupPosition();
     var form = $("#formPagPy");
-    var token = $("#_token").val()
+    var token = $("#_token").val();
     $.ajax({
         type: 'POST',
         url: urlBase + '/pagarTC',//primero el modulo/controlador/metodo que esta en el controlador
@@ -591,6 +594,7 @@ function PagarCompraTC() {
 }
 
 function PagarCompraPSE() {
+    PopupPosition();
     var form = $("#formPagPy");
     var token = $("#_token").val()
     $.ajax({
@@ -601,7 +605,17 @@ function PagarCompraPSE() {
         dataType: "JSON",
         success: function (result) {
             OcultarPopupposition();
-            window.location.href= result;
+            if(result.Respuesta == true){
+                window.location.href= result.URLPPAGOPSE;
+            }
+            else{
+                swal({
+                    title: "Error procesando el pago!",
+                    text: "Por favor intenta de nuevo!",
+                    icon: "error",
+                    button: "OK",
+                });
+            }
         },
         error: function (data) {
             OcultarPopupposition();
