@@ -5,6 +5,7 @@ namespace Ecotickets\Http\Controllers\Evento;
 
 use Eco\Datos\Modelos\PrecioBoleta;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
@@ -221,7 +222,10 @@ class AsistentesController extends Controller
         $correoSaliente = $evento->CorreoEnviarInvitacion;
         $pinUser= $formRegistro->pin;
         $ElementosArray = array('evento' => $evento);
-        Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$pinUser) {
+        $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($pinUser, 4, 4);
+        $localidad = $listaAsistentesXEventosPines['localidad'];
+        $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+        Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$pinUser,$localidad,$pinesImagenes) {
             $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
             $msj->subject('Importante - Aquí esta tu pase de acceso');
             $msj->to($correoElectronico);
@@ -232,9 +236,13 @@ class AsistentesController extends Controller
             if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
                 mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
             }
-            \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pinUser. '.pdf');
-            $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pinUser . '.pdf';
-            $msj->attach($qrImagen);
+            foreach ($pinesImagenes as $pin) {
+                $qr = base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
+                $ElementosArray = array('evento' => $evento, 'qr' => $qr,'localidad'=>$localidad);
+                \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pin->id . '.pdf');
+                $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pin->id . '.pdf';
+                $msj->attach($qrImagen);
+            }
         });
         return redirect('/home');
     }
@@ -277,8 +285,8 @@ class AsistentesController extends Controller
                     foreach ($pinesImagenes as $pin) {
                         $qr = base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
                         $ElementosArray = array('evento' => $evento, 'qr' => $qr,'localidad'=>$localidad);
-                        \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/ECOTICKET' . $pin->id . '.pdf');
-                        $qrImagen = storage_path('app') . '/boletas/ECOTICKET' . $pin->id . '.pdf';
+                        \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pin->id . '.pdf');
+                        $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pin->id . '.pdf';
                         $msj->attach($qrImagen);
                     }
                 });
@@ -289,6 +297,9 @@ class AsistentesController extends Controller
             return response('OK', 200);
         } catch (\Exception $e) {
             $error = $e->getMessage();
+            $archivo =  fopen(storage_path('app').'/log.txt','a');
+            fwrite($archivo,$error);
+            fclose($archivo);
             return reponse('ERROR', 404);
         }
     }

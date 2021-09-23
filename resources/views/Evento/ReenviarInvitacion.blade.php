@@ -31,7 +31,7 @@
                                     <input id="correo" name="correo" type="text" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
-                                    PIN
+                                    REFERENCIA DE PAGO
                                     <input id="pin" name="pin" type="text" class="form-control" />
                                 </div>
                             </div>
