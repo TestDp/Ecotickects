@@ -99,7 +99,7 @@
 				<div class="header-text">
 					<div class="row">
 						<div class="col-md-12 text-center">							
-							<h1 class="black typed">Una forma simple de proteger el planeta.</h1><span class="typed-cursor">|</span>
+							<h1 class="black typed">Una | forma simple de proteger el planeta.</h1><span class="typed-cursor">|</span>
 							<h3 class="light black">Administra tu evento sosteniblemente</h3>
 							<a href="#" class="btn btn-blue ripple trial-button">PUBLICA TU EVENTO AHORA</a>
 							
