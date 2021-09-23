@@ -610,7 +610,7 @@ class AsistenteRepositorio
     public function  ActualizarEventosFecha()
     {
         $user = 1;
-
+        //test
         if ($user == 1) {
             DB::statement("CALL SpActualizarEventos()");
 
