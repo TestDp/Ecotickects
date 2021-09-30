@@ -24,7 +24,7 @@
 									<label><i class="fa fa-check"></i>Fecha del evento:</label> {{ $ElementosArray["evento"] ->Fecha_Evento }}</br>
 								<hr style="border: 1px solid #74b12e;">
 								<h3 style="color:#000;">Boletería y Localidades</h3>	
-                                    <ul id="localidad" name="localidad" onchange="mostrarPrecioBoleta()">
+                                    <ul >
                                         @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
                                             <li value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}"><p style="margin-bottom: 0px !important; color:#000 !important; text-transform: capitalize;">{{ $Localidad->localidad }}: <b>$ {{ $Localidad->precio }}</b></p></li>
                                         @endforeach
