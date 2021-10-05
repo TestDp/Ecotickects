@@ -46,6 +46,11 @@ class AsistenteServicio
         return $this->asistenteRepositorio->registrarAsistentePago($asistente);
     }
 
+    //Cuando se esta registrando un propecto(persona que posiblemente asistirá al evento) desde la seseión admin
+    public function registrarProspecto($prospecto,$idusuario){
+        return $this->asistenteRepositorio->registrarAsistentePago($prospecto,$idusuario);
+    }
+
     public function registrarAsistentePago($asistente)
     {
         $respuesta = $this->asistenteRepositorio->registrarAsistentePago($asistente);
@@ -85,6 +90,13 @@ class AsistenteServicio
             return ['respuesta' => true, 'ListaAsistesEventoPines' => $asistentesEventosPines,'localidad'=>$localidad];
         }
         return $respuesta;
+    }
+
+    //desde admin
+    public function crearTicket($infopago){
+        $asistentesEventosPines=$this->asistenteRepositorio->obtenerPinesBoletas($infopago->id);
+        $localidad = $this->eventoRepositorio->obtenerPrecioBoleta($infopago->PrecioBoleta_id);
+        return ['respuesta' => true, 'ListaAsistesEventoPines' => $asistentesEventosPines,'localidad'=>$localidad];
     }
 
     public function actualizarInfoPagos($referenceCode, $estadotransaccion, $medioPago){
@@ -269,4 +281,7 @@ class AsistenteServicio
         $this->asistenteRepositorio->ActualizarEventosFecha();
     }
 
+    public function crearUsuarioXEventoUsuario($idUsuario,$idAsistenteXEvento){
+      $this->asistenteRepositorio->crearUsuarioXEventoUsuario($idUsuario,$idAsistenteXEvento);
+    }
 }

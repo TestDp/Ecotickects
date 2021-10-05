@@ -51,7 +51,7 @@ Auth::routes();
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
-   // Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@welcome']);
+    //Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@welcome']);
     Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@ObtenerEventos']);
 
     Route::get('Eventos', ['uses' =>'Ecotickets\EcoticketsController@ObtenerEventos']);
@@ -62,6 +62,8 @@ Auth::routes();
 
     Route::get('FormularioAsistentePago/{idEvento}', ['uses' =>'Ecotickets\EcoticketsController@obtenerFormularioAsistentePago']);/** Obtiene el formulario del evento pago*/
 
+    Route::get('form-prom/{idEvento}/{idPromotor}', ['uses' =>'Ecotickets\EcoticketsController@obtenerFormularioProspectoPagoPromotor']);
+
     Route::post('pin/{idPin}',['uses' =>'Ecotickets\EcoticketsController@validarPIN']);/*Valida el pin*/
 
     Route::get('Tienda/{idEvento}', ['uses' =>'Ecotickets\EcoticketsController@obtenerProductosXEvento']);/** Obtiene el formulario de la tienda*/
@@ -69,6 +71,8 @@ Auth::routes();
     Route::get('ValidarCodigoPromo/{idEvento}/{CodigoPromocional}',['uses' =>'Ecotickets\EcoticketsController@obtenerBoletaPromo']);
 
     Route::get('probar',['uses' =>'Evento\AsistentesController@RespuestaPagos']); /**LINEA PARA BORRAR*/
+
+    Route::get('ActualizarEventosFecha',['uses' => 'Evento\AsistentesController@ActualizarEventosFecha']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
@@ -111,10 +115,9 @@ Auth::routes();
 
     Route::get('EventosXUsuario/{idUsuario}',['uses' =>'Evento\EventosController@obtenerVistaEventosXUsuario']);
 
+    Route::get('LocalidadesEvento/{idEvento}',['uses' => 'Evento\EventosController@obtenerLocalidadesEvento']);
 
-    Route::get('ActualizarEventosFecha',['uses' => 'Evento\AsistentesController@ActualizarEventosFecha']);
 
-    Route::get('InformePromotor/{idEvento}',['uses' =>'Evento\EventosController@obtenerInformePromotor']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
 
@@ -136,7 +139,7 @@ Auth::routes();
 
     Route::get('UsuariosXEvento/{idEvento}',['uses' =>'Evento\AsistentesController@CargarUsuariosXEvento']);
 
-    Route::post('registrarUsuario',['uses' =>'Evento\AsistentesController@registrarUsuario']);
+    Route::post('registrarUsuario',['uses' =>'Evento\AsistentesController@registrarProspectoYEnviarTicket']);
 
     Route::post('registrarPromotor',['uses' =>'Evento\AsistentesController@registrarPromotor']);
 

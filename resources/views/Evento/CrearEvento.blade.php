@@ -13,19 +13,20 @@
                         <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}"/>
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="esActivo" name="esActivo" value="1">
+                        <input type="hidden" id="Tipo_Evento" name="Tipo_Evento" value="Evento">
                         <div style="margin:0px !important;" class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                                 Nombre del Evento
                                 <input id="Nombre_Evento" name="Nombre_Evento" type="text" class="form-control" />
                             </div>
-                            <div class="col-md-3">
+                            {{--<div class="col-md-3">
                                 Tipo de Evento
                                 <select id="Tipo_Evento" name="Tipo_Evento" class="form-control">
                                     <option value="">Seleccionar</option>
                                     <option value="Evento">Evento</option>
                                     <option value="Cupon">Cupón</option>
                                 </select>
-                            </div>
+                            </div>--}}
                             <div class="col-md-3">
                                 Solicitar PIN
                                 <select id="SolicitarPIN" name="SolicitarPIN" class="form-control">
@@ -96,13 +97,11 @@
                                     <option value="0">No</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
+                            {{--<div class="col-md-6">
                                 Correo para enviar invitación
                                 <input id="CorreoEnviarInvitacion" name="CorreoEnviarInvitacion" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div style="margin:0px !important;" class="row">
-                            <div class="col-md-6">
+                            </div>--}}
+                            <div class="col-md-3">
                                 Codigo PULEP
                                 <input id="CodigoPulep" name="CodigoPulep" type="text" class="form-control" />
                             </div>
@@ -114,6 +113,8 @@
                                     <option value="1">SI</option>
                                 </select>
                             </div>
+                        </div>
+                        <div style="margin:0px !important;" class="row">
                             <div class="col-md-3" id="divPromotor" hidden>
                                 Activar Promotores
                                 <select id="usoPromotor" name="usoPromotor" class="form-control" >
@@ -122,6 +123,7 @@
                                     <option value="1">SI</option>
                                 </select>
                             </div>
+
                         </div>
                         <div id="divBoletas" hidden>
                             <hr/>

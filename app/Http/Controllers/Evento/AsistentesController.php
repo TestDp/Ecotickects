@@ -5,7 +5,6 @@ namespace Ecotickets\Http\Controllers\Evento;
 
 use Eco\Datos\Modelos\PrecioBoleta;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
 use Eco\Negocio\Logica\DepartamentoServicio;
@@ -142,7 +141,53 @@ class AsistentesController extends Controller
         }
     }
 
-    /* Metodo para  registrar un asistente  cuando el evento es gratuito.**/
+    //Cuando se esta registrando un propecto(persona que posiblemente asistirá al evento)
+    public function registrarProspectoYEnviarTicket(Request $formRegistro){
+
+        try {
+            $user = Auth::user();
+            $respuesta = $this->asistenteServicio->registrarProspecto($formRegistro,$user->id);
+            if ($respuesta['respuesta']) {
+                $correoElectronico = $formRegistro->Email;
+                $this->asistenteServicio->ActualizarPinBusquedaCorreo($correoElectronico);
+                $listaAsistentesXEventosPines = $this->asistenteServicio->crearTicket($respuesta['infoPagoObject']);
+                $evento = $this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
+                $localidad = $listaAsistentesXEventosPines['localidad'];
+                $ElementosArray = array('evento' => $evento);
+                $correoSaliente = $evento->CorreoEnviarInvitacion;//PONER EL CORREO DE MANERA GENERAL
+                $nombreEvento = $evento->Nombre_Evento;
+                $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+                Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento, $localidad) {
+                    $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
+                    $msj->subject('Importante - Aquí esta tu pase de acceso');
+                    $msj->to($correoElectronico);
+                    $msj->bcc('soporteecotickets@gmail.com');
+                    //preguntamos si el directorio existe
+                    if (!file_exists(storage_path('app') . '/boletas/' . $evento->id)) {
+                        mkdir(storage_path('app') . '/boletas/' . $evento->id, 0777, true);
+                    }
+                    foreach ($pinesImagenes as $pin) {
+                        $qr = base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
+                        $ElementosArray = array('evento' => $evento, 'qr' => $qr, 'localidad' => $localidad);
+                        \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/' . $evento->id . '/ECOTICKET' . $pin->id . '.pdf');
+                        $qrImagen = storage_path('app') . '/boletas/' . $evento->id . '/ECOTICKET' . $pin->id . '.pdf';
+                        $msj->attach($qrImagen);
+                    }
+                });
+
+                return response('OK', 200);
+            }
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            $archivo =  fopen(storage_path('app').'/log.txt','a');
+            fwrite($archivo,$error);
+            fclose($archivo);
+            return reponse('ERROR', 404);
+        }
+
+    }
+
+    /* Metodo para  registrar un promotor**/
     public function registrarPromotor(Request $formRegistro)
     {
         $respuesta = $this->asistenteServicio->registrarPromotor($formRegistro);

@@ -17,7 +17,7 @@ use Eco\Datos\Modelos\PrecioBoleta;
 use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\RespuestaAsistenteXEvento;
 use Eco\Datos\Modelos\CodigoAsistente;
-use stdClass;
+use Eco\Datos\Modelos\UsuarioXAsistenteEvento;
 use Illuminate\Support\Facades\DB;
 use Eco\Datos\DTO\LecturaQRDTO;
 
@@ -70,7 +70,7 @@ class AsistenteRepositorio
     }
 
     //Metodo que registra a una asistente  cuando el evento  tiene costo
-    public function registrarAsistentePago($registroAsistente)
+    public function registrarAsistentePago($registroAsistente,$idusuario = null)
     {
         $asistente = $this->ObtenerAsistente($registroAsistente->Identificacion);
         $infoPago = '';
@@ -115,12 +115,15 @@ class AsistenteRepositorio
                     $infoPago->save();
                     //setea este valor con el id del comprador padre
                     $infoComprador = $asistenteXeventoo->id;
+                    if(isset($idusuario)){
+                        $this->crearUsuarioXEventoUsuario($idusuario,$asistenteXeventoo->id);
+                    }
                 }
             }
             DB::commit();
             $precioBoleta = PrecioBoleta::where('id','=',$infoPago->PrecioBoleta_id)->get()->first();
             $infoPago->nombreBoleta = $precioBoleta->localidad;
-            return ['respuesta' => true, 'infoPago' => $infoPago];
+            return ['respuesta' => true, 'infoPago' => $infoPago,'infoPagoObject'=>$infoPago];
 
         } catch (\Exception $e) {
             $error = $e->getMessage();
@@ -130,7 +133,7 @@ class AsistenteRepositorio
         return ['respuesta' => false, 'error' => 'hubo un error guardando'];
     }
 
-    public function EnviarBoletas($asistente){
+   /* public function EnviarBoletas($asistente){
 
         $asistente = $this->ObtenerAsistente($registroAsistente->Identificacion);
         $infoPago = '';
@@ -187,7 +190,8 @@ class AsistenteRepositorio
         }
         return ['respuesta' => false, 'error' => 'hubo un error guardando'];
 
-    }
+    }*/
+
     public function obtenerAsistentesXEvento($idEvento)
     {
         $listaAsistentesEventos = DB::table('tbl_asistentes')
@@ -616,6 +620,20 @@ class AsistenteRepositorio
 
         }
 
+    }
+
+    public function crearUsuarioXEventoUsuario($idUsuario,$idAsistenteXEvento){
+        try {
+            $usuarioXEventoUsuario = new UsuarioXAsistenteEvento();
+            $usuarioXEventoUsuario->AsistentesXEvento_id = $idAsistenteXEvento;
+            $usuarioXEventoUsuario-> user_id= $idUsuario;
+            $usuarioXEventoUsuario->save();
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            DB::rollback();
+            dd($error);
+            return $error;
+        }
     }
 } 
 

@@ -633,3 +633,26 @@ function guardarNombreBanco() {
     var nombreBanco =  $("#banco").find("option:selected").text();
     $("#nombreBanco").val(nombreBanco);
 }
+
+
+function CargarLocalidadesEvento(){
+    var $idEvento =$("#Evento_id").val();
+    var localidad_id =$("#localidad")
+    $.ajax({
+        type: 'GET',
+        url: urlBase+'LocalidadesEvento/' + $idEvento,
+        dataType: 'json',
+        success: function (result) {
+            if (result) {
+                localidad_id.find("option").remove();//Removemos las opciónes anteriores
+                localidad_id.append(new Option("Seleccionar", ""));// agregamos la opción de seleccionar
+                $.each(result, function (ind, element) {
+                    var opcion = new Option(element.localidad, element.id);
+                    $(opcion).attr("data-num", element.precio);
+                    localidad_id.append(opcion)
+                });
+            }
+        }
+    });
+
+}

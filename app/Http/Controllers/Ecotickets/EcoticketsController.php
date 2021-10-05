@@ -95,6 +95,22 @@ class EcoticketsController extends Controller
         }
     }
 
+    public function obtenerFormularioProspectoPagoPromotor($idEvento,$idPromotor)
+    {
+        $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
+        $evento =$this->eventoServicio->obtenerEvento($idEvento);
+        $CantidadEsperada =$evento->numeroAsistentes;
+        if($CantidadRegistrados<$CantidadEsperada && $this->eventoServicio->obtenerEvento($idEvento)->EsPublico ==true){
+            $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
+            $rutaImagenes=env('RutaFlyerEventoRegistrarAsistente');
+            $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,
+                'EventoId'=>$idEvento,'rutaImagenes'=>$rutaImagenes,'idPromotor' => $idPromotor);
+            return view('Evento/RegistrarProspectoPagoPromotor',['ElementosArray' =>$ElementosArray]);
+        }else{
+            return view('cantidadSuperada');
+        }
+    }
+
     public function EventosApp($idUser)
     {
         $user = User::where("id","=",$idUser)->first();

@@ -8,7 +8,7 @@
             <script>
                 swal({
                     title: "transaccción exitosa!",
-                    text: "Usuario registrado con exito!",
+                    text: "Ecoticket enviada con exito!",
                     icon: "success",
                     button: "OK",
                 });
@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>REGISTRAR USUARIO</h3></div>
+                    <div class="panel-heading text-center"><h3>Enviar ticket</h3></div>
 					<div style="text-align: left;" class="col-md-12">
                         <div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
                     </div>
@@ -28,7 +28,8 @@
                     <input type="hidden" name="terminos" value="1" id="terminos" />
                     <input type="hidden" name="HabeasData" value="1" id="HabeasData" />
                     <input type="hidden" id="ComentarioEvento" name="ComentarioEvento"  value="BoletaGratis123" />
-                    <input type="hidden" id="Promotor_id" name="Promotor_id"  value="1" />
+                    <input type="hidden" id="Promotor_id" name="Promotor_id"  value="0" />
+                    <input type="hidden" id="esPago" name="esPago" value="1">
                     <div id="formAsistente" style="margin:0px !important;" class="row">
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
@@ -63,8 +64,8 @@
 
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
-                                    Edad
-                                    <input id="Edad" name="Edad" type="number" class="form-control" />
+                                    Fecha de nacimiento
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
                                     Dirección
@@ -91,7 +92,7 @@
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-12">
                                     Evento al cual desea registrar el usuario
-                                    <select id="Evento_id" name="Evento_id" class="form-control">
+                                    <select id="Evento_id" name="Evento_id" class="form-control" onchange="CargarLocalidadesEvento()">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["eventos"] as $evento)
                                             <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento}}</option>
@@ -99,11 +100,31 @@
                                     </select>
                                 </div>
                             </div>
+                            <div style="margin:0px !important;" class="row">
+                                <div class="col-md-3">
+                                    Localidad
+                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    Precio Ecotickets
+                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
+                                </div>
+                                <div class="col-md-3">
+                                    Cantidad De Ecotickets
+                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-control" onkeyup="calcularPrecioTotal()"  />
+                                </div>
+                                <div class="col-md-3">
+                                    Precio Total
+                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+                                </div>
+                            </div>
                             <br>
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-12">
                                     <button type="submit" onclick="validarCamposRegistrarUsuario()" class="btn btn-blue ripple trial-button">
-                                        Registrar
+                                        Enviar
                                     </button>
                                 </div>
                             </div>
@@ -115,6 +136,7 @@
     </div>
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
+    <script src="{{ asset('js/Evento/eventoPago.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 
 

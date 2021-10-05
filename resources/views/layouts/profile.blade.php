@@ -72,16 +72,16 @@
                                     <li><a href="{{ url('MisEventos') }}">Mis Eventos</a></li>
                                  @endif
                                 @if(Auth::user()->buscarRecurso('FormularioUsuario'))
-                                    <li><a href="{{ url('FormularioUsuario') }}">Registrar y Enviar Invitación</a></li>
+                                    <li><a href="{{ url('FormularioUsuario') }}">Enviar ticket</a></li>
                                 @endif
                                         @if(Auth::user()->buscarRecurso('FormularioUsuario'))
                                             <li><a href="{{ url('FormularioPromotor') }}">Registrar Promotor</a></li>
                                         @endif
                                 @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
-                                    <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones</a></li>
+                                    <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones Masivamente**</a></li>
                                 @endif
                                 @if(Auth::user()->buscarRecurso('FormularioReenviarInvitacion'))
-                                    <li><a href="{{ url('FormularioReenviarInvitacion') }}">Reenviar Invitaciones</a></li>
+                                    <li><a href="{{ url('FormularioReenviarInvitacion') }}">Reenviar ticket</a></li>
                                 @endif
                             </ul>
                         </li>

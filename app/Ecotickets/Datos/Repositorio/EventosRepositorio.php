@@ -36,6 +36,7 @@ class EventosRepositorio
             $evento->Fecha_Inicial_Registro=new DateTime($EdEvento->Fecha_Inicial_Registro . $EdEvento->Hora_Inicial_Registro);
             $evento->Fecha_Final_Registro=new DateTime($EdEvento->Fecha_Final_Registro . $EdEvento->Hora_Final_Registro);
             $evento->activarTienda = false;
+            $evento->CorreoEnviarInvitacion = env('CORREOENVIOTICKET');
 
             if($EdEvento->usoPromotor)
             {
@@ -261,6 +262,14 @@ class EventosRepositorio
             ->where('esActiva','=',1)
             ->where('esCodigoPromo','=',1)
             ->where('Codigo','=',$codigo)->get();
+    }
+
+    public function obtenerLocalidadesEvento($idEvento)
+    {
+        return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+            ->where('esActiva','=',1)
+            ->where('esCodigoPromo','=',0)
+            ->where('PrecioBoletaPadre_Id','=',null)->get();
     }
 
     public function  obtenerPrecioBoleta($idPrecioBoleta){

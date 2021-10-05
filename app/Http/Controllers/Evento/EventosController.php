@@ -271,4 +271,8 @@ class EventosController extends Controller
         }else return view('Usuario/AsignarPermisosEventoVP',['listEventos'=>$eventos,'eventosUsuario'=>$eventosUsuario]);
     }
 
+    public function obtenerLocalidadesEvento($idEvento)
+    {
+        return response()->json($this->eventoServicio->obtenerLocalidadesEvento($idEvento));
+    }
 }

@@ -113,8 +113,8 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    Edad
-                                    <input id="Edad" name="Edad" type="number" class="form-control" />
+                                    Fecha de nacimiento
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
                                     Dirección
@@ -253,8 +253,8 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    Edad
-                                    <input id="Edad" name="Edad" type="number" class="form-control" />
+                                    Fecha de nacimiento
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
                                     Dirección
@@ -321,15 +321,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-
-
-
                                     @if($ElementosArray["evento"] ->usoPromotor ==1)
-
-
-
-
-
                                         Seleccione  Promotor
                                         <select id="Promotor_id" name="Promotor_id"  class="form-control">
                                             <option value="">Seleccionar</option>
@@ -337,14 +329,7 @@
                                                 <option value="{{ $Promotor->id }}">{{ $Promotor->Nombres }}</option>
                                             @endforeach
                                         </select>
-
-
-                                    @else
-
                                     @endif
-
-
-
                                 </div>
                             </div>
                             <div class="row">
