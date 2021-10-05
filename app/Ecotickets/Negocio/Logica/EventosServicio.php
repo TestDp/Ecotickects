@@ -119,6 +119,11 @@ class EventosServicio
         return $this->eventoRepor->obtenerLiquidacion($idEvento);
     }
 
+    public function ObtenerInformePromotor($idEvento)
+    {
+        return $this->eventoRepor->ObtenerInformePromotor($idEvento);
+    }
+
     public function ListaDeEventosXUsuario($idUsuario)
     {
         return $this->eventoRepor->ListaDeEventosXUsuario($idUsuario);

@@ -629,4 +629,36 @@ class EventosRepositorio
         return $eventos;
     }
 
+    //retorna una lista de etapas y las boletas distinguida por promotor
+    public function ObtenerInformePromotor($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+        $promotorBoletas = DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,(case when p.MediosDePago_id = 2 then 1 else 0 end) 
+                    as EsTC ,u.Sede_id AS Sede_id,up.name as Promotor, p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas
+                    from tbl_asistentesXeventos as ae
+                    inner join tbl_asistentes as a
+                    on ae.Asistente_id = a.id
+                    inner join Tbl_Ciudades as c
+                    on a.Ciudad_id = c.id
+                    inner join Tbl_InfoPagos as p
+                    on ae.id = p.AsistenteXEvento_id
+                    inner join Tbl_Eventos as e
+                    on ae.Evento_id = e.id
+                    inner join users as u
+                    on e.user_id = u.id
+                    inner join Tbl_Usuarios_X_AsistenteEvento as ue
+                    on ae.id = ue.AsistentesXEvento_id
+                    inner join users as up
+                    on  up.id = ue.user_id 
+                    where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
+                    group by  e.Nombre_Evento,case when p.MediosDePago_id = 2 then 1 else 0 end, u.Sede_id, p.precioTotal/cantidadBoletas, up.name' )->get();
+
+        $promotorBoletas->CantidadTotal =  $promotorBoletas->sum('CantidadBoletas');
+        $promotorBoletas->idEvento = $idEvento;
+        $promotorBoletas->evento = $evento;
+
+
+        return $promotorBoletas;
+    }
+
 }

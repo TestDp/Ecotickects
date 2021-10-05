@@ -167,6 +167,16 @@ class EventosController extends Controller
         return response()->json($liquidacion);
     }
 
+    public function obtenerInformePromotor(Request $request,$idEvento)
+    {
+        $user = Auth::user();
+        $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+        $request->user()->AutorizarUrlRecurso($urlinfo);
+        $ListaPromotor= array('Promotor' => $this -> eventoServicio ->ObtenerInformePromotor($idEvento));
+        return view('Evento/InformePromotor',['ListaPromotor' => $ListaPromotor,'idUser'=>$user->id]);
+    }
+
     public function ObtenerMisEventos(Request $request)
     {
         $eventos = null;

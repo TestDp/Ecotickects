@@ -51,7 +51,7 @@ Auth::routes();
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
-    Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@welcome']);
+   // Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@welcome']);
     Route::get('/', ['uses' =>'Ecotickets\EcoticketsController@ObtenerEventos']);
 
     Route::get('Eventos', ['uses' =>'Ecotickets\EcoticketsController@ObtenerEventos']);
@@ -113,6 +113,8 @@ Auth::routes();
 
 
     Route::get('ActualizarEventosFecha',['uses' => 'Evento\AsistentesController@ActualizarEventosFecha']);
+
+    Route::get('InformePromotor/{idEvento}',['uses' =>'Evento\EventosController@obtenerInformePromotor']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
 
