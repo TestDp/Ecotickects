@@ -117,7 +117,9 @@ Auth::routes();
 
     Route::get('LocalidadesEvento/{idEvento}',['uses' => 'Evento\EventosController@obtenerLocalidadesEvento']);
 
+    Route::get('InformePromotor/{idEvento}',['uses' =>'Evento\EventosController@obtenerInformePromotor']);
 
+    Route::get('GenerarEnlacePromotor',['uses' =>'Evento\EventosController@generarEnlacePromotor']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
 
@@ -163,8 +165,7 @@ Auth::routes();
     
     Route::post('ConfirmarAsistente',['uses' =>'Evento\AsistentesController@ConfirmarAsistente']);
 
-
-
+    Route::get('listaPromotores/{idEvento}',['uses' =>'Evento\AsistentesController@obtenerPromotoresXEvento']);
 
     
 // FIN DE RUTAS PARA EL CONTROLADOR DE ASISTENTES//

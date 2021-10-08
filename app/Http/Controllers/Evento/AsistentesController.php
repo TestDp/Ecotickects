@@ -547,6 +547,9 @@ class AsistentesController extends Controller
         $this->asistenteServicio->ActualizarEventosFecha();
     }
 
+    public function obtenerPromotoresXEvento($idEvento){        ;
+        return response()->json($this->asistenteServicio->obtenerPromotoresXEvento($idEvento));
+    }
 
 
 }

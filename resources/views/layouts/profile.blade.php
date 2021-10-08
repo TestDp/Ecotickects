@@ -74,15 +74,17 @@
                                 @if(Auth::user()->buscarRecurso('FormularioUsuario'))
                                     <li><a href="{{ url('FormularioUsuario') }}">Enviar ticket</a></li>
                                 @endif
-                                        @if(Auth::user()->buscarRecurso('FormularioUsuario'))
-                                            <li><a href="{{ url('FormularioPromotor') }}">Registrar Promotor</a></li>
-                                        @endif
-                                @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
-                                    <li><a href="{{ url('RegistrarYEnviar') }}">Enviar Invitaciones Masivamente**</a></li>
+                                @if(Auth::user()->buscarRecurso('FormularioUsuario'))
+                                    <li><a href="{{ url('FormularioPromotor') }}">Registrar Promotor</a></li>
                                 @endif
                                 @if(Auth::user()->buscarRecurso('FormularioReenviarInvitacion'))
                                     <li><a href="{{ url('FormularioReenviarInvitacion') }}">Reenviar ticket</a></li>
                                 @endif
+                                    <li><a href="{{ url('GenerarEnlacePromotor') }}">Generar enlace Promotor</a></li>
+                                @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
+                                    <li><a href="{{ url('RegistrarYEnviar') }}">Enviar tickets Masivamente**</a></li>
+                                @endif
+
                             </ul>
                         </li>
                     @endif
