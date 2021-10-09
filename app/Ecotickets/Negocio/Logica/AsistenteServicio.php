@@ -286,7 +286,7 @@ class AsistenteServicio
     }
 
     public function obtenerPromotoresXEvento($idEvento){
-        $this->asistenteRepositorio->obtenerPromotoresXEvento($idEvento);
+       return  $this->asistenteRepositorio->obtenerPromotoresXEvento($idEvento);
 
     }
 }
