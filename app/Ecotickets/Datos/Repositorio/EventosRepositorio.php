@@ -642,7 +642,8 @@ class EventosRepositorio
     public function ObtenerInformePromotor($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
-        $promotorBoletas = DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,(case when p.MediosDePago_id = 2 then 1 else 0 end) 
+
+        $promotorBoletas = DB::select(DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,(case when p.MediosDePago_id = 2 then 1 else 0 end) 
                     as EsTC ,u.Sede_id AS Sede_id,up.name as Promotor, p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas
                     from tbl_asistentesXeventos as ae
                     inner join tbl_asistentes as a
@@ -660,11 +661,13 @@ class EventosRepositorio
                     inner join users as up
                     on  up.id = ue.user_id 
                     where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
-                    group by  e.Nombre_Evento,case when p.MediosDePago_id = 2 then 1 else 0 end, u.Sede_id, p.precioTotal/cantidadBoletas, up.name' )->get();
+                    group by  e.Nombre_Evento,case when p.MediosDePago_id = 2 then 1 else 0 end, u.Sede_id, p.precioTotal/cantidadBoletas, up.name)') );
+        if($promotorBoletas) {
+            $promotorBoletas->CantidadTotal =  50;//$promotorBoletas->sum('CantidadBoletas');
+            $promotorBoletas->idEvento = $idEvento;
+            $promotorBoletas->evento = $evento;
+        }
 
-        $promotorBoletas->CantidadTotal =  $promotorBoletas->sum('CantidadBoletas');
-        $promotorBoletas->idEvento = $idEvento;
-        $promotorBoletas->evento = $evento;
 
 
         return $promotorBoletas;
