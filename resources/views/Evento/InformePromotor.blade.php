@@ -105,43 +105,10 @@
 	<script src="{{ asset('js/Transversal/generales.js') }}"></script>
     <script src="{{ asset('js/Evento/eventos.js') }}"></script>
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var table = $('#TablaListaAsistentes').DataTable({
-                dom: 'B<"clear">lfrtip',
-                buttons: {
-                    name: 'primary',
-                    text: 'Save current page',
-                    buttons: [
-                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
-                    ]
-                },
-                language: {
-                    "lengthMenu": "Registros por página _MENU_",
-                    "info":"Mostrando del _START_ a _END_ de _TOTAL_ registros",
-                    "infoEmpty":"Mostrando del 0 a 0 de 0 registros",
-                    "infoFiltered": "(Registros filtrados _MAX_ )",
-                    "zeroRecords": "No hay registros",
-                    "search": "Buscador:",
-                    "paginate": {
-                        "first":      "First",
-                        "last":       "Last",
-                        "next":       "Siguiente",
-                        "previous":   "Anterior"
-                    }
-                }
-            });
-        });
-    </script>
+
     <script src="{{ asset('js/Plugins/Chart/Chart.js') }}"></script>
     <script src="{{ asset('js/Plugins/Gauge/gauge.js') }}"></script>
     <!--script src="{{ asset('http://bernii.github.com/gauge.js/dist/gauge.js') }}"></script-->
 
-    <script>
-        $(document).ready(function () {
-            construirGraficoLiquidacion();
-            construirBarrasAsistentesCiudades();
 
-        });
-    </script>
 @endsection

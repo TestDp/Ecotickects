@@ -512,7 +512,7 @@ class AsistentesController extends Controller
     public function obtenerFormularioPromotor(Request $request)
     {
         $urlinfo= $request->getPathInfo();
-        // $request->user()->AutorizarUrlRecurso($urlinfo);
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $user = Auth::user();
         $sedes = $this->eventoServicio->ObtenerMisSedes($user->id);
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
@@ -542,13 +542,12 @@ class AsistentesController extends Controller
         return Response::json($sections['UsuarioXEvento']);
     }
 
-    public function  ActualizarEventosFecha()
-    {
+    public function  ActualizarEventosFecha(){
         $this->asistenteServicio->ActualizarEventosFecha();
     }
 
-    public function obtenerPromotoresXEvento($idEvento){        ;
-        return response()->json($this->asistenteServicio->obtenerPromotoresXEvento($idEvento));
+    public function obtenerPromotoresXEvento($idEvento){
+    return response()->json($this->asistenteServicio->obtenerPromotoresXEvento($idEvento));
     }
 
 

@@ -659,6 +659,7 @@ function CargarLocalidadesEvento(){
 
 
 function CargarPromotores(){
+    $("#enlace").val("");
     var idEvento =$("#Evento_id").val();
     var promotores_id =$("#Promotor_id");
     $.ajax({
@@ -670,11 +671,17 @@ function CargarPromotores(){
                 promotores_id.find("option").remove();//Removemos las opciónes anteriores
                 promotores_id.append(new Option("Seleccionar", ""));// agregamos la opción de seleccionar
                 $.each(result, function (ind, element) {
-                    var opcion = new Option(element.localidad, element.id);
+                    var opcion = new Option(element.Nombres +' ' +element.Apellidos, element.id);
                     promotores_id.append(opcion)
                 });
             }
         }
     });
 
+}
+
+
+function CrearEnlacePromotor(){
+    var url = urlBase + "form-prom/" + $("#Evento_id").val() + "/" + $("#Promotor_id").val();
+    $("#enlace").val(url);
 }

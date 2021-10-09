@@ -20,6 +20,7 @@ use Eco\Datos\Modelos\CodigoAsistente;
 use Eco\Datos\Modelos\UsuarioXAsistenteEvento;
 use Illuminate\Support\Facades\DB;
 use Eco\Datos\DTO\LecturaQRDTO;
+use Ecotickets\User;
 
 
 class AsistenteRepositorio
@@ -357,7 +358,6 @@ class AsistenteRepositorio
     public function obtenerPromotoresXEvento($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
-        $evento->preguntas;
         $user1 = User::where ('id', '=', $evento->user_id)->get()->first();
         $promotores = DB::table('Tbl_PromotoresXSedes')
             ->join('tbl_asistentes', 'tbl_asistentes.id', '=', 'Tbl_PromotoresXSedes.Asistente_id')

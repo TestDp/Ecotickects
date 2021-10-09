@@ -62,8 +62,8 @@
 
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
-                                    Edad
-                                    <input id="Edad" name="Edad" type="number" class="form-control" />
+                                    Fecha de nacimiento
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
                                 </div>
                                 <div class="col-md-6">
                                     Dirección
