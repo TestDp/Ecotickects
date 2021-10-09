@@ -656,3 +656,25 @@ function CargarLocalidadesEvento(){
     });
 
 }
+
+
+function CargarPromotores(){
+    var idEvento =$("#Evento_id").val();
+    var promotores_id =$("#Promotor_id");
+    $.ajax({
+        type: 'GET',
+        url: urlBase+'listaPromotores/' + idEvento,
+        dataType: 'json',
+        success: function (result) {
+            if (result) {
+                promotores_id.find("option").remove();//Removemos las opciónes anteriores
+                promotores_id.append(new Option("Seleccionar", ""));// agregamos la opción de seleccionar
+                $.each(result, function (ind, element) {
+                    var opcion = new Option(element.localidad, element.id);
+                    promotores_id.append(opcion)
+                });
+            }
+        }
+    });
+
+}

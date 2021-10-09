@@ -102,7 +102,7 @@ class EcoticketsController extends Controller
         $CantidadEsperada =$evento->numeroAsistentes;
         if($CantidadRegistrados<$CantidadEsperada && $this->eventoServicio->obtenerEvento($idEvento)->EsPublico ==true){
             $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
-            $rutaImagenes=env('RutaFlyerEventoRegistrarAsistente');
+            $rutaImagenes = env('RutaFlyerEventoRegistrarAsistentePromotor');
             $ElementosArray= array('evento' => $evento,'departamentos' => $departamentos,
                 'EventoId'=>$idEvento,'rutaImagenes'=>$rutaImagenes,'idPromotor' => $idPromotor);
             return view('Evento/RegistrarProspectoPagoPromotor',['ElementosArray' =>$ElementosArray]);

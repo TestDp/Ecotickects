@@ -275,4 +275,22 @@ class EventosController extends Controller
     {
         return response()->json($this->eventoServicio->obtenerLocalidadesEvento($idEvento));
     }
+
+    public function generarEnlacePromotor(Request $request){
+        $eventos = null;
+        $urlinfo= $request->getPathInfo();
+        //$request->user()->AutorizarUrlRecurso($urlinfo);
+        $idEmpreesa = Auth::user()->Sede->Empresa->id;
+        $idUser = Auth::user()->id;
+        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+            $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
+        }else{
+            if($request->user()->hasRole(env('IdRolAdmin'))){
+                $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
+            }else{
+                $eventos = $this->eventoServicio->ObtenerEventosUsuario($idUser);
+            }
+        }
+        return view('Evento/GenerarEnlacePromotor',['eventos'=>$eventos]);
+    }
 }

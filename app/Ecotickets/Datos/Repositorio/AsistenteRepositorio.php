@@ -354,6 +354,18 @@ class AsistenteRepositorio
         return PromotoresXSede::where('Sede_id', '=', $idSede)->where('Asistente_id', '=', $idAsistente)->get()->first();
     }
 
+    public function obtenerPromotoresXEvento($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+        $evento->preguntas;
+        $user1 = User::where ('id', '=', $evento->user_id)->get()->first();
+        $promotores = DB::table('Tbl_PromotoresXSedes')
+            ->join('tbl_asistentes', 'tbl_asistentes.id', '=', 'Tbl_PromotoresXSedes.Asistente_id')
+            ->select('tbl_asistentes.*','Tbl_PromotoresXSedes.id' )
+            ->where('Tbl_PromotoresXSedes.Sede_id', '=', $user1->Sede_id)->get();
+        return $promotores;
+    }
+
     public function ObtenerAsistenteXEventoPago($idEvento, $idAsistente, $cc)
     {
         return AsistenteXEvento::where('Evento_id', '=', $idEvento)->where('Asistente_id', '=', $idAsistente)

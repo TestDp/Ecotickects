@@ -284,4 +284,9 @@ class AsistenteServicio
     public function crearUsuarioXEventoUsuario($idUsuario,$idAsistenteXEvento){
       $this->asistenteRepositorio->crearUsuarioXEventoUsuario($idUsuario,$idAsistenteXEvento);
     }
+
+    public function obtenerPromotoresXEvento($idEvento){
+        $this->asistenteRepositorio->obtenerPromotoresXEvento($idEvento);
+
+    }
 }
