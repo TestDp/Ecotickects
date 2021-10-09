@@ -119,6 +119,8 @@ Auth::routes();
 
     Route::get('InformePromotor/{idEvento}',['uses' =>'Evento\EventosController@obtenerInformePromotor']);
 
+    Route::get('InformeUsuarioBoleta/{idEvento}',['uses' =>'Evento\EventosController@ObtenerInformeUsuarioBoleta']);
+
     Route::get('GenerarEnlacePromotor',['uses' =>'Evento\EventosController@generarEnlacePromotor']);
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//

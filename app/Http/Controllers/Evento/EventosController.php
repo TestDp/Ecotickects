@@ -177,6 +177,16 @@ class EventosController extends Controller
         return view('Evento/InformePromotor',['ListaPromotor' => $ListaPromotor,'idUser'=>$user->id]);
     }
 
+    public function ObtenerInformeUsuarioBoleta(Request $request,$idEvento)
+    {
+        $user = Auth::user();
+        $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+        $request->user()->AutorizarUrlRecurso($urlinfo);
+        $ListaUsuarioBoleta= array('UsuarioBoleta' => $this -> eventoServicio ->ObtenerInformeUsuarioBoleta($idEvento));
+        return view('Evento/InformeUsuarioBoleta',['ListaUsuarioBoleta' => $ListaUsuarioBoleta,'idUser'=>$user->id]);
+    }
+
     public function ObtenerMisEventos(Request $request)
     {
         $eventos = null;

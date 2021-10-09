@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Informe Promotor {{ $ListaPromotor["Promotor"]->evento ->Nombre_Evento }}</h3></div>
+                    <div class="panel-heading text-center"><h3>Informe Usuarios x Boleta {{ $ListaUsuarioBoleta["UsuarioBoleta"]->evento ->Nombre_Evento }}</h3></div>
                     <div style="overflow-x:auto;" class="panel-body">
-						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaPromotor" class="table table-bordered">
+						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaUsuarioPromotor" class="table table-bordered">
                             <thead>
                             <tr >
                                 <th>
@@ -26,19 +26,19 @@
                             </tr>
                             </thead>
                             <tbody >
-                            @foreach($ListaPromotor["Promotor"] as $promotor)
+                            @foreach($ListaUsuarioBoleta["UsuarioBoleta"] as $usuarioBoleta)
                             <tr >
                                 <td>
-                                  {{$promotor->PrecioEtapa}}
+                                  {{$usuarioBoleta->PrecioEtapa}}
                                 </td>
                                 <td>
-                                    {{$promotor->Promotor}}
+                                    {{$usuarioBoleta->Promotor}}
                                 </td>
                                 <td>
-                                    {{$promotor->CantidadBoletas}}
+                                    {{$usuarioBoleta->CantidadBoletas}}
                                 </td>
                                 <td>
-                                    {{$promotor->TotalEtapa}}
+                                    {{$usuarioBoleta->TotalEtapa}}
                                 </td>
 
                             </tr>
@@ -48,14 +48,14 @@
 
                         </table>
 
-                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaPromotor" class="table table-bordered">
+                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaUsuarioPromotor" class="table table-bordered">
                             <thead>
                             <tr >
                                 <th>
                                     Total Boletas
                                 </th>
                                 <th>
-                                    {{$ListaPromotor["Promotor"]->CantidadTotal}}
+                                    {{$ListaUsuarioBoleta["UsuarioBoleta"]->CantidadTotal}}
                                 </th>
                                 <th style="visibility: hidden">>
                                     Total Etapa
@@ -67,14 +67,14 @@
                                     Total Liquidar
                                 </th>
                                 <th>
-                                    {{$ListaPromotor["Promotor"]->Total}}
+                                    {{$ListaUsuarioBoleta["UsuarioBoleta"]->Total}}
                                 </th>
                             </tr>
                             </thead>
 
                         </table>
                         <div class="panel-body">
-                            <input type="hidden" id="idevento" value="{{$ListaPromotor["Promotor"]->idEvento}}">
+                            <input type="hidden" id="idevento" value="{{$ListaUsuarioBoleta["UsuarioBoleta"]->idEvento}}">
                             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                             <div class="row">
                                 <div class="col-md-6">

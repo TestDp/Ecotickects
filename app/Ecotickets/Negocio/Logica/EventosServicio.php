@@ -129,6 +129,11 @@ class EventosServicio
         return $this->eventoRepor->ObtenerInformePromotor($idEvento);
     }
 
+    public function ObtenerInformeUsuarioBoleta($idEvento)
+    {
+        return $this->eventoRepor->ObtenerInformeUsuarioBoleta($idEvento);
+    }
+
     public function ListaDeEventosXUsuario($idUsuario)
     {
         return $this->eventoRepor->ListaDeEventosXUsuario($idUsuario);

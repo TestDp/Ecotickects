@@ -108,6 +108,11 @@
                                                         Informe Promotor
                                                     </th>
                                                 @endif
+                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
+                                                    <th>
+                                                        Informe UsuarioxBoleta
+                                                    </th>
+                                                @endif
 
                                             </tr>
                                             </thead>
@@ -161,6 +166,11 @@
                                                     @if(Auth::user()->buscarRecurso('InformePromotor'))
                                                         <td style="text-align:center;">
                                                             <a href="{{ url('/InformePromotor',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line">Ver</i></a>
+                                                        </td>
+                                                    @endif
+                                                    @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
+                                                        <td style="text-align:center;">
+                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line">Ver</i></a>
                                                         </td>
                                                     @endif
                                              </tr>
@@ -217,6 +227,11 @@
                                                     <th>
                                                         Informe Promotor
                                                     </th>
+                                                @endif
+                                                @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
+                                                    <th>
+                                                        Informe UsuarioxBoleta
+                                                    </th>
                                             @endif
                                           </thead>
                                             <tbody >
@@ -263,6 +278,11 @@
                                                     @if(Auth::user()->buscarRecurso('InformePromotor'))
                                                         <td style="text-align:center;">
                                                             <a href="{{ url('/InformePromotor',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line"></i></a>
+                                                        </td>
+                                                    @endif
+                                                    @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
+                                                        <td style="text-align:center;">
+                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line"></i></a>
                                                         </td>
                                                     @endif
                                             </tr>

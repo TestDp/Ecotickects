@@ -643,8 +643,48 @@ class EventosRepositorio
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
 
-        $promotorBoletas = DB::select(DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,(case when p.MediosDePago_id = 2 then 1 else 0 end) 
-                    as EsTC ,u.Sede_id AS Sede_id,up.name as Promotor, p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas
+        $promotorBoletas = DB::table(
+        DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento ,u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,
+                     concat(ap.nombres, concat(\' \' , ap.apellidos) ) as Promotor,sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
+                    from tbl_asistentesXeventos as ae
+                    inner join tbl_asistentes as a
+                    on ae.Asistente_id = a.id
+                    inner join Tbl_Ciudades as c
+                    on a.Ciudad_id = c.id
+                    inner join Tbl_InfoPagos as p
+                    on ae.id = p.AsistenteXEvento_id
+                    inner join Tbl_Eventos as e
+                    on ae.Evento_id = e.id
+                    inner join users as u
+                    on e.user_id = u.id
+                    inner join tbl_asistentes as ap
+                    on ae.promotor_id = ap.id
+                    where Evento_id = 101 and
+                    EstadosTransaccion_id = 4
+                     group by  e.Nombre_Evento, u.Sede_id, p.precioTotal/cantidadBoletas, concat(ap.nombres, concat(\' \', ap.apellidos) )
+                     order by concat(ap.nombres, concat(\' \' , ap.apellidos) )  asc) AS Resul') )
+        ->where('CantidadBoletas','>',0)
+        ->get();
+
+            $promotorBoletas->CantidadTotal =  $promotorBoletas->sum('CantidadBoletas');
+            $promotorBoletas->Total =  $promotorBoletas->sum('TotalEtapa');
+            $promotorBoletas->idEvento = $idEvento;
+            $promotorBoletas->evento = $evento;
+
+
+
+
+        return $promotorBoletas;
+    }
+
+    //retorna una lista de etapas y las boletas distinguida por promotor
+    public function ObtenerInformeUsuarioBoleta($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+
+        $usuarioBoletas = DB::table(
+            DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,u.Sede_id AS Sede_id,up.name as Promotor, 
+        p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas, sum(PrecioTotal) AS TotalEtapa
                     from tbl_asistentesXeventos as ae
                     inner join tbl_asistentes as a
                     on ae.Asistente_id = a.id
@@ -661,16 +701,20 @@ class EventosRepositorio
                     inner join users as up
                     on  up.id = ue.user_id 
                     where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
-                    group by  e.Nombre_Evento,case when p.MediosDePago_id = 2 then 1 else 0 end, u.Sede_id, p.precioTotal/cantidadBoletas, up.name)') );
-        if($promotorBoletas) {
-            $promotorBoletas->CantidadTotal =  50;//$promotorBoletas->sum('CantidadBoletas');
-            $promotorBoletas->idEvento = $idEvento;
-            $promotorBoletas->evento = $evento;
-        }
+                    group by  e.Nombre_Evento, u.Sede_id, p.precioTotal/cantidadBoletas, up.name
+                    order by up.name asc) AS Resul') )
+            ->where('CantidadBoletas','>',0)
+            ->get();
+
+        $usuarioBoletas->CantidadTotal =  $usuarioBoletas->sum('CantidadBoletas');
+        $usuarioBoletas->Total =  $usuarioBoletas->sum('TotalEtapa');
+        $usuarioBoletas->idEvento = $idEvento;
+        $usuarioBoletas->evento = $evento;
 
 
 
-        return $promotorBoletas;
+
+        return $usuarioBoletas;
     }
 
 }
