@@ -659,8 +659,7 @@ class EventosRepositorio
                     on e.user_id = u.id
                     inner join tbl_asistentes as ap
                     on ae.promotor_id = ap.id
-                    where Evento_id = 101 and
-                    EstadosTransaccion_id = 4
+                     where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
                      group by  e.Nombre_Evento, u.Sede_id, p.precioTotal/cantidadBoletas, concat(ap.nombres, concat(\' \', ap.apellidos) )
                      order by concat(ap.nombres, concat(\' \' , ap.apellidos) )  asc) AS Resul') )
         ->where('CantidadBoletas','>',0)
