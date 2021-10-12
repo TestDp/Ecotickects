@@ -8,11 +8,22 @@
             <script>
                 swal({
                     title: "transaccción exitosa!",
-                    text: "Ecoticket enviada con exito!",
+                    text: "Ticket enviada con exito!",
                     icon: "success",
                     button: "OK",
                 });
             </script>
+        @endif
+        @if (session('respuestaError'))
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    swal({
+                        title: "Transacción con error!",
+                        text: "No fue posible enviar el ticket!",
+                        icon: "error",
+                        button: "OK",
+                    });
+                </script>
         @endif
         <div class="row">
             <div class="col-md-12">

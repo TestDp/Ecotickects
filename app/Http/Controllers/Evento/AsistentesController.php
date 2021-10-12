@@ -80,7 +80,7 @@ class AsistentesController extends Controller
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
-                $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
+                $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
                 $ElementosArray = array('evento' => $evento, 'qr' => $qr);
                 //preguntamos si el directorio existe
                 if (!file_exists(storage_path('app') . '/cortesias/'.$evento->id)) {
@@ -117,7 +117,7 @@ class AsistentesController extends Controller
                 $msj->subject('Importante - Aquí esta tu pase de acceso');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
-                $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
+                $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
                 $localidad =  new PrecioBoleta();
                 $localidad->localidad ='Cortesia';
                 $localidad->precio =0;
@@ -175,14 +175,15 @@ class AsistentesController extends Controller
                     }
                 });
 
-                return response('OK', 200);
+                return redirect("FormularioUsuario")->with('status', true);
             }
+            return redirect("FormularioUsuario")->with('respuestaError', true);
         } catch (\Exception $e) {
             $error = $e->getMessage();
             $archivo =  fopen(storage_path('app').'/log.txt','a');
             fwrite($archivo,$error);
             fclose($archivo);
-            return response($error, 404);
+            return redirect("FormularioUsuario")->with('respuestaError', false);
         }
 
     }
@@ -203,7 +204,7 @@ class AsistentesController extends Controller
                 $msj->subject('Importante - Certificado Promotor');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
-                $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
+                $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
                 $ElementosArray = array('sede' => $sede, 'qr' => $qr);
                 //preguntamos si el directorio existe
                 if (!file_exists(storage_path('app') . '/boletas/'.$sede->id)) {
@@ -506,7 +507,7 @@ class AsistentesController extends Controller
         $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
-        return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray]);
+        return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray])->with('respuestaError', false);
     }
 
     public function obtenerFormularioPromotor(Request $request)
