@@ -182,7 +182,7 @@ class AsistentesController extends Controller
             $archivo =  fopen(storage_path('app').'/log.txt','a');
             fwrite($archivo,$error);
             fclose($archivo);
-            return response('ERROR', 404);
+            return response($error, 404);
         }
 
     }
