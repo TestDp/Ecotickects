@@ -37,10 +37,6 @@ class PagosController extends Controller
             }, function($error) {
                 $this->errorPSE = $error;
             });
-            $error = json_encode($this->bancosPSE).'termina aca ';
-            $archivo =  fopen(storage_path('app').'/log.txt','a');
-            fwrite($archivo,$error);
-            fclose($archivo);
             $view = View::make('MPagos/FormularioPagoPSEVP')->with('listaBancos',$this->bancosPSE);
             $sections = $view->renderSections();
             return Response::json($sections['FomularioPagoPSE']);
