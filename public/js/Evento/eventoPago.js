@@ -640,7 +640,7 @@ function CargarLocalidadesEvento(){
     var localidad_id =$("#localidad")
     $.ajax({
         type: 'GET',
-        url: urlBase+'LocalidadesEvento/' + $idEvento,
+        url: urlBase+'/LocalidadesEvento/' + $idEvento,
         dataType: 'json',
         success: function (result) {
             if (result) {
@@ -664,7 +664,7 @@ function CargarPromotores(){
     var promotores_id =$("#Promotor_id");
     $.ajax({
         type: 'GET',
-        url: urlBase+'listaPromotores/' + idEvento,
+        url: urlBase+'/listaPromotores/' + idEvento,
         dataType: 'json',
         success: function (result) {
             if (result) {
