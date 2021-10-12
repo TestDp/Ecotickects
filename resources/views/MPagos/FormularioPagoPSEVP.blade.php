@@ -1,4 +1,6 @@
 @section('FomularioPagoPSE')
+<form id="formPagoPSE">
+
 <div>
     <div class="row">
         <div class="col-md-5">
@@ -64,10 +66,11 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-            <button type="button" class="btn btn-success" onclick="PagarCompraPSE()">Pagar</button>
+            <button type="button" class="btn btn-success" onclick="validarCamposFormPagoPSE()">Pagar</button>
         </div>
         <div class="col-md-4">
         </div>
     </div>
 </div>
+</form>
 @endsection

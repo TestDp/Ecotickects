@@ -573,7 +573,7 @@ function PagarCompraTC() {
     var token = $("#_token").val();
     $.ajax({
         type: 'POST',
-        url: urlBase + '/pagarTC',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + '/pagarTC',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
@@ -599,7 +599,7 @@ function PagarCompraPSE() {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase + '/pagarPSE',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + 'pagarPSE',//primero el modulo/controlador/metodo que esta en el controlador
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
@@ -684,4 +684,135 @@ function CargarPromotores(){
 function CrearEnlacePromotor(){
     var url = urlBase + "form-prom/" + $("#Evento_id").val() + "/" + $("#Promotor_id").val();
     $("#enlace").val(url);
+}
+
+
+function validarCamposFormPagoTC(){
+    validarFormPagoTC();
+    if ($("#formPagoTC").valid()) {
+        PagarCompraTC();
+    }
+}
+
+function validarFormPagoTC(){
+    $("#formPagoTC").validate({
+        rules: {
+            nombrePagador: {
+                required: true
+            },
+            tipoDoc: {
+                required: true
+            },
+            documentoPagador: {
+                required: true
+            },
+            numeroTarjeta: {
+                required: true
+            },
+            codigoTarjeta: {
+                required: true
+            },
+            mesVenc: {
+                required: true
+            },
+            anioVenc: {
+                required: true
+            },
+            numeroCuotas: {
+                required: true
+            },
+            numeroTel: {
+                required: true
+            }
+
+        },
+        messages: {
+            nombrePagador: {
+                required: "*El nombre es obligatorio"
+            },
+            tipoDoc: {
+                required: "*El tipo de documento es obligatorio"
+            },
+            documentoPagador: {
+                required: "*El documento es obligatorio"
+            },
+            numeroTarjeta: {
+                required: "*El numero de tarjeta es obligatoria"
+            },
+            codigoTarjeta: {
+                required: "*El código es obligatorio"
+            },
+            mesVenc: {
+                required: "*El mes es obligatorio"
+            },
+            anioVenc: {
+                required: "*El año es obligatorio"
+            },
+            numeroCuotas: {
+                required: "*El número de cuotas es obligatorio"
+            },
+            numeroTel: {
+                required: "*El telefono es obligatorio"
+            },
+        }
+
+    });
+
+}
+
+
+function validarCamposFormPagoPSE(){
+    validarFormPagoPSE();
+    if ($("#formPagoPSE").valid()) {
+        PagarCompraPSE();
+    }
+}
+
+
+function validarFormPagoPSE(){
+    $("#formPagoPSE").validate({
+        rules: {
+            nombreBanco: {
+                required: true
+            },
+            nombreTitular: {
+                required: true
+            },
+            tipoDoc: {
+                required: true
+            },
+            documentoPagador: {
+                required: true
+            },
+            tipoCliente: {
+                required: true
+            },
+            numeroTel: {
+                required: true
+            }
+
+        },
+        messages: {
+            nombreBanco: {
+                required: "*El banco es obligatorio"
+            },
+            nombreTitular: {
+                required: "*El nombre es obligatorio"
+            },
+            tipoDoc: {
+                required: "*El tipo de documento es obligatorio"
+            },
+            documentoPagador: {
+                required: "*El número del documento es obligatorio"
+            },
+            tipoCliente: {
+                required: "*El tipo de cliente  es obligatorio"
+            },
+            numeroTel: {
+                required: "*El telefono es obligatorio"
+            }
+        }
+
+    });
+
 }

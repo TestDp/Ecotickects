@@ -1,4 +1,7 @@
 @section('FomularioPagoTD')
+    <form id="formPagoTC">
+
+
     <input type="hidden" id="tipoTC" name="tipoTC" value="{{$tipoTC}}">
         <div class="row">
             <div class="col-md-5">
@@ -144,10 +147,10 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-            <button type="button" class="btn btn-success" onclick="PagarCompraTC()">Pagar</button>
+            <button type="button" class="btn btn-success" onclick="validarCamposFormPagoTC()">Pagar</button>
         </div>
         <div class="col-md-4">
         </div>
     </div>
-
+    </form>
 @endsection
