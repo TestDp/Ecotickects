@@ -12,7 +12,7 @@ function ajaxRenderSectionCrearUsuario() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'crearUsuario',
+        url: urlBase +'/crearUsuario',
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
