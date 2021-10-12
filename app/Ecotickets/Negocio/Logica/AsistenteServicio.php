@@ -94,6 +94,7 @@ class AsistenteServicio
 
     //desde admin
     public function crearTicket($infopago){
+        $this->asistenteRepositorio->actualizarInfoPagos($infopago->id, '100', 7);
         $asistentesEventosPines=$this->asistenteRepositorio->obtenerPinesBoletas($infopago->id);
         $localidad = $this->eventoRepositorio->obtenerPrecioBoleta($infopago->PrecioBoleta_id);
         return ['respuesta' => true, 'ListaAsistesEventoPines' => $asistentesEventosPines,'localidad'=>$localidad];
