@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-7">
                 <input type="text"  id="nombrePagador" name="nombrePagador" class="form-control"
-                       placeholder="Nombre completo" value="APPROVED">
+                       placeholder="Nombre completo" />
             </div>
         </div>
         <div class="row">
@@ -16,14 +16,14 @@
             <div class="col-md-3">
                 <select id="tipoDoc" name="tipoDoc" class="form-control">
                     <option value="">Tipo</option>
-                    <option value="CC" selected>CC-Cédula de ciudadanía.</option>
+                    <option value="CC">CC-Cédula de ciudadanía.</option>
                     <option value="CE">CE-Cédula de extranjería..</option>
                     <option value="NIT">NIT-Número de identificación triburaria.</option>
                     <option value="PP">PP-Pasaporte.</option>
                 </select>
             </div>
             <div class="col-md-4">
-                <input type="number" class="form-control" id="documentoPagador" name="documentoPagador" value="1036928741"/>
+                <input type="number" class="form-control" id="documentoPagador" name="documentoPagador" />
             </div>
         </div>
         <div class="row">
@@ -31,7 +31,7 @@
                 <label>Número de tarjeta *</label>
             </div>
             <div class="col-md-7">
-                <input type="number" class="form-control" id="numeroTarjeta" name="numeroTarjeta" value="4024007141652320"/>
+                <input type="number" class="form-control" id="numeroTarjeta" name="numeroTarjeta" />
             </div>
         </div>
         <div class="row">
@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-3">
                 <input type="number" maxlength="3" minlength="3"  class="form-control" placeholder="000"
-                       id="codigoTarjeta" name="codigoTarjeta" value="710" />
+                       id="codigoTarjeta" name="codigoTarjeta"  />
             </div>
         </div>
         <div class="row">
@@ -61,13 +61,13 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
-                    <option value="12" selected>12</option>
+                    <option value="12">12</option>
                 </select>
             </div>
             <div class="col-md-3">
                 <select id="anioVenc" name="anioVenc" class="form-control">
                     <option value="">año</option>
-                    <option value="20" selected>20</option>
+                    <option value="20">20</option>
                     <option value="21">21</option>
                     <option value="22">22</option>
                     <option value="23">23</option>
@@ -96,7 +96,7 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5" selected>5</option>
+                    <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7">7</option>
                     <option value="8">8</option>
@@ -137,7 +137,7 @@
                 <label>Teléfono Celular *</label>
             </div>
             <div class="col-md-7">
-                <input type="number" class="form-control" id="numeroTel" name="numeroTel" value="3147588525"/>
+                <input type="number" class="form-control" id="numeroTel" name="numeroTel"/>
             </div>
         </div>
     <div class="row">
