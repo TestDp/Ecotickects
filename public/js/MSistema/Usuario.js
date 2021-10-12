@@ -35,7 +35,7 @@ function ajaxRenderSectionEditarUsuario(idUsuario) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'FormularioEditarUsuario/'+ idUsuario,
+        url: urlBase +'/FormularioEditarUsuario/'+ idUsuario,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -59,7 +59,7 @@ function GuardarUsuario() {
     PopupPosition();
     $.ajax({
         type: 'POST',
-        url: urlBase +'guardarUsuario',
+        url: urlBase +'/guardarUsuario',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
@@ -123,7 +123,7 @@ function EditarUsuario() {
     PopupPosition();
     $.ajax({
         type: 'POST',
-        url: urlBase +'EditarUsuario',
+        url: urlBase +'/EditarUsuario',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
@@ -178,7 +178,7 @@ function CambiarContrasena(element) {
     PopupPosition();
     $.ajax({
         type: 'POST',
-        url: urlBase +'CambiarContrasena',
+        url: urlBase +'/CambiarContrasena',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
@@ -215,7 +215,7 @@ function ajaxRenderSectionCargarEventosXUsuario(idUsuario) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'EventosXUsuario/'+idUsuario,
+        url: urlBase +'/EventosXUsuario/'+idUsuario,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -242,7 +242,7 @@ function ActivarPermisoEvento (element,idEvento,idUsuario) {
         esActivo =0;
     }
     $.ajax({
-        url: urlBase+'ActivarPermisoEvento/'+idEvento+'/'+idUsuario+'/'+esActivo,//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase+'/ActivarPermisoEvento/'+idEvento+'/'+idUsuario+'/'+esActivo,//primero el modulo/controlador/metodo que esta en el controlador
         data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             idEvento:idEvento,
             idUsuario: idUsuario,
