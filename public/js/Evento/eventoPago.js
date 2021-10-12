@@ -599,7 +599,7 @@ function PagarCompraPSE() {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase + 'pagarPSE',//primero el modulo/controlador/metodo que esta en el controlador
+        url: urlBase + '/pagarPSE',//primero el modulo/controlador/metodo que esta en el controlador
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
         dataType: "JSON",
