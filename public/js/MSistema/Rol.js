@@ -11,7 +11,7 @@ function ajaxRenderSectionCrearRol() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'crearRol',
+        url: urlBase +'/crearRol',
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -35,7 +35,7 @@ function ajaxRenderSectionEditarRol(idRol) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'editarRol/'+ idRol,
+        url: urlBase +'/editarRol/'+ idRol,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -60,7 +60,7 @@ function GuardarRol() {
     var token = $("#_token").val();
     $.ajax({
         type: 'POST',
-        url: urlBase +'guardarRol',
+        url: urlBase +'/guardarRol',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
@@ -100,7 +100,7 @@ function ajaxRenderSectionListaRoles() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'roles',
+        url: urlBase +'/roles',
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
