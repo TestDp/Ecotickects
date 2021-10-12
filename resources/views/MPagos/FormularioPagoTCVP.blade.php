@@ -1,5 +1,5 @@
 @section('FomularioPagoTD')
-    <form id="formPagoTC">
+
 
 
     <input type="hidden" id="tipoTC" name="tipoTC" value="{{$tipoTC}}">
@@ -152,5 +152,5 @@
         <div class="col-md-4">
         </div>
     </div>
-    </form>
+
 @endsection

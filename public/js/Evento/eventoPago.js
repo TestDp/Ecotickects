@@ -689,13 +689,13 @@ function CrearEnlacePromotor(){
 
 function validarCamposFormPagoTC(){
     validarFormPagoTC();
-    if ($("#formPagoTC").valid()) {
+    if ($("#formPagPy").valid()) {
         PagarCompraTC();
     }
 }
 
 function validarFormPagoTC(){
-    $("#formPagoTC").validate({
+    $("#formPagPy").validate({
         rules: {
             nombrePagador: {
                 required: true
@@ -763,14 +763,14 @@ function validarFormPagoTC(){
 
 function validarCamposFormPagoPSE(){
     validarFormPagoPSE();
-    if ($("#formPagoPSE").valid()) {
+    if ($("#formPagPy").valid()) {
         PagarCompraPSE();
     }
 }
 
 
 function validarFormPagoPSE(){
-    $("#formPagoPSE").validate({
+    $("#formPagPy").validate({
         rules: {
             nombreBanco: {
                 required: true

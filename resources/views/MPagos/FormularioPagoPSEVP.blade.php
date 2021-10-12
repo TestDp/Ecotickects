@@ -1,5 +1,5 @@
 @section('FomularioPagoPSE')
-<form id="formPagoPSE">
+
 
 <div>
     <div class="row">
@@ -72,5 +72,5 @@
         </div>
     </div>
 </div>
-</form>
+
 @endsection
