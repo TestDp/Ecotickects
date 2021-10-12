@@ -699,7 +699,7 @@ class EventosRepositorio
                     on ae.id = ue.AsistentesXEvento_id
                     inner join users as up
                     on  up.id = ue.user_id 
-                    where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
+                    where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 100
                     group by  e.Nombre_Evento, u.Sede_id, p.precioTotal/cantidadBoletas, up.name
                     order by up.name asc) AS Resul') )
             ->where('CantidadBoletas','>',0)

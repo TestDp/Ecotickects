@@ -206,7 +206,7 @@ class AsistenteRepositorio
 
     public function obtenerAsistentesXEventoGuessList($idEvento)
     {
-        $asistentesGuestList = DB::table('tbl_asistentes')
+        $asistentesGuestList1 = DB::table('tbl_asistentes')
             ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades', 'Tbl_Ciudades.id', '=', 'tbl_asistentes.Ciudad_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
@@ -214,6 +214,19 @@ class AsistenteRepositorio
             ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad,  "Gratis" as TipoBoleta' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get();
+
+        $asistentesGuestList2 = DB::table('tbl_asistentes')
+            ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
+            ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad, Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta' ))
+            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 100)
+            ->where('Tbl_InfoPagos.PrecioTotal', '=', 0)
+            ->get();
+
+        $asistentesGuestList = $asistentesGuestList2->merge($asistentesGuestList1);
+
         return $asistentesGuestList;
     }
 
@@ -302,7 +315,7 @@ class AsistenteRepositorio
             })
             ->join('Tbl_PreciosBoletas', 'Tbl_PreciosBoletas.Evento_id', '=', 'tbl_asistentesXeventos.Evento_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
             ->where('Tbl_InfoPagos.created_at', '>=', 'Tbl_PreciosBoletas.created_at')
             ->where('Tbl_InfoPagos.created_at', '<', 'Tbl_PreciosBoletas.updated_at')
@@ -321,6 +334,9 @@ class AsistenteRepositorio
             ->select(\DB::raw('tbl_asistentes.id,tbl_asistentesXeventos.esActivo, "0" as precio, "Cortesia" as localidad, tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
+
+
+
         //$asistente = $asistentepago->merge($asistenteinvitado);
         if($asistentepago == null)
         {

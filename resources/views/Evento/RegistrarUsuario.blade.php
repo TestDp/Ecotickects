@@ -38,7 +38,7 @@
                     <input type="hidden" id="esPerfilado" name="esPerfilado" value="0">
                     <input type="hidden" name="terminos" value="1" id="terminos" />
                     <input type="hidden" name="HabeasData" value="1" id="HabeasData" />
-                    <input type="hidden" id="ComentarioEvento" name="ComentarioEvento"  value="BoletaGratis123" />
+                    <input type="hidden" id="ComentarioEvento" name="ComentarioEvento"  value="BoletaEnviadaModuloUsuario" />
                     <input type="hidden" id="Promotor_id" name="Promotor_id"  value="0" />
                     <input type="hidden" id="esPago" name="esPago" value="1">
                     <div id="formAsistente" style="margin:0px !important;" class="row">
