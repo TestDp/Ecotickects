@@ -317,7 +317,7 @@ class AsistenteRepositorio
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
-            ->where('Tbl_PreciosBoletas.id', '=', 'Tbl_InfoPagos.PrecioBoleta_id')
+            ->whereRaw('Tbl_PreciosBoletas.id = Tbl_InfoPagos.PrecioBoleta_id')
             ->select(\DB::raw('tbl_asistentes.id, tbl_asistentesXeventos.esActivo, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
