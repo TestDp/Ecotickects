@@ -264,11 +264,26 @@ class EventosRepositorio
             ->where('Codigo','=',$codigo)->get();
     }
 
-    public function obtenerLocalidadesEvento($idEvento)
+    public function obtenerLocalidadesEventoSAdmin($idEvento)
+    {
+        return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+            ->where('esActiva','=',1)
+            ->where('PrecioBoletaPadre_Id','=',null)->get();
+    }
+
+    public function obtenerLocalidadesEventoAdmin($idEvento)
+    {
+        return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+            ->where('esActiva','=',1)
+            ->where('PrecioBoletaPadre_Id','=',null)->get();
+    }
+
+    public function obtenerLocalidadesEventoOtroRol($idEvento)
     {
         return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
             ->where('esActiva','=',1)
             ->where('esCodigoPromo','=',0)
+            ->where('precio','>',0)
             ->where('PrecioBoletaPadre_Id','=',null)->get();
     }
 

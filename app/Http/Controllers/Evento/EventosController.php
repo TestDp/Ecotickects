@@ -281,15 +281,25 @@ class EventosController extends Controller
         }else return view('Usuario/AsignarPermisosEventoVP',['listEventos'=>$eventos,'eventosUsuario'=>$eventosUsuario]);
     }
 
-    public function obtenerLocalidadesEvento($idEvento)
+    public function obtenerLocalidadesEvento(Request $request,$idEvento)
     {
-        return response()->json($this->eventoServicio->obtenerLocalidadesEvento($idEvento));
+        $user = $request->user();
+        if($user->hasRole(env('IdRolSuperAdmin'))){
+            return response()->json($this->eventoServicio->obtenerLocalidadesEventoSAdmin($idEvento));
+        }else{
+            if($user->hasRole(env('IdRolAdmin'))){
+                return  $this->eventoServicio->obtenerLocalidadesEventoAdmin($idEvento);
+            }else{
+                return  $this->eventoServicio->obtenerLocalidadesEventoOtroRol($idEvento);
+            }
+        }
+
     }
 
     public function generarEnlacePromotor(Request $request){
         $eventos = null;
         $urlinfo= $request->getPathInfo();
-        //$request->user()->AutorizarUrlRecurso($urlinfo);
+        $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
         $idUser = Auth::user()->id;
         if($request->user()->hasRole(env('IdRolSuperAdmin'))){

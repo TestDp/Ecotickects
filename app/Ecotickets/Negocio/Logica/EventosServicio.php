@@ -35,9 +35,18 @@ class EventosServicio
         return  $this->eventoRepor->obtenerBoletaPromo($idEvento, $codigo);
     }
 
-    public function obtenerLocalidadesEvento($idEvento)
+    public function obtenerLocalidadesEventoSAdmin($idEvento)
     {
-        return  $this->eventoRepor->obtenerLocalidadesEvento($idEvento);
+        return  $this->eventoRepor->obtenerLocalidadesEventoSAdmin($idEvento);
+    }
+    public function obtenerLocalidadesEventoAdmin($idEvento)
+    {
+        return  $this->eventoRepor->obtenerLocalidadesEventoAdmin($idEvento);
+    }
+
+    public function obtenerLocalidadesEventoOtroRol($idEvento)
+    {
+        return  $this->eventoRepor->obtenerLocalidadesEventoOtroRol($idEvento);
     }
 
     public function obtenerEvento($idEvento)
