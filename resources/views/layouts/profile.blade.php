@@ -80,7 +80,9 @@
                                 @if(Auth::user()->buscarRecurso('FormularioReenviarInvitacion'))
                                     <li><a href="{{ url('FormularioReenviarInvitacion') }}">Reenviar ticket</a></li>
                                 @endif
-                                    <li><a href="{{ url('GenerarEnlacePromotor') }}">Generar enlace Promotor</a></li>
+                                @if(Auth::user()->buscarRecurso('GenerarEnlacePromotor'))
+                                    <li><a href="{{ url('GenerarEnlacePromotor') }}">Generar enlace promotor</a></li>
+                                @endif
                                 @if(Auth::user()->buscarRecurso('RegistrarYEnviar'))
                                     <li><a href="{{ url('RegistrarYEnviar') }}">Enviar tickets Masivamente**</a></li>
                                 @endif
