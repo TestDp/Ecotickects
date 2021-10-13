@@ -24,6 +24,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
     /**
      * Where to redirect users after login.
      *
@@ -86,8 +87,8 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
         return $this->sendFailedLoginResponse($request);
     }
-
-    public function loginApp($correo,$password)
+//NO BORRAR
+  /*  public function loginApp($correo,$password)
     {
         $jwtAut= new JwtAutenticacion();
 
@@ -95,10 +96,13 @@ class LoginController extends Controller
             $singUp = $jwtAut->SingUp($correo,$password);
             return response()->json($singUp,200);
         }
+    }*/
 
-
+    public function loginApp($correo,$password)
+    {
+        $credentials =["email" => $correo,"password" => $password];
+        return response()->json($this->attemptLoginAPP($credentials));
     }
-
 
     protected function credentials(Request $request)
     {
@@ -122,5 +126,36 @@ class LoginController extends Controller
             return redirect('/welcome');
     }
 
+    protected function attemptLoginAPP($request)
+    {
+        return $this->guard()->attempt(
+            $request, false
+        );
+    }
+
+    public function logoutApp() {
+        $this->guard()->logout();
+        $respuesta =["cerrasSesion" => true];
+        return $respuesta;
+    }
+
+    public function attemptApp(array $credentials = [], $remember = false)
+    {
+        $user = $this->provider->retrieveByCredentials($credentials);
+        // If an implementation of UserInterface was returned, we'll ask the provider
+        // to validate the user against the given credentials, and if they are in
+        // fact valid we'll log the users into the application and return true.
+        if ($this->hasValidCredentials($user, $credentials)) {
+
+            return $user;
+        }
+
+        // If the authentication attempt fails we will fire an event so that the user
+        // may be notified of any suspicious attempts to access their account from
+        // an unrecognized user. A developer may listen to this event as needed.
+        //$this->fireFailedEvent($user, $credentials);
+        $respuesta = ['respuesta'=>false];
+        return $respuesta;
+    }
 
 }

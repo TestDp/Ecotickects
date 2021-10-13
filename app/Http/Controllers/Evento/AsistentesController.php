@@ -502,9 +502,20 @@ class AsistentesController extends Controller
     public function obtenerFormularioUsuario(Request $request)
     {
         $urlinfo= $request->getPathInfo();
-        $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idSede = Auth::user()->Sede->id;
-        $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+        $user = $request->user();
+        $user->AutorizarUrlRecurso($urlinfo);
+        $idSede = $user->Sede->id;
+        $eventos=null;
+        $idEmpreesa = $user->Sede->Empresa->id;
+        if($user->hasRole(env('IdRolSuperAdmin'))){
+            $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
+        }else{
+            if($user->hasRole(env('IdRolAdmin'))){
+                $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
+            }else{
+                $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+            }
+        }
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
         $ElementosArray = array('eventos' => $eventos, 'departamentos' => $departamentos,);
         return view('Evento/RegistrarUsuario', ['ElementosArray' => $ElementosArray])->with('respuestaError', false);
