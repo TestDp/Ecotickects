@@ -128,7 +128,7 @@ class LoginController extends Controller
 
     protected function attemptLoginAPP($request)
     {
-        return $this->guard()->attempt(
+        return $this->guard()->attemptApp(
             $request, false
         );
     }
