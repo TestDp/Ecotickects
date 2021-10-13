@@ -239,7 +239,7 @@ class AsistenteRepositorio
             ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad, Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta' ))
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->get();
 
         return $asistentesPago;
@@ -293,7 +293,7 @@ class AsistenteRepositorio
             $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
         })
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->get());
     }
 

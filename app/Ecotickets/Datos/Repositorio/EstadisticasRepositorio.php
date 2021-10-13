@@ -54,7 +54,7 @@ class EstadisticasRepositorio
             ->groupBy('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id')
             ->select('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id',DB::raw('count(Tbl_Ciudades.id) as cantidad'))
             ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->get();
 
 
@@ -130,7 +130,7 @@ class EstadisticasRepositorio
             ->groupBy('tbl_asistentes.Edad')
             ->select('tbl_asistentes.Edad',DB::raw('count(tbl_asistentes.Edad) as cantidad'))
             ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->get();
         foreach ($AsistentesEdades as $asistenteEdad){
             $arrayEdadesAsistentes[]="Edad ".$asistenteEdad->Edad;
@@ -182,7 +182,7 @@ class EstadisticasRepositorio
             ->select(DB::raw("DATE_FORMAT(tbl_asistentes.created_at, '%Y-%m-%d') as created_at"),DB::raw('count(tbl_asistentes.created_at) as cantidad'))
             ->groupBy('created_at')
             ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->get();
         foreach ($AsistentesEdades as $asistenteEdad){
             $arrayFechasAsistentes[]=$asistenteEdad->created_at;
@@ -234,7 +234,7 @@ class EstadisticasRepositorio
         })
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentesXeventos.esActivo', '=', 1)
-            ->where('Tbl_InfoPagos.EstadosTransaccion_id', '=', 4)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->get());
 
 
