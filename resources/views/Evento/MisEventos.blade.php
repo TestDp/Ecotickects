@@ -165,12 +165,12 @@
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('InformePromotor'))
                                                         <td style="text-align:center;">
-                                                            <a href="{{ url('/InformePromotor',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-archive">Ver</i></a>
+                                                            <a href="{{ url('/InformePromotor',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-archive"></i></a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
                                                         <td style="text-align:center;">
-                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-archive">Ver</i></a>
+                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-archive"></i></a>
                                                         </td>
                                                     @endif
                                              </tr>
