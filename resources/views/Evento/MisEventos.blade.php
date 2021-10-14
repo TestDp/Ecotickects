@@ -257,32 +257,32 @@
                                                     </td>
                                                    @if(Auth::user()->buscarRecurso('ListaAsistentes'))
                                                         <td style="text-align:center;">
-                                                            <a href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-users"></i></a>
+                                                            <a href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-users"></i></a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('Estadisticas'))
                                                         <td style="text-align:center;">
-                                                            <a href="{{ url('/Estadisticas',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-bar"></i></a>
+                                                            <a href="{{ url('/Estadisticas',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-calculator"></i></a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('LecturaQR'))
                                                         <td style="text-align:center;">
-                                                            <a href="{{ url('/LecturaQR',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-qrcode"></i></a>
+                                                            <a href="{{ url('/LecturaQR',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-qrcode"></i></a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('Liquidacion'))
                                                     <td style="text-align:center;">
-                                                        <a href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line"></i></a>
+                                                        <a href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-archive"></i></a>
                                                     </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('InformePromotor'))
                                                         <td style="text-align:center;">
-                                                            <a href="{{ url('/InformePromotor',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line"></i></a>
+                                                            <a href="{{ url('/InformePromotor',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-columns"></i></a>
                                                         </td>
                                                     @endif
                                                     @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
                                                         <td style="text-align:center;">
-                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fas fa-chart-line"></i></a>
+                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-clipboard"></i></a>
                                                         </td>
                                                     @endif
                                             </tr>
