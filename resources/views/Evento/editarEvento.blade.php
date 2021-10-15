@@ -12,25 +12,14 @@
 					</div>
 					<form id="crearEvento" action="{{url('actualizarEvento')}}" method="POST" enctype="multipart/form-data">
 						<input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}"/>
-						<input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
-						<input type="hidden" id="id" name="id" value="{{$evento->id}}">
+						<input type="hidden" id="_token" name="_token" value="{{csrf_token()}}"/>
+						<input type="hidden" id="id" name="id" value="{{$evento->id}}"/>
+						<input type="hidden" id="Tipo_Evento" name="Tipo_Evento" value="Evento"/>
+						<input id="CorreoEnviarInvitacion" name="CorreoEnviarInvitacion" type="hidden" class="form-control" value="{{$evento->CorreoEnviarInvitacion}}"/>
 						<div style="margin:0px !important;" class="row">
-							<div class="col-md-6">
+							<div class="col-md-9">
 								Nombre del Evento
 								<input id="Nombre_Evento" name="Nombre_Evento" type="text" class="form-control" value="{{$evento->Nombre_Evento}}"/>
-							</div>
-							<div class="col-md-3">
-								Tipo de Evento
-								<select id="Tipo_Evento" name="Tipo_Evento" class="form-control">
-									<option value="">Seleccionar</option>
-									@if ($evento->Tipo_Evento =='Evento')
-										<option value="Evento" selected>Evento</option>
-										<option value="Cupon">Cupón</option>
-									@else
-										<option value="Evento">Evento</option>
-										<option value="Cupon" selected>Cupón</option>
-									@endif
-								</select>
 							</div>
 							<div class="col-md-3">
 								Solicitar PIN
@@ -121,10 +110,6 @@
 										<option value="0" selected>No</option>
 									@endif
 								</select>
-							</div>
-							<div class="col-md-6">
-								Correo para enviar invitación
-								<input id="CorreoEnviarInvitacion" name="CorreoEnviarInvitacion" type="text" class="form-control" value="{{$evento->CorreoEnviarInvitacion}}"/>
 							</div>
 						</div>
 						<div style="margin:0px !important;" class="row">

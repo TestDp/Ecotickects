@@ -19,14 +19,6 @@
                                 Nombre del Evento
                                 <input id="Nombre_Evento" name="Nombre_Evento" type="text" class="form-control" />
                             </div>
-                            {{--<div class="col-md-3">
-                                Tipo de Evento
-                                <select id="Tipo_Evento" name="Tipo_Evento" class="form-control">
-                                    <option value="">Seleccionar</option>
-                                    <option value="Evento">Evento</option>
-                                    <option value="Cupon">Cupón</option>
-                                </select>
-                            </div>--}}
                             <div class="col-md-3">
                                 Solicitar PIN
                                 <select id="SolicitarPIN" name="SolicitarPIN" class="form-control">
