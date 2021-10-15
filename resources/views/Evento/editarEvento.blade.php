@@ -111,9 +111,7 @@
 									@endif
 								</select>
 							</div>
-						</div>
-						<div style="margin:0px !important;" class="row">
-							<div class="col-md-6">
+							<div class="col-md-3">
 								Codigo PULEP
 								<input id="CodigoPulep" name="CodigoPulep" type="text" class="form-control" value="{{$evento->CodigoPulep}}"/>
 							</div>
@@ -130,6 +128,9 @@
 									@endif
 								</select>
 							</div>
+						</div>
+						<div style="margin:0px !important;" class="row">
+
 						</div>
 						@if ($evento->esPago ==1)
 							<div id="divBoletas" name="divBoletas">
@@ -232,7 +233,7 @@
                                                             <input type="checkbox" id="esActiva" name="esActiva" class="form-control"  />
                                                         @endif
                                                     </div>
-                                                    @if($precioBoleta->esPromo ==1)
+                                                    @if($precioBoleta->esCodigoPromo ==1)
                                                         <div class="input-group-addon" >
                                                             <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
                                                             Activar Cod-Promo
@@ -335,12 +336,12 @@
 							</div>
 						</div>
 						<br/>
-						<div style="margin:0px !important;" class="row" hidden>
+				{{--		<div style="margin:0px !important;" class="row" hidden>
 							<div class="col-md-12">
 								<input type="button" class="btn btn-blue ripple trial-button" onclick="AgregarPregunta()" value="Agregar Pregunta"/>
 							</div>
-						</div>
-						<div style="margin:0px !important;" class="row" hidden>
+						</div>--}}
+						{{--<div style="margin:0px !important;" class="row" hidden>
 							<div class="col-md-12">
 								<h3 class="col-md-12" >Preguntas</h3>
 								<div id="ListaPreguntas">
@@ -439,7 +440,7 @@
 								</div>
 
 							</div>
-						</div>
+						</div>--}}
                         <hr style="border-top-color:lightslategray; width:100%" />
                         <div class="row">
                             <div style="margin-bottom:2%;" class="col-md-12">
@@ -455,7 +456,7 @@
 	</div>
 
 
-	<div hidden="hidden">
+	{{--<div hidden="hidden">
 
 		<div class="panel-group" id="divPregunta" name="divPregunta">
 			<hr style="border-top-color:lightslategray; width:100%" />
@@ -653,9 +654,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>--}}
 
-	<div class="row" id="RespuestaPlantilla" name="RespuestaPlantilla" hidden="hidden">
+	{{--<div class="row" id="RespuestaPlantilla" name="RespuestaPlantilla" hidden="hidden">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="form-group">
@@ -691,7 +692,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>--}}
 
 	<div class="row"  id="DivPreciosBoletas" hidden>
         <input id="idPrecioBoleta" name="idPrecioBoleta" type="hidden"  value="0"/>

@@ -354,6 +354,7 @@ class AsistenteRepositorio
         $asistente->Edad = $asistenteRequest->Edad;
         $asistente->Dirección = $asistenteRequest->Dirección;
         $asistente->Ciudad_id = $asistenteRequest->Ciudad_id;
+        $asistente->fechaNacimiento = $asistenteRequest->fechaNacimiento;
         return $asistente;
     }
 

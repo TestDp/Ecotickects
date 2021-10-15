@@ -330,9 +330,9 @@ class EventosRepositorio
             ->where('Tbl_PreciosBoletas.Evento_id', '=',$idEvento)
             ->where('Tbl_PreciosBoletas.esCodigoPromo', '=',0)
             ->where('Tbl_PreciosBoletas.PrecioBoletaPadre_Id', '=',null)->get();
-        $evento->preguntas->each(function($preguntas){
+       /* $evento->preguntas->each(function($preguntas){
             $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
-        });
+        });*/
         $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
         $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
         return $evento ;
