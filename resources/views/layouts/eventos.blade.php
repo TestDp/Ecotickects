@@ -31,6 +31,24 @@
         gtag('config', 'UA-113476867-1');
 	</script>
 	
+		<!-- Facebook Pixel Code -->
+		<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window, document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '209280301173565');
+		fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=209280301173565&ev=PageView&noscript=1"
+		/></noscript>
+<!-- End Facebook Pixel Code -->
+	
 		<link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
@@ -124,7 +142,7 @@
 		@yield('content')
 	</div>
 	<!-- boton soporte -->
-	<ul id="boton-soporte">
+	<ul style="display:none;" id="boton-soporte">
 		<li><a href="https://api.whatsapp.com/send?phone=573117234163&text=Escribo%20desde%20Ecotickets..." target="_blank"><img src="{{ asset('img/soporte.png') }}" alt="" /></a></li>
 	</ul>
 </section>
