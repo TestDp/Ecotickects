@@ -97,7 +97,7 @@ class PagosController extends Controller
         $data = $this->pagosServicio->ObtenerParametrosPayuPSE($formPago,$order->reference,$order->value,$ip);
         $order->payWith($data, function($response, $order)
         {
-            if ($response->code == 'SUCCESS')
+            if ($response->code == 'SUCCESS' && $response->transactionResponse->state =='SUCCESS')
             {
                 $order->update([
                     'payu_order_id' => $response->transactionResponse->orderId,
