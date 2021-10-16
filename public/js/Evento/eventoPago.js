@@ -579,16 +579,34 @@ function PagarCompraTC() {
         dataType: "JSON",
         success: function (result) {
             OcultarPopupposition();
-            $('#eco').empty().append($(result));
+            if(result.STATUS == 'SUCCESS'){
+                $('#eco').empty().append($(result.RESPONSE));
+            }else{
+                if(result.STATUS == 'ERROR'){
+                    swal({
+                        title: "Error procesando el pago!",
+                        text: result.RESPONSE,
+                        icon: "error",
+                        button: "OK",
+                    });
+                }else{
+                    swal({
+                        title: "Error procesando el pago!",
+                        text: "Por favor intenta de nuevo!",
+                        icon: "error",
+                        button: "OK",
+                    });
+                }
+            }
         },
         error: function (data) {
             OcultarPopupposition();
-            var errors = data.responseJSON;
-            if (errors) {
-                $.each(errors, function (i) {
-                    console.log(errors[i]);
-                });
-            }
+            swal({
+                title: "Error procesando el pago!",
+                text: "Por favor intenta de nuevo!",
+                icon: "error",
+                button: "OK",
+            });
         }
     });
 }

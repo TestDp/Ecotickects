@@ -61,7 +61,7 @@ class PagosController extends Controller
         $data = $this->pagosServicio->ObtenerParametrosPayuTC($formPago,$order->reference,$order->value);
         $order->payWith($data, function($response, $order)
         {
-            if ($response->code == 'SUCCESS')
+            if ($response->code == 'SUCCESS' && $response->transactionResponse->state =='SUCCESS')
             {
                 $order->update([
                     'payu_order_id' => $response->transactionResponse->orderId,
@@ -76,10 +76,14 @@ class PagosController extends Controller
         }, function($error) {
             $this->resultadoPago = $error;
         });
-        $ElementosArray = $this->pagosServicio->ObtenerInfoRespuestaPago($this->estadotrasaccion,$order->reference);
-        $view = View::make('respuestaPago',['ElementosArray' => $ElementosArray]);
-        $sections = $view->renderSections();
-        return Response::json($sections['RespuestaPago']);
+        if(!isset($this->resultadoPago)){
+            $ElementosArray = $this->pagosServicio->ObtenerInfoRespuestaPago($this->estadotrasaccion,$order->reference);
+            $view = View::make('respuestaPago',['ElementosArray' => $ElementosArray]);
+            $sections = $view->renderSections();
+            return Response::json(['STATUS'=>'SUCCESS','RESPONSE'=>$sections['RespuestaPago']]);
+        }else{
+            return Response::json(['STATUS'=>'ERROR','RESPONSE'=>'Por favor validar sus datos de pago']);
+        }
     }
 
     public function PagarPSE(Request $formPago)
