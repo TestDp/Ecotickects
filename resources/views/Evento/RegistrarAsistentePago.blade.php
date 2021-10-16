@@ -214,7 +214,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
+                                    <button onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>Comprar</button>
                                 </div>
                             </div>
                         </div>
@@ -364,7 +364,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
+                                    <button onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>Comprar</button>
                                 </div>
                             </div>
                         </div>
