@@ -364,7 +364,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
+                                    <button onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
                                 </div>
                             </div>
                         </div>
