@@ -61,10 +61,11 @@
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-success" onclick="">Reitentar transacción</button>
+                            {{--este boton es para implementar--}}
+                            {{--<button type="button" class="btn btn-success" onclick="">Reitentar transacción</button>--}}
                         </div>
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-success" onclick="">Finalizar transacción</button>
+                            <a class="btn btn-success" href="{{ url('/') }}">Finalizar transacción</a>
                         </div>
                     </div>
                 </div>

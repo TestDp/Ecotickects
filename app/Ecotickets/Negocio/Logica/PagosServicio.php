@@ -55,7 +55,8 @@ class PagosServicio
             \PayUParameters::PAYER_STATE => "Rionegro",
             \PayUParameters::PAYER_COUNTRY => "CO",
             \PayUParameters::PAYER_POSTAL_CODE => "000000",
-            \PayUParameters::PAYER_PHONE => $formPago->numeroTel
+            \PayUParameters::PAYER_PHONE => $formPago->numeroTel,
+            \PayUParameters::NOTIFY_URL=>env('URLCONFIRMATION')
         ];
         return $data;
     }
@@ -91,9 +92,10 @@ class PagosServicio
             \PayUParameters::PAYER_DOCUMENT_TYPE => $formPago->tipoDoc,
             \PayUParameters::PSE_FINANCIAL_INSTITUTION_CODE => $formPago->banco,
             \PayUParameters::PAYER_PERSON_TYPE => $formPago->tipoCliente,
-            \PayUParameters::RESPONSE_URL=>env('URLRESPONSE'),
+            \PayUParameters::RESPONSE_URL=>env('URLRESPONSEPSE'),
             \PayUParameters::USER_AGENT =>"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
-            \PayUParameters::PAYER_COOKIE=>"_ga=GA1.1.516722673.1535080117"
+            \PayUParameters::PAYER_COOKIE=>"_ga=GA1.1.516722673.1535080117",
+            \PayUParameters::NOTIFY_URL=>env('URLCONFIRMATION')
 
         ];
         return $data;
@@ -163,6 +165,10 @@ class PagosServicio
         if($polTransactionState == 12 || $polTransactionState ==14 || $polResponseCode==9994 || $polResponseCode == 25)
         {
             $estadoPSE =  'Transacción pendiente, por favor revisar si el débito fue realizado en el banco.';
+        }
+        if($polTransactionState == 6 && $polResponseCode == 19)
+        {
+            $estadoPSE =  'Transacción cancelada';
         }
         return $estadoPSE;
     }
