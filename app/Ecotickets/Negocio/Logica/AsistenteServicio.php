@@ -83,13 +83,13 @@ class AsistenteServicio
     {
         $idinfopago = explode(env('REFERENCECODE'), $referenceCode)[1];
         $respuesta= $this->asistenteRepositorio->actualizarInfoPagos($idinfopago, $estadotransaccion, $medioPago);
+        $archivo =  fopen(storage_path('app').'/log.txt','a');
+        fwrite($archivo,$respuesta['infoPago']->id .' '.  $respuesta['infoPago']->PrecioBoleta_id);
+        fclose($archivo);
         if ($respuesta['respuesta'])
         {
             $asistentesEventosPines=$this->asistenteRepositorio->obtenerPinesBoletas($respuesta['infoPago']->id);
             $localidad = $this->eventoRepositorio->obtenerPrecioBoleta($respuesta['infoPago']->PrecioBoleta_id);
-            $archivo =  fopen(storage_path('app').'/log.txt','a');
-            fwrite($archivo,$respuesta['infoPago']->id .' '.  $respuesta['infoPago']->PrecioBoleta_id);
-            fclose($archivo);
             return ['respuesta' => true, 'ListaAsistesEventoPines' => $asistentesEventosPines,'localidad'=>$localidad];
         }
         return $respuesta;
