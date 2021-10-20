@@ -321,6 +321,9 @@ class AsistentesController extends Controller
                 $correoSaliente = $evento->CorreoEnviarInvitacion;
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+                $archivo =  fopen(storage_path('app').'/log.txt','a');
+                fwrite($archivo,$correoSaliente);
+                fclose($archivo);
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento,$localidad) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                     $msj->subject('Importante - Aquí esta tu pase de acceso');
