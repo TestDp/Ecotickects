@@ -482,7 +482,7 @@ function AgregarVlrPagoTC(tipoTC){
                 $("#aAmex").attr('onclick','cargarFormularioPagoTC("AMEX")');
                 $("#aDiners").attr('onclick','cargarFormularioPagoTC("DINERS")');
                 $("#aCodensa").attr('onclick','cargarFormularioPagoTC("CODENSA")');
-                var impuestos = parseInt($("#subTotal").val() * 0.07);
+                var impuestos = parseInt($("#subTotal").val() * 0.04);
                 var total  = impuestos + parseInt($("#subTotal").val());
                 $("#tdTotalAPagar").html(total);
             var row = '<tr id="trValorAdicional">';

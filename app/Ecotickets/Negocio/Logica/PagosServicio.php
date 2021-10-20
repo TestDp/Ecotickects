@@ -30,7 +30,7 @@ class PagosServicio
 
     public function ObtenerParametrosPayuTC($formPago,$refencia,$subTotal)
     {
-        $total = $this->CalcularValorTotal($subTotal,0.07);
+        $total = $this->CalcularValorTotal($subTotal,env('PORCENTAJETC'));
         $data = [
             \PayUParameters::REFERENCE_CODE => $refencia,
             \PayUParameters::VALUE => $total,
