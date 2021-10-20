@@ -299,7 +299,7 @@ class AsistentesController extends Controller
     {
         try {
              $archivo =  fopen(storage_path('app').'/log.txt','a');
-            fwrite($archivo,json_encode($formRegistro));
+            fwrite($archivo,json_encode($formRegistro->request));
             fclose($archivo);
             $correoElectronico = $formRegistro->email_buyer;
             $medioPago = $formRegistro->payment_method_id;
