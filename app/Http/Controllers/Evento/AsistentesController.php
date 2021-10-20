@@ -310,13 +310,15 @@ class AsistentesController extends Controller
             $verficarFirma = $this->asistenteServicio->validarFirmaPago($merchantId, $referenciaVenta, $valor, $moneda, $estadoVenta, $firmaVenta);
             //$verificarfirma:1 para la validacion de la firma es correcta
             //$verificarfirma:0 para la validacion de la firma es incorrecta
+            $verficarFirma == 1;
+            $estadoVenta == 4;
             if ($estadoVenta == 4 && $verficarFirma == 1) {
                 $this->asistenteServicio->ActualizarPinBusquedaCorreo($formRegistro->email_buyer);
                 $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta, $estadoVenta, $medioPago);
                 $evento = $this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
                 $localidad = $listaAsistentesXEventosPines['localidad'];
                 $ElementosArray = array('evento' => $evento);
-                $correoSaliente = $evento->CorreoEnviarInvitacion;//PONER EL CORREO DE MANERA GENERAL
+                $correoSaliente = $evento->CorreoEnviarInvitacion;
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento,$localidad) {
@@ -349,6 +351,8 @@ class AsistentesController extends Controller
             return reponse('ERROR', 404);
         }
     }
+
+
 
     /**Metodo de respuesta de la plataforma payu para mostrar el mensaje al usuario sobre el estado de la transaccion.
      * el llamado se hace cuando se presiona el boton de regresar al sitio. WebCheckout*/
