@@ -315,8 +315,6 @@ class AsistentesController extends Controller
             $verficarFirma = $this->asistenteServicio->validarFirmaPago($merchantId, $referenciaVenta, $valor, $moneda, $estadoVenta, $firmaVenta);
             //$verificarfirma:1 para la validacion de la firma es correcta
             //$verificarfirma:0 para la validacion de la firma es incorrecta
-            $verficarFirma = 1;
-            $estadoVenta = 4;
             if ($estadoVenta == 4 && $verficarFirma == 1) {
                 $this->asistenteServicio->ActualizarPinBusquedaCorreo($formRegistro->email_buyer);
                 $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta, $estadoVenta, $medioPago);
