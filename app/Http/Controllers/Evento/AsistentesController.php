@@ -298,9 +298,6 @@ class AsistentesController extends Controller
     public function RespuestaPagos(Request $formRegistro)
     {
         try {
-             $archivo =  fopen(storage_path('app').'/log.txt','a');
-            fwrite($archivo,json_encode($formRegistro->request));
-            fclose($archivo);
             $correoElectronico = $formRegistro->email_buyer;
             $medioPago = $formRegistro->payment_method_id;
             $merchantId = $formRegistro->merchant_id;
@@ -309,6 +306,11 @@ class AsistentesController extends Controller
             $moneda = $formRegistro->currency;
             $estadoVenta = $formRegistro->state_pol;
             $firmaVenta = $formRegistro->sign;
+            $archivo =  fopen(storage_path('app').'/log.txt','a');
+            fwrite($archivo,'CORREO ELECTRONICO: '. $correoElectronico . 'MEDIO DE PAGO: ' . $medioPago . 'MERCHANNT ID : '.
+                $merchantId . 'REFERENCIA DE VENTA: ' . $referenciaVenta . 'VALOR: '.$valor. 'MONEDA: '.$moneda. 'ESTADO VENTA: '.$estadoVenta.
+        'FIRMA: ' . $firmaVenta);
+            fclose($archivo);
             //NOTA:linea para verificar la informacion enviada  por payu
             $verficarFirma = $this->asistenteServicio->validarFirmaPago($merchantId, $referenciaVenta, $valor, $moneda, $estadoVenta, $firmaVenta);
             //$verificarfirma:1 para la validacion de la firma es correcta
