@@ -315,6 +315,10 @@ class AsistentesController extends Controller
             if ($estadoVenta == 4 && $verficarFirma == 1) {
                 $this->asistenteServicio->ActualizarPinBusquedaCorreo($formRegistro->email_buyer);
                 $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta, $estadoVenta, $medioPago);
+                $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+                $archivo =  fopen(storage_path('app').'/log.txt','a');
+                fwrite($archivo,"HOLA");
+                fclose($archivo);
                 $evento = $this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
                 $localidad = $listaAsistentesXEventosPines['localidad'];
                 $ElementosArray = array('evento' => $evento);
