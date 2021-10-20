@@ -322,7 +322,7 @@ class AsistentesController extends Controller
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
                 $archivo =  fopen(storage_path('app').'/log.txt','a');
-                fwrite($archivo,$correoSaliente);
+                fwrite($archivo,'CORREO SALIENTE '.$correoSaliente. 'CORREO ENVIO '. $correoElectronico);
                 fclose($archivo);
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento,$localidad) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
