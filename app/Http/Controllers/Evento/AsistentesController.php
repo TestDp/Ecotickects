@@ -321,15 +321,24 @@ class AsistentesController extends Controller
                 $correoSaliente = $evento->CorreoEnviarInvitacion;
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+                $archivo =  fopen(storage_path('app').'/log.txt','a');
+                fwrite($archivo,"HOLA1");
+                fclose($archivo);
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento,$localidad) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                     $msj->subject('Importante - Aquí esta tu pase de acceso');
                     $msj->to($correoElectronico);
                     $msj->bcc('soporteecotickets@gmail.com');
+                    $archivo =  fopen(storage_path('app').'/log.txt','a');
+                    fwrite($archivo,"HOLA2");
+                    fclose($archivo);
                     //preguntamos si el directorio existe
                     if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
                         mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
                     }
+                    $archivo =  fopen(storage_path('app').'/log.txt','a');
+                    fwrite($archivo,"HOLA3");
+                    fclose($archivo);
                     foreach ($pinesImagenes as $pin) {
                         $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
                         $ElementosArray = array('evento' => $evento, 'qr' => $qr,'localidad'=>$localidad);
