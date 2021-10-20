@@ -276,14 +276,14 @@ class AsistentesController extends Controller
             $msj->subject('Importante - Aquí esta tu pase de acceso');
             $msj->to($correoElectronico);
             $msj->bcc('soporteecotickets@gmail.com');
-            $qr = base64_encode(\QrCode::format('png')->merge('/public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pinUser . 'ECOTICKETS'));
+            $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $pinUser . 'ECOTICKETS'));
             $ElementosArray = array('evento' => $evento, 'qr' => $qr);
             //preguntamos si el directorio existe
             if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
                 mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
             }
             foreach ($pinesImagenes as $pin) {
-                $qr = base64_encode(\QrCode::format('png')->merge('../public/img/iconoPequeno.png')->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
+                $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
                 $ElementosArray = array('evento' => $evento, 'qr' => $qr,'localidad'=>$localidad);
                 \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pin->id . '.pdf');
                 $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $pin->id . '.pdf';
