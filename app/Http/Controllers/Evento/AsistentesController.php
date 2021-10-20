@@ -298,6 +298,9 @@ class AsistentesController extends Controller
     public function RespuestaPagos(Request $formRegistro)
     {
         try {
+             $archivo =  fopen(storage_path('app').'/log.txt','a');
+            fwrite($archivo,json_encode($formRegistro));
+            fclose($archivo);
             $correoElectronico = $formRegistro->email_buyer;
             $medioPago = $formRegistro->payment_method_id;
             $merchantId = $formRegistro->merchant_id;
@@ -321,9 +324,6 @@ class AsistentesController extends Controller
                 $correoSaliente = $evento->CorreoEnviarInvitacion;
                 $nombreEvento = $evento->Nombre_Evento;
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
-                $archivo =  fopen(storage_path('app').'/log.txt','a');
-                fwrite($archivo,'CORREO SALIENTE '.$correoSaliente. 'CORREO ENVIO '. $correoElectronico);
-                fclose($archivo);
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento,$localidad) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
                     $msj->subject('Importante - Aquí esta tu pase de acceso');
