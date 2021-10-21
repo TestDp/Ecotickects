@@ -463,7 +463,7 @@
 	<script src="js/typewriter.js"></script>
 	<script src="js/jquery.onepagenav.js"></script>
 	<script src="js/main.js"></script>
-	<script src="{{ asset('js/Evento/eventos.js') }}"></script>
+
 
 	<script src="Cssecupones/js/jquery.min.js"></script>
 	<script src="Cssecupones/js/bootstrap.min.js"></script>

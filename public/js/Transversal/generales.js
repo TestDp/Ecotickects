@@ -5,7 +5,7 @@ function obtenerUlrBase() {
     var rootFolder = "";
     switch (document.location.hostname) {
         case 'ecotickets.co':
-            rootFolder = '/'; break;
+            rootFolder = ''; break;
         case 'localhost':
             rootFolder = '/Ecotickects/trunk/public/'; break;
         default:  // set whatever you want

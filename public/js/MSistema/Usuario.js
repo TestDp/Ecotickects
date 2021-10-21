@@ -171,7 +171,7 @@ function EditarUsuario() {
     });
 }
 
-//Metodo para guarda la informacion del producto retorna la vista con todos los usuarios
+//Metodo para cambiar la contraseña
 function CambiarContrasena(element) {
     var form =  $(element).closest("form[name=formContrasena]");
     var token = form.find("input[name=_token]").val();
