@@ -306,17 +306,10 @@ class AsistentesController extends Controller
             $moneda = $formRegistro->currency;
             $estadoVenta = $formRegistro->state_pol;
             $firmaVenta = $formRegistro->sign;
-            $archivo =  fopen(storage_path('app').'/log.txt','a');
-            fwrite($archivo,'CORREO ELECTRONICO: '. $correoElectronico . 'MEDIO DE PAGO: ' . $medioPago . 'MERCHANNT ID : '.
-                $merchantId . 'REFERENCIA DE VENTA: ' . $referenciaVenta . 'VALOR: '.$valor. 'MONEDA: '.$moneda. 'ESTADO VENTA: '.$estadoVenta.
-        'FIRMA: ' . $firmaVenta);
-            fclose($archivo);
             //NOTA:linea para verificar la informacion enviada  por payu
             $verficarFirma = $this->asistenteServicio->validarFirmaPago($merchantId, $referenciaVenta, $valor, $moneda, $estadoVenta, $firmaVenta);
             //$verificarfirma:1 para la validacion de la firma es correcta
             //$verificarfirma:0 para la validacion de la firma es incorrecta
-            $estadoVenta = 4;
-            $verficarFirma = 1;
             if ($estadoVenta == 4 && $verficarFirma == 1) {
                 $this->asistenteServicio->ActualizarPinBusquedaCorreo($formRegistro->email_buyer);
                 $listaAsistentesXEventosPines = $this->asistenteServicio->crearBoletas($referenciaVenta, $estadoVenta, $medioPago);
@@ -335,9 +328,6 @@ class AsistentesController extends Controller
                     if (!file_exists(storage_path('app') . '/boletas/'.$evento->id)) {
                         mkdir(storage_path('app') . '/boletas/'.$evento->id, 0777, true);
                     }
-                    $archivo =  fopen(storage_path('app').'/log.txt','a');
-                    fwrite($archivo,'HOLA3');
-                    fclose($archivo);
                     foreach ($pinesImagenes as $pin) {
                         $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
                         $ElementosArray = array('evento' => $evento, 'qr' => $qr,'localidad'=>$localidad);
