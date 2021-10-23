@@ -110,7 +110,7 @@ class AsistenteServicio
     {
         $newValor = $this->transformaValor($valor);
         try{
-            $firmaVerificar = md5(env('APIKEYPAYU').'~'.$merchantId.'~'.$referenciaVenta.'~'.$newValor.'~'.$moneda.'~'.$estadoVenta);
+            $firmaVerificar = md5(env('PAYU_API_KEY').'~'.$merchantId.'~'.$referenciaVenta.'~'.$newValor.'~'.$moneda.'~'.$estadoVenta);
             if($firmaVerificar == $firmaVenta){
                 return 1;
             }

@@ -45,7 +45,7 @@
                             <div style="margin:0px !important;" class="row">
                                 <div class="col-md-6">
                                     Identificación
-                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
+                                    <input id="Identificacion" name="Identificacion" type="text" class="form-control" onchange="BuscarAsistente()"/>
                                 </div>
                                 <div class="col-md-6">
                                     Nombre

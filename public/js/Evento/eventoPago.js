@@ -700,7 +700,7 @@ function CargarPromotores(){
 
 
 function CrearEnlacePromotor(){
-    var url = urlBase + "form-prom/" + $("#Evento_id").val() + "/" + $("#Promotor_id").val();
+    var url = urlBase + "/form-prom/" + $("#Evento_id").val() + "/" + $("#Promotor_id").val();
     $("#enlace").val(url);
 }
 

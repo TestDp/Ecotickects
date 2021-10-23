@@ -8,7 +8,7 @@ try {
 function ajaxRenderSectionCrearSede() {
     $.ajax({
         type: 'GET',
-        url: urlBase +'crearSede',
+        url: urlBase +'/crearSede',
         dataType: 'json',
         success: function (data) {
             $('#principalPanel').empty().append($(data));
@@ -29,7 +29,7 @@ function ajaxRenderSectionEditarSede(idSede) {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'editarSede/' + idSede,
+        url: urlBase +'/editarSede/' + idSede,
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
@@ -54,7 +54,7 @@ function GuardarSede() {
     var token = $("#_token").val()
     $.ajax({
         type: 'POST',
-        url: urlBase +'guardarSede',
+        url: urlBase +'/guardarSede',
         dataType: 'json',
         headers: {'X-CSRF-TOKEN': token},
         data:form.serialize(),
@@ -98,7 +98,7 @@ function ajaxRenderSectionListaSedes() {
     PopupPosition();
     $.ajax({
         type: 'GET',
-        url: urlBase +'sedes',
+        url: urlBase +'/sedes',
         dataType: 'json',
         success: function (data) {
             OcultarPopupposition();
