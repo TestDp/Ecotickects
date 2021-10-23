@@ -43,6 +43,12 @@
                                         Ciudad
                                     </th>
                                     <th>
+                                        Localidad
+                                    </th>
+                                    <th>
+                                        Usuario Vendedor
+                                    </th>
+                                    <th>
                                         CantidadBoletas
                                     </th>
                                     <th>
@@ -70,6 +76,12 @@
                                         </td>
                                         <td>
                                             {{$asistente->Nombre_Ciudad}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->Localidad}}
+                                        </td>
+                                        <td>
+                                            {{$asistente->UsuarioVendedor}}
                                         </td>
                                         <td>
                                             {{$asistente->CantidadBoletas}}
