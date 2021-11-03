@@ -23,283 +23,196 @@
             </script>
         @endif
     @endif
-    <div class="container">
-        <div class="row">
+	
+	    <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Mis Eventos</h3></div>
-
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        @if(Auth::user()->buscarRecurso('FormularioEvento'))
-                            <div style="padding-bottom:2%;" class="row">
-                                <div style="text-align: left;" class="col-md-6">
-                                <a class="btn btn-blue ripple trial-button" href="{{ url('FormularioEvento') }}">Crear Evento</a>
-                                </div>
-                            </div>
-                        @endif
-
-                            <ul class="nav nav-tabs" >
-                                <li class="active">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#EventosProximo" role="tab" aria-controls="home"
-                                       aria-selected="true">Eventos Proximos</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#EventosPasados" role="tab" aria-controls="profile"
-                                       aria-selected="false">Eventos pasados</a>
-
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade in active" id="EventosProximo" role="tabpanel" aria-labelledby="home-tab">
-                                    <div style="overflow-x:auto;">
-                                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
-                                            <thead>
-                                            <tr >
-                                                <th >
-                                                    Id
-                                                </th>
-                                                <th >
-                                                    Nombre
-                                                </th>
-                                                <th >
-                                                    Lugar
-                                                </th>
-                                                <th >
-                                                    Ciudad
-                                                </th>
-                                                <th >
-                                                    Departamento
-                                                </th>
-                                                <th >
-                                                    Fecha del Evento
-                                                </th>
-                                             @if(Auth::user()->buscarRecurso('ListaAsistentes'))
-                                                    <th >
-                                                        Usuarios
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('Estadisticas'))
-                                                    <th>
-                                                        Estadísticas
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('LecturaQR'))
-                                                    <th>
-                                                        Leer QR
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
-                                                    <th>
-                                                    Editar
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
-                                                    <th>
-                                                        Liquidación
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
-                                                    <th>
-                                                        Informe Promotor
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('EditarEvento'))
-                                                    <th>
-                                                        Informe UsuarioxBoleta
-                                                    </th>
-                                                @endif
-
-                                            </tr>
-                                            </thead>
-                                            <tbody >
-                                            @foreach($ListaEventos["eventos"] as $evento)
-                                                <tr>
-                                                    <td >
-                                                        {{ $evento->id }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $evento->Nombre_Evento }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $evento->Lugar_Evento }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $evento->Nombre_Ciudad }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $evento->Nombre_Departamento }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $evento->Fecha_Evento }}
-                                                    </td>
-                                                  @if(Auth::user()->buscarRecurso('ListaAsistentes'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-users"></i></a>
-                                                        </td>
-                                                    @endif
-
-                                                    @if(Auth::user()->buscarRecurso('Estadisticas'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-calculator"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('LecturaQR'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-qrcode"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('EditarEvento'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-edit"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('Liquidacion'))
-                                                    <td style="text-align:center;">
-                                                        <a href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-archive"></i></i></a>
-                                                    </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('InformePromotor'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/InformePromotor',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-columns"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $evento->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-clipboard"></i></a>
-                                                        </td>
-                                                    @endif
-                                             </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="EventosPasados" role="tabpanel" aria-labelledby="profile-tab">
-                                    <!-- poner la tabla de eventos pasados-->
-                                    <div style="overflow-x:auto;">
-                                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos2" class="table table-bordered">
-                                            <thead>
-                                            <tr >
-                                                <th >
-                                                    Id
-                                                </th>
-                                                <th >
-                                                    Nombre
-                                                </th>
-                                                <th >
-                                                    Lugar
-                                                </th>
-                                                <th >
-                                                    Ciudad
-                                                </th>
-                                                <th >
-                                                    Departamento
-                                                </th>
-                                                <th >
-                                                    Fecha del Evento
-                                                </th>
-                                              @if(Auth::user()->buscarRecurso('ListaAsistentes'))
-                                                    <th >
-                                                        Usuarios
-                                                    </th>
-                                                @endif
-                                                 @if(Auth::user()->buscarRecurso('Estadisticas'))
-                                                    <th>
-                                                        Estadísticas
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('LecturaQR'))
-                                                    <th>
-                                                        Leer QR
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('Liquidacion'))
-                                                <th>
-												    Liquidación
-                                                </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('InformePromotor'))
-                                                    <th>
-                                                        Informe Promotor
-                                                    </th>
-                                                @endif
-                                                @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
-                                                    <th>
-                                                        Informe UsuarioxBoleta
-                                                    </th>
-                                            @endif
-                                          </thead>
-                                            <tbody >
-                                            @foreach($ListaEventosPasados["eventosPasados"] as $eventoPasado)
-                                                <tr>
-                                                    <td >
-                                                        {{ $eventoPasado->id }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $eventoPasado->Nombre_Evento }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $eventoPasado->Lugar_Evento }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $eventoPasado->Nombre_Ciudad }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $eventoPasado->Nombre_Departamento }}
-                                                    </td>
-                                                    <td >
-                                                        {{ $eventoPasado->Fecha_Evento }}
-                                                    </td>
-                                                   @if(Auth::user()->buscarRecurso('ListaAsistentes'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-users"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('Estadisticas'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/Estadisticas',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-calculator"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('LecturaQR'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/LecturaQR',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-qrcode"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('Liquidacion'))
-                                                    <td style="text-align:center;">
-                                                        <a href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-archive"></i></a>
-                                                    </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('InformePromotor'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/InformePromotor',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-columns"></i></a>
-                                                        </td>
-                                                    @endif
-                                                    @if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
-                                                        <td style="text-align:center;">
-                                                            <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $eventoPasado->id ]) }}"><i style="font-size: 25px; color: #8abd51;" class="fa fa-clipboard"></i></a>
-                                                        </td>
-                                                    @endif
-                                            </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-										
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                    </div>
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Próximos Eventos</h4>
                 </div>
+               <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-shopping">
+                      <thead>
+                        <tr>
+                          <th class="text-center">ID</th>
+                          <th class="th-description">Evento</th>
+                          <th class="th-description">Ubicación</th>
+                          <th class="th-description">Fecha</th>
+                          <th class="text-right">Opciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+					  @foreach($ListaEventos["eventos"] as $evento)
+                        <tr>
+                          <td class="text-center">{{ $evento->id }}</td>
+                          <td class="td-name">
+                            <a href="#">{{ $evento->Nombre_Evento }}</a>
+                            <br />
+                            <small>{{ $evento->Lugar_Evento }}</small>
+                          </td>
+                          <td class="td-name">
+                            <a href="#">{{ $evento->Nombre_Ciudad }}</a>
+                            <br />
+                            <small>{{ $evento->Nombre_Departamento }}</small>
+                          </td>
+						  <td class="td-name">
+                            <a href="#">{{ $evento->Fecha_Evento }}</a>
+                          </td>
+                          <td class="td-actions text-right">
+							@if(Auth::user()->buscarRecurso('ListaAsistentes'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Usuarios">
+                              <a href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}"><i class="material-icons">group</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('Estadisticas'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Estadísticas">
+                              <a href="{{ url('/Estadisticas',['idEvento' => $evento->id ]) }}"><i class="material-icons">analytics</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('LecturaQR'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Leer QR">
+                              <a href="{{ url('/LecturaQR',['idEvento' => $evento->id ]) }}"><i class="material-icons">qr_code_scanner</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('EditarEvento'))
+							<button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar">
+                              <a href="{{ url('/EditarEvento',['idEvento' => $evento->id ]) }}"><i class="material-icons">edit</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('Liquidacion'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Liquidación">
+                              <a href="{{ url('/Liquidacion',['idEvento' => $evento->id ]) }}"><i class="material-icons">paid</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('InformePromotor'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Informe promotor">
+                              <a href="{{ url('/InformePromotor',['idEvento' => $evento->id ]) }}"><i class="material-icons">contact_mail</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
+							<button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Informe UsuariosXBoleta">
+                              <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $evento->id ]) }}"><i class="material-icons">badge</i></a>
+                            </button>
+							@endif
+                          </td>
+                        </tr>
+						@endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
+		
+			    <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Eventos pasados</h4>
+                </div>
+               <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-shopping">
+                      <thead>
+                        <tr>
+                          <th class="text-center">ID</th>
+                          <th class="th-description">Evento</th>
+                          <th class="th-description">Ubicación</th>
+                          <th class="th-description">Fecha</th>
+                          <th class="text-right">Opciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+					  @foreach($ListaEventosPasados["eventosPasados"] as $eventoPasado)
+                        <tr>
+                          <td class="text-center">{{ $eventoPasado->id }}</td>
+                          <td class="td-name">
+                            <a href="#">{{ $eventoPasado->Nombre_Evento }}</a>
+                            <br />
+                            <small>{{ $eventoPasado->Lugar_Evento }}</small>
+                          </td>
+                          <td class="td-name">
+                            <a href="#">{{ $eventoPasado->Nombre_Ciudad }}</a>
+                            <br />
+                            <small>{{ $eventoPasado->Nombre_Departamento }}</small>
+                          </td>
+						  <td class="td-name">
+                            <a href="#">{{ $eventoPasado->Fecha_Evento }}</a>
+                          </td>
+                          <td class="td-actions text-right">
+							@if(Auth::user()->buscarRecurso('ListaAsistentes'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Usuarios">
+                              <a href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">group</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('Estadisticas'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Estadísticas">
+                              <a href="{{ url('/Estadisticas',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">analytics</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('LecturaQR'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Leer QR">
+                              <a href="{{ url('/LecturaQR',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">qr_code_scanner</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('EditarEvento'))
+							<button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar">
+                              <a href="{{ url('/EditarEvento',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">edit</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('Liquidacion'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Liquidación">
+                              <a href="{{ url('/Liquidacion',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">paid</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('InformePromotor'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Informe promotor">
+                              <a href="{{ url('/InformePromotor',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">contact_mail</i></a>
+                            </button>
+							@endif
+							@if(Auth::user()->buscarRecurso('InformeUsuarioBoleta'))
+							<button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Informe UsuariosXBoleta">
+                              <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">badge</i></a>
+                            </button>
+							@endif
+                          </td>
+                        </tr>
+						@endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+		  
+
+      <footer class="footer py-4  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                Desarrollado con <i class="fa fa-heart"></i> y
+                <a href="https://instagram.com/ecotickets" class="font-weight-bold" target="_blank">Sosteniblidad</a>
+                por un mundo mejor.
+              </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
 
 

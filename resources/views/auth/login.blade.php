@@ -1,10 +1,11 @@
 @extends('layouts.eventos')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+
+
+		  
+          <div class="row justify-content-md-center">
+            <div class="col-md-9 col-lg-7 col-xl-5">
                 <div class="panel-heading black">Iniciar Sesión</div>
 
                 <div class="panel-body">
@@ -64,6 +65,4 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection

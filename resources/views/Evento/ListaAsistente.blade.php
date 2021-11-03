@@ -78,7 +78,7 @@
                                             {{$asistente->Nombre_Ciudad}}
                                         </td>
                                         <td>
-                                            {{$asistente->Localidad}}
+                                            <!--{{$asistente->Localidad}}-->
                                         </td>
                                         <td>
                                             {{$asistente->UsuarioVendedor}}
