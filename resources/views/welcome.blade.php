@@ -140,13 +140,13 @@
                 <div class="news-img">
 				<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}" data-triangle=".news-img-overlay">
 				<span class="news-img-overlay"></span>
-				<img src="FlyerDeEventos/{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
+				<img src="{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
 				</div>                
 				@else
 				<div class="news-img">
 				<a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}" data-triangle=".news-img-overlay">
 				<span class="news-img-overlay"></span>
-				<img src="FlyerDeEventos/{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
+				<img src="{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
 				</div> 	
 				@endif
 				@if($evento->esPago)				
@@ -250,7 +250,7 @@
 				  @foreach($ListaEventos["eventos"] as $evento)
 				  @if($evento->esPago)
 				<div class="card-header" role="tab">
-                      <div class="card-title"><a class="collapsed" id="accordion1-card-head-hxapwahb" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-{{ $evento->id }}" aria-controls="accordion1-card-body-{{ $evento->id }}" aria-expanded="false" role="button"><span class="schedule-classic"><span class="unit unit-spacing-md align-items-center d-block d-md-flex"><span class="unit-left"><span class="schedule-classic-img"><img src="FlyerDeEventos/{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="122" height="122"/></span></span>
+                      <div class="card-title"><a class="collapsed" id="accordion1-card-head-hxapwahb" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-{{ $evento->id }}" aria-controls="accordion1-card-body-{{ $evento->id }}" aria-expanded="false" role="button"><span class="schedule-classic"><span class="unit unit-spacing-md align-items-center d-block d-md-flex"><span class="unit-left"><span class="schedule-classic-img"><img src="{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="122" height="122"/></span></span>
 					  <span class="unit-body"><span class="schedule-classic-content"><span class="schedule-classic-time">{{ $evento->Fecha_Evento }}</span><span class="schedule-classic-title heading-4">{{ $evento->Nombre_Evento }}</span><span class="schedule-classic-author"><span class="schedule-classic-author-name">MÁS INFO</span></span></span></span></span></span></a></div>
                 </div>
 				<div class="collapse" id="accordion1-card-body-{{ $evento->id }}" aria-labelledby="accordion1-card-head-hxapwahb" data-parent="#accordion1" role="tabpanel">
@@ -275,7 +275,7 @@
 				</div>	
 				@else
 				<div class="card-header" role="tab">
-                      <div class="card-title"><a class="collapsed" id="accordion1-card-head-hxapwahb" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-{{ $evento->id }}" aria-controls="accordion1-card-body-{{ $evento->id }}" aria-expanded="false" role="button"><span class="schedule-classic"><span class="unit unit-spacing-md align-items-center d-block d-md-flex"><span class="unit-left"><span class="schedule-classic-img"><img src="FlyerDeEventos/{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="122" height="122"/></span></span>
+                      <div class="card-title"><a class="collapsed" id="accordion1-card-head-hxapwahb" data-toggle="collapse" data-parent="#accordion1" href="#accordion1-card-body-{{ $evento->id }}" aria-controls="accordion1-card-body-{{ $evento->id }}" aria-expanded="false" role="button"><span class="schedule-classic"><span class="unit unit-spacing-md align-items-center d-block d-md-flex"><span class="unit-left"><span class="schedule-classic-img"><img src="{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="122" height="122"/></span></span>
 					  <span class="unit-body"><span class="schedule-classic-content"><span class="schedule-classic-time">{{ $evento->Fecha_Evento }}</span><span class="schedule-classic-title heading-4">{{ $evento->Nombre_Evento }}</span><span class="schedule-classic-author"><span class="schedule-classic-author-name">MÁS INFO</span></span></span></span></span></span></a></div>
                 </div>					
 				<div class="collapse" id="accordion1-card-body-{{ $evento->id }}" aria-labelledby="accordion1-card-head-hxapwahb" data-parent="#accordion1" role="tabpanel">
