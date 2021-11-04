@@ -140,13 +140,13 @@
                 <div class="news-img">
 				<a href="{{url('FormularioAsistentePago', ['idEvento' => $evento->id ])}}" data-triangle=".news-img-overlay">
 				<span class="news-img-overlay"></span>
-				<img src="{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
+				<img style="height: 400px !important;" src="FlyerDeEventos/{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
 				</div>                
 				@else
 				<div class="news-img">
 				<a href="{{url('FormularioAsistente', ['idEvento' => $evento->id ])}}" data-triangle=".news-img-overlay">
 				<span class="news-img-overlay"></span>
-				<img src="{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
+				<img style="height: 400px !important;" src="FlyerDeEventos/{{ $ListaEventos["rutaImagenes"].$evento->FlyerEvento}}" alt="" width="370" height="284"/></a>
 				</div> 	
 				@endif
 				@if($evento->esPago)				

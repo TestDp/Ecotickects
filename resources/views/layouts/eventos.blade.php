@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/style.css">
 	<style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
 	
 		<!-- Modernizr JS -->
@@ -42,7 +42,7 @@
 <!-- End Facebook Pixel Code -->
 </head>
 <body>
-    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt=""></a></div>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="../images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt=""></a></div>
     <div class="preloader">
       <div class="preloader-body">
         <div class="cssload-container">
@@ -66,7 +66,7 @@
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!--RD Navbar Brand-->
                   <div class="rd-navbar-brand">
-                    <!--Brand--><a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="images/logo-default.png" srcset="images/logo-default@2x.png 2x" alt="Ecotickets"/><img class="brand-logo" src="images/logo-inverse.png" srcset="images/logo-inverse@2x.png 2x" alt="Ecotickets"/></a>
+                    <!--Brand--><a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="../images/logo-default.png" srcset="../images/logo-default@2x.png 2x" alt="Ecotickets"/><img class="brand-logo-light" src="../images/logo-inverse.png" srcset="../images/logo-inverse@2x.png 2x" alt="Ecotickets"/></a>
                   </div>
                 </div>
                 <!-- Rd Navbar Navigation-->
@@ -95,16 +95,16 @@
         </div>
       </header>
 	        <!-- Breadcrumbs-->
-      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(images/bg-parallax-04-1894x1170.jpg);">
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(../images/bg-parallax-04-1894x1170.jpg);">
         <div class="container">
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ url('/') }}">Inicio</a></li>
-            <li><a href="#">Iniciar Sesión</a></li>
+            <li><a href="#">{{ $ElementosArray["evento"] ->Nombre_Evento }}</a></li>
           </ul>
-          <h3 class="breadcrumbs-custom-title">Iniciar Sesión</h3>
+          <h3 class="breadcrumbs-custom-title">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
         </div>
       </section>
-    <section class="section section-lg bg-default text-center">
+      <section class="section section-lg bg-default">
         <div class="container">
 		@yield('content')
 		</div>
@@ -114,7 +114,7 @@
       <section class="section section-lg bg-gray-900">
         <div class="container">
           <div class="row row-30">
-            <div class="col-xs-10 col-lg-4 align-self-center"><a class="brand" href="index.html"><img class="brand-logo-light" src="images/logo-inverse-big.png" srcset="images/logo-inverse-big@2x.png 2x" alt="Ecotickets"></a></div>
+            <div class="col-xs-10 col-lg-4 align-self-center"><a class="brand" href="index.html"><img class="brand-logo-light" src="../images/logo-inverse-big.png" srcset="../images/logo-inverse-big@2x.png 2x" alt="Ecotickets"></a></div>
             <div class="col-xs-10 col-sm-6 col-lg-4">
               <h5><span class="big font-weight-sbold">INFORMACIÓN</span></h5>
                       <ul class="list-marked">
@@ -192,8 +192,8 @@
         </defs>
       </svg>
     </div>
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../js/core.min.js"></script>
+    <script src="../js/script.js"></script>
 
 
 </body>
