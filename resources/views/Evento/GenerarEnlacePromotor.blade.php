@@ -2,35 +2,55 @@
 
 @section('content')
 
-    <div style="width:970px !important;" class="container">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center"><h3>GENERAR ENLACE PROMOTORES</h3></div>
-                <div style="text-align: left;" class="col-md-12">
-                    <div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
+    <div class="row">
+		<div class="col-sm-12">
+              <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Generar enlace para promotores</h4>
+                  </div>
                 </div>
-            </div>
-            <div style="margin:0px !important;" class="row">
-                <div class="col-md-4">
+                <div class="card-body ">
+				<div class="card ">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">contacts</i>
+                  </div>
+                  <h4 class="card-title">Diligencia la información para generar un enlace para un promotor</h4>
+                </div>
+                <div class="card-body ">
+				<div class="row">
+					<div class="col-sm-4">
                     Seleccione el evento
-                    <select id="Evento_id" name="Evento_id" class="form-control" onchange="CargarPromotores()">
+					<div class="form-group">
+                    <select id="Evento_id" name="Evento_id" onchange="CargarPromotores()" class="selectpicker" data-style="select-with-transition">
                         <option value="">Seleccionar</option>
                         @foreach($eventos as $evento)
                             <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento}}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="col-md-4">
+					</div>
+					</div>
+                <div class="col-sm-4">
                     Seleccione el promotor
-                    <select id="Promotor_id" name="Promotor_id" class="form-control" onchange="CrearEnlacePromotor()" >
+					<div class="form-group">
+                    <select id="Promotor_id" name="Promotor_id" onchange="CrearEnlacePromotor()" class="selectpicker" data-style="select-with-transition">
                         <option value="">Seleccionar</option>
                     </select>
                 </div>
-                <div class="col-md-4">
+				</div>
+                <div class="col-sm-4">
                     Enlace
+					<div class="form-group">
                     <input id="enlace" name="enlace" type="text" class="form-control" readonly/>
                 </div>
-            </div>
+				</div>
+				</div>
+                </div>				
+
+              </div>
+                </div>
+              </div>
         </div>
     </div>
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
