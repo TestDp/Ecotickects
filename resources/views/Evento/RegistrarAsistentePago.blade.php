@@ -100,13 +100,13 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label"></label>Fecha de nacimiento
+                                    <label >Fecha de nacimiento</label>
                                     <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
 								</div>
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Dirección</label>
+                                    <label>Dirección</label>
                                     <input id="Dirección" name="Dirección" type="text" class="form-input" />
                                 </div>
 								</div>
@@ -114,7 +114,7 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Departamento persona</label>
+                                    <label>Departamento persona</label>
                                     <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
@@ -125,7 +125,7 @@
 								</div>
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Ciudad Persona</label>
+                                    <label>Ciudad Persona</label>
                                     <select id="Ciudad_id" name="Ciudad_id" class="form-input">
 
                                     </select>
@@ -135,7 +135,7 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-3">
 								<div class="form-wrap">
-                                    <label class="form-label">Localidad</label>
+                                    <label>Localidad</label>
                                     <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
@@ -146,19 +146,19 @@
 								</div>
 								<div class="form-wrap">
                                 <div class="col-md-3">
-                                    <label class="form-label">Precio Ecotickets</label>
+                                    <label>Precio Ecotickets</label>
                                     <input id="valorBoleta" name="valorBoleta" type="text" class="form-input"  readonly/>
                                 </div>
 								</div>
                                 <div class="col-md-3">
 								<div class="form-wrap">
-                                    <label class="form-label">Cantidad De Ecotickets</label>
+                                    <label>Cantidad De Ecotickets</label>
                                     <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-input" onkeyup="calcularPrecioTotal()"  />
                                 </div>
 								</div>
                                 <div class="col-md-3">
 								<div class="form-wrap">
-                                    <label class="form-label">Precio Total</label>
+                                    <label>Precio Total</label>
                                     <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-input"  readonly/>
                                 </div>
 								</div>
@@ -179,14 +179,14 @@
                             </div>
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+								<div class="form-wrap">
 									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones. <a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
-								</span>
+								</div>
                                 </div>
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+								<div class="form-wrap">
                                     <input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA. <a href="{{ url('habeasData') }}" target="_blank">Ver más</a>
-								</span>
+								</div>
                                 </div>
                             </div>
                             <br/>
@@ -215,8 +215,10 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
+								<div class="form-wrap">
+                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-primary" value="Comprar" data-triangle=".button-overlay"/>
                                 </div>
+								</div>
                             </div>
                         </div>
                     @else
@@ -267,13 +269,13 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label"></label>Fecha de nacimiento
+                                    <label>Fecha de nacimiento</label>
                                     <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
 								</div>
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Dirección</label>
+                                    <label>Dirección</label>
                                     <input id="Dirección" name="Dirección" type="text" class="form-input"  />
                                 </div>
 								</div>
@@ -281,7 +283,7 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Departamento persona</label>
+                                    <label>Departamento persona</label>
                                     <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
@@ -292,34 +294,39 @@
 								</div>
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Ciudad Persona</label>
+                                    <label>Ciudad Persona</label>
                                     <select id="Ciudad_id" name="Ciudad_id" class="form-input">
 
                                     </select>
                                 </div>
 								</div>
                             </div>
-                            <div class="row">							
-                                <div class="col-md-6"> 
+                            <div class="row row-narrow row-20">							
+                                <div class="col-md-6">
+								<div class="form-wrap">
 								<h4 style="text-align:center;">Ingresa tu cupón de descuento</h4>
-								<div class="row">
-								<div style="padding-right:0px !important;" class="col-md-6"> 
-										<input id="Codigo" name="Codigo" type="text" class="form-input" placeholder="Código de Descuento " />
+									<div class="row row-narrow row-20">
+										<div class="col-md-6"> 
+										<div class="form-wrap">	
+											<input id="Codigo" name="Codigo" type="text" class="form-input" placeholder="Código de Descuento " />
+										</div>
+										</div>
+										<div class="col-md-6"> 
+										<div class="form-wrap">		
+											<input class="button button-primary" data-triangle=".button-overlay" type="button" onclick="validarCodigoPromocional({{$ElementosArray["EventoId"]}})"  name="Validador" value="Validar Código"/></input>
+										</div>
+										</div>
 									</div>
-									<div style="padding-left:0px !important;" class="col-md-6"> 									
-										<input style="width:100%; font-size:25px !important;" onclick="validarCodigoPromocional({{$ElementosArray["EventoId"]}})" class="btn btn-blue ripple trial-button"  name="Validador" value="Validar Código"   /></input>
-									</div>
-							   </div>
+								</div>	
 								</div>
                                 <div style="padding-top:3%;" class="col-md-6">                                 
 										<h3 style="color:#74b12e !important;" id="mensaje-cupon"></h3>
 								</div>
-								</div>
-                            </div>
+							</div>
                             <div class="row row-narrow row-20">
                                 <div class="col-md-3">
 								<div class="form-wrap">
-                                    <label class="form-label">Localidad</label>
+                                    <label>Localidad</label>
                                     <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
@@ -330,19 +337,19 @@
 								</div>
                                 <div class="col-md-3">
 								<div class="form-wrap">
-                                    <label class="form-label">Precio Ecotickets</label>
+                                    <label>Precio Ecotickets</label>
                                     <input id="valorBoleta" name="valorBoleta" type="text" class="form-input"  readonly/>
                                 </div>
 								</div>
                                 <div class="col-md-3">
 								<div class="form-wrap">
-                                    <label class="form-label">Cantidad De Ecotickets</label>
+                                    <label>Cantidad De Ecotickets</label>
                                     <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-input" onkeyup="calcularPrecioTotal()"  />
                                 </div>
 								</div>
                                 <div class="col-md-3">
 								<div class="form-wrap">
-                                    <label class="form-label">Precio Total</label>
+                                    <label>Precio Total</label>
                                     <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-input"  readonly/>
                                 </div>
 								</div>
@@ -358,14 +365,14 @@
                             <br/>
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+								<div class="form-wrap">
 									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.<a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
-								</span>
+								</div>
                                 </div>
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+								<div class="form-wrap">
 									<input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA. <a href="{{ url('habeasData') }}" target="_blank">Ver más</a>
-								</span>
+								</div>
                                 </div>
                             </div>
                             <br/>
@@ -394,8 +401,10 @@
                             <br/>
                             <div class="row row-narrow row-20">
                                 <div class="col-md-12">
-                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
+								<div class="form-wrap">
+                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-primary" value="Comprar" data-triangle=".button-overlay"/>
                                 </div>
+								</div>
                             </div>
                         </div>
                     @endif
@@ -403,7 +412,6 @@
             </div>
 
         </div>
-    </div>
     <div>
         <form method="post" id="formPago" action="{{env('URLPOSTPAGO')}}">
             <input id="merchantId"  name="merchantId"    type="hidden"  value="">

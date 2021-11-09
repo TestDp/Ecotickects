@@ -43,14 +43,7 @@
 </head>
 <body>
     <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="../images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt=""></a></div>
-    <div class="preloader">
-      <div class="preloader-body">
-        <div class="cssload-container">
-          <div class="cssload-speeding-wheel"></div>
-        </div>
-        <p>Loading...</p>
-      </div>
-    </div>
+
     <div class="page">
       <!-- Section Header Default-->
       <header class="section page-header">
@@ -97,8 +90,11 @@
 	        <!-- Breadcrumbs-->
       <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(../images/bg-parallax-04-1894x1170.jpg);">
         <div class="container">
+		<div>
+			<a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="../images/logo-blanco.png" srcset="../images/logo-default@2x-blanco.png 2x" alt="Ecotickets"/><img class="brand-logo-light" src="../images/logo-inverse-blanco.png" srcset="../images/logo-inverse@2x-blanco.png 2x" alt="Ecotickets"/></a>
+        </div>
           <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ url('/') }}">Inicio</a></li>
+            <li><a href="{{ url('/') }}">Volver al Inicio</a></li>
             <li><a href="#">{{ $ElementosArray["evento"] ->Nombre_Evento }}</a></li>
           </ul>
           <h3 class="breadcrumbs-custom-title">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
@@ -192,7 +188,7 @@
         </defs>
       </svg>
     </div>
-    <script src="../js/core.min.js"></script>
+
     <script src="../js/script.js"></script>
 
 
