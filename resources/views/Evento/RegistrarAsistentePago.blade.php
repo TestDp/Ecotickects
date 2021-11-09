@@ -38,7 +38,7 @@
     <div style="background:#fff; border-radius:5px; padding:2%;" class="container">
         <div class="row">
             <div class="col-md-12">
-                <form id="formularioEvento">
+                <form id="formularioEvento" class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post">
                     <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
@@ -49,96 +49,123 @@
                         <div class="row">
                             <div class="col-md-12">
                                 PIN
-                                <input id="pinIngresar" name="pinIngresar" type="text" class="form-control" onkeyup="ValidarPin()"/>
+                                <input id="pinIngresar" name="pinIngresar" type="text" class="form-input" onkeyup="ValidarPin()"/>
 
                             </div>
                         </div>
                         <div id="formAsistente" hidden>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Identificación
-                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
+								<div class="form-wrap">
+                                    <label class="form-label">Identificación</label>
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()"/>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Nombre
-                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Nombre</label>
+                                    <input id="Nombres" name="Nombres" type="text" class="form-input"/>
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Apellidos
-                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Apellidos</label>
+                                    <input id="Apellidos" name="Apellidos" type="text" class="form-input"/>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Celular/teléfono
-                                    <input id="telefono" name="telefono" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Celular/teléfono</label>
+                                    <input id="telefono" name="telefono" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Email
-                                    <input id="Email" name="Email" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Email</label>
+                                    <input id="Email" name="Email" type="text" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Confirmar Email
-                                    <input id="confEmail" name="confEmail" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Confirmar Email</label>
+                                    <input id="confEmail" name="confEmail" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
 
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Fecha de nacimiento
-                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Fecha de nacimiento</label>
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Dirección
-                                    <input id="Dirección" name="Dirección" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Dirección</label>
+                                    <input id="Dirección" name="Dirección" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
-
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Departamento persona
-                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
+								<div class="form-wrap">
+                                    <label class="form-label">Departamento persona</label>
+                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
                                             <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Ciudad Persona
-                                    <select id="Ciudad_id" name="Ciudad_id" class="form-control">
+								<div class="form-wrap">
+                                    <label class="form-label">Ciudad Persona</label>
+                                    <select id="Ciudad_id" name="Ciudad_id" class="form-input">
 
                                     </select>
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-3">
-                                    Localidad
-                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
+								<div class="form-wrap">
+                                    <label class="form-label">Localidad</label>
+                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
                                             <option value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}">{{ $Localidad->localidad }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
+								<div class="form-wrap">
                                 <div class="col-md-3">
-                                    Precio Ecotickets
-                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
+                                    <label class="form-label">Precio Ecotickets</label>
+                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-input"  readonly/>
                                 </div>
+								</div>
                                 <div class="col-md-3">
-                                    Cantidad De Ecotickets
-                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-control" onkeyup="calcularPrecioTotal()"  />
+								<div class="form-wrap">
+                                    <label class="form-label">Cantidad De Ecotickets</label>
+                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-input" onkeyup="calcularPrecioTotal()"  />
                                 </div>
+								</div>
                                 <div class="col-md-3">
-                                    Precio Total
-                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+								<div class="form-wrap">
+                                    <label class="form-label">Precio Total</label>
+                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-input"  readonly/>
                                 </div>
+								</div>
                             </div>
 
 
-                            <div class="row">
+                            <div class="row row-narrow row-20">
 
                                 <div class="col-md-12">
                                     @if($ElementosArray["EventoId"] ==75)
@@ -146,11 +173,11 @@
                                     @else
                                         Comentario
                                     @endif
-                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-input" />
                                 </div>
 
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
 									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones. <a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
@@ -188,77 +215,96 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
+                                    <input type="submit" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
                                 </div>
                             </div>
                         </div>
                     @else
                         <div id="formAsistente">
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Identificación
-                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
+								<div class="form-wrap">
+                                    <label class="form-label">Identificación</label>
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()"/>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Nombre
-                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
+                                <div class="form-wrap">
+                                    <label class="form-label">Nombre</label>
+                                    <input id="Nombres" name="Nombres" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Apellidos
-                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Apellidos</label>
+                                    <input id="Apellidos" name="Apellidos" type="text" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Celular/teléfono
-                                    <input id="telefono" name="telefono" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Celular/teléfono</label>
+                                    <input id="telefono" name="telefono" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Email
-                                    <input id="Email" name="Email" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Email</label>
+                                    <input id="Email" name="Email" type="text" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Confirmar Email
-                                    <input id="confEmail" name="confEmail" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Confirmar Email</label>
+                                    <input id="confEmail" name="confEmail" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
 
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Fecha de nacimiento
-                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Fecha de nacimiento</label>
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Dirección
-                                    <input id="Dirección" name="Dirección" type="text" class="form-control"  />
+								<div class="form-wrap">
+                                    <label class="form-label">Dirección</label>
+                                    <input id="Dirección" name="Dirección" type="text" class="form-input"  />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
-
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Departamento persona
-                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
+								<div class="form-wrap">
+                                    <label class="form-label">Departamento persona</label>
+                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
                                             <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Ciudad Persona
-                                    <select id="Ciudad_id" name="Ciudad_id" class="form-control">
+								<div class="form-wrap">
+                                    <label class="form-label">Ciudad Persona</label>
+                                    <select id="Ciudad_id" name="Ciudad_id" class="form-input">
 
                                     </select>
                                 </div>
+								</div>
                             </div>
                             <div class="row">							
                                 <div class="col-md-6"> 
 								<h4 style="text-align:center;">Ingresa tu cupón de descuento</h4>
 								<div class="row">
 								<div style="padding-right:0px !important;" class="col-md-6"> 
-										<input id="Codigo" name="Codigo" type="text" class="form-control" placeholder="Código de Descuento " />
+										<input id="Codigo" name="Codigo" type="text" class="form-input" placeholder="Código de Descuento " />
 									</div>
 									<div style="padding-left:0px !important;" class="col-md-6"> 									
 										<input style="width:100%; font-size:25px !important;" onclick="validarCodigoPromocional({{$ElementosArray["EventoId"]}})" class="btn btn-blue ripple trial-button"  name="Validador" value="Validar Código"   /></input>
@@ -270,37 +316,47 @@
 								</div>
 								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-3">
-                                    Localidad
-                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
+								<div class="form-wrap">
+                                    <label class="form-label">Localidad</label>
+                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
                                             <option value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}">{{ $Localidad->localidad }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
                                 <div class="col-md-3">
-                                    Precio Ecotickets
-                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
+								<div class="form-wrap">
+                                    <label class="form-label">Precio Ecotickets</label>
+                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-input"  readonly/>
                                 </div>
+								</div>
                                 <div class="col-md-3">
-                                    Cantidad De Ecotickets
-                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-control" onkeyup="calcularPrecioTotal()"  />
+								<div class="form-wrap">
+                                    <label class="form-label">Cantidad De Ecotickets</label>
+                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-input" onkeyup="calcularPrecioTotal()"  />
                                 </div>
+								</div>
                                 <div class="col-md-3">
-                                    Precio Total
-                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+								<div class="form-wrap">
+                                    <label class="form-label">Precio Total</label>
+                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-input"  readonly/>
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-12">
-                                    Comentario
-                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Comentario</label>
+                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
                             <br/>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
 									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.<a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
@@ -336,9 +392,9 @@
                                 @endif
                             </div>
                             <br/>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-12">
-                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
+                                    <input type="submit" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
                                 </div>
                             </div>
                         </div>
