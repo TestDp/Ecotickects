@@ -88,7 +88,7 @@
         </div>
       </header>
 	        <!-- Breadcrumbs-->
-      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(../images/slide-01-1894x1042.jpg);">
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(../images/bg-parallax-04-1894x1170.jpg);">
         <div class="container">
 		<div>
 			<a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="../images/logo-default.png" srcset="../images/logo-default@2x.png 2x" alt="Ecotickets"/><img class="brand-logo-light" src="../images/logo-inverse.png" srcset="../images/logo-inverse@2x.png 2x" alt="Ecotickets"/></a>
