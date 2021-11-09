@@ -95,13 +95,9 @@
         </div>
       </header>
 	        <!-- Breadcrumbs-->
-      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(images/bg-parallax-04-1894x1170.jpg);">
+      <section class="breadcrumbs-custom bg-image context-dark" style="padding-top: 100px !important; background-image: url(images/bg-parallax-04-1894x1170.jpg);">
         <div class="container">
-          <ul class="breadcrumbs-custom-path">
-            <li><a href="{{ url('/') }}">Inicio</a></li>
-            <li><a href="#">Iniciar Sesión</a></li>
-          </ul>
-          <h3 class="breadcrumbs-custom-title">Iniciar Sesión</h3>
+          <h4 class="breadcrumbs-custom-title">Iniciar Sesión</h4>
         </div>
       </section>
     <section class="section section-lg bg-default text-center">

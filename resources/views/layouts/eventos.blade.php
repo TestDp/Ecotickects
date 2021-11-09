@@ -88,10 +88,10 @@
         </div>
       </header>
 	        <!-- Breadcrumbs-->
-      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(../images/bg-parallax-04-1894x1170.jpg);">
+      <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url(../images/slide-01-1894x1042.jpg);">
         <div class="container">
 		<div>
-			<a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="../images/logo-blanco.png" srcset="../images/logo-default@2x-blanco.png 2x" alt="Ecotickets"/><img class="brand-logo-light" src="../images/logo-inverse-blanco.png" srcset="../images/logo-inverse@2x-blanco.png 2x" alt="Ecotickets"/></a>
+			<a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="../images/logo-default.png" srcset="../images/logo-default@2x.png 2x" alt="Ecotickets"/><img class="brand-logo-light" src="../images/logo-inverse.png" srcset="../images/logo-inverse@2x.png 2x" alt="Ecotickets"/></a>
         </div>
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ url('/') }}">Volver al Inicio</a></li>
@@ -110,7 +110,7 @@
       <section class="section section-lg bg-gray-900">
         <div class="container">
           <div class="row row-30">
-            <div class="col-xs-10 col-lg-4 align-self-center"><a class="brand" href="index.html"><img class="brand-logo-light" src="../images/logo-inverse-big.png" srcset="../images/logo-inverse-big@2x.png 2x" alt="Ecotickets"></a></div>
+            <div class="col-xs-10 col-lg-4 align-self-center"><a class="brand" href="{{ url('/') }}"><img class="brand-logo-light" src="../images/logo-inverse-big.png" srcset="../images/logo-inverse-big@2x.png 2x" alt="Ecotickets"></a></div>
             <div class="col-xs-10 col-sm-6 col-lg-4">
               <h5><span class="big font-weight-sbold">INFORMACIÓN</span></h5>
                       <ul class="list-marked">
