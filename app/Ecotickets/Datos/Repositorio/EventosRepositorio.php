@@ -287,6 +287,36 @@ class EventosRepositorio
             ->where('PrecioBoletaPadre_Id','=',null)->get();
     }
 
+    public function obtenerIdLocalidadDisponible($idEvento)
+    {
+
+        return $localidadDisponible =
+
+            DB::table(DB::Raw('( select  pb.id, pb.localidad, pb.cantidad
+            from Tbl_PreciosBoletas as pb inner join Tbl_Eventos as e
+			on pb.Evento_id = e.id
+			where e.id = ' . $idEvento . ' ) as base'))
+                ->select(DB::Raw('base.id'))
+            ->leftjoin (DB::Raw('(select  distinct pb.id, pb.localidad , pb.precio,   sum(ip.CantidadBoletas) as cantidadBoletasVendidas
+            from  Tbl_InfoPagos as ip
+            inner join Tbl_PreciosBoletas as pb
+            on ip.precioboleta_id = pb.id
+            where pb.Evento_id = ' . $idEvento . '  and ip.EstadosTransaccion_id in (4,100)
+            and pb.id = ip.PrecioBoleta_id 
+            group by pb.id,pb.localidad, pb.precio) as res'),
+                function($join)
+                {
+
+                    $join->on('base.id', '=' ,'res.id')
+                        ->where ('base.cantidad', '>=', 'res.cantidadBoletasVendidas')
+                        ->orWhereNull('res.cantidadBoletasVendidas');
+                })
+
+                ->get();
+
+
+    }
+
     public function  obtenerPrecioBoleta($idPrecioBoleta){
         return PrecioBoleta::where('id','=',$idPrecioBoleta)->get()->first();
     }
@@ -631,7 +661,8 @@ class EventosRepositorio
                     $join->on('resul.PrecioEtapa','>','Tbl_ConfiguracionXSedes.PrecioMinimo')
                         ->on('resul.PrecioEtapa','<=','Tbl_ConfiguracionXSedes.PrecioMaximo')
                     ->on('resul.Sede_id','=','Tbl_ConfiguracionXSedes.Sede_id')
-                    ->on('resul.EsTC','=','Tbl_ConfiguracionXSedes.EsTC');
+                    ->on('resul.EsTC','=','Tbl_ConfiguracionXSedes.EsTC')
+                        ->on('Tbl_ConfiguracionXSedes.EsActivo','=',1);
                 })
 
             ->get();

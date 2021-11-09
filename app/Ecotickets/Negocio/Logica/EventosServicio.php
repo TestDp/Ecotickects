@@ -48,6 +48,11 @@ class EventosServicio
     {
         return  $this->eventoRepor->obtenerLocalidadesEventoOtroRol($idEvento);
     }
+    public function obtenerIdLocalidadDisponible($idEvento)
+    {
+        return  $this->eventoRepor->obtenerIdLocalidadDisponible($idEvento);
+    }
+
 
     public function obtenerEvento($idEvento)
     {
