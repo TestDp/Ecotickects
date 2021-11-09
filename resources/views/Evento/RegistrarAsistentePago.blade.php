@@ -100,7 +100,7 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Fecha de nacimiento</label>
+                                    <label class="form-label"></label>Fecha de nacimiento
                                     <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
 								</div>
@@ -215,7 +215,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="submit" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
+                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
                                 </div>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Fecha de nacimiento</label>
+                                    <label class="form-label"></label>Fecha de nacimiento
                                     <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
 								</div>
@@ -394,7 +394,7 @@
                             <br/>
                             <div class="row row-narrow row-20">
                                 <div class="col-md-12">
-                                    <input type="submit" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
+                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-lg button-primary" value="Comprar" data-triangle=".button-overlay"/>
                                 </div>
                             </div>
                         </div>
