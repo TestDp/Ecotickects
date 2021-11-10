@@ -100,9 +100,24 @@ class EventosController extends Controller
                 $file->move('FlyerDeEventos', $nombre);
             }
         }
-        $idSede = Auth::user()->Sede->id;
-        $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
-        $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosSede($idSede,'Evento');
+        $eventos = null;
+        $eventosPasados = null;
+        $user = Auth::user();
+        $idEmpreesa = $user->Sede->Empresa->id;
+        $idUser = $user->id;
+        if($user->hasRole(env('IdRolSuperAdmin'))){
+            $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
+            $eventosPasados = Evento::all();
+        }else{
+            if($user->hasRole(env('IdRolAdmin'))){
+                $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
+                $eventosPasados = $this->eventoServicio->ListaDeEventosPasadosEmpresa($idEmpreesa,'Evento');
+            }else{
+                $eventos = $this->eventoServicio->ObtenerEventosUsuario($idUser);
+                $eventosPasados = $this->eventoServicio->ObtenerEventosUsuarioPasados($idUser);
+            }
+        }
+
         $ListaEventos= array('eventos' => $eventos);
         $ListaEventosPasados= array('eventosPasados' => $eventosPasados);
         return view('Evento/MisEventos',array('ListaEventos' => $ListaEventos,
