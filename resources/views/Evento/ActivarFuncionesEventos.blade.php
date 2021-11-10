@@ -1,12 +1,25 @@
 @extends('layouts.profile')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Mis Eventos</h3></div>
-                    <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
+    <div class="row">	
+			<div class="col-sm-12">
+              <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Activar funciones</h4>
+                  </div>
+                </div>
+                <div class="card-body ">
+					              <div class="card ">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">contacts</i>
+                  </div>
+                  <h4 class="card-title">Diligencia la información para activar funciones de tu evento.</h4>
+                </div>
+                <div class="card-body ">
+				
+					                    <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -84,9 +97,16 @@
                         </table>
 						</div>
                     </div>
+
+                </div>				
+
+              </div>
                 </div>
-            </div>
+              </div>
         </div>
+		
+		
+
     </div>
 
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
@@ -101,7 +121,7 @@
                     name: 'primary',
                     text: 'Save current page',
                     buttons: [
-                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
+                        { extend: 'excel', text: '<p class="btn btn-fill btn-rose">Exportar lista</p>' }
                     ]
                 },
                 language: {
