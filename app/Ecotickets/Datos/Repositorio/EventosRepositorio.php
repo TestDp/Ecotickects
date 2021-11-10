@@ -19,6 +19,7 @@ use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\Respuesta;
 use Eco\Datos\Modelos\PrecioBoleta;
 use Eco\Datos\Modelos\Sede;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Ecotickets\User;
 
@@ -258,63 +259,72 @@ class EventosRepositorio
 
     public function obtenerBoletaPromo($idEvento, $codigo)
     {
+        $idsLocalidadesDisponibles =$this->obtenerIdLocalidadDisponible($idEvento)->toArray();
+        $arrayIdLDisponibles = Arr::pluck($idsLocalidadesDisponibles, 'id');
         return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
             ->where('esActiva','=',1)
             ->where('esCodigoPromo','=',1)
-            ->where('Codigo','=',$codigo)->get();
+            ->where('Codigo','=',$codigo)
+            ->whereIn('id',$arrayIdLDisponibles)
+            ->get();
     }
 
     public function obtenerLocalidadesEventoSAdmin($idEvento)
     {
+        $idsLocalidadesDisponibles =$this->obtenerIdLocalidadDisponible($idEvento)->toArray();
+        $arrayIdLDisponibles = Arr::pluck($idsLocalidadesDisponibles, 'id');
         return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
             ->where('esActiva','=',1)
-            ->where('PrecioBoletaPadre_Id','=',null)->get();
+            ->where('PrecioBoletaPadre_Id','=',null)
+            ->whereIn('id',$arrayIdLDisponibles)
+            ->get();
     }
 
     public function obtenerLocalidadesEventoAdmin($idEvento)
     {
+        $idsLocalidadesDisponibles =$this->obtenerIdLocalidadDisponible($idEvento)->toArray();
+        $arrayIdLDisponibles = Arr::pluck($idsLocalidadesDisponibles, 'id');
         return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
             ->where('esActiva','=',1)
-            ->where('PrecioBoletaPadre_Id','=',null)->get();
+            ->where('PrecioBoletaPadre_Id','=',null)
+            ->whereIn('id',$arrayIdLDisponibles)
+            ->get();
     }
 
     public function obtenerLocalidadesEventoOtroRol($idEvento)
     {
+        $idsLocalidadesDisponibles =$this->obtenerIdLocalidadDisponible($idEvento)->toArray();
+        $arrayIdLDisponibles = Arr::pluck($idsLocalidadesDisponibles, 'id');
         return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
             ->where('esActiva','=',1)
             ->where('esCodigoPromo','=',0)
             ->where('precio','>',0)
-            ->where('PrecioBoletaPadre_Id','=',null)->get();
+            ->where('PrecioBoletaPadre_Id','=',null)
+            ->whereIn('id',$arrayIdLDisponibles)
+            ->get();
     }
 
     public function obtenerIdLocalidadDisponible($idEvento)
     {
-
         return $localidadDisponible =
-
-            DB::table(DB::Raw('( select  pb.id, pb.localidad, pb.cantidad
-            from Tbl_PreciosBoletas as pb inner join Tbl_Eventos as e
-			on pb.Evento_id = e.id
-			where e.id = ' . $idEvento . ' ) as base'))
+                DB::table(DB::Raw('( select  pb.id, pb.localidad, pb.cantidad
+                from Tbl_PreciosBoletas as pb inner join Tbl_Eventos as e
+                on pb.Evento_id = e.id
+                where e.id = ' . $idEvento . ' ) as base'))
                 ->select(DB::Raw('base.id'))
-            ->leftjoin (DB::Raw('(select  distinct pb.id, pb.localidad , pb.precio,   sum(ip.CantidadBoletas) as cantidadBoletasVendidas
-            from  Tbl_InfoPagos as ip
-            inner join Tbl_PreciosBoletas as pb
-            on ip.precioboleta_id = pb.id
-            where pb.Evento_id = ' . $idEvento . '  and ip.EstadosTransaccion_id in (4,100)
-            and pb.id = ip.PrecioBoleta_id 
-            group by pb.id,pb.localidad, pb.precio) as res'),
+                ->leftjoin (DB::Raw('(select  distinct pb.id, pb.localidad , pb.precio,   sum(ip.CantidadBoletas) as cantidadBoletasVendidas
+                from  Tbl_InfoPagos as ip
+                inner join Tbl_PreciosBoletas as pb
+                on ip.precioboleta_id = pb.id
+                where pb.Evento_id = ' . $idEvento . '  and ip.EstadosTransaccion_id in (4,100)
+                and pb.id = ip.PrecioBoleta_id 
+                group by pb.id,pb.localidad, pb.precio) as res'),
                 function($join)
                 {
-
                     $join->on('base.id', '=' ,'res.id')
                         ->where ('base.cantidad', '>=', 'res.cantidadBoletasVendidas')
                         ->orWhereNull('res.cantidadBoletasVendidas');
-                })
-
-                ->get();
-
-
+                }) ->get();
     }
 
     public function  obtenerPrecioBoleta($idPrecioBoleta){
@@ -324,21 +334,7 @@ class EventosRepositorio
     public function obtenerEvento($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
-        $evento->preguntas;
-        $user1 = User::where ('id', '=', $evento->user_id)->get()->first();
-        $promo = DB::table('Tbl_PromotoresXSedes')
-            ->join('tbl_asistentes', 'tbl_asistentes.id', '=', 'Tbl_PromotoresXSedes.Asistente_id')
-            ->select('tbl_asistentes.*','Tbl_PromotoresXSedes.id' )
-            ->where('Tbl_PromotoresXSedes.Sede_id', '=', $user1->Sede_id)->get();
-        $evento->promotores = $promo;
-        //insertar las variables de cantidad de boletas
-        $evento->preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
-                                ->where('esActiva','=',1)
-                                ->where('esCodigoPromo','=',0)
-                                 ->where('PrecioBoletaPadre_Id','=',null)->get();
-        $evento->preguntas->each(function($preguntas){
-            $preguntas ->respuestas;// se realiza la relacion de la respuestas de la preguntas del evento
-        });
+        $evento->preciosBoletas = $this->obtenerLocalidadesEventoOtroRol($idEvento);
         $evento->ciudad= Ciudad::where('id','=',$evento ->Ciudad_id)->get()->first();
         $evento->ciudad->departamento=Departamento::where('id','=',$evento ->ciudad->Departamento_id)->get()->first();
         return $evento ;

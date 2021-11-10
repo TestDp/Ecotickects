@@ -38,7 +38,7 @@
     <div style="background:#fff; border-radius:5px; padding:2%;" class="container">
         <div class="row">
             <div class="col-md-12">
-                <form id="formularioEvento" class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post">
+                <form id="formularioEvento" class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact">
                     <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">

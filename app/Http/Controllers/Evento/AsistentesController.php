@@ -505,7 +505,7 @@ class AsistentesController extends Controller
         return $this->asistenteServicio->DesactivarQRAsistenteXEvento($idEvento,$idAsistente);
     }
 
-    //metodo que registrar un usuario al evento desde el administrador
+    //metodo que cargar el formulario para registrar un prospecto(persona que posiblemente ira el evento) desde el admin
     public function obtenerFormularioUsuario(Request $request)
     {
         $urlinfo= $request->getPathInfo();

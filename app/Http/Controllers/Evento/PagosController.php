@@ -58,7 +58,8 @@ class PagosController extends Controller
         $order = new Orden();
         $order->reference = env('REFERENCECODE') .$formPago->InfoPId;
         $order->value = $infoPago->PrecioTotal;
-        $data = $this->pagosServicio->ObtenerParametrosPayuTC($formPago,$order->reference,$order->value);
+        $ip = $this->ObtenerIPComprador();
+        $data = $this->pagosServicio->ObtenerParametrosPayuTC($formPago,$order->reference,$order->value,$ip);
         $order->payWith($data, function($response, $order)
         {
             if ($response->code == 'SUCCESS' && $response->transactionResponse->state =='SUCCESS')
@@ -88,7 +89,6 @@ class PagosController extends Controller
 
     public function PagarPSE(Request $formPago)
     {
-        $ip = $this->obtenerIPComprador();
         $infoPago =  $this->pagosServicio->obtenerInfoPagos($formPago->InfoPId);
         $order = new Orden();
         $order->reference = env('REFERENCECODE') .$formPago->InfoPId;

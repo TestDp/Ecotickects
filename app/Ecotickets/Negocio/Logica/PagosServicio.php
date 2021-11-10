@@ -28,7 +28,7 @@ class PagosServicio
        return $this->infoPagosRepositorio->obtenerInfoPagos($idInfoPagos);
     }
 
-    public function ObtenerParametrosPayuTC($formPago,$refencia,$subTotal)
+    public function ObtenerParametrosPayuTC($formPago,$refencia,$subTotal,$ip)
     {
         $total = $this->CalcularValorTotal($subTotal,env('PORCENTAJETC'));
         $data = [
@@ -38,7 +38,7 @@ class PagosServicio
             \PayUParameters::TAX_RETURN_BASE => "0",
             \PayUParameters::CURRENCY => "COP",
             \PayUParameters::DESCRIPTION => env('DESCRIPCION'),
-            \PayUParameters::IP_ADDRESS => '127.0.0.1',
+            \PayUParameters::IP_ADDRESS => $ip,
             \PayUParameters::CURRENCY => 'COP',
             \PayUParameters::CREDIT_CARD_NUMBER => $formPago->numeroTarjeta,
             \PayUParameters::CREDIT_CARD_EXPIRATION_DATE =>'20'. $formPago->anioVenc.'/'.$formPago->mesVenc,
@@ -57,6 +57,8 @@ class PagosServicio
             \PayUParameters::PAYER_COUNTRY => "CO",
             \PayUParameters::PAYER_POSTAL_CODE => "000000",
             \PayUParameters::PAYER_PHONE => $formPago->numeroTel,
+            \PayUParameters::USER_AGENT =>"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
+            \PayUParameters::PAYER_COOKIE=>"_ga=GA1.1.516722673.1535080117",
             \PayUParameters::NOTIFY_URL=>env('URLCONFIRMATION')
         ];
         return $data;
