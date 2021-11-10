@@ -1,15 +1,24 @@
-@extends('layouts.profile')
+@extends('layouts.internas')
 
 @section('content')
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading text-center"><h3>EDITAR EVENTO</h3></div>
-					<div style="text-align: left;" class="col-md-12">
-						<div class="panel-heading text-center"><a class="btn btn-blue ripple trial-button" href="{{ URL::previous() }}">Atrás</a></div>
-					</div>
+	<div class="row">
+				<div class="col-sm-12">
+              <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Editar evento</h4>
+                  </div>
+                </div>
+                <div class="card-body ">
+					              <div class="card ">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">contacts</i>
+                  </div>
+                  <h4 class="card-title">Diligencia la información para editar tu evento</h4>
+                </div>
+                <div class="card-body ">
 					<form id="crearEvento" action="{{url('actualizarEvento')}}" method="POST" enctype="multipart/form-data">
 						<input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}"/>
 						<input type="hidden" id="_token" name="_token" value="{{csrf_token()}}"/>
@@ -194,11 +203,11 @@
                                                 @endif
 												@if($loop->index ==0)
 												<div class="input-group-addon">
-													<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
+													<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><i class="material-icons">add</i></a>
 												</div>
 												@else
 													<div class="input-group-addon">
-														<a id="elimminarLocalidad" name="elimminarLocalidad"  title="No se puede eliminar localidad" ><span class="glyphicon glyphicon-ban-circle"  ></span></a>
+														<a id="elimminarLocalidad" name="elimminarLocalidad"  title="No se puede eliminar localidad" ><i class="material-icons">clear</i></a>
 													</div>
 												@endif
 											</div>
@@ -264,11 +273,11 @@
                                                     @endif
                                                     @if($loop->index ==0)
                                                         <div class="input-group-addon">
-                                                            <a id="agregarLocalidad" name="agregarLocalidad" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
+                                                            <a id="agregarLocalidad" name="agregarLocalidad" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><i class="material-icons">add</i></a>
                                                         </div>
                                                     @else
                                                         <div class="input-group-addon">
-                                                            <a id="elimminarLocalidad" name="elimminarLocalidad"  title="No se puede eliminar localidad" ><span class="glyphicon glyphicon-ban-circle"  ></span></a>
+                                                            <a id="elimminarLocalidad" name="elimminarLocalidad"  title="No se puede eliminar localidad" ><i class="material-icons">clear</i></a>
                                                         </div>
                                                     @endif
                                                 </div>
@@ -311,7 +320,7 @@
                                                 <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" />
                                             </div>
 											<div class="input-group-addon">
-												<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><span class="glyphicon glyphicon-plus"  ></span></a>
+												<a id="agregarRespuesta" name="agregarRespuesta" title="Agregar nueva localidad" onclick="AgregarNuevaLocalidad()"><i class="material-icons">add</i></a>
 											</div>
 										</div>
 									</div>
@@ -321,10 +330,22 @@
 						@endif
 						<hr/>
 						<div style="margin:0px !important;" class="row">
-							<div class="col-md-12">
-								Flyer del evento
-								<input type="file" class="form-control" name="ImagenFlyerEvento" value="c:/passwords.txt" />
-
+                            <div class="col-md-4 col-sm-4">
+								<h4 class="title">Flyer del evento</h4>
+								  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+									<div class="fileinput-new thumbnail">
+									  <img src="../assets/img/image_placeholder.jpg" alt="...">
+									</div>
+									<div class="fileinput-preview fileinput-exists thumbnail"></div>
+									<div>
+									  <span class="btn btn-rose btn-round btn-file">
+										<span class="fileinput-new">Seleccionar flyer</span>
+										<span class="fileinput-exists">Cambiar</span>
+										<input type="file" name="ImagenFlyerEvento" />
+									  </span>
+									  <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Quitar</a>
+									</div>
+								  </div>			
 							</div>
 						</div>
 						<div style="margin:0px !important;" class="row">
@@ -444,15 +465,19 @@
                         <hr style="border-top-color:lightslategray; width:100%" />
                         <div class="row">
                             <div style="margin-bottom:2%;" class="col-md-12">
-                                <button type="button" class="btn btn-blue ripple trial-button" onclick="validarCamposCrearEvento()">
+                                <button type="button" class="btn btn-fill btn-rose" onclick="validarCamposCrearEvento()">
                                     Guardar Evento
                                 </button>
                             </div>
                         </div>
 					</form>
-				</div>
-			</div>
-		</div>
+
+                </div>				
+
+              </div>
+                </div>
+              </div>
+        </div>
 	</div>
 
 
@@ -730,7 +755,7 @@
                 </div>
 
 				<div class="input-group-addon">
-					<a id="elimminarLocalidad" name="elimminarLocalidad" title="Eliminar localidad" onclick="EliminarLocalidad(this)"><span class="glyphicon glyphicon-minus"  ></span></a>
+					<a id="elimminarLocalidad" name="elimminarLocalidad" title="Eliminar localidad" onclick="EliminarLocalidad(this)"><i class="material-icons">clear</i></a>
 				</div>
 			</div>
 		</div>

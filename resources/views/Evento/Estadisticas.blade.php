@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.internas')
 
 @section('content')
     <div class="panel panel-default">
