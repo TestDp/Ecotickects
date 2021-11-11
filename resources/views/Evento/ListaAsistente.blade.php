@@ -1,6 +1,68 @@
 @extends('layouts.internas')
 
 @section('content')
+<div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Usuarios Registrados  {{$evento->Nombre_Evento}}</h4>
+                </div>
+               <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-shopping">
+                      <thead>
+                        <tr>
+                          <th class="th-description">Identificación</th>
+                          <th class="th-description">Nombre y apellido</th>
+                          <th class="th-description">Celular y correo</th>
+						  <th class="th-description">Localidad y ciudad</th>
+                          <th class="th-description">Usuario vendedor</th>
+						  <th class="th-description">Cantidad boletas</th>
+						  <th class="th-description">Total compra</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+					  @foreach($ListaAsistentes["asistentes"] as $asistente)
+                        <tr>
+                          <td class="td-name">{{$asistente->Identificacion}}</td>
+                          <td class="td-name">
+                            <a >{{$asistente->Nombres}}</a>
+                            <br />
+                            <small>{{$asistente->Apellidos}}</small>
+                          </td>
+						  <td class="td-name">
+                            <a >{{$asistente->telefono}}</a>
+                            <br />
+                            <small>{{$asistente->Email}}</small>
+                          </td>
+						  <td class="td-name">
+                            <a > <!--{{$asistente->Localidad}}--></a>
+                            <br />
+                            <small>{{$asistente->Nombre_Ciudad}}</small>
+                          </td>
+                          <td class="td-name">
+                            <a>{{$asistente->UsuarioVendedor}}</a>
+                          </td>
+						  <td class="td-name">
+                            <a>{{$asistente->CantidadBoletas}}</a>
+                          </td>
+						<td class="td-name">
+                            <a>{{$asistente->PrecioTotal}}</a>
+                          </td>
+                        </tr>
+						@endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">

@@ -95,7 +95,7 @@
         </div>
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ url('/') }}">Volver al Inicio</a></li>
-            <li><a href="#">{{ $ElementosArray["evento"] ->Nombre_Evento }}</a></li>
+            <li><a>{{ $ElementosArray["evento"] ->Nombre_Evento }}</a></li>
           </ul>
           <h3 class="breadcrumbs-custom-title">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
         </div>
