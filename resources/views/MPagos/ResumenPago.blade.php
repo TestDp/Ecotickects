@@ -1,4 +1,3 @@
-@extends('layouts.eventos')
 
 @section('ResumenPago')
     <form id="formPagPy">

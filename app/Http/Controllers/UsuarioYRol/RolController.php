@@ -76,7 +76,7 @@ class RolController extends Controller
             else{
                 return $this->rolServicio->GuardarRol($rol);
             }
-        }else return view('MInventario/Categoria/listaCategorias');
+        }else return view('');
     }
 
     //Metodo para obtener todos  los roles

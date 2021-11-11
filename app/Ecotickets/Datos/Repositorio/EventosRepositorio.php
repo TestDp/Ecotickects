@@ -537,7 +537,7 @@ class EventosRepositorio
             ->orderBy('Fecha_Evento', 'desc')->get();
         return $eventos;
     }
-
+  
     //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
     public function ListaDeEventosSede($idSede,$idTipo)
     {

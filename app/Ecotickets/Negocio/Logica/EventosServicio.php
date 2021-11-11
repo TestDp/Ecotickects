@@ -129,6 +129,7 @@ class EventosServicio
     {
         return $this->eventoRepor->ListaDeEventosPasadosEmpresa($idEmpresa,$idTipo);
     }
+
     public function ListaDeEventosPasadosSede($idSede,$idTipo)
     {
         return $this->eventoRepor->ListaDeEventosPasadosSede($idSede,$idTipo);
