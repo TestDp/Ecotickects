@@ -100,7 +100,7 @@
           <h3 class="breadcrumbs-custom-title">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
         </div>
       </section>
-      <section class="section section-lg bg-default">
+     <section id="eco" class="section section-lg bg-default">
         <div class="container">
 		@yield('content')
 		</div>

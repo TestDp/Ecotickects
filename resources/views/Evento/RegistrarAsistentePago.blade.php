@@ -57,7 +57,7 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Identificación</label>
+                                    <label>Identificación</label>
                                     <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()"/>
                                 </div>
 								</div>
@@ -226,13 +226,13 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Identificación</label>
-                                    <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()"/>
+                                    <label>Identificación</label>
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()" data-constraints="@Required"/>
                                 </div>
 								</div>
                                 <div class="col-md-6">
                                 <div class="form-wrap">
-                                    <label class="form-label">Nombre</label>
+                                    <label>Nombre</label>
                                     <input id="Nombres" name="Nombres" type="text" class="form-input" />
                                 </div>
 								</div>
@@ -240,13 +240,13 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Apellidos</label>
+                                    <label>Apellidos</label>
                                     <input id="Apellidos" name="Apellidos" type="text" class="form-input" />
                                 </div>
 								</div>
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Celular/teléfono</label>
+                                    <label>Celular/teléfono</label>
                                     <input id="telefono" name="telefono" type="text" class="form-input" />
                                 </div>
 								</div>
@@ -254,13 +254,13 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Email</label>
+                                    <label>Email</label>
                                     <input id="Email" name="Email" type="text" class="form-input" />
                                 </div>
 								</div>
                                 <div class="col-md-6">
 								<div class="form-wrap">
-                                    <label class="form-label">Confirmar Email</label>
+                                    <label>Confirmar Email</label>
                                     <input id="confEmail" name="confEmail" type="text" class="form-input" />
                                 </div>
 								</div>
@@ -357,7 +357,7 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-12">
 								<div class="form-wrap">
-                                    <label class="form-label">Comentario</label>
+                                    <label>Comentario</label>
                                     <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-input" />
                                 </div>
 								</div>
@@ -402,8 +402,8 @@
                             <div class="row row-narrow row-20">
                                 <div class="col-md-12">
 								<div class="form-wrap">
-                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-primary" value="Comprar" data-triangle=".button-overlay"/>
-                                </div>
+                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-primary" value="Comprar" data-triangle=".button-overlay"/><span class="button-overlay"></span></input>
+								</div>
 								</div>
                             </div>
                         </div>
