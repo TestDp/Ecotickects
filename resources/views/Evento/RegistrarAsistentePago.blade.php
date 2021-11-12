@@ -410,7 +410,7 @@
                     @endif
                 </form>
             </div>
-
+			</div>
         </div>
     <div>
         <form method="post" id="formPago" action="{{env('URLPOSTPAGO')}}">
