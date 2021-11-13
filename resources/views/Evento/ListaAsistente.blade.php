@@ -8,7 +8,7 @@
                   <div class="card-icon">
                     <i class="material-icons">assignment</i>
                   </div>
-                  <h4 class="card-title">Usuarios Registrados  {{$evento->Nombre_Evento}}</h4>
+                  <h4 class="card-title">Personas Registradas en {{$evento->Nombre_Evento}}</h4>
                 </div>
                <div class="card-body">
                   <div class="table-responsive">
@@ -61,166 +61,56 @@
               </div>
             </div>
         </div>
-
-
-    <div class="container">
-        <div class="row">
+		
+		<div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Usuarios Registrados  {{$evento->Nombre_Evento}}</h3></div>
-                        <div style="overflow-x:auto;" class="panel-body">
-                            <ul class="nav nav-tabs" >
-                                <li class="active">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#ListaAsistentes" role="tab" aria-controls="home"
-                                       aria-selected="true">Lista Asistentes</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ListaInvitados" role="tab" aria-controls="profile"
-                                       aria-selected="false">Lista Invitados</a>
-
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade in active" id="ListaAsistentes" role="tabpanel" aria-labelledby="home-tab">
-                                    <div style="overflow-x:auto;">
-                                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaAsistentes" class="table table-bordered">
-                                <thead>
-                                <tr >
-                                    <th>
-                                        Identificación
-                                    </th>
-                                    <th>
-                                        Nombre
-                                    </th>
-                                    <th>
-                                        Apellidos
-                                    </th>
-                                    <th>
-                                        Celular
-                                    </th>
-                                    <th>
-                                        Correo
-                                    </th>
-                                    <th>
-                                        Ciudad
-                                    </th>
-                                    <th>
-                                        Localidad
-                                    </th>
-                                    <th>
-                                        Usuario Vendedor
-                                    </th>
-                                    <th>
-                                        CantidadBoletas
-                                    </th>
-                                    <th>
-                                        TotalCompra
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody >
-                                @foreach($ListaAsistentes["asistentes"] as $asistente)
-                                    <tr >
-                                        <td>
-                                            {{$asistente->Identificacion}}
-                                        </td>
-                                        <td>
-                                            {{$asistente->Nombres}}
-                                        </td>
-                                        <td>
-                                            {{$asistente->Apellidos}}
-                                        </td>
-                                        <td>
-                                            {{$asistente->telefono}}
-                                        </td>
-                                        <td>
-                                            {{$asistente->Email}}
-                                        </td>
-                                        <td>
-                                            {{$asistente->Nombre_Ciudad}}
-                                        </td>
-                                        <td>
-                                            <!--{{$asistente->Localidad}}-->
-                                        </td>
-                                        <td>
-                                            {{$asistente->UsuarioVendedor}}
-                                        </td>
-                                        <td>
-                                            {{$asistente->CantidadBoletas}}
-                                        </td>
-                                        <td>
-                                            {{$asistente->PrecioTotal}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-
-                            </table>
-							<button class="btn btn-info navbar-btn" onclick="tableToExcel('TablaListaAsistentes', 'W3C Example Table')">Exportar Lista Asistentes</button>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade show active" id="ListaInvitados" role="tabpanel" aria-labelledby="home-tab">
-                                    <div style="overflow-x:auto;">
-                                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaAsistentes" class="table table-bordered">
-                                            <thead>
-                                            <tr >
-                                                <th>
-                                                    Identificación
-                                                </th>
-                                                <th>
-                                                    Nombre
-                                                </th>
-                                                <th>
-                                                    Apellidos
-                                                </th>
-                                                <th>
-                                                    Celular
-                                                </th>
-                                                <th>
-                                                    Correo
-                                                </th>
-                                                <th>
-                                                    Ciudad
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody >
-                                            @foreach($ListaAsistentesGuestList["asistentesGuestList"] as $asistenteGL)
-                                                <tr >
-                                                    <td>
-                                                        {{$asistenteGL->Identificacion}}
-                                                    </td>
-                                                    <td>
-                                                        {{$asistenteGL->Nombres}}
-                                                    </td>
-                                                    <td>
-                                                        {{$asistenteGL->Apellidos}}
-                                                    </td>
-                                                    <td>
-                                                        {{$asistenteGL->telefono}}
-                                                    </td>
-                                                    <td>
-                                                        {{$asistenteGL->Email}}
-                                                    </td>
-                                                    <td>
-                                                        {{$asistenteGL->Nombre_Ciudad}}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-
-                                        </table>
-										<button class="btn btn-info navbar-btn" onclick="tableToExcel('TablaListaAsistentes', 'W3C Example Table')">Exportar Lista Invitados</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Personas invitadas a {{$evento->Nombre_Evento}}</h4>
                 </div>
+               <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-shopping">
+                      <thead>
+                        <tr>
+                          <th class="th-description">Identificación</th>
+                          <th class="th-description">Nombre y apellido</th>
+                          <th class="th-description">Celular y correo</th>
+						  <th class="th-description">Localidad y ciudad</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+					  @foreach($ListaAsistentesGuestList["asistentesGuestList"] as $asistenteGL)
+                        <tr>
+                          <td class="td-name">{{$asistenteGL->Identificacion}}</td>
+                          <td class="td-name">
+                            <a >{{$asistenteGL->Nombres}}</a>
+                            <br />
+                            <small>{{$asistenteGL->Apellidos}}</small>
+                          </td>
+						  <td class="td-name">
+                            <a >{{$asistenteGL->telefono}}</a>
+                            <br />
+                            <small>{{$asistenteGL->Email}}</small>
+                          </td>
+						  <td class="td-name">
+                            <a > <!--{{$asistente->Localidad}}--></a>
+                            <br />
+                            <small>{{$asistenteGL->Nombre_Ciudad}}</small>
+                          </td>
+                        </tr>
+						@endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
 
-    </div>
 
 
 

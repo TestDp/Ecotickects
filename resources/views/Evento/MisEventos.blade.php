@@ -64,7 +64,7 @@
                           </td>
                           <td class="td-actions text-right">
 							@if(Auth::user()->buscarRecurso('ListaAsistentes'))
-                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Usuarios">
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Personas Registradas">
                               <a href="{{ url('/ListaAsistentes',['idEvento' => $evento->id ]) }}"><i class="material-icons">group</i></a>
                             </button>
 							@endif
@@ -149,7 +149,7 @@
                           </td>
                           <td class="td-actions text-right">
 							@if(Auth::user()->buscarRecurso('ListaAsistentes'))
-                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Usuarios">
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Personas registradas">
                               <a href="{{ url('/ListaAsistentes',['idEvento' => $eventoPasado->id ]) }}"><i class="material-icons">group</i></a>
                             </button>
 							@endif

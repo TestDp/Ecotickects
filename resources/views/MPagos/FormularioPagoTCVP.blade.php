@@ -147,7 +147,7 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-            <button type="button" class="btn btn-success" onclick="validarCamposFormPagoTC()">Pagar</button>
+            <button type="button" class="button button-primary" onclick="validarCamposFormPagoTC()">Pagar</button>
         </div>
         <div class="col-md-4">
         </div>

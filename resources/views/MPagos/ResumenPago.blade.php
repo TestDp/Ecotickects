@@ -41,7 +41,7 @@
 									<div class="panel-heading">
 										Selecciona el medio de pago
 										<div class="btn-group pull-right">
-												<span onclick="CargarFormularioMediosDePago()" style="cursor:pointer;" >Cambiar Medio de Pago</span>
+												<span onclick="CargarFormularioMediosDePago()" style="cursor:pointer;" class="badge-promo-text">Cambiar Medio de Pago</span>
 										</div>
 									</div>
 									<div class="panel-body" id="divMediosDePago">
@@ -54,7 +54,7 @@
 														<img style="height: auto !important;" src="../img/icono_visa.png" data-active-url="../img/icono_visa.png" alt=""  width="100%" height="100%"/>
 													</a>
 												</div>
-												<div class="col-3">
+												<div class="col-md-3">
 													<a id="aMasterCard" name="aMasterCard" class="navbar-brand" onclick="AgregarVlrPagoTC('MASTERCARD')" style="cursor:pointer;">
 														<img style="height: auto !important;" src="../img/icono_mastercard.png" data-active-url="../img/icono_visa.png" alt=""  width="100%" height="100%"/>
 													</a>

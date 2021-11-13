@@ -127,18 +127,18 @@ body {
     <center><a class="buy" href="#">ECOTICKET</a></center>
     <br>
 	<div style="padding-top:5%; padding-bottom: 5%; background:#dddddd; float: left; width: 100%; text-align: center; border: dashed 2px #8abd51;">
-			<div class="bandname -bold">{{ $ElementosArray["evento"] ->Nombre_Evento }}</div>
-			<div class="tourname">LUGAR: {{ $ElementosArray["evento"] ->Lugar_Evento }}</div>
-			<div class="tourname">FECHA: {{ $ElementosArray["evento"] ->Fecha_Evento }}</div>
-			<div class="tourname">LOCALIDAD: {{ $ElementosArray["localidad"] ->localidad }}</div>
-			<div class="tourname">PRECIO: {{ $ElementosArray["localidad"] ->precio }}</div>
+			<div class="bandname -bold">{{--{{ $ElementosArray["evento"] ->Nombre_Evento }}--}}</div>
+			<div class="tourname">LUGAR: {{--{{ $ElementosArray["evento"] ->Lugar_Evento }}--}}</div>
+			<div class="tourname">FECHA: {{--{{ $ElementosArray["evento"] ->Fecha_Evento }}--}}</div>
+			<div class="tourname">LOCALIDAD: {{--{{ $ElementosArray["localidad"] ->localidad }}--}}</div>
+			<div class="tourname">PRECIO: {{--{{ $ElementosArray["localidad"] ->precio }}--}}</div>
 			<div class="tourname">
 			  <small>Presenta este código <b>en tu SMARTPHONE</b>.</small>
-			  <div>	
-			  <input type="hidden" id="nombreEvento" value="{{$ElementosArray['evento'] ->Nombre_Evento}}">
-				<img src="data:image/png;base64,{!! $ElementosArray['qr']!!}">
+			<div>	
+			{{--<input type="hidden" id="nombreEvento" value="{{$ElementosArray['evento'] ->Nombre_Evento}}">
+			<img src="data:image/png;base64,{!! $ElementosArray['qr']!!}">--}}
 			</div>
-			 </div>
+			</div>
 	</div>							
     <div class="deetz --flex-row-j!sb">
       <div class="event --flex-column">

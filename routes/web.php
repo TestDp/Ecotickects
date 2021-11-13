@@ -22,8 +22,10 @@ Auth::routes();
     Route::get('/respuesta', function () {return view('respuesta');});
 
     Route::get('/existente', function () {return view('existente');});
+	
+	Route::get('/boleta', function () {return view('boletatest');});
 
-    Route::get('vistaCorreo', function () {return view('Email.correo');});
+    Route::get('/vistaCorreo', function () {return view('Email.correo');});
 
     Route::get('/habeasData', function () { return view('habeasData');});
 
