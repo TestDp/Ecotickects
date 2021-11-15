@@ -12,7 +12,7 @@
                 </div>
                <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-shopping">
+                    <table class="table table-shopping" id="tablaUsuarios">
                       <thead>
                         <tr>
                           <th class="text-center">ID</th>
@@ -126,7 +126,7 @@
     <!-- propias-->
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
     <script src="{{ asset('js/MSistema/Usuario.js') }}"></script>
-
+	 <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 
     <script type="text/javascript">
         // Material Select Initialization

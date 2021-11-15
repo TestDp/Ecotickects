@@ -35,7 +35,7 @@
                 </div>
                <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-shopping">
+                    <table class="table table-shopping" id="TablaListaEventos">
                       <thead>
                         <tr>
                           <th class="text-center">ID</th>
@@ -120,7 +120,7 @@
                 </div>
                <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-shopping">
+                    <table class="table table-shopping" id="TablaListaEventos2">
                       <thead>
                         <tr>
                           <th class="text-center">ID</th>
@@ -192,44 +192,16 @@
                 </div>
               </div>
             </div>
-        </div>
-		  
-
-      <footer class="footer py-4  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                Desarrollado con <i class="fa fa-heart"></i> y
-                <a href="https://instagram.com/ecotickets" class="font-weight-bold" target="_blank">Sosteniblidad</a>
-                por un mundo mejor.
-              </div>
-            </div>
-            <div class="col-lg-6">
-            </div>
-          </div>
-        </div>
-      </footer>
+        </div>  
     </div>
 
-
+    <link href="{{asset('js/Plugins/data-table/datatables.css')}}" rel="stylesheet">
+    <!-- Plugins-->
+    <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
    <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script>
-$(document).ready(function(){
-	$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-		localStorage.setItem('activeTab', $(e.target).attr('href'));
-	});
-	var activeTab = localStorage.getItem('activeTab');
-	if(activeTab){
-		$('#home-tab a[href="' + activeTab + '"]').tab('show');
-	}
-});
-</script>
+
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -239,7 +211,7 @@ $(document).ready(function(){
                     name: 'primary',
                     text: 'Save current page',
                     buttons: [
-                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
+                        { extend: 'excel', text: '<p class="btn btn-rose" style="color: green !important; font-size: 20px; text-align: center;">Exportar lista</p>' }
                     ]
                 },
                 language: {
@@ -264,7 +236,7 @@ $(document).ready(function(){
                     name: 'primary',
                     text: 'Save current page',
                     buttons: [
-                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
+                        { extend: 'excel', text: '<p class="btn btn-rose" style="color: green !important; font-size: 20px; text-align: center;">Exportar lista</p>' }
                     ]
                 },
                 language: {

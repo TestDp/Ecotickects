@@ -48,7 +48,7 @@
         <div class="cssload-container">
           <div class="cssload-speeding-wheel"></div>
         </div>
-        <p>Loading...</p>
+        <p>Cargando...</p>
       </div>
     </div>
     <div class="page">

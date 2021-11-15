@@ -1,13 +1,17 @@
 @extends('layouts.profile')
 
 @section('content')
-    <div class="container">
-        <div class="row">
+	<div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Departamentos</h3></div>
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Departamentos</h4>
+                </div>
 
-                    <div class="panel-body">
+                    <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success">
                                 {{ session('status') }}
@@ -15,11 +19,11 @@
                         @endif
 						<div style="padding-bottom:2%;" class="row">
 							<div style="text-align: left;" class="col-md-6">
-							<a class="btn btn-blue ripple trial-button" href="#">Agregar Departamento</a>
+							<a class="btn btn-rose" href="#">Agregar Departamento</a>
 							</div>
 						</div>
-						<div style="overflow-x:auto;">
-						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaListaEventos" class="table table-bordered">
+						<div class="table-responsive">
+						<table id="TablaListaEventos" class="table table-shopping">
                             <thead>
                             <tr >
                                 <th >
@@ -43,7 +47,9 @@
                                         {{ $departamento->Nombre_Departamento }}
                                     </td>
                                     <td>
-                                        <a class="btn btn-blue ripple trial-button" href="#">Editar</a>
+                                        <button onclick="" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar">
+											<a href=""><i class="material-icons">edit</i></a>
+										</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,8 +60,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
 
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
 
@@ -67,7 +71,7 @@
                     name: 'primary',
                     text: 'Save current page',
                     buttons: [
-                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
+                        { extend: 'excel', text: '<p class="btn btn-rose" style="color: green !important; font-size: 20px; text-align: center;">Exportar lista</p>' }
                     ]
                 },
                 language: {

@@ -2,47 +2,57 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="panel panel-success">
-                <div class="panel-heading"><h3>Roles</h3></div>
-                <div class="panel-body">
-                    <div class="row">
+		<div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Roles</h4>
+				        <div class="row">
                         <div class="col-md-4">
-                            <a class="btn btn-blue ripple trial-button" href="{{ url('crearRol')}}">Nuevo Rol</a>
+                            <a class="btn btn-rose" href="{{ url('crearRol')}}">Nuevo Rol</a>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaRoles">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Descripcion</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($listRoles as $roles)
-                                    <tr>
-                                        <td>{{$roles->Nombre}}</td>
-                                        <td>{{$roles->Descripcion}}</td>
-                                        <td> <button onclick="ajaxRenderSectionEditarRol({{$roles->id}})" type="button" class="btn btn-default" aria-label="Left Align" title="Editar Rol">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+						</div>
                 </div>
+               <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-shopping" id="tablaRoles">
+                      <thead>
+                        <tr>
+                          <th class="th-description">Nombre</th>
+                          <th class="th-description">Descripción</th>
+                          <th class="text-right">Opciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+					  @foreach($listRoles as $roles)
+                        <tr>
+                            <td class="td-name">
+                            <a >{{$roles->Nombre}}</a>
+                          </td>
+						  <td class="td-name">
+                            <a>{{$roles->Descripcion}}</a>
+                          </td>
+                          <td class="td-actions text-right">
+								<a href="{{ url('editarRol')}}/{{$roles->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar rol">
+                                                <i class="material-icons">edit</i></a>
+                                </a>							
+                          </td>
+                        </tr>
+						@endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
-
         </div>
-    </div>
+
+
     <link href="{{asset('js/Plugins/data-table/datatables.css')}}" rel="stylesheet">
+	<script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <!-- Plugins-->
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
     <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
@@ -75,5 +85,4 @@
         });
 
     </script>
-
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.internas')
 
 @section('content')
     <style type="text/css">
@@ -9,6 +9,15 @@
             margin-left: 5px;
         }
     </style>
+		 <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Editar Rol</h4>
+                </div>
     <form id="formRol">
         <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
         <input type="hidden" id="Empresa_id" name="Empresa_id" >
@@ -16,7 +25,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><h3>Editar Rol</h3></div>
+
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -92,5 +101,12 @@
             </div>
         </div>
     </form>
+	                </div>
+
+            </div>
+        </div>
+	
+	    <script src="{{ asset('js/Transversal/generales.js') }}"></script>
+    <script src="{{ asset('js/MSistema/Rol.js') }}"></script>
 
 @endsection

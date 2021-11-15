@@ -12,7 +12,7 @@
                 </div>
                <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-shopping">
+                    <table class="table table-shopping" id="TablaListaAsistentes">
                       <thead>
                         <tr>
                           <th class="th-description">Identificación</th>
@@ -124,7 +124,7 @@
                     name: 'primary',
                     text: 'Save current page',
                     buttons: [
-                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
+                        { extend: 'excel', text: '<p class="btn btn-rose" style="color: green !important; font-size: 20px; text-align: center;">Exportar lista</p>' }
                     ]
                 },
                 language: {

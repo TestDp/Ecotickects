@@ -2,52 +2,61 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="panel panel-success">
-                <div class="panel-heading"><h3>Sedes</h3></div>
-                <div class="panel-body">
-                    <div class="row">
+		<div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Sedes</h4>
+				        <div class="row">
                         <div class="col-md-4">
-                            <button onclick="ajaxRenderSectionCrearSede()" type="button" class="btn btn-success">Nueva Sede</button>
+                            <a href="{{ url('crearSede')}}" class="btn btn-rose">Nueva Sede</a>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" class="table table-bordered" id="tablaSedes">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Direccion</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($listSedes as $sede)
-                                    <tr>
-                                        <th scope="row">{{$sede->id}}</th>
-                                        <td >{{$sede->Nombre}}</td>
-                                        <td>{{$sede->Direccion}}</td>
-                                        <td>{{$sede->Telefono}}</td>
-                                        <td> <button onclick="ajaxRenderSectionEditarSede({{$sede->id}})" type="button" class="btn btn-default" aria-label="Left Align" title="Editar Sede">
-                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+						</div>
                 </div>
+               <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-shopping" id="tablaSedes">
+                      <thead>
+                        <tr>
+						  <th class="text-center">ID</th>
+                          <th class="th-description">Nombre</th>
+                          <th class="th-description">Dirección</th>
+						  <th class="th-description">Teléfono</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+					  @foreach($listSedes as $sede)
+                        <tr>
+							<td class="text-center">{{$sede->id}}</td>
+                            <td class="td-name">
+                            <a >{{$sede->Nombre}}</a>
+                          </td>
+						  <td class="td-name">
+                            <a>{{$sede->Direccion}}</a>
+                          </td>
+						  <td class="td-name">
+                            <a>{{$sede->Telefono}}</a>
+                          </td>
+                          <td class="td-actions text-right">
+								<a href="{{ url('editarSede')}}/{{$sede->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar sede">
+                                                <i class="material-icons">edit</i></a>
+                                </a>							
+                          </td>
+                        </tr>
+						@endforeach
+                      </tbody>
+                    </tab le>
+                  </div>
+                </div>
+              </div>
             </div>
-
         </div>
-    </div>
 
     <link href="{{asset('js/Plugins/data-table/datatables.css')}}" rel="stylesheet">
+	<script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <!-- Plugins-->
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
     <script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
