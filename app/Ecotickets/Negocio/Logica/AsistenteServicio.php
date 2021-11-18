@@ -294,4 +294,8 @@ class AsistenteServicio
        return  $this->asistenteRepositorio->obtenerPromotoresXEvento($idEvento);
 
     }
+
+    public function anularTicket($idAsistenteEvento,$idusuario){
+        return  $this->asistenteRepositorio->anularTicket($idAsistenteEvento,$idusuario);
+    }
 }

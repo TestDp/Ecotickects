@@ -179,6 +179,8 @@ Auth::routes();
 
     Route::get('ListaTickets/{idEvento}/{idAsistente}',['uses' =>'Evento\AsistentesController@obtenerListaTickets']);
 
+    Route::post('anularTicket',['uses' =>'Evento\AsistentesController@anularTicket']);
+
     
 // FIN DE RUTAS PARA EL CONTROLADOR DE ASISTENTES//
 

@@ -261,7 +261,7 @@ class AsistenteRepositorio
             ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentes.id', '=', $idAsistente)
-            ->select(\DB::raw('tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
+            ->select(\DB::raw('tbl_asistentesXeventos.id as idAsistenteEvento,tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
             tbl_asistentesXeventos.esAnulado,tbl_asistentesXeventos.IdUsuarioAnula,
              tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
              tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, 
@@ -278,7 +278,7 @@ class AsistenteRepositorio
             ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentes.id', '=', $idAsistente)
-            ->select(\DB::raw('tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
+            ->select(\DB::raw('tbl_asistentesXeventos.id as idAsistenteEvento,tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
               tbl_asistentesXeventos.esAnulado,tbl_asistentesXeventos.IdUsuarioAnula,
              tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
              tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, 
@@ -703,6 +703,19 @@ class AsistenteRepositorio
             $error = $e->getMessage();
             DB::rollback();
             dd($error);
+            return $error;
+        }
+    }
+
+    public function anularTicket($idAsistenteEvento,$idusuario){
+
+        try {
+            $asistenteEvento = AsistenteXEvento::where('id', '=', $idAsistenteEvento)->get()->first();
+            $asistenteEvento->esAnulado =1;
+            $asistenteEvento->IdUsuarioAnula = $idusuario;
+            $asistenteEvento->save();
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
             return $error;
         }
     }
