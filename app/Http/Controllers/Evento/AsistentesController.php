@@ -511,16 +511,16 @@ class AsistentesController extends Controller
         $urlinfo= $request->getPathInfo();
         $user = $request->user();
         $user->AutorizarUrlRecurso($urlinfo);
-        $idSede = $user->Sede->id;
         $eventos=null;
         $idEmpreesa = $user->Sede->Empresa->id;
+        $idUser = Auth::user()->id;
         if($user->hasRole(env('IdRolSuperAdmin'))){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
         }else{
             if($user->hasRole(env('IdRolAdmin'))){
                 $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
             }else{
-                $eventos = $this->eventoServicio->ListaDeEventosSede($idSede,'Evento');
+                $eventos = $this->eventoServicio->ObtenerEventosUsuario($idUser);
             }
         }
         $departamentos = $this->departamentoServicio->obtenerDepartamento();// se obtiene la lista de departamentos para mostrar en el formulario
@@ -566,8 +566,12 @@ class AsistentesController extends Controller
     }
 
     public function obtenerPromotoresXEvento($idEvento){
-    return response()->json($this->asistenteServicio->obtenerPromotoresXEvento($idEvento));
+        return response()->json($this->asistenteServicio->obtenerPromotoresXEvento($idEvento));
     }
 
-
+    public function ObtenerListaTickets(Request $request,$idEvento,$idAsistente)
+    {
+        $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente);
+        return view('Evento/ListaTickets',['listaTickets'=>$listaTickets]);
+    }
 }

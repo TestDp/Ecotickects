@@ -76,6 +76,8 @@ Auth::routes();
 
     Route::get('ActualizarEventosFecha',['uses' => 'Evento\AsistentesController@ActualizarEventosFecha']);
 
+
+
 // FIN DE RUTAS PARA EL CONTROLADOR DE ECOTICKETS//
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
@@ -96,6 +98,8 @@ Auth::routes();
     Route::post('actualizarEvento', 'Evento\EventosController@editarEvento')->name('actualizarEvento');
 
     Route::get('ListaAsistentes/{idEvento}',['uses' =>'Evento\EventosController@ObtenerListaAsistentes']);
+
+    Route::get('ListaTickets/{idEvento}',['uses' =>'Evento\EventosController@obtenerListaTickets']);
 
     Route::get('ListaAsistentesGuestList/{idEvento}',['uses' =>'Evento\EventosController@ObtenerListaAsistentesGuestList']);
 
@@ -124,6 +128,8 @@ Auth::routes();
     Route::get('InformeUsuarioBoleta/{idEvento}',['uses' =>'Evento\EventosController@ObtenerInformeUsuarioBoleta']);
 
     Route::get('GenerarEnlacePromotor',['uses' =>'Evento\EventosController@generarEnlacePromotor']);
+
+
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
 
@@ -170,6 +176,8 @@ Auth::routes();
     Route::post('ConfirmarAsistente',['uses' =>'Evento\AsistentesController@ConfirmarAsistente']);
 
     Route::get('listaPromotores/{idEvento}',['uses' =>'Evento\AsistentesController@obtenerPromotoresXEvento']);
+
+    Route::get('ListaTickets/{idEvento}/{idAsistente}',['uses' =>'Evento\AsistentesController@obtenerListaTickets']);
 
     
 // FIN DE RUTAS PARA EL CONTROLADOR DE ASISTENTES//
@@ -222,6 +230,7 @@ Auth::routes();
     Route::get('AsistentesActivosApp/{idEvento}',['uses' =>'Evento\AsistentesController@AsistentesActivos']);
 
     Route::get('ValidarYActivarQR/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEventoApp']);
+
 
 // FIN DE RUTAS DE LOS WS DE LA APP//
 

@@ -22,6 +22,7 @@
                           <th class="th-description">Usuario vendedor</th>
 						  <th class="th-description">Cantidad boletas</th>
 						  <th class="th-description">Total compra</th>
+                          <th class="th-description">Opciones</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -52,6 +53,11 @@
 						<td class="td-name">
                             <a>{{$asistente->PrecioTotal}}</a>
                           </td>
+                            <td class="td-name">
+                                <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Visualizar tickets">
+                                    <a href="{{ url('/ListaTickets',['idEvento' => $evento->id,'$idAsistente'=> $asistente->id]) }}"><i class="material-icons">group</i></a>
+                                </button>
+                            </td>
                         </tr>
 						@endforeach
                       </tbody>

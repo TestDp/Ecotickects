@@ -250,6 +250,46 @@ class AsistenteRepositorio
 
         return $asistentesPago;
     }
+    public function obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente)
+    {
+
+        $asistentesPago = DB::table('tbl_asistentes')
+            ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.id')
+            ->join('Tbl_PreciosBoletas','Tbl_PreciosBoletas.id','=','Tbl_InfoPagos.PrecioBoleta_id')
+            ->leftJoin('Tbl_Usuarios_X_AsistenteEvento', 'Tbl_Usuarios_X_AsistenteEvento.AsistentesXEvento_id', '=', 'tbl_asistentesXeventos.id')
+            ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentes.id', '=', $idAsistente)
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
+            tbl_asistentesXeventos.esAnulado,tbl_asistentesXeventos.IdUsuarioAnula,
+             tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
+             tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, 
+             Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta, 
+             users.name as UsuarioVendedor, Tbl_PreciosBoletas.Localidad,Tbl_PreciosBoletas.precio' ))
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
+            ->get();
+
+        $asistentesPago2 = DB::table('tbl_asistentes')
+            ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
+            ->join('Tbl_InfoPagos','Tbl_InfoPagos.AsistenteXEvento_id','=','tbl_asistentesXeventos.idAsistenteCompra')
+            ->join('Tbl_PreciosBoletas','Tbl_PreciosBoletas.id','=','Tbl_InfoPagos.PrecioBoleta_id')
+            ->leftJoin('Tbl_Usuarios_X_AsistenteEvento', 'Tbl_Usuarios_X_AsistenteEvento.AsistentesXEvento_id', '=', 'tbl_asistentesXeventos.id')
+            ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentes.id', '=', $idAsistente)
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
+              tbl_asistentesXeventos.esAnulado,tbl_asistentesXeventos.IdUsuarioAnula,
+             tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
+             tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, 
+             Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta, 
+             users.name as UsuarioVendedor, Tbl_PreciosBoletas.Localidad,Tbl_PreciosBoletas.precio' ))
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
+            ->get();
+
+        $asistentesPago = $asistentesPago->merge($asistentesPago2);
+        return $asistentesPago;
+    }
 
     public function validarPIN($idPin)
     {

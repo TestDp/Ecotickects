@@ -151,6 +151,7 @@ class EventosController extends Controller
         return view('Evento/ListaAsistenteGuestList',['ListaAsistentesGuestList' =>$ListaAsistentesGuestList]);
     }
 
+
     public function obtenerEstadisticas(Request $request,$idEvento)
     {
         $urlinfo= $request->getPathInfo();
@@ -205,6 +206,7 @@ class EventosController extends Controller
     public function ObtenerMisEventos(Request $request)
     {
         $eventos = null;
+        $eventosPasados=null;
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $idEmpreesa = Auth::user()->Sede->Empresa->id;
@@ -328,4 +330,6 @@ class EventosController extends Controller
         }
         return view('Evento/GenerarEnlacePromotor',['eventos'=>$eventos]);
     }
+
+
 }

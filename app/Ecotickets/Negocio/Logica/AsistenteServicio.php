@@ -172,6 +172,10 @@ class AsistenteServicio
 
     }
 
+    public function obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente)
+    {
+        return $this->asistenteRepositorio->obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente);
+    }
     public function validarPIN($idPin)
     {
         return $this->asistenteRepositorio->validarPIN($idPin);

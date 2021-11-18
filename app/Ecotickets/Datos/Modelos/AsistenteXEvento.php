@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class AsistenteXEvento extends Model
 {
     protected $table = 'tbl_asistentesXeventos';
-    protected $fillable =['ComentarioEvento','Asistente_id','Evento_id','terminos','HabeasData','esActivo','esPerfilado','esPago','PinBoleta','idAsistenteCompra', 'Promotor_id'];
+    protected $fillable =['ComentarioEvento','Asistente_id','Evento_id','terminos','HabeasData','esActivo','esPerfilado',
+        'esPago','PinBoleta','idAsistenteCompra', 'Promotor_id','esAnulado','IdUsuarioAnula'];
 
     public function evento(){
         return $this->belongsTo('Evento');
