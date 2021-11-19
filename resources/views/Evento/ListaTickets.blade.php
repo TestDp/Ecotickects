@@ -80,7 +80,7 @@
                                 </a>
                             </td>
                             <td class="td-name">
-                                <a>{{$ticket->IdUsuarioAnula}}</a>
+                                <a>{{$ticket->UsuarioAnulaName}}</a>
                             </td>
                             <td class="td-name">
                                 @if($ticket->esActivo == 0 && $ticket->esAnulado == 0 )
