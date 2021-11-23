@@ -1,168 +1,299 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<STYLE TYPE="text/css">
-.buy {
-               display: block;
-               font-size: 12px;
-               font-weight: bold;
-               background-color: #8abd51;
-               padding: 0 18px;
-               line-height: 30px;
-               border-radius: 0px;
-               color: #fff;
-               text-decoration: none;
-            }
-
-body {
-   background-image: linear-gradient(-45deg, #8067B7, #EC87C0);
-   min-height: calc(100vh - 40px);
-   margin: 20px;
-   font-family: 'Arial';
-   widget {
-      filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
-      &[type="ticket"] {
-         width: 320px;
-         height: 100%;
-         .top,
-         .bottom {
-            >div {
-               padding: 0 18px;
-               &:first-child {
-                  padding-top: 18px;
-               }
-               &:last-child {
-                  padding-bottom: 18px;
-               }
-            }
-            img {
-               padding: 18px 0;
-            }
-         }
-         .top,
-         .bottom,
-         .rip {
-            background-color: #fff;
-         }
-         .top {
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-            .deetz {
-               padding-bottom: 10px !important;
-            }
-         }
-         .bottom {
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-            padding: 18px;
-            height: 30px;
-            padding-top: 10px;
-            .barcode {
-               background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAAABCAYAAABXChlMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuOWwzfk4AAACPSURBVChTXVAJDsMgDOsrVpELiqb+/4c0DgStQ7JMYogNh2gdvg5VfXFCRIZaC6BOtnoNFpvaumNmwb/71Frrm8XvgYkker1/g9WzMOsohaOGNziRs5inDsAn8yEPengTapJ5bmdZ2Yv7VvfPN6AH2NJx7nOWPTf1/78hoqgxhzw3ZqYG1Dr/9ur3y8vMxgNZhcAUnR4xKgAAAABJRU5ErkJggg==);
-               background-repeat: repeat-y;
-               min-width: 58px;
-            }
-            .buy {
-               display: block;
-               font-size: 12px;
-               font-weight: bold;
-               background-color: #8abd51;
-               padding: 0 18px;
-               line-height: 30px;
-               border-radius: 15px;
-               color: #fff;
-               text-decoration: none;
-            }
-         }
-         .rip {
-            height: 20px;
-            margin: 0 10px;
-            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAACCAYAAAB7Xa1eAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuOWwzfk4AAAAaSURBVBhXY5g7f97/2XPn/AcCBmSMQ+I/AwB2eyNBlrqzUQAAAABJRU5ErkJggg==);
-            background-size: 4px 2px;
-            background-repeat: repeat-x;
-            background-position: center;
-            position: relative;
-            box-shadow: 0 1px 0 0 #fff, 0 -1px 0 0 #fff;
-            &:before,
-            &:after {
-               content: '';
-               position: absolute;
-               width: 20px;
-               height: 20px;
-               top: 50%;
-               transform: translate(-50%, -50%) rotate(45deg);
-               border: 5px solid transparent;
-               border-top-color: #fff;
-               border-right-color: #fff;
-               border-radius: 100%;
-               pointer-events:none;
-            }
-            &:before {
-               left: -10px;
-            }
-            &:after {
-               transform: translate(-50%, -50%) rotate(225deg);
-               right: -40px;
-            }
-         }
-      }
-      .-bold {
-         font-weight: bold;
-      }
-   }
-}
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="date=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i" rel="stylesheet" />
+    <!--<![endif]-->
+	<title>Aquí está tu Ecoticket</title>
+	<!--[if gte mso 9]>
+	<style type="text/css" media="all">
+		sup { font-size: 100% !important; }
 	</style>
+	<![endif]-->
+	
 
-	<title>Ecoticket</title>
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#ffffff; -webkit-text-size-adjust:none }
+		a { color:#55311f; text-decoration:none }
+		p { padding:0 !important; margin:0 !important } 
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		.mcnPreviewText { display: none !important; }
+
+				
+		/* Mobile styles */
+		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+			.mobile-shell { width: 100% !important; min-width: 100% !important; }
+
+			.text-header,
+			.m-center { text-align: center !important; }
+			.holder { padding: 0 10px !important; }
+
+			.text-nav { font-size: 10px !important; }
+
+			.center { margin: 0 auto !important; }
+			
+			.td { width: 100% !important; min-width: 100% !important; }
+
+			.m-br-15 { height: 15px !important; }
+
+			.m-td,
+			.m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
+
+			.m-block { display: block !important; }
+
+			.p30-15 { padding: 30px 15px !important; }
+			.p30-0 { padding: 30px 0px !important; }
+
+			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+			
+			.column,
+			.column-top,
+			.column-dir,
+			.column-empty,
+			.column-empty2,
+			.column-empty3,
+			.column-bottom,
+			.column-dir-top,
+			.column-dir-bottom { float: left !important; width: 100% !important; display: block !important; }
+
+			.column-empty { padding-bottom: 10px !important; }
+			.column-empty2 { padding-bottom: 25px !important; }
+			.column-empty3 { padding-bottom: 45px !important; }
+
+			.content-spacing { width: 15px !important; }
+			.content-spacing2 { width: 25px !important; }
+		}
+	</style>
 </head>
-<body style="background-image: linear-gradient(-45deg, #8067B7, #EC87C0);">
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#ffffff; -webkit-text-size-adjust:none;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#fff">
+		<tr>
+			<td align="center" valign="top">
+				<!-- Header -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
+					<tr>
+						<td class="img" bgcolor="#B0D416" height="16" style="font-size:0pt; line-height:0pt; text-align:left;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="center" >
+							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+								<tr>
+									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="p30-15" style="padding: 20px 40px 20px 40px;">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<th class="column" width="198" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+																<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class="text-header m-center" style="color:#9f8e87; font-family:'Noto Serif', Georgia, serif; font-size:12px; line-height:16px; text-align:left;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
+																	</tr>
+																</table>
+															</th>
+															<th class="column-empty2" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+															<th class="column" width="173" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+																<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class="img-center" style="font-size:0pt; line-height:0pt; text-align:center;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0" alt="" /></td>
+																	</tr>
+																</table>
+															</th>
+															<th class="column-empty2" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+															<th class="column" width="197" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+																<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																	<tr>
+																		<td class="text-header right m-center" style="color:#9f8e87; font-family:'Noto Serif', Georgia, serif; font-size:12px; line-height:16px; text-align:right;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
+																	</tr>
+																</table>
+															</th>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<!-- END Header -->
 
-<div type="ticket" class="--flex-column">
-  <div class="top --flex-column">
+				<!-- Section Social -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
+					<tr>
+						<td align="center" width="650" class="mobile-shell">
+							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+								<tr>
+									<td class="td" style="border-bottom: 3px solid #1D2139; width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td background="images/t1_bg2.jpg" bgcolor="#9fba31" valign="top" height="378" class="bg" style="background-repeat:no-repeat; -webkit-background-size:cover; background-size:cover;">
+													<!--[if gte mso 9]>
+													<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:650px; height: 378px">
+														<v:fill type="frame" src="images/t1_bg2.jpg" color="#9fba31" />
+														<v:textbox inset="0,0,0,0">
+													<![endif]-->
+													<div>
+														<table width="100%" border="0" cellspacing="0" cellpadding="0">
+															<tr>
+																<td class="content-spacing" width="40" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
+																<td>
+																	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+																		<td style="padding: 30px 0px;" class="p30-0">
+																				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																					<tr>
+																						<td class="h5 white pb40" style="font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline>AQUÍ ESTÁ TU ECOTICKET PARA</multiline></td>
+																					</tr>
+																					<tr>
+																						<td class="h2 white pb15" style="font-family:'Noto Serif', Georgia, serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:10px;"><multiline>{{--{{ $ElementosArray["evento"] ->Nombre_Evento }}--}} NOMBRE DEL EVENTO</multiline></td>
+																					</tr>
+																					<tr>
+																						<td class="h5 white pb40" style="font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline><b>Localidad:</b> {{--{{ $ElementosArray["localidad"] ->localidad }}--}}</multiline></td>
+																					</tr>
+																					<tr>
+																						<td class="h5 white pb40" style="font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:25px;"><multiline><b>Precio:</b> {{--{{ $ElementosArray["localidad"] ->precio }}--}}</multiline></td>
+																					</tr>
+																					<tr>
+																						<td align="center" style="padding-bottom:30px;">
+																							<table border="0" cellspacing="0" cellpadding="0">
+																								<tr>
+																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																											<tr>
+																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
+																											</tr>
+																											<tr>
+																												<td class="text-center" style="color:#ffffff; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{--{{ $ElementosArray["evento"] ->Lugar_Evento }}--}}LUGAR</multiline></td>
+																											</tr>
+																										</table>
+																									</th>
+																									<th class="column-empty3" width="40" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																											<tr>
+																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
+																											</tr>
+																											<tr>
+																												<td class="text-center" style="color:#ffffff; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{--{{ $ElementosArray["evento"] ->Fecha_Evento }}--}} FECHA</span></a></multiline></td>
+																											</tr>
+																										</table>
+																									</th>
+																									<th class="column-empty3" width="40" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																											<tr>
+																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
+																											</tr>
+																											<tr>
+																												<td class="text-center" style="color:#ffffff; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{--{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}--}} CIUDAD</span></multiline></td>
+																											</tr>
+																										</table>
+																									</th>
+																								</tr>
+																							</table>
+																						</td>
+																					</tr>
+																								<tr>
+																									<td align="center">
+																										<table border="0" cellspacing="0" cellpadding="0">
+																											<tr>
+																												<td><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/qr.png" width="300" height="300" border="0" alt="" /></td>
+																											</tr>
+																										</table>
+																									</td>
+																								</tr>
+																				</table>
+																			</td>
+								</tr>
+																	</table>
+																</td>
+																<td class="content-spacing" width="40" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
+															</tr>
+														</table>
+																								<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+											<tr>
+												<td class="p30-15" style="padding: 20px 20px;">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<td class="text center pb30" style="color:#1D2139; font-family:'Noto Serif', Georgia, serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>Presenta tu SmartPhone con el CÓDIGO QR adjunto en la entrada del evento para habilitar tu acceso.</multiline></td>
+														</tr>
+														<tr>
+															<td class="text center pb30" style="color:#1D2139; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>*No es necesario imprimirlo presenta tu SmartPhone cuídemos el medio ambiente.</multiline></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+													</div>
+													<!--[if gte mso 9]>
+														</v:textbox>
+														</v:rect>
+													<![endif]-->
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<!-- END Section Social -->
 
-    <center><a class="buy" href="#">ECOTICKET</a></center>
-    <br>
-	<div style="padding-top:5%; padding-bottom: 5%; background:#dddddd; float: left; width: 100%; text-align: center; border: dashed 2px #8abd51;">
-			<div class="bandname -bold">{{--{{ $ElementosArray["evento"] ->Nombre_Evento }}--}}</div>
-			<div class="tourname">LUGAR: {{--{{ $ElementosArray["evento"] ->Lugar_Evento }}--}}</div>
-			<div class="tourname">FECHA: {{--{{ $ElementosArray["evento"] ->Fecha_Evento }}--}}</div>
-			<div class="tourname">LOCALIDAD: {{--{{ $ElementosArray["localidad"] ->localidad }}--}}</div>
-			<div class="tourname">PRECIO: {{--{{ $ElementosArray["localidad"] ->precio }}--}}</div>
-			<div class="tourname">
-			  <small>Presenta este código <b>en tu SMARTPHONE</b>.</small>
-			<div>	
-			{{--<input type="hidden" id="nombreEvento" value="{{$ElementosArray['evento'] ->Nombre_Evento}}">
-			<img src="data:image/png;base64,{!! $ElementosArray['qr']!!}">--}}
-			</div>
-			</div>
-	</div>							
-    <div class="deetz --flex-row-j!sb">
-      <div class="event --flex-column">
-	     <div class="location -bold">Para tener en cuenta:</div>
-        <div class="date">El código QR es único, la primera persona que presente el Ecoticket podrá ingresar, los demás no podrán hacerlo.</div>
-		<div class="date">El Ecoticket debe estar completo y legible.</div>
-		<div class="date">Al ingresar al evento debe presentar: Su Ecoticket y cédula original.</div>
-		<div class="date">Cualquier intento de fraude podrá ser reportado con las autoridades competentes y prohibirse su ingreso al evento.</div>
-		<div class="date">No publique su Ecoticket, ni le tome fotos, puede ser víctima de falsificaciones.</div>
-      </div>
-    </div>
-    <center><small>Términos y condiciones</small></center>
-    <center><small>www.ecotickets.co</small></center>
-  </div>
-  <div class="rip"></div>
-  <div class="bottom --flex-row-j!sb">
-    <div class="barcode"></div>
-    <a class="buy" href="#">NO LO IMPRIMAS | CUIDA EL MEDIO AMBIENTE</a>
-    <br>
+				<!-- Footer -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
+					<tr>
+						<td align="center" style="padding: 70px 30px;">
+							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+								<tr>
+									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="text-footer pb10" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:10px;"><multiline>INFORMACIÓN IMPORTANTE</multiline></td>
+											</tr>
+											<tr>
+												<td class="text-footer2 pb30" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center; padding-bottom:30px;"><multiline>Para tener en cuenta:
+El código QR es único, la primera persona que presente el Ecoticket podrá ingresar, los demás no podrán hacerlo.
+El Ecoticket debe estar completo y legible.
+Al ingresar al evento debe presentar: Su Ecoticket y cédula original.
+Cualquier intento de fraude podrá ser reportado con las autoridades competentes y prohibirse su ingreso al evento.
+No publique su Ecoticket, ni le tome fotos, puede ser víctima de falsificaciones.</multiline></td>
+											</tr>
+											<tr>
+												<td class="text-footer3" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;"><multiline><a href="https://ecotickets.co" target="_blank" class="link5-u" style="color:#ffffff; text-decoration:underline;"><span class="link5-u" style="color:#ffffff; text-decoration:underline;">#EstamosCuidandoElPlaneta</span></a></multiline></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<!-- END Footer -->
+			</td>
+		</tr>
+	</table>
+</body>
 
-  </div>
-  <br>
-  </center>
-</div>
 <script src="js/Evento/eventoPago.js"></script>
 <script src="js/Plugins/Qrcode/qrcode.js"></script>
 <script src="js/Plugins/Jquery/jquery-3.1.1.js"></script>
