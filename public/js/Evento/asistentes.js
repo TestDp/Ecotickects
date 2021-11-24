@@ -7,8 +7,8 @@ try {
 
 function ValidarAnulacion(idTicket){
     swal({
-        title: '¡Anularl'+idTicket+'!',
-        text: "¿Está seguro que desea el ticket?",
+        title: '¡Anular el ticket  '+idTicket+'!',
+        text: "¿Está seguro que desea anular el ticket?",
         icon: 'warning',
         buttons: {
             cancel: {
@@ -24,10 +24,10 @@ function ValidarAnulacion(idTicket){
                 visible: true,
                 className: "",
                 closeModal: true
-            }},
+            }}
     }).then((result) => {
         if (result) {
-            anularTicket(idTicket);
+            //anularTicket(idTicket);
         }
     });
 }
@@ -45,7 +45,37 @@ function anularTicket(idTicket){
             success: function (result) {
                 OcultarPopupposition();
                 if(result.STATUS == 'SUCCESS'){
-                    $('#eco').empty().append($(result.RESPONSE));
+                    swal({
+                        title: "Transaccción exitosa!",
+                        text: "El ticket  fue anulado con exito!",
+                        icon: "success",
+                        button: "OK",
+                    });
+                    swal({
+                        title: '¡El ticket '+idTicket+'!',
+                        text: "El ticket fue anulado con exito!",
+                        icon: 'success',
+                        buttons: {
+                            confirm: {
+                                text: "OK",
+                                value: true,
+                                visible: true,
+                                className: "",
+                                closeModal: true
+                            }},
+                    }).then((result) => {
+                        if (result) {
+                            location.reload();
+                        }
+                    });
+
+                }else{
+                    swal({
+                        title: "Error anulando el ticket!",
+                        text: "Por favor intenta de nuevo!",
+                        icon: "error",
+                        button: "OK",
+                    });
                 }
             },
             error: function (data) {

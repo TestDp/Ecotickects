@@ -494,7 +494,7 @@ class AsistentesController extends Controller
     /*Metodo para  activar el PIN  de la boleta paga, recibe  como parametros el id del evento y PIN de la boleta**/
     public function ActivarPinPago($idEvento, $idPin)
     {
-       // return $this->asistenteServicio->ActivarPinPago($idEvento, $idPin);
+        // return $this->asistenteServicio->ActivarPinPago($idEvento, $idPin);
         return response()->json($this->asistenteServicio->ActivarPinPago($idEvento, $idPin));
     }
 
@@ -571,7 +571,43 @@ class AsistentesController extends Controller
 
     public function ObtenerListaTickets(Request $request,$idEvento,$idAsistente)
     {
-        $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente);
-        return view('Evento/ListaTickets',['listaTickets'=>$listaTickets]);
+        $urlinfo= $request->getPathInfo();
+        $user = $request->user();
+        //$user->AutorizarUrlRecurso($urlinfo);
+        $idUser = Auth::user()->id;
+        $listaTickets = null;
+        if($user->hasRole(env('IdRolSuperAdmin'))){
+            $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente);
+        }else{
+            if($user->hasRole(env('IdRolAdmin'))){
+                $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorAdmin($idEvento,$idAsistente);
+            }else{
+                $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorOtroRol($idEvento,$idAsistente,$idUser);
+            }
+        }
+        return view('Evento/ListaTickets',['listaTickets'=>$listaTickets,'idEvento'=>$idEvento]);
     }
+    public function anularTicket(Request $request){
+        $urlinfo= $request->getPathInfo();
+        $user = $request->user();
+        //$user->AutorizarUrlRecurso($urlinfo);
+        $idAsistenteEvento =  $request['idTicket'];
+        $idUser = Auth::user()->id;
+        $respuesta = $this->asistenteServicio->anularTicket($idAsistenteEvento,$idUser);
+        if($respuesta == true){
+            return Response::json(['STATUS'=>'SUCCESS']);
+        }else{
+            return Response::json(['STATUS'=>'ERROR']);
+        }
+
+    }
+
+    public function descargarTicket(Request $request,$idEvento,$idAsistente){
+        $urlinfo= $request->getPathInfo();
+        $user = $request->user();
+        //$user->AutorizarUrlRecurso($urlinfo);
+        $file=storage_path('app') . '/boletas/' . $idEvento . '/ECOTICKET' . $idAsistente . '.pdf';
+        return Response::download($file);
+    }
+
 }
