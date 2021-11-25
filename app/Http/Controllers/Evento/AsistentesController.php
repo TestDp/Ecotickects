@@ -576,13 +576,17 @@ class AsistentesController extends Controller
         //$user->AutorizarUrlRecurso($urlinfo);
         $idUser = Auth::user()->id;
         $listaTickets = null;
-        if($user->hasRole(env('IdRolSuperAdmin'))){
-            $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente);
+        if($user->hasRole(env('IdRolUsuarioComprador'))){
+            $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorComprador($idEvento,$idUser);
         }else{
-            if($user->hasRole(env('IdRolAdmin'))){
-                $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorAdmin($idEvento,$idAsistente);
+            if($user->hasRole(env('IdRolSuperAdmin'))){
+                $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente);
             }else{
-                $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorOtroRol($idEvento,$idAsistente,$idUser);
+                if($user->hasRole(env('IdRolAdmin'))){
+                    $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorAdmin($idEvento,$idAsistente);
+                }else{
+                    $listaTickets = $this -> asistenteServicio ->obtenerListaTicketsPorCompradorOtroRol($idEvento,$idAsistente,$idUser);
+                }
             }
         }
         return view('Evento/ListaTickets',['listaTickets'=>$listaTickets,'idEvento'=>$idEvento]);

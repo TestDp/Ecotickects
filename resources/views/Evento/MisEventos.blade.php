@@ -98,6 +98,11 @@
                               <a href="{{ url('/InformeUsuarioBoleta',['idEvento' => $evento->id ]) }}"><i class="material-icons">badge</i></a>
                             </button>
 							@endif
+                            @if(Auth::user()->buscarRecurso('ListaTickets'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Mis tickets">
+                                <a href="{{ url('/ListaTickets',['idEvento' => $evento->id,'$idAsistente'=> 0]) }}"><i class="material-icons">group</i></a>
+                            </button>
+                            @endif
                           </td>
                         </tr>
 						@endforeach

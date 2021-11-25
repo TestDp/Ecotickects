@@ -182,9 +182,14 @@ class AsistenteServicio
         return $this->asistenteRepositorio->obtenerListaTicketsPorCompradorAdmin($idEvento,$idAsistente);
     }
 
+
     public function obtenerListaTicketsPorCompradorOtroRol($idEvento,$idAsistente,$userId)
     {
         return $this->asistenteRepositorio->obtenerListaTicketsPorCompradorOtroRol($idEvento,$idAsistente,$userId);
+    }
+    public function obtenerListaTicketsPorComprador($idEvento,$idAsistente,$userId)
+    {
+        return $this->asistenteRepositorio->obtenerListaTicketsPorComprador($idEvento,$idAsistente,$userId);
     }
 
     public function validarPIN($idPin)

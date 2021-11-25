@@ -9,7 +9,7 @@
                   <div class="card-icon">
                     <i class="material-icons">assignment</i>
                   </div>
-                  <h4 class="card-title">Comprador: Cristian Arenas </h4>
+                  <h4 class="card-title">{{$listaTickets[0]->Nombres .' '. $listaTickets[0]->Apellidos }} </h4>
                 </div>
                <div class="card-body">
                   <div class="table-responsive">
@@ -83,15 +83,19 @@
                                 <a>{{$ticket->UsuarioAnulaName}}</a>
                             </td>
                             <td class="td-name">
-                                @if($ticket->esActivo == 0 && $ticket->esAnulado == 0 )
-                                    <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Descargar tickect">
-                                        <a href="{{ url('descargarTicket/'.$idEvento.'/'.$ticket->idAsistenteEvento) }}"><i class="material-icons">group</i></a>
-                                    </button>
+                                @if(Auth::user()->buscarRecurso('DescargarTicket'))
+                                    @if($ticket->esActivo == 0 && $ticket->esAnulado == 0 )
+                                        <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Descargar tickect">
+                                            <a href="{{ url('descargarTicket/'.$idEvento.'/'.$ticket->idAsistenteEvento) }}"><i class="material-icons">group</i></a>
+                                        </button>
+                                    @endif
                                 @endif
-                                @if($ticket->esActivo == 0 && $ticket->esAnulado == 0 )
-                                    <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Anular">
-                                        <a onclick="ValidarAnulacion({{$ticket->idAsistenteEvento}})"><i class="material-icons">group</i></a>
-                                    </button>
+                                @if(Auth::user()->buscarRecurso('AnularTicket'))
+                                    @if($ticket->esActivo == 0 && $ticket->esAnulado == 0 )
+                                        <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Anular">
+                                            <a onclick="ValidarAnulacion({{$ticket->idAsistenteEvento}})"><i class="material-icons">group</i></a>
+                                        </button>
+                                    @endif
                                 @endif
                             </td>
                         </tr>
