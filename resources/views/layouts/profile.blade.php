@@ -258,7 +258,7 @@
       </nav>
     <div class="content">
         <div class="content">
-          <div class="container-fluid">
+          <div id="principalPanel" class="container-fluid">
 				@yield('content')
 			</div>
 		</div>

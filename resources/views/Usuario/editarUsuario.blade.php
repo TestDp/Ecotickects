@@ -1,14 +1,22 @@
 @extends('layouts.profile')
 
 @section('content')
+	<div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Editar Usuario</h4>
+                </div>
     <form id="formUsuario">
         <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
         <input type="hidden" id="id" name="id" value="{{$usuario->id}}">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="panel panel-success">
-                    <div class="panel-heading"><h3>Editar Usuario</h3></div>
-                    <div class="panel-body">
+                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Nombre</label>
@@ -62,7 +70,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <button onclick="EditarUsuario()" type="button" class="btn btn-success">Editar Usuario</button>
+                                <button onclick="EditarUsuario()" type="button" class="btn btn-fill btn-rose">Editar Usuario</button>
                             </div>
                         </div>
 
@@ -72,6 +80,10 @@
             </div>
         </div>
     </form>
+	 </div>
+
+            </div>
+        </div>
 
     <link href="{{ asset('js/Plugins/fastselect-master/dist/fastselect.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>

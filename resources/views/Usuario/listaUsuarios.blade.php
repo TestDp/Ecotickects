@@ -1,7 +1,7 @@
 @extends('layouts.profile')
 
 @section('content')
-			    <div class="row">
+			<div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-rose card-header-icon">
@@ -9,8 +9,9 @@
                     <i class="material-icons">assignment</i>
                   </div>
                   <h4 class="card-title">Usuarios</h4>
+				  <button onclick="ajaxRenderSectionCrearUsuario()" type="button" class="btn btn-fill btn-rose">Nuevo Usuario</button>
                 </div>
-               <div class="card-body">
+				<div class="card-body">
                   <div class="table-responsive">
                     <table class="table table-shopping" id="tablaUsuarios">
                       <thead>
@@ -38,10 +39,8 @@
                             <a>{{$usuario->email}}</a>
                           </td>
                           <td class="td-actions text-right">
-							<button onclick="ajaxRenderSectionEditarUsuario({{$usuario->id}})" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar">
-                              <a href=""><i class="material-icons">edit</i></a>
-                            </button>
-							<button data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Cambiar contraseña">
+                            <a class="btn btn-rose" style="cursor:pointer;" type="button" onclick="ajaxRenderSectionEditarUsuario({{$usuario->id}})"><i class="material-icons">edit</i></a>
+                            <button data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Cambiar contraseña">
                               <a href=""><i class="material-icons">password</i></a>
                             </button>
 							<button onclick="ajaxRenderSectionCargarEventosXUsuario({{$usuario->id}})" data-toggle="modal" data-target="#modalPermisosEvento{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Asignar permisos">

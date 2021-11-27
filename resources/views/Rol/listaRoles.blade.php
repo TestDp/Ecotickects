@@ -36,8 +36,8 @@
                             <a>{{$roles->Descripcion}}</a>
                           </td>
                           <td class="td-actions text-right">
-								<a href="{{ url('editarRol')}}/{{$roles->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar rol">
-                                                <i class="material-icons">edit</i></a>
+								<a onclick="ajaxRenderSectionEditarRol({{$roles->id}})" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar rol">
+                                 <i class="material-icons">edit</i></a>
                                 </a>							
                           </td>
                         </tr>
