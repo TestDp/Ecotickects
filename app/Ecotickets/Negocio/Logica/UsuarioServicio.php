@@ -12,6 +12,8 @@ namespace Eco\Negocio\Logica;
 
 
 use Eco\Datos\Repositorio\UsuarioRepositorio;
+use Ecotickets\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioServicio
 {
@@ -47,5 +49,11 @@ class UsuarioServicio
         };
     }
 
+    public function guardarUsuario($request){
+        $user = new User($request->all());
+        $user->password = Hash::make($request->password);
+        $user->CorreoConfirmado = 1;
+        return $this->usuarioRepositorio->guardarUsuario($user,$request->Roles_id);
+    }
 
 }

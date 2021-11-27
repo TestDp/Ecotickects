@@ -80,6 +80,7 @@
 
     <link href="{{ asset('js/Plugins/fastselect-master/dist/fastselect.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>
+    <script src="{{ asset('js/MSistema/Usuario.js') }}"></script>
     <script src="{{ asset('js/jquery-3.1.1.js') }}"></script>
     <script src="{{ asset('js/Plugins/fastselect-master/dist/fastsearch.js') }}"></script>
     <script src="{{ asset('js/Plugins/fastselect-master/dist/fastselect.js') }}"></script>

@@ -72,17 +72,16 @@ class AsistenteRepositorio
 
     //Metodo que registra a una asistente  cuando el evento  tiene costo
     public function registrarAsistentePago($registroAsistente,$idusuario = null)
-    {
-        $asistente = $this->ObtenerAsistente($registroAsistente->Identificacion);
-        $infoPago = '';
-        $infoComprador ='';
-        if ($asistente) {
-            $asistente = $this->actualizarAsistente($registroAsistente->Identificacion, new Asistente($registroAsistente->all()));
-        } else {
-            $asistente = new Asistente($registroAsistente->all());
-        }
-        DB::beginTransaction();
+    {DB::beginTransaction();
         try {
+            $asistente = $this->ObtenerAsistente($registroAsistente->Identificacion);
+            $infoPago = '';
+            $infoComprador ='';
+            if ($asistente) {
+                $asistente = $this->actualizarAsistente($registroAsistente->Identificacion, new Asistente($registroAsistente->all()));
+            } else {
+                $asistente = new Asistente($registroAsistente->all());
+            }
             $asistente->save();
             for ($i = 0; $i < $registroAsistente->CantidadTickets; $i++) {
                 $asistenteXeventoo = new AsistenteXEvento($registroAsistente->all());
@@ -102,14 +101,14 @@ class AsistenteRepositorio
                 }
                 ////
                 $asistenteXeventoo->save();
-                if ($registroAsistente->Respuesta_id && $i == 0) {
+               /* if ($registroAsistente->Respuesta_id && $i == 0) {
                     foreach ($registroAsistente->Respuesta_id as $respuestasAsistente) {
                         $respuestasAsistenteXevento = new RespuestaAsistenteXEvento();
                         $respuestasAsistenteXevento->Respuesta_id = $respuestasAsistente;
                         $respuestasAsistenteXevento->AsistenteXEvento_id = $asistenteXeventoo->id;
                         $respuestasAsistenteXevento->save();
                     }
-                }
+                }*/
                 if ($i == 0) {
                     $infoPago = $this->crearInfoPago($registroAsistente);
                     $infoPago->AsistenteXEvento_id = $asistenteXeventoo->id;
@@ -121,6 +120,7 @@ class AsistenteRepositorio
                     }
                 }
             }
+
             DB::commit();
             $precioBoleta = PrecioBoleta::where('id','=',$infoPago->PrecioBoleta_id)->get()->first();
             $infoPago->nombreBoleta = $precioBoleta->localidad;

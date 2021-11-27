@@ -40,7 +40,7 @@ class UsuarioController extends  Controller
         $this->usuarioValidaciones = $usuarioValidaciones;
     }
 
-    //Metodo para cargar  la vista de crear un rol
+    //Metodo para crear un usuario emprsaa
     public function CrearUsuarioEmpresa(Request $request)
     {
         $roles = null;
@@ -162,37 +162,25 @@ class UsuarioController extends  Controller
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $this->usuarioValidaciones->ValidarFormularioCrear($request->all())->validate();
-        DB::beginTransaction();
-        try {
-            $user = new User($request->all());
-            $user->password = Hash::make($request->password);
-            $user->CorreoConfirmado = 1;
-            $user->save();
-            foreach ($request->Roles_id as $rolid){
-                $rolPorUsuario = new Rol_Por_Usuario();
-                $rolPorUsuario->Rol_id = $rolid;
-                $rolPorUsuario->user_id = $user->id;
-                $rolPorUsuario->save();
+        $respuesta = $this->usuarioServicio->guardarUsuario($request);
+        if($respuesta['respuesta'] == true){
+            $usuarios = null;
+            $idEmpreesa = Auth::user()->Sede->Empresa->id;
+            $idUsuario = Auth::user()->id;
+            if($request->user()->hasRole(env('IdRolSuperAdmin'))){
+                $usuarios = $this->usuarioServicio->ObtenerListaUsuariosSuperAdmin();
+            }else{
+                $usuarios = $this->usuarioServicio->ObtenerListaUsuariosEmpresa($idEmpreesa,$idUsuario);
             }
-            DB::commit();
-        } catch (\Exception $e) {
-            $error = $e->getMessage();
-            DB::rollback();
-            return ['respuesta' => false, 'error' => $error];
-        }
-        $usuarios = null;
-        $idEmpreesa = Auth::user()->Sede->Empresa->id;
-        $idUsuario = Auth::user()->id;
-        if($request->user()->hasRole(env('IdRolSuperAdmin'))){
-            $usuarios = $this->usuarioServicio->ObtenerListaUsuariosSuperAdmin();
+            $view = View::make('Usuario/listaUsuarios')->with('listUsuarios',$usuarios);
+            if($request->ajax()){
+                $sections = $view->renderSections();
+                return Response::json($sections['content']);
+            }else return view('Usuario/listaUsuarios');
         }else{
-            $usuarios = $this->usuarioServicio->ObtenerListaUsuariosEmpresa($idEmpreesa,$idUsuario);
+            return ['respuesta' => false, 'error' => $respuesta->error];
         }
-        $view = View::make('Usuario/listaUsuarios')->with('listUsuarios',$usuarios);
-        if($request->ajax()){
-            $sections = $view->renderSections();
-            return Response::json($sections['content']);
-        }else return view('Usuario/listaUsuarios');
+
     }
 
     //Metodo para obtener todos  los usuarios por empresa

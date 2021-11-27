@@ -109,7 +109,7 @@
                   </a>
                 </li>
 				@endif
-				@if(Auth::user()->buscarRecurso('FormularioUsuario'))
+				@if(Auth::user()->buscarRecurso('FormularioPromotor'))
                 <li class="nav-item ">
                   <a class="nav-link" href="{{ url('FormularioPromotor') }}">
                     <i class="material-icons">how_to_reg</i>
