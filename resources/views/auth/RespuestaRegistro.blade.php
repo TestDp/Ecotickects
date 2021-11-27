@@ -1,10 +1,9 @@
-@extends('layouts.eventos')
+@extends('layouts.app')
 
 @section('content')
-<section style="background:#ffffff; padding-top:40px !important;" class="section section-padded blue-bg">
-		<div class="container">
-			<div class="row">
-				<div style="width: 75%; text-align: center;" class="col-md-12 col-md-offset-2">
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <div class="col-md-9 col-lg-7 col-xl-5">
 							<img src="{{ asset('img/icono.png') }}">
 							        @if($respuesta == 'true')
             <h3 style="color:#000 !important;">Muchas gracias por registrarse, se ha enviado un correo electrónico para verificación de la cuenta </h3>
@@ -19,5 +18,4 @@
 				</div>
 			</div>
 		</div>
-	</section>
 @endsection

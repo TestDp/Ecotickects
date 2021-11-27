@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+    <div class="row justify-content-md-center">
+        <div class="col-md-9 col-lg-7 col-xl-5">
             <div class="panel panel-default">
                 <div class="panel-heading">Registrate en Ecotickets</div>
 
