@@ -79,6 +79,17 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  
+  h1, h2, h3 {font-family: 'SubjectivityExtraBold' !important;}
+@font-face {
+    font-family: 'SubjectivityExtraBold';
+    src: url('../../../css/fonts/SubjectivityExtraBold.eot');
+    src: url('../../../css/fonts/SubjectivityExtraBold.eot') format('embedded-opentype'),
+         url('../../../css/fonts/SubjectivityExtraBold.woff2') format('woff2'),
+         url('../../../css/fonts/SubjectivityExtraBold.woff') format('woff'),
+         url('../../../css/fonts/SubjectivityExtraBold.ttf') format('truetype'),
+         url('../../../css/fonts/SubjectivityExtraBold.svg#SubjectivityExtraBold') format('svg');
+}
 
 hr {
   margin: 1rem 0;

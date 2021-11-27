@@ -60,31 +60,31 @@
 							</div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="Nombres" class="bmd-label-floating">Nombres</label>
+                                    Nombres
                                     <input id="Nombres" name="Nombres" type="text" class="form-control" />
                                 </div>
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="Apellidos" class="bmd-label-floating">Apellidos</label>
+                                    Apellidos
                                     <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
                                 </div>
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="telefono" class="bmd-label-floating">Celular/teléfono</label>
+                                    Celular/teléfono
                                     <input id="telefono" name="telefono" type="text" class="form-control" />
                                 </div>
                             </div>
 							<div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="Email" class="bmd-label-floating">Email</label>
+                                    Email
                                     <input id="Email" name="Email" type="text" class="form-control" />
                                 </div>
                             </div>
 							<div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="confEmail" class="bmd-label-floating">Confirmar Email</label>
+                                    Confirmar Email
                                     <input id="confEmail" name="confEmail" type="text" class="form-control" />
                                 </div>
                             </div>
@@ -140,19 +140,19 @@
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label>Precio Ecotickets</label>
+                                    Precio Ecotickets
                                     <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
                                 </div>
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="CantidadTickets" class="bmd-label-floating">Cantidad De Ecotickets</label>
+                                    Cantidad De Ecotickets
                                     <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-control" onkeyup="calcularPrecioTotal()"  />
                                 </div>
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label>Precio Total</label>
+                                    Precio Total
                                     <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
                                 </div>
                             </div>

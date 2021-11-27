@@ -38,7 +38,7 @@
                             <a>{{$usuario->email}}</a>
                           </td>
                           <td class="td-actions text-right">
-							<button onclick="" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar">
+							<button onclick="ajaxRenderSectionEditarUsuario({{$usuario->id}})" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Editar">
                               <a href=""><i class="material-icons">edit</i></a>
                             </button>
 							<button data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Cambiar contraseña">

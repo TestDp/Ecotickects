@@ -44,8 +44,11 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-      <a class="navbar-brand m-0" href="{{ url('/') }}">
-        <img src="{{asset('assets/img/logo-eco.png')}}" class="navbar-brand-img h-100" alt="main_logo">
+      <a class="simple-text logo-mini" href="{{ url('/') }}">
+        <img src="{{asset('assets/img/icono-eco.png')}}" class="navbar-brand-img h-100" alt="main_logo">
+      </a>
+	  <a href="" class="simple-text logo-normal">
+          <h3>Ecotickets</h3>
       </a>
       </div>
       <div class="sidebar-wrapper">

@@ -41,37 +41,37 @@
                         <div id="formAsistente" style="margin:0px !important;" class="row">
                                 <div class="col-sm-6">
 								<div class="form-group">
-                                    <label for="Identificacion" class="bmd-label-floating">Identificación</label>
+                                    Identificación
                                     <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
                                 </div>
 								</div>
                                 <div class="col-sm-6">
 								<div class="form-group">
-                                    <label for="Nombres" class="bmd-label-floating">Nombre</label>
+                                    Nombre
                                     <input id="Nombres" name="Nombres" type="text" class="form-control" />
                                 </div>
 								</div>
                                 <div class="col-sm-6">
 								<div class="form-group">
-                                    <label for="Apellidos" class="bmd-label-floating">Apellidos</label>
+                                    Apellidos
                                     <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
                                 </div>
 								</div>
                                 <div class="col-sm-6">
 								<div class="form-group">
-                                    <label for="telefono" class="bmd-label-floating">Celular/teléfono</label>
+                                    Celular/teléfono
                                     <input id="telefono" name="telefono" type="text" class="form-control" />
                                 </div>
 								</div>
                                 <div class="col-sm-6">
 								<div class="form-group">
-                                    <label for="Email" class="bmd-label-floating">Email</label>
+                                    Email
                                     <input id="Email" name="Email" type="text" class="form-control" />
                                 </div>
 								</div>
                                 <div class="col-sm-6">
 								<div class="form-group">
-                                    <label for="confEmail" class="bmd-label-floating">Confirmar Email</label>
+                                    Confirmar Email
                                     <input id="confEmail" name="confEmail" type="text" class="form-control" />
                                 </div>
 								</div>   
@@ -83,7 +83,7 @@
 								</div>
                                 <div class="col-sm-6">
 								<div class="form-group">
-                                    <label for="Direccion" class="bmd-label-floating">Dirección</label>
+                                    Dirección
                                     <input id="Dirección" name="Dirección" type="text" class="form-control"  />
                                 </div>
 								</div>
