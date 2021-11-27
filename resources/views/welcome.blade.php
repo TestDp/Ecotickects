@@ -465,7 +465,7 @@
                   <div class="testimonial">
                     <div class="wow fadeIn">
                       <!-- Testimonial-->
-                      <p class="testimonial-text heading-4">Pes rusticus brabeuta est. Pol, talis lapsus! Contencio de fidelis palus, transferre brodium! Germanus, varius decors aliquando gratia de.</p>
+                      <p class="testimonial-text heading-4">Los Ecotickets tienen la capacidad de convertir una tarea ardua y compleja, en una simple acción, rapida, efectiva y confiable!👌👌 Para el caso de la organización que represente, era una tarea dispendiosa validar uno a uno los 260 integrantes de la organización, para validar si se tenia o no un quórum para tomar las decisiones, pero al momento de adquirir Ecotickets, esta tarea paso a hacer un solo click, y ya teniamos la validación de los asistentes, y no solo eso, tambien la facilidad de obtener reportes por un periodo de tiempo, historial por integrante, puntualidad, etc. La mejor decisión fue adquirir este maravilloso servicio</p>
                       <ul class="list-inline">
                         <li><span class="icon icon-sm icon-secondary fa-star"></span></li>
                         <li><span class="icon icon-sm icon-secondary fa-star"></span></li>
