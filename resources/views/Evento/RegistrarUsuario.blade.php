@@ -140,7 +140,7 @@
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="valorBoleta" class="bmd-label-floating">Precio Ecotickets</label>
+                                    <label>Precio Ecotickets</label>
                                     <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="CantidadTickets" class="bmd-label-floating">Precio Total</label>
+                                    <label>Precio Total</label>
                                     <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
                                 </div>
                             </div>

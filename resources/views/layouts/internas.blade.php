@@ -44,7 +44,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-      <a class="navbar-brand m-0" href="{{ url('/home') }}">
+      <a class="navbar-brand m-0" href="{{ url('/') }}">
         <img src="../assets/img/logo-eco.png" class="navbar-brand-img h-100" alt="main_logo">
       </a>
       </div>
