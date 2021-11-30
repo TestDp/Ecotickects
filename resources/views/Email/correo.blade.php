@@ -88,35 +88,35 @@
 				<!-- Header -->
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
 					<tr>
-						<td class="img" bgcolor="#B0D416" height="16" style="font-size:0pt; line-height:0pt; text-align:left;">&nbsp;</td>
+						<td class="img" bgcolor="#B0D416" height="16" style=" text-align:left;">&nbsp;</td>
 					</tr>
 					<tr>
 						<td align="center" >
 							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 								<tr>
-									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+									<td class="td" style="width:650px; min-width:650px;   font-weight:normal;">
 										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 											<tr>
 												<td class="p30-15" style="padding: 70px 40px 60px 40px;">
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<th class="column" width="198" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+															<th class="column" width="198" style="  font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="text-header m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:left;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
 																	</tr>
 																</table>
 															</th>
-															<th class="column-empty2" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-															<th class="column" width="173" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+															<th class="column-empty2" width="1" style="  font-weight:normal;"></th>
+															<th class="column" width="173" style="  font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
-																		<td class="img-center" style="font-size:0pt; line-height:0pt; text-align:center;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0" alt="" /></td>
+																		<td class="img-center" style=" text-align:center;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0" alt="" /></td>
 																	</tr>
 																</table>
 															</th>
-															<th class="column-empty2" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-															<th class="column" width="197" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+															<th class="column-empty2" width="1" style="  font-weight:normal;"></th>
+															<th class="column" width="197" style="  font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="text-header right m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:right;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
@@ -139,16 +139,16 @@
 				<!-- Hero Image -->
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" background="https://dpsoluciones.co/wp-content/uploads/2021/11/fondo.jpg">
 					<tr>
-						<td class="content-spacing" valign="top" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#1D2139" height="100" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
+						<td class="content-spacing" valign="top" style=" text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139" class="border" style=" text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#1D2139" height="100" class="border" style=" text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
 </td>
 						<td align="center" width="650" class="mobile-shell">
 							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 								<tr>
-									<td class="td holder fluid-img" style="width:650px; min-width:650px; padding:0; margin:0; font-weight:normal; font-size:0pt; line-height:0pt; text-align:left;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/correo-eco-1.jpg" border="0" width="650" height="366" alt="" /></td>
+									<td class="td holder fluid-img" style="width:650px; min-width:650px;  font-weight:normal;  text-align:left;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/correo-eco-1.jpg" border="0" width="650" height="366" alt="" /></td>
 								</tr>
 							</table>
 						</td>
-						<td class="content-spacing" valign="top" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#1D2139" height="100" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
+						<td class="content-spacing" valign="top" style=" text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139" class="border" style=" text-align:center; width:100%; min-width:100%;"><tr><td bgcolor="#1D2139" height="100" class="border" style=" text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
 </td>
 					</tr>
 				</table>
@@ -157,12 +157,12 @@
 				<!-- Section Social -->
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
 					<tr>
-						<td class="content-spacing" valign="top" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td background="https://dpsoluciones.co/wp-content/uploads/2021/11/fondo.jpg" height="205" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
+						<td class="content-spacing" valign="top" style=" text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="border" style=" text-align:center; width:100%; min-width:100%;"><tr><td background="https://dpsoluciones.co/wp-content/uploads/2021/11/fondo.jpg" height="205" class="border" style=" text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
 						</td>
 						<td align="center" width="650" class="mobile-shell">
 							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 								<tr>
-									<td class="td" style="border-bottom: 3px solid #1D2139; width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+									<td class="td" style="border-bottom: 3px solid #1D2139; width:650px; min-width:650px;   font-weight:normal;">
 										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 											<tr>
 												<td background="images/t1_bg2.jpg" bgcolor="#9fba31" valign="top" height="378" class="bg" style="background-repeat:no-repeat; -webkit-background-size:cover; background-size:cover;">
@@ -174,7 +174,7 @@
 													<div>
 														<table width="100%" border="0" cellspacing="0" cellpadding="0">
 															<tr>
-																<td class="content-spacing" width="40" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
+																<td class="content-spacing" width="40" style=" text-align:left;"></td>
 																<td>
 																	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																		<tr>
@@ -190,32 +190,32 @@
 																						<td align="center" style="padding-bottom:30px;">
 																							<table border="0" cellspacing="0" cellpadding="0">
 																								<tr>
-																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																									<th class="column-top" style="font-weight:normal; vertical-align:top;">
 																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																											<tr>
-																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
+																												<td class="img-center pb30" style=" text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
 																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{ $ElementosArray["evento"] ->Lugar_Evento }}</multiline></td>
 																											</tr>
 																										</table>
 																									</th>
-																									<th class="column-empty3" width="40" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																									<th class="column-empty3" width="40" style="  font-weight:normal;"></th>
+																									<th class="column-top" style="  font-weight:normal; vertical-align:top;">
 																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																											<tr>
-																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
+																												<td class="img-center pb30" style=" text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
 																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{ $ElementosArray["evento"] ->Fecha_Evento }}</span></multiline></td>
 																											</tr>
 																										</table>
 																									</th>
-																									<th class="column-empty3" width="40" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																									<th class="column-empty3" width="40" style="  font-weight:normal;"></th>
+																									<th class="column-top" style="  font-weight:normal; vertical-align:top;">
 																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																											<tr>
-																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
+																												<td class="img-center pb30" style=" text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
 																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }} CIUDAD</span></multiline></td>
@@ -240,7 +240,7 @@
 																		</tr>
 																	</table>
 																</td>
-																<td class="content-spacing" width="40" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
+																<td class="content-spacing" width="40" style=" text-align:left;"></td>
 															</tr>
 														</table>
 																								<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
@@ -269,7 +269,7 @@
 								</tr>
 							</table>
 						</td>
-						<td class="content-spacing" valign="top" style="font-size:0pt; line-height:0pt; text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;"><tr><td background="https://dpsoluciones.co/wp-content/uploads/2021/11/fondo.jpg" height="205" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
+						<td class="content-spacing" valign="top" style=" text-align:left;"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139" class="border" style=" text-align:center; width:100%; min-width:100%;"><tr><td background="https://dpsoluciones.co/wp-content/uploads/2021/11/fondo.jpg" height="205" class="border" style=" text-align:center; width:100%; min-width:100%;">&nbsp;</td></tr></table>
 </td>
 					</tr>
 				</table>
@@ -281,13 +281,13 @@
 						<td align="center" style="padding: 70px 30px;">
 							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 								<tr>
-									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+									<td class="td" style="width:650px; min-width:650px;   font-weight:normal;">
 										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 											<tr>
 												<td class="pb30" align="center" style="padding-bottom:30px;">
 													<table border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="https://ecotickets.co" target="_blank"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-blanco-ecotickets.png" width="200" height="70" border="0" alt="" /></a></td>
+															<td class="img" width="55" style=" text-align:left;"><a href="https://ecotickets.co" target="_blank"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-blanco-ecotickets.png" width="200" height="70" border="0" alt="" /></a></td>
 														</tr>
 													</table>
 												</td>

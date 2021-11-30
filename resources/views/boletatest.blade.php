@@ -92,29 +92,29 @@
 						<td align="center" >
 							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 								<tr>
-									<td class="td" style="width:650px; min-width:650px; padding:0; margin:0; font-weight:normal;">
+									<td class="td" style="width:650px; min-width:650px;  font-weight:normal;">
 										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 											<tr>
 												<td class="p30-15" style="padding: 20px 40px 20px 40px;">
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<th class="column" width="198" style="padding:0; margin:0; font-weight:normal;">
+															<th class="column" width="198" style=" font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="text-header m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:left;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
 																	</tr>
 																</table>
 															</th>
-															<th class="column-empty2" width="1" style="padding:0; margin:0; font-weight:normal;"></th>
-															<th class="column" width="173" style="padding:0; margin:0; font-weight:normal;">
+															<th class="column-empty2" width="1" style=" font-weight:normal;"></th>
+															<th class="column" width="173" style=" font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="img-center" style="text-align:center;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0" alt="" /></td>
 																	</tr>
 																</table>
 															</th>
-															<th class="column-empty2" width="1" style="padding:0; margin:0; font-weight:normal;"></th>
-															<th class="column" width="197" style="padding:0; margin:0; font-weight:normal;">
+															<th class="column-empty2" width="1" style=" font-weight:normal;"></th>
+															<th class="column" width="197" style=" font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="text-header right m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:right;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
@@ -140,7 +140,7 @@
 							<td align="center" width="650" class="mobile-shell">
 								<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 									<tr>
-										<td class="td" style="border-bottom: 3px solid #1D2139; width:650px; min-width:650px;padding:0; margin:0; font-weight:normal;">
+										<td class="td" style="border-bottom: 3px solid #1D2139; width:650px; min-width:650px; font-weight:normal;">
 											<table width="100%" border="0" cellspacing="0" cellpadding="0">
 												<tr>
 													<td background="images/t1_bg2.jpg" bgcolor="#9fba31" valign="top" height="378" class="bg" style="background-repeat:no-repeat; -webkit-background-size:cover; background-size:cover;">
@@ -174,7 +174,7 @@
 																							<td align="center" style="padding-bottom:30px;">
 																								<table border="0" cellspacing="0" cellpadding="0">
 																									<tr>
-																										<th class="column-top" style="padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																										<th class="column-top" style=" font-weight:normal; vertical-align:top;">
 																											<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																												<tr>
 																													<td class="img-center pb30" style="text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
@@ -184,8 +184,8 @@
 																												</tr>
 																											</table>
 																										</th>
-																										<th class="column-empty3" width="40" style="padding:0; margin:0; font-weight:normal;"></th>
-																										<th class="column-top" style="padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																										<th class="column-empty3" width="40" style=" font-weight:normal;"></th>
+																										<th class="column-top" style=" font-weight:normal; vertical-align:top;">
 																											<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																												<tr>
 																													<td class="img-center pb30" style="text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
@@ -195,8 +195,8 @@
 																												</tr>
 																											</table>
 																										</th>
-																										<th class="column-empty3" width="40" style="padding:0; margin:0; font-weight:normal;"></th>
-																										<th class="column-top" style=" padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																										<th class="column-empty3" width="40" style=" font-weight:normal;"></th>
+																										<th class="column-top" style="  font-weight:normal; vertical-align:top;">
 																											<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																												<tr>
 																													<td class="img-center pb30" style="text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
@@ -267,7 +267,7 @@
 							<td align="center" style="padding: 70px 30px;">
 								<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 									<tr>
-										<td class="td" style="width:650px; min-width:650px;  padding:0; margin:0; font-weight:normal;">
+										<td class="td" style="width:650px; min-width:650px;   font-weight:normal;">
 											<table width="100%" border="0" cellspacing="0" cellpadding="0">
 												<tr>
 													<td class="text-footer pb10" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:10px;"><multiline>INFORMACIÓN IMPORTANTE</multiline></td>
