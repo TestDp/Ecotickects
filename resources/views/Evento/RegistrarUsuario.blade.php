@@ -114,7 +114,7 @@
 							<div class="col-sm-6">
 							Ciudad Persona
                                 <div class="form-group">
-                                    
+
                                     <select id="Ciudad_id" name="Ciudad_id" class="form-control">
 
                                     </select>
@@ -122,7 +122,7 @@
                             </div>
 							<div class="col-sm-6">
 							Evento al cual desea registrar el usuario
-                                <div class="form-group">                               
+                                <div class="form-group">
                                     <select title="Seleccionar" id="Evento_id" name="Evento_id" class="selectpicker" data-style="select-with-transition" onchange="CargarLocalidadesEvento()">
                                         @foreach($ElementosArray["eventos"] as $evento)
                                             <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento}}</option>
@@ -163,7 +163,7 @@
                             </div>
                     </div>
 					</form>
-                </div>				
+                </div>
 
               </div>
                 </div>

@@ -17,7 +17,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="x-apple-disable-message-reformatting" />
     <!--[if !mso]><!-->
-	
+
     <!--<![endif]-->
 	<title>Aquí está tu Ecoticket</title>
 	<!--[if gte mso 9]>
@@ -85,38 +85,36 @@
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#fff">
 		<tr>
 			<td align="center" valign="top">
-				<!-- Header -->
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
 					<tr>
-						<td class="img" bgcolor="#B0D416" height="16" style="font-size:0pt; line-height:0pt; text-align:left;">&nbsp;</td>
-					</tr>
+						<td class="img" bgcolor="#B0D416" height="16" >&nbsp;</td>
 					<tr>
 						<td align="center" >
 							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
 								<tr>
-									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+									<td class="td" style="width:650px; min-width:650px; padding:0; margin:0; font-weight:normal;">
 										<table width="100%" border="0" cellspacing="0" cellpadding="0">
 											<tr>
 												<td class="p30-15" style="padding: 20px 40px 20px 40px;">
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<th class="column" width="198" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+															<th class="column" width="198" style="padding:0; margin:0; font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="text-header m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:left;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
 																	</tr>
 																</table>
 															</th>
-															<th class="column-empty2" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-															<th class="column" width="173" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+															<th class="column-empty2" width="1" style="padding:0; margin:0; font-weight:normal;"></th>
+															<th class="column" width="173" style="padding:0; margin:0; font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
-																		<td class="img-center" style="font-size:0pt; line-height:0pt; text-align:center;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0" alt="" /></td>
+																		<td class="img-center" style="text-align:center;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0" alt="" /></td>
 																	</tr>
 																</table>
 															</th>
-															<th class="column-empty2" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-															<th class="column" width="197" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+															<th class="column-empty2" width="1" style="padding:0; margin:0; font-weight:normal;"></th>
+															<th class="column" width="197" style="padding:0; margin:0; font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
 																		<td class="text-header right m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:right;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
@@ -133,167 +131,171 @@
 							</table>
 						</td>
 					</tr>
-				</table>
-				<!-- END Header -->
 
-				<!-- Section Social -->
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
-					<tr>
-						<td align="center" width="650" class="mobile-shell">
-							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
-								<tr>
-									<td class="td" style="border-bottom: 3px solid #1D2139; width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td background="images/t1_bg2.jpg" bgcolor="#9fba31" valign="top" height="378" class="bg" style="background-repeat:no-repeat; -webkit-background-size:cover; background-size:cover;">
-													<!--[if gte mso 9]>
-													<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:650px; height: 378px">
-														<v:fill type="frame" src="images/t1_bg2.jpg" color="#9fba31" />
-														<v:textbox inset="0,0,0,0">
-													<![endif]-->
-													<div>
-														<table width="100%" border="0" cellspacing="0" cellpadding="0">
-															<tr>
-																<td class="content-spacing" width="40" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
-																<td>
-																	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-																		<td style="padding: 30px 0px;" class="p30-0">
-																				<table width="100%" border="0" cellspacing="0" cellpadding="0">
-																					<tr>
-																						<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline>AQUÍ ESTÁ TU ECOTICKET PARA</multiline></td>
-																					</tr>
-																					<tr>
-																						<td class="h2 white pb15" style="font-family:Arial,sans-serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:10px;"><multiline>{{ $ElementosArray["evento"] ->Nombre_Evento }}</multiline></td>
-																					</tr>
-																					<tr>
-																						<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline><b>Localidad:</b> {{ $ElementosArray["localidad"] ->localidad }}</multiline></td>
-																					</tr>
-																					<tr>
-																						<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:25px;"><multiline><b>Precio:</b> {{ $ElementosArray["localidad"] ->precio }}</multiline></td>
-																					</tr>
-																					<tr>
-																						<td align="center" style="padding-bottom:30px;">
-																							<table border="0" cellspacing="0" cellpadding="0">
-																								<tr>
-																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
-																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-																											<tr>
-																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
-																											</tr>
-																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{ $ElementosArray["evento"] ->Lugar_Evento }}</multiline></td>
-																											</tr>
-																										</table>
-																									</th>
-																									<th class="column-empty3" width="40" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
-																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-																											<tr>
-																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
-																											</tr>
-																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{ $ElementosArray["evento"] ->Fecha_Evento }}</span></multiline></td>
-																											</tr>
-																										</table>
-																									</th>
-																									<th class="column-empty3" width="40" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
-																									<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
-																										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-																											<tr>
-																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
-																											</tr>
-																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</span></multiline></td>
-																											</tr>
-																										</table>
-																									</th>
-																								</tr>
-																							</table>
-																						</td>
-																					</tr>
-																								<tr>
-																									<td align="center">
-																										<table border="0" cellspacing="0" cellpadding="0">
-																											<tr>
-																												<td>
-																													<div>	
-																													  <input type="hidden" id="nombreEvento" value="{{$ElementosArray['evento'] ->Nombre_Evento}}">
-																														<img src="data:image/png;base64,{!! $ElementosArray['qr']!!}">
-																													</div>
-																												</td>
-																											</tr>
-																										</table>
-																									</td>
-																								</tr>
-																				</table>
-																			</td>
-								</tr>
-																	</table>
-																</td>
-																<td class="content-spacing" width="40" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
-															</tr>
-														</table>
-																								<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
-											<tr>
-												<td class="p30-15" style="padding: 20px 20px;">
-													<table width="100%" border="0" cellspacing="0" cellpadding="0">
-														<tr>
-															<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>Presenta tu SmartPhone con el CÓDIGO QR adjunto en la entrada del evento para habilitar tu acceso.</multiline></td>
-														</tr>
-														<tr>
-															<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>*No es necesario imprimirlo presenta tu SmartPhone cuídemos el medio ambiente.</multiline></td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</table>
-													</div>
-													<!--[if gte mso 9]>
+					<!-- END Header -->
+
+					<!-- Section Social -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
+						<tr>
+							<td align="center" width="650" class="mobile-shell">
+								<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+									<tr>
+										<td class="td" style="border-bottom: 3px solid #1D2139; width:650px; min-width:650px;padding:0; margin:0; font-weight:normal;">
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td background="images/t1_bg2.jpg" bgcolor="#9fba31" valign="top" height="378" class="bg" style="background-repeat:no-repeat; -webkit-background-size:cover; background-size:cover;">
+														<!--[if gte mso 9]>
+														<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:650px; height: 378px">
+															<v:fill type="frame" src="images/t1_bg2.jpg" color="#9fba31" />
+															<v:textbox inset="0,0,0,0">
+														<![endif]-->
+														<div>
+															<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td class="content-spacing" width="40" ></td>
+																	<td>
+																		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td style="padding: 30px 0px;" class="p30-0">
+																					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																						<tr>
+																							<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline>AQUÍ ESTÁ TU ECOTICKET PARA</multiline></td>
+																						</tr>
+																						<tr>
+																							<td class="h2 white pb15" style="font-family:Arial,sans-serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:10px;"><multiline>{{ $ElementosArray["evento"] ->Nombre_Evento }}</multiline></td>
+																						</tr>
+																						<tr>
+																							<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline><b>Localidad:</b> {{ $ElementosArray["localidad"] ->localidad }}</multiline></td>
+																						</tr>
+																						<tr>
+																							<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:25px;"><multiline><b>Precio:</b> {{ $ElementosArray["localidad"] ->precio }}</multiline></td>
+																						</tr>
+																						<tr>
+																							<td align="center" style="padding-bottom:30px;">
+																								<table border="0" cellspacing="0" cellpadding="0">
+																									<tr>
+																										<th class="column-top" style="padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																												<tr>
+																													<td class="img-center pb30" style="text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
+																												</tr>
+																												<tr>
+																													<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{ $ElementosArray["evento"] ->Lugar_Evento }}</multiline></td>
+																												</tr>
+																											</table>
+																										</th>
+																										<th class="column-empty3" width="40" style="padding:0; margin:0; font-weight:normal;"></th>
+																										<th class="column-top" style="padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																												<tr>
+																													<td class="img-center pb30" style="text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
+																												</tr>
+																												<tr>
+																													<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{ $ElementosArray["evento"] ->Fecha_Evento }}</span></multiline></td>
+																												</tr>
+																											</table>
+																										</th>
+																										<th class="column-empty3" width="40" style="padding:0; margin:0; font-weight:normal;"></th>
+																										<th class="column-top" style=" padding:0; margin:0; font-weight:normal; vertical-align:top;">
+																											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																												<tr>
+																													<td class="img-center pb30" style="text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
+																												</tr>
+																												<tr>
+																													<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</span></multiline></td>
+																												</tr>
+																											</table>
+																										</th>
+																									</tr>
+																								</table>
+																							</td>
+																						</tr>
+																						<tr>
+																							<td align="center">
+																								<table border="0" cellspacing="0" cellpadding="0">
+																									<tr>
+																										<td>
+																											<div>
+																												<input type="hidden" id="nombreEvento" value="{{$ElementosArray['evento'] ->Nombre_Evento}}">
+																												<img src="data:image/png;base64,{!! $ElementosArray['qr']!!}">
+																											</div>
+																										</td>
+																									</tr>
+																								</table>
+																							</td>
+																						</tr>
+																					</table>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																	<td class="content-spacing" width="40"></td>
+																</tr>
+															</table>
+															<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+																<tr>
+																	<td class="p30-15" style="padding: 20px 20px;">
+																		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>Presenta tu SmartPhone con el CÓDIGO QR adjunto en la entrada del evento para habilitar tu acceso.</multiline></td>
+																			</tr>
+																			<tr>
+																				<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>*No es necesario imprimirlo presenta tu SmartPhone cuídemos el medio ambiente.</multiline></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</div>
+														<!--[if gte mso 9]>
 														</v:textbox>
 														</v:rect>
-													<![endif]-->
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-				<!-- END Section Social -->
+														<![endif]-->
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					<!-- END Section Social -->
 
-				<!-- Footer -->
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
-					<tr>
-						<td align="center" style="padding: 70px 30px;">
-							<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
-								<tr>
-									<td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td class="text-footer pb10" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:10px;"><multiline>INFORMACIÓN IMPORTANTE</multiline></td>
-											</tr>
-											<tr>
-												<td class="text-footer2 pb30" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center; padding-bottom:30px;"><multiline>Para tener en cuenta:
-El código QR es único, la primera persona que presente el Ecoticket podrá ingresar, los demás no podrán hacerlo.
-El Ecoticket debe estar completo y legible.
-Al ingresar al evento debe presentar: Su Ecoticket y cédula original.
-Cualquier intento de fraude podrá ser reportado con las autoridades competentes y prohibirse su ingreso al evento.
-No publique su Ecoticket, ni le tome fotos, puede ser víctima de falsificaciones.</multiline></td>
-											</tr>
-											<tr>
-												<td class="text-footer3" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;"><multiline><a href="https://ecotickets.co" target="_blank" class="link5-u" style="color:#ffffff; text-decoration:underline;"><span class="link5-u" style="color:#ffffff; text-decoration:underline;">#EstamosCuidandoElPlaneta</span></a></multiline></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</td>
+					<!-- Footer -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#1D2139">
+						<tr>
+							<td align="center" style="padding: 70px 30px;">
+								<table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+									<tr>
+										<td class="td" style="width:650px; min-width:650px;  padding:0; margin:0; font-weight:normal;">
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td class="text-footer pb10" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:10px;"><multiline>INFORMACIÓN IMPORTANTE</multiline></td>
+												</tr>
+												<tr>
+													<td class="text-footer2 pb30" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center; padding-bottom:30px;"><multiline>Para tener en cuenta:
+															El código QR es único, la primera persona que presente el Ecoticket podrá ingresar, los demás no podrán hacerlo.
+															El Ecoticket debe estar completo y legible.
+															Al ingresar al evento debe presentar: Su Ecoticket y cédula original.
+															Cualquier intento de fraude podrá ser reportado con las autoridades competentes y prohibirse su ingreso al evento.
+															No publique su Ecoticket, ni le tome fotos, puede ser víctima de falsificaciones.</multiline></td>
+												</tr>
+												<tr>
+													<td class="text-footer3" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;"><multiline><a href="https://ecotickets.co" target="_blank" class="link5-u" style="color:#ffffff; text-decoration:underline;"><span class="link5-u" style="color:#ffffff; text-decoration:underline;">#EstamosCuidandoElPlaneta</span></a></multiline></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					<!-- END Footer -->
+
+
 					</tr>
 				</table>
-				<!-- END Footer -->
 			</td>
 		</tr>
 	</table>
