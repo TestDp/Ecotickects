@@ -20,7 +20,8 @@
                           <th class="th-description">Identificación</th>
                           <th class="th-description">Nombre y apellido</th>
                           <th class="th-description">Celular y correo</th>
-						  <th class="th-description">Localidad y ciudad</th>
+						  <th class="th-description">Localidad</th>
+						  <th class="th-description">Ciudad</th>
                           <th class="th-description">Usuario vendedor</th>
 						  <th class="th-description">Cantidad boletas</th>
 						  <th class="th-description">Total compra</th>
@@ -44,8 +45,9 @@
                             <small>{{$asistente->Email}}</small>
                           </td>
 						  <td class="td-name">
-                            <a > <!--{{$asistente->Localidad}}--></a>
-                            <br />
+                            <a > {{$asistente->Localidad}}</a>
+                          </td>
+						  <td class="td-name">
                             <small>{{$asistente->Nombre_Ciudad}}</small>
                           </td>
                           <td class="td-name">

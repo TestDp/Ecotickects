@@ -90,7 +90,7 @@
                                 <div class="col-sm-4">
                                     Departamento persona
 									<div class="form-group">
-                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="selectpicker" data-style="select-with-transition">
+                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
                                             <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>

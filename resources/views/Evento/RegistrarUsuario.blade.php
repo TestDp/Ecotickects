@@ -103,7 +103,7 @@
 							<div class="col-sm-6">
 							Departamento persona
                                 <div class="form-group">
-                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="selectpicker" data-style="select-with-transition">
+                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
                                             <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
@@ -114,15 +114,20 @@
 							<div class="col-sm-6">
 							Ciudad Persona
                                 <div class="form-group">
-
+                                    
                                     <select id="Ciudad_id" name="Ciudad_id" class="form-control">
 
                                     </select>
                                 </div>
                             </div>
+							<div style="margin:20px;" class="col-sm-12">
+                                <div class="form-group">
+									
+                                </div>
+                            </div>
 							<div class="col-sm-6">
 							Evento al cual desea registrar el usuario
-                                <div class="form-group">
+                                <div class="form-group">                               
                                     <select title="Seleccionar" id="Evento_id" name="Evento_id" class="selectpicker" data-style="select-with-transition" onchange="CargarLocalidadesEvento()">
                                         @foreach($ElementosArray["eventos"] as $evento)
                                             <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento}}</option>
@@ -133,7 +138,7 @@
 							<div class="col-sm-6">
 							 Localidad
                                 <div class="form-group">
-                                    <select data-style="select-with-transition" title="Seleccionar" id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="selectpicker">
+                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
                                         <option value="">Seleccionar</option>
                                     </select>
                                 </div>
@@ -163,7 +168,7 @@
                             </div>
                     </div>
 					</form>
-                </div>
+                </div>				
 
               </div>
                 </div>
