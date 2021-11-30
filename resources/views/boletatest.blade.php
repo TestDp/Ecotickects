@@ -17,7 +17,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="x-apple-disable-message-reformatting" />
     <!--[if !mso]><!-->
-	<link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i" rel="stylesheet" />
+	
     <!--<![endif]-->
 	<title>Aquí está tu Ecoticket</title>
 	<!--[if gte mso 9]>
@@ -103,7 +103,7 @@
 															<th class="column" width="198" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
-																		<td class="text-header m-center" style="color:#9f8e87; font-family:'Noto Serif', Georgia, serif; font-size:12px; line-height:16px; text-align:left;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
+																		<td class="text-header m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:left;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
 																	</tr>
 																</table>
 															</th>
@@ -119,7 +119,7 @@
 															<th class="column" width="197" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
 																<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
-																		<td class="text-header right m-center" style="color:#9f8e87; font-family:'Noto Serif', Georgia, serif; font-size:12px; line-height:16px; text-align:right;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
+																		<td class="text-header right m-center" style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:right;"><multiline><a href="#" target="_blank" class="link2" style="color:#9f8e87; text-decoration:none;"><span class="link2" style="color:#9f8e87; text-decoration:none;"></span></a></multiline></td>
 																	</tr>
 																</table>
 															</th>
@@ -161,16 +161,16 @@
 																		<td style="padding: 30px 0px;" class="p30-0">
 																				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																					<tr>
-																						<td class="h5 white pb40" style="font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline>AQUÍ ESTÁ TU ECOTICKET PARA</multiline></td>
+																						<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline>AQUÍ ESTÁ TU ECOTICKET PARA</multiline></td>
 																					</tr>
 																					<tr>
-																						<td class="h2 white pb15" style="font-family:'Noto Serif', Georgia, serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:10px;"><multiline>{{--{{ $ElementosArray["evento"] ->Nombre_Evento }}--}} NOMBRE DEL EVENTO</multiline></td>
+																						<td class="h2 white pb15" style="font-family:Arial,sans-serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:10px;"><multiline>{{ $ElementosArray["evento"] ->Nombre_Evento }}</multiline></td>
 																					</tr>
 																					<tr>
-																						<td class="h5 white pb40" style="font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline><b>Localidad:</b> {{--{{ $ElementosArray["localidad"] ->localidad }}--}}</multiline></td>
+																						<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline><b>Localidad:</b> {{ $ElementosArray["localidad"] ->localidad }}</multiline></td>
 																					</tr>
 																					<tr>
-																						<td class="h5 white pb40" style="font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:25px;"><multiline><b>Precio:</b> {{--{{ $ElementosArray["localidad"] ->precio }}--}}</multiline></td>
+																						<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:25px;"><multiline><b>Precio:</b> {{ $ElementosArray["localidad"] ->precio }}</multiline></td>
 																					</tr>
 																					<tr>
 																						<td align="center" style="padding-bottom:30px;">
@@ -182,7 +182,7 @@
 																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{--{{ $ElementosArray["evento"] ->Lugar_Evento }}--}}LUGAR</multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{ $ElementosArray["evento"] ->Lugar_Evento }}</multiline></td>
 																											</tr>
 																										</table>
 																									</th>
@@ -193,7 +193,7 @@
 																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{--{{ $ElementosArray["evento"] ->Fecha_Evento }}--}} FECHA</span></a></multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{ $ElementosArray["evento"] ->Fecha_Evento }}</span></a></multiline></td>
 																											</tr>
 																										</table>
 																									</th>
@@ -204,7 +204,7 @@
 																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{--{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}--}} CIUDAD</span></multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</span></multiline></td>
 																											</tr>
 																										</table>
 																									</th>
@@ -216,7 +216,12 @@
 																									<td align="center">
 																										<table border="0" cellspacing="0" cellpadding="0">
 																											<tr>
-																												<td><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/qr.png" width="300" height="300" border="0" alt="" /></td>
+																												<td>
+																													<div>	
+																													  <input type="hidden" id="nombreEvento" value="{{$ElementosArray['evento'] ->Nombre_Evento}}">
+																														<img src="data:image/png;base64,{!! $ElementosArray['qr']!!}">
+																													</div>
+																												</td>
 																											</tr>
 																										</table>
 																									</td>
@@ -234,10 +239,10 @@
 												<td class="p30-15" style="padding: 20px 20px;">
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
-															<td class="text center pb30" style="color:#1D2139; font-family:'Noto Serif', Georgia, serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>Presenta tu SmartPhone con el CÓDIGO QR adjunto en la entrada del evento para habilitar tu acceso.</multiline></td>
+															<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>Presenta tu SmartPhone con el CÓDIGO QR adjunto en la entrada del evento para habilitar tu acceso.</multiline></td>
 														</tr>
 														<tr>
-															<td class="text center pb30" style="color:#1D2139; font-family:'Noto Serif', Georgia, serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>*No es necesario imprimirlo presenta tu SmartPhone cuídemos el medio ambiente.</multiline></td>
+															<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;"><multiline>*No es necesario imprimirlo presenta tu SmartPhone cuídemos el medio ambiente.</multiline></td>
 														</tr>
 													</table>
 												</td>
