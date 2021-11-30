@@ -184,7 +184,7 @@
 																						<td class="h5 white pb40" style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;"><multiline>AQUÍ ESTÁ TU ECOTICKET PARA</multiline></td>
 																					</tr>
 																					<tr>
-																						<td class="h2 white pb15" style="font-family:Arial,sans-serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:40px;"><multiline>{{--{{ $ElementosArray["evento"] ->Nombre_Evento }}--}} NOMBRE DEL EVENTO</multiline></td>
+																						<td class="h2 white pb15" style="font-family:Arial,sans-serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:40px;"><multiline>{{ $ElementosArray["evento"] ->Nombre_Evento }}</multiline></td>
 																					</tr>
 																					<tr>
 																						<td align="center" style="padding-bottom:30px;">
@@ -196,7 +196,7 @@
 																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{--{{ $ElementosArray["evento"] ->Lugar_Evento }}--}}LUGAR</multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline>Lugar del evento <br />{{ $ElementosArray["evento"] ->Lugar_Evento }}</multiline></td>
 																											</tr>
 																										</table>
 																									</th>
@@ -207,7 +207,7 @@
 																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{--{{ $ElementosArray["evento"] ->Fecha_Evento }}--}} FECHA</span></a></multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{ $ElementosArray["evento"] ->Fecha_Evento }}</span></multiline></td>
 																											</tr>
 																										</table>
 																									</th>
@@ -218,7 +218,7 @@
 																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{--{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}--}} CIUDAD</span></multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }} CIUDAD</span></multiline></td>
 																											</tr>
 																										</table>
 																									</th>
@@ -296,7 +296,7 @@
 												<td class="text-footer pb10" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:10px;"><multiline>INFORMACIÓN IMPORTANTE</multiline></td>
 											</tr>
 											<tr>
-												<td class="text-footer2 pb30" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center; padding-bottom:30px;"><multiline>{{--{!!$ElementosArray["evento"] ->informacionEvento!!}--}} AQUÍ VA LA INFO ADICIONAL</multiline></td>
+												<td class="text-footer2 pb30" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center; padding-bottom:30px;"><multiline>{!!$ElementosArray["evento"] ->informacionEvento!!}</multiline></td>
 											</tr>
 											<tr>
 												<td class="text-footer3" style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;"><multiline><a href="https://ecotickets.co" target="_blank" class="link5-u" style="color:#ffffff; text-decoration:underline;"><span class="link5-u" style="color:#ffffff; text-decoration:underline;">#EstamosCuidandoElPlaneta</span></a></multiline></td>

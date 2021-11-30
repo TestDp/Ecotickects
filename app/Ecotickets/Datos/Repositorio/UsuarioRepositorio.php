@@ -40,6 +40,23 @@ class UsuarioRepositorio
         return User::where('id', '=', $idUsuario)->get()->first();
     }
 
+    //retorna el verdadero y el id del usuario si el usuario existe
+    public function ExisteUsuario($userName = null,$correoUsuario=null){
+        if(isset($userName)){
+            $usuario = User::where('username', '=', $userName)->get()->first();
+           if(isset($usuario)){
+               return ['respuesta' =>true,'idUsuario'=>$usuario->id];
+            }
+        }
+        if(isset($correoUsuario)){
+            $usuario = User::where('email', '=', $correoUsuario)->get()->first();
+            if(isset($usuario)){
+                return ['respuesta' =>true,'idUsuario'=>$usuario->id];
+            }
+        }
+        return false;
+    }
+
     //activa o desactiva permisos  del usuario por evento
     public function ActivarPermisoXEvento($idEvento,$idUsuario){
         DB::beginTransaction();
@@ -55,6 +72,16 @@ class UsuarioRepositorio
             return  false;
         }
         return true;
+    }
+
+    public function tienePermisosXEvento($idEvento,$idUsuario){
+      $consultaPermiso = PermisosUsuarioXEvento::where('user_id','=',$idUsuario)
+                                ->where('Evento_id','=',$idEvento)->get()->first();
+      if(isset($consultaPermiso)){
+          return true;
+      }else{
+          return false;
+      }
     }
 
     public function DesacivarPermisoXEvento($idEvento,$idUsuario){
@@ -88,12 +115,25 @@ class UsuarioRepositorio
                 $rolPorUsuario->save();
             }
             DB::commit();
-            return ['respuesta' => true];
+            return ['respuesta' => true,'idUsuario'=> $usuarioObj->id];
         } catch (\Exception $e) {
             $error = $e->getMessage();
             DB::rollback();
             return ['respuesta' => false, 'error' => $error];
         }
 
+    }
+
+    // se crear un intancia del modelo usuario a partir de una intancia del modelo asistente
+    public function crearModelUsuario($modelAsisten){
+        $user = new User();
+        $user->name = $modelAsisten->Nombres;
+        $user->last_name = $modelAsisten->Apellidos;
+        $user->username = explode('@',$modelAsisten->email)[0];
+        $user->email = $modelAsisten->email;
+        $user->password = Hash::make($modelAsisten->Identificacion);
+        $user->Sede_id = env('SEDEPRINCIPALECO');
+        $user->CorreoConfirmado = 1;
+        return $user;
     }
 }

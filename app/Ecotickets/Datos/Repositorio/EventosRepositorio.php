@@ -15,7 +15,6 @@ use Eco\Datos\Modelos\Departamento;
 use Eco\Datos\Modelos\Evento;
 use Eco\Datos\Modelos\PermisosUsuarioXEvento;
 use Eco\Datos\Modelos\Pregunta;
-use Eco\Datos\Modelos\PromotoresXSede;
 use Eco\Datos\Modelos\Respuesta;
 use Eco\Datos\Modelos\PrecioBoleta;
 use Eco\Datos\Modelos\Sede;

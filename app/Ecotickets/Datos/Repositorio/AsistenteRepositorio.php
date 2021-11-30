@@ -21,10 +21,18 @@ use Eco\Datos\Modelos\UsuarioXAsistenteEvento;
 use Illuminate\Support\Facades\DB;
 use Eco\Datos\DTO\LecturaQRDTO;
 use Ecotickets\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class AsistenteRepositorio
 {
+    protected  $usuarioRepositorio;
+
+    public function __construct(UsuarioRepositorio $usuarioRepositorio)
+    {
+        $this->usuarioRepositorio = $usuarioRepositorio;
+    }
+
     //Metodo que registra a una asistente  cuando el evento no tiene costo
     public function registrarAsistente($registroAsistente, $invitacion)
     {
@@ -101,14 +109,6 @@ class AsistenteRepositorio
                 }
                 ////
                 $asistenteXeventoo->save();
-               /* if ($registroAsistente->Respuesta_id && $i == 0) {
-                    foreach ($registroAsistente->Respuesta_id as $respuestasAsistente) {
-                        $respuestasAsistenteXevento = new RespuestaAsistenteXEvento();
-                        $respuestasAsistenteXevento->Respuesta_id = $respuestasAsistente;
-                        $respuestasAsistenteXevento->AsistenteXEvento_id = $asistenteXeventoo->id;
-                        $respuestasAsistenteXevento->save();
-                    }
-                }*/
                 if ($i == 0) {
                     $infoPago = $this->crearInfoPago($registroAsistente);
                     $infoPago->AsistenteXEvento_id = $asistenteXeventoo->id;
@@ -117,6 +117,17 @@ class AsistenteRepositorio
                     $infoComprador = $asistenteXeventoo->id;
                     if(isset($idusuario)){
                         $this->crearUsuarioXEventoUsuario($idusuario,$asistenteXeventoo->id);
+                    }
+                    //se le crea un usuario al comprardor cuando se registra en un evento
+                    $respuestaUsuario = $this->usuarioRepositorio->ExisteUsuario(null,$asistente->Email);
+                    if($respuestaUsuario['respuesta'] == true){
+                        if($this->usuarioRepositorio->tienePermisosXEvento($asistenteXeventoo->Evento_id,$respuestaUsuario['idUsuario']) == false){
+                            $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaUsuario['idUsuario']);
+                        }
+                    }else{
+                        $user = $this->usuarioRepositorio->crearModelUsuario($asistente);
+                        $respuestaGuardarUsuario = $this->usuarioRepositorio->guardarUsuario($user,[env('IdRolUsuarioComprador')]);
+                        $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaGuardarUsuario['idUsuario']);
                     }
                 }
             }

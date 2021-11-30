@@ -25,17 +25,17 @@
 		sup { font-size: 100% !important; }
 	</style>
 	<![endif]-->
-	
+
 
 	<style type="text/css" media="screen">
 		/* Linked Styles */
 		body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#ffffff; -webkit-text-size-adjust:none }
 		a { color:#55311f; text-decoration:none }
-		p { padding:0 !important; margin:0 !important } 
+		p { padding:0 !important; margin:0 !important }
 		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
 		.mcnPreviewText { display: none !important; }
 
-				
+
 		/* Mobile styles */
 		@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
 			.mobile-shell { width: 100% !important; min-width: 100% !important; }
@@ -47,7 +47,7 @@
 			.text-nav { font-size: 10px !important; }
 
 			.center { margin: 0 auto !important; }
-			
+
 			.td { width: 100% !important; min-width: 100% !important; }
 
 			.m-br-15 { height: 15px !important; }
@@ -61,7 +61,7 @@
 			.p30-0 { padding: 30px 0px !important; }
 
 			.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
-			
+
 			.column,
 			.column-top,
 			.column-dir,
@@ -193,7 +193,7 @@
 																												<td class="img-center pb30" style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/fecha.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{ $ElementosArray["evento"] ->Fecha_Evento }}</span></a></multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Fecha del evento: <br />{{ $ElementosArray["evento"] ->Fecha_Evento }}</span></multiline></td>
 																											</tr>
 																										</table>
 																									</th>
@@ -299,8 +299,8 @@ No publique su Ecoticket, ni le tome fotos, puede ser víctima de falsificacione
 	</table>
 </body>
 
-<script src="js/Evento/eventoPago.js"></script>
-<script src="js/Plugins/Qrcode/qrcode.js"></script>
-<script src="js/Plugins/Jquery/jquery-3.1.1.js"></script>
+<script src={{asset("js/Evento/eventoPago.js")}}></script>
+<script src={{asset("js/Plugins/Qrcode/qrcode.js")}}></script>
+<script src={{asset("js/Plugins/Jquery/jquery-3.1.1.js")}}></script>
 </body>
 </html>
