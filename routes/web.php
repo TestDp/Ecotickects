@@ -135,7 +135,7 @@ Auth::routes();
 
 // INICIO DE RUTAS PARA EL CONTROLADOR DE ASISTENTES//
 
-    Route::post('registrarAsistente',['uses' =>'Evento\AsistentesController@registrarAsistente']);
+    Route::post('registrarAsistente',['uses' =>'Evento\AsistentesController@registrarUsuario']);
 
    Route::post('GenerarQRS',['uses' =>'Evento\AsistentesController@GenerarQRS']);//linea temporal
 

@@ -1,4 +1,4 @@
-@extends('layouts.eventos')
+@extends('layouts.app')
 
 @section('content')
 <section style="background:#ffffff; padding-top:40px !important;" class="section section-padded blue-bg">

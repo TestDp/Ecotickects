@@ -41,7 +41,7 @@ class AsistentesController extends Controller
         $this->GenerarQRS($formRegistro);
     }
 
-    /* Metodo para  registrar un asistente  cuando el evento es gratuito.**/
+    /* Metodo para  realizar la prueba de concepto del envio del correo cambiando de cuenta.**/
     public function registrarAsistente(Request $formRegistro)
     {
         $respuesta = $this->asistenteServicio->registrarAsistente($formRegistro);
