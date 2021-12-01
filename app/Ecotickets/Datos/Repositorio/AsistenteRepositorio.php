@@ -404,8 +404,9 @@ class AsistenteRepositorio
             ->leftJoin('Tbl_Usuarios_X_AsistenteEvento', 'Tbl_Usuarios_X_AsistenteEvento.AsistentesXEvento_id', '=', 'tbl_asistentesXeventos.id')
             ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
             ->leftJoin('users as u2', 'u2.id', '=', 'tbl_asistentesXeventos.IdUsuarioAnula')
+            ->leftJoin('users as u3', 'u3.email', '=', 'tbl_asistentes.Email')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->where('users.id', '=', $userId)
+            ->where('u3.id', '=', $userId)
             ->select(\DB::raw('tbl_asistentesXeventos.id as idAsistenteEvento,tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
             tbl_asistentesXeventos.esAnulado,tbl_asistentesXeventos.IdUsuarioAnula,
              tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
@@ -422,8 +423,9 @@ class AsistenteRepositorio
             ->leftJoin('Tbl_Usuarios_X_AsistenteEvento', 'Tbl_Usuarios_X_AsistenteEvento.AsistentesXEvento_id', '=', 'tbl_asistentesXeventos.id')
             ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
             ->leftJoin('users as u2', 'u2.id', '=', 'tbl_asistentesXeventos.IdUsuarioAnula')
+            ->leftJoin('users as u3', 'u3.email', '=', 'tbl_asistentes.Email')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->where('users.id', '=', $userId)
+            ->where('u3.id', '=', $userId)
             ->select(\DB::raw('tbl_asistentesXeventos.id as idAsistenteEvento,tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.created_at,tbl_asistentesXeventos.updated_at,
               tbl_asistentesXeventos.esAnulado,tbl_asistentesXeventos.IdUsuarioAnula,
              tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
