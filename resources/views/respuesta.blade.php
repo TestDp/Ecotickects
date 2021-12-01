@@ -1,4 +1,4 @@
-@extends('layouts.eventos')
+@extends('layouts.app')
 
 @section('content')
       <section class="section section-lg bg-default text-center">
