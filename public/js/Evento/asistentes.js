@@ -27,7 +27,7 @@ function ValidarAnulacion(idTicket){
             }}
     }).then((result) => {
         if (result) {
-            //anularTicket(idTicket);
+            anularTicket(idTicket);
         }
     });
 }
