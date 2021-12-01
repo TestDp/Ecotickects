@@ -18,6 +18,15 @@
             background: #ffffff;
             -webkit-text-size-adjust: none
         }
+		
+		@media print {
+	body{
+        width: 21cm;
+        height: 29.7cm;
+        margin: 30mm 45mm 30mm 45mm; 
+        /* change the margins as you want them to be. */
+				} 
+		}
 
         a {
             color: #55311f;
