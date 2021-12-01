@@ -12,6 +12,7 @@ use Eco\Datos\Modelos\PermisosUsuarioXEvento;
 use Eco\Datos\Modelos\Rol_Por_Usuario;
 use Ecotickets\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioRepositorio
 {
