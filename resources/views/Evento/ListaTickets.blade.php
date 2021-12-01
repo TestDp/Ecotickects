@@ -9,7 +9,9 @@
                   <div class="card-icon">
                     <i class="material-icons">assignment</i>
                   </div>
-                  <h4 class="card-title">{{$listaTickets[0]->Nombres .' '. $listaTickets[0]->Apellidos }} </h4>
+                    @if(isset($listaTickets[0]))
+                        <h4 class="card-title">{{$listaTickets[0]->Nombres .' '. $listaTickets[0]->Apellidos }} </h4>
+                    @endif
                 </div>
                <div class="card-body">
                   <div class="table-responsive">
