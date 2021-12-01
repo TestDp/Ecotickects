@@ -1,65 +1,38 @@
 @extends('layouts.eventos')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="background:#74b12e;"><h4 style="text-align:center; font-weight:300; color:#fff !important;">Gracias por aportar al cuidado del planeta. Gracias por usar Ecotickets.</h4></div>
-                    <div class="panel-body">
-                        @if ($ElementosArray["evento"] ->FlyerEvento)
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <img style="object-fit: cover; height: 100% !important; object-position: center center;" class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
-                                </div>
-								<div class="col-sm-6">
-								<h1 style="color: #000; text-transform: uppercase; text-align:left;">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h1>
-								</div>
-								<hr style="border: 1px solid #74b12e;">
-                                <div style="text-align:left;" class="col-sm-6">
-								<h3 style="color:#000;">Información General</h3>
-                                    <label><i class="fa fa-check"></i>Ciudad:</label> {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</br>
-									<label><i class="fa fa-check"></i>Lugar del evento:</label> {{ $ElementosArray["evento"] ->Lugar_Evento }}</br>
-									<label><i class="fa fa-check"></i>Fecha del evento:</label> {{ $ElementosArray["evento"] ->Fecha_Evento }}</br>
-								<hr style="border: 1px solid #74b12e;">
-								<h3 style="color:#000;">Boletería y Localidades</h3>	
-                                    <ul >
-                                        @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
-                                            <li value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}"><p style="margin-bottom: 0px !important; color:#000 !important; text-transform: capitalize;">{{ $Localidad->localidad }}: <b>$ {{ $Localidad->precio }}</b></p></li>
-                                        @endforeach
-                                    </ul>
-								<hr style="border: 1px solid #74b12e;">	
-								<h3 style="color:#000;">Información Adicional</h3>
-                                 {!! $ElementosArray["evento"] ->informacionEvento !!}
-                                </div>
-                            </div>
-                        @endif
-
-                        <div class="row">
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    @if($ElementosArray["evento"] ->Tipo_Evento =='Cupón')
-
-
-                                        <label class="col-md-8">Recomendaciones:</label>
-                                        <div class="col-md-10">
-                                            {!! $ElementosArray["evento"] ->informacionEvento !!}
-                                        </div>
-                                    @else
-                                    @endif
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
+          <div class="row row-30 justify-content-center">
+		  @if ($ElementosArray["evento"] ->FlyerEvento)
+			<div class="col-md-10 col-lg-6">
+              <div><img src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}" alt="" width="562" height="588"/>
             </div>
-
-        </div>
-    </div>
+            </div>
+            <div class="col-md-10 col-lg-6">
+              <h4>Información General</h4>
+			  <ul class="list-marked">
+                <li>
+					<h5>Fecha y hora del evento:</h5>
+					<p>{{ $ElementosArray["evento"] ->Fecha_Evento }}</p>
+                </li>
+                <li>
+					<h5>Lugar del evento:</h5>
+					<p>{{ $ElementosArray["evento"] ->Lugar_Evento }}</p>
+                </li>
+				<li>
+					<h5>Ciudad:</h5>
+					<p>{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</p>
+                </li>
+				<li>
+					<h5>Boletería y localidades:</h5>
+				@foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
+                     <p value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}"><p style="text-transform: capitalize;">{{ $Localidad->localidad }}: <b>$ {{ $Localidad->precio }}</b></p></p>
+                @endforeach
+                </li>
+              </ul>
+              <p class="paragraph-inset-right-25">{!! $ElementosArray["evento"] ->informacionEvento !!}</p>
+            </div>			
+			@endif
+          </div>
 
     <div style="background:#fff; border-radius:5px; padding:2%;" class="container">
         <div class="row">
@@ -74,86 +47,104 @@
                         <div class="row">
                             <div class="col-md-12">
                                 PIN
-                                <input id="pinIngresar" name="pinIngresar" type="text" class="form-control" onkeyup="ValidarPin()"/>
+                                <input id="pinIngresar" name="pinIngresar" type="text" class="form-input" onkeyup="ValidarPin()"/>
 
                             </div>
                         </div>
                         <div id="formAsistente" hidden>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Identificación
-                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
+								<div class="form-wrap">
+                                    <label>Identificación</label>
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()"/>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Nombre
-                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Nombre</label>
+                                    <input id="Nombres" name="Nombres" type="text" class="form-input"/>
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Apellidos
-                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Apellidos</label>
+                                    <input id="Apellidos" name="Apellidos" type="text" class="form-input"/>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Celular/teléfono
-                                    <input id="telefono" name="telefono" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Celular/teléfono</label>
+                                    <input id="telefono" name="telefono" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                           <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Email
-                                    <input id="Email" name="Email" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Email</label>
+                                    <input id="Email" name="Email" type="text" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Confirmar Email
-                                    <input id="confEmail" name="confEmail" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label class="form-label">Confirmar Email</label>
+                                    <input id="confEmail" name="confEmail" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-
-                            <div class="row">
+                           <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Fecha de nacimiento
-                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
+								<div class="form-wrap">
+                                    <label >Fecha de nacimiento</label>
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Dirección
-                                    <input id="Dirección" name="Dirección" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label>Dirección</label>
+                                    <input id="Dirección" name="Dirección" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
-
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Departamento persona
-                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
+								<div class="form-wrap">
+                                    <label>Departamento persona</label>
+                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
                                             <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Ciudad Persona
-                                    <select id="Ciudad_id" name="Ciudad_id" class="form-control">
+								<div class="form-wrap">
+                                    <label>Ciudad Persona</label>
+                                    <select id="Ciudad_id" name="Ciudad_id" class="form-input">
 
                                     </select>
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-12">
                                     Comentario (Opcional)
-                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-input" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+								<div class="form-wrap">
 									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones. <a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
-								</span>
+								</div>
                                 </div>
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
+								<div class="form-wrap">
                                     <input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA. <a href="{{ url('habeasData') }}" target="_blank">Ver más</a>
-								</span>
+								</div>
                                 </div>
                             </div>
                             <br/>
@@ -182,90 +173,110 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
-                                        Registrarse
+								<div class="form-wrap">
+									<input type="button" onclick="generarQRCode()" class="button button-primary" value="Registrarse" data-triangle=".button-overlay"/>                                   
                                     </button>
                                 </div>
+								</div>
                             </div>
                         </div>
                     @else
                         <div id="formAsistente">
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Identificación
-                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
+								<div class="form-wrap">
+                                    <label>Identificación</label>
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()" data-constraints="@Required"/>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Nombre
-                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
+                                <div class="form-wrap">
+                                    <label>Nombre</label>
+                                    <input id="Nombres" name="Nombres" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Apellidos
-                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label>Apellidos</label>
+                                    <input id="Apellidos" name="Apellidos" type="text" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Celular/teléfono
-                                    <input id="telefono" name="telefono" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label>Celular/teléfono</label>
+                                    <input id="telefono" name="telefono" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Email
-                                    <input id="Email" name="Email" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label>Email</label>
+                                    <input id="Email" name="Email" type="text" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Confirmar Email
-                                    <input id="confEmail" name="confEmail" type="text" class="form-control" />
+								<div class="form-wrap">
+                                    <label>Confirmar Email</label>
+                                    <input id="confEmail" name="confEmail" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
 
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Fecha de nacimiento
-                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
+								<div class="form-wrap">
+                                    <label>Fecha de nacimiento</label>
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Dirección
-                                    <input id="Dirección" name="Dirección" type="text" class="form-control"  />
+								<div class="form-wrap">
+                                    <label>Dirección</label>
+                                    <input id="Dirección" name="Dirección" type="text" class="form-input"  />
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
-
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-                                    Departamento
-                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
+								<div class="form-wrap">
+                                    <label>Departamento persona</label>
+                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
                                             <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
                                 <div class="col-md-6">
-                                    Ciudad
-                                    <select id="Ciudad_id" name="Ciudad_id" class="form-control">
+								<div class="form-wrap">
+                                    <label>Ciudad Persona</label>
+                                    <select id="Ciudad_id" name="Ciudad_id" class="form-input">
 
                                     </select>
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-12">
                                     Comentario (Opcional)
-                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-input" />
                                 </div>
                             </div>
                             <br/>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
-									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones.<a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
-								</span>
+								<div class="form-wrap">
+									<input type="checkbox" name="terminos" value="1" id="terminos" /> Estoy de acuerdo con los términos y condiciones. <a href="{{ url('terminosCondiciones') }}" target="_blank">Ver más</a>
+								</div>
                                 </div>
                                 <div class="col-md-6">
-								<span style="font-family: sans-serif;" class="wpcf7-form-control-wrap">
-									<input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA. <a href="{{ url('habeasData') }}" target="_blank">Ver más</a>
-								</span>
+								<div class="form-wrap">
+                                    <input type="checkbox" name="HabeasData" value="1" id="HabeasData" /> Estoy de acuerdo con las políticas HABEAS DATA. <a href="{{ url('habeasData') }}" target="_blank">Ver más</a>
+								</div>
                                 </div>
                             </div>
                             <br/>
@@ -292,12 +303,13 @@
                                 @endif
                             </div>
                             <br/>
-                            <div class="row">
+                          <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
-                                        Registrarse
+								<div class="form-wrap">
+									<input type="button" onclick="generarQRCode()" class="button button-primary" value="Registrarse" data-triangle=".button-overlay"/>                                   
                                     </button>
                                 </div>
+								</div>
                             </div>
                         </div>
                     @endif
