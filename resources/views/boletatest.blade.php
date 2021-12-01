@@ -104,22 +104,9 @@
                                             <td class="p30-15" style="padding: 20px 40px 20px 40px;">
                                                 <table width="100%">
                                                     <tr>
-                                                        <th class="column" width="198" style=" font-weight:normal;">
-                                                            <table width="100%" border="0"
-                                                            >
-                                                                <tr>
-                                                                    <td class="text-header m-center"
-                                                                        style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:left;">
 
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </th>
-                                                        <th class="column-empty2" width="1"
-                                                            style=" font-weight:normal;"></th>
                                                         <th class="column" width="173" style=" font-weight:normal;">
-                                                            <table width="100%" border="0"
-                                                            >
+                                                            <table width="100%" border="0">
                                                                 <tr>
                                                                     <td class="img-center" style="text-align:center;">
                                                                         <img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png"
@@ -128,19 +115,7 @@
                                                                 </tr>
                                                             </table>
                                                         </th>
-                                                        <th class="column-empty2" width="1"
-                                                            style=" font-weight:normal;"></th>
-                                                        <th class="column" width="197" style=" font-weight:normal;">
-                                                            <table width="100%" border="0"
-                                                            >
-                                                                <tr>
-                                                                    <td class="text-header right m-center"
-                                                                        style="color:#9f8e87; font-family:Arial,sans-serif; font-size:12px; line-height:16px; text-align:right;">
 
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </th>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -173,8 +148,7 @@
                                                             <tr>
                                                                 <td class="content-spacing" width="40"></td>
                                                                 <td>
-                                                                    <table width="100%" border="0"
-                                                                    >
+                                                                    <table width="100%" border="0">
                                                                         <tr>
                                                                             <td style="padding: 30px 0px;"
                                                                                 class="p30-0">
@@ -183,44 +157,40 @@
                                                                                     <tr>
                                                                                         <td class="h5 white pb40"
                                                                                             style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;">
-                                                                                            <multiline>AQUÍ ESTÁ TU
-                                                                                                ECOTICKET PARA
-                                                                                            </multiline>
+                                                                                            AQUÍ ESTÁ TU ECOTICKET PARA
+
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td class="h2 white pb15"
                                                                                             style="font-family:Arial,sans-serif; font-size:32px; line-height:40px; text-align:center; color:#1D2139; padding-bottom:10px;">
-                                                                                            <multiline>{{--{{ $ElementosArray["evento"] ->Nombre_Evento }}--}}</multiline>
+                                                                                            {{ $ElementosArray["evento"] ->Nombre_Evento }}
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td class="h5 white pb40"
                                                                                             style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:5px;">
-                                                                                            <multiline>
-                                                                                                <b>Localidad:</b> {{--{{ $ElementosArray["localidad"] ->localidad }}--}}
-                                                                                            </multiline>
+
+                                                                                                <b>Localidad:</b> {{ $ElementosArray["localidad"] ->localidad }}
+
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td class="h5 white pb40"
                                                                                             style="font-family:Arial,sans-serif; font-size:14px; line-height:24px; text-align:center; text-transform:uppercase; color:#1D2139; padding-bottom:25px;">
-                                                                                            <multiline>
-                                                                                                <b>Precio:</b> {{--{{ $ElementosArray["localidad"] ->precio }}--}}
-                                                                                            </multiline>
+
+                                                                                                <b>Precio:</b> {{ $ElementosArray["localidad"] ->precio }}
+
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td align="center"
                                                                                             style="padding-bottom:30px;">
-                                                                                            <table border="0"
-
-                                                                                            >
+                                                                                            <table border="0" >
                                                                                                 <tr>
                                                                                                     <th class="column-top"
                                                                                                         style=" font-weight:normal; vertical-align:top;">
-                                                                                                        <table width="100%"
-                                                                                                               border="0"
+                                                                                                        <table width="100%" border="0"
 
                                                                                                         >
                                                                                                             <tr>
@@ -236,10 +206,10 @@
                                                                                                             <tr>
                                                                                                                 <td class="text-center"
                                                                                                                     style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;">
-                                                                                                                    <multiline>
+
                                                                                                                         Lugar del evento
-                                                                                                                        <br/>{{--{{ $ElementosArray["evento"] ->Lugar_Evento }}--}}
-                                                                                                                    </multiline>
+                                                                                                                        <br/>{{ $ElementosArray["evento"] ->Lugar_Evento }}
+
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         </table>
@@ -250,7 +220,7 @@
                                                                                                     <th class="column-top"
                                                                                                         style=" font-weight:normal; vertical-align:top;">
                                                                                                         <table width="100%"
-                                                                                                               border="0" >
+                                                                                                               border="0">
                                                                                                             <tr>
                                                                                                                 <td class="img-center pb30"
                                                                                                                     style="text-align:center; padding-bottom:30px;">
@@ -264,10 +234,10 @@
                                                                                                             <tr>
                                                                                                                 <td class="text-center"
                                                                                                                     style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;">
-                                                                                                                    <multiline>
+
                                                                                                                         <span class="link-white"
-                                                                                                                              style="color:#ffffff; text-decoration:none;">Fecha del evento: <br/>{{--{{ $ElementosArray["evento"] ->Fecha_Evento }}--}}</span>
-                                                                                                                    </multiline>
+                                                                                                                              style="color:#ffffff; text-decoration:none;">Fecha del evento: <br/>{{ $ElementosArray["evento"] ->Fecha_Evento }}</span>
+
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         </table>
@@ -277,7 +247,8 @@
                                                                                                         style=" font-weight:normal;"></th>
                                                                                                     <th class="column-top"
                                                                                                         style="  font-weight:normal; vertical-align:top;">
-                                                                                                        <table width="100%"   border="0" >
+                                                                                                        <table width="100%"
+                                                                                                               border="0">
                                                                                                             <tr>
                                                                                                                 <td class="img-center pb30"
                                                                                                                     style="text-align:center; padding-bottom:30px;">
@@ -291,14 +262,23 @@
                                                                                                             <tr>
                                                                                                                 <td class="text-center"
                                                                                                                     style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;">
-                                                                                                                    <multiline>
+
                                                                                                                         <span class="link-white"
-                                                                                                                              style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br/>{{--{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}--}}</span>
-                                                                                                                    </multiline>
+                                                                                                                              style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br/>{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</span>
+
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         </table>
                                                                                                     </th>
+                                                                                                </tr>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td align="center">
+                                                                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                                                                <tr>
+                                                                                                    <td><img src="data:image/png;base64,{!! $ElementosArray["qr"]!!}" width="300" height="300" border="0"  /></td>
                                                                                                 </tr>
                                                                                             </table>
                                                                                         </td>
@@ -315,23 +295,23 @@
                                                                bgcolor="#ffffff">
                                                             <tr>
                                                                 <td class="p30-15" style="padding: 20px 20px;">
-                                                                    <table width="100%" border="0" >
+                                                                    <table width="100%" border="0">
                                                                         <tr>
                                                                             <td class="text center pb30"
                                                                                 style="color:#1D2139; font-family:Arial,sans-serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;">
-                                                                                <multiline>Presenta tu SmartPhone con el
+                                                                                    Presenta tu SmartPhone con el
                                                                                     CÓDIGO QR adjunto en la entrada del
                                                                                     evento para habilitar tu acceso.
-                                                                                </multiline>
+
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="text center pb30"
                                                                                 style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;">
-                                                                                <multiline>*No es necesario imprimirlo
+                                                                                    *No es necesario imprimirlo
                                                                                     presenta tu SmartPhone cuídemos el
                                                                                     medio ambiente.
-                                                                                </multiline>
+
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -361,13 +341,13 @@
                                             <tr>
                                                 <td class="text-footer pb10"
                                                     style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:10px;">
-                                                    <multiline>INFORMACIÓN IMPORTANTE</multiline>
+                                                    INFORMACIÓN IMPORTANTE
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-footer2 pb30"
                                                     style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center; padding-bottom:30px;">
-                                                    <multiline>Para tener en cuenta:
+                                                        Para tener en cuenta:
                                                         El código QR es único, la primera persona que presente el
                                                         Ecoticket podrá ingresar, los demás no podrán hacerlo.
                                                         El Ecoticket debe estar completo y legible.
@@ -377,18 +357,18 @@
                                                         autoridades competentes y prohibirse su ingreso al evento.
                                                         No publique su Ecoticket, ni le tome fotos, puede ser víctima de
                                                         falsificaciones.
-                                                    </multiline>
+
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-footer3"
                                                     style="color:#ffffff; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;">
-                                                    <multiline><a href="https://ecotickets.co" target="_blank"
+                                                   <a href="https://ecotickets.co" target="_blank"
                                                                   class="link5-u"
                                                                   style="color:#ffffff; text-decoration:underline;"><span
                                                                     class="link5-u"
                                                                     style="color:#ffffff; text-decoration:underline;">#EstamosCuidandoElPlaneta</span></a>
-                                                    </multiline>
+
                                                 </td>
                                             </tr>
                                         </table>
