@@ -226,15 +226,6 @@
 																							</table>
 																						</td>
 																					</tr>
-																								<tr>
-																									<td align="center">
-																										<table border="0" cellspacing="0" cellpadding="0">
-																											<tr>
-																												<td class="text-button text-button2" style="font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:left; padding:8px 20px; border:2px solid #1D2139; text-transform:uppercase; color:#ffffff; background:#1D2139; border-radius: 15px;"><multiline><a href="#" target="_blank" class="link4" style="color:#ffffff; text-decoration:none;"><span class="link4" style="color:#ffffff; text-decoration:none;">DESCARGAR ECOTICKET</span></a></multiline></td>
-																											</tr>
-																										</table>
-																									</td>
-																								</tr>
 																				</table>
 																			</td>
 																		</tr>

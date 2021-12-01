@@ -77,7 +77,7 @@ class AsistentesController extends Controller
            */
             Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($evento, $ccUser, $correoElectronico, $correoSaliente, $nombreEvento) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
-                $msj->subject('Importante - Aquí esta tu pase de acceso');
+                $msj->subject('¡Importante! Este es tu Ecoticket.');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
                 $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
@@ -114,7 +114,7 @@ class AsistentesController extends Controller
             $ccUser = $formRegistro->Identificacion;
             Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$ccUser) {
                 $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
-                $msj->subject('Importante - Aquí esta tu pase de acceso');
+                $msj->subject('¡Importante! Este es tu Ecoticket.');
                 $msj->to($correoElectronico);
                 $msj->bcc('soporteecotickets@gmail.com');
                 $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $ccUser . 'ECOTICKETS'));
@@ -159,7 +159,7 @@ class AsistentesController extends Controller
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento, $localidad) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
-                    $msj->subject('Importante - Aquí esta tu pase de acceso');
+                    $msj->subject('¡Importante! Este es tu Ecoticket.');
                     $msj->to($correoElectronico);
                     $msj->bcc('soporteecotickets@gmail.com');
                     //preguntamos si el directorio existe
@@ -273,7 +273,7 @@ class AsistentesController extends Controller
         $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
         Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($correoElectronico, $correoSaliente, $nombreEvento,$evento,$pinUser,$localidad,$pinesImagenes) {
             $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
-            $msj->subject('Importante - Aquí esta tu pase de acceso');
+            $msj->subject('¡Importante! Este es tu Ecoticket.');
             $msj->to($correoElectronico);
             $msj->bcc('soporteecotickets@gmail.com');
             $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $pinUser . 'ECOTICKETS'));
@@ -326,7 +326,7 @@ class AsistentesController extends Controller
                 $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
                 Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento,$localidad) {
                     $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
-                    $msj->subject('Importante - Aquí esta tu pase de acceso');
+                    $msj->subject('¡Importante! Este es tu Ecoticket.');
                     $msj->to($correoElectronico);
                     $msj->bcc('soporteecotickets@gmail.com');
                     //preguntamos si el directorio existe
