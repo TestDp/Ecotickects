@@ -171,13 +171,12 @@
                                 @endif
                             </div>
                             <br/>
-                            <div class="row">
+                               <div class="row">
                                 <div class="col-md-12">
-								<div class="form-wrap">
-									<input type="button" onclick="generarQRCode()" class="button button-primary" value="Registrarse" data-triangle=".button-overlay"/>                                   
+                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
+                                        Registrarse
                                     </button>
                                 </div>
-								</div>
                             </div>
                         </div>
                     @else
@@ -303,13 +302,12 @@
                                 @endif
                             </div>
                             <br/>
-                          <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
-								<div class="form-wrap">
-									<input type="button" onclick="generarQRCode()" class="button button-primary" value="Registrarse" data-triangle=".button-overlay"/>                                   
+                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
+                                        Registrarse
                                     </button>
                                 </div>
-								</div>
                             </div>
                         </div>
                     @endif
