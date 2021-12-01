@@ -130,7 +130,7 @@ class UsuarioRepositorio
         $user = new User();
         $user->name = $modelAsisten->Nombres;
         $user->last_name = $modelAsisten->Apellidos;
-        $user->username = explode('@',$modelAsisten->email)[0];
+        $user->username = explode('@',$modelAsisten->Email)[0];
         $user->email = $modelAsisten->Email;
         $user->password = Hash::make($modelAsisten->Identificacion);
         $user->Sede_id = env('SEDEPRINCIPALECO');
