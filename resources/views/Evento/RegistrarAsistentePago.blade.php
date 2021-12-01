@@ -320,7 +320,7 @@
 								</div>	
 								</div>
                                 <div style="padding-top:3%;" class="col-md-6">                                 
-										<h3 style="color:#74b12e !important;" id="mensaje-cupon"></h3>
+										<h3 style="color:#74b12e !important; font-size: 25px !important;" id="mensaje-cupon"></h3>
 								</div>
 							</div>
                             <div class="row row-narrow row-20">

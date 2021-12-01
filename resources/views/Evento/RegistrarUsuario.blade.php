@@ -128,7 +128,7 @@
 							<div class="col-sm-6">
 							Evento al cual desea registrar el usuario
                                 <div class="form-group">                               
-                                    <select title="Seleccionar" id="Evento_id" name="Evento_id" class="selectpicker" data-style="select-with-transition" onchange="CargarLocalidadesEvento()">
+                                    <select title="Seleccionar" id="Evento_id" name="Evento_id" class="form-control" onchange="CargarLocalidadesEvento()">
                                         @foreach($ElementosArray["eventos"] as $evento)
                                             <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento}}</option>
                                         @endforeach
@@ -141,6 +141,11 @@
                                     <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
                                         <option value="">Seleccionar</option>
                                     </select>
+                                </div>
+                            </div>
+							<div style="margin:20px;" class="col-sm-12">
+                                <div class="form-group">
+									
                                 </div>
                             </div>
 							<div class="col-sm-4">

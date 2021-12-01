@@ -1,52 +1,43 @@
 @extends('layouts.eventos')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="background:#74b12e;"><h4 style="text-align:center; font-weight:300; color:#fff !important;">Gracias por aportar al cuidado del planeta. Gracias por usar Ecotickets.</h4></div>
-                    <div class="panel-body">
-                        @if ($ElementosArray["evento"] ->FlyerEvento)
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <img style="object-fit: cover; height: 100% !important; object-position: center center;" class="img-responsive" src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}"></img>
-                                </div>
-								<div class="col-sm-6">
-								<h1 style="color: #000; text-transform: uppercase; text-align:left;">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h1>
-								</div>
-								<hr style="border: 1px solid #74b12e;">
-                                <div style="text-align:left;" class="col-sm-6">
-								<h3 style="color:#000;">Información General</h3>
-                                    <label><i class="fa fa-check"></i>Ciudad:</label> {{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</br>
-									<label><i class="fa fa-check"></i>Lugar del evento:</label> {{ $ElementosArray["evento"] ->Lugar_Evento }}</br>
-									<label><i class="fa fa-check"></i>Fecha del evento:</label> {{ $ElementosArray["evento"] ->Fecha_Evento }}</br>
-								<hr style="border: 1px solid #74b12e;">
-								<h3 style="color:#000;">Boletería y Localidades</h3>	
-                                    <ul >
-                                        @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
-                                            <li value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}"><p style="margin-bottom: 0px !important; color:#000 !important; text-transform: capitalize;">{{ $Localidad->localidad }}: <b>$ {{ $Localidad->precio }}</b></p></li>
-                                        @endforeach
-                                    </ul>
-								<hr style="border: 1px solid #74b12e;">	
-								<h3 style="color:#000;">Información Adicional</h3>
-                                 {!! $ElementosArray["evento"] ->informacionEvento !!}
-                                </div>
-                            </div>
-
-                        @endif
-                    </div>
-                </div>
+       <div class="row row-30 justify-content-center">
+		  @if ($ElementosArray["evento"] ->FlyerEvento)
+			<div class="col-md-10 col-lg-6">
+              <div><img src="{{ $ElementosArray["rutaImagenes"].$ElementosArray["evento"]->FlyerEvento }}" alt="" width="562" height="588"/>
             </div>
-
-        </div>
-    </div>
+            </div>
+            <div class="col-md-10 col-lg-6">
+              <h4>Información General</h4>
+			  <ul class="list-marked">
+                <li>
+					<h5>Fecha y hora del evento:</h5>
+					<p>{{ $ElementosArray["evento"] ->Fecha_Evento }}</p>
+                </li>
+                <li>
+					<h5>Lugar del evento:</h5>
+					<p>{{ $ElementosArray["evento"] ->Lugar_Evento }}</p>
+                </li>
+				<li>
+					<h5>Ciudad:</h5>
+					<p>{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</p>
+                </li>
+				<li>
+					<h5>Boletería y localidades:</h5>
+				@foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
+                     <p value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}"><p style="text-transform: capitalize;">{{ $Localidad->localidad }}: <b>$ {{ $Localidad->precio }}</b></p></p>
+                @endforeach
+                </li>
+              </ul>
+              <p class="paragraph-inset-right-25">{!! $ElementosArray["evento"] ->informacionEvento !!}</p>
+            </div>			
+			@endif
+          </div>
 
     <div style="background:#fff; border-radius:5px; padding:2%;" class="container">
         <div class="row">
             <div class="col-md-12">
-                <form id="formularioEvento">
+                <form id="formularioEvento" class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact">
                     <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" id="imagen" name="imagen">
                     <input type="hidden" id="Evento_id" name="Evento_id" value="{{$ElementosArray["EventoId"]}}">
@@ -56,110 +47,140 @@
                     <input type="hidden" id="Promotor_id" name="Promotor_id" value="{{$ElementosArray["idPromotor"]}}">
 
                         <div id="formAsistente">
-                            <div class="row">
-                                <div class="col-md-6">
+                           <div class="row row-narrow row-20">
+                            <div class="col-md-6">
+								<div class="form-wrap">
                                     Identificación
-                                    <input id="Identificacion" name="Identificacion" type="number" class="form-control" onchange="BuscarAsistente()"/>
+                                    <input id="Identificacion" name="Identificacion" type="number" class="form-input" onchange="BuscarAsistente()"/>
                                 </div>
-                                <div class="col-md-6">
+							</div>
+                            <div class="col-md-6">
+								<div class="form-wrap">
                                     Nombre
-                                    <input id="Nombres" name="Nombres" type="text" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
+                                    <input id="Nombres" name="Nombres" type="text" class="form-input" />
+								</div>
+							</div>
+							</div>
+							</div>
+                            <div class="row row-narrow row-20">
+                            <div class="col-md-6">
+								<div class="form-wrap">
                                     Apellidos
-                                    <input id="Apellidos" name="Apellidos" type="text" class="form-control" />
+                                    <input id="Apellidos" name="Apellidos" type="text" class="form-input" />
                                 </div>
-                                <div class="col-md-6">
+							</div>
+                            <div class="col-md-6">
+								<div class="form-wrap">
                                     Celular/teléfono
-                                    <input id="telefono" name="telefono" type="text" class="form-control" />
+                                    <input id="telefono" name="telefono" type="text" class="form-input" />
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
+							</div>                         
+                            <div class="row row-narrow row-20">
+                            <div class="col-md-6">
+								<div class="form-wrap">
                                     Email
-                                    <input id="Email" name="Email" type="text" class="form-control" />
+                                    <input id="Email" name="Email" type="text" class="form-input" />
                                 </div>
+							</div>
                                 <div class="col-md-6">
+								<div class="form-wrap">
                                     Confirmar Email
-                                    <input id="confEmail" name="confEmail" type="text" class="form-control" />
+                                    <input id="confEmail" name="confEmail" type="text" class="form-input" />
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
+								</div>
+							</div>
+                            <div class="row row-narrow row-20">
+								<div class="col-md-6">
+								<div class="form-wrap">
                                     Fecha de nacimiento
-                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" />
+                                    <input id="fechaNacimiento" name="fechaNacimiento" type="date" class="form-input" />
                                 </div>
+								</div>
                                 <div class="col-md-6">
+								<div class="form-wrap">
                                     Dirección
-                                    <input id="Dirección" name="Dirección" type="text" class="form-control"  />
+                                    <input id="Dirección" name="Dirección" type="text" class="form-input"  />
                                 </div>
+								</div>							
                             </div>
-                            <div class="row">
-
-                                <div class="col-md-6">
+                            <div class="row row-narrow row-20">
+								<div class="col-md-6">
+								<div class="form-wrap">
                                     Departamento persona
-                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
+                                    <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["departamentos"] as $Departamento)
                                             <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
                                 <div class="col-md-6">
+								<div class="form-wrap">
                                     Ciudad Persona
-                                    <select id="Ciudad_id" name="Ciudad_id" class="form-control">
+                                    <select id="Ciudad_id" name="Ciudad_id" class="form-input">
 
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">							
-                                <div class="col-md-6"> 
+							</div>
+                            <div class="row row-narrow row-20">
+                                <div class="col-md-6">
+								<div class="form-wrap"> 
 								<h4 style="text-align:center;">Ingresa tu cupón de descuento</h4>
 								<div class="row">
 								<div style="padding-right:0px !important;" class="col-md-6"> 
-										<input id="Codigo" name="Codigo" type="text" class="form-control" placeholder="Código de Descuento " />
+										<input id="Codigo" name="Codigo" type="text" class="form-input" placeholder="Código de Descuento" />
 									</div>
 									<div style="padding-left:0px !important;" class="col-md-6"> 									
-										<input style="width:100%; font-size:25px !important;" onclick="validarCodigoPromocional({{$ElementosArray["EventoId"]}})" class="btn btn-blue ripple trial-button"  name="Validador" value="Validar Código"   /></input>
+										<input class="button button-primary" data-triangle=".button-overlay" type="button" onclick="validarCodigoPromocional({{$ElementosArray["EventoId"]}})" class="btn btn-blue ripple trial-button"  name="Validador" value="Validar Código"   /></input>
 									</div>
-							   </div>
+								</div>
+								</div>
 								</div>
                                 <div style="padding-top:3%;" class="col-md-6">                                 
-										<h3 style="color:#74b12e !important;" id="mensaje-cupon"></h3>
+										<h3 style="color:#74b12e !important; font-size: 25px !important;" id="mensaje-cupon"></h3>
 								</div>
-								</div>
-                            </div>
-                            <div class="row">
+							</div>
+                             <div class="row row-narrow row-20">
                                 <div class="col-md-3">
+								<div class="form-wrap">
                                     Localidad
-                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-control">
+                                    <select id="localidad" name="localidad" onchange="mostrarPrecioBoleta()" class="form-input">
                                         <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["evento"] ->preciosBoletas as $Localidad)
                                             <option value="{{ $Localidad->id }}" data-num="{{ $Localidad->precio }}">{{ $Localidad->localidad }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+								</div>
                                 <div class="col-md-3">
+								<div class="form-wrap">
                                     Precio Ecotickets
-                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-control"  readonly/>
+                                    <input id="valorBoleta" name="valorBoleta" type="text" class="form-input"  readonly/>
                                 </div>
+								</div>
                                 <div class="col-md-3">
+								<div class="form-wrap">
                                     Cantidad De Ecotickets
-                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-control" onkeyup="calcularPrecioTotal()"  />
+                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-input" onkeyup="calcularPrecioTotal()"  />
                                 </div>
+								</div>
                                 <div class="col-md-3">
+								<div class="form-wrap">
                                     Precio Total
-                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+                                    <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-input"  readonly/>
                                 </div>
+								</div>
                             </div>
-                            <div class="row">
+                            <div class="row row-narrow row-20">
                                 <div class="col-md-12">
+								<div class="form-wrap">
                                     Comentario
-                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-control" />
+                                    <input id="ComentarioEvento" name="ComentarioEvento" type="text" class="form-input" />
                                 </div>
+								</div>
                             </div>
                             <br/>
                             <div class="row">
@@ -176,18 +197,17 @@
                             </div>
 
                             <br/>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input onclick="validarCamposRegistrarAsistente()" class="btn btn-blue ripple trial-button" value="Comprar"/>
-                                </div>
+                            <div class="row row-narrow row-20">
+							<div class="form-wrap">
+                                    <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-primary" value="Comprar" data-triangle=".button-overlay"/><span class="button-overlay"></span></input>
+								</div>
                             </div>
                         </div>
 
                 </form>
             </div>
 
-        </div>
-    </div>
+
     <div>
         <form method="post" id="formPago" action="{{env('URLPOSTPAGO')}}">
             <input id="merchantId"  name="merchantId"    type="hidden"  value="">
