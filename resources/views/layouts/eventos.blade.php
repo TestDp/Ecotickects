@@ -95,9 +95,8 @@
         </div>
           <ul class="breadcrumbs-custom-path">
             <li><a href="{{ url('/') }}">Volver al Inicio</a></li>
-            <li><a>{{ $ElementosArray["evento"] ->Nombre_Evento }}</a></li>
+            <li><a>Diligencia tus datos y adquiere tu Ecoticket</a></li>
           </ul>
-          <h3 class="breadcrumbs-custom-title">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
         </div>
       </section>
      <section id="eco" class="section section-lg bg-default">

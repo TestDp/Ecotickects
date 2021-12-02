@@ -1,6 +1,9 @@
 @extends('layouts.eventos')
 
 @section('content')
+        <div class="container">
+          <h3 style="text-align:center;" class="breadcrumbs-custom-title">{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
+        </div>
           <div class="row row-30 justify-content-center">
 		  @if ($ElementosArray["evento"] ->FlyerEvento)
 			<div class="col-md-10 col-lg-6">
