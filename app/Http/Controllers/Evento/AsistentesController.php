@@ -130,7 +130,8 @@ class AsistentesController extends Controller
                 $qrImagen = storage_path('app') . '/boletas/'.$evento->id.'/ECOTICKET' . $ccUser . '.pdf';
                 $msj->attach($qrImagen);
             });
-            return redirect("FormularioUsuario")->with('status', true);
+            //return redirect("FormularioUsuario")->with('status', true);
+            return view("respuesta", ['ElementosArray' => $ElementosArray]);
         } else {
             if ($respuesta == '2') {
                 $ccUser = $formRegistro->Identificacion;
