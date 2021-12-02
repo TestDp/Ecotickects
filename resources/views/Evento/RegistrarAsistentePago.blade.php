@@ -33,8 +33,6 @@
             </div>			
 			@endif
           </div>
-
-
     <div style="background:#fff; border-radius:5px; padding:2%;" class="container">
         <div class="row">
             <div class="col-md-12">

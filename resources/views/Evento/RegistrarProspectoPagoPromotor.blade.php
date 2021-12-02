@@ -33,7 +33,6 @@
             </div>			
 			@endif
           </div>
-
     <div style="background:#fff; border-radius:5px; padding:2%;" class="container">
         <div class="row">
             <div class="col-md-12">
@@ -202,12 +201,11 @@
                                     <input type="button" onclick="validarCamposRegistrarAsistente()" class="button button-primary" value="Comprar" data-triangle=".button-overlay"/><span class="button-overlay"></span></input>
 								</div>
                             </div>
-                        </div>
 
                 </form>
             </div>
-
-
+        </div>
+    </div>
     <div>
         <form method="post" id="formPago" action="{{env('URLPOSTPAGO')}}">
             <input id="merchantId"  name="merchantId"    type="hidden"  value="">
