@@ -1,22 +1,17 @@
 @extends('layouts.eventos')
 
 @section('RespuestaPago')
-<section style="padding-top:40px !important;" class="section section-padded blue-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div>
-						<div class="item text-center">
-							<img src="{{ asset('img/icono.png') }}">
-							<h3 class="white light">GRACIAS POR COMPRAR TU BOLETA AL EVENTO:{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
-							<h4 style="color:#fff !important;" class="light-white light">En unos segundos recibirás un correo con la cantidad de boletas que compraste.</br>
-								Si el estado de tu transaccion es Aprobada.</br>
-								Recuerda revisar tu bandeja de Spam.</h4>
-							<h3 class="white light">Estado de la transacción:{{ $ElementosArray["mensaje"]}}</h3>
-						</div>						
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	 <section class="section section-lg bg-default text-center">
+        <div class="container">
+          <div class="block-about">
+            <div class="block-about-content">
+			<img src="{{ asset('images/icon.png') }}">
+              <h6>En unos segundos recibirás un correo con la cantidad de boletas que compraste.</br>Si el estado de tu transaccion es Aprobada.</h6>
+              <h3>GRACIAS POR COMPRAR TU BOLETA AL EVENTO:{{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
+			  <h6>Estado de la transacción:</h6><h4>{{ $ElementosArray["mensaje"]}}</h4>
+              <p>Recuerda revisar muy bien tu bandeja de correo y guardar el Ecoticket para el día de ingreso al evento, ese es tu pase de acceso.</p><img class="block-about-img" src="images/home-2-01-830x440.jpg" alt="" width="830" height="440"/>
+            </div>
+          </div>
+        </div>
+      </section>
 @endsection
