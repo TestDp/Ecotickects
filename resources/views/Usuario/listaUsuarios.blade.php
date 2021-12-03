@@ -40,12 +40,13 @@
                           </td>
                           <td class="td-actions text-right">
                             <a class="btn btn-rose" style="cursor:pointer;" type="button" onclick="ajaxRenderSectionEditarUsuario({{$usuario->id}})"><i class="material-icons">edit</i></a>
-                            <button data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Cambiar contraseña">
-                              <a href=""><i class="material-icons">password</i></a>
-                            </button>
-							<button onclick="ajaxRenderSectionCargarEventosXUsuario({{$usuario->id}})" data-toggle="modal" data-target="#modalPermisosEvento{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Asignar permisos">
-                              <a href=""><i class="material-icons">settings</i></a>
-                            </button>
+                            {{--<button data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Cambiar contraseña">--}}
+                            {{--</button>--}}
+                              <a data-toggle="modal" data-target="#modalContrasena{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Cambiar contraseña"><i class="material-icons">password</i></a>
+                              <a onclick="ajaxRenderSectionCargarEventosXUsuario({{$usuario->id}})" data-toggle="modal" data-target="#modalPermisosEvento{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Asignar permisos"><i class="material-icons">settings</i></a>
+							{{--<button onclick="ajaxRenderSectionCargarEventosXUsuario({{$usuario->id}})" data-toggle="modal" data-target="#modalPermisosEvento{{$usuario->id}}" type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Asignar permisos">
+
+                            </button>--}}
 							
 							 <!--modal cambio de contraseña-->
                                             <form id="formContrasena" name="formContrasena">
