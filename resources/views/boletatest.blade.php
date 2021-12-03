@@ -118,7 +118,9 @@
                                                             <table width="100%" border="0">
                                                                 <tr>
                                                                     <td class="img-center" style="text-align:center;">
-                                                                        <img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0"/></td>
+                                                                        <img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png"
+                                                                             width="289" height="110" border="0"
+                                                                             alt=""/></td>
                                                                 </tr>
                                                             </table>
                                                         </th>
@@ -157,7 +159,7 @@
                                                                 <td>
                                                                     <table width="100%" border="0">
                                                                         <tr>
-                                                                            <td style="padding: 30px 0px;"
+                                                                            <td style="padding: 10px 0px;"
                                                                                 class="p30-0">
                                                                                 <table width="100%" border="0"
                                                                                 >
@@ -192,7 +194,7 @@
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td align="center"
-                                                                                            style="padding-bottom:30px;">
+                                                                                            style="padding-bottom:10px;">
                                                                                             <table border="0" >
                                                                                                 <tr>
                                                                                                     <th class="column-top"
@@ -301,10 +303,11 @@
 														<table width="100%"
                                                                bgcolor="#ffffff">
                                                             <tr>
-                                                                <td class="p30-15" style="padding: 20px 20px;">
+                                                                <td class="p30-15" style="padding: 5px 5px;">
                                                                     <table width="100%" border="0">
                                                                         <tr>
-                                                                            <td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;">
+                                                                            <td class="text center pb30"
+                                                                                style="color:#1D2139; font-family:Arial,sans-serif; font-size:16px; line-height:28px; text-align:center; padding-bottom:30px;">
                                                                                     Presenta tu SmartPhone con el
                                                                                     CÓDIGO QR adjunto en la entrada del
                                                                                     evento para habilitar tu acceso.
@@ -312,15 +315,18 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;">
+                                                                            <td class="text center pb30"
+                                                                                style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;">
                                                                                     *No es necesario imprimirlo
                                                                                     presenta tu SmartPhone cuídemos el
                                                                                     medio ambiente.
                                                                             </td>
-																			<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; font-weight:bold; padding-bottom:10px;">
+																			<td class="text-footer pb10"
+																				style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; font-weight:bold; padding-bottom:10px;">
 																				INFORMACIÓN IMPORTANTE
 																			</td>
-																			 <td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;">
+																			 <td 
+                                                                                style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;">
                                                                                    Para tener en cuenta:
 																					El código QR es único, la primera persona que presente el
 																					Ecoticket podrá ingresar, los demás no podrán hacerlo.
@@ -332,7 +338,8 @@
 																					No publique su Ecoticket, ni le tome fotos, puede ser víctima de
 																					falsificaciones.
                                                                             </td>
-																			<td class="text center pb30" style="color:#1D2139; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;">
+																			<td class="text-footer pb10"
+																				style="color:#1D2139; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;">
 																			   <a href="https://ecotickets.co" target="_blank"
 																							  class="link5-u"
 																							  style="color:#ffffff; text-decoration:underline;"><span
