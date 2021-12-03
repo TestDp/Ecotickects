@@ -324,17 +324,13 @@
                                                                                     presenta tu SmartPhone cuídemos el
                                                                                     medio ambiente.
                                                                             </td>
-                                                                        </tr>
-																		<tr>
 																			<td class="text-footer pb10"
 																				style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; font-weight:bold; padding-bottom:10px;">
 																				INFORMACIÓN IMPORTANTE
 																			</td>
-																		</tr>
-																		<tr>
-																			<td class="text-footer2 pb30"
-																				style="color:#1D2139; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center; padding-bottom:30px;">
-																					Para tener en cuenta:
+																			 <td class="text center pb30"
+                                                                                style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;">
+                                                                                   Para tener en cuenta:
 																					El código QR es único, la primera persona que presente el
 																					Ecoticket podrá ingresar, los demás no podrán hacerlo.
 																					El Ecoticket debe estar completo y legible.
@@ -344,11 +340,7 @@
 																					autoridades competentes y prohibirse su ingreso al evento.
 																					No publique su Ecoticket, ni le tome fotos, puede ser víctima de
 																					falsificaciones.
-
-																			</td>
-																		</tr>
-																		<tr>
-																			<td class="text-footer3"
+                                                                            </td>
 																				style="color:#1D2139; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;">
 																			   <a href="https://ecotickets.co" target="_blank"
 																							  class="link5-u"
@@ -357,7 +349,7 @@
 																								style="color:#ffffff; text-decoration:underline;">#EstamosCuidandoElPlaneta</span></a>
 
 																			</td>
-																		</tr>
+                                                                        </tr>
                                                                     </table>
                                                                 </td>
                                                             </tr>
