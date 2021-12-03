@@ -8,7 +8,7 @@
 			<img src="{{ asset('images/icon.png') }}">
               <h6>En unos segundos recibirás un correo con toda la información para tu ingreso al evento.</br>Recuerda revisar tu bandeja de Spam.</h6>
               <h3>GRACIAS POR INSCRIBIRTE A {{ $ElementosArray["evento"] ->Nombre_Evento }}</h3>
-              <p>Recuerda revisar muy bien tu bandeja de correo y guardar el Ecoticket para el día de ingreso al evento, ese es tu pase de acceso.</p><img class="block-about-img" src="images/home-2-01-830x440.jpg" alt="" width="830" height="440"/>
+              <p>Recuerda revisar muy bien tu bandeja de correo y guardar el Ecoticket para el día de ingreso al evento, ese es tu pase de acceso.</p>
             </div>
           </div>
         </div>
