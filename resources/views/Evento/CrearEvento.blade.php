@@ -195,7 +195,7 @@
 								<h4 class="title">Flyer del evento</h4>
 								  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 									<div class="fileinput-new thumbnail">
-									  <img src="./assets/img/image_placeholder.jpg" alt="...">
+									  <img src="{{ asset('assets/img/image_placeholder.jpg')}}" alt="...">
 									</div>
 									<div class="fileinput-preview fileinput-exists thumbnail"></div>
 									<div>
