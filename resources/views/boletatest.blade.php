@@ -104,13 +104,16 @@
     <tr>
         <td align="center" valign="top">
             <table width="100%" bgcolor="#1D2139">
+                <tr>
+                    <td class="img" bgcolor="#B0D416" height="16">&nbsp;</td>
+                <tr>
                     <td align="center">
                         <table width="650" class="mobile-shell">
                             <tr>
                                 <td class="td" style="width:650px; min-width:650px;  font-weight:normal;">
                                     <table width="100%">
                                         <tr>
-                                            <td class="p30-15" style="padding: 5px;">
+                                            <td class="p30-15" style="padding: 20px 40px 20px 40px;">
                                                 <table width="100%">
                                                     <tr>
 
@@ -134,7 +137,7 @@
                             </tr>
                         </table>
                     </td>
-    </tr>
+                </tr>
 
                 <!-- END Header -->
 
@@ -159,7 +162,7 @@
                                                                 <td>
                                                                     <table width="100%" border="0">
                                                                         <tr>
-                                                                            <td style="padding: 10px 0px;"
+                                                                            <td style="padding: 30px 0px;"
                                                                                 class="p30-0">
                                                                                 <table width="100%" border="0"
                                                                                 >
@@ -194,7 +197,7 @@
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td align="center"
-                                                                                            style="padding-bottom:10px;">
+                                                                                            style="padding-bottom:30px;">
                                                                                             <table border="0" >
                                                                                                 <tr>
                                                                                                     <th class="column-top"
@@ -300,10 +303,10 @@
                                                                 <td class="content-spacing" width="40"></td>
                                                             </tr>
                                                         </table>
-														<table width="100%"
+                                                        <table width="100%"
                                                                bgcolor="#ffffff">
                                                             <tr>
-                                                                <td class="p30-15" style="padding: 5px 5px;">
+                                                                <td class="p30-15" style="padding: 20px 20px;">
                                                                     <table width="100%" border="0">
                                                                         <tr>
                                                                             <td class="text center pb30"
@@ -320,33 +323,8 @@
                                                                                     *No es necesario imprimirlo
                                                                                     presenta tu SmartPhone cuídemos el
                                                                                     medio ambiente.
-                                                                            </td>
-																			<td class="text-footer pb10"
-																				style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; font-weight:bold; padding-bottom:10px;">
-																				INFORMACIÓN IMPORTANTE
-																			</td>
-																			 <td 
-                                                                                style="color:#1D2139; font-family:Arial,sans-serif; font-size:14px; line-height:28px; text-align:center; padding-bottom:30px;">
-                                                                                   Para tener en cuenta:
-																					El código QR es único, la primera persona que presente el
-																					Ecoticket podrá ingresar, los demás no podrán hacerlo.
-																					El Ecoticket debe estar completo y legible.
-																					Al ingresar al evento debe presentar: Su Ecoticket y cédula
-																					original.
-																					Cualquier intento de fraude podrá ser reportado con las
-																					autoridades competentes y prohibirse su ingreso al evento.
-																					No publique su Ecoticket, ni le tome fotos, puede ser víctima de
-																					falsificaciones.
-                                                                            </td>
-																			<td class="text-footer pb10"
-																				style="color:#1D2139; font-family:Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;">
-																			   <a href="https://ecotickets.co" target="_blank"
-																							  class="link5-u"
-																							  style="color:#ffffff; text-decoration:underline;"><span
-																								class="link5-u"
-																								style="color:#ffffff; text-decoration:underline;">#EstamosCuidandoElPlaneta</span></a>
 
-																			</td>
+                                                                            </td>
                                                                         </tr>
                                                                     </table>
                                                                 </td>
@@ -363,7 +341,6 @@
                     </tr>
                 </table>
                 <!-- END Section Social -->
-
                 </tr>
             </table>
         </td>
