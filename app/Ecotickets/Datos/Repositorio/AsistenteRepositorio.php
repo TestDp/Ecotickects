@@ -125,9 +125,9 @@ class AsistenteRepositorio
                             $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaUsuario['idUsuario']);
                         }
                     }else{
-                        $user = $this->usuarioRepositorio->crearModelUsuario($asistente);
+                       /* $user = $this->usuarioRepositorio->crearModelUsuario($asistente);
                         $respuestaGuardarUsuario = $this->usuarioRepositorio->guardarUsuario($user,[env('IdRolUsuarioComprador')]);
-                        $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaGuardarUsuario['idUsuario']);
+                        $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaGuardarUsuario['idUsuario']);*/
                     }
                 }
             }
