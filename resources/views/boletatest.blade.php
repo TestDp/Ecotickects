@@ -10,7 +10,7 @@
                display: block;
                font-size: 12px;
                font-weight: bold;
-               background-color: #8abd51;
+               background: #8abd51;
                padding: 0 18px;
                line-height: 30px;
                border-radius: 0px;
@@ -46,7 +46,7 @@ body {
          .top,
          .bottom,
          .rip {
-            background-color: #fff;
+            background-color: #1D2139;
          }
          .top {
             border-top-right-radius: 5px;
@@ -71,7 +71,7 @@ body {
 			   text-align: center;
 			   font-family: Arial,sans-serif;
                font-weight: bold;
-               background-color: #8abd51;
+               background-color: #B0D416;
                padding: 0 18px;
                line-height: 30px;
                border-radius: 15px;
@@ -113,6 +113,7 @@ body {
       }
       .-bold {
          font-weight: bold;
+		 font-family: Arial,sans-serif;
       }
    }
 }
@@ -120,14 +121,14 @@ body {
 
 	<title>Ecoticket</title>
 </head>
-<body style="background-image: linear-gradient(-45deg, #8067B7, #EC87C0);">
+<body style="background: #1D2139;">
 
 <div type="ticket" class="--flex-column">
   <div class="top --flex-column">
 
     <center><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/logo-correo.png" width="289" height="110" border="0"/></center>
     <br>
-	<div style="padding-top:5%; padding-bottom: 5%; background:#B0D416; color: #1D2139 !important; float: left; width: 100%; text-align: center;">
+	<div style="font-family: Arial,sans-serif; padding-top:5%; padding-bottom: 5%; background:#B0D416; color: #1D2139 !important; float: left; width: 100%; text-align: center;">
 			<div class="bandname -bold">{{ $ElementosArray["evento"] ->Nombre_Evento }}</div>
 			<div class="tourname">LUGAR: {{ $ElementosArray["evento"] ->Lugar_Evento }}</div>
 			<div class="tourname">FECHA: {{ $ElementosArray["evento"] ->Fecha_Evento }}</div>
