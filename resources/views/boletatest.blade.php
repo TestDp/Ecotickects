@@ -20,16 +20,7 @@
             width: 100% !important;
             background: #ffffff;
             -webkit-text-size-adjust: none
-        }
-		
-		@media print {
-	body{
-        width: 21cm;
-        height: 29.7cm;
-        margin: 30mm 45mm 30mm 45mm; 
-        /* change the margins as you want them to be. */
-				} 
-		}
+        } 		
 
         a {
             color: #55311f;
@@ -67,11 +58,11 @@
             }
 
             .p30-15 {
-                padding: 30px 15px !important;
+                padding: 10px 15px !important;
             }
 
             .p30-0 {
-                padding: 30px 0px !important;
+                padding: 10px 0px !important;
             }
 
             .fluid-img img {
@@ -85,11 +76,11 @@
             .column-empty2,
             .column-empty3,
             .column-empty2 {
-                padding-bottom: 25px !important;
+                padding-bottom: 5px !important;
             }
 
             .column-empty3 {
-                padding-bottom: 45px !important;
+                padding-bottom: 25px !important;
             }
 
             .content-spacing {
@@ -110,7 +101,7 @@
                                 <td class="td" style="width:650px; min-width:650px;  font-weight:normal;">
                                     <table width="100%">
                                         <tr>
-                                            <td class="p30-15" style="padding: 10px;">
+                                            <td class="p30-15" style="padding: 5px 5px 5px 5px;">
                                                 <table width="100%">
                                                     <tr>
 
