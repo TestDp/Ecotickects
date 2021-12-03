@@ -41,6 +41,7 @@
                 <!-- Rd Navbar Navigation-->
                 <div class="rd-navbar-main-element">
                   <div class="rd-navbar-nav-wrap">
+				  @if (Route::has('login'))
                     <ul class="rd-navbar-nav">
                       <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ url('/') }}">Inicio</a>
                       </li>
@@ -55,9 +56,15 @@
                     </ul>
                   </div>
                 </div>
+				@auth
+				<li class="rd-nav-item active"><a class="rd-nav-link" href="{{ url('/home') }}">Volver al admin</a>
+                      </li>
+					  @else
                 <!-- RD Navbar Collapse-->
                 <div class="rd-navbar-collapse"><a class="button button-primary" href="{{ route('login') }}" data-triangle=".button-overlay"><span>Iniciar sesión</span><span class="button-overlay"></span></a>
                 </div>
+				@endauth
+				@endif
               </div>
             </div>
           </nav>
