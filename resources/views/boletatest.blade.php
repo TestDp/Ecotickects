@@ -104,6 +104,9 @@
     <tr>
         <td align="center" valign="top">
             <table width="100%" bgcolor="#1D2139">
+                <tr>
+                    <td class="img" bgcolor="#B0D416" height="16">&nbsp;</td>
+                <tr>
                     <td align="center">
                         <table width="650" class="mobile-shell">
                             <tr>
