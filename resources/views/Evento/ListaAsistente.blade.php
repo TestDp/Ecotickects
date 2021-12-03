@@ -62,7 +62,7 @@
                             @if(Auth::user()->buscarRecurso('ListaTickets'))
                             <td class="td-name">
                                 <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Visualizar tickets">
-                                    <a href="{{ url('/ListaTickets',['idEvento' => $evento->id,'$idAsistente'=> $asistente->id]) }}"><i class="material-icons">group</i></a>
+                                    <a href="{{ url('/ListaTickets',['idEvento' => $evento->id,'$idAsistente'=> $asistente->id]) }}"><i class="material-icons">confirmation_number</i></a>
                                 </button>
                             </td>
                             @endif

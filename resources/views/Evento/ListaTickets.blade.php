@@ -88,14 +88,14 @@
                                 @if(Auth::user()->buscarRecurso('DescargarTicket'))
                                     @if($ticket->esActivo == 0 && $ticket->esAnulado == 0 )
                                         <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Descargar tickect">
-                                            <a href="{{ url('descargarTicket/'.$idEvento.'/'.$ticket->idAsistenteEvento) }}"><i class="material-icons">group</i></a>
+                                            <a href="{{ url('descargarTicket/'.$idEvento.'/'.$ticket->idAsistenteEvento) }}"><i class="material-icons">file_download</i></a>
                                         </button>
                                     @endif
                                 @endif
                                 @if(Auth::user()->buscarRecurso('AnularTicket'))
                                     @if($ticket->esActivo == 0 && $ticket->esAnulado == 0 )
                                         <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Anular">
-                                            <a onclick="ValidarAnulacion({{$ticket->idAsistenteEvento}})"><i class="material-icons">group</i></a>
+                                            <a onclick="ValidarAnulacion({{$ticket->idAsistenteEvento}})"><i class="material-icons">highlight_off</i></a>
                                         </button>
                                     @endif
                                 @endif
