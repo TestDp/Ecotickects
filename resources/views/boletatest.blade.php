@@ -14,7 +14,7 @@
                padding: 0 18px;
                line-height: 30px;
                border-radius: 0px;
-               color: #fff;
+               color: #1D2139;
                text-decoration: none;
             }
 
@@ -142,7 +142,7 @@ body {
 			</div>
 			 </div>
 	</div>							
-    <div class="deetz --flex-row-j!sb">
+    <div style="font-family: Arial,sans-serif; text-align: center;" class="deetz --flex-row-j!sb">
       <div class="event --flex-column">
 	     <div class="location -bold">Para tener en cuenta:</div>
         <div class="date">El código QR es único, la primera persona que presente el Ecoticket podrá ingresar, los demás no podrán hacerlo.</div>
@@ -152,13 +152,11 @@ body {
 		<div class="date">No publique su Ecoticket, ni le tome fotos, puede ser víctima de falsificaciones.</div>
       </div>
     </div>
-    <center><small>Términos y condiciones</small></center>
-    <center><small>www.ecotickets.co</small></center>
   </div>
   <div class="rip"></div>
   <div class="bottom --flex-row-j!sb">
     <div class="barcode"></div>
-    <a class="buy" href="#">NO LO IMPRIMAS | CUIDA EL MEDIO AMBIENTE</a>
+    <a class="buy">NO LO IMPRIMAS | CUIDA EL MEDIO AMBIENTE</a>
     <br>
 
   </div>
