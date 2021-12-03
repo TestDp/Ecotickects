@@ -218,7 +218,7 @@
 																												<td class="img-center pb30" style=" text-align:center; padding-bottom:30px;"><img src="https://dpsoluciones.co/wp-content/uploads/2021/11/ubi.png" width="28" height="28" border="0" alt="" /></td>
 																											</tr>
 																											<tr>
-																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }} CIUDAD</span></multiline></td>
+																												<td class="text-center" style="color:#ffffff; font-family:Arial,sans-serif; font-size:14px; line-height:30px; text-align:center;"><multiline><span class="link-white" style="color:#ffffff; text-decoration:none;">Ciudad del evento: <br />{{ $ElementosArray["evento"]->ciudad->Nombre_Ciudad }}</span></multiline></td>
 																											</tr>
 																										</table>
 																									</th>
