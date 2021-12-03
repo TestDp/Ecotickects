@@ -104,16 +104,13 @@
     <tr>
         <td align="center" valign="top">
             <table width="100%" bgcolor="#1D2139">
-                <tr>
-                    <td class="img" bgcolor="#B0D416" height="16">&nbsp;</td>
-                <tr>
                     <td align="center">
                         <table width="650" class="mobile-shell">
                             <tr>
                                 <td class="td" style="width:650px; min-width:650px;  font-weight:normal;">
                                     <table width="100%">
                                         <tr>
-                                            <td class="p30-15" style="padding: 20px 40px 20px 40px;">
+                                            <td class="p30-15" style="padding: 10px;">
                                                 <table width="100%">
                                                     <tr>
 
