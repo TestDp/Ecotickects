@@ -176,7 +176,7 @@
                             <br/>
                                <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
+                                    <button type="submit" onclick="generarQRCode()" class="button button-primary">
                                         Registrarse
                                     </button>
                                 </div>
@@ -307,7 +307,7 @@
                             <br/>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" onclick="generarQRCode()" class="btn btn-blue ripple trial-button">
+                                    <button type="submit" onclick="generarQRCode()" class="button button-primary">
                                         Registrarse
                                     </button>
                                 </div>

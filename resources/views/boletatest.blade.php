@@ -144,7 +144,7 @@ body {
 	</div>							
     <div style="font-family: Arial,sans-serif; text-align: center;" class="deetz --flex-row-j!sb">
       <div class="event --flex-column">
-	     <div class="location -bold">Para tener en cuenta:</div>
+	     <div class="date">Para tener en cuenta:</div>
         <div class="date">El código QR es único, la primera persona que presente el Ecoticket podrá ingresar, los demás no podrán hacerlo.</div>
 		<div class="date">El Ecoticket debe estar completo y legible.</div>
 		<div class="date">Al ingresar al evento debe presentar: Su Ecoticket y cédula original.</div>
