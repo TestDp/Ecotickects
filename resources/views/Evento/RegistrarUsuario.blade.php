@@ -129,6 +129,7 @@
 							Evento al cual desea registrar el usuario
                                 <div class="form-group">                               
                                     <select title="Seleccionar" id="Evento_id" name="Evento_id" class="form-control" onchange="CargarLocalidadesEvento()">
+                                        <option value="">Seleccionar</option>
                                         @foreach($ElementosArray["eventos"] as $evento)
                                             <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento}}</option>
                                         @endforeach
