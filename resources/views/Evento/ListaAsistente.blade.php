@@ -111,7 +111,7 @@
                             <small>{{$asistenteGL->Email}}</small>
                           </td>
 						  <td class="td-name">
-                            <a > <!--{{$asistente->Localidad}}--></a>
+                            <a > {{$asistente->Localidad}}</a>
                             <br />
                             <small>{{$asistenteGL->Nombre_Ciudad}}</small>
                           </td>

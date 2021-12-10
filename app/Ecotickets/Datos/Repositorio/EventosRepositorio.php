@@ -648,11 +648,8 @@ class EventosRepositorio
         $etapas->CantidadTotal =  $etapas->sum('CantidadBoletas');
         $etapas->idEvento = $idEvento;
         $etapas->evento = $evento;
-
         return $etapas;
     }
-
-
 
     //retorna los eventos a los que tienen permisos los usuarios creados por el adminitrador u Organizador
     public function ListaDeEventosXUsuario($idUsuario)
@@ -692,10 +689,6 @@ class EventosRepositorio
             $promotorBoletas->Total =  $promotorBoletas->sum('TotalEtapa');
             $promotorBoletas->idEvento = $idEvento;
             $promotorBoletas->evento = $evento;
-
-
-
-
         return $promotorBoletas;
     }
 
@@ -703,7 +696,6 @@ class EventosRepositorio
     public function ObtenerInformeUsuarioBoleta($idEvento)
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
-
         $usuarioBoletas = DB::table(
             DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,u.Sede_id AS Sede_id,up.name as Promotor, 
         p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas, sum(PrecioTotal) AS TotalEtapa
@@ -732,11 +724,78 @@ class EventosRepositorio
         $usuarioBoletas->Total =  $usuarioBoletas->sum('TotalEtapa');
         $usuarioBoletas->idEvento = $idEvento;
         $usuarioBoletas->evento = $evento;
-
-
-
-
         return $usuarioBoletas;
+    }
+    //retorna la catnidad de tickets generados por sede
+    public function CantidadTicketsGenerados($idSede)
+    {
+        $cantidadTickets = DB::table('Tbl_InfoPagos')
+            ->join('Tbl_PreciosBoletas', 'Tbl_InfoPagos.PrecioBoleta_id', '=', 'Tbl_PreciosBoletas.id')
+            ->join('Tbl_Eventos', 'Tbl_PreciosBoletas.Evento_id', '=', 'Tbl_Eventos.id')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->select('sum(CantidadBoletas) as CantidadTickets' )
+            ->where('Tbl_Sedes.id', '=', $idSede)
+            ->get();
+        return $cantidadTickets;
+    }
+
+    //retorna la catnidad de tickets generados por sede y ultimo evento
+    public function CantidadTicketsGenUltimoEven($idSede)
+    {
+        $idUltimoEvento =$this->UltimoEventoSede($idSede);
+        $cantidadTickets = DB::table('Tbl_InfoPagos')
+            ->join('Tbl_PreciosBoletas', 'Tbl_InfoPagos.PrecioBoleta_id', '=', 'Tbl_PreciosBoletas.id')
+            ->join('Tbl_Eventos', 'Tbl_PreciosBoletas.Evento_id', '=', 'Tbl_Eventos.id')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->select('sum(CantidadBoletas) as CantidadTickets' )
+            ->where('Tbl_Sedes.id', '=', $idSede)
+            ->where('Tbl_Eventos.id', '=', $idUltimoEvento)
+            ->get();
+        return $cantidadTickets;
+    }
+
+    //retorna la catnidad de Asistentes  por sede en ultimo evento
+    public function CantidadAsistentesUltimoEven($idSede)
+    {
+        $idUltimoEvento =$this->UltimoEventoSede($idSede);
+        $cantidadAsistentes = count(AsistenteXEvento::join('Tbl_InfoPagos', function ($join) {
+            $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
+        })
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idUltimoEvento)
+            ->where('tbl_asistentesXeventos.esActivo', '=', 1)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
+            ->get());
+        return $cantidadAsistentes;
+    }
+
+    //retorna la catnidad de Inscritos  por sede en ultimo evento
+    public function CantidadInscritosUltimoEven($idSede)
+    {
+        $idUltimoEvento =$this->UltimoEventoSede($idSede);
+        $cantidadInscritos = count(AsistenteXEvento::join('Tbl_InfoPagos', function ($join) {
+            $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
+        })
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idUltimoEvento)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
+            ->get());
+        return $cantidadInscritos;
+    }
+
+    //retorna una lista de eventos y cupones filtrados por sede  filtrados por sede  y por cupon o evento
+    public function UltimoEventoSede($idSede)
+    {
+        $fechaActual = new DateTime('today');
+        $fechaActual->modify('-1 day');
+        $ultimoEventoId = DB::table('Tbl_Eventos')
+            ->join('users', 'users.id', '=', 'Tbl_Eventos.user_id')
+            ->join('Tbl_Sedes', 'Tbl_Sedes.id', '=', 'users.Sede_id')
+            ->select('Tbl_Eventos.id' )
+            ->where('Tbl_Sedes.id', '=', $idSede)
+            ->where('Tbl_Eventos.Fecha_Evento','<',$fechaActual)
+            ->orderBy('Fecha_Evento', 'desc')->get();
+        return $ultimoEventoId;
     }
 
 }

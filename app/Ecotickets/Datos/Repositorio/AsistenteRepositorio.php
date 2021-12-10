@@ -210,7 +210,9 @@ class AsistenteRepositorio
             ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad, "0" as CantidadBoletas, "0" as PrecioTotal, "Gratis" as TipoBoleta' ))
+            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, 
+            tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, 
+            tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad, "0" as CantidadBoletas,"Gratuita" as Localidad, "0" as PrecioTotal, "Gratis" as TipoBoleta' ))
             ->get();
         return $listaAsistentesEventos;
     }
