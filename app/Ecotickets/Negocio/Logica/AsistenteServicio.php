@@ -143,7 +143,7 @@ class AsistenteServicio
 
 
 
-  /*  public function obtenerAsistentesXEvento($idEvento)
+   public function obtenerAsistentesXEvento($idEvento)
     {
         $espago = $this->asistenteRepositorio->Espago($idEvento);
         //$esGuestList = $this->asistenteRepositorio->EsGuestList($idEvento);
@@ -156,34 +156,18 @@ class AsistenteServicio
             return $this->asistenteRepositorio->obtenerAsistentesXEventoGuessList($idEvento);
         }*/
 
-        //return $this->asistenteRepositorio->obtenerAsistentesXEvento($idEvento);
-    //}
-
-    public function obtenerAsistentesXEvento($idEvento)
-    {
-        $espago = $this->asistenteRepositorio->Espago($idEvento);
-        $esGuestList = $this->asistenteRepositorio->EsGuestList($idEvento);
-        if ($espago)
-        {
-            return $this->asistenteRepositorio->obtenerAsistentesXEventoPago($idEvento);
-        }
-        elseif ($esGuestList)
-        {
-            return $this->asistenteRepositorio->obtenerAsistentesXEventoGuessList($idEvento);
-        }
+        return $this->asistenteRepositorio->obtenerAsistentesXEvento($idEvento);
     }
+
+
 
     public function obtenerAsistentesXEventoGuestList($idEvento)
     {
         $esGuestList = $this->asistenteRepositorio->EsGuestList($idEvento);
-
         if ($esGuestList)
-       {
-           return $this->asistenteRepositorio->obtenerAsistentesXEventoGuessList($idEvento);
-       }
-
-        return $this->asistenteRepositorio->obtenerAsistentesXEventoGuessList($idEvento);
-
+           {
+               return $this->asistenteRepositorio->obtenerAsistentesXEventoGuessList($idEvento);
+           }
     }
 
     public function obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente)
