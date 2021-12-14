@@ -170,13 +170,41 @@
     <script src="{{ asset('js/Plugins/Jquery/jquery-3.1.1.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#TablaListaAsistentes').DataTable({
+            var table = $('#TablaUsuarioPromotor').DataTable({
                 dom: 'B<"clear">lfrtip',
                 buttons: {
                     name: 'primary',
                     text: 'Save current page',
                     buttons: [
-                        { extend: 'excel', text: '<p style="color: green !important; font-size: 20px; text-align: center;"><img src="http://estebanquinteroc.com/wp-content/uploads/2017/10/icono-excel.png"></img>Exportar lista</p>' }
+                        { extend: 'excel', text: '<p class="btn btn-rose" style="color: green !important; font-size: 20px; text-align: center;">Exportar lista</p>' }
+                    ]
+                },
+                language: {
+                    "lengthMenu": "Registros por página _MENU_",
+                    "info":"Mostrando del _START_ a _END_ de _TOTAL_ registros",
+                    "infoEmpty":"Mostrando del 0 a 0 de 0 registros",
+                    "infoFiltered": "(Registros filtrados _MAX_ )",
+                    "zeroRecords": "No hay registros",
+                    "search": "Buscador:",
+                    "paginate": {
+                        "first":      "First",
+                        "last":       "Last",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+	    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#TablaUsuarioPromotor2').DataTable({
+                dom: 'B<"clear">lfrtip',
+                buttons: {
+                    name: 'primary',
+                    text: 'Save current page',
+                    buttons: [
+                        { extend: 'excel', text: '<p class="btn btn-rose" style="color: green !important; font-size: 20px; text-align: center;">Exportar lista</p>' }
                     ]
                 },
                 language: {
