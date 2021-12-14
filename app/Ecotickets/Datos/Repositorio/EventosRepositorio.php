@@ -697,7 +697,7 @@ class EventosRepositorio
     {
         $evento = Evento::where('id','=',$idEvento)->get()->first();
         $usuarioBoletas = DB::table(
-            DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,u.Sede_id AS Sede_id,up.name as Promotor, 
+            DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,u.Sede_id AS Sede_id,up.name as Promotor, pb.localidad,
         p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas, sum(PrecioTotal) AS TotalEtapa
                     from tbl_asistentesXeventos as ae
                     inner join tbl_asistentes as a
@@ -713,9 +713,11 @@ class EventosRepositorio
                     inner join Tbl_Usuarios_X_AsistenteEvento as ue
                     on ae.id = ue.AsistentesXEvento_id
                     inner join users as up
-                    on  up.id = ue.user_id 
-                    where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 100
-                    group by  e.Nombre_Evento, u.Sede_id, p.precioTotal/cantidadBoletas, up.name
+                    on  up.id = ue.user_id
+                    inner join Tbl_PreciosBoletas as pb
+                    on e.id = pb.Evento_id
+                    where e.id = ' . $evento->id . ' and EstadosTransaccion_id = 100
+                    group by  e.Nombre_Evento, u.Sede_id, pb.localidad, p.precioTotal/cantidadBoletas, up.name
                     order by up.name asc) AS Resul') )
             ->where('CantidadBoletas','>',0)
             ->get();
@@ -725,6 +727,41 @@ class EventosRepositorio
         $usuarioBoletas->idEvento = $idEvento;
         $usuarioBoletas->evento = $evento;
         return $usuarioBoletas;
+    }
+
+    //retorna una lista de etapas y las boletas distinguida por promotor
+    public function ObtenerInformeUsuarioBoleta2($idEvento)
+    {
+        $evento = Evento::where('id','=',$idEvento)->get()->first();
+        $usuarioBoletas2 = DB::table(
+            DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,u.Sede_id AS Sede_id, pb.localidad,
+        p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas, sum(PrecioTotal) AS TotalEtapa
+                    from tbl_asistentesXeventos as ae
+                    inner join tbl_asistentes as a
+                    on ae.Asistente_id = a.id
+                    inner join Tbl_Ciudades as c
+                    on a.Ciudad_id = c.id
+                    inner join Tbl_InfoPagos as p
+                    on ae.id = p.AsistenteXEvento_id
+                    inner join Tbl_Eventos as e
+                    on ae.Evento_id = e.id
+                    inner join users as u
+                    on e.user_id = u.id
+                    inner join Tbl_Usuarios_X_AsistenteEvento as ue
+                    on ae.id = ue.AsistentesXEvento_id
+                    inner join users as up
+                    on  up.id = ue.user_id
+                    inner join Tbl_PreciosBoletas as pb
+                    on e.id = pb.Evento_id
+                    where e.id = ' . $evento->id . ' and EstadosTransaccion_id = 100
+                    group by  e.Nombre_Evento, u.Sede_id, pb.localidad, p.precioTotal/cantidadBoletas
+                    order by up.name asc) AS Resul') )
+            ->where('CantidadBoletas','>',0)
+            ->get();
+
+        $usuarioBoletas2->idEvento = $idEvento;
+        $usuarioBoletas2->evento = $evento;
+        return $usuarioBoletas2;
     }
     //retorna la catnidad de tickets generados por sede
     public function CantidadTicketsGenerados($idSede)

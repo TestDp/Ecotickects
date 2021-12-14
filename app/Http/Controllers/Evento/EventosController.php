@@ -200,7 +200,8 @@ class EventosController extends Controller
         $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
         $request->user()->AutorizarUrlRecurso($urlinfo);
         $ListaUsuarioBoleta= array('UsuarioBoleta' => $this -> eventoServicio ->ObtenerInformeUsuarioBoleta($idEvento));
-        return view('Evento/InformeUsuarioBoleta',['ListaUsuarioBoleta' => $ListaUsuarioBoleta,'idUser'=>$user->id]);
+        $ListaUsuarioBoleta2= array('UsuarioBoleta2' => $this -> eventoServicio ->ObtenerInformeUsuarioBoleta2($idEvento));
+        return view('Evento/InformeUsuarioBoleta',['ListaUsuarioBoleta' => $ListaUsuarioBoleta,'ListaUsuarioBoleta2' => $ListaUsuarioBoleta2,'idUser'=>$user->id]);
     }
 
     public function ObtenerMisEventos(Request $request)

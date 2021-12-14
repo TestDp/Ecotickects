@@ -9,7 +9,10 @@
                     <div style="overflow-x:auto;" class="panel-body">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaUsuarioPromotor" class="table table-bordered">
                             <thead>
-                            <tr >
+                            <tr>
+                                <th>
+                                    Localidad
+                                </th>
                                 <th>
                                     Precio Etapa
                                 </th>
@@ -27,7 +30,10 @@
                             </thead>
                             <tbody >
                             @foreach($ListaUsuarioBoleta["UsuarioBoleta"] as $usuarioBoleta)
-                            <tr >
+                            <tr>
+                                <td>
+                                    {{$usuarioBoleta->localidad}}
+                                </td>
                                 <td>
                                   {{$usuarioBoleta->PrecioEtapa}}
                                 </td>
@@ -42,6 +48,52 @@
                                 </td>
 
                             </tr>
+                            @endforeach
+
+                            </tbody>
+
+                        </table>
+
+                        <div class="panel-heading text-center"><h4>Consolidado x Localidad</h4></div>
+
+
+                        <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaUsuarioPromotor2" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Localidad
+                                </th>
+                                <th>
+                                    Precio Etapa
+                                </th>
+
+                                <th>
+                                    Cantidad Boletas
+                                </th>
+                                <th>
+                                    Total Etapa
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <tbody >
+                            @foreach($ListaUsuarioBoleta2["UsuarioBoleta2"] as $usuarioBoleta2)
+                                <tr>
+                                    <td>
+                                        {{$usuarioBoleta2->localidad}}
+                                    </td>
+                                    <td>
+                                        {{$usuarioBoleta2->PrecioEtapa}}
+                                    </td>
+
+                                    <td>
+                                        {{$usuarioBoleta2->CantidadBoletas}}
+                                    </td>
+                                    <td>
+                                        {{$usuarioBoleta2->TotalEtapa}}
+                                    </td>
+
+                                </tr>
                             @endforeach
 
                             </tbody>
