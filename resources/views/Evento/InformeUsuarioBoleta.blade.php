@@ -1,12 +1,18 @@
-@extends('layouts.internas')
+@extends('layouts.profile')
 
 @section('content')
-    <div class="container">
-        <div class="row">
+
+	    <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h3>Informe Usuarios x Boleta {{ $ListaUsuarioBoleta["UsuarioBoleta"]->evento ->Nombre_Evento }}</h3></div>
-                    <div style="overflow-x:auto;" class="panel-body">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Informe Usuarios por Boleta {{ $ListaUsuarioBoleta["UsuarioBoleta"]->evento ->Nombre_Evento }}</h4>
+                </div>
+               <div class="card-body">
+                  <div class="table-responsive">
 						<table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaUsuarioPromotor" class="table table-bordered">
                             <thead>
                             <tr>
@@ -54,7 +60,12 @@
 
                         </table>
 
-                        <div class="panel-heading text-center"><h4>Consolidado x Localidad</h4></div>
+                                        <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Consolidado por localidad</h4>
+                </div>
 
 
                         <table style="border-collapse: collapse !important; border-spacing: 0 !important; width: 100% !important;" id="TablaUsuarioPromotor2" class="table table-bordered">
