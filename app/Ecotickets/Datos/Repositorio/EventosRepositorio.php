@@ -715,8 +715,8 @@ class EventosRepositorio
                     inner join users as up
                     on  up.id = ue.user_id
                     inner join Tbl_PreciosBoletas as pb
-                    on e.id = pb.Evento_id
-                    where e.id = ' . $evento->id . ' and EstadosTransaccion_id = 100
+                    on p.PrecioBoleta_id = pb.id
+                    where ae.Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 100
                     group by  e.Nombre_Evento, u.Sede_id, pb.localidad, p.precioTotal/cantidadBoletas, up.name
                     order by up.name asc) AS Resul') )
             ->where('CantidadBoletas','>',0)
@@ -752,7 +752,7 @@ class EventosRepositorio
                     inner join users as up
                     on  up.id = ue.user_id
                     inner join Tbl_PreciosBoletas as pb
-                    on e.id = pb.Evento_id
+                    on p.PrecioBoleta_id = pb.id
                     where e.id = ' . $evento->id . ' and EstadosTransaccion_id = 100
                     group by  e.Nombre_Evento, u.Sede_id, pb.localidad, p.precioTotal/cantidadBoletas
                     order by up.name asc) AS Resul') )
