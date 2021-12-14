@@ -455,7 +455,7 @@
                   <div class="testimonial">
                     <div class="wow fadeIn">
                       <!-- Testimonial-->
-                      <p class="testimonial-text heading-4">This is due to their excellent service, competitive pricing and customer support. It’s throughly refresing to get such a personal touch.</p>
+                      <p class="testimonial-text heading-4">Las personas y empresas que nos dedicamos a la producción de espectáculos públicos de las artes escénicas, sabemos lo importante que es para la organización y para el usuario, la forma en que se adquieren las entradas. Poder de la mano de Ecotickets, transformar el manejo tradicional de boletería (papel) al manejo a través de las nuevas tecnologías (digital), ha permitido mejorar la experiencia de usuario y la toma de decisiones con base en la información.</p>
                       <ul class="list-inline">
                         <li><span class="icon icon-sm icon-secondary fa-star"></span></li>
                         <li><span class="icon icon-sm icon-secondary fa-star"></span></li>
