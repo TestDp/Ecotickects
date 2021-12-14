@@ -52,7 +52,7 @@
 										</div>
 										<div class="row">
 										Sede
-											<div class="col-md-6">												
+											<div class="col-md-12">												
 												<select id="Sede_id" name="Sede_id"  class="form-control"  name="language">
 													<option value="">Seleccionar</option>
 													@foreach($listSedes as $sede)
@@ -61,8 +61,10 @@
 												</select>
 												<span class="invalid-feedback" role="alert" id="errorSede_id"></span>
 											</div>
-											<div class="col-md-6">
-												Roles
+										</div>
+										<div class="row">
+										Roles
+												<div class="col-md-12">												
 												<select id="Roles_id" name="Roles_id[]"  class="form-control" multiple name="language">
 													<option value="">Seleccionar</option>
 													@foreach($listRoles as $rol)
@@ -72,7 +74,6 @@
 												<span class="invalid-feedback" role="alert" id="errorRoles_id"></span>
 											</div>
 										</div>
-
 										<div class="row">
 											<div class="col-md-4">
 												<button onclick="GuardarUsuario()" type="button" class="btn btn-success">Crear Usuario</button>
