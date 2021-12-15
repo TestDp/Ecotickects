@@ -632,7 +632,7 @@ class EventosRepositorio
                     on ae.Evento_id = e.id
                     inner join users as u
                     on e.user_id = u.id
-                    where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
+                    where ae.Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
                     group by  e.Nombre_Evento,case when p.MediosDePago_id = 2 then 1 else 0 end, u.Sede_id, p.precioTotal/cantidadBoletas, , pb.localidad) resul'),
                 function($join)
                 {
