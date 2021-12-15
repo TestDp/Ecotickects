@@ -618,7 +618,7 @@ class EventosRepositorio
         (resul.TotalEtapa - (resul.TotalEtapa * Tbl_ConfiguracionXSedes.Porcentaje) - (Tbl_ConfiguracionXSedes.comision1 + Tbl_ConfiguracionXSedes.comision2) * resul.cantidadBoletas) as Total'))
 
             ->join(DB::raw('(SELECT e.Nombre_Evento as Nombre_Evento,(case when p.MediosDePago_id = 2 then 1 else 0 end) 
-                    as EsTC ,u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa,sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
+                    as EsTC ,u.Sede_id AS Sede_id,p.PrecioTotal/p.CantidadBoletas AS PrecioEtapa, pb.localidad, sum(CantidadBoletas) AS CantidadBoletas,  sum(PrecioTotal) AS TotalEtapa
                     from tbl_asistentesXeventos as ae
                     inner join tbl_asistentes as a
                     on ae.Asistente_id = a.id
@@ -626,12 +626,14 @@ class EventosRepositorio
                     on a.Ciudad_id = c.id
                     inner join Tbl_InfoPagos as p
                     on ae.id = p.AsistenteXEvento_id
+                    left join Tbl_PreciosBoletas as pb
+                    on p.PrecioBoleta_id = pb.id
                     inner join Tbl_Eventos as e
                     on ae.Evento_id = e.id
                     inner join users as u
                     on e.user_id = u.id
                     where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
-                    group by  e.Nombre_Evento,case when p.MediosDePago_id = 2 then 1 else 0 end, u.Sede_id, p.precioTotal/cantidadBoletas) resul'),
+                    group by  e.Nombre_Evento,case when p.MediosDePago_id = 2 then 1 else 0 end, u.Sede_id, p.precioTotal/cantidadBoletas, , pb.localidad) resul'),
                 function($join)
                 {
 

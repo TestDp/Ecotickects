@@ -14,6 +14,9 @@
                                     Precio Etapa
                                 </th>
                                 <th>
+                                    Localidad
+                                </th>
+                                <th>
                                     Cantidad Boletas
                                 </th>
                                 <th>
@@ -35,6 +38,9 @@
                             <tr >
                                 <td>
                                   {{$etapa->PrecioEtapa}}
+                                </td>
+                                <td>
+                                    {{$etapa->localidad}}
                                 </td>
                                 <td>
                                     {{$etapa->CantidadBoletas}}
