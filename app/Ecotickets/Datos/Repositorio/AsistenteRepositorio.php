@@ -513,22 +513,18 @@ class AsistenteRepositorio
             ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
             ->whereRaw('Tbl_PreciosBoletas.id = Tbl_InfoPagos.PrecioBoleta_id')
-            ->select(\DB::raw('tbl_asistentes.id, tbl_asistentesXeventos.esActivo, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
+            ->select(\DB::raw('tbl_asistentes.id, tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.esAnulado, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
-
 
         $asistenteinvitado = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
             ->where('tbl_asistentesXeventos.ComentarioEvento', '=', "BoletaGratis123")
-            ->select(\DB::raw('tbl_asistentes.id,tbl_asistentesXeventos.esActivo, "0" as precio, "Cortesia" as localidad, tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id' ))
+            ->select(\DB::raw('tbl_asistentes.id,tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.esAnulado, "0" as precio, "Cortesia" as localidad, tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, tbl_asistentes.Ciudad_id' ))
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
 
-
-
-        //$asistente = $asistentepago->merge($asistenteinvitado);
         if($asistentepago == null)
         {
             $asistente =  $asistenteinvitado;
@@ -756,18 +752,24 @@ class AsistenteRepositorio
             ->where('PinBoleta', '=', $idPin)
             ->get()->first();
         if ($asistenteEvento) {
-            if ($asistenteEvento->esActivo == false) {
-                $asistenteEvento->esActivo = true;
-                $asistenteEvento->save();
-                $result->Mensaje = 'Boleta Activada con exito';
-                $result->Activa = true;
-                $result->Localidad = $asistenteEventoCompleto->localidad;
-                $result->Identificacion = $asistenteEventoCompleto->Identificacion;
-                $result->Nombre = $asistenteEventoCompleto->Nombres;
-                return $result;
-            } else {
-
-                $result->Mensaje = 'La boleta ya fue ACTIVADA';
+            if ($asistenteEvento->esAnulado == false){
+                if ($asistenteEvento->esActivo == false) {
+                    $asistenteEvento->esActivo = true;
+                    $asistenteEvento->save();
+                    $result->Mensaje = 'Boleta Activada con exito';
+                    $result->Activa = true;
+                    $result->Localidad = $asistenteEventoCompleto->localidad;
+                    $result->Identificacion = $asistenteEventoCompleto->Identificacion;
+                    $result->Nombre = $asistenteEventoCompleto->Nombres;
+                    return $result;
+                } else {
+                    $result->Mensaje = 'La boleta ya fue ACTIVADA';
+                    $result->Activa = false;
+                    $result->Localidad = $asistenteEventoCompleto->localidad;
+                    return $result;
+                }
+            }else{
+                $result->Mensaje = 'La boleta fue anulada contactar al administrador';
                 $result->Activa = false;
                 $result->Localidad = $asistenteEventoCompleto->localidad;
                 return $result;
