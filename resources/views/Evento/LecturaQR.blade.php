@@ -1,4 +1,4 @@
-@extends('layouts.internas')
+@extends('layouts.profile')
 
 @section('titulo')
 	Lectura QR

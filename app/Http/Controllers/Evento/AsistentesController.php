@@ -441,6 +441,12 @@ class AsistentesController extends Controller
         return response()->json($this->asistenteServicio->ObtenerInformacionDelAsistenteXEvento($idEvento, $cc));
     }
 
+    /*Metodo que me retorna la informacion del asistente, se realza la busqueda por id del evento y por el id del pdf**/
+    public function ObtenerInformacionDelAsistenteXEventoWeb($idEvento, $numPdf)
+    {
+        return response()->json($this->asistenteServicio->ObtenerInformacionDelAsistenteXEventoWeb($idEvento, $numPdf));
+    }
+
     /*Metodo para  activar el qr del asistente al evento, recibe  como parametros el id del evento y el id  del asistente
     o usuario**/
     public function ActivarQRAsistenteXEvento($idEvento, $idAsistente, $cc)

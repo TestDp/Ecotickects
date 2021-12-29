@@ -167,7 +167,7 @@ Auth::routes();
 
     Route::get('LecturaQR/{idEvento}',['uses' =>'Evento\AsistentesController@FormularioQR']);
 
-    Route::post('InformacionQR/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEvento']);
+    Route::post('InformacionQR/{idEvento}/{numPdf}',['uses' =>'Evento\AsistentesController@ObtenerInformacionDelAsistenteXEventoWeb']);
 
     Route::get('ConfirmarAsistencia/{idEvento}',['uses' =>'Evento\AsistentesController@ObtenerFormularioConfirmacionAsistente']);
     

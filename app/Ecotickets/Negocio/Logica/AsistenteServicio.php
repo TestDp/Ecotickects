@@ -256,6 +256,24 @@ class AsistenteServicio
 
 
     }
+    public function ObtenerInformacionDelAsistenteXEventoWeb($idEvento, $numPdf)
+    {
+        $espago = $this->asistenteRepositorio->Espago($idEvento);
+        if ($espago)
+        {
+            $asistente = $this->asistenteRepositorio->ObtenerAsistentePagoWeb($idEvento,$numPdf);
+            if ($asistente != null) {
+                $AsistenteEvento = $this->asistenteRepositorio->ObtenerAsistenteXEventoPagoWeb($idEvento, $asistente->id, $numPdf);
+                if ($AsistenteEvento != null) {
+                    $asistente->esActivo = $AsistenteEvento->esActivo;
+                    $asistente->esPerfilado = $AsistenteEvento->esPerfilado;
+                    return $asistente;
+                }
+            }
+            return null;
+        }
+
+    }
 
     public function ActivarQRAsistenteXEvento($idEvento, $idAsistente, $cc)
     {
