@@ -42,7 +42,7 @@
                 <label>Código de seguridad *</label>
             </div>
             <div class="col-md-3">
-                <input type="number" maxlength="3" minlength="3"  class="form-control" placeholder="000"
+                <input type="number" maxlength="4" minlength="3"  class="form-control" placeholder="000"
                        id="codigoTarjeta" name="codigoTarjeta"  />
             </div>
         </div>
