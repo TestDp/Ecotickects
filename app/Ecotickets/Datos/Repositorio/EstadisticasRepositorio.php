@@ -229,13 +229,29 @@ class EstadisticasRepositorio
 
     public function NumeroAsistentesPago($idEvento)
     {
-        return  count(AsistenteXEvento::join('Tbl_InfoPagos', function ($join) {
+     /*   return  count(AsistenteXEvento::join('Tbl_InfoPagos', function ($join) {
             $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
         })
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->where('tbl_asistentesXeventos.esActivo', '=', 1)
             ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
-            ->get());
+                ->get());*/
+        $result = DB::table('Tbl_InfoPagos')
+            ->join('tbl_asistentesXeventos', 'Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentesXeventos.esActivo', '=', 1)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
+            ->select(\DB::raw('count(1) as cantidad'))
+            ->get()->first();
+        $result1 = DB::table('Tbl_InfoPagos')
+            ->join('tbl_asistentesXeventos', 'Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra')
+            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
+            ->where('tbl_asistentesXeventos.esActivo', '=', 1)
+            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
+            ->select(\DB::raw('count(1) as cantidad'))
+            ->get()->first();
+        $cantidad = $result->cantidad + $result1->cantidad;
+        return $cantidad;
 
 
     }
