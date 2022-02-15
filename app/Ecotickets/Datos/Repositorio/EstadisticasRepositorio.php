@@ -45,17 +45,9 @@ class EstadisticasRepositorio
         $arrayNombresCiudades = array();
         $cantidadmaxima = 0;
         $arrayCantidadCiudades = array();
-        $AsistentesCiudad = DB::table('tbl_asistentesXeventos')
-            ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
-            ->join('Tbl_Ciudades', 'tbl_asistentes.Ciudad_id', '=', 'Tbl_Ciudades.id')
-            ->join('Tbl_InfoPagos', function ($join) {
-                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
-            })
-            ->groupBy('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id')
-            ->select('Tbl_Ciudades.Nombre_Ciudad','Tbl_Ciudades.id',DB::raw('count(Tbl_Ciudades.id) as cantidad'))
-            ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
-            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
-            ->get();
+
+            $AsistentesCiudad = DB::select("CALL usp_ObtenerNroAsistentesXCiudad($idEvento)");
+
 
 
         foreach ($AsistentesCiudad as $asistente){
@@ -122,16 +114,13 @@ class EstadisticasRepositorio
         $arrayEdadesAsistentes = array();
         $cantidadmaxima = 0;
         $arrayCantidadEdadesAsistentes = array();
-        $AsistentesEdades = DB::table('tbl_asistentesXeventos')
-            ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
-            ->join('Tbl_InfoPagos', function ($join) {
-                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
-            })
-            ->groupBy('tbl_asistentes.Edad')
-            ->select('tbl_asistentes.Edad',DB::raw('count(tbl_asistentes.Edad) as cantidad'))
-            ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
-            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
-            ->get();
+
+        $AsistentesEdades = DB::select("CALL usp_ObtenerNroAsistentesXEdad($idEvento)");
+
+
+
+
+
         foreach ($AsistentesEdades as $asistenteEdad){
             $arrayEdadesAsistentes[]="Edad ".$asistenteEdad->Edad;
             $arrayCantidadEdadesAsistentes[]=$asistenteEdad->cantidad;
@@ -173,17 +162,8 @@ class EstadisticasRepositorio
         $arrayFechasAsistentes = array();
         $cantidadmaxima = 0;
         $arrayCantidadFechasAsistentes = array();
-        $AsistentesEdades = DB::table('tbl_asistentesXeventos')
-            ->join('tbl_asistentes', 'tbl_asistentesXeventos.Asistente_id','=','tbl_asistentes.id')
-            // ->groupBy('tbl_asistentes.Edad')
-            ->join('Tbl_InfoPagos', function ($join) {
-                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
-            })
-            ->select(DB::raw("DATE_FORMAT(tbl_asistentes.created_at, '%Y-%m-%d') as created_at"),DB::raw('count(tbl_asistentes.created_at) as cantidad'))
-            ->groupBy('created_at')
-            ->where('tbl_asistentesXeventos.Evento_id','=',$idEvento)
-            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
-            ->get();
+        $AsistentesEdades = DB::select("CALL usp_ObtenerNroAsistentesXFecha($idEvento)");
+
         foreach ($AsistentesEdades as $asistenteEdad){
             $arrayFechasAsistentes[]=$asistenteEdad->created_at;
             $arrayCantidadFechasAsistentes[]=$asistenteEdad->cantidad;
@@ -236,21 +216,9 @@ class EstadisticasRepositorio
             ->where('tbl_asistentesXeventos.esActivo', '=', 1)
             ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
                 ->get());*/
-        $result = DB::table('Tbl_InfoPagos')
-            ->join('tbl_asistentesXeventos', 'Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')
-            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->where('tbl_asistentesXeventos.esActivo', '=', 1)
-            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
-            ->select(\DB::raw('count(1) as cantidad'))
-            ->get()->first();
-        $result1 = DB::table('Tbl_InfoPagos')
-            ->join('tbl_asistentesXeventos', 'Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra')
-            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->where('tbl_asistentesXeventos.esActivo', '=', 1)
-            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
-            ->select(\DB::raw('count(1) as cantidad'))
-            ->get()->first();
-        $cantidad = $result->cantidad + $result1->cantidad;
+
+        $cantidad = DB::select("CALL usp_ObtenerNroAsistentes($idEvento)");
+
         return $cantidad;
 
 

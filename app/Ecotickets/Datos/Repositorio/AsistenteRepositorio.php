@@ -519,19 +519,9 @@ class AsistenteRepositorio
 
     public function ObtenerAsistentePago($idEvento, $cc)
     {
-        $asistentepago = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
-            ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
-            ->join('Tbl_InfoPagos', function ($join) {
-                $join->on('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.id')->orOn('Tbl_InfoPagos.AsistenteXEvento_id', '=', 'tbl_asistentesXeventos.idAsistenteCompra');
-            })
-            ->join('Tbl_PreciosBoletas', 'Tbl_PreciosBoletas.Evento_id', '=', 'tbl_asistentesXeventos.Evento_id')
-            ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
-            ->where('tbl_asistentesXeventos.PinBoleta', '=', $cc)
-            ->whereRaw('Tbl_PreciosBoletas.id = Tbl_InfoPagos.PrecioBoleta_id')
-            ->select(\DB::raw('tbl_asistentes.id, tbl_asistentesXeventos.esActivo,tbl_asistentesXeventos.esAnulado, Tbl_PreciosBoletas.precio, Tbl_PreciosBoletas.localidad ,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección,tbl_asistentes.Ciudad_id' ))
-            ->orderBy('tbl_asistentes.id', 'DESC')
-            ->get()->first();
+        $asistentepago = DB::select("CALL usp_ObtenerAsistenteXPinBoleta($idEvento,$cc)");
+
+
 
         $asistenteinvitado = Asistente::join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)

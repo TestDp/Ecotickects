@@ -679,8 +679,10 @@ class EventosRepositorio
                     on ae.Evento_id = e.id
                     inner join users as u
                     on e.user_id = u.id
+                    inner join Tbl_PromotoresXSedes as ps
+                    on ae.promotor_id = ps.id
                     inner join tbl_asistentes as ap
-                    on ae.promotor_id = ap.id
+                    ON ps.Asistente_id = ap.id
                      where Evento_id = ' . $evento->id . ' and EstadosTransaccion_id = 4
                      group by  e.Nombre_Evento, u.Sede_id, p.precioTotal/cantidadBoletas, concat(ap.nombres, concat(\' \', ap.apellidos) )
                      order by concat(ap.nombres, concat(\' \' , ap.apellidos) )  asc) AS Resul') )
