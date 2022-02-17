@@ -83,7 +83,6 @@ class User extends Authenticatable
 
     public  function AutorizarUrlRecurso($urlrecurso)
     {
-
         $roles = $this->roles()->get();
         foreach ($roles as $rol)
         {
@@ -101,7 +100,7 @@ class User extends Authenticatable
         return $this->belongsTo(Sede::class,'Sede_id');
     }
 
-
+    //forma 1
     public  function buscarRecurso($recurso)
     {
         $roles = $this->roles()->get();
@@ -113,10 +112,21 @@ class User extends Authenticatable
         }
         return false;
     }
+    //forma 2
+    public  function buscarRecursoTemp($recurso)
+    {
+        $keyCacheRecursoXRol = "recursosXRol";
+        $recursosXRol = Cache::rememberForever($keyCacheRecursoXRol,function (){
+            return $this->ListaRecursos();
+        });
+        if ($recursosXRol->where('Nombre', $recurso)->first()) {
+            return true;
+        }
+       return false;
+    }
 
     public  function ListaRecursos()
     {
-
         $roles =$this->roles()->get();
         $recursosRol = array();
         foreach ($roles as $rol)
@@ -135,7 +145,7 @@ class User extends Authenticatable
                 }
             }
         }
-        return $recursosRol;
+        return collect($recursosRol);
     }
 
 }

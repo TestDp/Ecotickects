@@ -210,8 +210,9 @@ class EventosController extends Controller
         $eventosPasados=null;
         $urlinfo= $request->getPathInfo();
         $request->user()->AutorizarUrlRecurso($urlinfo);
-        $idEmpreesa = Auth::user()->Sede->Empresa->id;
-        $idUser = Auth::user()->id;
+        $user = Auth::user();
+        $idEmpreesa = $user->Sede->Empresa->id;
+        $idUser = $user->id;
         if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
             $eventosPasados = Evento::all();
@@ -224,6 +225,8 @@ class EventosController extends Controller
                 $eventosPasados = $this->eventoServicio->ObtenerEventosUsuarioPasados($idUser);
             }
         }
+      /*  $recursosXRol =  collect($user->ListaRecursos());
+        $recurso = $recursosXRol->where('Nombre','ListaAsistentes');*/
         $ListaEventos= array('eventos' => $eventos);
         $ListaEventosPasados= array('eventosPasados' => $eventosPasados);
         return view('Evento/MisEventos',array('ListaEventos' => $ListaEventos, 'ListaEventosPasados' => $ListaEventosPasados));

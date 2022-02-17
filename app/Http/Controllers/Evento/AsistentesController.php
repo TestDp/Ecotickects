@@ -413,6 +413,7 @@ class AsistentesController extends Controller
         $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
         $CantidadEsperada = $this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
         $CantidadAsistentes = $this->EstadisticasServicios->NumeroAsistentes($idEvento);
+        $CantidadRegistrados = $CantidadRegistrados - $CantidadRegistrados;
         $cantidadAsistentes = ['CantidadEsperada' => $CantidadEsperada, 'CantidadRegistrados' => $CantidadRegistrados,
             'CantidadAsistentes' => $CantidadAsistentes];
         return response()->json($cantidadAsistentes);
@@ -601,7 +602,7 @@ class AsistentesController extends Controller
     public function anularTicket(Request $request){
         $urlinfo= $request->getPathInfo();
         $user = $request->user();
-        //$user->AutorizarUrlRecurso($urlinfo);
+        $user->AutorizarUrlRecurso($urlinfo);
         $idAsistenteEvento =  $request['idTicket'];
         $idUser = Auth::user()->id;
         $respuesta = $this->asistenteServicio->anularTicket($idAsistenteEvento,$idUser);
@@ -616,7 +617,7 @@ class AsistentesController extends Controller
     public function descargarTicket(Request $request,$idEvento,$idAsistente){
         $urlinfo= $request->getPathInfo();
         $user = $request->user();
-        //$user->AutorizarUrlRecurso($urlinfo);
+        $user->AutorizarUrlRecurso($urlinfo);
         $file=storage_path('app') . '/boletas/' . $idEvento . '/ECOTICKET' . $idAsistente . '.pdf';
         return Response::download($file);
     }

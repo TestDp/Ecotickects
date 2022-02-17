@@ -6,7 +6,7 @@ use Eco\Utilidades\JwtAutenticacion;
 use Ecotickets\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Cache;
 
 
 class LoginController extends Controller
@@ -53,6 +53,7 @@ class LoginController extends Controller
 
    public function login(Request $request)
     {
+        Cache::flush();
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
