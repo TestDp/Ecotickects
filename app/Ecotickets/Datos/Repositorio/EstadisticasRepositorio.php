@@ -217,9 +217,9 @@ class EstadisticasRepositorio
             ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))
                 ->get());*/
 
-        $cantidad = DB::select("CALL usp_ObtenerNroAsistentes($idEvento)");
+        $cantidad = DB::select("CALL usp_ObtenerNroAsistentes($idEvento)")[0];
 
-        return $cantidad;
+        return $cantidad->valor;
 
 
     }

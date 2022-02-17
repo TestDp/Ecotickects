@@ -485,9 +485,9 @@ class AsistenteRepositorio
     public function ObtnerCantidadAsistentesPago($idEvento)
     {
 
-        $cantidad = DB::select("CALL usp_ObtenerNroTicketsxEvento($idEvento)");
+        $cantidad = DB::select("CALL usp_ObtenerNroTicketsxEvento($idEvento)")[0];
 
-        return $cantidad;
+        return $cantidad->valor;
     }
 
     public function ObtenerAsistente($cc)
