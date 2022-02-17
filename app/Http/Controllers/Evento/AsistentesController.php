@@ -413,7 +413,7 @@ class AsistentesController extends Controller
         $CantidadRegistrados = $this->asistenteServicio->ObtnerCantidadAsistentes($idEvento);
         $CantidadEsperada = $this->eventoServicio->obtenerEvento($idEvento)->numeroAsistentes;
         $CantidadAsistentes = $this->EstadisticasServicios->NumeroAsistentes($idEvento);
-        $CantidadRegistrados = $CantidadRegistrados - $CantidadAsistentes;
+      //  $CantidadRegistrados = $CantidadRegistrados - $CantidadAsistentes;
         $cantidadAsistentes = ['CantidadEsperada' => $CantidadEsperada, 'CantidadRegistrados' => $CantidadRegistrados,
             'CantidadAsistentes' => $CantidadAsistentes];
         return response()->json($cantidadAsistentes);
