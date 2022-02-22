@@ -168,7 +168,7 @@
                     <div class="unit-body">
 						<img src="images/ubicacion.png" width="15"></img>
                       <h5>¿Dónde?</h5>
-					  <p>{{ $evento->Lugar_Evento }}</p>
+					  <!--<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>-->
                       <p>{{ $evento->ciudad->Nombre_Ciudad }}</p>
                     </div>
                   </div>
@@ -272,7 +272,7 @@
                           </div>
                           <div class="unit-body">
                             <h5>¿DÓNDE?</h5>
-							<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>
+							<!--<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>-->
 							<p class="font-secondary">{{ $evento->ciudad->Nombre_Ciudad }}</p>
                           </div>
 						  <div class="unit-body">
@@ -297,7 +297,7 @@
                           </div>
                           <div class="unit-body">
                             <h5>¿DÓNDE?</h5>
-							<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>
+							<!--<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>-->
 							<p class="font-secondary">{{ $evento->ciudad->Nombre_Ciudad }}</p>
                           </div>
 						  <div class="unit-body">
@@ -332,7 +332,7 @@
                           </div>
                           <div class="unit-body">
                             <h5>¿DÓNDE?</h5>
-							<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>
+							<!--<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>-->
 							<p class="font-secondary">{{ $evento->ciudad->Nombre_Ciudad }}</p>
                           </div>
 						  <div class="unit-body">
@@ -357,7 +357,7 @@
                           </div>
                           <div class="unit-body">
                             <h5>¿DÓNDE?</h5>
-							<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>
+							<!--<p class="font-secondary">{{ $evento->Lugar_Evento }}</p>-->
 							<p class="font-secondary">{{ $evento->ciudad->Nombre_Ciudad }}</p>
                           </div>
 						  <div class="unit-body">
