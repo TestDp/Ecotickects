@@ -147,14 +147,11 @@
       </footer>
 </div>
 <!-- Scripts -->
-
-
-
-<script src="{{asset('js/wow.min.js')}}"></script>
 <script src="{{asset('js/typewriter.js')}}"></script>
 <script src="{{asset('js/jquery.onepagenav.js') }}"></script>
 <script src="{{asset('js/main.js') }}"></script>
 <script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
+<script src="{{asset('js/wow.min.js')}}"></script>
 
 <!-- jQuery Easing -->
 <script src="{{ asset('js/EventosEco/jquery.easing.1.3.js') }}"></script>

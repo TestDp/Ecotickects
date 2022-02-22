@@ -45,48 +45,7 @@
     <div class="ie-panel"><a><img src="{{asset('images/ie8-panel/warning_bar_0000_us.jpg')}}" height="42" width="820" alt=""></a></div>
 
     <div class="page">
-      <!-- Section Header Default-->
-      <header class="section page-header">
-        <!--RD Navbar-->
-        <div class="rd-navbar-wrap">
-          <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="76px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
-            <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
-            <div class="rd-navbar-main-outer">
-              <div class="rd-navbar-main">
-                <!--RD Navbar Panel-->
-                <div class="rd-navbar-panel">
-                  <!--RD Navbar Toggle-->
-                  <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
-                  <!--RD Navbar Brand-->
-                  <div class="rd-navbar-brand">
-                    <!--Brand--><a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="{{asset('images/logo-default.png')}}" srcset="{{asset('images/logo-default@2x.png')}}" alt="Ecotickets"/><img class="brand-logo-light" src="{{asset('images/logo-inverse.png')}}" srcset="{{asset('images/logo-inverse@2x.png')}}" alt="Ecotickets"/></a>
-                  </div>
-                </div>
-                <!-- Rd Navbar Navigation-->
-                <div class="rd-navbar-main-element">
-                  <div class="rd-navbar-nav-wrap">
-                    <ul class="rd-navbar-nav">
-                      <li class="rd-nav-item active"><a class="rd-nav-link" href="{{ url('/') }}">Inicio</a>
-                      </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="#eventos">Eventos</a>
-                      </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="#beneficios">Beneficios</a>
-                      </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="#destacados">Destacados</a>
-                      </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="#ecotickets">Ecotickets</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- RD Navbar Collapse-->
-                <div class="rd-navbar-collapse"><a class="button button-primary" href="{{ route('login') }}" data-triangle=".button-overlay"><span>Iniciar sesión</span><span class="button-overlay"></span></a>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
+
 	        <!-- Breadcrumbs-->
       <section class="breadcrumbs-custom bg-image context-dark" style="background-image: url({{asset('images/bg-parallax-04-1894x1170.jpg')}});">
         <div class="container">

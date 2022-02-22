@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="facebook-domain-verification" content="b6mr1ad6hpr4tmo3pz48jtppzjc82z" />
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
   </head>
   <body>
@@ -690,11 +690,11 @@
       </section>
 
       
-      <!-- Section Pre Footer-->
+	    <!-- Section Pre Footer-->
       <section class="section section-lg bg-gray-900">
         <div class="container">
           <div class="row row-30">
-            <div class="col-xs-10 col-lg-4 align-self-center"><a class="brand" href="{{ url('/') }}"><img class="brand-logo-light" src="images/logo-inverse-big.png" srcset="images/logo-inverse-big@2x.png 2x" alt="Ecotickets"></a></div>
+            <div class="col-xs-10 col-lg-4 align-self-center"><a class="brand" href="{{ url('/') }}"><img class="brand-logo-light" src="{{ asset('images/logo-inverse-big.png') }}" srcset="{{ asset('images/logo-inverse-big@2x.png 2x') }}" alt="Ecotickets"></a></div>
             <div class="col-xs-10 col-sm-6 col-lg-4">
               <h5><span class="big font-weight-sbold">INFORMACIÓN</span></h5>
                       <ul class="list-marked">
@@ -723,7 +723,7 @@
           </div>
         </div>
       </section>
-      <!-- Divider-->
+
       <div class="divider divider-gray-900 text-center"></div>
       <!-- Footer Classic-->
       <footer class="section footer-classic context-dark">
@@ -744,7 +744,7 @@
         </defs>
       </svg>
     </div>
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ asset('js/core.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
   </body>
 </html>
