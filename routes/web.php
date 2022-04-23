@@ -28,6 +28,8 @@ Auth::routes();
     Route::get('/vistaCorreo', function () {return view('Email.correo');});
 
     Route::get('/habeasData', function () { return view('habeasData');});
+	
+	Route::get('/encuesta', function () { return view('encuesta');});
 
     Route::get('/terminosCondiciones', function () {return view('terminosCondiciones');});
 	
