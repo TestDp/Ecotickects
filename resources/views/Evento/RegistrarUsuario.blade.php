@@ -100,7 +100,7 @@
                                     <input id="Dirección" name="Dirección" type="text" class="form-control"  />
                                 </div>
                             </div>
-							<div class="col-sm-6">
+							<div style="margin-bottom:50px !important;" class="col-sm-6">
 							Departamento persona
                                 <div class="form-group">
                                     <select id="Departamento_id" name="Departamento_id" onchange="CargarMunicipiosDepartamento()" class="form-control">
@@ -125,7 +125,7 @@
 									
                                 </div>
                             </div>
-							<div class="col-sm-6">
+							<div style="margin-bottom:50px !important;" class="col-sm-6">
 							Evento al cual desea registrar el usuario
                                 <div class="form-group">                               
                                     <select title="Seleccionar" id="Evento_id" name="Evento_id" class="form-control" onchange="CargarLocalidadesEvento()">
