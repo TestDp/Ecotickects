@@ -30,6 +30,8 @@ Auth::routes();
     Route::get('/habeasData', function () { return view('habeasData');});
 	
 	Route::get('/encuesta', function () { return view('encuesta');});
+	
+	Route::get('/calificacionjurados', function () { return view('calificacionjurado');});
 
     Route::get('/terminosCondiciones', function () {return view('terminosCondiciones');});
 	

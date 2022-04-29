@@ -76,9 +76,9 @@
       <section id="eventos" style="padding-top:60px !important;" class="section section-lg bg-default text-center">
         <div class="container">
 			<img src="images/icon-hoja.jpg"></img>
-          <h6>Evaluación DJ´S</h6>
+          <h6>Evaluación DJ's (Jurados)</h6>
           <h3>LOVERS FESTIVAL 2022</h3>
-		 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeWFwdRe_5J6VQ00M7xyDpoz0YhtZrxTGYslnVp1q8709kAGQ/viewform?embedded=true" width="100%" height="1170" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+		 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScpMS_2WbAWGZQa728p1qSN2sr8en8pCQ3ekiOhNN0dUeWoXg/viewform?embedded=true" width="100%" height="1170" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
  
         </div>
       </section>
