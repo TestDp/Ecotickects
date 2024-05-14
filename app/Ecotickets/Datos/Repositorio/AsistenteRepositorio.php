@@ -645,7 +645,8 @@ class AsistenteRepositorio
             $key = '';
             $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ';
             $max = strlen($pattern) - 1;
-            for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
+            //for ($i = 0; $i < 10; $i++) $key .= $pattern{mt_rand(0, $max)};
+            for ($i = 0; $i < 10; $i++) $key .= $pattern[mt_rand(0, $max)];
             $verificarPinBoletaPaga = count(AsistenteXEvento::where('PinBoleta', '=', $key)->get());
         }while ($verificarPinBoletaPaga >0);
         return $key;
