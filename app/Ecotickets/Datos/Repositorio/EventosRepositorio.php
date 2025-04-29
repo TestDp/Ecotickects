@@ -839,4 +839,10 @@ class EventosRepositorio
         return $ultimoEventoId;
     }
 
+    public function obtenerMaximoBoletasPorCompra($idEvento)
+    {
+        $evento = Evento::where('id', '=', $idEvento)->first();
+        return $evento->maxLocalidadCompra;
+    }
+
 }
