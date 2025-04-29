@@ -1071,9 +1071,11 @@ function  MostrarDivBoletas(){
     if($("#esPago").val() ==1){
         $("#divBoletas").removeAttr("hidden");
         $("#divPromotor").removeAttr("hidden");
+        $("#divMaxLocalidadCompra").removeAttr("hidden");
     }else{
         $("#divBoletas").attr("hidden","hidden");
         $("#divPromotor").attr("hidden","hidden");
+        $("#divMaxLocalidadCompra").attr("hidden","hidden");
     }
 }
 

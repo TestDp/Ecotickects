@@ -32,7 +32,8 @@
   <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
-
+  <script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
+  <script src="{{asset('js/Plugins/leerQrWeb/qrCode.min.js')}}"></script>
 </head>
 
 <body class="">
@@ -267,11 +268,12 @@
 
 			  <!-- jQuery CDN -->
 
-			<script src="{{asset('js/Plugins/jqueryValidate/jquery.validate.js')}}"></script>
-			<script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>
+
+{{--			<script src="{{asset('js/Plugins/data-table/datatables.js')}}"></script>--}}
+
 			<!-- sweet plugins-->
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		
+
 		
              <!--   Core JS Files   -->
               <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
@@ -318,6 +320,8 @@
               <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
               <!-- Material Dashboard DEMO methods, don't include it in your project! -->
               <script src="{{asset('assets/demo/demo.js')}}"></script>
+
+
               <script>
                 $(document).ready(function() {
                   $().ready(function() {

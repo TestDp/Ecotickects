@@ -55,7 +55,7 @@ class UsuarioRepositorio
                 return ['respuesta' =>true,'idUsuario'=>$usuario->id];
             }
         }
-        return false;
+        return ['respuesta' =>false,'idUsuario'=>''];
     }
 
     //activa o desactiva permisos  del usuario por evento

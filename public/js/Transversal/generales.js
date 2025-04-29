@@ -7,7 +7,7 @@ function obtenerUlrBase() {
         case 'ecotickets.co':
             rootFolder = ''; break;
         case 'localhost':
-            rootFolder = '/Ecotickects/trunk/public'; break;
+            rootFolder = ''; break;
         default:  // set whatever you want
     }
     var urlBase = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + rootFolder;

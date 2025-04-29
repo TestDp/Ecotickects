@@ -122,6 +122,7 @@ class EventosRepositorio
             $evento->Fecha_Inicial_Registro=new DateTime($EdEvento->Fecha_Inicial_Registro . $EdEvento->Hora_Inicial_Registro);
             $evento->Fecha_Final_Registro=new DateTime($EdEvento->Fecha_Final_Registro . $EdEvento->Hora_Final_Registro);
             $evento->activarTienda = false;
+            $evento->maxLocalidadCompra = $EdEvento->maxLocalidadCompra;
             //Asignamos el nombre del archivo
             if($EdEvento->ImagenFlyerEvento != null){
                 $evento->FlyerEvento  = 'FlyerEvento_'.$EdEvento->Nombre_Evento.'.jpg';

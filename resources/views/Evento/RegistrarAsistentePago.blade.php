@@ -152,11 +152,14 @@
                                 </div>
 								</div>
                                 <div class="col-md-3">
-								<div class="form-wrap">
-                                    <label>Cantidad De Ecotickets</label>
-                                    <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-input" onkeyup="calcularPrecioTotal()"  />
+                                    <div class="form-wrap">
+                                        <label>Cantidad De Ecotickets</label>
+                                        <input id="CantidadTickets" name="CantidadTickets" type="number" class="form-input"
+                                               min="1" max="{{ $ElementosArray['evento']->maxLocalidadCompra }}" value="1"
+                                               onkeyup="calcularPrecioTotal()" onchange="calcularPrecioTotal(); validarMaximoBoletas()" />
+                                        <small class="text-info">Máximo {{ $ElementosArray['evento']->maxLocalidadCompra }} boletas por compra</small>
+                                    </div>
                                 </div>
-								</div>
                                 <div class="col-md-3">
 								<div class="form-wrap">
                                     <label>Precio Total</label>

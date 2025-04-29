@@ -10,11 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
+
+use Ecotickets\Http\Controllers\Evento\AsistentesController;
+use Ecotickets\Http\Controllers\Evento\EventosController;
+
+Route::get('/leerQrWeb', function () {
+    return view('leerQrWeb');
 });
-**/
+
 Auth::routes();
 
 /* INICIO VISTAS SIN CONTROLADOR*/
@@ -133,6 +136,9 @@ Auth::routes();
 
     Route::get('GenerarEnlacePromotor',['uses' =>'Evento\EventosController@generarEnlacePromotor']);
 
+    //Route::get('GenerarQREnlaceEvento/{idEvento}',[EventosController::class,'generarQREnlaceEvento']);
+
+    Route::get('generarQREnlaceEvento/{idEvento}',['uses' =>'Evento\EventosController@generarQREnlaceEvento']);
 
 
 // FIN DE RUTAS PARA EL CONTROLADOR DE EVENTOS//
@@ -219,7 +225,7 @@ Auth::routes();
 
     Route::get('ActivarQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@ActivarQRAsistenteXEvento']);
 
-    Route::get('ActivarPinApp/{idEvento}/{idPin}',['uses' =>'Evento\AsistentesController@ActivarPinPago']);
+    Route::get('ActivarPinApp/{idEvento}/{idPin}/{idUsuarioLectura}',['uses' =>'Evento\AsistentesController@ActivarPinPago']);
 
     Route::get('DesactivarQRApp/{idEvento}/{cc}',['uses' =>'Evento\AsistentesController@DesactivarQRAsistenteXEvento']);
 

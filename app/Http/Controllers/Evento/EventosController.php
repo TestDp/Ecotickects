@@ -215,7 +215,8 @@ class EventosController extends Controller
         $idUser = $user->id;
         if($request->user()->hasRole(env('IdRolSuperAdmin'))){
             $eventos = $this->eventoServicio->ListaDeEventosSuperAdmin('Evento');
-            $eventosPasados = Evento::all();
+            //$eventosPasados = Evento::all();
+            $eventosPasados = $eventos;
         }else{
             if($request->user()->hasRole(env('IdRolAdmin'))){
                 $eventos = $this->eventoServicio->ListaDeEventosEmpresa($idEmpreesa,'Evento');
@@ -335,5 +336,18 @@ class EventosController extends Controller
         return view('Evento/GenerarEnlacePromotor',['eventos'=>$eventos]);
     }
 
+    public function generarQREnlaceEvento(Request $request,$idEvento){
+        $urlinfo= $request->getPathInfo();
+        $urlinfo = explode('/'.$idEvento,$urlinfo)[0];
+        $request->user()->AutorizarUrlRecurso($urlinfo);
+        $host = $request->getHttpHost();
+        $path = storage_path('app') . '\qrsEnlaceEvento';
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($host.'/FormularioAsistentePago/'.$idEvento));
+        file_put_contents($path.'/QREvento'.$idEvento.'.png',base64_decode($qr));
+        return response()->download($path.'/QREvento'.$idEvento.'.png')->deleteFileAfterSend(true);
+    }
 
 }

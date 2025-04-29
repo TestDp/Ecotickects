@@ -297,9 +297,9 @@ class AsistenteServicio
         return $this->asistenteRepositorio->ConfirmarAsistencia($idEvento, $idAsistente, $respuesta);
     }
 
-    public function ActivarPinPago($idEvento, $idPin)
+    public function ActivarPinPago($idEvento, $idPin, $idUsuarioLectura)
     {
-        return $this->asistenteRepositorio->ActivarPinPago($idEvento, $idPin);
+        return $this->asistenteRepositorio->ActivarPinPago($idEvento, $idPin, $idUsuarioLectura);
     }
 
     public function DesactivarQRAsistenteXEvento($idEvento, $idAsistente)

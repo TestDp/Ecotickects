@@ -103,6 +103,12 @@
                                 <a href="{{ url('/ListaTickets',['idEvento' => $evento->id,'$idAsistente'=> 0]) }}"><i class="material-icons">group</i></a>
                             </button>
                             @endif
+                            @if(Auth::user()->buscarRecurso('GenerarQREvento'))
+                            <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Generar QR Evento">
+                                <a href="{{ url('/GenerarQREnlaceEvento',['idEvento' => $evento->id]) }}"><span class="material-icons">move_to_inbox</span></a>
+                            </button>
+                            @endif
+
                           </td>
                         </tr>
 						@endforeach

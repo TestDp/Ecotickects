@@ -125,9 +125,9 @@ class AsistenteRepositorio
                             $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaUsuario['idUsuario']);
                         }
                     }else{
-                       /* $user = $this->usuarioRepositorio->crearModelUsuario($asistente);
+                       $user = $this->usuarioRepositorio->crearModelUsuario($asistente);
                         $respuestaGuardarUsuario = $this->usuarioRepositorio->guardarUsuario($user,[env('IdRolUsuarioComprador')]);
-                        $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaGuardarUsuario['idUsuario']);*/
+                        $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaGuardarUsuario['idUsuario']);
                     }
                 }
             }
@@ -733,40 +733,50 @@ class AsistenteRepositorio
         return true;
     }
 
-    public function ActivarPinPago($idEvento, $idPin)
+    public function ActivarPinPago($idEvento, $idPin, $idUsuarioLectura)
     {
-       $result =  new LecturaQRDTO();
-        $asistenteEventoCompleto = $this->ObtenerAsistentePago($idEvento, $idPin);
-        $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)
-            ->where('PinBoleta', '=', $idPin)
-            ->get()->first();
-        if ($asistenteEvento) {
-            if ($asistenteEvento->esAnulado == false){
-                if ($asistenteEvento->esActivo == false) {
-                    $asistenteEvento->esActivo = true;
-                    $asistenteEvento->save();
-                    $result->Mensaje = 'Boleta Activada con exito';
-                    $result->Activa = true;
-                    $result->Localidad = $asistenteEventoCompleto->localidad;
-                    $result->Identificacion = $asistenteEventoCompleto->Identificacion;
-                    $result->Nombre = $asistenteEventoCompleto->Nombres;
-                    return $result;
-                } else {
-                    $result->Mensaje = 'La boleta ya fue ACTIVADA';
+        DB::beginTransaction();
+        try {
+            $result =  new LecturaQRDTO();
+            $asistenteEventoCompleto = $this->ObtenerAsistentePago($idEvento, $idPin);
+            $asistenteEvento = AsistenteXEvento::where('Evento_id', '=', $idEvento)
+                ->where('PinBoleta', '=', $idPin)
+                ->get()->first();
+            if ($asistenteEvento) {
+                if ($asistenteEvento->esAnulado == false){
+                    if ($asistenteEvento->esActivo == false) {
+                        $asistenteEvento->esActivo = true;
+                        $asistenteEvento->idUsuarioLectura = $idUsuarioLectura;
+                        $asistenteEvento->save();
+                        $result->Mensaje = 'Boleta Activada con exito Comprador: ' . $asistenteEventoCompleto->Nombres . ' CC : '.$asistenteEventoCompleto->Identificacion;
+                        $result->Activa = true;
+                        $result->Localidad = $asistenteEventoCompleto->localidad;
+                        $result->Identificacion = $asistenteEventoCompleto->Identificacion;
+                        $result->Nombre = $asistenteEventoCompleto->Nombres;
+                        DB::commit();
+                        return $result;
+                    } else {
+                        $result->Mensaje = 'La boleta ya fue ACTIVADA Fecha de activación: '.$asistenteEventoCompleto->updated_at;
+                        $result->Activa = false;
+                        $result->Localidad = $asistenteEventoCompleto->localidad;
+                        return $result;
+                    }
+                }else{
+                    $result->Mensaje = 'La boleta fue anulada contactar al administrador';
                     $result->Activa = false;
                     $result->Localidad = $asistenteEventoCompleto->localidad;
                     return $result;
                 }
-            }else{
-                $result->Mensaje = 'La boleta fue anulada contactar al administrador';
-                $result->Activa = false;
-                $result->Localidad = $asistenteEventoCompleto->localidad;
-                return $result;
             }
+            $result->Mensaje = 'Error activando la boleta PIN INVALIDO';
+            $result->Activa = false;
+            return $result;
+        } catch (\Exception $e) {
+
+            $result->Mensaje = $e->getMessage();
+            DB::rollback();
+            return $result;
         }
-        $result->Mensaje = 'Error activando la boleta PIN INVALIDO';
-        $result->Activa = false;
-        return $result;
     }
 
     public function DesactivarQRAsistenteXEvento($idEvento, $idAsistente)

@@ -138,10 +138,33 @@
 								</select>
 							</div>
 						</div>
-						<div style="margin:0px !important;" class="row">
+<!--						<div style="margin:0px !important;" class="row">
 
-						</div>
+						</div>-->
 						@if ($evento->esPago ==1)
+							<div class="row">
+								<div class="col-sm-3" id="divMaxLocalidadCompra">
+									<div class="form-group">
+										<label for="maxLocalidadCompra" class="bmd-label-floating">Número máximo de tickets por venta </label>
+										<input id="maxLocalidadCompra" name="maxLocalidadCompra" type="text" class="form-control" value="{{$evento->maxLocalidadCompra}}"/>
+									</div>
+								</div>
+								<div class="col-sm-6" id="divPromotor">
+									Activar Promotores
+									<div class="form-group">
+										<select id="usoPromotor" name="usoPromotor" class="selectpicker" data-style="select-with-transition" >
+											<option value="">Seleccionar</option>
+											@if ($evento->usoPromotor ==1)
+												<option value="0">No</option>
+												<option value="1" selected>SI</option>
+											@else
+												<option value="0" selected>No</option>
+												<option value="1">SI</option>
+											@endif
+										</select>
+									</div>
+								</div>
+							</div>
 							<div id="divBoletas" name="divBoletas">
 								<hr/>
 								<div class="panel-heading text-center"><h4>Lista de Precios</h4></div>
@@ -217,6 +240,24 @@
 							</div>
 						@else
                             @if(count($evento->preciosBoletas)>0)
+								<div class="row">
+									<div class="col-sm-3" id="divMaxLocalidadCompra" hidden>
+										<div class="form-group">
+											<label for="maxLocalidadCompra" class="bmd-label-floating">Número máximo de tickets por compra </label>
+											<input id="maxLocalidadCompra" name="maxLocalidadCompra" type="text" class="form-control" />
+										</div>
+									</div>
+									<div class="col-sm-6" id="divPromotor" hidden>
+										Activar Promotores
+										<div class="form-group">
+											<select id="usoPromotor" name="usoPromotor" class="selectpicker" data-style="select-with-transition" >
+												<option value="">Seleccionar</option>
+												<option value="0">No</option>
+												<option value="1">SI</option>
+											</select>
+										</div>
+									</div>
+								</div>
                                 <div id="divBoletas" name="divBoletas" hidden>
                                     <hr/>
                                     <div class="panel-heading text-center"><h4>Lista de Precios</h4></div>

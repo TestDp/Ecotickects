@@ -147,6 +147,12 @@
 							</div>
                         </div>
                         <div class="row">
+                            <div class="col-sm-3" id="divMaxLocalidadCompra" hidden>
+                                <div class="form-group">
+                                    <label for="maxLocalidadCompra" class="bmd-label-floating">Número máximo de tickets por venta </label>
+                                    <input id="maxLocalidadCompra" name="maxLocalidadCompra" type="text" class="form-control" />
+                                </div>
+                            </div>
                             <div class="col-sm-6" id="divPromotor" hidden>
                                 Activar Promotores
 								<div class="form-group">
