@@ -166,5 +166,9 @@ class EventosServicio
         return $this->eventoRepor->ObtenerEventosUsuarioPasados($idUsuario);
     }
 
+    public function obtenerMaximoBoletasPorCompra($idEvento)
+    {
+        return $this->eventoRepor->obtenerMaximoBoletasPorCompra($idEvento);
+    }
 
 }

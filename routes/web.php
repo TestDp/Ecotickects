@@ -342,3 +342,8 @@ Route::get('FormularioMediosDePago',['uses' =>'Evento\PagosController@CargarForm
 Route::get('RespuestaPagoPSE',['uses' =>'Evento\PagosController@RespuestaPagoPSE']);
 
 //Route::get('pagar',['uses' =>'Evento\PagosController@Pagar']);
+
+
+//Controlador Convenio
+
+Route::get('verificarAfiliacion/{idEvento}/{identificacion}', ['uses' => 'Ecotickets\Http\Controllers\Convenio\ConvenioController@verificarAfiliacion']);

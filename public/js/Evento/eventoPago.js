@@ -74,6 +74,25 @@ function calcularPrecioTotal() {
     $("#PrecioTotal").val($("#valorBoleta").val()*$("#CantidadTickets").val());
 }
 
+function validarMaximoBoletas() {
+    const cantidadInput = document.getElementById('CantidadTickets');
+    const maxBoletas = parseInt(cantidadInput.getAttribute('max'));
+    
+    if (parseInt(cantidadInput.value) > maxBoletas) {
+        swal({
+            title: "Límite de boletas",
+            text: "Solo puedes comprar hasta " + maxBoletas + " boletas para este evento.",
+            icon: "warning",
+            button: "OK",
+        });
+        cantidadInput.value = maxBoletas;
+        calcularPrecioTotal(); // Recalcular el precio después de ajustar la cantidad
+    } else if (parseInt(cantidadInput.value) < 1) {
+        cantidadInput.value = 1;
+        calcularPrecioTotal(); // Recalcular el precio después de ajustar la cantidad
+    }
+}
+
 function generarQRCodePago(nombreEvento,pinBoleta) {
     var qr = create_qrcode(nombreEvento +" - CC - " + pinBoleta + "ECOTICKETS" );
     $("#qrBoleta").html(qr);
@@ -133,7 +152,11 @@ function validarFormularioPago(){
                 required: true
             },
             CantidadTickets: {
-                required: true
+                required: true,
+                min: 1,
+                max: function() {
+                    return parseInt(document.getElementById('CantidadTickets').getAttribute('max'));
+                }
             },
             'Respuesta_id[0]': {
                 required: true
@@ -238,7 +261,9 @@ function validarFormularioPago(){
                 required: "*La localidad es obligatoria"
             },
             CantidadTickets: {
-                required: "*La cantidad de Tickets es obligatoria"
+                required: "*La cantidad de Tickets es obligatoria",
+                min: "*Debe seleccionar al menos 1 boleta",
+                max: "*Solo puede comprar hasta " + document.getElementById('CantidadTickets').getAttribute('max') + " boletas para este evento"
             },
             'Respuesta_id[0]': {
                 required: "*Seleccione una opción por favor"
@@ -833,5 +858,36 @@ function validarFormPagoPSE(){
 
     });
 
+}
+
+
+function verificarAfiliacion() {
+    var identificacion = $("#Identificacion").val();
+    var eventoId = $("#Evento_id").val();
+    
+    if (identificacion && identificacion.length > 5) {
+        $.ajax({
+            type: 'GET',
+            url: urlBase + '/verificarAfiliacion/' + eventoId + '/' + identificacion,
+            dataType: 'json',
+            success: function (result) {
+                if (result.esAfiliado) {
+                    // Asignar automáticamente el código promocional al campo
+                    $("#Codigo").val(result.codigoPromocional);
+                    
+                    // Validar el código automáticamente usando la función existente
+                    validarCodigoPromocional(eventoId);
+                    
+                    // Mostrar un mensaje adicional sobre el beneficio
+                    setTimeout(function() {
+                        document.getElementById('mensaje-cupon').innerHTML += "<br>¡Beneficio por ser afiliado a " + result.convenio + "!";
+                    }, 500); // Pequeño delay para que no se sobrescriba con el mensaje de validarCodigoPromocional
+                }
+            },
+            error: function (result) {
+                console.log("Error al verificar afiliación:", result);
+            }
+        });
+    }
 }
 
