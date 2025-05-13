@@ -2,36 +2,42 @@
 
 namespace Eco\Negocio\Logica;
 
+use Eco\Datos\Repositorio\EventosRepositorio;
 use GuzzleHttp\Client;
 use Eco\Datos\Repositorio\ConveniosRepositorio;
+
 
 class ConvenioServicio
 {
     protected $convenioRepositorio;
     protected $client;
+    protected $eventosRepositorio;
 
-    public function __construct(ConveniosRepositorio $convenioRepositorio)
+    public function __construct(ConveniosRepositorio $convenioRepositorio,EventosRepositorio $eventosRepositorio)
     {
         $this->convenioRepositorio = $convenioRepositorio;
+        $this->eventosRepositorio = $eventosRepositorio;
         $this->client = new Client();
+    }
+
+    public function obtenerConveniosPorEvento($eventoId)
+    {
+        return $this->convenioRepositorio->obtenerConveniosPorEvento($eventoId);
     }
 
     /**
      * Obtener token de autenticación para el web service
      */
-    public function obtenerToken($convenioId)
+    private function obtenerToken($convenio)
     {
-        $convenio = $this->convenioRepositorio->obtenerConvenio($convenioId);
-        
         try {
-            $response = $this->client->post($convenio->URL . '/token', [
+           $response = $this->client->post($convenio->URL . '/OAuthServer', [
                 'form_params' => [
                     'grant_type' => 'client_credentials',
-                    'client_id' => $convenio->client_id,
-                    'client_secret' => $convenio->client_secret,
+                    'client_id' => config('services.comfenalco.client_id'),
+                    'client_secret' => config('services.comfenalco.client_secret'),
                 ]
             ]);
-            
             $data = json_decode($response->getBody(), true);
             return $data['access_token'];
         } catch (\Exception $e) {
@@ -43,41 +49,35 @@ class ConvenioServicio
     /**
      * Consultar si un usuario está afiliado a la caja de compensación
      */
-    public function consultarAfiliacion($identificacion, $convenioId)
+    public function consultarAfiliacion($identificacion, $convenio)
     {
-        $token = $this->obtenerToken($convenioId);
+        $token = $this->obtenerToken($convenio);
         if (!$token) {
             return [
                 'error' => true,
                 'mensaje' => 'No se pudo obtener el token de autenticación'
             ];
         }
-        
-        $convenio = $this->convenioRepositorio->obtenerConvenio($convenioId);
-        
+
         try {
-            $response = $this->client->get($convenio->URL . '/afiliados/' . $identificacion, [
+            $response = $this->client->get($convenio->URL . '/wsAfiliadoExterno', [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $token
+                    'Authorization' => 'Bearer ' . $token,
+                    'Calculator_Operation'=>'datosAfiliado',
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'parametros' => [
+                        'usuario' => [
+                            'tipoDocumento'     => 'CC',
+                            'nroDocumento'      => $identificacion,
+                            'usuarioAplicativo' => 'POECOTICKETS',
+                        ]
+                    ]
                 ]
             ]);
-            
             $data = json_decode($response->getBody(), true);
-            
-            if (isset($data['esAfiliado']) && $data['esAfiliado']) {
-                // Obtener código promocional basado en la categoría del afiliado
-                $codigoPromocional = $this->obtenerCodigoPromocional($convenio->id, $data['categoria']);
-                
-                return [
-                    'esAfiliado' => true,
-                    'categoria' => $data['categoria'],
-                    'codigoPromocional' => $codigoPromocional
-                ];
-            }
-            
-            return [
-                'esAfiliado' => false
-            ];
+            return json_decode(json_encode($data['usuario']));
         } catch (\Exception $e) {
             \Log::error('Error al consultar afiliación: ' . $e->getMessage());
             return [
@@ -87,11 +87,30 @@ class ConvenioServicio
         }
     }
 
-    /**
-     * Obtener código promocional basado en la categoría
-     */
-    private function obtenerCodigoPromocional($convenioId, $categoria)
-    {
-        return $this->convenioRepositorio->obtenerCodigoPromocional($convenioId, $categoria);
+    //Se generan los precios de las boletas de acuerdo a la tarifa
+    public function generarPreciosBoletasDesc($datosAfiliado,$idEvento){
+       $preciosBoletas =  $this->eventosRepositorio->obtenerLocalidadesEventoOtroRol($idEvento);
+        $porcentaje = $this->obtenerPorcjeDescAfiliado($datosAfiliado->datosBasicos->cateogoria);
+        foreach ($preciosBoletas as $precioBoleta){
+            $precioBoleta->precio = $this->eventosRepositorio->calcularDescPrecioBoleta($precioBoleta->precio,$porcentaje);
+            $precioBoleta->localidad = $precioBoleta->localidad . " Afiliado";
+        }
+        return $preciosBoletas;
+    }
+
+    private function obtenerPorcjeDescAfiliado($tarifaAfiliado){
+        $porDescuento = 0;
+        switch ($tarifaAfiliado) {
+            case "01":
+                $porDescuento = 40;
+                break;
+            case "02":
+                $porDescuento = 30;
+                break;
+            case "03":
+                $porDescuento = 20;
+                break;
+        }
+        return $porDescuento;
     }
 }

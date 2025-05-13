@@ -4,6 +4,7 @@ namespace Ecotickets\Http\Controllers\Evento;
 
 
 use Eco\Datos\Modelos\PrecioBoleta;
+use Eco\Negocio\Logica\ConvenioServicio;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Eco\Negocio\Logica\AsistenteServicio;
@@ -24,16 +25,19 @@ class AsistentesController extends Controller
     protected $eventoServicio;
     protected $EstadisticasServicios;
     protected $departamentoServicio;
+    protected $convenioServicio;
 
     /**Metodo constructor de la clase.*/
     public function __construct(AsistenteServicio $asistenteServicio, EventosServicio $eventoServicio,
-                                EstadisticasServicio $EstadisticasServicios, DepartamentoServicio $departamentoServicio)
+                                EstadisticasServicio $EstadisticasServicios, DepartamentoServicio $departamentoServicio,
+                                ConvenioServicio $convenioServicio)
     {
         //$this->middleware('auth');
         $this->asistenteServicio = $asistenteServicio;
         $this->eventoServicio = $eventoServicio;
         $this->EstadisticasServicios = $EstadisticasServicios;
         $this->departamentoServicio = $departamentoServicio;
+       $this->convenioServicio = $convenioServicio;
     }
 
     public function registrarAsistentetem(Request $formRegistro)
@@ -421,9 +425,17 @@ class AsistentesController extends Controller
 
     /**Metodo que me retorna un asistente o usuario registrado al evento, se realiza la busqueda por mmedio de la
      * identificación.*/
-    public function ObtenerAsistente($cc)
+    public function ObtenerAsistente($cc,$idEvento)
     {
-        return response()->json($this->asistenteServicio->ObtenerAsistente($cc));
+        $convenio = $this->convenioServicio->obtenerConveniosPorEvento($idEvento);
+        $resultAfiliación = $this->convenioServicio->consultarAfiliacion($cc,$convenio);
+        $resultAfiliación->datosBasicos->cateogoria ='01';
+        if($resultAfiliación->datosBasicos->cateogoria =='04'){
+            return response()->json(['asistente' =>$this->asistenteServicio->ObtenerAsistente($cc)]);
+        }else{
+            return response()->json(['asistente' =>$this->asistenteServicio->ObtenerAsistente($cc),
+                "preciosBoletas" => $this->convenioServicio->generarPreciosBoletasDesc($resultAfiliación,$idEvento)]);
+        }
     }
 
     /*Metodo que me retorna el formulario para la lectura del qr con el evento al que se le va a leer el qr**/

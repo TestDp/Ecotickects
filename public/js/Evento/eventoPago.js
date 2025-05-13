@@ -344,14 +344,14 @@ function validarCodigoPromocional(idEvento) {
                         icon: "success",
                         button: "OK",
                     });
-					var nomLocalidad="";
-                    $.each(result, function (ind, element) {
+					var nomLocalidad= crearLocalidadesDescuentos(result);
+/*                    $.each(result, function (ind, element) {
                         var opcion = new Option(element.localidad, element.id);
                         $(opcion).attr("data-num", element.precio);
                         $(opcion).attr("style", "color:green;");
                         nomLocalidad = nomLocalidad + element.localidad;
                         $("#localidad").append(opcion);//agregamos las opciónes consultadas
-                    });
+                    });*/
                     document.getElementById('mensaje-cupon').innerHTML = "Cupón Válido - Ahora selecciona en LOCALIDAD la opción "+ nomLocalidad;
                     document.getElementById('mensaje-cupon').style.color = "#74b12e";
                 }else{
@@ -382,6 +382,18 @@ function validarCodigoPromocional(idEvento) {
             docu
         }
     });
+}
+
+function crearLocalidadesDescuentos(listaLocalidades){
+    var nomLocalidad="";
+    $.each(listaLocalidades, function (ind, element) {
+        var opcion = new Option(element.localidad, element.id);
+        $(opcion).attr("data-num", element.precio);
+        $(opcion).attr("style", "color:green;");
+        nomLocalidad = nomLocalidad + element.localidad;
+        $("#localidad").append(opcion);//agregamos las opciónes consultadas
+    });
+    return nomLocalidad;
 }
 
 function ActivarEsPago (element,idEvento) {

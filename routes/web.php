@@ -173,7 +173,7 @@ Auth::routes();
 
     Route::post('CantidadAsistentes/{idEvento}',['uses' =>'Evento\AsistentesController@ObtnerCantidadAsistentes']);
 
-    Route::post('asistenteResgistrado/{cc}',['uses' =>'Evento\AsistentesController@ObtenerAsistente']);
+    Route::get('asistenteResgistrado/{cc}/{idEvento}',['uses' =>'Evento\AsistentesController@ObtenerAsistente']);
 
     Route::get('LecturaQR/{idEvento}',['uses' =>'Evento\AsistentesController@FormularioQR']);
 

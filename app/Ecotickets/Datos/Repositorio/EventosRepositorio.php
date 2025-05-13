@@ -147,7 +147,7 @@ class EventosRepositorio
                             $precioBoletaPromo ->precio = $this->CalcularPrecioBoletaPromo($EdEvento->precio[$indPrecio],$EdEvento->Porcentaje[$indPrecio]);
                             $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
                             $precioBoletaPromo ->Evento_id = $evento ->id;
-                            $precioBoletaPromo ->cantidad = $EdEvento->cantidad[$indPrecio];
+                            $precioBoletaPromo ->cantidad = $EdEvento->CantidadCod[$indPrecio];
                             $precioBoletaPromo ->esCodigoPromo = $EdEvento->esPromo[$indPrecio];
                             $precioBoletaPromo ->Codigo = $EdEvento->Codigo[$indPrecio];
                             $precioBoletaPromo ->Porcentaje = $EdEvento->Porcentaje[$indPrecio];
@@ -168,7 +168,7 @@ class EventosRepositorio
                             $precioBoletaPromo ->precio = $this->CalcularPrecioBoletaPromo($EdEvento->precio[$indPrecio],$EdEvento->Porcentaje[$indPrecio]);
                             $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
                             $precioBoletaPromo ->Evento_id = $evento ->id;
-                            $precioBoletaPromo ->cantidad = $EdEvento->cantidad[$indPrecio];
+                            $precioBoletaPromo ->cantidad = $EdEvento->CantidadCod[$indPrecio];
                             $precioBoletaPromo ->esCodigoPromo = $EdEvento->esPromo[$indPrecio];
                             $precioBoletaPromo ->Codigo = $EdEvento->Codigo[$indPrecio];
                             $precioBoletaPromo ->Porcentaje = $EdEvento->Porcentaje[$indPrecio];
@@ -180,7 +180,7 @@ class EventosRepositorio
                             $precioBoletaPromo ->precio = $this->CalcularPrecioBoletaPromo($EdEvento->precio[$indPrecio],$EdEvento->Porcentaje[$indPrecio]);
                             $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
                             $precioBoletaPromo ->Evento_id = $evento ->id;
-                            $precioBoletaPromo ->cantidad = $EdEvento->cantidad[$indPrecio];
+                            $precioBoletaPromo ->cantidad = $EdEvento->CantidadCod[$indPrecio];
                             $precioBoletaPromo ->esCodigoPromo = $EdEvento->esPromo[$indPrecio];
                             $precioBoletaPromo ->Codigo = $EdEvento->Codigo[$indPrecio];
                             $precioBoletaPromo ->Porcentaje = $EdEvento->Porcentaje[$indPrecio];
@@ -193,7 +193,7 @@ class EventosRepositorio
                             $precioBoletaPromo ->precio = $this-> CalcularPrecioBoletaPromo($EdEvento->precio[$indPrecio],$EdEvento->Porcentaje[$indPrecio]);
                             $precioBoletaPromo ->esActiva = $EdEvento->Activa[$indPrecio];
                             $precioBoletaPromo ->Evento_id = $evento ->id;
-                            $precioBoletaPromo ->cantidad = $EdEvento->cantidad[$indPrecio];
+                            $precioBoletaPromo ->cantidad = $EdEvento->CantidadCod[$indPrecio];
                             $precioBoletaPromo ->esCodigoPromo = $EdEvento->esPromo[$indPrecio];
                             $precioBoletaPromo ->Codigo = $EdEvento->Codigo[$indPrecio];
                             $precioBoletaPromo ->Porcentaje = $EdEvento->Porcentaje[$indPrecio];
@@ -257,11 +257,15 @@ class EventosRepositorio
         return $precioBase;
     }
 
+    public function calcularDescPrecioBoleta($precioBase,$porcentaje){
+        return $this->CalcularPrecioBoletaPromo($precioBase,$porcentaje);
+    }
+
     public function obtenerBoletaPromo($idEvento, $codigo)
     {
         $idsLocalidadesDisponibles =$this->obtenerIdLocalidadDisponible($idEvento);
         $arrayIdLDisponibles = Arr::pluck($idsLocalidadesDisponibles, 'id');
-        return $preciosBoletas = PrecioBoleta::where('Evento_id','=',$idEvento)
+        return  PrecioBoleta::where('Evento_id','=',$idEvento)
             ->where('esActiva','=',1)
             ->where('esCodigoPromo','=',1)
             ->where('Codigo','=',$codigo)
@@ -334,7 +338,7 @@ class EventosRepositorio
         $evento->preguntas;
         $evento->preciosBoletas = DB::table('Tbl_PreciosBoletas')
             ->leftjoin('Tbl_PreciosBoletas as ph','Tbl_PreciosBoletas.id', '=', 'ph.PrecioBoletaPadre_Id')
-            ->select('Tbl_PreciosBoletas.*','ph.esCodigoPromo', 'ph.Codigo', 'ph.Porcentaje', 'ph.id as idHijo')
+            ->select('Tbl_PreciosBoletas.*','ph.esCodigoPromo', 'ph.Codigo', 'ph.Porcentaje', 'ph.id as idHijo','ph.cantidad as cantidadCod')
             ->where('Tbl_PreciosBoletas.Evento_id', '=',$idEvento)
             ->where('Tbl_PreciosBoletas.esCodigoPromo', '=',0)
             ->where('Tbl_PreciosBoletas.PrecioBoletaPadre_Id', '=',null)->get();

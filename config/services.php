@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'comfenalco' =>[
+        'client_id' => env('cliente_id_comfenalco'),
+        'client_secret'=>env('client_secret_comfenalco')
+    ]
+
 ];

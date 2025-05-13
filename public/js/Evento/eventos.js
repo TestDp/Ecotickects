@@ -107,6 +107,7 @@ function EditarNombrePreguntasYRespuetas(){
             $(precioBoleta).find("input[name=cantidad]").attr("name","cantidad["+ i +"]");
             $(precioBoleta).find("input[name=Codigo]").attr("name","Codigo["+ i +"]");
             $(precioBoleta).find("input[name=Porcentaje]").attr("name","Porcentaje["+ i +"]");
+            $(precioBoleta).find("input[name=CantidadCod]").attr("name","CantidadCod["+ i +"]");
             if($(precioBoleta).find("input[name=esActiva]").prop( "checked" ))
             {
                 $(precioBoleta).find("input[name=Activa]").val('1');
@@ -381,6 +382,7 @@ function validarCamposCrearEvento() {
                 var contenedor =  $(check).closest('div[name=rowPrecio]');
                 validarCamposCodigo = validarCamposDinamicos(contenedor,'Codigo','input','*','','*El código es obligatorio');
                 validarCamposPorcentaje = validarCamposDinamicos(contenedor,'Porcentaje','input','*','','*El porcentaje es obligatorio');
+                validarCamposPorcentaje = validarCamposDinamicos(contenedor,'CantidadCod','input','*','','*La cantidad de codigos es obligatoria');
             }
         });
 
@@ -389,7 +391,7 @@ function validarCamposCrearEvento() {
     var validarCamposRespuestas = validarCamposDinamicos($('#crearEvento'),'TextoRespuesta','input','*','','*La respuesta es obligatoria');
     if ($("#crearEvento").valid() && validarCamposLocalidad && validarCamposPrecioBoleta &&
         validarCamposPreguntas && validarCamposRespuestas && validarCamposCantidad &&
-        validarCamposCodigo && validarCamposPorcentaje) {
+        validarCamposCodigo && validarCamposPorcentaje && validarCamposPorcentaje) {
         EditarNombrePreguntasYRespuetas();
         $("#crearEvento").submit();
     }
@@ -919,14 +921,16 @@ function construirGraficoJuntas() {
 
 function BuscarAsistente() {
     var cc = $("#Identificacion").val();
+    var idEvento = $("#Evento_id").val();
     $.ajax({
-        url: urlBase+'/asistenteResgistrado/'+cc,//primero el modulo/controlador/metodo que esta en el controlador
-        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
+        url: urlBase+'/asistenteResgistrado/'+ cc + '/' + idEvento,//primero el modulo/controlador/metodo que esta en el controlador
+/*        data: {// se colocan los parametros a enviar... en este caso no porque los voy es a obtener.
             cc: cc,
             _token :$("#_token").val()
-        },
-        type: 'POST',
-        success: function (result) {
+        },*/
+        type: 'GET',
+        success: function (arrayResult) {
+            var result = arrayResult.asistente;
             if (!jQuery.isEmptyObject(result)) {
                 $("#Nombres").val(result.Nombres);
                 $("#Nombres").attr("readonly","readonly");
@@ -955,6 +959,15 @@ function BuscarAsistente() {
                 $("#Ciudad_id").find("option").remove();//Removemos las opciónes anteriores
                 $("#cantidadBoletas").val("");
                 $("#precioTotal").val("");
+            }
+            if (!jQuery.isEmptyObject(arrayResult.preciosBoletas)){
+                crearLocalidadesDescuentos(arrayResult.preciosBoletas);
+                swal({
+                    title: "Afiliado!",
+                    text: "¡Tienes un descuento en tu ticket por ser afiliado a comfenalco!",
+                    icon: "success",
+                    button: "OK",
+                });
             }
         }
     });
@@ -1083,14 +1096,17 @@ function MostrarDivBoletaPromocional(element){
     if($(element).prop( "checked" )){
         $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").removeAttr("hidden");
         $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").removeAttr("hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").removeAttr("hidden");
         $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("class","input-group-addon");
         $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("class","input-group-addon");
-
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").attr("class","input-group-addon");
     }else{
         $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").removeAttr("class");
         $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").removeAttr("class");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").removeAttr("class");
         $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("hidden","hidden");
         $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("hidden","hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").attr("hidden","hidden");
     }
 }
 
