@@ -89,20 +89,20 @@ class ConvenioServicio
 
     //Se generan los precios de las boletas de acuerdo a la tarifa
     public function generarPreciosBoletasDesc($datosAfiliado,$idEvento){
-       $preciosBoletas =  $this->eventosRepositorio->obtenerLocalidadesEventoOtroRol($idEvento);
-        $porcentaje = $this->obtenerPorcjeDescAfiliado($datosAfiliado->datosBasicos->cateogoria);
-        foreach ($preciosBoletas as $precioBoleta){
-            $precioBoleta->precio = $this->eventosRepositorio->calcularDescPrecioBoleta($precioBoleta->precio,$porcentaje);
-            $precioBoleta->localidad = $precioBoleta->localidad . " Afiliado";
-        }
-        return $preciosBoletas;
+       //$preciosBoletas =  $this->eventosRepositorio->obtenerLocalidadesEventoOtroRol($idEvento);
+
+       $preciosBoletasConvenio =  $this->eventosRepositorio->obtenerLocalidadesConvenio($idEvento,$datosAfiliado->datosBasicos->tarifaa);
+       //$preciosCombinados = $preciosBoletas->merge($preciosBoletasConvenio);
+       return $preciosBoletasConvenio;
     }
 
     private function obtenerPorcjeDescAfiliado($tarifaAfiliado){
         $porDescuento = 0;
+
         switch ($tarifaAfiliado) {
             case "01":
                 $porDescuento = 40;
+
                 break;
             case "02":
                 $porDescuento = 30;

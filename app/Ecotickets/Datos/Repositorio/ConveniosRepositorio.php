@@ -13,6 +13,19 @@ class ConveniosRepositorio
           return Convenio::where('Evento_id', $eventoId)->get()->first();
       }
 
+
+
+      public function obtenerLocalidadesConvenio($idEvento, $tarifa)
+      {
+          return PrecioBoleta::where('Evento_id', '=', $idEvento)
+              ->where('esActiva', '=', 1)
+              ->where('esConvenio', '=', 1)
+              ->where('precio', '>', 0)
+              ->where('PrecioBoletaPadre_Id', '<>', null)
+              // Extraer la última parte del código (después del último guion) y comparar con la tarifa
+              ->whereRaw("SUBSTRING_INDEX(codigo, '-', -1) = ?", [$tarifa])
+              ->get();
+      }
     /* public function obtenerConvenio($id)
      {
          return Convenio::findOrFail($id);
