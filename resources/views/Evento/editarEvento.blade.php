@@ -196,14 +196,19 @@
                                                     @endif
                                                 </div>
                                                 @if($precioBoleta->esCodigoPromo ==1)
-                                                    <div class="input-group-addon" >
+                                                    <div class="input-group-addon" id="divEsPromo" name="divEsPromo">
                                                         <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
                                                         Activar Cod-Promo
                                                         <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)" checked/>
                                                     </div>
+													<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio" hidden="hidden">
+														<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
+														Activar Covenio
+														<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)" />
+													</div>
                                                     <div class="input-group-addon" id="divCodigo" name="divCodigo" >
                                                         Código
-                                                        <input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->Codigo}}"/>
+                                                        <input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->codigoH}}"/>
                                                     </div>
                                                     <div class="input-group-addon"  id="divPorcentaje" name="divPorcentaje" >
                                                         Porcentaje
@@ -215,8 +220,13 @@
 													</div>
                                                 @else
 													@if($precioBoleta->esConvenio ==1)
-														<div class="input-group-addon" >
-															<input type="hidden" id="esConvenio" name="esPromo" class="form-control" />
+														<div class="input-group-addon" id="divEsPromo" name="divEsPromo" hidden="hidden">
+															<input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+															Activar Cod-Promo
+															<input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)" />
+														</div>
+														<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio">
+															<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
 															Activar Covenio
 															<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)" checked/>
 														</div>
@@ -224,14 +234,22 @@
 															Código Convenio
 															<input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->Codigo}}"/>
 														</div>
+														<div class="input-group-addon"  id="divPorcentaje" name="divPorcentaje" hidden="hidden">
+															Porcentaje
+															<input id="Porcentaje" name="Porcentaje" type="number" class="form-control" value="{{$precioBoleta->Porcentaje}}"/>
+														</div>
+														<div class="input-group-addon" id="divCantidadCod" name="divCantidadCod" hidden="hidden">
+															Cantidad Códigos
+															<input id="CantidadCod" name="CantidadCod" type="text" class="form-control" value="{{$precioBoleta->cantidadCod}}"/>
+														</div>
 													@else
-														<div class="input-group-addon" >
+														<div class="input-group-addon" id="divEsPromo" name="divEsPromo" >
 															<input type="hidden" id="esPromo" name="esPromo" class="form-control" />
 															Activar Cod-Promo
 															<input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
 														</div>
-														<div class="input-group-addon" >
-															<input type="hidden" id="esConvenio" name="esPromo" class="form-control" />
+														<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio">
+															<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
 															Activar Covenio
 															<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)"/>
 														</div>
@@ -313,14 +331,19 @@
                                                         @endif
                                                     </div>
                                                     @if($precioBoleta->esCodigoPromo ==1)
-                                                        <div class="input-group-addon" >
+                                                        <div class="input-group-addon" id="divEsPromo" name="divEsPromo">
                                                             <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
                                                             Activar Cod-Promo
                                                             <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)" checked/>
                                                         </div>
+														<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio" hidden="hidden">
+															<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
+															Activar Covenio
+															<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)" />
+														</div>
                                                         <div class="input-group-addon" id="divCodigo" name="divCodigo" >
                                                             Código
-                                                            <input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->Codigo}}"/>
+                                                            <input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->codigoH}}"/>
                                                         </div>
                                                         <div class="input-group-addon"  id="divPorcentaje" name="divPorcentaje" >
                                                             Porcentaje
@@ -332,8 +355,13 @@
 														</div>
                                                     @else
 														@if($precioBoleta->esConvenio ==1)
-															<div class="input-group-addon" >
-																<input type="hidden" id="esConvenio" name="esPromo" class="form-control" />
+															<div class="input-group-addon" id="divEsPromo" name="divEsPromo" hidden="hidden">
+																<input type="hidden" id="esPromo" name="esPromo" class="form-control" />
+																Activar Cod-Promo
+																<input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
+															</div>
+															<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio">
+																<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
 																Activar Covenio
 																<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)" checked/>
 															</div>
@@ -341,14 +369,22 @@
 																Código Convenio
 																<input id="Codigo" name="Codigo" type="text" class="form-control" value="{{$precioBoleta->Codigo}}"/>
 															</div>
+															<div class="input-group-addon"  id="divPorcentaje" name="divPorcentaje" hidden="hidden">
+																Porcentaje
+																<input id="Porcentaje" name="Porcentaje" type="number" class="form-control" value="{{$precioBoleta->Porcentaje}}"/>
+															</div>
+															<div class="input-group-addon" id="divCantidadCod" name="divCantidadCod" hidden="hidden">
+																Cantidad Códigos
+																<input id="CantidadCod" name="CantidadCod" type="text" class="form-control" value="{{$precioBoleta->cantidadCod}}"/>
+															</div>
 														@else
-															<div class="input-group-addon" >
+															<div class="input-group-addon" id="divEsPromo" name="divEsPromo">
 																<input type="hidden" id="esPromo" name="esPromo" class="form-control" />
 																Activar Cod-Promo
 																<input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
 															</div>
-															<div class="input-group-addon" >
-																<input type="hidden" id="esConvenio" name="esPromo" class="form-control" />
+															<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio" >
+																<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
 																Activar Covenio
 																<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)"/>
 															</div>
@@ -405,13 +441,13 @@
                                                 <input type="hidden" id="Activa" name="Activa" class="form-control" />
                                                 <input type="checkbox" id="esActiva" name="esActiva" class="form-control" />
                                             </div>
-                                            <div class="input-group-addon" >
+                                            <div class="input-group-addon" id="divEsPromo" name="divEsPromo">
                                                 <input type="hidden" id="esPromo" name="esPromo" class="form-control" />
                                                 Activar Cod-Promo
                                                 <input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
                                             </div>
-											<div class="input-group-addon" >
-												<input type="hidden" id="esConvenio" name="esPromo" class="form-control" />
+											<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio">
+												<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
 												Activar Covenio
 												<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)" />
 											</div>
@@ -419,10 +455,6 @@
                                                 Código
                                                 <input id="Codigo" name="Codigo" type="text" class="form-control" />
                                             </div>
-											<div  id="divCodigoConv" name="divCodigoConv" hidden="hidden">
-												Código
-												<input id="Codigo" name="Codigo" type="text" class="form-control" />
-											</div>
                                             <div   id="divPorcentaje" name="divPorcentaje" hidden="hidden" >
                                                 Porcentaje
                                                 <input id="Porcentaje" name="Porcentaje" type="number" class="form-control" />
@@ -852,21 +884,17 @@
                     Activar
                     <input type="checkbox" id="esActiva" name="esActiva" class="form-control" />
                 </div>
-				<div class="input-group-addon" >
+				<div class="input-group-addon" id="divEsPromo" name="divEsPromo">
 					<input type="hidden" id="esPromo" name="esPromo" class="form-control" />
 					Activar Cod-Promo
 					<input type="checkbox" id="boletaPromo" name="boletaPromo" class="form-control" onchange="MostrarDivBoletaPromocional(this)"/>
 				</div>
-				<div class="input-group-addon" >
-					<input type="hidden" id="esConvenio" name="esPromo" class="form-control" />
+				<div class="input-group-addon" id="divEsConvenio" name="divEsConvenio" >
+					<input type="hidden" id="esConvenio" name="esConvenio" class="form-control" />
 					Activar Covenio
 					<input type="checkbox" id="boletaConvenio" name="boletaConvenio" class="form-control" onchange="MostrarDivBoletaConveniol(this)" />
 				</div>
 				<div  id="divCodigo" name="divCodigo" hidden="hidden">
-					Código
-					<input id="Codigo" name="Codigo" type="text" class="form-control" />
-				</div>
-				<div  id="divCodigoConv" name="divCodigoConv" hidden="hidden">
 					Código
 					<input id="Codigo" name="Codigo" type="text" class="form-control" />
 				</div>

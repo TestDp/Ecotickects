@@ -429,8 +429,7 @@ class AsistentesController extends Controller
     {
         $convenio = $this->convenioServicio->obtenerConveniosPorEvento($idEvento);
         $resultAfiliación = $this->convenioServicio->consultarAfiliacion($cc,$convenio);
-        $resultAfiliación->datosBasicos->tarifaa ='01';
-        if($resultAfiliación->datosBasicos->tarifaa =='04'){
+        if($resultAfiliación->datosBasicos->nomTarifa =='Tarifa D' || $this->convenioServicio->yaTieneCompraConvenio($idEvento,$cc) > 0){
             return response()->json(['asistente' =>$this->asistenteServicio->ObtenerAsistente($cc)]);
         }else{
             return response()->json(['asistente' =>$this->asistenteServicio->ObtenerAsistente($cc),

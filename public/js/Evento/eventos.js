@@ -120,8 +120,15 @@ function EditarNombrePreguntasYRespuetas(){
             }else{
                 $(precioBoleta).find("input[name=esPromo]").val('0');
             }
+            if($(precioBoleta).find("input[name=boletaConvenio]").prop( "checked" ))
+            {
+                $(precioBoleta).find("input[name=esConvenio]").val('1');
+            }else{
+                $(precioBoleta).find("input[name=esConvenio]").val('0');
+            }
             $(precioBoleta).find("input[name=esPromo]").attr("name","esPromo["+ i +"]");
             $(precioBoleta).find("input[name=Activa]").attr("name","Activa["+ i +"]");
+            $(precioBoleta).find("input[name=esConvenio]").attr("name","esConvenio["+ i +"]");
         });
     }
 }
@@ -948,7 +955,7 @@ function BuscarAsistente() {
             }else{
                 $("#Nombres").val("");
                 $("#Nombres").removeAttrs("readonly");
-                $("#Apellidos").val(result.Apellidos);
+                $("#Apellidos").val();
                 $("#Apellidos").removeAttrs("readonly");
                 $("#telefono").val("");
                 $("#Email").val("");
@@ -1100,6 +1107,10 @@ function MostrarDivBoletaPromocional(element){
         $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("class","input-group-addon");
         $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("class","input-group-addon");
         $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").attr("class","input-group-addon");
+
+        //convenio
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsConvenio]").removeAttr("class");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsConvenio]").attr("hidden","hidden");
     }else{
         $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").removeAttr("class");
         $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").removeAttr("class");
@@ -1107,6 +1118,40 @@ function MostrarDivBoletaPromocional(element){
         $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("hidden","hidden");
         $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("hidden","hidden");
         $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").attr("hidden","hidden");
+
+        //convenio
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsConvenio]").removeAttr("hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsConvenio]").attr("class","input-group-addon");
+    }
+}
+
+function MostrarDivBoletaConveniol(element){
+    if($(element).prop( "checked" )){
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").removeAttr("hidden");
+        //$(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").removeAttr("hidden");
+        //$(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").removeAttr("hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").text("0");
+
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("class","input-group-addon");
+        //$(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("class","input-group-addon");
+        //$(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").attr("class","input-group-addon");
+
+        //convenio
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsPromo]").removeAttr("class");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsPromo]").attr("hidden","hidden");
+    }else{
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").removeAttr("class");
+       // $(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").removeAttr("class");
+        //$(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").removeAttr("class");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").text("");
+
+        $(element).closest("div[name=rowPrecio]").find("div[name=divCodigo]").attr("hidden","hidden");
+        //$(element).closest("div[name=rowPrecio]").find("div[name=divPorcentaje]").attr("hidden","hidden");
+        //$(element).closest("div[name=rowPrecio]").find("div[name=divCantidadCod]").attr("hidden","hidden");
+
+        //convenio
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsPromo]").removeAttr("hidden");
+        $(element).closest("div[name=rowPrecio]").find("div[name=divEsPromo]").attr("class","input-group-addon");
     }
 }
 

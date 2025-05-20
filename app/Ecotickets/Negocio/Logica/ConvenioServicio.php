@@ -36,7 +36,8 @@ class ConvenioServicio
                     'grant_type' => 'client_credentials',
                     'client_id' => config('services.comfenalco.client_id'),
                     'client_secret' => config('services.comfenalco.client_secret'),
-                ]
+                ],
+               'timeout' => 10
             ]);
             $data = json_decode($response->getBody(), true);
             return $data['access_token'];
@@ -91,26 +92,12 @@ class ConvenioServicio
     public function generarPreciosBoletasDesc($datosAfiliado,$idEvento){
        //$preciosBoletas =  $this->eventosRepositorio->obtenerLocalidadesEventoOtroRol($idEvento);
 
-       $preciosBoletasConvenio =  $this->eventosRepositorio->obtenerLocalidadesConvenio($idEvento,$datosAfiliado->datosBasicos->tarifaa);
+       $preciosBoletasConvenio =  $this->eventosRepositorio->obtenerLocalidadesConvenio($idEvento,$datosAfiliado->datosBasicos->nomTarifa);
        //$preciosCombinados = $preciosBoletas->merge($preciosBoletasConvenio);
        return $preciosBoletasConvenio;
     }
 
-    private function obtenerPorcjeDescAfiliado($tarifaAfiliado){
-        $porDescuento = 0;
-
-        switch ($tarifaAfiliado) {
-            case "01":
-                $porDescuento = 40;
-
-                break;
-            case "02":
-                $porDescuento = 30;
-                break;
-            case "03":
-                $porDescuento = 20;
-                break;
-        }
-        return $porDescuento;
+    public function yaTieneCompraConvenio($idEvento,$cc){
+        return count($this->convenioRepositorio->yaTieneCompraConvenio($idEvento,$cc));
     }
 }

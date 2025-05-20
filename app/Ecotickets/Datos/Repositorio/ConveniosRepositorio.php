@@ -4,6 +4,7 @@ namespace Eco\Datos\Repositorio;
 
 use Eco\Datos\Modelos\Convenio;
 use Eco\Datos\Modelos\ConvenioxPreciosBoleta;
+use Illuminate\Support\Facades\DB;
 
 
 class ConveniosRepositorio
@@ -13,19 +14,27 @@ class ConveniosRepositorio
           return Convenio::where('Evento_id', $eventoId)->get()->first();
       }
 
-
-
-      public function obtenerLocalidadesConvenio($idEvento, $tarifa)
-      {
-          return PrecioBoleta::where('Evento_id', '=', $idEvento)
-              ->where('esActiva', '=', 1)
-              ->where('esConvenio', '=', 1)
-              ->where('precio', '>', 0)
-              ->where('PrecioBoletaPadre_Id', '<>', null)
-              // Extraer la última parte del código (después del último guion) y comparar con la tarifa
-              ->whereRaw("SUBSTRING_INDEX(codigo, '-', -1) = ?", [$tarifa])
+      public function  yaTieneCompraConvenio($idEvento,$cc){
+         return DB::table('tbl_asistentesXeventos as ae')
+              ->join('tbl_asistentes as a', 'ae.Asistente_id', '=', 'a.id')
+              ->join('Tbl_Ciudades as c', 'a.Ciudad_id', '=', 'c.id')
+              ->join('Tbl_InfoPagos as p', 'ae.id', '=', 'p.AsistenteXEvento_id')
+              ->join('Tbl_Eventos as e', 'ae.Evento_id', '=', 'e.id')
+              ->join('Tbl_ConvenioxPreciosBoletas as cpb', 'ae.id', '=', 'cpb.AsistentexEvento_id')
+              ->select(
+                  'e.Nombre_Evento as Nombre_Evento',
+                  DB::raw('p.PrecioTotal / p.CantidadBoletas AS PrecioEtapa'),
+                  DB::raw('SUM(p.CantidadBoletas) AS CantidadBoletas'),
+                  DB::raw('SUM(p.PrecioTotal) AS TotalEtapa')
+              )
+              ->where('ae.Evento_id', $idEvento)
+              ->whereIn('p.EstadosTransaccion_id', [4, 7])
+              ->where('a.Identificacion', $cc)
+              ->groupBy('e.Nombre_Evento', DB::raw('p.PrecioTotal / p.CantidadBoletas'))
               ->get();
       }
+
+
     /* public function obtenerConvenio($id)
      {
          return Convenio::findOrFail($id);
