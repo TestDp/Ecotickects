@@ -25,6 +25,17 @@
                     });
                 </script>
         @endif
+        @if (session('masivoResumen'))
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                swal({
+                    title: "Carga masiva finalizada",
+                    text: "{{ session('masivoResumen') }}",
+                    icon: "success",
+                    button: "OK",
+                });
+            </script>
+        @endif
 
         <div class="col-sm-12">
               <div class="card ">
@@ -179,6 +190,104 @@
               </div>
                 </div>
               </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Carga masiva (CSV / Excel)</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Sube un archivo con la lista de usuarios para enviar cortesías sin registrarlos 1x1.
+                        Descarga un ejemplo aquí: <a href="{{ url('plantilla-usuarios-cortesia.csv') }}" download>CSV de ejemplo</a>
+                    </p>
+
+                    <form class="form-horizontal" id="formularioEventoMasivo" action="{{url('registrarUsuariosMasivo')}}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="_token_masivo" name="_token" value="{{csrf_token()}}">
+
+                    {{-- Fila 1: Archivo --}}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Archivo (CSV o XLSX)</label>
+                            
+                                <input type="file" name="archivoUsuarios" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                            
+                        </div>
+                    </div>
+
+                    {{-- Fila 2: Evento | Localidad --}}
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-sm-6">
+                            <label>Evento</label>
+                            <div class="form-group">
+                                <select id="EventoMasivo_id" name="Evento_id" class="form-control" onchange="CargarLocalidadesEventoMasivo()">
+                                    <option value="">Seleccionar</option>
+                                    @foreach($ElementosArray["eventos"] as $evento)
+                                        <option value="{{ $evento->id }}">{{ $evento->Nombre_Evento }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Localidad</label>
+                            <div class="form-group">
+                                <select id="localidadMasivo" name="localidad" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Fila 3: Departamento | Ciudad --}}
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-sm-6">
+                            <label>Departamento</label>
+                            <div class="form-group">
+                                <select id="DepartamentoMasivo_id" name="Departamento_id" onchange="CargarMunicipiosDepartamentoMasivo()" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    @foreach($ElementosArray["departamentos"] as $Departamento)
+                                        <option value="{{ $Departamento->id }}">{{ $Departamento->Nombre_Departamento }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Ciudad</label>
+                            <div class="form-group">
+                                <select id="CiudadMasivo_id" name="Ciudad_id" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Fila 4: Cantidad | Botón --}}
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-sm-3">
+                            <label>Cantidad tickets por usuario</label>
+                            <div class="form-group">
+                                <input id="CantidadTicketsMasivo" name="CantidadTickets" type="number" class="form-control" min="1" value="1"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="padding-top: 25px;">
+                            <button type="submit" class="btn btn-fill btn-rose">Procesar carga</button>
+                        </div>
+                    </div>
+
+                    {{-- Nota columnas --}}
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-12">
+                            <small class="text-muted">
+                                Columnas esperadas en el archivo: <b>Identificacion, Nombres, Apellidos, telefono, Email</b>.
+                            </small>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
         </div>
     </div>
     <script src="{{ asset('js/Transversal/generales.js') }}"></script>

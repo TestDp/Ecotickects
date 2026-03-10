@@ -29,6 +29,16 @@ function CargarMunicipiosDepartamento(idCiudad){
         type: 'POST',
         success: function (result) {
             if (result) {
+                // Orden especial solicitado por el usuario:
+                // Si el departamento seleccionado es Antioquia, mostrar primero Medellín y luego Rionegro.
+                try {
+                    var deptText = ($("#Departamento_id option:selected").text() || "").trim();
+                    if (normalizarTexto(deptText).includes("antioquia")) {
+                        result = ordenarCiudadesAntioquia(result);
+                    }
+                } catch (e) {
+                    // Si falla la normalización, seguimos con el orden original
+                }
                 $idCiudad.find("option").remove();//Removemos las opciónes anteriores
                 $idCiudad.append(new Option("Seleccionar", ""));// agregamos la opción de seleccionar
                 $.each(result, function (ind, element) {
@@ -42,6 +52,74 @@ function CargarMunicipiosDepartamento(idCiudad){
         }
     });
 
+}
+
+// Variante para el formulario masivo (evita colisiones de IDs)
+function CargarMunicipiosDepartamentoMasivo(idCiudad){
+    var idDepartamento = $("#DepartamentoMasivo_id").val();
+    var $idCiudad = $("#CiudadMasivo_id");
+    $.ajax({
+        url: urlBase+'/Ciudades/'+idDepartamento,
+        data: {
+            idDepartamento: idDepartamento,
+            _token :$("#_token_masivo").val()
+        },
+        type: 'POST',
+        success: function (result) {
+            if (result) {
+                try {
+                    var deptText = ($("#DepartamentoMasivo_id option:selected").text() || "").trim();
+                    if (normalizarTexto(deptText).includes("antioquia")) {
+                        result = ordenarCiudadesAntioquia(result);
+                    }
+                } catch (e) {}
+                $idCiudad.find("option").remove();
+                $idCiudad.append(new Option("Seleccionar", ""));
+                $.each(result, function (ind, element) {
+                    $idCiudad.append(new Option(element.Nombre_Ciudad, element.id));
+                });
+                if(idCiudad) {
+                    $("#CiudadMasivo_id").val(idCiudad);
+                }
+            }
+        }
+    });
+}
+
+function normalizarTexto(texto) {
+    if (texto === undefined || texto === null) return "";
+    var t = ("" + texto).toLowerCase().trim();
+    // Quita tildes/acentos para comparar "Medellín" == "medellin"
+    if (t.normalize) {
+        t = t.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+    return t;
+}
+
+// Antioquia: orden fijo por ID (Medellín id=1, Rionegro id=85); el resto en orden original
+function ordenarCiudadesAntioquia(ciudades) {
+    if (!Array.isArray(ciudades)) return ciudades;
+    var ID_MEDELLIN = 1;
+    var ID_RIONEGRO = 85;
+    var medellin = null;
+    var rionegro = null;
+    var resto = [];
+    ciudades.forEach(function (c) {
+        var id = c && (c.id !== undefined) ? parseInt(c.id, 10) : NaN;
+        if (id === ID_MEDELLIN) {
+            medellin = c;
+            return;
+        }
+        if (id === ID_RIONEGRO) {
+            rionegro = c;
+            return;
+        }
+        resto.push(c);
+    });
+    var ordenado = [];
+    if (medellin) ordenado.push(medellin);
+    if (rionegro) ordenado.push(rionegro);
+    return ordenado.concat(resto);
 }
 
 function AgregarPregunta(){

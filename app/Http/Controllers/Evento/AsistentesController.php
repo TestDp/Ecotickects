@@ -150,6 +150,8 @@ class AsistentesController extends Controller
     public function registrarProspectoYEnviarTicket(Request $formRegistro){
 
         try {
+            // Defaults para que no sea obligatorio fechaNacimiento ni Dirección desde el módulo admin
+            $this->aplicarDefaultsRegistroProspectoAdmin($formRegistro);
             $user = Auth::user();
             $respuesta = $this->asistenteServicio->registrarProspecto($formRegistro,$user->id);
             if ($respuesta['respuesta']) {
@@ -167,7 +169,6 @@ class AsistentesController extends Controller
                     $msj->subject('¡Importante! Este es tu Ecoticket.');
                     $msj->to($correoElectronico);
                     $msj->bcc('soporteecotickets@gmail.com');
-                    //preguntamos si el directorio existe
                     if (!file_exists(storage_path('app') . '/boletas/' . $evento->id)) {
                         mkdir(storage_path('app') . '/boletas/' . $evento->id, 0777, true);
                     }
@@ -191,6 +192,250 @@ class AsistentesController extends Controller
             return redirect("FormularioUsuario")->with('respuestaError', false);
         }
 
+    }
+
+    public function descargarPlantillaUsuariosCortesia()
+    {
+        $csv = "Identificacion,Nombres,Apellidos,telefono,Email\n";
+        $csv .= "1234567890,Camilo,Blandon,3001234567,camilo@example.com\n";
+
+        return response($csv, 200, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="plantilla-usuarios-cortesia.csv"',
+        ]);
+    }
+
+    public function registrarProspectoMasivoYEnviarTicket(Request $request)
+    {
+        try {
+            $user = Auth::user();
+
+            $request->validate([
+                'archivoUsuarios' => 'required|file|mimes:csv,txt,xlsx',
+                'Evento_id' => 'required',
+                'Departamento_id' => 'required',
+                'Ciudad_id' => 'required',
+                'localidad' => 'required',
+                'CantidadTickets' => 'required|integer|min:1',
+            ]);
+
+            $archivo = $request->file('archivoUsuarios');
+            $extension = strtolower($archivo->getClientOriginalExtension());
+            $path = $archivo->getRealPath();
+
+            $usuarios = $this->leerUsuariosDesdeArchivo($path, $extension);
+
+            $ok = 0;
+            $fail = 0;
+            $errores = [];
+
+            foreach ($usuarios as $idx => $u) {
+                $rowNumber = $idx + 2; // asumiendo encabezados en la fila 1
+
+                $payload = [
+                    'Identificacion' => trim($u['Identificacion'] ?? ''),
+                    'Nombres' => trim($u['Nombres'] ?? ''),
+                    'Apellidos' => trim($u['Apellidos'] ?? ''),
+                    'telefono' => trim($u['telefono'] ?? ''),
+                    'Email' => trim($u['Email'] ?? ''),
+                    'confEmail' => trim($u['Email'] ?? ''),
+                    'fechaNacimiento' => $u['fechaNacimiento'] ?? null,
+                    'Dirección' => $u['Dirección'] ?? ($u['Direccion'] ?? null),
+                    'Edad' => isset($u['Edad']) && $u['Edad'] !== '' ? (int)$u['Edad'] : 0,
+                    'Departamento_id' => $request->Departamento_id,
+                    'Ciudad_id' => $request->Ciudad_id,
+                    'Evento_id' => $request->Evento_id,
+                    'localidad' => $request->localidad,
+                    'CantidadTickets' => (int)$request->CantidadTickets,
+                    'esActivo' => 0,
+                    'esPerfilado' => 0,
+                    'terminos' => 1,
+                    'HabeasData' => 1,
+                    'ComentarioEvento' => 'BoletaEnviadaModuloUsuarioMasivo',
+                    'Promotor_id' => 0,
+                    'esPago' => 1,
+                ];
+
+                if ($payload['Identificacion'] === '' || $payload['Email'] === '') {
+                    $fail++;
+                    $errores[] = "Fila {$rowNumber}: faltan Identificacion o Email";
+                    continue;
+                }
+
+                $rowRequest = new Request();
+                $rowRequest->replace($payload);
+                $this->aplicarDefaultsRegistroProspectoAdmin($rowRequest);
+
+                $respuesta = $this->asistenteServicio->registrarProspecto($rowRequest, $user->id);
+                if (!isset($respuesta['respuesta']) || $respuesta['respuesta'] !== true) {
+                    $fail++;
+                    $errores[] = "Fila {$rowNumber}: no se pudo registrar (Email: {$payload['Email']})";
+                    continue;
+                }
+
+                $correoElectronico = $payload['Email'];
+                $this->asistenteServicio->ActualizarPinBusquedaCorreo($correoElectronico);
+
+                $listaAsistentesXEventosPines = $this->asistenteServicio->crearTicket($respuesta['infoPagoObject']);
+                $evento = $this->eventoServicio->obtenerEvento($listaAsistentesXEventosPines['ListaAsistesEventoPines']->first()->Evento_id);
+                $localidad = $listaAsistentesXEventosPines['localidad'];
+                $ElementosArray = array('evento' => $evento);
+                $correoSaliente = $evento->CorreoEnviarInvitacion;
+                $nombreEvento = $evento->Nombre_Evento;
+                $pinesImagenes = $listaAsistentesXEventosPines['ListaAsistesEventoPines'];
+
+                Mail::send('Email/correo', ['ElementosArray' => $ElementosArray], function ($msj) use ($pinesImagenes, $correoElectronico, $correoSaliente, $nombreEvento, $evento, $localidad) {
+                    $msj->from($correoSaliente, 'Invitación ' . $nombreEvento);
+                    $msj->subject('¡Importante! Este es tu Ecoticket.');
+                    $msj->to($correoElectronico);
+                    $msj->bcc('soporteecotickets@gmail.com');
+                    if (!file_exists(storage_path('app') . '/boletas/' . $evento->id)) {
+                        mkdir(storage_path('app') . '/boletas/' . $evento->id, 0777, true);
+                    }
+                    foreach ($pinesImagenes as $pin) {
+                        $qr = base64_encode(\QrCode::format('png')->merge(env('RUTAICONOPEQUENIOPROSPECTOADMIN'))->size(280)->generate($nombreEvento . ' - CC - ' . $pin->PinBoleta . 'ECOTICKETS'));
+                        $ElementosArray = array('evento' => $evento, 'qr' => $qr, 'localidad' => $localidad);
+                        \PDF::loadView('boletatest', ['ElementosArray' => $ElementosArray])->save(storage_path('app') . '/boletas/' . $evento->id . '/ECOTICKET' . $pin->id . '.pdf');
+                        $qrImagen = storage_path('app') . '/boletas/' . $evento->id . '/ECOTICKET' . $pin->id . '.pdf';
+                        $msj->attach($qrImagen);
+                    }
+                });
+
+                $ok++;
+            }
+
+            $resumen = "Enviados: {$ok}. Fallidos: {$fail}.";
+            if (count($errores) > 0) {
+                $resumen .= " Revisa log para detalles.";
+                $archivoLog = fopen(storage_path('app') . '/log_carga_masiva.txt', 'a');
+                fwrite($archivoLog, "\n" . date('Y-m-d H:i:s') . " - Errores carga masiva:\n" . implode("\n", $errores) . "\n");
+                fclose($archivoLog);
+            }
+
+            return redirect("FormularioUsuario")->with('masivoResumen', $resumen);
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
+            $archivoLog = fopen(storage_path('app') . '/log_carga_masiva.txt', 'a');
+            fwrite($archivoLog, "\n" . date('Y-m-d H:i:s') . " - ERROR: " . $error . "\n");
+            fclose($archivoLog);
+            return redirect("FormularioUsuario")->with('respuestaError', true);
+        }
+    }
+
+    private function aplicarDefaultsRegistroProspectoAdmin(Request $request)
+    {
+        if (!$request->has('confEmail') && $request->has('Email')) {
+            $request->merge(['confEmail' => $request->Email]);
+        }
+        if (!$request->has('Edad')) {
+            $request->merge(['Edad' => 0]);
+        }
+        $direccion = $request->input('Dirección');
+        if ($direccion === null || trim((string)$direccion) === '') {
+            $request->merge(['Dirección' => 'NA']);
+        }
+    }
+
+    private function leerUsuariosDesdeArchivo($path, $extension)
+    {
+        if ($extension === 'csv' || $extension === 'txt') {
+            return $this->leerUsuariosCsv($path);
+        }
+        if ($extension === 'xlsx') {
+            return $this->leerUsuariosXlsx($path);
+        }
+        throw new \Exception("Formato no soportado: {$extension}");
+    }
+
+    private function leerUsuariosCsv($path)
+    {
+        $handle = fopen($path, 'r');
+        if (!$handle) {
+            throw new \Exception("No fue posible leer el archivo CSV");
+        }
+
+        $firstLine = fgets($handle);
+        if ($firstLine === false) {
+            fclose($handle);
+            return [];
+        }
+
+        $delimiter = (substr_count($firstLine, ';') > substr_count($firstLine, ',')) ? ';' : ',';
+        $headersRaw = str_getcsv(trim($firstLine), $delimiter);
+        $headers = $this->normalizarHeaders($headersRaw);
+
+        $rows = [];
+        while (($data = fgetcsv($handle, 0, $delimiter)) !== false) {
+            if (count($data) === 1 && trim((string)$data[0]) === '') {
+                continue;
+            }
+            $row = [];
+            foreach ($headers as $i => $key) {
+                $row[$key] = $data[$i] ?? null;
+            }
+            $rows[] = $this->mapearRowUsuario($row);
+        }
+        fclose($handle);
+
+        return $rows;
+    }
+
+    private function leerUsuariosXlsx($path)
+    {
+        if (!class_exists(\PhpOffice\PhpSpreadsheet\IOFactory::class)) {
+            throw new \Exception("Falta dependencia para leer Excel (PhpSpreadsheet).");
+        }
+
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path);
+        $sheet = $spreadsheet->getActiveSheet();
+        $data = $sheet->toArray(null, true, true, false);
+        if (!$data || count($data) < 2) {
+            return [];
+        }
+
+        $headersRaw = $data[0];
+        $headers = $this->normalizarHeaders($headersRaw);
+
+        $rows = [];
+        for ($i = 1; $i < count($data); $i++) {
+            $line = $data[$i];
+            $row = [];
+            foreach ($headers as $colIdx => $key) {
+                $row[$key] = $line[$colIdx] ?? null;
+            }
+            $rows[] = $this->mapearRowUsuario($row);
+        }
+
+        return $rows;
+    }
+
+    private function normalizarHeaders($headersRaw)
+    {
+        $headers = [];
+        foreach ($headersRaw as $h) {
+            $h = trim((string)$h);
+            $hLower = mb_strtolower($h);
+            $hLower = str_replace(['á','é','í','ó','ú','ñ'], ['a','e','i','o','u','n'], $hLower);
+            $hLower = preg_replace('/\s+/', '', $hLower);
+            $headers[] = $hLower;
+        }
+        return $headers;
+    }
+
+    private function mapearRowUsuario($row)
+    {
+        // Acepta variantes de encabezados
+        return [
+            'Identificacion' => $row['identificacion'] ?? null,
+            'Nombres' => $row['nombres'] ?? null,
+            'Apellidos' => $row['apellidos'] ?? null,
+            'telefono' => $row['telefono'] ?? ($row['celular'] ?? null),
+            'Email' => $row['email'] ?? ($row['correo'] ?? null),
+            'Direccion' => $row['direccion'] ?? null,
+            'Dirección' => $row['direccion'] ?? null,
+            'fechaNacimiento' => $row['fechanacimiento'] ?? null,
+            'Edad' => $row['edad'] ?? null,
+        ];
     }
 
     /* Metodo para  registrar un promotor**/
@@ -425,15 +670,79 @@ class AsistentesController extends Controller
 
     /**Metodo que me retorna un asistente o usuario registrado al evento, se realiza la busqueda por mmedio de la
      * identificación.*/
-    public function ObtenerAsistente($cc,$idEvento)
+    public function ObtenerAsistente($cc, $idEvento)
     {
-        $convenio = $this->convenioServicio->obtenerConveniosPorEvento($idEvento);
-        $resultAfiliación = $this->convenioServicio->consultarAfiliacion($cc,$convenio);
-        if($resultAfiliación->datosBasicos->nomTarifa =='Tarifa D' || $this->convenioServicio->yaTieneCompraConvenio($idEvento,$cc) > 0){
-            return response()->json(['asistente' =>$this->asistenteServicio->ObtenerAsistente($cc)]);
-        }else{
-            return response()->json(['asistente' =>$this->asistenteServicio->ObtenerAsistente($cc),
-                "preciosBoletas" => $this->convenioServicio->generarPreciosBoletasDesc($resultAfiliación,$idEvento)]);
+        try {
+            // Obtener el convenio
+            $convenio = $this->convenioServicio->obtenerConveniosPorEvento($idEvento);
+            
+            // Si no hay convenio, tratar como asistente normal sin descuentos
+            if (!$convenio) {
+                \Log::channel('daily')->info('Evento sin convenio', ['idEvento' => $idEvento]);
+                return response()->json(['asistente' => $this->asistenteServicio->ObtenerAsistente($cc)]);
+            }
+            
+            // Intentar consultar afiliación con timeout
+            $resultAfiliación = null;
+            try {
+                // Establecer un timeout para esta operación
+                $resultAfiliación = $this->convenioServicio->consultarAfiliacion($cc, $convenio);
+                
+                // Verificar si la respuesta es un array con error (compatible con tu código actual)
+                if (is_array($resultAfiliación) && isset($resultAfiliación['error'])) {
+                    \Log::channel('daily')->warning('Error al consultar afiliación', [
+                        'mensaje' => $resultAfiliación['mensaje'] ?? 'Error desconocido',
+                        'cc' => $cc,
+                        'idEvento' => $idEvento
+                    ]);
+                    // Si hay error en la afiliación, tratarlo como usuario normal sin descuentos
+                    return response()->json(['asistente' => $this->asistenteServicio->ObtenerAsistente($cc)]);
+                }
+            } catch (\Exception $e) {
+                \Log::channel('daily')->error('Excepción al consultar afiliación', [
+                    'mensaje' => $e->getMessage(),
+                    'cc' => $cc,
+                    'idEvento' => $idEvento
+                ]);
+                // Si hay excepción, tratarlo como usuario normal sin descuentos
+                return response()->json(['asistente' => $this->asistenteServicio->ObtenerAsistente($cc)]);
+            }
+            
+            // Verificar si tenemos la propiedad datosBasicos y nomTarifa
+            // Este es un extra de validación para evitar errores por estructura incorrecta
+            if (!isset($resultAfiliación->datosBasicos) || 
+                !isset($resultAfiliación->datosBasicos->nomTarifa)) {
+                \Log::channel('daily')->warning('Respuesta de afiliación incompleta', [
+                    'cc' => $cc,
+                    'idEvento' => $idEvento
+                ]);
+                // Si falta información en la respuesta, tratarlo como usuario normal sin descuentos
+                return response()->json(['asistente' => $this->asistenteServicio->ObtenerAsistente($cc)]);
+            }
+            
+            // Ya tenemos una respuesta válida, ahora validamos la tarifa o compra previa
+            if ($resultAfiliación->datosBasicos->nomTarifa == 'Tarifa D' || 
+                $this->convenioServicio->yaTieneCompraConvenio($idEvento, $cc) > 0) {
+                return response()->json(['asistente' => $this->asistenteServicio->ObtenerAsistente($cc)]);
+            } else {
+                return response()->json([
+                    'asistente' => $this->asistenteServicio->ObtenerAsistente($cc),
+                    "preciosBoletas" => $this->convenioServicio->generarPreciosBoletasDesc($resultAfiliación, $idEvento)
+                ]);
+            }
+        } catch (\Exception $e) {
+            \Log::channel('daily')->error('Error general en ObtenerAsistente', [
+                'mensaje' => $e->getMessage(),
+                'cc' => $cc,
+                'idEvento' => $idEvento,
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            // En caso de error general, devolver una respuesta de error amigable
+            return response()->json([
+                'error' => true,
+                'mensaje' => 'Ocurrió un error al procesar la solicitud. Por favor, intente nuevamente.'
+            ], 500);
         }
     }
 

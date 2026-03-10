@@ -177,7 +177,15 @@ class AsistenteServicio
 
     public function obtenerListaTicketsPorCompradorAdmin($idEvento,$idAsistente)
     {
-        return $this->asistenteRepositorio->obtenerListaTicketsPorCompradorAdmin($idEvento,$idAsistente);
+        
+
+        if ($this->asistenteRepositorio->Espago($idEvento)) {
+
+            return $this->asistenteRepositorio->obtenerListaTicketsPorCompradorAdmin($idEvento,$idAsistente);
+        } else {
+
+            return $this->asistenteRepositorio->obtenerListaTicketsGratisPorCompradorAdmin($idEvento, $idAsistente);
+        }
     }
 
 

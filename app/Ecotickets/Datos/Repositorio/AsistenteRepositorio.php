@@ -350,6 +350,44 @@ class AsistenteRepositorio
         return $asistentesPago;
     }
 
+
+    public function obtenerListaTicketsGratisPorCompradorAdmin($idEvento, $idAsistente)
+    {
+        $asistentesGratis = DB::table('tbl_asistentes as a')
+            ->join('tbl_asistentesXeventos as ax', 'a.id', '=', 'ax.Asistente_id')
+            ->leftJoin('Tbl_Usuarios_X_AsistenteEvento as uxa', 'uxa.AsistentesXEvento_id', '=', 'ax.id')
+            ->leftJoin('users as u', 'u.id', '=', 'uxa.user_id')
+            ->leftJoin('users as u2', 'u2.id', '=', 'ax.IdUsuarioAnula')
+            ->where('ax.Evento_id', '=', $idEvento)
+            ->where('a.id', '=', $idAsistente)
+            ->select(DB::raw('
+                a.Identificacion as idAsistenteEvento,
+                ax.esActivo,
+                ax.created_at,
+                ax.updated_at,
+                ax.esAnulado,
+                ax.IdUsuarioAnula,
+                a.id,
+                a.Nombres,
+                a.Apellidos,
+                a.Identificacion,
+                a.telefono,
+                a.Email,
+                a.Edad,
+                a.Dirección,
+                1 as CantidadBoletas,
+                0 as PrecioTotal,
+                "Gratis" as TipoBoleta,
+                u.name as UsuarioVendedor,
+                u2.name as UsuarioAnulaName,
+                "Cortesia" as Localidad,
+                0 as precio
+            '))
+            ->get();
+
+        return $asistentesGratis;
+    }
+
     public function obtenerListaTicketsPorCompradorOtroRol($idEvento,$idAsistente, $userId)
     {
 

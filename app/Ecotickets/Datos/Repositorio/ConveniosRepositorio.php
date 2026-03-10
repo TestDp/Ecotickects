@@ -20,7 +20,8 @@ class ConveniosRepositorio
               ->join('Tbl_Ciudades as c', 'a.Ciudad_id', '=', 'c.id')
               ->join('Tbl_InfoPagos as p', 'ae.id', '=', 'p.AsistenteXEvento_id')
               ->join('Tbl_Eventos as e', 'ae.Evento_id', '=', 'e.id')
-              ->join('Tbl_ConvenioxPreciosBoletas as cpb', 'ae.id', '=', 'cpb.AsistentexEvento_id')
+              ->join('Tbl_PreciosBoletas as pb', 'pb.Evento_id', '=', 'e.id')
+              //->join('Tbl_ConvenioxPreciosBoletas as cpb', 'ae.id', '=', 'cpb.AsistentexEvento_id')
               ->select(
                   'e.Nombre_Evento as Nombre_Evento',
                   DB::raw('p.PrecioTotal / p.CantidadBoletas AS PrecioEtapa'),
@@ -30,6 +31,7 @@ class ConveniosRepositorio
               ->where('ae.Evento_id', $idEvento)
               ->whereIn('p.EstadosTransaccion_id', [4, 7])
               ->where('a.Identificacion', $cc)
+              ->where('pb.esConvenio', 1)
               ->groupBy('e.Nombre_Evento', DB::raw('p.PrecioTotal / p.CantidadBoletas'))
               ->get();
       }

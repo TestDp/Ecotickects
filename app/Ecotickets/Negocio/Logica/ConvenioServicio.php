@@ -75,7 +75,9 @@ class ConvenioServicio
                             'usuarioAplicativo' => 'POECOTICKETS',
                         ]
                     ]
-                ]
+                ],
+                'timeout' => 5, // 5 segundos como máximo para toda la operación
+                'connect_timeout' => 2, // 2 segundos como máximo para establecer la conexión
             ]);
             $data = json_decode($response->getBody(), true);
             return json_decode(json_encode($data['usuario']));

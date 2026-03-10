@@ -712,6 +712,27 @@ function CargarLocalidadesEvento(){
 
 }
 
+function CargarLocalidadesEventoMasivo(){
+    var $idEvento = $("#EventoMasivo_id").val();
+    var localidad_id = $("#localidadMasivo");
+    $.ajax({
+        type: 'GET',
+        url: urlBase+'/LocalidadesEvento/' + $idEvento,
+        dataType: 'json',
+        success: function (result) {
+            if (result) {
+                localidad_id.find("option").remove();
+                localidad_id.append(new Option("Seleccionar", ""));
+                $.each(result, function (ind, element) {
+                    var opcion = new Option(element.localidad, element.id);
+                    $(opcion).attr("data-num", element.precio);
+                    localidad_id.append(opcion);
+                });
+            }
+        }
+    });
+}
+
 
 function CargarPromotores(){
     $("#enlace").val("");

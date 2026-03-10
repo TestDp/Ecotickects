@@ -163,6 +163,12 @@ Auth::routes();
 
     Route::post('registrarUsuario',['uses' =>'Evento\AsistentesController@registrarProspectoYEnviarTicket']);
 
+    // Carga masiva de usuarios para envío de cortesías/tickets
+    Route::post('registrarUsuariosMasivo',['uses' =>'Evento\AsistentesController@registrarProspectoMasivoYEnviarTicket']);
+
+    // Plantilla CSV de ejemplo para carga masiva
+    Route::get('plantilla-usuarios-cortesia.csv',['uses' =>'Evento\AsistentesController@descargarPlantillaUsuariosCortesia']);
+
     Route::post('registrarPromotor',['uses' =>'Evento\AsistentesController@registrarPromotor']);
 
     Route::post('RespuestaPagos',['uses' =>'Evento\AsistentesController@RespuestaPagos']);
