@@ -209,6 +209,17 @@ function EditarNombrePreguntasYRespuetas(){
             $(precioBoleta).find("input[name=esConvenio]").attr("name","esConvenio["+ i +"]");
         });
     }
+    // Renombrar campos personalizados para que lleguen como arrays
+    $("#listaCamposPersonalizados").find("div[name=rowCampoPersonalizado]").each(function (i, row) {
+        $(row).find("input[name=campoEtiqueta]").attr("name", "campoEtiqueta[" + i + "]");
+        $(row).find("input[name=campoOpciones]").attr("name", "campoOpciones[" + i + "]");
+        var chk = $(row).find("input[name=campoObligatorio]");
+        if (chk.prop("checked")) {
+            chk.attr("name", "campoObligatorio[" + i + "]");
+        } else {
+            chk.attr("name", "campoObligatorio_off[" + i + "]");
+        }
+    });
 }
 
 function ValidarPin () {
@@ -235,6 +246,27 @@ function generarQRCode(){
     var src = $(qr).attr('src');
     $("#imagen").val(src);
     validarFormulario();
+    if (!validarCamposPersonalizadosObligatorios()) {
+        event.preventDefault();
+        return false;
+    }
+}
+
+function validarCamposPersonalizadosObligatorios() {
+    if (typeof $ === 'undefined' || $(".campoPersonalizado").length === 0) return true;
+    var valido = true;
+    $(".campoPersonalizado").each(function () {
+        var campo = $(this);
+        campo.next(".error-campo-personalizado").remove();
+        if (campo.data("obligatorio") == 1) {
+            var valor = $.trim(campo.val());
+            if (!valor) {
+                valido = false;
+                campo.after('<label class="error error-campo-personalizado" style="color:red;">*El campo ' + campo.data("etiqueta") + ' es obligatorio</label>');
+            }
+        }
+    });
+    return valido;
 }
 
 function validarFormulario(){

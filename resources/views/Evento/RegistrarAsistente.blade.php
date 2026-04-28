@@ -150,6 +150,7 @@
 								</div>
                                 </div>
                             </div>
+                            @include('Evento.partials.camposPersonalizados')
                             <br/>
                             <div class="column one">
                                 @if(count($ElementosArray["evento"]->preguntas) >0)
@@ -281,6 +282,7 @@
 								</div>
                                 </div>
                             </div>
+                            @include('Evento.partials.camposPersonalizados')
                             <br/>
                             <div class="column one">
                                 @if(count($ElementosArray["evento"]->preguntas) >0)

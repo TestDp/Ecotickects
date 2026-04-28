@@ -24,7 +24,10 @@
 						  <th class="th-description">Ciudad</th>
                           <th class="th-description">Usuario vendedor</th>
 						  <th class="th-description">Cantidad boletas</th>
-						  <th class="th-description">Total compra</th>
+                          <th class="th-description">Total compra</th>
+                          @if(isset($camposPersonalizados) && count($camposPersonalizados) > 0)
+                          <th class="th-description">Campos personalizados</th>
+                          @endif
                           @if(Auth::user()->buscarRecurso('ListaTickets'))
                           <th class="th-description">Opciones</th>
                           @endif
@@ -59,6 +62,11 @@
 						<td class="td-name">
                             <a>{{$asistente->PrecioTotal}}</a>
                           </td>
+                          @if(isset($camposPersonalizados) && count($camposPersonalizados) > 0)
+                          <td class="td-name">
+                            {{ $asistente->camposPersonalizados ?? '' }}
+                          </td>
+                          @endif
                             @if(Auth::user()->buscarRecurso('ListaTickets'))
                             <td class="td-name">
                                 <button type="button" rel="tooltip" class="btn btn-rose" data-toggle="tooltip" data-placement="top" title="Visualizar tickets">
@@ -158,6 +166,7 @@
             });
         });
     </script>
+	@verbatim
 	<script type="text/javascript">
 		var tableToExcel = (function() {
 		  var uri = 'data:application/vnd.ms-excel;base64,'
@@ -170,5 +179,6 @@
 			window.location.href = uri + base64(format(template, ctx))
 		  }
 		})()
-</script>
+	</script>
+	@endverbatim
 @endsection

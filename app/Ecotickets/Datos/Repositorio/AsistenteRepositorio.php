@@ -20,6 +20,7 @@ use Eco\Datos\Modelos\CodigoAsistente;
 use Eco\Datos\Modelos\UsuarioXAsistenteEvento;
 use Illuminate\Support\Facades\DB;
 use Eco\Datos\DTO\LecturaQRDTO;
+use Eco\Datos\Modelos\RespuestaCampoPersonalizado;
 use Ecotickets\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -63,6 +64,17 @@ class AsistenteRepositorio
                         $respuestasAsistenteXevento->Respuesta_id = $respuestasAsistente;
                         $respuestasAsistenteXevento->AsistenteXEvento_id = $asistenteXeventoo->id;
                         $respuestasAsistenteXevento->save();
+                    }
+                }
+                if ($registroAsistente->campoPersonalizado) {
+                    foreach ($registroAsistente->campoPersonalizado as $campoId => $valor) {
+                        if (!empty($valor)) {
+                            $rcp = new RespuestaCampoPersonalizado();
+                            $rcp->CampoPersonalizado_id = $campoId;
+                            $rcp->AsistenteXEvento_id = $asistenteXeventoo->id;
+                            $rcp->valor = $valor;
+                            $rcp->save();
+                        }
                     }
                 }
                 DB::commit();
@@ -128,6 +140,17 @@ class AsistenteRepositorio
                        $user = $this->usuarioRepositorio->crearModelUsuario($asistente);
                         $respuestaGuardarUsuario = $this->usuarioRepositorio->guardarUsuario($user,[env('IdRolUsuarioComprador')]);
                         $this->usuarioRepositorio->ActivarPermisoXEvento($asistenteXeventoo->Evento_id,$respuestaGuardarUsuario['idUsuario']);
+                    }
+                    if ($registroAsistente->campoPersonalizado) {
+                        foreach ($registroAsistente->campoPersonalizado as $campoId => $valor) {
+                            if (!empty($valor)) {
+                                $rcp = new RespuestaCampoPersonalizado();
+                                $rcp->CampoPersonalizado_id = $campoId;
+                                $rcp->AsistenteXEvento_id = $asistenteXeventoo->id;
+                                $rcp->valor = $valor;
+                                $rcp->save();
+                            }
+                        }
                     }
                 }
             }
@@ -210,7 +233,7 @@ class AsistenteRepositorio
             ->join('tbl_asistentesXeventos', 'tbl_asistentes.id', '=', 'tbl_asistentesXeventos.Asistente_id')
             ->join('Tbl_Ciudades','Tbl_Ciudades.id','=','tbl_asistentes.Ciudad_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, 
+            ->select(\DB::raw('tbl_asistentesXeventos.id as AsistenteXEvento_id, tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos, 
             tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, 
             tbl_asistentes.Dirección, Tbl_Ciudades.Nombre_Ciudad, "1" as CantidadBoletas,"Gratuita" as Localidad, "0" as PrecioTotal, "Gratis" as TipoBoleta,"NA" as UsuarioVendedor ' ))
             ->get();
@@ -254,7 +277,7 @@ class AsistenteRepositorio
             ->leftJoin('Tbl_Usuarios_X_AsistenteEvento', 'Tbl_Usuarios_X_AsistenteEvento.AsistentesXEvento_id', '=', 'tbl_asistentesXeventos.id')
             ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
-            ->select(\DB::raw('tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
+            ->select(\DB::raw('tbl_asistentesXeventos.id as AsistenteXEvento_id, tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
              tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, 
              Tbl_Ciudades.Nombre_Ciudad, Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta, 
              users.name as UsuarioVendedor, Tbl_PreciosBoletas.Localidad ' ))
@@ -262,6 +285,17 @@ class AsistenteRepositorio
             ->get();
 
         return $asistentesPago;
+    }
+
+    public function obtenerRespuestasCamposPersonalizados($idEvento)
+    {
+        return DB::table('tbl_respuestas_campos_personalizados as rcp')
+            ->join('tbl_campos_personalizados as cp', 'cp.id', '=', 'rcp.CampoPersonalizado_id')
+            ->where('cp.Evento_id', '=', $idEvento)
+            ->select('rcp.AsistenteXEvento_id', 'cp.etiqueta', 'rcp.valor')
+            ->orderBy('cp.orden')
+            ->get()
+            ->groupBy('AsistenteXEvento_id');
     }
 
     public function obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente)
@@ -551,11 +585,11 @@ class AsistenteRepositorio
             ->orderBy('tbl_asistentes.id', 'DESC')
             ->get()->first();
 
-        if($asistentepago == null)
-        {
-            $asistente =  $asistenteinvitado;
-        }else{
-            $asistente =  $asistentepago;
+        // DB::select devuelve array de filas; el SP trae localidad, Nombres, etc. en la primera fila
+        if (is_array($asistentepago) && count($asistentepago) > 0) {
+            $asistente = $asistentepago[0];
+        } else {
+            $asistente = $asistenteinvitado;
         }
         if ($asistente) {
             $asistente->ciudad = Ciudad::where('id', '=', $asistente->Ciudad_id)->get()->first();
@@ -640,12 +674,12 @@ class AsistenteRepositorio
             ->where('PinBoleta', '=', $cc)
             ->get()->first();
         if ($asistenteEvento) {
+            $result->Localidad = $asistenteEventoCompleto->localidad ?? '';
             if ($asistenteEvento->esActivo == false) {
                 $asistenteEvento->esActivo = true;
                 $asistenteEvento->save();
                 $result->Mensaje = 'Boleta Activada con exito';
                 $result->Activa = true;
-                $result->Localidad = $asistenteEventoCompleto->localidad;
                 $result->Identificacion = $asistenteEventoCompleto->Identificacion;
                 $result->Nombre = $asistenteEventoCompleto->Nombres;
                 return $result;
@@ -653,7 +687,6 @@ class AsistenteRepositorio
 
                 $result->Mensaje = 'La boleta ya fue ACTIVADA';
                 $result->Activa = false;
-                $result->Localidad = $asistenteEventoCompleto->localidad;
                 return $result;
             }
         }
@@ -781,6 +814,7 @@ class AsistenteRepositorio
                 ->where('PinBoleta', '=', $idPin)
                 ->get()->first();
             if ($asistenteEvento) {
+                $result->Localidad = $asistenteEventoCompleto->localidad ?? '';
                 if ($asistenteEvento->esAnulado == false){
                     if ($asistenteEvento->esActivo == false) {
                         $asistenteEvento->esActivo = true;
@@ -788,7 +822,6 @@ class AsistenteRepositorio
                         $asistenteEvento->save();
                         $result->Mensaje = 'Boleta Activada con exito Comprador: ' . $asistenteEventoCompleto->Nombres . ' CC : '.$asistenteEventoCompleto->Identificacion;
                         $result->Activa = true;
-                        $result->Localidad = $asistenteEventoCompleto->localidad;
                         $result->Identificacion = $asistenteEventoCompleto->Identificacion;
                         $result->Nombre = $asistenteEventoCompleto->Nombres;
                         DB::commit();
@@ -796,13 +829,11 @@ class AsistenteRepositorio
                     } else {
                         $result->Mensaje = 'La boleta ya fue ACTIVADA Fecha de activación: '.$asistenteEventoCompleto->updated_at;
                         $result->Activa = false;
-                        $result->Localidad = $asistenteEventoCompleto->localidad;
                         return $result;
                     }
                 }else{
                     $result->Mensaje = 'La boleta fue anulada contactar al administrador';
                     $result->Activa = false;
-                    $result->Localidad = $asistenteEventoCompleto->localidad;
                     return $result;
                 }
             }

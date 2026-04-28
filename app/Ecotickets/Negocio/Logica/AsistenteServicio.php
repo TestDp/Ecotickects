@@ -170,6 +170,11 @@ class AsistenteServicio
            }
     }
 
+    public function obtenerRespuestasCamposPersonalizados($idEvento)
+    {
+        return $this->asistenteRepositorio->obtenerRespuestasCamposPersonalizados($idEvento);
+    }
+
     public function obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente)
     {
         return $this->asistenteRepositorio->obtenerListaTicketsPorCompradorSAdmin($idEvento,$idAsistente);

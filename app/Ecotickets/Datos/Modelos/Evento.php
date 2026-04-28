@@ -42,4 +42,8 @@ class Evento extends Model
         return $this->hasMany('Eco\Datos\Modelos\Factura','Evento_id','id');
     }
 
+    public function camposPersonalizados(){
+        return $this->hasMany('Eco\Datos\Modelos\CampoPersonalizado','Evento_id','id')->orderBy('orden');
+    }
+
 }

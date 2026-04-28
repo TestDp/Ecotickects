@@ -135,10 +135,23 @@ class EventosController extends Controller
         $evento = $this->eventoServicio->obtenerEvento($idEvento);
         $asistentes = $this -> asistenteServicio ->obtenerAsistentesXEvento($idEvento);
         $asistentesGuestList = $this -> asistenteServicio ->obtenerAsistentesXEventoGuestList($idEvento);
+
+        $camposPersonalizados = $evento->camposPersonalizados;
+        $respuestasCampos = $this->asistenteServicio->obtenerRespuestasCamposPersonalizados($idEvento);
+        foreach ($asistentes as $asistente) {
+            $aeId = $asistente->AsistenteXEvento_id ?? null;
+            if ($aeId && isset($respuestasCampos[$aeId])) {
+                $asistente->camposPersonalizados = $respuestasCampos[$aeId]->pluck('valor')->implode(', ');
+            } else {
+                $asistente->camposPersonalizados = '';
+            }
+        }
+
         $ListaAsistentes = array ('asistentes' => $asistentes);
         $ListaAsistentesGuestList = array ('asistentesGuestList' => $asistentesGuestList );
         return view('Evento/ListaAsistente', array('ListaAsistentes' => $ListaAsistentes,
-            'ListaAsistentesGuestList' => $ListaAsistentesGuestList,"evento" => $evento));
+            'ListaAsistentesGuestList' => $ListaAsistentesGuestList,"evento" => $evento,
+            "camposPersonalizados" => $camposPersonalizados));
     }
 
     /*Metodo que me retorna la lista de asistentes Guest List*/

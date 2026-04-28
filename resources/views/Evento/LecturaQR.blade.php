@@ -64,16 +64,16 @@
                 <div class="row text-center">
                     <div class="col-md-6">
 				<span class="input-group-btn">
-				<button class="form-control btn btn-success btn-sm rounded-3 mb-2" onclick="encenderCamara()">Encender camara</button>
+				<button class="form-control btn btn-success btn-sm rounded-3 mb-2" onclick="encenderCamara()">Encender cámara</button>
 				</span>
                     </div>
                     <div class="col-md-6">
 				<span class="input-group-btn">
 				<button class="form-control btn btn-danger btn-sm rounded-3"
-                        onclick="cerrarCamara()">Detener camara</button>
+                        onclick="cerrarCamara()">Detener cámara</button>
 				</span>
                     </div>
-
+                    <p class="col-12 mt-2 text-muted small">Después de leer un QR, pulse &quot;Aceptar&quot; en el popup; la cámara se encenderá de nuevo para leer otro.</p>
                 </div>
             </div>
 

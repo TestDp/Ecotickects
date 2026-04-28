@@ -224,6 +224,49 @@
 							</div>
                         </div>
                         <br/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="chkCamposPersonalizados" onclick="toggleCamposPersonalizados()"> Agregar campos personalizados al registro
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divCamposPersonalizados" hidden>
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon"><i class="material-icons">edit_note</i></div>
+                                <h4 class="card-title">Campos personalizados: define campos adicionales para el formulario de registro.</h4>
+                                <small class="text-muted">Si el campo tiene opciones (ej: tallas), sepáralas con coma: S,M,L,XL. Si lo dejas vacío será texto libre.</small>
+                            </div>
+                            <div id="listaCamposPersonalizados">
+                                <div class="row" name="rowCampoPersonalizado" style="margin-top:10px;">
+                                    <div class="col-md-4">
+                                        <div style="background-color:#fff; color:#1D2139;" class="input-group-addon">
+                                            Etiqueta del campo
+                                            <input name="campoEtiqueta" type="text" class="form-control" placeholder="Ej: Talla camiseta"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div style="background-color:#fff; color:#1D2139;" class="input-group-addon">
+                                            Opciones (separadas por coma, vacío = texto libre)
+                                            <input name="campoOpciones" type="text" class="form-control" placeholder="Ej: S,M,L,XL"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label style="display:block;">&nbsp;</label>
+                                        <label><input type="checkbox" name="campoObligatorio" value="1"> Obligatorio</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div style="background-color:#1D2139; color:#B0D416;" class="input-group-addon">
+                                            <a title="Agregar otro campo" onclick="agregarCampoPersonalizado()"><i class="material-icons">add</i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <br/>
                         <div style="margin:0px !important;" class="row" hidden>
                             <div class="col-md-12">
                                 <input type="button" class="btn btn-blue ripple trial-button" onclick="AgregarPregunta()" value="Agregar Pregunta"/>
@@ -525,6 +568,33 @@
 
     <script type="text/javascript">
         CKEDITOR.replace('informacionEvento');
+
+        function toggleCamposPersonalizados() {
+            var div = document.getElementById('divCamposPersonalizados');
+            div.hidden = !document.getElementById('chkCamposPersonalizados').checked;
+        }
+
+        function agregarCampoPersonalizado() {
+            var contenedor = document.getElementById('listaCamposPersonalizados');
+            var html = '<div class="row" name="rowCampoPersonalizado" style="margin-top:10px;">' +
+                '<div class="col-md-4"><div style="background-color:#fff; color:#1D2139;" class="input-group-addon">' +
+                'Etiqueta del campo <input name="campoEtiqueta" type="text" class="form-control" placeholder="Ej: Tipo de sangre"/>' +
+                '</div></div>' +
+                '<div class="col-md-4"><div style="background-color:#fff; color:#1D2139;" class="input-group-addon">' +
+                'Opciones (separadas por coma) <input name="campoOpciones" type="text" class="form-control" placeholder="Ej: A+,A-,B+,B-,O+,O-"/>' +
+                '</div></div>' +
+                '<div class="col-md-2"><label style="display:block;">&nbsp;</label>' +
+                '<label><input type="checkbox" name="campoObligatorio" value="1"> Obligatorio</label></div>' +
+                '<div class="col-md-2"><div style="background-color:#dc3545; color:#fff;" class="input-group-addon">' +
+                '<a title="Eliminar campo" onclick="eliminarCampoPersonalizado(this)"><i class="material-icons">clear</i></a>' +
+                '</div></div></div>';
+            contenedor.insertAdjacentHTML('beforeend', html);
+        }
+
+        function eliminarCampoPersonalizado(element) {
+            var row = element.closest('[name=rowCampoPersonalizado]');
+            if (row) row.remove();
+        }
     </script>
 
 @endsection

@@ -18,6 +18,7 @@ use Eco\Datos\Modelos\Pregunta;
 use Eco\Datos\Modelos\Respuesta;
 use Eco\Datos\Modelos\PrecioBoleta;
 use Eco\Datos\Modelos\Sede;
+use Eco\Datos\Modelos\CampoPersonalizado;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Ecotickets\User;
@@ -87,6 +88,20 @@ class EventosRepositorio
                         $Respuesta ->save();// se guarda la respuesta
                     }
                     $ind++;
+                }
+            }
+            //Guardar campos personalizados
+            if ($EdEvento->campoEtiqueta) {
+                foreach ($EdEvento->campoEtiqueta as $indCampo => $etiqueta) {
+                    if (!empty($etiqueta)) {
+                        $campo = new CampoPersonalizado();
+                        $campo->Evento_id = $evento->id;
+                        $campo->etiqueta = $etiqueta;
+                        $campo->opciones = $EdEvento->campoOpciones[$indCampo] ?? null;
+                        $campo->esObligatorio = isset($EdEvento->campoObligatorio[$indCampo]) ? 1 : 0;
+                        $campo->orden = $indCampo;
+                        $campo->save();
+                    }
                 }
             }
             DB::commit();
@@ -248,6 +263,22 @@ class EventosRepositorio
                     Respuesta::where('Pregunta_id','=',$pregunta->id)->delete();
                 }
                 Pregunta::where('Evento_id','=',$EdEvento->id)->delete();
+            }
+
+            // Actualizar campos personalizados: borrar los anteriores y recrearlos
+            CampoPersonalizado::where('Evento_id', '=', $EdEvento->id)->delete();
+            if ($EdEvento->campoEtiqueta) {
+                foreach ($EdEvento->campoEtiqueta as $indCampo => $etiqueta) {
+                    if (!empty($etiqueta)) {
+                        $campo = new CampoPersonalizado();
+                        $campo->Evento_id = $evento->id;
+                        $campo->etiqueta = $etiqueta;
+                        $campo->opciones = $EdEvento->campoOpciones[$indCampo] ?? null;
+                        $campo->esObligatorio = isset($EdEvento->campoObligatorio[$indCampo]) ? 1 : 0;
+                        $campo->orden = $indCampo;
+                        $campo->save();
+                    }
+                }
             }
 
             DB::commit();

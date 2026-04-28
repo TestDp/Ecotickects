@@ -100,9 +100,26 @@ function generarQRCodePago(nombreEvento,pinBoleta) {
 
 function validarCamposRegistrarAsistente() {
     validarFormularioPago();
-    if ($("#formularioEvento").valid()) {
+    var camposValidos = validarCamposPersonalizadosObligatorios();
+    if ($("#formularioEvento").valid() && camposValidos) {
         RegistrarUsuario();
     }
+}
+
+function validarCamposPersonalizadosObligatorios() {
+    var valido = true;
+    $(".campoPersonalizado").each(function () {
+        var campo = $(this);
+        campo.next(".error-campo-personalizado").remove();
+        if (campo.data("obligatorio") == 1) {
+            var valor = $.trim(campo.val());
+            if (!valor) {
+                valido = false;
+                campo.after('<label class="error error-campo-personalizado" style="color:red;">*El campo ' + campo.data("etiqueta") + ' es obligatorio</label>');
+            }
+        }
+    });
+    return valido;
 }
 
 function validarFormularioPago(){
