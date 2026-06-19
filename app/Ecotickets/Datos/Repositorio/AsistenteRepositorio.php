@@ -278,7 +278,7 @@ class AsistenteRepositorio
             ->leftJoin('users', 'users.id', '=', 'Tbl_Usuarios_X_AsistenteEvento.user_id')
             ->where('tbl_asistentesXeventos.Evento_id', '=', $idEvento)
             ->select(\DB::raw('tbl_asistentesXeventos.id as AsistenteXEvento_id, tbl_asistentesXeventos.esActivo, tbl_asistentes.id,  tbl_asistentes.Nombres, tbl_asistentes.Apellidos,
-             tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.Dirección, 
+             tbl_asistentes.Identificacion, tbl_asistentes.telefono, tbl_asistentes.Email, tbl_asistentes.Edad, tbl_asistentes.fechaNacimiento, tbl_asistentes.Dirección, 
              Tbl_Ciudades.Nombre_Ciudad, Tbl_InfoPagos.CantidadBoletas, Tbl_InfoPagos.PrecioTotal, "Paga" as TipoBoleta, 
              users.name as UsuarioVendedor, Tbl_PreciosBoletas.Localidad ' ))
             ->whereIn('Tbl_InfoPagos.EstadosTransaccion_id', array(4,100))

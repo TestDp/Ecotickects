@@ -22,6 +22,7 @@
                           <th class="th-description">Celular y correo</th>
 						  <th class="th-description">Localidad</th>
 						  <th class="th-description">Ciudad</th>
+						  <th class="th-description">Fecha nacimiento</th>
                           <th class="th-description">Usuario vendedor</th>
 						  <th class="th-description">Cantidad boletas</th>
                           <th class="th-description">Total compra</th>
@@ -52,6 +53,9 @@
                           </td>
 						  <td class="td-name">
                             <small>{{$asistente->Nombre_Ciudad}}</small>
+                          </td>
+						  <td class="td-name">
+                            {{ $asistente->fechaNacimiento ?? '' }}
                           </td>
                           <td class="td-name">
                             <a>{{$asistente->UsuarioVendedor}}</a>

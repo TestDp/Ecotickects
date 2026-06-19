@@ -211,6 +211,7 @@ function EditarNombrePreguntasYRespuetas(){
     }
     // Renombrar campos personalizados para que lleguen como arrays
     $("#listaCamposPersonalizados").find("div[name=rowCampoPersonalizado]").each(function (i, row) {
+        $(row).find("input[name=campoId]").attr("name", "campoId[" + i + "]");
         $(row).find("input[name=campoEtiqueta]").attr("name", "campoEtiqueta[" + i + "]");
         $(row).find("input[name=campoOpciones]").attr("name", "campoOpciones[" + i + "]");
         var chk = $(row).find("input[name=campoObligatorio]");
@@ -245,7 +246,7 @@ function generarQRCode(){
     var qr = create_qrcode($("#nomEvenQR").val() +" - CC - " + $("#Identificacion").val() + "ECOTICKETS" );
     var src = $(qr).attr('src');
     $("#imagen").val(src);
-    validarFormulario();
+        validarFormulario();
     if (!validarCamposPersonalizadosObligatorios()) {
         event.preventDefault();
         return false;

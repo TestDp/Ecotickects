@@ -520,6 +520,7 @@
                                 @if(count($evento->camposPersonalizados) > 0)
                                     @foreach($evento->camposPersonalizados as $campo)
                                     <div class="row" name="rowCampoPersonalizado" style="margin-top:10px;">
+                                        <input type="hidden" name="campoId" value="{{ $campo->id }}"/>
                                         <div class="col-md-4">
                                             <div style="background-color:#fff; color:#1D2139;" class="input-group-addon">
                                                 Etiqueta del campo
@@ -545,6 +546,7 @@
                                     @endforeach
                                 @else
                                     <div class="row" name="rowCampoPersonalizado" style="margin-top:10px;">
+                                        <input type="hidden" name="campoId" value="0"/>
                                         <div class="col-md-4">
                                             <div style="background-color:#fff; color:#1D2139;" class="input-group-addon">
                                                 Etiqueta del campo
@@ -1009,6 +1011,7 @@
             var contenedor = document.getElementById('listaCamposPersonalizados');
             var botonRow = contenedor.querySelector('.row:last-child');
             var html = '<div class="row" name="rowCampoPersonalizado" style="margin-top:10px;">' +
+                '<input type="hidden" name="campoId" value="0"/>' +
                 '<div class="col-md-4"><div style="background-color:#fff; color:#1D2139;" class="input-group-addon">' +
                 'Etiqueta del campo <input name="campoEtiqueta" type="text" class="form-control" placeholder="Ej: Tipo de sangre"/>' +
                 '</div></div>' +

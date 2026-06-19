@@ -241,6 +241,7 @@
                             </div>
                             <div id="listaCamposPersonalizados">
                                 <div class="row" name="rowCampoPersonalizado" style="margin-top:10px;">
+                                    <input type="hidden" name="campoId" value="0"/>
                                     <div class="col-md-4">
                                         <div style="background-color:#fff; color:#1D2139;" class="input-group-addon">
                                             Etiqueta del campo
@@ -577,6 +578,7 @@
         function agregarCampoPersonalizado() {
             var contenedor = document.getElementById('listaCamposPersonalizados');
             var html = '<div class="row" name="rowCampoPersonalizado" style="margin-top:10px;">' +
+                '<input type="hidden" name="campoId" value="0"/>' +
                 '<div class="col-md-4"><div style="background-color:#fff; color:#1D2139;" class="input-group-addon">' +
                 'Etiqueta del campo <input name="campoEtiqueta" type="text" class="form-control" placeholder="Ej: Tipo de sangre"/>' +
                 '</div></div>' +
