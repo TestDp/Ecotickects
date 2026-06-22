@@ -171,4 +171,9 @@ class EventosServicio
         return $this->eventoRepor->obtenerMaximoBoletasPorCompra($idEvento);
     }
 
+    public function obtenerCamposPersonalizadosEvento($idEvento)
+    {
+        return $this->eventoRepor->obtenerCamposPersonalizadosEvento($idEvento);
+    }
+
 }

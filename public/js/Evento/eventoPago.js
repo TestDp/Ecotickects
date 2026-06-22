@@ -716,8 +716,8 @@ function CargarLocalidadesEvento(){
         dataType: 'json',
         success: function (result) {
             if (result) {
-                localidad_id.find("option").remove();//Removemos las opciónes anteriores
-                localidad_id.append(new Option("Seleccionar", ""));// agregamos la opción de seleccionar
+                localidad_id.find("option").remove();
+                localidad_id.append(new Option("Seleccionar", ""));
                 $.each(result, function (ind, element) {
                     var opcion = new Option(element.localidad, element.id);
                     $(opcion).attr("data-num", element.precio);
@@ -726,7 +726,46 @@ function CargarLocalidadesEvento(){
             }
         }
     });
+    CargarCamposPersonalizadosEvento($idEvento);
+}
 
+function CargarCamposPersonalizadosEvento(idEvento) {
+    var contenedor = $("#contenedorCamposPersonalizados");
+    var lista = $("#listaCamposPersonalizadosUsuario");
+    lista.empty();
+    if (!idEvento) { contenedor.hide(); return; }
+    $.ajax({
+        type: 'GET',
+        url: urlBase + '/CamposPersonalizadosEvento/' + idEvento,
+        dataType: 'json',
+        success: function (campos) {
+            if (campos && campos.length > 0) {
+                $.each(campos, function (i, campo) {
+                    var requerido = campo.esObligatorio == 1;
+                    var asterisco = requerido ? '<span style="color:red;">*</span>' : '';
+                    var reqAttr = requerido ? 'required' : '';
+                    var html = '<div class="col-sm-6" style="margin-bottom:10px;">';
+                    html += '<label>' + campo.etiqueta + ' ' + asterisco + '</label>';
+                    if (campo.opciones && campo.opciones.trim() !== '') {
+                        var opciones = campo.opciones.split(',');
+                        html += '<select name="campoPersonalizado[' + campo.id + ']" class="form-control" ' + reqAttr + '>';
+                        html += '<option value="">Seleccionar</option>';
+                        $.each(opciones, function (j, opcion) {
+                            html += '<option value="' + opcion.trim() + '">' + opcion.trim() + '</option>';
+                        });
+                        html += '</select>';
+                    } else {
+                        html += '<input type="text" name="campoPersonalizado[' + campo.id + ']" class="form-control" ' + reqAttr + '/>';
+                    }
+                    html += '</div>';
+                    lista.append(html);
+                });
+                contenedor.show();
+            } else {
+                contenedor.hide();
+            }
+        }
+    });
 }
 
 function CargarLocalidadesEventoMasivo(){

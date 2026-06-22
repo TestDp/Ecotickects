@@ -155,10 +155,11 @@
                                     </select>
                                 </div>
                             </div>
-							<div style="margin:20px;" class="col-sm-12">
-                                <div class="form-group">
-									
-                                </div>
+							<div id="contenedorCamposPersonalizados" class="col-sm-12" style="display:none;">
+                                <hr/>
+                                <h5 style="color:#1D2139;"><i class="material-icons" style="vertical-align:middle;">edit_note</i> Campos adicionales del evento</h5>
+                                <div id="listaCamposPersonalizadosUsuario" class="row"></div>
+                                <hr/>
                             </div>
 							<div class="col-sm-4">
                                 <div class="form-group">
@@ -176,6 +177,11 @@
                                 <div class="form-group">
                                     Precio Total
                                     <input id="PrecioTotal" name="PrecioTotal" type="text" class="form-control"  readonly/>
+                                </div>
+                            </div>
+                            <div style="margin:20px;" class="col-sm-12">
+                                <div class="form-group">
+									
                                 </div>
                             </div>
 							<div class="col-sm-12">

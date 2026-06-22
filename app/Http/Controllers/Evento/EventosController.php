@@ -331,6 +331,11 @@ class EventosController extends Controller
 
     }
 
+    public function obtenerCamposPersonalizadosEvento($idEvento)
+    {
+        return response()->json($this->eventoServicio->obtenerCamposPersonalizadosEvento($idEvento));
+    }
+
     public function generarEnlacePromotor(Request $request){
         $eventos = null;
         $urlinfo= $request->getPathInfo();
